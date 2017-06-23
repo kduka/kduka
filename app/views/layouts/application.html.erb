@@ -93,7 +93,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="header-right cart">
           <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+          <%= link_to(cart_path) do %>
           <h4 class="cart-text"><%= render 'layouts/cart_text' %></h4>
+              <% end %>
           <div class="cart-box">
             <p><%= link_to "Empty cart", order_items_clear_path, remote: true, :class => "simpleCart_empty" %></p>
             <div class="clearfix"> </div>
@@ -118,5 +120,71 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <hr>
     <%= yield %>
 </div>
+<!--footer-->
+<div class="footer" style="margin-top: 2em">
+  <div class="container">
+    <div class="footer-info">
+      <div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".5s">
+        <h4 class="footer-logo"><a href="index.html">My<b>Duka</b> <span class="tag">Get your business running</span> </a></h4>
+        <p>© 2017 MyDuka . All rights reserved | Design by <a href="http://w3layouts.com" target="_blank">W3layouts</a></p>
+      </div>
+      <div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".7s">
+        <h3>Popular</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">new</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="checkout.html">Wishlist</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".9s">
+        <h3>Subscribe</h3>
+        <p>Sign Up Now For More Information <br> About Our Company </p>
+        <form>
+          <input type="text" placeholder="Enter Your Email" required="">
+          <input type="submit" value="Go">
+        </form>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<!--//footer-->
+<!-- the jScrollPane script -->
+<!--<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>-->
+<script type="text/javascript" id="sourcecode">
+    $(function()
+    {
+        $('.scroll-pane').jScrollPane();
+    });
+</script>
+<!-- //the jScrollPane script -->
+<!--<script type="text/javascript" src="js/jquery.mousewheel.js"></script>-->
+
+<!-- the mousewheel plugin -->
+<!--search jQuery-->
+<!--<script src="js/main.js"></script>-->
+<!--//search jQuery-->
+<!--smooth-scrolling-of-move-up-->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+<!--//smooth-scrolling-of-move-up-->
+<!--Bootstrap core JavaScript
+  ================================================== -->
+<!--Placed at the end of the document so the pages load faster -->
+<!--<script src="js/bootstrap.js"></script>-->
 </body>
 </html>

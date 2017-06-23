@@ -1,7 +1,15 @@
 
-<h3 class="text-center">Products for Sale</h3>
+
 
 <div class="row product-model-sec">
+  <div class="col-md-12">
+    <div class="breadcrumbs">
+      <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+        <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+        <li class="active">Products</li>
+      </ol>
+    </div>
+  </div>
     <% @products.each do |product| %>
       <%= render "product1", product: product, order_item: @order_item %>
     <% end %>
