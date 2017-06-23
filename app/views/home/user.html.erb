@@ -1,12 +1,34 @@
-<h1>Home#user</h1>
 
+<% if user_signed_in? %>
+    <h1>Your Stores</h1>
 <% unless @stores.blank? %>
-<% @stores.each do |s| %>
-    <%= link_to s.name, store_path(s), :title => 'Visit ' + s.name %>
-    <%= s.active %>
-<% end %>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Store Name</th>
+            <th>Active</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% num = 1 %>
+          <% @stores.each do |s| %>
+              <tr>
+                <td><%= num %></td>
+                <td><%= link_to s.name, store_path(s), :title => 'Visit ' + s.name %></td>
+                <td><%= s.active %></td>
+                <td><%= link_to "Visit Shop", store_products_path(s), target:"_blank" %> |  <a href=""><span style="color:red"> Delete</span></a> </td>
+              </tr>
+              <% num = num + 1 %>
+          <% end %>
+          </tbody>
+        </table>
 <% else %>
-Nothing
+You have no stores
 <% end %>
 <p><%= link_to "New Store", new_store_registration_path, :class => 'btn btn-primary' %></p>
 
+<% else %>
+<p>Please Log In</p>
+<% end %>

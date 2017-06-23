@@ -98,7 +98,4 @@ jQuery(document).ready(function($){
 		}
 	}
 
-    $.ajax({
-	    url: '/order_items/updater/'
-    });
 });

@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
-<p>Total Products : <%= @product.count %></p>
-<p>Active : <%= @store.active %></p>
+<p><strong>Total Products : <%= @product.count %></strong></p>
+<p><strong>Active : <%= @store.active %></strong></p>
 
-<table id="datatables">
+<% if !@product.blank? %>
+<table class="table">
   <thead>
   <tr>
     <th>Name</th>
@@ -20,6 +21,12 @@
   <% end %>
   </tbody>
 </table>
+
+    <% else %>
+
+    <p>You dont have any Products in this store yet</p>
+
+    <% end %>
 
 
 <%= link_to 'New Product', new_store_product_path(@store) %> |

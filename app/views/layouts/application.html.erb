@@ -3,7 +3,8 @@
 <head>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <title>Modern Shoppe a Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+  <%= csrf_meta_tags %>
+  <title>MyDuka</title>
   <!-- for-mobile-apps -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -58,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="container">
       <div class="nav navbar-nav wow fadeInLeft animated "  data-wow-delay=".5s">
         <% if user_signed_in? %>
-            Welcome <%= current_user.email %>!  |  <%= link_to "Logout", destroy_user_session_path, :method => 'delete' %>  |  <%= link_to "My Profile", edit_user_registration_path %>
+            Welcome <%= current_user.email %>!  |  <%= link_to "Logout", destroy_user_session_path, :method => 'delete' %>  |  <%= link_to "My Profile", edit_user_registration_path(:subdomain => 'sub') %>
         <% else %>
             <p>Welcome to Duka <%= link_to "Register", new_user_registration_path  %> or <%= link_to "Login", new_user_session_path  %></p>
         <% end %>
@@ -80,8 +81,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="container">
       <div class="nav navbar-nav header-two-left">
         <ul>
-          <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 892</li>
-          <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">mail@example.com</a></li>
+          <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 722 000 000</li>
+          <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@myduka.com</a></li>
         </ul>
       </div>
       <div class="nav navbar-nav logo wow zoomIn animated" data-wow-delay=".7s">
@@ -89,7 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>
       <div class="nav navbar-nav navbar-right header-two-right">
         <div class="header-right my-account">
-          <a href="contact.html"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> CONTACT US</a>
+          <a href=""><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> CONTACT US</a>
         </div>
         <div class="header-right cart">
           <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
@@ -109,11 +110,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <%= render 'layouts/menu' %>
 </div>
 
-<div class="container">
+<div class="container" style="margin-top: 1em">
     <div class="row">
       <div class="col-md-12">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <% if !notice.nil? %>
+        <div class="alert alert-success" role="alert">
+          <strong><%= notice %></strong>
+        </div>
+        <% end %>
+        <% if !alert.nil? %>
+        <div class="alert alert-info" role="alert">
+          <strong><%= alert %></strong>
+        </div>
+            <% end %>
 
       </div>
     </div>
@@ -131,11 +140,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".7s">
         <h3>Popular</h3>
         <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="products.html">new</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="checkout.html">Wishlist</a></li>
+          <li><a href="">About Us</a></li>
+          <li><a href="">new</a></li>
+          <li><a href="">Contact Us</a></li>
+          <li><a href="">FAQ</a></li>
+          <li><a href="">Wishlist</a></li>
         </ul>
       </div>
       <div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".9s">

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 =begin
   protect_from_forgery with: :exception
 =end
-  helper_method :current_order
+  helper_method :current_order, :sign
 
   def current_order
 
@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
       Order.find(session[:order_id])
     else
       Order.new
+    end
+  end
+
+  def sign
+    if user_signed_in?
+      true
+    else
+      false
     end
   end
 end

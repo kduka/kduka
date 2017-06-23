@@ -12,8 +12,9 @@
       <!--navbar-header-->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav top-nav-info">
-          <li><%= link_to "Stores", stores_path %></li>
-          <li class="dropdown">
+          <li><% if sign %><%= link_to "My Stores", root_path %><% end %></li>
+          <li><% if sign %><%= link_to "View All Stores", stores_path %><% end %></li>
+          <!--<li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Baby<b class="caret"></b></a>
             <ul class="dropdown-menu multi-column multi-column1">
               <div class="row">
@@ -201,15 +202,15 @@
               </div>
             </ul>
           </li>
-          <li><a href="codes.html">Special Offers</a></li>
+          <li><a href="codes.html">Special Offers</a></li>-->
         </ul>
         <div class="clearfix"> </div>
         <!--//navbar-collapse-->
-        <header class="cd-main-header">
+       <!-- <header class="cd-main-header">
           <ul class="cd-header-buttons">
             <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-          </ul> <!-- cd-header-buttons -->
-        </header>
+          </ul> &lt;!&ndash; cd-header-buttons &ndash;&gt;
+        </header>-->
       </div>
       <!--//navbar-header-->
     </nav>
