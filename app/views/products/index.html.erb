@@ -1,0 +1,9 @@
+
+<h3 class="text-center">Products for Sale</h3>
+
+<div class="row product-model-sec">
+    <% @products.each do |product| %>
+      <%= render "product1", product: product, order_item: @order_item %>
+    <% end %>
+
+</div>

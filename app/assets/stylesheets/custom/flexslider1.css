@@ -1,0 +1,153 @@
+/*
+ * jQuery FlexSlider v2.4.0
+ * http://www.woothemes.com/flexslider/
+ *
+ * Copyright 2012 WooThemes
+ * Free to use under the GPLv2 and later license.
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributing author: Tyler Smith (@mbmufffin)
+ * 
+ */
+
+.slides,
+.slides > li,
+.flex-control-nav,
+.flex-direction-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flex-viewport {
+  max-height:350px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+
+}
+.flex-control-nav {
+  position: absolute;
+    bottom: auto;
+    text-align: center;
+    left:-21%;
+    top: 0;
+    width: 24%;
+}
+ul.flex-direction-nav {
+    display: none;
+}
+.flex-control-thumbs li:nth-child(2) {
+    margin: 0.5em 0;
+}
+.flex-control-thumbs img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: .7;
+  cursor: pointer;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+    border: 1px solid #D1CFCF;
+}
+.flex-control-thumbs img:hover {
+  opacity: 1;
+}
+.flex-control-thumbs .flex-active {
+  opacity: 1;
+  cursor: default;
+}
+/* ====================================================================================================================
+ * RESPONSIVE
+ * ====================================================================================================================*/
+@media screen and (max-width: 1080px) {
+ .flex-viewport {
+    max-height: 295px;
+}
+}
+@media screen and (max-width: 991px) {
+.flex-control-nav {
+    width: 21%;
+}
+.flex-viewport {
+    max-height: 290px;
+}
+}
+@media screen and (max-width:480px) {
+.flex-viewport {
+    max-height: 260px;
+}
+}
+@media screen and (max-width: 320px) {
+.flex-control-nav {
+    width: 29%;
+    left: -23%;
+}
+.single-top-left h3 {
+    font-size: 1.3em;
+}
+.single-rating {
+    margin: 0.6em 0;
+}
+.single-rating a {
+    font-size: 0.9em;
+}
+.single-info .single-rating p {
+    font-size: 0.9em;
+}
+.single-info h6 {
+    font-size: 1.4em;
+}
+.single-info p {
+    font-size: 0.85em;
+}
+.single-top-left ul {
+    float: none;
+    width: 100%;
+}
+.single-top-left ul h4 {
+    font-size: 1.8em;
+}
+.quantity input.item_quantity {
+    padding: 4px 0;
+}
+.panel-body {
+    padding: 10px;
+}
+.about p {
+    font-size: 0.87em;
+}
+.title-info {
+    margin-bottom: 1em;
+}
+.about h4 {
+    font-size: 1.6em;
+    margin: 0.4em 0;
+}
+.footer-grids p {
+    font-size: 0.87em;
+}
+.footer-grids h3 {
+    font-size: 2.1em;
+}
+.footer input[type="text"] {
+    margin-top: 0.5em;
+}
+.footer input[type="text"] {
+    padding: 8px 10px;
+}
+.footer input[type="submit"] {
+    font-size: 0.9em;
+}
+.checkbox {
+    margin: 0 0 0.5em;
+}
+.cd-search input {
+    font-size: 1em;
+}
+}

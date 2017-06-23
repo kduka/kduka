@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<p>Total Products : <%= @product.count %></p>
+<p>Active : <%= @store.active %></p>
+
+<table id="datatables">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Active</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @product.each do |p| %>
+  <tr>
+    <td><%= p.name %></td>
+    <td><%= p.price %></td>
+    <td><%= p.active %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'New Product', new_store_product_path(@store) %> |
+<%= link_to 'Edit', edit_store_path(@store) %> |
+<%= link_to 'Back', stores_path %>

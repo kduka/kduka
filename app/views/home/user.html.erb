@@ -1,0 +1,12 @@
+<h1>Home#user</h1>
+
+<% unless @stores.blank? %>
+<% @stores.each do |s| %>
+    <%= link_to s.name, store_path(s), :title => 'Visit ' + s.name %>
+    <%= s.active %>
+<% end %>
+<% else %>
+Nothing
+<% end %>
+<p><%= link_to "New Store", new_store_registration_path, :class => 'btn btn-primary' %></p>
+
