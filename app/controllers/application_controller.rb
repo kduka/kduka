@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+
+  def api
+
+  end
 end
