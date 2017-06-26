@@ -62,6 +62,10 @@ class StoresController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def categories
+    @categories = Category.where(store_id:params[:store_id])
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

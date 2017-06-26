@@ -1,16 +1,24 @@
 class ProductsController < ApplicationController
+  set_tab :home
   def index
     @stores  = Store.all
     @products = Product.where(store_id:params[:store_id])
     @order_item = current_order.order_items.new
   end
+
   def new
     @store = Store.find(params[:store_id])
     @product = @store.product.new
   end
+
   def create
-  @store = Store.find(params[:store_id])
-  @product = @store.product.create(product_params)
+    @store = Store.find(params[:store_id])
+    @product = @store.product.create(product_params)
+
+    uploaded_io = params[:product][:pic]
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
 
     if @product.save
       flash[:notice] = "New Product Created!"

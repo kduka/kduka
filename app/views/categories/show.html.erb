@@ -1,19 +1,4 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @category.active %>
-</p>
-
-<p>
-  <strong>Store:</strong>
-  <%= debug @category.store %>
-</p>
-
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

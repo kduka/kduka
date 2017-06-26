@@ -13,7 +13,7 @@
   <% @stores.each do |store| %>
       <tr>
         <td><%= store.name %>  </td>
-        <td><%= link_to 'Show', store %> | <%= link_to 'Edit', edit_store_path(store) %> | <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %> | <%= link_to 'Shop', store_products_path(store), :title => 'Visit ' + store.name %></td>
+        <td><%= link_to 'Show', store %> | <%= link_to 'Edit', edit_store_path(store) %> | <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %> | <%= link_to 'Shop', store_products_path(store), :title => 'Visit ' + store.name %> | <%= link_to 'Categories', store_categories_url(store) %></td>
       </tr>
   <% end %>
   <tr>

@@ -17,7 +17,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create category" do
     assert_difference('Category.count') do
-      post categories_url, params: { category: { active: @category.active, name: @category.name, store_id: @category.store_id } }
+      post categories_url, params: { category: {  } }
     end
 
     assert_redirected_to category_url(Category.last)
@@ -34,7 +34,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update category" do
-    patch category_url(@category), params: { category: { active: @category.active, name: @category.name, store_id: @category.store_id } }
+    patch category_url(@category), params: { category: {  } }
     assert_redirected_to category_url(@category)
   end
 

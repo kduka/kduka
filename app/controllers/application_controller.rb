@@ -21,7 +21,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def api
-
+ set_tab :categories, :if => :controller?
+  
+  def controller?
+    self.class.name =~ /^Stores(::|Controller)/
   end
+  
+  
 end
