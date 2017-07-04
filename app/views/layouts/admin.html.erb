@@ -1,0 +1,174 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		
+		<%= csrf_meta_tags %>
+		<title>Home</title>
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#demo-pie-1').pieChart({
+					barColor : '#3bb2d0',
+					trackColor : '#eee',
+					lineCap : 'round',
+					lineWidth : 8,
+					onStep : function(from, to, percent) {
+						$(this.element).find('.pie-value').text(Math.round(percent) + '%');
+					}
+				});
+
+				$('#demo-pie-2').pieChart({
+					barColor : '#fbb03b',
+					trackColor : '#eee',
+					lineCap : 'butt',
+					lineWidth : 8,
+					onStep : function(from, to, percent) {
+						$(this.element).find('.pie-value').text(Math.round(percent) + '%');
+					}
+				});
+
+				$('#demo-pie-3').pieChart({
+					barColor : '#ed6498',
+					trackColor : '#eee',
+					lineCap : 'square',
+					lineWidth : 8,
+					onStep : function(from, to, percent) {
+						$(this.element).find('.pie-value').text(Math.round(percent) + '%');
+					}
+				});
+
+			});
+
+		</script>
+	</head>
+	<body>
+		<div class="page-container">
+			<!--/content-inner-->
+			<div class="left-content">
+				<div class="inner-content">
+					<!-- header-starts -->
+					<div class="header-section">
+						<!-- top_bg -->
+						<div class="top_bg">
+
+							<div class="header_top">
+								<div class="top_right">
+										<ul>
+											
+											<li><a href=""><%= current_user.name %></a></li>
+										</ul>
+									</div>
+									<div class="top_left">
+								<span style="color:#fff"><i class="fa fa-user" ></i> <%= current_user.email%></span> | 
+									<i class="fa fa-user" ></i><%= link_to "Logout", destroy_user_session_path , method:'delete' %></h2>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
+						</div>
+						<div class="clearfix"></div>
+						<!-- /top_bg -->
+					</div>
+					<div class="header_bg">
+
+						<div class="header">
+							<div class="head-t">
+								<!-- <div class="logo">
+								<a href="index.html"><img src="images/logo.png" class="img-responsive" alt=""> </a>
+								</div> -->
+								<!-- start header_right -->
+								<div class="header_right">
+									<div class="rgt-bottom">
+
+										<div class="clearfix"></div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+
+					</div>
+					<!-- //header-ends -->
+
+					<!--content-->
+					<div class="content">
+						<%= yield %>
+					</div>
+					<!--content-->
+
+				</div>
+			</div>
+			<!--//content-inner-->
+			<!--/sidebar-menu-->
+			<div class="sidebar-menu">
+				<header class="logo1">
+					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>
+				</header>
+				<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
+				<div class="menu">
+					<ul id="menu" >
+						<li>
+							<a href="<%= root_path %>"><i class="fa fa-tachometer"></i> <span>Home</span></a>
+						</li>
+						<li id="menu-academico" >
+							<a href="#"><i class="fa fa-table"></i> <span> Stores</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+							<ul id="menu-academico-sub" >
+								<li id="menu-academico-avaliacoes" >
+									<a href="<%= stores_path %>">Manage Stores</a>
+								</li>
+
+								<li id="menu-academico-avaliacoes" >
+									<a href="<%= new_store_registration_path %>">New Store</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-credit-card"></i> <span>Billing</span></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-gears"></i> <span>Account</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<script>
+			var toggle = true;
+
+			$(".sidebar-icon").click(function() {
+				if (toggle) {
+					$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+					$("#menu span").css({
+						"position" : "absolute"
+					});
+				} else {
+					$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+					setTimeout(function() {
+						$("#menu span").css({
+							"position" : "relative"
+						});
+					}, 400);
+				}
+
+				toggle = !toggle;
+			});
+		</script>
+	</body>
+</html>

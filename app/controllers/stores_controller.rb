@@ -1,10 +1,15 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  #before_action :set_admin, only: [:index]
+  #after_action :set_shop_show, only: [:show, :edit]
+  set_tab :home
 
   # GET /stores
   # GET /stores.json
   def index
-    @stores = Store.all
+    @stores = Store.where(user_id:current_user.id)
+    set_admin 
   end
 
   # GET /stores/1
@@ -12,15 +17,18 @@ class StoresController < ApplicationController
   def show
     @store = Store.find(params[:id])
     @product = Product.where(store_id:@store.id)
+    set_shop_show
   end
 
   # GET /stores/new
   def new
     @store = Store.new
+    set_admin
   end
 
   # GET /stores/1/edit
   def edit
+    set_shop_show
   end
 
   # POST /stores
@@ -72,6 +80,8 @@ class StoresController < ApplicationController
     def set_store
       @store = Store.find(params[:id])
     end
+    
+    
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params

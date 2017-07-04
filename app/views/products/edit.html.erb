@@ -1,6 +1,57 @@
+<div class="col-md-6 col-md-offset-3">
 <h1>Editing Product</h1>
 
-<%= render 'form', product: @product %>
+<%= form_for :product,  :url => {:controller => 'products', :action => 'update'},method:'put' do |f| %>
+    <% if @product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+          <ul>
+            <% @product.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name,class:'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price %>
+      <%= f.text_field :price, class:'form-control' %>
+    </div>
+
+    
+    
+    <div class="form-group">
+      Category
+	<%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name'),{} ,{:class=>'form-control'} %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, class:'form-control' %>
+    </div>
+	
+	<div class="form-group">
+      <%= f.label :active %>
+      <%= f.check_box :active %>
+    </div>
+    
+	<div class="form-group">
+      Upload an Image
+      <%= f.file_field :image, class:'form-control' %>
+    </div>
+	
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Show', store_product_path(params[:store_id],params[:id]) %> |
+<%= link_to 'Back', store_products_path(params[:store_id]) %>
+</div>

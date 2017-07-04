@@ -1026,6 +1026,8 @@ h3.title span {
 }
 .product-grids .new-top {
     padding: 1.5em 1.5em 0;
+    width: 100%;
+    min-height: 333px;
 }
 .product-grids.product-grids-mdl {
     margin: 0 2em;

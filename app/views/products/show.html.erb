@@ -1,4 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<table class="table">
+  <thead>
+  <tr>
+    <th></th>
+    <th></th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Name</td>
+    <td><%= @product.name %></td>
+  </tr>
+  <tr>
+    <td>Price</td>
+    <td><%= @product.price %></td>
+  </tr>
+  <tr>
+    <td>Active</td>
+    <td><%= @product.active %></td>
+  </tr>
+  <tr>
+    <td>Quantity</td>
+    <td><%= @product.quantity %></td>
+  </tr>
+  <tr>
+    <td>Category</td>
+    <td><%= Category.find(@product.category_id).name rescue nil %></td>
+  </tr>
+  <tr>
+    <td>Image</td>
+    <td><%= image_tag(@product.image_url(:thumb).to_s) %></td>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_store_product_path(params[:store_id],params[:id]) %> |
+<%= link_to 'Back', store_products_path(params[:store_id]) %>

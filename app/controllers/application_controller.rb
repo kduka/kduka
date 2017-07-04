@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
 =begin
-  protect_from_forgery with: :exception
+protect_from_forgery with: :exception
 =end
   helper_method :current_order, :sign
-
   def current_order
 
     if !session[:order_id].nil?
@@ -15,17 +14,34 @@ class ApplicationController < ActionController::Base
 
   def sign
     if user_signed_in?
-      true
+    true
     else
-      false
+    false
     end
   end
 
- set_tab :categories, :if => :controller?
-  
+  set_tab :categories, :if => :controller?
+
   def controller?
     self.class.name =~ /^Stores(::|Controller)/
   end
+
+  def set_admin
+    render :layout => 'admin'
+  end
+
+  def set_shop_show
+    if params[:id].nil?
+      @store = Store.find(params[:store_id])
+      render :layout => 'shop_show'
+    else
+      @store = Store.find(params[:id])
+      render :layout => 'shop_show'
+    end
+  end
   
-  
+  def set_login
+    render :layout => 'login'
+  end
+
 end

@@ -2,9 +2,14 @@ source 'https://rubygems.org'
 gem 'pesapal'
 gem 'devise'
 gem 'bootstrap-sass'
-gem 'jquery-datatables-rails', '~> 1.12.2'
+gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'seed_dump'
 gem 'tabs_on_rails'
+gem 'mini_magick'
+gem 'carrierwave'
+gem "font-awesome-rails"
+
+
 
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

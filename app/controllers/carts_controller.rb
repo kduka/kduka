@@ -26,7 +26,7 @@ class CartsController < ApplicationController
     # Configure API settings while passing on the data that we need
 
     pesapal.config = {
-        callback_url: @user.callback_url,
+        callback_url: "localhost:3000/carts/complete?ref=#{session[:order_id]}",
         consumer_key: @user.consumer_key,
         #consumer_key: Rails.application.secrets.pesapal_consumer_key,
         consumer_secret: @user.consumer_secret
@@ -36,5 +36,11 @@ class CartsController < ApplicationController
     # Generate iframe
     @order_url = pesapal.generate_order_url
     redirect_to @order_url
+  end
+  
+  def complete
+    @order = Order.find(params[:ref])
+    @order.update(order_status_id:2)
+    render 'success'
   end
 end

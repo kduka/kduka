@@ -1,5 +1,12 @@
 class StoreRegistrationsController < Devise::RegistrationsController
-
+  
+  
+  
+  def new
+    @store = Store.new
+    set_admin
+  end
+  
   # POST /resource
   def create
     @user = User.find(current_user.id)
@@ -16,7 +23,8 @@ class StoreRegistrationsController < Devise::RegistrationsController
   private
 
   def store_params
-    params.require(:store).permit(:email, :username, :password, :password_confirmation, :active, :name)
+    params.require(:store).permit(:email, :username, :password, :password_confirmation, :active, :name, :display_email, :phone, :subdomain)
   end
+
 
 end

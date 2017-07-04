@@ -4,7 +4,9 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    
     @categories = Category.where(store_id:params[:store_id])
+    set_shop_show
   end
 
   # GET /categories/1
@@ -14,8 +16,9 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    #@store = Store.find(params[:store_id])
+    
     @category = Category.new
+    set_shop_show
   end
 
   # GET /categories/1/edit
