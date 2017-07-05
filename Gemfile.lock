@@ -99,6 +99,7 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.2)
     multi_json (1.12.1)
+    mysql2 (0.4.7)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -205,6 +206,7 @@ DEPENDENCIES
   jquery-datatables-rails (~> 3.4.0)
   jquery-rails
   mini_magick
+  mysql2
   pesapal
   pg (= 0.18.1)
   rails (= 5.0.2)
