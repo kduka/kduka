@@ -1,0 +1,41 @@
+<p id="notice">
+	<%= notice %>
+</p>
+
+<p>
+	<strong>Total Orders : <%= @order.count %></strong>
+</p>
+
+<% if !@order.blank? %>
+<table id="myTable" class="table">
+	<thead>
+		<tr>
+			<th>Order Status</th>
+			<th>Reference</th>
+			<th>Subtotal</th>
+			<th>Tax</th>
+			<th>Shipping</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @order.each do |p| %>
+		<tr>
+			<td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
+			<td><%= p.ref %></td>
+			<td><%= p.subtotal %></td>
+			<td><%= p.tax %></td>
+			<td><%= p.shipping %></td>
+			<td><%= p.total %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<% else %>
+
+<p>
+	You dont have any Orders yet.
+</p>
+
+<% end %>

@@ -12,6 +12,7 @@ class OrderItemsController < ApplicationController
     @order_item = @order.order_items.new(order_item_params)
     @order.save
     session[:order_id] = @order.id
+    session[:ref] = @order.ref
   end
 
   def update
@@ -30,8 +31,10 @@ class OrderItemsController < ApplicationController
 
   def clear
     @order = current_order
+    
     @order.destroy
     session[:order_id] = nil
+    
   end
 
   def updater

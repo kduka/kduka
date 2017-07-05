@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     def manage
       @store = Store.find(params[:store_id])
       @product = @store.product.all
-      render :layout => 'shop_show'
+      set_shop_show
     end
   
   def category
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
 
   def create
     @store = Store.find(params[:store_id])
-    sku = [*('A'..'Z')].sample(8).join
+    sku = [*'A'..'Z', *"0".."9"].sample(8).join
     @product = @store.product.create(product_params.merge(sku:sku))
     
     

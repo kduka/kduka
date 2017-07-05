@@ -8,7 +8,9 @@ protect_from_forgery with: :exception
     if !session[:order_id].nil?
       Order.find(session[:order_id])
     else
-      Order.new
+      ref = [*'A'..'Z', *"0".."9"].sample(8).join
+      @store  = Store.where(subdomain:request.subdomain).first
+      Order.new(:ref => ref,:store_id => @store.id)
     end
   end
 
@@ -33,10 +35,10 @@ protect_from_forgery with: :exception
   def set_shop_show
     if params[:id].nil?
       @store = Store.find(params[:store_id])
-      render :layout => 'shop_show'
+      render :layout => 'store_show'
     else
       @store = Store.find(params[:id])
-      render :layout => 'shop_show'
+      render :layout => 'store_show'
     end
   end
   

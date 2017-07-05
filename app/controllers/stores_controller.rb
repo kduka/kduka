@@ -74,6 +74,11 @@ class StoresController < ApplicationController
   def categories
     @categories = Category.where(store_id:params[:store_id])
   end
+  
+  def orders
+    @order = Order.where(store_id:params[:store_id],order_status_id:2)
+    set_shop_show
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

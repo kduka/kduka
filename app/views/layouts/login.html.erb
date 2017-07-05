@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- Head -->
 	<head>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= stylesheet_link_tag    'login.css', media: 'all', 'data-turbolinks-track' => true %>
 
 		<%= csrf_meta_tags %>
 
@@ -37,8 +37,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!-- //Custom-Style-Sheet -->
 
 		<!-- Fonts -->
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" type="text/css" media="all">
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700"			   type="text/css" media="all">
+		<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" %>
+	<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Montserrat:400,700" %>
 		<!-- //Fonts -->
 
 	</head>
@@ -47,42 +47,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- Body -->
 	<body>
 
-		<h1>TECHNO LOGIN FORM</h1>
+		
 
-		<div class="containerw3layouts-agileits">
-
-			<div class="w3imageaits">
-				<img src="images/web.jpg" alt="">
-			</div>
-
-			<div class="aitsloginwthree w3layouts agileits">
-				<h2>Log In to enter the Web</h2>
-				<form action="#" method="post">
-					<input type="text" Name="Userame" placeholder="Username" required="">
-					<input type="password" Name="Password" placeholder="Password" required="">
-					<ul class="tick w3layouts agileinfo">
-						<li>
-							<input type="checkbox" id="brand1" value="">
-							<label for="brand1"><span></span>Remember me</label>
-						</li>
-						<li>
-							<a href="#">Forgot Password?</a>
-						</li>
-					</ul>
-					<div class="send-button wthree agileits">
-						<input type="submit" value="Sign In">
-					</div>
-				</form>
-			</div>
-
-			<div class="clear"></div>
-
-		</div>
+		<%= yield %>
 
 		<div class="w3lsfooteragileits">
-			<p>
-				&copy; 2017 Techno Login Form. All Rights Reserved | Design by <a href="http://w3layouts.com" target="=_blank">W3layouts</a>
-			</p>
+			
 		</div>
 
 	</body>

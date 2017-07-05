@@ -3,13 +3,10 @@ class UserRegistrationsController < Devise::RegistrationsController
   def new
     build_resource({})
     yield resource if block_given?
-    respond_with resource
-    
-=begin
-     do |format|
+    respond_with resource do |format|
       format.html { set_login }
     end
-=end
+
   end
 
   # POST /resource

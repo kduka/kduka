@@ -8,8 +8,10 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
    get 'carts/shipping' => 'carts#shipping'
    get 'carts/complete' => 'carts#complete'
    post 'carts/pay' => 'carts#pay'
+   get 'carts/success', to: 'carts#success', as: 'cart_success'
    get '/order_items/clear' => 'order_items#clear'
    get '/products/manage/(:store_id)', to: 'products#manage', as: 'products_manage'
+   get 'stores/orders/(:store_id)', to: 'stores#orders', as: 'store_orders'
 
   devise_for :stores, :controllers => { registrations: 'store_registrations' }
   devise_for :users, :controllers => { registrations: 'user_registrations', sessions: 'user_sessions' }

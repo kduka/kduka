@@ -1,33 +1,37 @@
-<div class="col-md-6 col-md-offset-3">
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, class:'form-control' %>
-    </div>
+<h1>LOGIN</h1>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off", class:'form-control' %>
-    </div>
+<div class="col-md-6 col-md-offset-3 containerw3layouts-agileits">
 
-    <% if devise_mapping.rememberable? -%>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </div>
-    <% end -%>
+	<!-- <div class="w3imageaits">
+		<%= image_tag("web.jpg") %>
+	</div> -->
 
-    <div class="actions">
-      <%= f.submit "Log in" ,class:'btn btn-success'%>
-    </div>
-<% end %>
+	<div class="aitsloginwthree w3layouts agileits">
+		
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		<%= f.email_field :email, autofocus: true, class:'form-control' %>
+		<%= f.password_field :password, autocomplete: "off", class:'form-control' %>
+		<ul class="tick w3layouts agileinfo">
+			<li>
+				<%= f.check_box :remember_me %>
+				<label for="brand1"><span></span>Remember me</label>
+			</li>
+			<li>
+				<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+				<%= link_to "Sign up", new_registration_path(resource_name) %> |
+				<% end -%> <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+				<%= link_to "Forgot your password?", new_password_path(resource_name) %>
+				<br />
+				<% end -%>
+			</li>
+		</ul>
+		<div class="send-button wthree agileits">
+			<%= f.submit "Log in" %>
+		</div>
+		<% end %>
+	</div>
 
-<p>
-  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-      <%= link_to "Sign up", new_registration_path(resource_name) %> |
-  <% end -%>   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-      <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-  <% end -%>
+	<div class="clear"></div>
+
 </div>

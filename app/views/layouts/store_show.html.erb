@@ -8,7 +8,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 	<head>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= stylesheet_link_tag    'application.css', media: 'all', 'data-turbolinks-track' => true %>
+		<%= stylesheet_link_tag    'admin.css' %>
 		<%= csrf_meta_tags %>
 		<title>Home</title>
 		<script type="application/x-javascript">
@@ -68,7 +69,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="header_top">
 								<div class="top_right">
 									<ul>
-
 										<h2><li><%= @store.name %></li></h2>
 									</ul>
 								</div>
@@ -150,7 +150,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<li id="menu-academico-avaliacoes" >
 									<a href="<%= new_store_category_path(@store) %>">Add Category</a>
 								</li>
+								
 							</ul>
+						</li>
+						<li>
+							<a href="<%= store_orders_url(@store) %>"><i class="fa fa-tachometer"></i> <span>Orders</span></a>
 						</li>
 					</ul>
 				</div>
