@@ -49,7 +49,5 @@ test:
 #
 production:
   <<: *default
-  database: duka2_production
-  username: duka2
-  password: <%= ENV['DUKA_DATABASE_PASSWORD'] %>
-
+  adapter: postgresql
+  database: db/production.sqlite3
