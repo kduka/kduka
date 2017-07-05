@@ -10,6 +10,7 @@ gem 'carrierwave'
 gem "font-awesome-rails"
 gem 'therubyracer'
 gem 'execjs'
+gem 'mysql2'
 
 
 
