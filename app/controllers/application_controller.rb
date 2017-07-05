@@ -4,13 +4,21 @@ protect_from_forgery with: :exception
 =end
   helper_method :current_order, :sign
   def current_order
-
-    if !session[:order_id].nil?
+=begin
+   if !session[:order_id].nil?
       Order.find(session[:order_id])
     else
       ref = [*'A'..'Z', *"0".."9"].sample(8).join
       @store  = Store.where(subdomain:request.subdomain).first
       Order.new(:ref => ref,:store_id => @store.id)
+    end
+=end
+    if !session[:order_id].nil?
+      Order.find(session[:order_id])
+    else
+      ref = [*'A'..'Z', *"0".."9"].sample(8).join
+      #@store  = Store.where(subdomain:request.subdomain).first
+      Order.new(:ref => ref)
     end
   end
 
