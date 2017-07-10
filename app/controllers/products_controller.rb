@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   set_tab :home
   def index
 
-  
+  @sub = request.subdomain
    @store  = Store.where(subdomain:request.subdomain).first
 
     if @store.nil?
