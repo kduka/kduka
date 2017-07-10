@@ -2,7 +2,13 @@ class ApplicationController < ActionController::Base
 =begin
 protect_from_forgery with: :exception
 =end
-  helper_method :current_order, :sign
+  helper_method :current_order, :sign, :sub
+  
+  def sub
+  @sub = request.referer
+  end
+  
+  
   def current_order
 =begin
    if !session[:order_id].nil?
