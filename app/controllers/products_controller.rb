@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   
   set_tab :home
   def index
-=begin
+
   
    @store  = Store.where(subdomain:request.subdomain).first
 
@@ -14,8 +14,8 @@ class ProductsController < ApplicationController
       @categories = @store.category.all
       render :layout => 'shop'
     end
-=end 
-
+ 
+=begin
   @store  = Store.where(id:params[:store_id]).first
 
     if @store.nil?
@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
       @categories = @store.category.all
       render :layout => 'shop'
     end
+=end
     
   end
   
