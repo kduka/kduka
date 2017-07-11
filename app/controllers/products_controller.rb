@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   set_tab :home
   def index
   
-   @store  = Store.where(subdomain:request.subdomain[/(\w+)/]).first
+   @store  = Store.where(subdomain:request.subdomain).first
 
     if @store.nil?
       redirect_to(stores_path)
