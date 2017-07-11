@@ -25,7 +25,7 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
   
-  match '/', to: 'stores#index', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
+  #match '/', to: 'stores#index', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
    
 #   
   #root to: "home#user"
