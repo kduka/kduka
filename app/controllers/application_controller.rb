@@ -5,7 +5,7 @@ protect_from_forgery with: :exception
   helper_method :current_order, :sign, :sub
   
   def sub
-  @sub = "Subdomain: "request.subdomain + "     Domain: " + request.domain 
+  @sub = "Subdomain: " + request.subdomain + "     Domain: " + request.domain 
   end
   
   
