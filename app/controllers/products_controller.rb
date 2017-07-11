@@ -2,8 +2,8 @@ class ProductsController < ApplicationController
   
   set_tab :home
   def index
-  
-   @store  = Store.where(subdomain:request.subdomain).first
+  @subdomain = request.subdomain[/(\w+)/]
+  @store  = Store.where(subdomain:@subdomain).first
 
     if @store.nil?
       redirect_to(stores_path)
@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
       @products = Product.where(store_id:@store.id)
       @order_item = current_order.order_items.new
       @categories = @store.category.all
-      #render :layout => 'shop'
+      render :layout => 'shop'
     end
  
 =begin
