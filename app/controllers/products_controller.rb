@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   
   set_tab :home
+  
   def index
   @subdomain = request.subdomain[/(\w+)/]
   @store  = Store.where(subdomain:@subdomain).first
