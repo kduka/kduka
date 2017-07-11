@@ -2,10 +2,8 @@ class ProductsController < ApplicationController
   
   set_tab :home
   def index
-
-  @sub = request.subdomain
-  @subdomain = request.subdomain.split('.').first
-   @store  = Store.where(subdomain:request.subdomain).first
+  
+   @store  = Store.where(subdomain:request.subdomain[/(\w+)/]).first
 
     if @store.nil?
       redirect_to(stores_path)
