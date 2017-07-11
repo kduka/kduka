@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   def index
 
   @sub = request.subdomain
+  @subdomain = request.subdomain.split('.').first
    @store  = Store.where(subdomain:request.subdomain).first
 
     if @store.nil?
