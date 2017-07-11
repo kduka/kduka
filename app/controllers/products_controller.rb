@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
       @products = Product.where(store_id:@store.id)
       @order_item = current_order.order_items.new
       @categories = @store.category.all
-      render :layout => 'shop'
+      #render :layout => 'shop'
     end
  
 =begin
