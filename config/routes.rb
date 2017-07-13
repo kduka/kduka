@@ -28,6 +28,6 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
   #match '/', to: 'blogs#index', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
    
 #   
-  #root to: "home#user"
-  root to: "products#index"
+  root to: "stores#index"
+  #root to: "products#index"
 end
