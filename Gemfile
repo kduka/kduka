@@ -7,7 +7,7 @@ gem 'seed_dump'
 gem 'tabs_on_rails'
 gem 'mini_magick'
 gem 'carrierwave'
-gem "font-awesome-rails"
+#gem "font-awesome-rails"
 gem 'therubyracer'
 gem 'execjs'
 gem 'mysql2'
