@@ -30,8 +30,9 @@ protect_from_forgery with: :exception
       Order.find(session[:order_id])
     else
       ref = [*'A'..'Z', *"0".."9"].sample(8).join
-      #@store  = Store.where(subdomain:request.subdomain).first
-      Order.new(:ref => ref)
+      @subdomain = request.subdomain[/(\w+)/]
+      @store  = Store.where(subdomain:@subdomain).first
+      Order.new(:ref => ref,store_id:@store.id)
     end
   end
 
