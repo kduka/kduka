@@ -8,3 +8,6 @@ Rails.application.config.assets.precompile += %w( /public/assets/stylesheets/log
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 #Rails.application.config.assets.precompile += ['application.scss', 'shop.scss']
+%w(eot svg ttf woff woff2).each do |ext|
+  Rails.application.config.assets.precompile << "fontawesome-webfont.#{ext}"
+end
