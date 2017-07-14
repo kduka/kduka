@@ -59,11 +59,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div class="top-header navbar navbar-default"><!--header-one-->
     <div class="container">
       <div class="nav navbar-nav wow fadeInLeft animated "  data-wow-delay=".5s">
-        <% if user_signed_in? %>
-            Welcome <%= current_user.email %>!  |  <%= link_to "Logout", destroy_user_session_path, :method => 'delete' %>  |  <%= link_to "My Profile", edit_user_registration_path(:subdomain => 'sub') %>
-        <% else %>
-            <p>Welcome to Duka <%= link_to "Register", new_user_registration_path  %> or <%= link_to "Login", new_user_session_path  %></p>
-        <% end %>
       </div>
       <div class="nav navbar-nav navbar-right social-icons wow fadeInRight animated" data-wow-delay=".5s">
         <ul>
