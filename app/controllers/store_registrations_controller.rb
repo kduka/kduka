@@ -4,7 +4,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
   
   def new
     @store = Store.new
-    set_login
+    set_admin
   end
   
   # POST /resource
@@ -14,7 +14,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
 
     if @store.save
       flash[:notice] = "Done"
-      redirect_to(root_path)
+      redirect_to(users_stores_path)
     else
       flash[:notice] = "Ooops"
     end

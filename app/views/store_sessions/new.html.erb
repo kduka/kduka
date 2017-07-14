@@ -1,6 +1,8 @@
 
 <h1>LOGIN</h1>
 
+
+
 <div class="col-md-6 col-md-offset-3 containerw3layouts-agileits">
 
 	<!-- <div class="w3imageaits">
@@ -30,9 +32,9 @@
 				<label for="brand1"><span></span>Remember me</label>
 			</li>
 			<li>
-				<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-				<%= link_to "Sign up", new_registration_path(resource_name) %> |
-				<% end -%> <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+				
+				<%= link_to "Sign up", new_user_registration_path %> |
+				 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
 				<%= link_to "Forgot your password?", new_password_path(resource_name) %>
 				<br />
 				<% end -%>

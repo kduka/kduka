@@ -6,7 +6,7 @@ protect_from_forgery with: :exception
   
   def after_sign_in_path_for(resource)
     case resource
-      when User then home_stores_path
+      when User then users_home_path
       when Store then stores_path
     end
   end

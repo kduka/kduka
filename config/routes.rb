@@ -13,8 +13,10 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
    get '/products/manage/(:store_id)', to: 'products#manage', as: 'products_manage'
    get 'stores/orders/(:store_id)', to: 'stores#orders', as: 'store_orders'
    get 'store/account' => 'stores#account'
+   get 'users/home' => 'users#home'
+   get 'users/stores' => 'users#stores'
 
-  devise_for :stores, :controllers => { registrations: 'store_registrations' }
+  devise_for :stores, :controllers => { registrations: 'store_registrations', sessions: 'store_sessions' }
   devise_for :users, :controllers => { registrations: 'user_registrations', sessions: 'user_sessions' }
   
   resources :stores do
@@ -22,7 +24,7 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
     resources :products
     resources :categories
     end
-    
+  resources :users
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
   
