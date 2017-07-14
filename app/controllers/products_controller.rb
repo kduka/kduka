@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   @store  = Store.where(subdomain:@subdomain).first
 
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke")
+      redirect_to("http://www.kduka.co.ke/users/sign_in")
     else
       @products = Product.where(store_id:@store.id)
       @order_item = current_order.order_items.new
