@@ -24,7 +24,7 @@ class StoresController < ApplicationController
   # GET /stores/new
   def new
     @store = Store.new
-    set_admin
+    set_login
   end
 
   # GET /stores/1/edit

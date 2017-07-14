@@ -4,7 +4,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
   
   def new
     @store = Store.new
-    set_admin
+    set_login
   end
   
   # POST /resource
