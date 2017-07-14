@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   @store  = Store.where(subdomain:@subdomain).first
 
     if @store.nil?
-      redirect_to(request.domain)
+      redirect_to(request.referer)
     else
       @products = Product.where(store_id:@store.id)
       @order_item = current_order.order_items.new
@@ -45,13 +45,13 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @store = Store.find(params[:store_id])
+    @store = Store.find(current_store.id)
     @product = @store.product.new
     set_shop_show
   end
 
   def create
-    @store = Store.find(params[:store_id])
+    @store = Store.find(current_store.id)
     sku = [*'A'..'Z', *"0".."9"].sample(8).join
     @product = @store.product.create(product_params.merge(sku:sku))
     

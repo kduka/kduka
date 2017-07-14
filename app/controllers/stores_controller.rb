@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_store!
   #before_action :set_admin, only: [:index]
   #after_action :set_shop_show, only: [:show, :edit]
   set_tab :home
@@ -8,8 +8,9 @@ class StoresController < ApplicationController
   # GET /stores
   # GET /stores.json
   def index
-    @stores = Store.where(user_id:current_user.id)
-    set_admin 
+    @store = Store.where(user_id:current_store.id)
+    @products = Product.where(store_id:current_store.id)
+    set_shop_show
   end
 
   # GET /stores/1
@@ -78,6 +79,10 @@ class StoresController < ApplicationController
   def orders
     @order = Order.where(store_id:params[:store_id],order_status_id:2)
     set_shop_show
+  end
+  
+  def account
+    set_admin
   end
 
   private

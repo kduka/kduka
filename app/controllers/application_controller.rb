@@ -4,10 +4,15 @@ protect_from_forgery with: :exception
 =end
   helper_method :current_order, :sign, :sub
   
+  def after_sign_in_path_for(resource)
+    case resource
+      when User then home_stores_path
+      when Store then stores_path
+    end
+  end
+  
   def sub
-  @sub = "Subdomain: " + request.subdomain + "     Domain: " + request.domain + "     Truncated: " + request.subdomain[/(\w+)/]
-  
-  
+  #@sub = "Subdomain: " + request.subdomain + "     Domain: " + request.domain + "     Truncated: " + request.subdomain[/(\w+)/]
   end
   
   
@@ -49,13 +54,8 @@ protect_from_forgery with: :exception
   end
 
   def set_shop_show
-    if params[:id].nil?
-      @store = Store.find(params[:store_id])
+      @store = Store.find(current_store.id)
       render :layout => 'store_show'
-    else
-      @store = Store.find(params[:id])
-      render :layout => 'store_show'
-    end
   end
   
   def set_login

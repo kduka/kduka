@@ -1,25 +1,7 @@
-<p id="notice">
-	<%= notice %>
-</p>
 
-<h1>Stores</h1>
+<p id="notice"><%= notice %></p>
 
-
-<table id="myTable" class="table">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Action</th>
-	</thead>
-	<tbody>
-		<% @stores.each do |store| %>
-		<tr>
-			<td><%= store.name %> </td>
-			<td><%= link_to 'Show', store %> | <%= link_to 'Edit', edit_store_path(store) %> | <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %> | <%= link_to 'Shop', store_products_path(store), :title => 'Visit ' + store.name %> | <%= link_to 'Categories', store_categories_url(store) %></td>
-		</tr>
-		<% end %>
-
-	</tbody>
-</table>
+<p><strong>Total Products : <%= @products.count rescue nil%></strong></p>
+<p><strong>Active : <%= @store.active rescue nil %></strong></p>
 
 

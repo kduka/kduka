@@ -73,8 +73,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									</ul>
 								</div>
 								<div class="top_left">
-								<span style="color:#fff"><i class="fa fa-user" ></i> <%= current_user.email%></span> | 
-									<i class="fa fa-user" ></i><%= link_to "Logout", destroy_user_session_path , method:'delete' %></h2>
+								<span style="color:#fff"><i class="fa fa-user" ></i> <%= current_store.email%></span> | 
+									<i class="fa fa-user" ></i><%= link_to "Logout", destroy_store_session_path , method:'delete' %></h2>
 								</div>
 								<div class="clearfix"></div>
 							</div>
@@ -106,7 +106,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<!-- //header-ends -->
 
 					<!--content-->
+					
 					<div class="content">
+						<div class="col-md-12">
+        <% if !notice.nil? %>
+        <div class="alert alert-success" role="alert">
+          <strong><%= notice %></strong>
+        </div>
+        <% end %>
+        <% if !alert.nil? %>
+        <div class="alert alert-info" role="alert">
+          <strong><%= alert %></strong>
+        </div>
+            <% end %>
+
+      </div>
 						<%= yield %>
 					</div>
 					<!--content-->
@@ -122,14 +136,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
 				<div class="menu">
 					<ul id="menu" >
-						<li>
-							<a href="<%= root_path %>"><i class="fa fa-tachometer"></i> <span>Home</span></a>
-						</li>
+						
 						<li>
 							<a href="<%= store_path(@store) %>"><i class="fa fa-tachometer"></i> <span>Overview</span></a>
 						</li>
 						<li id="menu-academico" >
-							<a href="#"><i class="fa fa-table"></i> <span> Products</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+							<a href="#"><i class="fa fa-product-hunt"></i> <span> Products</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 							<ul id="menu-academico-sub" >
 								<li id="menu-academico-avaliacoes" >
 									<a href="<%= products_manage_path(@store.id) %>">Manage Products</a>
@@ -141,7 +153,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</ul>
 						</li>
 						<li id="menu-academico" >
-							<a href="#"><i class="fa fa-table"></i> <span> Categories</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+							<a href="#"><i class="fa fa-dot-circle-o"></i> <span> Categories</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 							<ul id="menu-academico-sub" >
 								<li id="menu-academico-avaliacoes" >
 									<a href="<%= store_categories_path(@store) %>">View Categories</a>
@@ -154,7 +166,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</ul>
 						</li>
 						<li>
-							<a href="<%= store_orders_url(@store) %>"><i class="fa fa-tachometer"></i> <span>Orders</span></a>
+							<a href="<%= store_orders_url(@store) %>"><i class="fa fa-shopping-bag"></i> <span>Orders</span></a>
+						</li>
+						<li id="menu-academico" >
+							<a href="#"><i class="fa fa-gears"></i> <span> Account </span> <span class="fa fa-angle-right" style="float: right"></span></a>
+							<ul id="menu-academico-sub" >
+								<li id="menu-academico-avaliacoes" >
+									<a href="<%= store_categories_path(@store) %>">Payment Settings</a>
+								</li>
+
+								<li id="menu-academico-avaliacoes" >
+									<a href="<%= new_store_category_path(@store) %>">Edit Store Settings</a>
+								</li>
+								
+							</ul>
 						</li>
 					</ul>
 				</div>
