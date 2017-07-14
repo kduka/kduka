@@ -148,7 +148,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</li>
 
 								<li id="menu-academico-avaliacoes" >
+									<% if !Category.where(store_id:current_store.id).blank? %>
 									<a href="<%= new_store_product_path(@store) %>">Add Product</a>
+									<%end%>
 								</li>
 							</ul>
 						</li>
@@ -160,7 +162,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</li>
 
 								<li id="menu-academico-avaliacoes" >
+									
 									<a href="<%= new_store_category_path(@store) %>">Add Category</a>
+									
 								</li>
 								
 							</ul>
@@ -168,15 +172,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li>
 							<a href="<%= store_orders_url(@store) %>"><i class="fa fa-shopping-bag"></i> <span>Orders</span></a>
 						</li>
+						<li>
+							<a href="#"><i class="fa fa-window-maximize"></i> <span>Layouts</span></a>
+						</li>
 						<li id="menu-academico" >
 							<a href="#"><i class="fa fa-gears"></i> <span> Account </span> <span class="fa fa-angle-right" style="float: right"></span></a>
 							<ul id="menu-academico-sub" >
 								<li id="menu-academico-avaliacoes" >
-									<a href="<%= store_categories_path(@store) %>">Payment Settings</a>
+									<a href="#">Payment Settings</a>
 								</li>
 
 								<li id="menu-academico-avaliacoes" >
-									<a href="<%= new_store_category_path(@store) %>">Edit Store Settings</a>
+									<a href="#">Edit Store Settings</a>
 								</li>
 								
 							</ul>

@@ -16,9 +16,9 @@
           <% @stores.each do |s| %>
               <tr>
                 <td><%= num %></td>
-                <td><%= link_to s.name, store_path(s), :title => 'Visit ' + s.name %></td>
+                <td><%= s.name %></td>
                 <td><%= s.active %></td>
-                <td><%= link_to "Visit Shop", "http://#{s.subdomain}.kduka.co.ke", target:"_blank" %> |  <a href=""><span style="color:red"> Delete</span></a></td>
+                <td><%= link_to "Visit Shop (http://#{s.subdomain}.kduka.co.ke)", "http://#{s.subdomain}.kduka.co.ke", target:"_blank" %> |  <a href=""><span style="color:red"> Delete</span></a></td>
               </tr>
               <% num = num + 1 %>
           <% end %>

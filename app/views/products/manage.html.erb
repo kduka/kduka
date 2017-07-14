@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if !@categories.blank? %>
 <p><strong>Total Products : <%= @product.count rescue nil %></strong></p>
 <p><strong>Active : <%= @store.active %></strong></p>
-<p><%= link_to 'Categories', store_categories_path(@store), class:'btn btn-primary'%></p>
-
 <% if !@product.blank? %>
 <table id="data-tables" class="table">
   <thead>
@@ -33,8 +31,12 @@
     <p>You dont have any Products in this store yet</p>
 
     <% end %>
+    
 
 
 <%= link_to 'New Product', new_store_product_path(@store) %> |
 <%= link_to 'Edit', edit_store_path(@store) %> |
 <%= link_to 'Back', stores_path %>
+<%else%>
+    <a href="<%= new_store_category_path(@store) %>">Create a Category</a> First!
+    <%end%>

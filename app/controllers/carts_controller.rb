@@ -26,10 +26,10 @@ class CartsController < ApplicationController
     # Configure API settings while passing on the data that we need
 
     pesapal.config = {
-        callback_url: "localhost:3000/carts/complete",
-        consumer_key: @user.consumer_key,
+        callback_url: request.subdomain+"."+request.domain+"/carts/complete",
+        consumer_key: "631N8K73Vk8giRs+7L4LFLcJlfsI7FC0",
         #consumer_key: Rails.application.secrets.pesapal_consumer_key,
-        consumer_secret: @user.consumer_secret
+        consumer_secret: "qh2kfvUbcjgVNyTKCDizSK15D0M="
         #consumer_secret: Rails.application.secrets.pesapal_consumer_secret
     }
 

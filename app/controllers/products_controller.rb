@@ -31,7 +31,8 @@ class ProductsController < ApplicationController
   end
   
     def manage
-      @store = Store.find(params[:store_id])
+      @categories = Category.where(store_id:current_store.id)
+      @store = Store.find(current_store.id)
       @product = @store.product.all
       set_shop_show
     end

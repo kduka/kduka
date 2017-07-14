@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_store!
+  before_action :authenticate_store! 
   #before_action :set_admin, only: [:index]
   #after_action :set_shop_show, only: [:show, :edit]
   set_tab :home
@@ -16,7 +16,7 @@ class StoresController < ApplicationController
   # GET /stores/1
   # GET /stores/1.json
   def show
-    @store = Store.find(params[:id])
+    @store = Store.find(current_store.id)
     @product = Product.where(store_id:@store.id)
     set_shop_show
   end
@@ -73,11 +73,11 @@ class StoresController < ApplicationController
   end
   
   def categories
-    @categories = Category.where(store_id:params[:store_id])
+    @categories = Category.where(store_id:current_store.id)
   end
   
   def orders
-    @order = Order.where(store_id:params[:store_id],order_status_id:2)
+    @order = Order.where(store_id:current_store.id,order_status_id:2)
     set_shop_show
   end
   
@@ -88,7 +88,7 @@ class StoresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_store
-      @store = Store.find(params[:id])
+      @store = Store.find(current_store.id)
     end
     
     
