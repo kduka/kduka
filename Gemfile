@@ -11,6 +11,7 @@ gem 'carrierwave'
 gem 'therubyracer'
 gem 'execjs'
 gem 'mysql2'
+gem 'nprogress-rails'
 
 
 ruby "2.4.0"

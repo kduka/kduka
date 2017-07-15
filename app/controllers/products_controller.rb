@@ -68,11 +68,13 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
+    set_shop_show
   end
   
   def edit
     @product = Product.find(params[:id])
-    @store = Store.find(@product.store_id)
+    @store = Store.find(current_store.id)
+    set_shop_show
   end
 
   def update

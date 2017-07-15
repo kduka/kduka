@@ -98,11 +98,13 @@ GEM
     minitest (5.10.2)
     multi_json (1.12.1)
     mysql2 (0.4.7)
+    mysql2 (0.4.7-x86-mingw32)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     nokogiri (1.8.0-x86-mingw32)
       mini_portile2 (~> 2.2.0)
+    nprogress-rails (0.2.0.2)
     orm_adapter (0.5.0)
     pesapal (2.0.0)
       htmlentities
@@ -204,6 +206,7 @@ DEPENDENCIES
   jquery-rails
   mini_magick
   mysql2
+  nprogress-rails
   pesapal
   pg (= 0.18.1)
   rails (= 5.0.2)
