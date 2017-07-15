@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_store!, only: [:manage, :category, :new, :create, :show, :edit, :update, :destroy]
   
   set_tab :home
   
@@ -79,7 +80,12 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    @product.update(product_params)
+    if @product.update(product_params)
+      flash[:notice] = "Product Successfully updated!"
+    else
+      flash[:alert] = "Something went wrong, try again"
+    end
+    
     redirect_to(store_product_path(params[:store_id],params[:id]))
   end
   

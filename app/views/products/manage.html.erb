@@ -34,9 +34,6 @@
     
 
 
-<%= link_to 'New Product', new_store_product_path(@store) %> |
-<%= link_to 'Edit', edit_store_path(@store) %> |
-<%= link_to 'Back', stores_path %>
 <%else%>
     <a href="<%= new_store_category_path(@store) %>">Create a Category</a> First!
     <%end%>

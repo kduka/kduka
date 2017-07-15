@@ -72,7 +72,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<div class="top_right">
 									<ul>
 										<h2><li><%= @store.name %></li></h2>
-										<li><%= @store.subdomain %>.kduka.co.ke</li>
+										<li><%= link_to "Visit "+@store.subdomain+".kduka.co.ke", @store.subdomain+".kduka.co.ke" %> </li>
 									</ul>
 								</div>
 								<div class="top_left">
@@ -147,7 +147,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<a href="#"><i class="fa fa-product-hunt"></i> <span> Products</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 							<ul id="menu-academico-sub" >
 								<li id="menu-academico-avaliacoes" >
-									<a href="<%= products_manage_path(@store.id) %>">Manage Products</a>
+									<a href="<%= products_manage_path %>">Manage Products</a>
 								</li>
 
 								<li id="menu-academico-avaliacoes" >
