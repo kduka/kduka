@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_store!, only: [:manage, :category, :new, :create, :show, :edit, :update, :destroy]
+  before_action :authenticate_store!, only: [:manage, :new, :create, :show, :edit, :update, :destroy]
   
   set_tab :home
   
