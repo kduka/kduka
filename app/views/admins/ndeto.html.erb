@@ -1,0 +1,27 @@
+
+
+<% if !@stores.blank? %>
+<table id="myTable" class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>subdomain</th>
+    <th>User</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @stores.each do |p| %>
+  <tr>
+    <td><%= p.name %></td>
+    <td><%=link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke" %></td>
+    <td><%= User.find(p.user_id).name %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+    <% else %>
+
+    <p>You dont have any Stores</p>
+
+    <% end %>

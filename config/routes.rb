@@ -15,6 +15,7 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
    get 'store/account' => 'stores#account'
    get 'users/home' => 'users#home'
    get 'users/stores' => 'users#stores'
+   get 'admins/ndeto' => 'admins/ndeto'
 
   devise_for :stores, :controllers => { registrations: 'store_registrations', sessions: 'store_sessions' }
   devise_for :users, :controllers => { registrations: 'user_registrations', sessions: 'user_sessions' }
