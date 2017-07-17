@@ -7,6 +7,7 @@
     <th>Name</th>
     <th>subdomain</th>
     <th>User</th>
+    <th>Email</th>
   </tr>
   </thead>
   <tbody>
@@ -15,6 +16,7 @@
     <td><%= p.name %></td>
     <td><%=link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke" %></td>
     <td><%= User.find(p.user_id).name %></td>
+    <td><%= p.email %></td>
   </tr>
   <% end %>
   </tbody>
