@@ -2,6 +2,13 @@
 <%= form_for :store, :url => {controller:'stores', action:'update_store'}, method:'put' do |f|%>
 
 <div class="form-group">
+      <%= f.label "Store URL" %>
+     	<p>If you enter "john" we will automatically create john.kduka.co.ke for you.</p>
+      <%= f.text_field :subdomain, class:'form-control', placeholder:'john'%>
+</div>
+
+
+<div class="form-group">
       <%= f.label "Slogan" %>
       <%= f.text_area :slogan, class:'form-control'%>
 </div>
