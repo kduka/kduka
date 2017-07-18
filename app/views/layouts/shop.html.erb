@@ -62,14 +62,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="container">
       <div class="nav navbar-nav wow fadeInLeft animated "  data-wow-delay=".5s">
       </div>
-      <div class="nav navbar-nav navbar-right social-icons wow fadeInRight animated" data-wow-delay=".5s">
+      <div class="nav navbar-nav navbar-right social-icons wow fadeInRight animated"  data-wow-delay=".5s">
         <ul>
           <li><a href="#"> </a></li>
-          <li><a href="#" class="pin"> </a></li>
-          <li><a href="#" class="in"> </a></li>
-          <li><a href="#" class="be"> </a></li>
-          <li><a href="#" class="you"> </a></li>
-          <li><a href="#" class="vimeo"> </a></li>
+          <% if !@store.facebook.blank? %>
+          <li><a href="<%= @store.facebook %>"><i class="fa fa-facebook fa-lg"></i> </a></li>
+          <% end %>
+          
+          <% if !@store.twitter.blank? %>
+          <li><a href="<%= @store.twitter %>"><i class="fa fa-facebook fa-lg"></i> </a></li>
+          <% end %>
+          
+          <% if !@store.instagram.blank? %>
+          <li><a href="<%= @store.instagram %>"><i class="fa fa-instagram fa-lg"></i> </a></li>
+          <% end %>
+          
+          <% if !@store.linkedin.blank? %>
+          <li><a href="<%= @store.linkedin %>"><i class="fa fa-linkedin fa-lg"></i> </a></li>
+          <% end %>
+          
+          <% if !@store.youtube.blank? %>
+          <li><a href="<%= @store.youtube %>"><i class="fa fa-youtube-play fa-lg"></i> </a></li>
+          <% end %>
+          
+          <% if !@store.vimeo.blank? %>
+          <li><a href="<%= @store.vimeo %>"><i class="fa fa-vimeo fa-lg"></i> </a></li>
+          <% end %>
+          
+          <% if !@store.pinterest.blank? %>
+          <li><a href="<%= @store.pinterest %>"><i class="fa fa-pinterest fa-lg"></i> </a></li>
+          <% end %>
+          
+          
+          
+          
+          
+          
+          
+          
         </ul>
       </div>
       <div class="clearfix"> </div>

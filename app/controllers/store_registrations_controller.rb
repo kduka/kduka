@@ -25,6 +25,15 @@ class StoreRegistrationsController < Devise::RegistrationsController
     
   end
 
+def update_social
+  @store = Store.find(current_store.id)
+  if @store.update(store_params)
+    flash[:notice] = 'Links saved'
+  else
+    flash[:alert] = 'Something went wrong, please try again'
+  end
+  
+end
   
     def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)

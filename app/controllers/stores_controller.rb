@@ -85,6 +85,23 @@ class StoresController < ApplicationController
     set_admin
   end
 
+  def social
+    @store = Store.find(current_store.id)
+    set_shop_show
+  end
+  
+  def update_social
+  @store = Store.find(current_store.id)
+  if @store.update(store_params)
+    flash[:notice] = 'Links saved'
+  else
+    flash[:alert] = 'Something went wrong, please try again'
+  end
+  
+  redirect_to(request.referer)
+  
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_store
@@ -95,6 +112,6 @@ class StoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
-      params.fetch(:store, {})
-    end
+      params.require(:store).permit(:facebook,:linkedin,:twitter,:instagram,:pinterest,:vimeo,:youtube)
+    end 
 end
