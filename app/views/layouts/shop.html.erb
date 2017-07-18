@@ -7,7 +7,7 @@
   <%= stylesheet_link_tag    'custom.css' %>
   
   <%= csrf_meta_tags %>
-  <title>KDuka</title>
+  <title><%= @store.store_name %></title>
   <!-- for-mobile-apps -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -118,7 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </ul>
       </div>
       <div class="nav navbar-nav logo wow zoomIn animated" data-wow-delay=".7s">
-        <h1><%= link_to(root_path) do %> K<b>Duka</b><span class="tag">Get your business running</span> <% end %></h1>
+        <h1><%= link_to(root_path) do %> <b><%= @store.name%></b><span class="tag">Get your business running</span> <% end %></h1>
       </div>
       <div class="nav navbar-nav navbar-right header-two-right">
         <div class="header-right my-account">
