@@ -113,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> <%= @store.phone %></li>
           <% end %>
           <% if !@store.display_email.blank?%>
-          <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@kduka.co.ke</a></li>
+          <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com"><%= @store.display_email%></a></li>
           <% end %>
         </ul>
       </div>
