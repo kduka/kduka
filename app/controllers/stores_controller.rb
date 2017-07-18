@@ -1,10 +1,9 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_store! 
+  before_action :authenticate_store!
   #before_action :set_admin, only: [:index]
   #after_action :set_shop_show, only: [:show, :edit]
   set_tab :home
-
   # GET /stores
   # GET /stores.json
   def index
@@ -29,6 +28,7 @@ class StoresController < ApplicationController
 
   # GET /stores/1/edit
   def edit
+    @store = Store.find(current_store.id)
     set_shop_show
   end
 
@@ -71,16 +71,16 @@ class StoresController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def categories
     @categories = Category.where(store_id:current_store.id)
   end
-  
+
   def orders
     @order = Order.where(store_id:current_store.id,order_status_id:2)
     set_shop_show
   end
-  
+
   def account
     set_admin
   end
@@ -89,29 +89,41 @@ class StoresController < ApplicationController
     @store = Store.find(current_store.id)
     set_shop_show
   end
-  
+
   def update_social
-  @store = Store.find(current_store.id)
-  if @store.update(store_params)
-    flash[:notice] = 'Links saved'
-  else
-    flash[:alert] = 'Something went wrong, please try again'
+    @store = Store.find(current_store.id)
+    if @store.update(store_params)
+      flash[:notice] = 'Links saved'
+    else
+      flash[:alert] = 'Something went wrong, please try again'
+    end
+
+    redirect_to(request.referer)
+
   end
   
-  redirect_to(request.referer)
-  
-end
+  def update_store
+    @store = Store.find(current_store.id)
+    if @store.update(store_params)
+      flash[:notice] = 'Settings Saved'
+    else
+      flash[:alert] = 'Something went wrong, please try again'
+    end
+
+    redirect_to(request.referer)
+
+  end
+
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_store
-      @store = Store.find(current_store.id)
-    end
-    
-    
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def store_params
-      params.require(:store).permit(:facebook,:linkedin,:twitter,:instagram,:pinterest,:vimeo,:youtube)
-    end 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_store
+    @store = Store.find(current_store.id)
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def store_params
+    params.require(:store).permit(:facebook,:linkedin,:twitter,:instagram,:pinterest,:vimeo,:youtube,:slogan)
+  end
 end

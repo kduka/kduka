@@ -18,6 +18,7 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
    get 'admins/ndeto' => 'admins/ndeto'
    get 'stores/social' => 'stores#social'
    put 'stores/update_social'
+   put 'stores/update_store'
 
   devise_for :stores, :controllers => { registrations: 'store_registrations', sessions: 'store_sessions' }
   devise_for :users, :controllers => { registrations: 'user_registrations', sessions: 'user_sessions' }
