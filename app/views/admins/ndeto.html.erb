@@ -27,3 +27,32 @@
     <p>You dont have any Stores</p>
 
     <% end %>
+    
+    <br/>
+    <br />
+    
+    <% if !@users.blank? %>
+<table id="myTable" class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>UserName</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |p| %>
+  <tr>
+    <td><%= p.name %></td>
+    <td><%= p.username %></td>
+    <td><%= p.email %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+    <% else %>
+
+    <p>You dont have any Users</p>
+
+    <% end %>
