@@ -10,7 +10,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.find(current_user.id)
-    @store = @user.store.create(store_params)
+    @store = @user.store.create(store_params.merge(subdomain:santize(params[:store][:subdomain])))
 
     if @store.save
       flash[:notice] = "Done"
@@ -47,11 +47,19 @@ class StoreRegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
+  
+  
 
   private
 
   def store_params
-    params.require(:store).permit(:email, :username, :password, :password_confirmation, :active, :name, :display_email, :phone, :subdomain)
+    params.require(:store).permit(:email, :username, :password, :password_confirmation, :active, :name, :display_email, :phone)
+  end
+  
+  def santize(name)
+    lower = name.downcase
+    nospace = lower.gsub(/\s+/, "")
+    return nospace
   end
 
 
