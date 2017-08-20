@@ -12,6 +12,7 @@ gem 'therubyracer'
 gem 'execjs'
 gem 'mysql2'
 gem 'nprogress-rails'
+gem 'fog'
 
 
 ruby "2.4.0"
