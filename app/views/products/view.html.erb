@@ -33,9 +33,9 @@
 								<%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
 							</div>
 						</li>
-						<li data-thumb="<%= @product.image_url.to_s %>">
+						<li data-thumb="<%= @product.img1_url.to_s %>">
 							<div class="thumb-image">
-								<%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
+								<%=  image_tag( @product.img1_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
 							</div>
 						</li>
 						<li data-thumb="<%= @product.image_url.to_s %>">

@@ -17,6 +17,7 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
    get 'users/stores' => 'users#stores'
    get 'admins/ndeto' => 'admins/ndeto'
    get 'stores/social' => 'stores#social'
+   get 'products/view/(:sku)' => 'products#view', as: 'product_view'
    put 'stores/update_social'
    put 'stores/update_store'
 

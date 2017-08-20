@@ -94,9 +94,15 @@ class ProductsController < ApplicationController
     @product.destroy
     redirect_to(store_path(params[:store_id]))
   end
+  
+  def view
+    @product = Product.where(sku:params[:sku]).first
+    set_shop
+  end
+  
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :active, :image, :category_id, :quantity)
+    params.require(:product).permit(:name, :price, :active, :image, :category_id, :quantity, :img1)
   end
 end

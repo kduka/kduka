@@ -26,7 +26,7 @@
                 <div class="col-sm-4 menu-grids menulist1">
                   <!-- <h4>Bath & Care</h4> -->
                   <ul class="multi-column-dropdown ">
-                    <% @categories.each do |c| %>
+                    <% @store.category.each do |c| %>
                     <% if !c.nil? %> 
                     <li><a class="list" href="<%= product_category_path(c.id) %>"><%= c.name%></a></li>
                     <% end %>

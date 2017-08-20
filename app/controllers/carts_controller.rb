@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   def show
     @order_items = current_order.order_items
+    set_shop
   end
 
   def shipping
@@ -26,7 +27,7 @@ class CartsController < ApplicationController
     # Configure API settings while passing on the data that we need
 
     pesapal.config = {
-        callback_url: request.subdomain+"."+request.domain+"/carts/complete",
+        callback_url: request.subdomain+"."+request.domain+":3000/carts/complete",
         consumer_key: "631N8K73Vk8giRs+7L4LFLcJlfsI7FC0",
         #consumer_key: Rails.application.secrets.pesapal_consumer_key,
         consumer_secret: "qh2kfvUbcjgVNyTKCDizSK15D0M="
