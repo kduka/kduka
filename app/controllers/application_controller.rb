@@ -49,22 +49,27 @@ end
   end
 
   def set_admin
-    render :layout => 'admin'
+    render :layout => 'user_admin/admin'
   end
 
   def set_shop
     @subdomain = request.subdomain[/(\w+)/]
     @store  = Store.where(subdomain:@subdomain).first
-    render :layout => 'shop'
+    render :layout => "#{Layout.find(@store.layout_id).name}/shop"
   end
 
   def set_shop_show
     @store = Store.find(current_store.id)
-    render :layout => 'store_show'
+    render :layout => 'store_admin/store_show'
   end
 
   def set_login
-    render :layout => 'login'
+    render :layout => 'login/login'
+  end
+  
+  def get_store
+    @subdomain = request.subdomain[/(\w+)/]
+    @store  = Store.where(subdomain:@subdomain).first
   end
 
 end

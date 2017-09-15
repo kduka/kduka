@@ -1,4 +1,34 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<h1><%= Category.find(params[:id]).name %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+    	<th>#</th>
+      <th>Name</th>
+      <th>Active</th>
+      <th></th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% num = 1 %>
+    <% @subcategories.each do |category| %>
+      <tr>
+      	<td><%= num %>
+      	<td><%= category.name %></td>
+      	<td><%= category.active %></td>
+        <td><%= link_to 'Edit', edit_category_sub_category_path(category) %> | <%= link_to 'Destroy', category_sub_category_url(params[:id],category.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% num = num+1 %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Category', new_category_path %>
+
+
+<%= link_to "Back" , categories_path %>  ||  <%= link_to "New Sub-category" ,  new_category_sub_category_path(params[:id]) %>  

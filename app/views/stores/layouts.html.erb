@@ -1,0 +1,12 @@
+<div class="col-md-6 col-md-offset-3">
+<%= form_for :store, :url => {controller:'stores', action:'update_layout'}, method:'put' do |f|%>
+
+<div class="form-group">
+	Layout
+	<%= f.select :layout_id, options_from_collection_for_select(Layout.all, 'id','d_name'),{} ,{:class=>'form-control'} %>
+</div>
+<p></p>
+
+<p><%= f.submit 'Save', class:'btn btn-primary' %>
+<% end %>
+</div>

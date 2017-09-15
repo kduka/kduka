@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+  before_action :get_store
   def create
     @order = current_order
 
@@ -9,6 +10,7 @@ class OrderItemsController < ApplicationController
       end
     end
 =end
+   
     @order_item = @order.order_items.new(order_item_params)
     @order.save
     session[:order_id] = @order.id

@@ -2,10 +2,11 @@ class CartsController < ApplicationController
   def show
     @order_items = current_order.order_items
     set_shop
+
   end
 
   def shipping
-
+  set_shop
   end
 
   def pay
@@ -26,13 +27,26 @@ class CartsController < ApplicationController
 
     # Configure API settings while passing on the data that we need
 
-    pesapal.config = {
-        callback_url: request.subdomain+"."+request.domain+":3000/carts/complete",
-        consumer_key: "631N8K73Vk8giRs+7L4LFLcJlfsI7FC0",
+    
+      if Rails.env.production?
+        pesapal.config = {
+      callback_url: request.subdomain+"."+request.domain+"/carts/complete",
+      consumer_key: "631N8K73Vk8giRs+7L4LFLcJlfsI7FC0",
         #consumer_key: Rails.application.secrets.pesapal_consumer_key,
         consumer_secret: "qh2kfvUbcjgVNyTKCDizSK15D0M="
         #consumer_secret: Rails.application.secrets.pesapal_consumer_secret
-    }
+        }
+      else
+       pesapal.config = {
+      callback_url: request.subdomain+"."+request.domain+":3000/carts/complete",
+      consumer_key: "631N8K73Vk8giRs+7L4LFLcJlfsI7FC0",
+        #consumer_key: Rails.application.secrets.pesapal_consumer_key,
+        consumer_secret: "qh2kfvUbcjgVNyTKCDizSK15D0M="
+        #consumer_secret: Rails.application.secrets.pesapal_consumer_secret
+        }
+      end
+        
+        
 
     # Generate iframe
     @order_url = pesapal.generate_order_url
@@ -48,6 +62,6 @@ class CartsController < ApplicationController
   end
   
   def success
-    
+    set_shop
   end
 end

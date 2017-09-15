@@ -1,4 +1,5 @@
-Category.create!([
+=begin
+  Category.create!([
   {name: "Fruits", active: true, store_id: 1, description: nil},
   {name: "Vegetables", active: true, store_id: 1, description: "Greens"}
 ])
@@ -14,4 +15,9 @@ Product.create!([
   {name: "Tomatoes", price: "4.5", active: true, store_id: 2, category_id: nil},
   {name: "my product", price: "20000.0", active: true, store_id: 4, category_id: nil},
   {name: "test 2", price: "5000.0", active: true, store_id: 4, category_id: nil}
+])
+=end
+
+Layout.create!([
+  {name: "Modern", description: "Modern Theme"}
 ])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822031916) do
+ActiveRecord::Schema.define(version: 20170824093705) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20170822031916) do
     t.datetime "updated_at",  null: false
     t.string   "description"
     t.index ["store_id"], name: "index_categories_on_store_id", using: :btree
+  end
+
+  create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "d_name"
   end
 
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -100,10 +108,21 @@ ActiveRecord::Schema.define(version: 20170822031916) do
     t.string   "vimeo"
     t.string   "youtube"
     t.string   "slogan"
-    t.string   "layout"
+    t.integer  "layout_id"
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
+    t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true, using: :btree
     t.index ["user_id"], name: "index_stores_on_user_id", using: :btree
+  end
+
+  create_table "sub_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.integer  "category_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -132,4 +151,6 @@ ActiveRecord::Schema.define(version: 20170822031916) do
   add_foreign_key "orders", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"
+  add_foreign_key "stores", "layouts"
+  add_foreign_key "sub_categories", "categories"
 end

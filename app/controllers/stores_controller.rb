@@ -113,6 +113,22 @@ class StoresController < ApplicationController
     redirect_to(request.referer)
 
   end
+  
+  def layouts
+    set_shop_show
+  end
+  
+    def update_layout
+    @store = Store.find(current_store.id)
+    if @store.update(store_params)
+      flash[:notice] = 'Layout Updated'
+    else
+      flash[:alert] = 'Something went wrong, please try again'
+    end
+
+    redirect_to(request.referer)
+
+  end
 
 
   private
@@ -124,6 +140,6 @@ class StoresController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def store_params
-    params.require(:store).permit(:facebook,:linkedin,:twitter,:instagram,:pinterest,:vimeo,:youtube,:slogan, :subdomain)
+    params.require(:store).permit(:facebook,:linkedin,:twitter,:instagram,:pinterest,:vimeo,:youtube,:slogan, :subdomain, :layout_id)
   end
 end

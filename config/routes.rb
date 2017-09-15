@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]
   # get 'home/user'
 # 
@@ -18,17 +19,21 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
    get 'admins/ndeto' => 'admins/ndeto'
    get 'stores/social' => 'stores#social'
    get 'products/view/(:sku)' => 'products#view', as: 'product_view'
+   get 'stores/theme' => 'stores#layouts'
    put 'stores/update_social'
    put 'stores/update_store'
+   put 'stores/update_layout'
 
   devise_for :stores, :controllers => { registrations: 'store_registrations', sessions: 'store_sessions' }
   devise_for :users, :controllers => { registrations: 'user_registrations', sessions: 'user_sessions' }
   
   resources :stores do
-  #devise_for :stores
-    resources :products
-    resources :categories
-    end
+  resources :products
+  end
+  
+  resources :categories do 
+    resources :sub_categories
+  end
   resources :users
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]

@@ -1,0 +1,36 @@
+<div class="col-md-6 col-md-offset-3">
+	<h1>New Sub-category</h1>
+<%= form_for :category, :url=>{controller:'sub_categories', action:'create'} do |f| %>
+  <% if @subcategory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subcategory.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @subcategory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true, class:'form-control' %>
+    </div>
+    
+    
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description, autofocus: true, class:'form-control' %>
+    </div>
+
+	<div class="field">
+      <%= f.label :active %><br />
+      <%= f.check_box :active, autofocus: true %>
+    </div>
+    
+  <div class="actions">
+    <%= f.submit "Save Sub-Category", :class=>'btn btn-primary' %>
+  </div>
+<% end %>
+</div>

@@ -1,8 +1,8 @@
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk">
+</script>
 <div class="col-md-6 col-md-offset-3">
   <h1>Shipping Details</h1>
-
-
-
   <%= form_tag("/carts/pay", method: "post") do %>
       <div class="form-group">
         <%= label_tag(:first_name, "First Name") %>
@@ -30,7 +30,60 @@
       </div>
       <p></p>
       <%= submit_tag("Pay", :class => 'btn btn-success') %>
+
+      <input id="locate" type="textbox" value="">
+      <div id="suggesstion-box"></div>
+      <div id="map"></div>
+
   <% end %>
 
 
 </div>
+<script>
+
+    $(function () {
+        $('#locate').on('keyup', function() {
+            setTimeout(function(){
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 8,
+                    center: {lat: -34.397, lng: 150.644}
+                });
+                var geocoder = new google.maps.Geocoder();
+
+                geocodeAddress(geocoder, map);
+
+        },1000);
+    });
+        });
+
+    function geocodeAddress(geocoder, resultsMap) {
+
+        var address = document.getElementById('locate').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === 'OK') {
+                var string ="";
+                console.log(results);
+                results.forEach(function(entry) {
+                    string = string + '<p onclick="selectlocation("'+entry["formatted_address"]+'");">'+ entry['formatted_address'] + '</p>';
+                });
+
+                $('#suggesstion-box').html(string);
+                console.log(string);
+                // resultsMap.setCenter(results[0].geometry.location);
+                // var marker = new google.maps.Marker({
+                //   map: resultsMap,
+                //   position: results[0].geometry.location
+                // });
+            } else {
+                $('#suggesstion-box').html("Not Found, Try different search words");
+            }
+        });
+    }
+
+    function selectlocation(val){
+        alert(val);
+        //$("#address").val(val);
+        //$("#suggesstion-box").hide();
+    }
+</script>
+

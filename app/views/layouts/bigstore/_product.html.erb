@@ -1,0 +1,19 @@
+<div class="product">
+	<div class="container">
+		<div class="spec ">
+			<h3>Products</h3>
+			<div class="ser-t">
+				<b></b>
+				<span><i></i></span>
+				<b class="line"></b>
+			</div>
+		</div>
+		<div class=" con-w3l agileinf">
+
+			<% @products.each do |product| %>
+			<%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+			<% end %>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>

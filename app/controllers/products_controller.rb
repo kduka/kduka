@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
       @products = Product.where(store_id:@store.id)
       @order_item = current_order.order_items.new
       @categories = @store.category.all
-      render :layout => 'shop'
+      set_shop
     end
  
 =begin
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
     @store  = Store.where(subdomain:request.subdomain).first
     @products = @store.product.where(category_id:params[:id])
     @categories = @store.category.all
-      render :layout => 'shop'
+      set_shop
   end
 
   def new
