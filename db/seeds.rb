@@ -19,5 +19,5 @@ Product.create!([
 =end
 
 Layout.create!([
-  {name: "Modern", description: "Modern Theme"}
+  {name: "modern", description: "Modern Theme", d_name:"Modern Theme"}
 ])
