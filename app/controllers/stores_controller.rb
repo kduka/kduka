@@ -128,6 +128,23 @@ class StoresController < ApplicationController
 
     redirect_to(request.referer)
 
+    end
+
+  def deliver
+    @store = Store.find(current_store.id)
+    set_shop_show
+  end
+
+  def update_delivery
+    @store = Store.find(current_store.id)
+    if @store.update(delivery_params)
+      flash[:notice] = 'Pick up Location saved'
+    else
+      flash[:alert] = 'Something went wrong, please try again'
+    end
+
+    redirect_to(request.referer)
+
   end
 
 
@@ -141,5 +158,9 @@ class StoresController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def store_params
     params.require(:store).permit(:facebook,:linkedin,:twitter,:instagram,:pinterest,:vimeo,:youtube,:slogan, :subdomain, :layout_id)
+  end
+
+  def delivery_params
+    params.require(:store).permit(:location,:lng,:lat)
   end
 end

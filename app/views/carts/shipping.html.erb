@@ -29,9 +29,16 @@
         <%= text_field_tag(:coupon, nil,:class=>'form-control',placeholder:'Can Be Blank') %>
       </div>
       <p></p>
+      <div class="form-group">
+        <label> Delivery Location</label>
+        <input id="locate" type="textbox" value="" class='form-control' placeholder='Delivery Location' /> <span style="color:green;" class="price"></span>
+      </div>
+      <p></p>
       <%= submit_tag("Pay", :class => 'btn btn-success') %>
 
-      <input id="locate" type="textbox" value="">
+
+      <input id="long" name="long" type="hidden" value="">
+      <input id="lat" name="lat" type="hidden" value="">
       <div id="suggesstion-box"></div>
       <div id="map"></div>
 
@@ -61,12 +68,15 @@
         var address = document.getElementById('locate').value;
         geocoder.geocode({'address': address}, function(results, status) {
             if (status === 'OK') {
+
                 var string ="";
                 console.log(results);
                 results.forEach(function(entry) {
-                    string = string + '<p onclick="selectlocation("'+entry["formatted_address"]+'");">'+ entry['formatted_address'] + '</p>';
-                });
+                    string = string + '<p onclick=\'selectlocation("'+String(entry['formatted_address']) +'");\'>' + String(entry['formatted_address']) + '</p>';
 
+
+                });
+                $('#suggesstion-box').show();
                 $('#suggesstion-box').html(string);
                 console.log(string);
                 // resultsMap.setCenter(results[0].geometry.location);
@@ -81,9 +91,91 @@
     }
 
     function selectlocation(val){
-        alert(val);
-        //$("#address").val(val);
-        //$("#suggesstion-box").hide();
+
+        $("#locate").val(val);
+        $("#suggesstion-box").hide();
+        $.ajax({
+            type: 'POST',
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val +'&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
+            success: function(result){
+                results = result['results'];
+                console.log(result);
+
+                var latitude = results[0]['geometry']['location']['lat'];
+                var longitude = results[0]['geometry']['location']['lng'];
+
+               /*$("#lat").val(latitude);
+               $("#long").val(longitude);*/
+               sendyit2(longitude,latitude);
+            },
+
+        });
     }
+
+    function sendyit2(lng,lat){
+
+        var body = {
+            "command": "request",
+            "data": {
+                "api_key":"dM6shK8FuWZ5gH3kXCTe",
+                "api_username":"myduka",
+                "from": {
+                    "from_name": "Green House",
+                    "from_lat": -1.300577,
+                    "from_long": 36.78183,
+                    "from_description":""
+                },
+                "to": {
+                    "to_name": "KICC",
+                    "to_lat": lat,
+                    "to_long": lng,
+                    "to_description": ""
+                },
+                "recepient": {
+                    "recepient_name": "Sendy User",
+                    "recepient_phone": "0728561783",
+                    "recepient_email": "support@sendy.co.ke"
+                },
+                "delivery_details": {
+                    "pick_up_date": "2016-04-20 12:12:12",
+                    "collect_payment": {
+                        "status": false,
+                        "pay_method": 0,
+                        "amount": 10
+                    },
+                    "return": true,
+                    "note": " Sample note",
+                    "note_status": true,
+                    "request_type": "delivery",
+                    "order_type": "ondemand_delivery",
+                    "ecommerce_order": "ecommerce_order_001",
+                    "skew": 1,
+                    "package_size": [
+                        {
+                            "weight": 20,
+                            "height": 10,
+                            "width": 200,
+                            "length": 30,
+                            "item_name": "laptop"
+                        }
+                    ]
+                }
+            }
+        };
+
+        $.ajax({
+           url:'https://apitest.sendyit.com/v1/',
+            //url:'https://private-anon-1d2df86698-sendypublicapi.apiary-proxy.com/v1/#request',
+            method:'post',
+            data:body,
+            success:function(res) {
+                console.log(res);
+                data = res['data'];
+                $('.price').html(' <p> Price: '+ data['amount'] + '</p> <p>Order Number: ' + data['order_no'] + '</p>');
+            }
+        });
+    }
+
+
 </script>
 

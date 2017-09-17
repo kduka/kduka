@@ -2,361 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66ed27d1-8fda-435c-8111-03df3699b4e9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ab.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ab1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/arr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ba.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ba1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ba2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/cac.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/can.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/co.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/co1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/co2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/co3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/download.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ki.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ki1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ki2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ki3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ki4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ki5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ki6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ki7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/ki8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/me.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/me1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/me2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of10.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of11.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of12.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of13.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of14.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of15.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of17.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of19.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of20.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of21.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of22.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of23.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of24.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of25.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of26.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of27.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of28.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of29.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of30.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of31.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of32.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of33.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of34.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of35.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of37.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of38.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of39.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of40.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of41.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of42.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of43.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of44.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of45.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of46.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of47.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of49.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of50.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of51.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of52.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of53.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of54.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of55.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of56.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of57.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of58.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of59.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of8.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/of9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/sh.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/si-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/si.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/wi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/wi1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/bigstore/wi2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/11.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/12.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/13.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/14.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/15.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/16.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/17.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/18.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/19.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/20.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/21.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/22.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/23.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/24.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/25.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/26.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/27.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/28.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/29.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/30.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/31.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/32.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/33.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/34.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/35.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/36.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/37.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/38.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/39.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/40.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/41.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/44.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/45.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/46.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/47.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/48.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/49.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/50.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/51.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/52.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/P7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/a.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/b.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/b1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/bg1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/bg2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/bg3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/c.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/check.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/close.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/img-sp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/left-arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p11.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p12.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p13.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/p9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/right-arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/star-.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/star.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/t1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/t2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/t3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/t4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/t5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/t6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/t7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/tb1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/tb2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/tb3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/tb4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/electronic/tb5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/videos/bigstore/video.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/videos/bigstore/video.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/videos/bigstore/video.mp4" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/videos/bigstore/video.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/sub_categories_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/sub_categories_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/layout.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/sub_category.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/bigstore/_cart_text.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/bigstore/_menu.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/bigstore/_product.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/bigstore/_product_item.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/bigstore/shop.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/electronic/shop.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/modern/_cart_text.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/modern/_product.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/modern/_product_item.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/modern/shop.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/stores/layouts.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/sub_categories/create.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/sub_categories/destroy.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/sub_categories/new.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/sub_categories/update.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20170822040255_create_layouts.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20170822042109_remove_layout.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20170822042434_add_layout2_to_stores.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20170822045749_add_d_name_to_layout.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20170824093705_create_sub_categories.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/easing.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/easyResponsiveTabs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/jquery-1.11.1.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/jquery.mycart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/jquery.vide.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/jquery.zoomtoo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/jstarbox.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/modernizr.custom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/electronic/easyResponsiveTabs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/electronic/jquery.countdown.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/electronic/jquery.flexisel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/electronic/jquery.magnific-popup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/electronic/jquery.wmuSlider.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/electronic/minicart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/electronic/script.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/modern/imagezoom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/modern/jquery.flexslider.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/modern/move-top.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/bigstore/jstarbox.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/bigstore/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/fasthover.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/flexslider.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/jquery.countdown.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/popuo-box.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/electronic/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/controllers/sub_categories_controller_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/fixtures/layouts.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/fixtures/sub_categories.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/models/layout_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/models/sub_category_test.rb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/flexslider1.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admins.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/store_sessions.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admins.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/default/carts.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/default/categories.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/default/home.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/default/order_items.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/default/products.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/default/store_registrations.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/default/user_registrations.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/default/user_sessions.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/store_sessions.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/layouts/_cart_text.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/layouts/shop.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/product/image/49/bananasf.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/product/image/49/thumb_bananasf.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/product/image/50/bananasf.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/product/image/50/thumb_bananasf.jpg" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/Chart.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/Chart.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/amcharts.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/amcharts.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/cbpFWTabs.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/cbpFWTabs.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/clndr.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/clndr.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/imagezoom.js" afterPath="$PROJECT_DIR$/public/javascripts/electronic/imagezoom.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/jquery.flexslider.js" afterPath="$PROJECT_DIR$/public/javascripts/electronic/jquery.flexslider.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/jquery.flot.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/jquery.flot.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/jquery.fn.gantt.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/jquery.fn.gantt.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/jquery.nicescroll.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/jquery.nicescroll.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/menu_jquery.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/menu_jquery.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/moment-2.2.1.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/moment-2.2.1.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/owl.carousel.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/owl.carousel.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/pie-chart.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/pie-chart.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/scripts.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/scripts.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/serial.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/serial.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/simpleCart.min.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/simpleCart.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/site.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/site.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/underscore-min.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/underscore-min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/easing.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/easing.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/imagezoom.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/imagezoom.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/jquery-ui.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/jquery-ui.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/jquery.countdown.min.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/jquery.countdown.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/jquery.flexslider.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/jquery.flexslider.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/jquery.jscrollpane.min.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/jquery.jscrollpane.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/jquery.mousewheel.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/jquery.mousewheel.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/main.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/main.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/modernizr.custom.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/modernizr.custom.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/move-top.js" afterPath="$PROJECT_DIR$/public/javascripts/bigstore/move-top.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/simpleCart.min.js" afterPath="$PROJECT_DIR$/public/javascripts/admin/simpleCart.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/uisearch.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/uisearch.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/custom/wow.min.js" afterPath="$PROJECT_DIR$/public/javascripts/modern/wow.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/users.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/sub_categories.coffee" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/atlas.css" afterPath="$PROJECT_DIR$/public/stylesheets/admin/atlas.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/bootstrap.min.css" afterPath="$PROJECT_DIR$/public/stylesheets/admin/bootstrap.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/clndr.css" afterPath="$PROJECT_DIR$/public/stylesheets/admin/clndr.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fabochart.css" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fabochart.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/flexslider.css" afterPath="$PROJECT_DIR$/public/stylesheets/admin/flexslider.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/font-awesome.css" afterPath="$PROJECT_DIR$/public/stylesheets/admin/font-awesome.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/FontAwesome.otf" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/FontAwesome.otf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/fontawesome-webfont.eot" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/fontawesome-webfont.eot" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/fontawesome-webfont.svg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/fontawesome-webfont.ttf" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/fontawesome-webfont.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/fontawesome-webfont.woff" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/fontawesome-webfont.woff" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/glyphicons-halflings-regular.eot" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/glyphicons-halflings-regular.svg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/glyphicons-halflings-regular.woff" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/fonts/glyphicons-halflings-regular.woff2" afterPath="$PROJECT_DIR$/public/stylesheets/admin/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/graph.css" afterPath="$PROJECT_DIR$/public/stylesheets/admin/graph.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/icon-font.min.css" afterPath="$PROJECT_DIR$/public/stylesheets/admin/icon-font.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/admin/owl.carousel.css" afterPath="$PROJECT_DIR$/public/stylesheets/admin/owl.carousel.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom/animate.min.css" afterPath="$PROJECT_DIR$/public/stylesheets/modern/animate.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom/flexslider.css" afterPath="$PROJECT_DIR$/public/stylesheets/modern/flexslider.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom/jquery-ui.css" afterPath="$PROJECT_DIR$/public/stylesheets/modern/jquery-ui.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/users.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/sub_categories.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/layouts/_menu.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/modern/_menu.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/layouts/_menu_shop.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/modern/_menu_shop.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/layouts/admin.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/user_admin/admin.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/layouts/login.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/login/login.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/layouts/store_show.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/store_admin/store_show.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/stylesheets/custom.css" afterPath="$PROJECT_DIR$/public/stylesheets/modern/custom.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.project" afterPath="$PROJECT_DIR$/.project" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/carts_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/carts_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/categories_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/categories_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/order_items_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/order_items_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/products_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/products_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/stores_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/stores_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/category.rb" afterPath="$PROJECT_DIR$/app/models/category.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/uploaders/avatar_uploader.rb" afterPath="$PROJECT_DIR$/app/uploaders/avatar_uploader.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/carts/shipping.html.erb" afterPath="$PROJECT_DIR$/app/views/carts/shipping.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/carts/show.html.erb" afterPath="$PROJECT_DIR$/app/views/carts/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/categories/index.html.erb" afterPath="$PROJECT_DIR$/app/views/categories/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/categories/new.html.erb" afterPath="$PROJECT_DIR$/app/views/categories/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/categories/show.html.erb" afterPath="$PROJECT_DIR$/app/views/categories/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/order_items/clear.js.erb" afterPath="$PROJECT_DIR$/app/views/order_items/clear.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/order_items/create.js.erb" afterPath="$PROJECT_DIR$/app/views/order_items/create.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/order_items/destroy.js.erb" afterPath="$PROJECT_DIR$/app/views/order_items/destroy.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/order_items/update.js.erb" afterPath="$PROJECT_DIR$/app/views/order_items/update.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/order_items/updater.js.erb" afterPath="$PROJECT_DIR$/app/views/order_items/updater.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/products/index.html.erb" afterPath="$PROJECT_DIR$/app/views/products/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/assets.rb" afterPath="$PROJECT_DIR$/config/initializers/assets.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/store_admin/store_show.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/store_admin/store_show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -373,20 +24,32 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="application_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <file leaf-file-name="store_show.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/store_admin/store_show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="192" column="55" lean-forward="false" selection-start-line="192" selection-start-column="55" selection-end-line="192" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="store_show.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/store_admin/store_show.html.erb">
+      <file leaf-file-name="shipping.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/carts/shipping.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="402">
+              <caret line="167" column="14" lean-forward="false" selection-start-line="167" selection-start-column="14" selection-end-line="167" selection-end-column="14" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#div#6;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="categories_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/categories_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-529">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -396,78 +59,68 @@
       <file leaf-file-name="stores_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/stores_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="11" column="11" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+            <state relative-caret-position="520">
+              <caret line="158" column="18" lean-forward="true" selection-start-line="158" selection-start-column="18" selection-end-line="158" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2660">
-              <caret line="133" column="11" lean-forward="true" selection-start-line="133" selection-start-column="11" selection-end-line="133" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="products_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/products_controller.rb">
+      <file leaf-file-name="social.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/stores/social.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+              <caret line="15" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/carts/show.html.erb">
+      <file leaf-file-name="deliver.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/stores/deliver.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="66" lean-forward="false" selection-start-line="0" selection-start-column="66" selection-end-line="0" selection-end-column="66" />
+            <state relative-caret-position="300">
+              <caret line="15" column="26" lean-forward="false" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shop.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/bigstore/shop.html.erb">
+      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            <state relative-caret-position="340">
+              <caret line="26" column="30" lean-forward="false" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shipping.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/carts/shipping.html.erb">
+      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state relative-caret-position="60">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/modern/main.js">
+      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="36" lean-forward="false" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
+            <state relative-caret-position="320">
+              <caret line="16" column="13" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="16" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <file leaf-file-name="manage.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/products/manage.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+            <state relative-caret-position="170">
+              <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -487,10 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/config/environments/development.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/store_registrations_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/stores_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/products/new.html.erb" />
         <option value="$PROJECT_DIR$/app/models/product.rb" />
         <option value="$PROJECT_DIR$/app/views/products/_form.html.erb" />
@@ -514,7 +163,6 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/custom/main.js" />
         <option value="$PROJECT_DIR$/app/controllers/user_registrations_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/stores/show.html.erb" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/controllers/user_sessions_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/user_sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/home/user.html.erb" />
@@ -525,7 +173,6 @@
         <option value="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/custom/flexslider.css" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/controllers/carts_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/electronic/_shopping_cart.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/modern/_shopping_cart.html.erb" />
@@ -535,6 +182,14 @@
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/public/javascripts/modern/main.js" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/Gemfile.lock" />
+        <option value="$PROJECT_DIR$/db/seeds.rb" />
+        <option value="$PROJECT_DIR$/app/views/products/manage.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/store_admin/store_show.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/stores_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/stores/deliver.html.erb" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/carts/shipping.html.erb" />
       </list>
     </option>
@@ -569,8 +224,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -603,47 +258,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modern" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -662,6 +277,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shopy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shopy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stores" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -709,29 +346,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bigstore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="carts" />
+              <option name="myItemId" value="store_admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -763,57 +378,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stylesheets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1011,33 +582,34 @@
       <workItem from="1505236083681" duration="4357000" />
       <workItem from="1505299487990" duration="2190000" />
       <workItem from="1505369573473" duration="6966000" />
+      <workItem from="1505632083484" duration="20181000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104518000" />
+    <option name="totallyTimeSpent" value="126666000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="-4" width="1859" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24048539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23938224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1051,36 +623,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="63" lean-forward="false" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_cart_text.html.erb" />
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/custom/main.js" />
-    <entry file="file://$PROJECT_DIR$/app/controllers/store_registrations_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" column="5" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/user_registrations_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/user_sessions_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1151,20 +693,6 @@
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom/flexslider1.css" />
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom/animate.min.css" />
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom/flexslider.css" />
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="30" column="18" lean-forward="false" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/carts_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1211,7 +739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
           <caret line="28" column="8" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1233,7 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="12" column="12" lean-forward="true" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1241,15 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1640">
           <caret line="82" column="92" lean-forward="false" selection-start-line="82" selection-start-column="92" selection-end-line="82" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/stores_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="11" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1264,8 +781,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2660">
-          <caret line="133" column="11" lean-forward="true" selection-start-line="133" selection-start-column="11" selection-end-line="133" selection-end-column="11" />
-          <folding />
+          <caret line="133" column="11" lean-forward="false" selection-start-line="133" selection-start-column="11" selection-end-line="133" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -1277,18 +793,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/store_admin/store_show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/bigstore/shop.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="500">
+          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1317,11 +825,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2340">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/products/manage.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/categories_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-529">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/store_admin/store_show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="192" column="55" lean-forward="false" selection-start-line="192" selection-start-column="55" selection-end-line="192" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/stores/social.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/stores_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="158" column="18" lean-forward="true" selection-start-line="158" selection-start-column="18" selection-end-line="158" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/stores/deliver.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="26" lean-forward="false" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="30" lean-forward="false" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/carts/shipping.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="402">
+          <caret line="167" column="14" lean-forward="false" selection-start-line="167" selection-start-column="14" selection-end-line="167" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#6;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
