@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+gem 'rest-client'
+gem 'rack-cors'
 gem 'pesapal'
 gem 'devise'
 gem 'bootstrap-sass'

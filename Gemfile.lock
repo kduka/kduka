@@ -66,6 +66,8 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    domain_name (0.5.20170404)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     excon (0.58.0)
     execjs (2.7.0)
@@ -220,6 +222,8 @@ GEM
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     htmlentities (4.3.4)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (0.8.4)
     inflecto (0.0.2)
     ipaddress (0.8.3)
@@ -251,6 +255,7 @@ GEM
     multi_json (1.12.1)
     mysql2 (0.4.7)
     mysql2 (0.4.7-x86-mingw32)
+    netrc (0.11.0)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -263,6 +268,7 @@ GEM
     pg (0.18.1)
     pg (0.18.1-x86-mingw32)
     rack (2.0.3)
+    rack-cors (1.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.2)
@@ -304,6 +310,10 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     sass (3.4.24)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -343,6 +353,9 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.4)
     warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
@@ -369,8 +382,10 @@ DEPENDENCIES
   nprogress-rails
   pesapal
   pg (= 0.18.1)
+  rack-cors
   rails (= 5.0.2)
   rails_12factor
+  rest-client
   sdoc (~> 0.4.0)
   seed_dump
   sqlite3

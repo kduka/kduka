@@ -41,6 +41,7 @@
       <input id="lat" name="lat" type="hidden" value="">
       <div id="suggesstion-box"></div>
       <div id="map"></div>
+      <%= debug @response %>
 
   <% end %>
 
@@ -165,6 +166,13 @@
 
         $.ajax({
            url:'https://apitest.sendyit.com/v1/',
+            contentType: 'html',
+            headers: { "Accept": "application/json"},
+            type: 'GET',
+            crossDomain: true,
+            beforeSend: function(xhr){
+                xhr.withCredentials = true;
+            },
             //url:'https://private-anon-1d2df86698-sendypublicapi.apiary-proxy.com/v1/#request',
             method:'post',
             data:body,
