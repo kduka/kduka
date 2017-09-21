@@ -24,6 +24,7 @@ Category.create!([
                      {name: "Fruits", active: true, store_id: 1, description: nil},
                      {name: "Vegetables", active: true, store_id: 1, description: "Greens"},
                      {name: "Greens", active: true, store_id: 1, description: "Greens"},
+
                  ])
 
 
@@ -44,7 +45,8 @@ Product.create!([
 Layout.create!([
                    {name: "modern", description: "Modern Theme", d_name: "Modern"},
                    {name: "electronic", description: "Electronic Theme", d_name: "Electronic Store"},
-                   {name: "bigstore", description: "Big Store", d_name: "Big Store"}
+                   {name: "bigstore", description: "Big Store", d_name: "Big Store"},
+                   {name: "elite", description: "Elite Store", d_name: "Elite Store"}
                ])
 
 Store.find(1).update({
