@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]
+match '/', to: 'products#home', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]
   # get 'home/user'
 # 
   # get 'home/store' 
@@ -25,7 +25,9 @@ match '/', to: 'products#index', constraints: { subdomain: /.+/ }, via: [:get, :
    put 'stores/update_layout'
    get 'stores/deliver' => 'stores#deliver'
    put 'stores/update_delivery'
-
+   get 'products/home' => 'products#home'
+   get '/about' => 'products#about'
+   get '/contact' => 'products#contact'
   devise_for :stores, :controllers => { registrations: 'store_registrations', sessions: 'store_sessions' }
   devise_for :users, :controllers => { registrations: 'user_registrations', sessions: 'user_sessions' }
   

@@ -1,9 +1,13 @@
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk">
+</script>
 <div class="col-md-6 col-md-offset-3">
   <%= form_for :store, :url => {controller:'stores', action:'update_delivery'}, method:'put' do |f|%>
 
       <div class="form-group">
         <%= f.label "Set pickup point for goods" %>
-        <%= f.text_field :location, class:'form-control'%>
+        <%= f.text_field :location, class:'form-control', id:'locate'%>
+        <div id="suggesstion-box"></div>
       </div>
 
 
@@ -21,3 +25,86 @@
       <p><%= f.submit 'Save', class:'btn btn-primary' %>
   <% end %>
 </div>
+
+<div id="map"></div>
+
+<script>
+
+    $(function () {
+        $('#locate').on('keyup', function() {
+
+            setTimeout(function(){
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 8,
+                    center: {lat: -34.397, lng: 150.644}
+                });
+                var geocoder = new google.maps.Geocoder();
+
+                geocodeAddress(geocoder, map);
+
+            },1000);
+        });
+    });
+
+    function geocodeAddress(geocoder, resultsMap) {
+
+        var address = document.getElementById('locate').value;
+        geocoder.geocode({'address': address,componentRestrictions: {
+            country: 'KE'
+        }}, function(results, status) {
+
+            if (status === 'OK') {
+
+                var string ="";
+                console.log(results);
+                results.forEach(function(entry) {
+
+                    if(String(entry['formatted_address']) == 'Kenya'){
+                        string = "<p>No Location Found. Try different Search Words</p>"
+                    }else{
+                        string = string + '<p onclick=\'selectlocation("'+String(entry['formatted_address']) +'");\'>' + String(entry['formatted_address']) + '</p>';
+                    }
+
+
+
+
+                });
+                $('#suggesstion-box').show();
+                $('#suggesstion-box').html(string);
+                console.log(string);
+                // resultsMap.setCenter(results[0].geometry.location);
+                // var marker = new google.maps.Marker({
+                //   map: resultsMap,
+                //   position: results[0].geometry.location
+                // });
+            } else {
+                $('#suggesstion-box').html("Not Found, Try different search words");
+            }
+        });
+    }
+
+    function selectlocation(val){
+
+        $("#locate").val(val);
+        $("#suggesstion-box").hide();
+        $.ajax({
+            type: 'POST',
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val +'&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
+            success: function(result){
+                results = result['results'];
+                console.log(result);
+
+                var latitude = results[0]['geometry']['location']['lat'];
+                var longitude = results[0]['geometry']['location']['lng'];
+
+              $("#store_lat").val(latitude);
+               $("#store_lng").val(longitude);
+            },
+
+        });
+    }
+
+
+
+</script>
+

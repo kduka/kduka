@@ -30,6 +30,18 @@ class ProductsController < ApplicationController
 =end
     
   end
+
+  def home
+    get_data
+  end
+
+  def about
+    get_data
+  end
+
+  def contact
+    get_data
+  end
   
     def manage
       @categories = Category.where(store_id:current_store.id)

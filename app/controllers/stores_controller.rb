@@ -158,7 +158,7 @@ class StoresController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def store_params
-    params.require(:store).permit(:facebook,:linkedin,:twitter,:instagram,:pinterest,:vimeo,:youtube,:slogan, :subdomain, :layout_id)
+    params.require(:store).permit(:facebook,:linkedin,:twitter,:instagram,:pinterest,:vimeo,:youtube,:slogan, :subdomain, :layout_id, :name, :phone,:display_email)
   end
 
   def delivery_params
