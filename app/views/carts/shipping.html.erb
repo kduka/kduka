@@ -67,7 +67,7 @@
     function geocodeAddress(geocoder, resultsMap) {
 
         var address = document.getElementById('locate').value;
-        geocoder.geocode({'address': address}, function(results, status) {
+        geocoder.geocode({'address': address,region: 'KE'}, function(results, status) {
             if (status === 'OK') {
 
                 var string ="";
@@ -80,11 +80,6 @@
                 $('#suggesstion-box').show();
                 $('#suggesstion-box').html(string);
                 console.log(string);
-                // resultsMap.setCenter(results[0].geometry.location);
-                // var marker = new google.maps.Marker({
-                //   map: resultsMap,
-                //   position: results[0].geometry.location
-                // });
             } else {
                 $('#suggesstion-box').html("Not Found, Try different search words");
             }

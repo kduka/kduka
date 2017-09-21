@@ -1,20 +1,38 @@
 <div class="col-md-6 col-md-offset-3">
-<%= form_for :store, :url => {controller:'stores', action:'update_store'}, method:'put' do |f|%>
+  <%= form_for :store, :url => {controller: 'stores', action: 'update_store'}, method: 'put' do |f| %>
 
-<div class="form-group">
-      <%= f.label "Store URL" %>
-     	<p>If you enter "john" we will automatically create john.kduka.co.ke for you.</p>
-      <%= f.text_field :subdomain, class:'form-control', placeholder:'john'%>
-</div>
+      <div class="form-group">
+        <%= f.label "Store Name" %>
+        <%= f.text_area :name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Store URL" %>
+        <p>If you enter "john" we will automatically create john.kduka.co.ke for you.</p>
+        <%= f.text_field :subdomain, class: 'form-control', placeholder: 'john' %>
+      </div>
 
 
-<div class="form-group">
-      <%= f.label "Slogan" %>
-      <%= f.text_area :slogan, class:'form-control'%>
-</div>
+      <div class="form-group">
+        <%= f.label "Slogan" %>
+        <%= f.text_area :slogan, class: 'form-control' %>
+      </div>
 
-<p></p>
+      <div class="form-group">
+        <%= f.label "Display Email" %>
+        <p>The email clients can contact you with</p>
+        <%= f.text_area :display_email, class: 'form-control' %>
+      </div>
 
-<p><%= f.submit 'Save', class:'btn btn-primary' %>
-<% end %>
+
+      <div class="form-group">
+        <%= f.label "Phone" %>
+        <p>The number clients can contact you with</p>
+        <%= f.text_area :phone, class: 'form-control' %>
+      </div>
+
+      <p></p>
+
+      <p><%= f.submit 'Save', class: 'btn btn-primary' %>
+  <% end %>
 </div>
