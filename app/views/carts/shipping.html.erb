@@ -1,8 +1,8 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk">
 </script>
-<div class="col-md-6 col-md-offset-3">
-  <h1>Shipping Details</h1>
+<div class="col-md-8 col-md-offset-2" style="margin-bottom:3em;margin-top:4em">
+  <h1 style="text-align:center;font-size:45px;font-weight:700">Shipping Details</h1><br><br>
   <%= form_tag("/carts/pay", method: "post") do %>
       <div class="form-group">
         <%= label_tag(:first_name, "First Name") %>
@@ -34,14 +34,13 @@
         <input id="locate" type="textbox" value="" class='form-control' placeholder='Delivery Location' /> <span style="color:green;" class="price"></span>
       </div>
       <p></p>
-      <%= submit_tag("Pay", :class => 'btn btn-success') %>
-
 
       <input id="long" name="long" type="hidden" value="">
       <input id="lat" name="lat" type="hidden" value="">
       <div id="suggesstion-box"></div>
       <div id="map"></div>
-      
+      <!-- <%= debug @response %><br><br> -->
+      <%= submit_tag("Process Payment", :class => 'btn btn-success col-sm-12 col-md-6 col-md-offset-3') %><br>
 
   <% end %>
 
@@ -96,8 +95,12 @@
             success: function(result){
                 results = result['results'];
                 console.log(result);
+
                 var latitude = results[0]['geometry']['location']['lat'];
                 var longitude = results[0]['geometry']['location']['lng'];
+
+               /*$("#lat").val(latitude);
+               $("#long").val(longitude);*/
                sendyit2(longitude,latitude);
             },
 
@@ -109,8 +112,8 @@
         var body = {
             "command": "request",
             "data": {
-                "api_key":"mysendykey",
-                "api_username":"mysendyusername",
+                "api_key":"dM6shK8FuWZ5gH3kXCTe",
+                "api_username":"myduka",
                 "from": {
                     "from_name": "Green House",
                     "from_lat": -1.300577,
@@ -124,7 +127,7 @@
                     "to_description": ""
                 },
                 "recepient": {
-                    "recepient_name": "Martin Ndeto",
+                    "recepient_name": "Sendy User",
                     "recepient_phone": "0728561783",
                     "recepient_email": "support@sendy.co.ke"
                 },
@@ -157,13 +160,19 @@
 
         $.ajax({
            url:'https://apitest.sendyit.com/v1/',
+            contentType: 'html',
+            headers: { "Accept": "application/json"},
+            type: 'GET',
+            crossDomain: true,
+            beforeSend: function(xhr){
+                xhr.withCredentials = true;
+            },
             //url:'https://private-anon-1d2df86698-sendypublicapi.apiary-proxy.com/v1/#request',
             method:'post',
-            data:JSON.stringify(body),
+            data:body,
             success:function(res) {
                 console.log(res);
-                result = JSON.parse(res);
-                data = result['data']
+                data = res['data'];
                 $('.price').html(' <p> Price: '+ data['amount'] + '</p> <p>Order Number: ' + data['order_no'] + '</p>');
             }
         });
@@ -171,4 +180,3 @@
 
 
 </script>
-
