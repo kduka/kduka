@@ -1,0 +1,23 @@
+<!--breadcrumbs-->
+<div class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+      <li><a href="<%= root_path %>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+      <li class="active">Products</li>
+    </ol>
+  </div>
+</div>
+<!--//breadcrumbs-->
+<!--products-->
+<div class="products">
+  <div class="container">
+    <div class="col-md-12 product-model-sec">
+      <% @products.each do |product| %>
+        <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+      <% end %>
+    </div>
+
+    <div class="clearfix"> </div>
+  </div>
+</div>
+<!--//products-->

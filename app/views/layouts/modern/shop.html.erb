@@ -79,9 +79,7 @@
 					<div class="nav navbar-nav wow fadeInLeft animated "  data-wow-delay=".5s"></div>
 					<div class="nav navbar-nav navbar-right social-icons wow fadeInRight animated"  data-wow-delay=".5s">
 						<ul>
-							<li>
-								<a href="#"> </a>
-							</li>
+
 							<% if !@store.facebook.blank? %>
 							<li>
 								<a href="http://<%= @store.facebook %>"><i class="fa fa-facebook fa-lg"></i> </a>
@@ -141,7 +139,7 @@
 							<% end %>
 							<% if !@store.display_email.blank?%>
 							<li>
-								<i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com"><%= @store.display_email%></a>
+								<i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:<%= @store.display_email%>"><%= @store.display_email%></a>
 							</li>
 							<% end %>
 						</ul>
