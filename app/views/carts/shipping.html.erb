@@ -41,7 +41,7 @@
       <input id="lat" name="lat" type="hidden" value="">
       <div id="suggesstion-box"></div>
       <div id="map"></div>
-      <%= debug @response %>
+      
 
   <% end %>
 
@@ -96,12 +96,8 @@
             success: function(result){
                 results = result['results'];
                 console.log(result);
-
                 var latitude = results[0]['geometry']['location']['lat'];
                 var longitude = results[0]['geometry']['location']['lng'];
-
-               /*$("#lat").val(latitude);
-               $("#long").val(longitude);*/
                sendyit2(longitude,latitude);
             },
 
@@ -113,8 +109,8 @@
         var body = {
             "command": "request",
             "data": {
-                "api_key":"dM6shK8FuWZ5gH3kXCTe",
-                "api_username":"myduka",
+                "api_key":"mysendykey",
+                "api_username":"mysendyusername",
                 "from": {
                     "from_name": "Green House",
                     "from_lat": -1.300577,
@@ -128,7 +124,7 @@
                     "to_description": ""
                 },
                 "recepient": {
-                    "recepient_name": "Sendy User",
+                    "recepient_name": "Martin Ndeto",
                     "recepient_phone": "0728561783",
                     "recepient_email": "support@sendy.co.ke"
                 },
@@ -161,19 +157,13 @@
 
         $.ajax({
            url:'https://apitest.sendyit.com/v1/',
-            contentType: 'html',
-            headers: { "Accept": "application/json"},
-            type: 'GET',
-            crossDomain: true,
-            beforeSend: function(xhr){
-                xhr.withCredentials = true;
-            },
             //url:'https://private-anon-1d2df86698-sendypublicapi.apiary-proxy.com/v1/#request',
             method:'post',
-            data:body,
+            data:JSON.stringify(body),
             success:function(res) {
                 console.log(res);
-                data = res['data'];
+                result = JSON.parse(res);
+                data = result['data']
                 $('.price').html(' <p> Price: '+ data['amount'] + '</p> <p>Order Number: ' + data['order_no'] + '</p>');
             }
         });
