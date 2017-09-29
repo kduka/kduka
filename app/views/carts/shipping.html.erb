@@ -6,34 +6,51 @@
   <%= form_tag("/carts/pay", method: "post") do %>
       <div class="form-group">
         <%= label_tag(:first_name, "First Name") %>
-        <%= text_field_tag(:first_name, nil,:class=>'form-control') %>
+        <%= text_field_tag(:first_name, nil, :class => 'form-control') %>
       </div>
       <div class="form-group">
         <%= label_tag(:second_name, "Second Name") %>
-        <%= text_field_tag(:second_name, nil,:class=>'form-control') %>
+        <%= text_field_tag(:second_name, nil, :class => 'form-control') %>
       </div>
       <div class="form-group">
         <%= label_tag(:email, "Email") %>
-        <%= text_field_tag(:email, nil,:class=>'form-control') %>
+        <%= text_field_tag(:email, nil, :class => 'form-control') %>
       </div>
       <div class="form-group">
         <%= label_tag(:phone_number, "Phone") %>
-        <%= text_field_tag(:phone_number, nil,:class=>'form-control') %>
+        <%= text_field_tag(:phone_number, nil, :class => 'form-control') %>
       </div>
       <div class="form-group">
         <%= label_tag(:address, "Address") %>
-        <%= text_field_tag(:address, nil,:class=>'form-control') %>
+        <%= text_field_tag(:address, nil, :class => 'form-control') %>
       </div>
       <div class="form-group">
         <%= label_tag(:coupon, "Coupon") %>
-        <%= text_field_tag(:coupon, nil,:class=>'form-control',placeholder:'Can Be Blank') %>
+        <%= text_field_tag(:coupon, nil, :class => 'form-control', placeholder: 'Can Be Blank') %>
       </div>
       <p></p>
-      <div class="form-group">
-        <label> Delivery Location</label>
-        <input id="locate" type="textbox" value="" class='form-control' placeholder='Delivery Location' /> <span style="color:green;" class="price"></span>
-      </div>
-      <p></p>
+
+      <% if @store.delivery_status == true %>
+
+          <div class="form-group">
+            <label> Delivery Location</label>
+            <input id="locate" type="textbox" value="" class='form-control' placeholder='Delivery Location'/>
+            <span style="color:green;" class="price"></span>
+          </div>
+          <p></p>
+
+      <% end %>
+
+      <% if @store.delivery_status == false %>
+
+          <div class="form-group">
+            <label> Collection Point for Goods</label>
+            <textarea disabled type="text" value="" class='form-control' placeholder='Collection Instructions'><%= @store.detailed_location %></textarea>
+            <span style="color:green;" class="price">We shall send instructions for pickup and contact points after you make your order</span>
+          </div>
+          <p></p>
+
+      <% end %>
 
       <input id="long" name="long" type="hidden" value="">
       <input id="lat" name="lat" type="hidden" value="">
@@ -49,8 +66,8 @@
 <script>
 
     $(function () {
-        $('#locate').on('keyup', function() {
-            setTimeout(function(){
+        $('#locate').on('keyup', function () {
+            setTimeout(function () {
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 8,
                     center: {lat: -34.397, lng: 150.644}
@@ -59,20 +76,20 @@
 
                 geocodeAddress(geocoder, map);
 
-        },1000);
-    });
+            }, 1000);
         });
+    });
 
     function geocodeAddress(geocoder, resultsMap) {
 
         var address = document.getElementById('locate').value;
-        geocoder.geocode({'address': address,region: 'KE'}, function(results, status) {
+        geocoder.geocode({'address': address, region: 'KE'}, function (results, status) {
             if (status === 'OK') {
 
-                var string ="";
+                var string = "";
                 console.log(results);
-                results.forEach(function(entry) {
-                    string = string + '<p onclick=\'selectlocation("'+String(entry['formatted_address']) +'");\'>' + String(entry['formatted_address']) + '</p>';
+                results.forEach(function (entry) {
+                    string = string + '<p onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
 
 
                 });
@@ -85,40 +102,40 @@
         });
     }
 
-    function selectlocation(val){
+    function selectlocation(val) {
 
         $("#locate").val(val);
         $("#suggesstion-box").hide();
         $.ajax({
             type: 'POST',
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val +'&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
-            success: function(result){
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
+            success: function (result) {
                 results = result['results'];
                 console.log(result);
 
                 var latitude = results[0]['geometry']['location']['lat'];
                 var longitude = results[0]['geometry']['location']['lng'];
 
-               /*$("#lat").val(latitude);
+              /*$("#lat").val(latitude);
                $("#long").val(longitude);*/
-               sendyit2(longitude,latitude);
+                sendyit2(longitude, latitude);
             },
 
         });
     }
 
-    function sendyit2(lng,lat){
+    function sendyit2(lng, lat) {
 
         var body = {
             "command": "request",
             "data": {
-                "api_key":"dM6shK8FuWZ5gH3kXCTe",
-                "api_username":"myduka",
+                "api_key": "dM6shK8FuWZ5gH3kXCTe",
+                "api_username": "myduka",
                 "from": {
                     "from_name": "Green House",
                     "from_lat": -1.300577,
                     "from_long": 36.78183,
-                    "from_description":""
+                    "from_description": ""
                 },
                 "to": {
                     "to_name": "KICC",
@@ -159,21 +176,21 @@
         };
 
         $.ajax({
-           url:'https://apitest.sendyit.com/v1/',
+            url: 'https://apitest.sendyit.com/v1/',
             contentType: 'html',
-            headers: { "Accept": "application/json"},
+            headers: {"Accept": "application/json"},
             type: 'GET',
             crossDomain: true,
-            beforeSend: function(xhr){
+            beforeSend: function (xhr) {
                 xhr.withCredentials = true;
             },
             //url:'https://private-anon-1d2df86698-sendypublicapi.apiary-proxy.com/v1/#request',
-            method:'post',
-            data:body,
-            success:function(res) {
+            method: 'post',
+            data: body,
+            success: function (res) {
                 console.log(res);
                 data = res['data'];
-                $('.price').html(' <p> Price: '+ data['amount'] + '</p> <p>Order Number: ' + data['order_no'] + '</p>');
+                $('.price').html(' <p> Price: ' + data['amount'] + '</p> <p>Order Number: ' + data['order_no'] + '</p>');
             }
         });
     }

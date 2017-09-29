@@ -3,5 +3,19 @@
 $(document).ready( function() {
 	
 $('#example').DataTable();
-$('#myTable').DataTable();}
-);
+$('#myTable').DataTable();
+
+if ($("#delivery_status").val() == 1) {
+    $("#locate").attr('disabled', 'true');
+}
+
+    $("#deliveryswitch").change(function() {
+        if(this.checked) {
+            $("#locate").attr('disabled', 'true');
+            $("#thedrop").removeAttr('disabled');
+        }else{
+            $("#locate").removeAttr('disabled');
+            $("#thedrop").attr('disabled', 'true');
+        }
+    });
+});

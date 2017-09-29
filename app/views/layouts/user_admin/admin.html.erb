@@ -7,13 +7,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-		<%= stylesheet_link_tag    'admin.css' %>
-		
+    <%= csrf_meta_tags %>
 
-		<%= csrf_meta_tags %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <% Dir.foreach("public/stylesheets/admin") do |item|
+      next if item == '.' or item == '..' %>
+        <%= stylesheet_link_tag    "admin/#{item}" %>
+    <% end %>
+    <% Dir.foreach("public/javascripts/admin") do |item|
+      next if item == '.' or item == '..' %>
+        <%= javascript_include_tag   "admin/#{item}" %>
+    <% end %>
 		<title>Home</title>
 		<script type="application/x-javascript">
 			addEventListener("load", function() {
