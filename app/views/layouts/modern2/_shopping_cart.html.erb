@@ -1,3 +1,4 @@
+<div class="shopping-cart">
 <!--breadcrumbs-->
 <div class="container-fluid breadcrumbs">
   <div class="container">
@@ -8,7 +9,7 @@
   </div>
 </div><br><br>
 <!--breadcrumbs-->
-<div class="col-md-offset-1 col-md-10 shopping-cart" style="margin-top:0em;margin-bottom:3em;">
+<div class="col-md-offset-1 col-md-10 " style="margin-top:0em;margin-bottom:3em;">
 <% if !@order_item.nil? && @order_item.errors.any? %>
   <div class="alert alert-danger">
     <ul>
@@ -30,3 +31,5 @@
   <%= link_to "Checkout", carts_shipping_path , :class => 'btn btn-success col-md-6 col-md-offset-3 col-sm-12' %>
 <% end %>
 <div class="col-md-offset-1 col-md-10 shopping-cart" style="margin-top:0em;margin-bottom:3em;">
+</div></div>
+</div>

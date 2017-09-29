@@ -15,19 +15,6 @@ class ProductsController < ApplicationController
       @categories = @store.category.all
       set_shop
     end
- 
-=begin
-  @store  = Store.where(id:params[:store_id]).first
-
-    if @store.nil?
-      redirect_to(stores_path)
-    else
-      @products = Product.where(store_id:@store.id)
-      @order_item = current_order.order_items.new
-      @categories = @store.category.all
-      render :layout => 'shop'
-    end
-=end
     
   end
 
