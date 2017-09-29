@@ -52,7 +52,8 @@ class ProductsController < ApplicationController
   
   def category
     @order_item = current_order.order_items.new
-    @store  = Store.where(subdomain:request.subdomain).first
+    @subdomain = request.subdomain[/(\w+)/]
+    @store  = Store.where(subdomain:@subdomain).first
     @products = @store.product.where(category_id:params[:id])
     @categories = @store.category.all
       set_shop
