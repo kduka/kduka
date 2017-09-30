@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+
 body{
 	margin:0;
 	font-family: 'Raleway', sans-serif;
@@ -31,6 +32,17 @@ ul,label{
 body a:hover{
 	text-decoration:none;
 }
+
+.banner{
+	background:url(/images/modern2/banner.jpg) no-repeat center 0px;
+	background-size:cover;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	-ms-background-size:cover;
+	min-height:700px;
+}
+
 /*--header--*/
 .navbar.navbar-default {
     background: #fff;
@@ -521,12 +533,12 @@ ul.multi-column-dropdown:nth-child(3) {
 /*--//search--*/
 /*--//header--*/
 /*--banner--*/
-.banner {
+/*.banner {
     background: #33414e;
     padding: 9em 0;
 	background:url(../images/1.jpg)no-repeat 0px 0px;
 	background-size:cover;
-}
+}*/
 .banner-right{
 	background:url(../images/img3.jpg)no-repeat 0px 0px;
 	background-size:cover;
