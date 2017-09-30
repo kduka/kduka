@@ -136,7 +136,7 @@
 
     function sendyit2(lng, lat) {
 
-        var body = {
+       /* var body = {
             "command": "request",
             "data": {
                 "api_key": "dM6shK8FuWZ5gH3kXCTe",
@@ -186,23 +186,82 @@
         };
 
         $.ajax({
-            url: 'https://apitest.sendyit.com/v1/',
-            contentType: 'html',
-            headers: {"Accept": "application/json"},
-            type: 'GET',
-            crossDomain: true,
-            beforeSend: function (xhr) {
-                xhr.withCredentials = true;
-            },
-            //url:'https://private-anon-1d2df86698-sendypublicapi.apiary-proxy.com/v1/#request',
+            url: 'https://apitest.sendyit.com/v1/#request',
             method: 'post',
             data: body,
+            beforeSend: function(xhr){xhr.setRequestHeader('Content-Type', 'application/json')},
             success: function (res) {
                 console.log(res);
                 data = res['data'];
                 $('.price').html(' <p> Price: ' + data['amount'] + '</p> <p>Order Number: ' + data['order_no'] + '</p>');
             }
-        });
+        });*/
+
+        var request = new XMLHttpRequest();
+
+        request.open('POST', 'https://apitest.sendyit.com/v1/#request?%60command%60="request"&%60api_key%60="dM6shK8FuWZ5gH3kXCTe"&%60api_username%60="myduka"&%60vendor_type%60=1&%60recepient_name%60="Sendy%20user"&%60recepient_phone%60="0728561783"&%60recepient_email%60="user%40sendyit.com"&%60from_name%60="Green%20house"&%60from_lat%60=-1.28869&%60from_long%60=36.823363&%60from_description%60="office"&%60to_name%60="Lavington"&%60to_lat%60=-1.26869&%60to_long%60=37.823363&%60to_description%60="home"&%60status%60=false&%60pay_method%60=1&%60amount%60=0&%60pick_up_date%60="2016-04-20%2011%3A45%3A45"&%60request_type%60="quote"&%60order_type%60="ondemand_order"&%60package_size%60="package_size"&%60ecommerce_order%60="ecommerce_order"&%60skew%60="skew"&%60return%60=false&%60note%60="sample%20note"&%60note_status%60=false');
+
+        request.setRequestHeader('Content-Type', 'application/json');
+
+        request.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                console.log('Status:', this.status);
+                console.log('Headers:', this.getAllResponseHeaders());
+                console.log('Body:', this.responseText);
+            }
+        };
+
+        var body = {
+            'command': 'request',
+            'data': {
+                'api_key': 'mysendykey',
+                'api_username': 'mysendyusername',
+                'vendor_type': 1,
+                'from': {
+                    'from_name': 'Green House',
+                    'from_lat': -1.300577,
+                    'from_long': 36.78183,
+                    'from_description': ''
+                },
+                'to': {
+                    'to_name': 'KICC',
+                    'to_lat': -1.28869,
+                    'to_long': 36.823363,
+                    'to_description': ''
+                },
+                'recepient': {
+                    'recepient_name': 'Sendy User',
+                    'recepient_phone': '0728561783',
+                    'recepient_email': 'support@sendy.co.ke'
+                },
+                'delivery_details': {
+                    'pick_up_date': '2016-04-20 12:12:12',
+                    'collect_payment': {
+                        'status': false,
+                        'pay_method': 0,
+                        'amount': 10
+                    },
+                    'return': true,
+                    'note': ' Sample note',
+                    'note_status': true,
+                    'request_type': 'delivery',
+                    'order_type': 'ondemand_delivery',
+                    'ecommerce_order': 'ecommerce_order_001',
+                    'skew': 1,
+                    'package_size': [
+                        {
+                            'weight': 20,
+                            'height': 10,
+                            'width': 200,
+                            'length': 30,
+                            'item_name': 'laptop'
+                        }
+                    ]
+                }
+            }
+        };
+
+        request.send(JSON.stringify(body));
     }
 
 
