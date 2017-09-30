@@ -13,10 +13,30 @@
         <%= f.label "Set pickup point for goods (Automatic Delivery Services)" %>
 
         <% if (@store.delivery_status == true) %>
-            <%= f.text_field :location, class: 'form-control', id: 'locate', disabled: 'disabled' %>
+            <%= f.text_field :location, class: 'form-control locate', id: 'locate', disabled: 'disabled' %>
             <div id="suggesstion-box"></div>
         <% else %>
-            <%= f.text_field :location, class: 'form-control', id: 'locate' %>
+            <%= f.text_field :location, class: 'form-control locate', id: 'locate'  %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Sendy Username" %>
+
+        <% if (@store.delivery_status == true) %>
+            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', disabled: 'disabled', class:'locate form-control' %>
+        <% else %>
+            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', class:'locate form-control' %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Sendy Key" %>
+
+        <% if (@store.delivery_status == true) %>
+            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', disabled: 'disabled', class:'locate form-control' %>
+        <% else %>
+            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', class:'locate form-control' %>
         <% end %>
       </div>
 

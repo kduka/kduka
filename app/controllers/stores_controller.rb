@@ -162,6 +162,6 @@ class StoresController < ApplicationController
   end
 
   def delivery_params
-    params.require(:store).permit(:location,:lng,:lat,:detailed_location,:delivery_status)
+    params.require(:store).permit(:location,:lng,:lat,:detailed_location,:delivery_status,:sendy_username,:sendy_key)
   end
 end

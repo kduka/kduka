@@ -40,7 +40,7 @@
       </div>
       <p></p>
 
-      <% if @store.delivery_status == true %>
+      <% if @store.delivery_status == !true %>
 
           <div class="form-group">
             <label> Delivery Location</label>
@@ -51,7 +51,7 @@
 
       <% end %>
 
-      <% if @store.delivery_status == false %>
+      <% if @store.delivery_status == true %>
 
           <div class="form-group">
             <label> Collection Point for Goods</label>
@@ -139,8 +139,8 @@
         var body = {
             "command": "request",
             "data": {
-                "api_key": "dM6shK8FuWZ5gH3kXCTe",
-                "api_username": "myduka",
+                "api_key": "<%= @store.sendy_key %>",
+                "api_username": "<%= @store.sendy_username %>",
                 "vendor_type": 1,
                 "from": {
                     "from_name": "Green House",
@@ -193,6 +193,9 @@
             beforeSend: function(xhr){xhr.setRequestHeader('Content-Type', 'text/plain')},
             success: function (res) {
                 console.log(res);
+                console.log('Status:', res.status);
+                console.log('Headers:', res.getAllResponseHeaders());
+                console.log('Body:', res.responseText);
                 res = JSON.parse(res);
                 data = res['data'];
                 $('.price').html(' <p> Price: ' + data['amount'] + '</p> <p>Order Number: ' + data['order_no'] + '</p>');

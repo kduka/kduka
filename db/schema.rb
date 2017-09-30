@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929083344) do
+ActiveRecord::Schema.define(version: 20170930102745) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 20170929083344) do
     t.string   "lng"
     t.boolean  "delivery_status"
     t.string   "detailed_location"
+    t.string   "sendy_username"
+    t.string   "sendy_key"
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
     t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true, using: :btree
