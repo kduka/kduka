@@ -187,18 +187,23 @@
         };
 
         $.ajax({
-            url: 'https://apitest.sendyit.com/v1/#request',
+            url: 'https://apitest.sendyit.com/v1/',
             method: 'post',
             data: JSON.stringify(body),
-            beforeSend: function(xhr){xhr.setRequestHeader('Content-Type', 'text/plain')},
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Content-Type', 'text/plain')
+            },
             success: function (res) {
-                console.log(res);
-                console.log('Status:', res.status);
-                console.log('Headers:', res.getAllResponseHeaders());
-                console.log('Body:', res.responseText);
                 res = JSON.parse(res);
-                data = res['data'];
-                $('.price').html(' <p> Price: ' + data['amount'] + '</p> <p>Order Number: ' + data['order_no'] + '</p>');
+                console.log(res);
+
+                if (res['status'] == true) {
+                    $('.price').html(' <p> Price: ' + res['data']['amount'] + '</p> <p>Order Number: ' + res['data']['order_no'] + '</p>');
+                }
+                else {
+                    $('.price').html('Sorry, we cannot be able to do delivery for you at this time, please <a href="<%= contact_path %>">Contact Us</a>.');
+                }
+
             }
         });
     }

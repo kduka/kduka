@@ -1,0 +1,44 @@
+<div class="col-md-6 col-md-offset-3">
+  <%= form_for :store, :url => {controller: 'stores', action: 'update_pages'}, method: 'put' do |f| %>
+
+      <div class="form-group">
+        <%= f.label "Home Page Enabled" %>
+        <%= f.check_box :homepage_status, id: 'homepageswitch' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "About Page Enabled" %>
+        <%= f.check_box :aboutpage_status, id: 'aboutpageswitch' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "About Page Text" %>
+
+        <% if (@store.aboutpage_status == false) %>
+            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch', id: 'aboutpage_text', disabled: 'disabled' %>
+        <% else %>
+            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch', id: 'aboutpage_text'  %>
+        <% end %>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label "Contact Page Enabled" %>
+        <%= f.check_box :contactpage_status, id: 'contactpage_status' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :display_email %><br />
+        <%= f.text_field :display_email, autofocus: true, class:'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :phone %><br />
+        <%= f.text_field :phone, autofocus: true, class:'form-control' %>
+      </div>
+
+
+
+      <p><%= f.submit 'Save', class: 'btn btn-primary' %>
+  <% end %>
+</div>

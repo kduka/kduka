@@ -7,8 +7,8 @@ class StoresController < ApplicationController
   # GET /stores
   # GET /stores.json
   def index
-    @store = Store.where(user_id:current_store.id)
-    @products = Product.where(store_id:current_store.id)
+    @store = Store.where(user_id: current_store.id)
+    @products = Product.where(store_id: current_store.id)
     set_shop_show
   end
 
@@ -16,7 +16,7 @@ class StoresController < ApplicationController
   # GET /stores/1.json
   def show
     @store = Store.find(current_store.id)
-    @product = Product.where(store_id:@store.id)
+    @product = Product.where(store_id: @store.id)
     set_shop_show
   end
 
@@ -35,15 +35,15 @@ class StoresController < ApplicationController
   # POST /stores
   # POST /stores.json
   def create
-    @store = Store.new(store_params.merge(delivery_status:false))
+    @store = Store.new(store_params.merge(delivery_status: false))
 
     respond_to do |format|
       if @store.save
-        format.html { redirect_to @store, notice: 'Store was successfully created.' }
-        format.json { render :show, status: :created, location: @store }
+        format.html {redirect_to @store, notice: 'Store was successfully created.'}
+        format.json {render :show, status: :created, location: @store}
       else
-        format.html { render :new }
-        format.json { render json: @store.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @store.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -53,11 +53,11 @@ class StoresController < ApplicationController
   def update
     respond_to do |format|
       if @store.update(store_params)
-        format.html { redirect_to @store, notice: 'Store was successfully updated.' }
-        format.json { render :show, status: :ok, location: @store }
+        format.html {redirect_to @store, notice: 'Store was successfully updated.'}
+        format.json {render :show, status: :ok, location: @store}
       else
-        format.html { render :edit }
-        format.json { render json: @store.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @store.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -67,17 +67,17 @@ class StoresController < ApplicationController
   def destroy
     @store.destroy
     respond_to do |format|
-      format.html { redirect_to stores_url, notice: 'Store was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to stores_url, notice: 'Store was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
   def categories
-    @categories = Category.where(store_id:current_store.id)
+    @categories = Category.where(store_id: current_store.id)
   end
 
   def orders
-    @order = Order.where(store_id:current_store.id,order_status_id:2)
+    @order = Order.where(store_id: current_store.id, order_status_id: 2)
     set_shop_show
   end
 
@@ -101,7 +101,7 @@ class StoresController < ApplicationController
     redirect_to(request.referer)
 
   end
-  
+
   def update_store
     @store = Store.find(current_store.id)
     if @store.update(store_params)
@@ -113,12 +113,12 @@ class StoresController < ApplicationController
     redirect_to(request.referer)
 
   end
-  
+
   def layouts
     set_shop_show
   end
-  
-    def update_layout
+
+  def update_layout
     @store = Store.find(current_store.id)
     if @store.update(store_params)
       flash[:notice] = 'Layout Updated'
@@ -128,7 +128,7 @@ class StoresController < ApplicationController
 
     redirect_to(request.referer)
 
-    end
+  end
 
   def deliver
     @store = Store.find(current_store.id)
@@ -147,6 +147,20 @@ class StoresController < ApplicationController
 
   end
 
+  def pages
+    @store = Store.find(current_store.id)
+    set_shop_show
+  end
+
+  def update_pages
+    @store = Store.find(current_store.id)
+    if @store.update(pages_params)
+      flash[:notice] = 'Pages Settings Saved'
+    else
+      flash[:alert] = 'Something went wrong, please try again'
+    end
+    redirect_to(request.referer)
+  end
 
 
   private
@@ -158,10 +172,14 @@ class StoresController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def store_params
-    params.require(:store).permit(:facebook,:linkedin,:twitter,:instagram,:pinterest,:vimeo,:youtube,:slogan, :subdomain, :layout_id, :name, :phone,:display_email)
+    params.require(:store).permit(:facebook, :linkedin, :twitter, :instagram, :pinterest, :vimeo, :youtube, :slogan, :subdomain, :layout_id, :name, :phone, :display_email)
   end
 
   def delivery_params
-    params.require(:store).permit(:location,:lng,:lat,:detailed_location,:delivery_status,:sendy_username,:sendy_key)
+    params.require(:store).permit(:location, :lng, :lat, :detailed_location, :delivery_status, :sendy_username, :sendy_key)
+  end
+
+  def pages_params
+    params.require(:store).permit(:homepage_status,:homepage_text,:aboutpage_status,:aboutpage_text,:contactpage_status,:phone, :display_email)
   end
 end

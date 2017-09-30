@@ -28,6 +28,8 @@ match '/', to: 'products#home', constraints: { subdomain: /.+/ }, via: [:get, :p
    get 'products/home' => 'products#home'
    get '/about' => 'products#about'
    get '/contact' => 'products#contact'
+   get 'stores/pages' => 'stores#pages'
+   put 'stores/update_pages'
   devise_for :stores, :controllers => { registrations: 'store_registrations', sessions: 'store_sessions' }
   devise_for :users, :controllers => { registrations: 'user_registrations', sessions: 'user_sessions' }
   
