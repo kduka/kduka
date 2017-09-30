@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66ed27d1-8fda-435c-8111-03df3699b4e9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/stores_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/stores_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/modern2/_shipping.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/modern2/_shipping.html.erb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -73,8 +72,8 @@
       <file leaf-file-name="_shipping.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/modern2/_shipping.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="210" column="13" lean-forward="true" selection-start-line="210" selection-start-column="13" selection-end-line="210" selection-end-column="13" />
+            <state relative-caret-position="176">
+              <caret line="187" column="0" lean-forward="true" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h1#0;n#div#1;n#!!top" expanded="true" />
@@ -656,12 +655,12 @@
       <workItem from="1506314403300" duration="89000" />
       <workItem from="1506498139927" duration="2872000" />
       <workItem from="1506667443140" duration="7852000" />
-      <workItem from="1506690491608" duration="11889000" />
+      <workItem from="1506690491608" duration="12641000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182392000" />
+    <option name="totallyTimeSpent" value="183144000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="-4" width="1859" height="1084" extended-state="6" />
@@ -1110,8 +1109,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/modern2/_shipping.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="210" column="13" lean-forward="true" selection-start-line="210" selection-start-column="13" selection-end-line="210" selection-end-column="13" />
+        <state relative-caret-position="176">
+          <caret line="187" column="0" lean-forward="true" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h1#0;n#div#1;n#!!top" expanded="true" />
