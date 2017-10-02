@@ -1,0 +1,13 @@
+<!--products-->
+<div class="products">
+  <div class="container">
+    <div class="col-md-12">
+      <% @products.each do |product| %>
+        <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+      <% end %>
+    </div>
+
+    <div class="clearfix"> </div>
+  </div>
+</div>
+<!--//products-->

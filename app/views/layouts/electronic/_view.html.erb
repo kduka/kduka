@@ -1,0 +1,35 @@
+<div class="col-sm-12 col-md-10 col-md-offset-1">
+  <div class="modal-body">
+    <div class="col-md-5 modal_body_left">
+      <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
+    </div>
+    <div class="col-md-7 modal_body_right">
+      <h4>Quad Core Colorful Laptop</h4>
+      <p><%= @product.description%></p>
+
+      <div class="modal_body_right_cart simpleCart_shelfItem">
+        <p><i class="item_price">Kes. <%= @product.price %></i></p>
+          <button type="submit" class="w3ls-cart">Add to cart</button>
+      </div>
+      <!---->
+      <div class="clearfix"></div>
+      <%= form_for :order_item, :url => {controller:'order_items', action:'create'}, remote: true do |f| %>
+      <div class="quantity">
+        <p class="qty">
+          Quantity :
+        </p>
+        <%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1 %>
+      </div>
+      <div class="btn_form">
+        <%= f.hidden_field :product_id, value: @product.id %>
+
+        <%= f.button type:'submit', class: 'add-cart item_add' do %>
+        Add to Cart
+        <%end%>
+      </div>
+      <% end %>
+      <!---->
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+</div>
