@@ -100,7 +100,8 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    if @product.update(product_params)
+    @update = @product.update(product_params)
+    if @update
       flash[:notice] = "Product Successfully updated!"
     else
       flash[:alert] = "Something went wrong, try again"
@@ -127,4 +128,3 @@ class ProductsController < ApplicationController
   end
 
 end
-

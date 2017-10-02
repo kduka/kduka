@@ -1,28 +1,34 @@
-<div class="well">
-
-  <div class="row">
-    <div class="col-xs-8">
-      <h4><%= product.name %></h4>
-    </div>
-    <div class="col-xs-4">
-      
+<!--cart-items-->
+<div style="padding:2em !important" class="cart-items">
+  <div class="container-fluid">
+    <div class="cart-header2 wow fadeInUp animated" data-wow-delay=".9s">
+      <div class="alert-close2"> </div>
       <%= form_for order_item, remote: true do |f| %>
-        <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency order_item.unit_price %></span></h4>
-        <div class="row">
-          <div class="col-xs-4">
+      <div class="cart-sec simpleCart_shelfItem">
+        <div class="col-md-4 col-sm-12">
+            <!-- <img src="images/g9.jpg" class="img-responsive" alt=""> -->
+            <%= image_tag(product.image_url(:thumb).to_s, class:'text-center')  %>
+        </div>
+        <div class="col-md-8 col-sm-12">
+          <h2 style="color:#ff5063"><%= product.name %></h2><br/>
+          <h4>Unit Price : <%= number_to_currency order_item.unit_price %></h4><br>
+          <h4><span>Total Price : <%= number_to_currency order_item.total_price %></span></h4><br>
+          <div class="qty">
             <%= f.number_field :quantity, value: order_item.quantity.to_i, class: "form-control", min: 1 %>
             <%= f.hidden_field :product_id, value: product.id %>
           </div>
-          <div class="col-xs-8 text-right">
-            <div class="btn-group">
-              <%= f.submit "Update Quantity", class: "btn btn-primary" %>
-              <%= link_to "Delete", order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
-            </div>
+          <div class="delivery">
+            <br>
+              <%= f.submit "Update Quantity", class: "btn btn-default col-md-3 col-sm-12", style: "margin-right:1em;margin-bottom:1em" %>
+              <%= link_to "Remove Item", order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger col-md-3 col-sm-12" } %>
+
+            <div class="clearfix"></div>
           </div>
         </div>
-        <h4 class="text-right">Total Price: <span style="color: green"><%= number_to_currency order_item.total_price %></span></h4>
+        <div class="clearfix"></div>
+      </div><br>
       <% end %>
     </div>
-    
   </div>
 </div>
+<!--//cart-items-->

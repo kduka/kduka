@@ -486,7 +486,7 @@ li.w3pages .dropdown-menu > li > a:hover{
 /*-- //navigation --*/
 /*-- banner --*/
 .banner{
-	background:url(/images/electronic/b1.jpg) no-repeat center 0px;
+	/*background:url(/images/electronic/b1.jpg) no-repeat center 0px;*/
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
