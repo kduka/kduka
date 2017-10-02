@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_store!, only:[:contact]
+  before_action :authenticate_store!, except:[:contact]
   #before_action :set_admin, only: [:index]
   #after_action :set_shop_show, only: [:show, :edit]
   set_tab :home

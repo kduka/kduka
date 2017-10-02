@@ -3,14 +3,14 @@ class OrderItemsController < ApplicationController
   def create
     @order = current_order
 
-=begin
+
     @order.order_items.each do |oi|
       if oi.product_id == params[:product_id]
-
+      updater(params[:product_id])
       end
     end
-=end
-   
+
+
     @order_item = @order.order_items.new(order_item_params)
     @order.save
     session[:order_id] = @order.id
@@ -39,7 +39,7 @@ class OrderItemsController < ApplicationController
     
   end
 
-  def updater
+  def updater(id)
 
   end
 
