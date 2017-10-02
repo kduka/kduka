@@ -6,6 +6,6 @@ class ContactFormMailer < ApplicationMailer
     @email = email
     @name = name
 
-    mail(to: to, subject: "From " + name.to_s, from: email)
+    mail(to: to, subject: "From " + name.to_s, from: "Kduka <#{email}>")
   end
 end
