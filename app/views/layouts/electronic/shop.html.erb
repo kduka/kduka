@@ -7,175 +7,206 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title><%= @store.name %></title>
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-	function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //for-mobile-apps -->
-<!-- Custom Theme files -->
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-<% Dir.foreach("public/stylesheets/#{Layout.find(@store.layout_id).name}") do |item|
-  next if item == '.' or item == '..' %>
-  <%= stylesheet_link_tag    "#{Layout.find(@store.layout_id).name}/#{item}" %>
-<% end %>
-<% Dir.foreach("public/javascripts/#{Layout.find(@store.layout_id).name}") do |item|
-  next if item == '.' or item == '..' %>
-  <%= javascript_include_tag   "#{Layout.find(@store.layout_id).name}/#{item}" %>
-<% end %>
+  <title><%= @store.name %></title>
+  <!-- for-mobile-apps -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="keywords" content=""/>
+  <script type="application/x-javascript"> addEventListener("load", function () {
+      setTimeout(hideURLbar, 0);
+  }, false);
+  function hideURLbar() {
+      window.scrollTo(0, 1);
+  } </script>
+  <!-- //for-mobile-apps -->
+  <!-- Custom Theme files -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <% Dir.foreach("public/stylesheets/#{Layout.find(@store.layout_id).name}") do |item|
+    next if item == '.' or item == '..' %>
+      <%= stylesheet_link_tag "#{Layout.find(@store.layout_id).name}/#{item}" %>
+  <% end %>
+  <% Dir.foreach("public/javascripts/#{Layout.find(@store.layout_id).name}") do |item|
+    next if item == '.' or item == '..' %>
+      <%= javascript_include_tag "#{Layout.find(@store.layout_id).name}/#{item}" %>
+  <% end %>
 
 
-<!-- web fonts -->
-<link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<!-- //web fonts -->
-<!-- start-smooth-scrolling -->
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-		});
-	});
-</script>
-<!-- //end-smooth-scrolling -->
+  <!-- web fonts -->
+  <link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+  <!-- //web fonts -->
+  <!-- start-smooth-scrolling -->
+  <script type="text/javascript">
+      jQuery(document).ready(function ($) {
+          $(".scroll").click(function (event) {
+              event.preventDefault();
+              $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+          });
+      });
+  </script>
+  <!-- //end-smooth-scrolling -->
 </head>
 <body>
-	<!-- header -->
-	<div class="header" id="home1">
-		<div class="container">
-			<div class="w3l_logo">
-				<h1><a href="<%= root_path %>"><%= @store.name %><span><%= @store.slogan %></span></a></h1>
-			</div>
+<!-- header -->
+<div class="header" id="home1">
+  <div class="container">
+    <div class="w3l_logo">
+      <h1><a href="<%= root_path %>">
+        <% if @store.logo_status %>
+            <%= image_tag(@store.logo_url.to_s) %>
+        <% else %>
+            <%= @store.name %>
 
-			<div class="cart cart box_1">
-				<!---->
-				<%= link_to(cart_path) do %>
-				<a style="padding-top:0.5em" class="w3view-cart" href="<%= cart_path %>"><i class="fa fa-cart-arrow-down"></i> <span class="cart-text" style="font-size: 1em;color: #ffffff;vertical-align: middle;"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a>
-				<% end %>
-				<!---->
+        <% end %>
+        <span><%= @store.slogan %></span></a></h1>
+    </div>
 
-
-			</div>
-		</div>
-	</div>
-	<!-- //header -->
-	<%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop" %>
-
-  <div style="margin-bottom: 1em;margin-top: 1em;width:100%">
-    <div class="col-md-12">
-      <% if !notice.nil? %>
-          <div class="text-center alert alert-success" role="alert">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong><%= notice %></strong>
-          </div>
+    <div class="cart cart box_1">
+      <!---->
+      <%= link_to(cart_path) do %>
+          <a style="padding-top:0.5em" class="w3view-cart" href="<%= cart_path %>"><i class="fa fa-cart-arrow-down"></i>
+            <span class="cart-text" style="font-size: 1em;color: #ffffff;vertical-align: middle;"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a>
       <% end %>
-      <% if !alert.nil? %>
-          <div class="text-center alert alert-info" role="alert">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong><%= alert %></strong>
-          </div>
-      <% end %>
+      <!---->
+
 
     </div>
   </div>
+</div>
+<!-- //header -->
+<%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop" %>
+
+<div style="margin-bottom: 1em;margin-top: 1em;width:100%">
+  <div class="col-md-12">
+    <% if !notice.nil? %>
+        <div class="text-center alert alert-success" role="alert">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong><%= notice %></strong>
+        </div>
+    <% end %>
+    <% if !alert.nil? %>
+        <div class="text-center alert alert-info" role="alert">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong><%= alert %></strong>
+        </div>
+    <% end %>
+
+  </div>
+</div>
 
 
-  <%= yield %>
-	<!-- footer -->
-	<style>
-		.mylink{
-			color: #fff !important;
-			transition: all 0.5s !important;
-		}
-		.mylink:hover{
-			color: #000 !important;
-			transition: all 0.5s !important;
-		}
+<%= yield %>
+<!-- footer -->
+<style>
+  .mylink {
+    color: #fff !important;
+    transition: all 0.5s !important;
+  }
 
-	</style>
-	<div class="footer" style="background:#3c43a4">
-		<div class="container">
-			<div class="w3_footer_grids">
+  .mylink:hover {
+    color: #000 !important;
+    transition: all 0.5s !important;
+  }
 
-				<div class="col-md-4 w3_footer_grid">
-					<h3>Quick Links</h3>
-					<ul class="info">
-						<li class="mylink"><a class="mylink" href="<%= root_path %>">Home</a></li>
-						<li class="mylink"><a class="mylink" href="<%= about_path %>">About Us</a></li>
-						<li class="mylink"><a class="mylink" href="<%= contact_path %>">Contact Us</a></li>
-					</ul>
-				</div>
-				<div class="col-md-4 w3_footer_grid">
-					<h3>Contact</h3>
-					<ul class="address">
-						<li class="mylink"><i style="color:#fff" class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a class="mylink" href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></li>
-						<li style="color:#fff"><i style="color:#fff" class="glyphicon glyphicon-earphone" aria-hidden="true"></i><%= @store.phone %></li>
-					</ul>
-				</div>
-				<div class="col-md-4 w3_footer_grid">
-					<h3>Social Media</h3>
-					<div class="agileits_social_button">
-						<ul>
-							<% if !@store.facebook.blank? %>
-							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.facebook %>"><i style="padding-top:1.3em" class="fa fa-facebook"></i> </a></li>
-							<% end %>
-							<% if !@store.twitter.blank? %>
-							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.twitter %>"><i style="padding-top:1.3em" class="fa fa-twitter"></i> </a></li>
-							<% end %>
-							<% if !@store.instagram.blank? %>
-							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.instagram %>"><i style="padding-top:1.3em" class="fa fa-instagram"></i> </a></li>
-							<% end %>
-							<% if !@store.linkedin.blank? %>
-							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.linkedin %>"><i style="padding-top:1.3em" class="fa fa-linkedin"></i> </a></li>
-							<% end %>
-							<% if !@store.youtube.blank? %>
-							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.youtube %>"><i style="padding-top:1.3em" class="fa fa-youtube"></i> </a></li>
-							<% end %>
-							<% if !@store.vimeo.blank? %>
-							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.vimeo %>"><i style="padding-top:1.3em" class="fa fa-vimeo"></i> </a></li>
-							<% end %>
-							<% if !@store.pinterest.blank? %>
-							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.pinterest %>"><i style="padding-top:1.3em" class="fa fa-pinterest"></i> </a></li>
-							<% end %>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-		<div class="footer-copy">
-			<div class="footer-copy1">
-				<div class="footer-copy-pos">
-					<a href="#home1" class="scroll"><img src="/images/electronic/arrow.png" alt=" " class="img-responsive" /></a>
-				</div>
-			</div>
-			<div class="container">
-				<p style="color:#fff">Copyright © <%= Time.current.year %> KDuka. All rights reserved | Developed by <a target="_blank" class="mylink" href="http://www.zerone.co.ke/">Zerone I.T. Solutions</a></p>
-			</div>
-		</div>
-	</div>
-	<!-- //footer -->
-	<!-- cart-js -->
+</style>
+<div class="footer" style="background:#3c43a4">
+  <div class="container">
+    <div class="w3_footer_grids">
 
-	<script>
-        w3ls.render();
+      <div class="col-md-4 w3_footer_grid">
+        <h3>Quick Links</h3>
+        <ul class="info">
+          <li class="mylink"><a class="mylink" href="<%= root_path %>">Home</a></li>
+          <li class="mylink"><a class="mylink" href="<%= about_path %>">About Us</a></li>
+          <li class="mylink"><a class="mylink" href="<%= contact_path %>">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 w3_footer_grid">
+        <h3>Contact</h3>
+        <ul class="address">
+          <li class="mylink">
+            <i style="color:#fff" class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a class="mylink" href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a>
+          </li>
+          <li style="color:#fff">
+            <i style="color:#fff" class="glyphicon glyphicon-earphone" aria-hidden="true"></i><%= @store.phone %></li>
+        </ul>
+      </div>
+      <div class="col-md-4 w3_footer_grid">
+        <h3>Social Media</h3>
+        <div class="agileits_social_button">
+          <ul>
+            <% if !@store.facebook.blank? %>
+                <li style="text-align:center !important;margin-bottom:1em !important;">
+                  <a target="_blank" href="http://<%= @store.facebook %>"><i style="padding-top:1.3em" class="fa fa-facebook"></i>
+                  </a></li>
+            <% end %>
+            <% if !@store.twitter.blank? %>
+                <li style="text-align:center !important;margin-bottom:1em !important;">
+                  <a target="_blank" href="http://<%= @store.twitter %>"><i style="padding-top:1.3em" class="fa fa-twitter"></i>
+                  </a></li>
+            <% end %>
+            <% if !@store.instagram.blank? %>
+                <li style="text-align:center !important;margin-bottom:1em !important;">
+                  <a target="_blank" href="http://<%= @store.instagram %>"><i style="padding-top:1.3em" class="fa fa-instagram"></i>
+                  </a></li>
+            <% end %>
+            <% if !@store.linkedin.blank? %>
+                <li style="text-align:center !important;margin-bottom:1em !important;">
+                  <a target="_blank" href="http://<%= @store.linkedin %>"><i style="padding-top:1.3em" class="fa fa-linkedin"></i>
+                  </a></li>
+            <% end %>
+            <% if !@store.youtube.blank? %>
+                <li style="text-align:center !important;margin-bottom:1em !important;">
+                  <a target="_blank" href="http://<%= @store.youtube %>"><i style="padding-top:1.3em" class="fa fa-youtube"></i>
+                  </a></li>
+            <% end %>
+            <% if !@store.vimeo.blank? %>
+                <li style="text-align:center !important;margin-bottom:1em !important;">
+                  <a target="_blank" href="http://<%= @store.vimeo %>"><i style="padding-top:1.3em" class="fa fa-vimeo"></i>
+                  </a></li>
+            <% end %>
+            <% if !@store.pinterest.blank? %>
+                <li style="text-align:center !important;margin-bottom:1em !important;">
+                  <a target="_blank" href="http://<%= @store.pinterest %>"><i style="padding-top:1.3em" class="fa fa-pinterest"></i>
+                  </a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <div class="footer-copy1">
+      <div class="footer-copy-pos">
+        <a href="#home1" class="scroll"><img src="/images/electronic/arrow.png" alt=" " class="img-responsive"/></a>
+      </div>
+    </div>
+    <div class="container">
+      <p style="color:#fff">Copyright © <%= Time.current.year %> KDuka. All rights reserved | Developed by
+        <a target="_blank" class="mylink" href="http://www.zerone.co.ke/">Zerone I.T. Solutions</a></p>
+    </div>
+  </div>
+</div>
+<!-- //footer -->
+<!-- cart-js -->
 
-        w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
+<script>
+    w3ls.render();
 
-        	if (this.subtotal() > 0) {
-        		items = this.items();
+    w3ls.cart.on('w3sb_checkout', function (evt) {
+        var items, len, i;
 
-        		for (i = 0, len = items.length; i < len; i++) {
-        		}
-        	}
-        });
-    </script>
-	<!-- //cart-js -->
+        if (this.subtotal() > 0) {
+            items = this.items();
+
+            for (i = 0, len = items.length; i < len; i++) {
+            }
+        }
+    });
+</script>
+<!-- //cart-js -->
 </body>
 </html>

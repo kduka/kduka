@@ -18,17 +18,38 @@
         <%= f.text_area :slogan, class: 'form-control' %>
       </div>
 
+      <div class="field">
+        <%= f.label "Use Logo" %><br />
+        <%= f.check_box :logo_status %>
+      </div>
+
+      <div class="field">
+        <%= f.label "Upload Logo" %><br />
+        <%= f.file_field :logo, autofocus: true, class:'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label "Preview Logo" %><br />
+        <%= image_tag(@store.logo_url(:thumb).to_s) %>
+      </div>
+
       <div class="form-group">
         <%= f.label "Display Email" %>
         <p>The email clients can contact you with</p>
-        <%= f.text_area :display_email, class: 'form-control' %>
+        <%= f.text_field :display_email, class: 'form-control' %>
       </div>
 
 
       <div class="form-group">
         <%= f.label "Phone" %>
         <p>The number clients can contact you with</p>
-        <%= f.text_area :phone, class: 'form-control' %>
+        <%= f.text_field :phone, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Business Location" %>
+        <p>Where are you located</p>
+        <%= f.text_area :business_location, class: 'form-control' %>
       </div>
 
       <p></p>
