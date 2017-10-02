@@ -7,4 +7,5 @@ class Store < ApplicationRecord
   has_many :category
 
   mount_uploader :banner, BannerUploader
+  mount_uploader :logo, LogoUploader
 end

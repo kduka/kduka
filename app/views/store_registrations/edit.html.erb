@@ -17,6 +17,21 @@
       <%= f.text_field :subdomain, autofocus: true, class:'form-control', placeholder:'Your url will be storename.myduka.com' %>
     </div>
 
+      <div class="field">
+        <%= f.label "Use Logo" %><br />
+        <%= f.text_field :logo_status %>
+      </div>
+
+      <div class="field">
+        <%= f.label "Upload Logo" %><br />
+        <%= f.file_field :logo, autofocus: true, class:'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label "Preview Logo" %><br />
+        <%= image_tag(@store.logo_url(:thumb).to_s) %>
+      </div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, class:'form-control' %>

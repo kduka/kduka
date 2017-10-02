@@ -37,6 +37,9 @@
 <% if !@store.phone.blank?%>
   <h2 style="text-align:center"><strong><i class="fa fa-phone"></i></strong> <%= @store.phone %></h2>
 <% end %>
+  <% if !@store.business_location.blank?%>
+      <h2 style="text-align:center"><strong><i class="fa fa-phone"></i></strong> <%= @store.business_location %></h2>
+  <% end %>
 
 </div>
 

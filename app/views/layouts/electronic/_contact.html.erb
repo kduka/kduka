@@ -25,8 +25,11 @@
   <h2 style="text-align:center"><strong><i class="fa fa-envelope"></i></strong> <%= @store.display_email %></h2><br>
 <% end %><br>
 <% if !@store.phone.blank?%>
-  <h2 style="text-align:center"><strong><i class="fa fa-phone"></i></strong> <%= @store.phone %></h2>
+  <h2 style="text-align:center"><strong><i class="fa fa-phone"></i></strong> <%= @store.phone %></h2><br>
 <% end %>
+  <% if !@store.business_location.blank?%>
+      <h2 style="text-align:center"><strong><i class="fa fa-phone"></i></strong> <%= @store.business_location %></h2>
+  <% end %>
 
 </div>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171001143942) do
+ActiveRecord::Schema.define(version: 20171002163023) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -121,6 +121,9 @@ ActiveRecord::Schema.define(version: 20171001143942) do
     t.text     "aboutpage_text",         limit: 65535
     t.boolean  "contactpage_status"
     t.string   "banner"
+    t.string   "logo"
+    t.text     "business_location",      limit: 65535
+    t.boolean  "logo_status"
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
     t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true, using: :btree
