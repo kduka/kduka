@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'stores/pages' => 'stores#pages'
   put 'stores/update_pages'
   get '/all' => 'products#all'
+  post '/stores/contact' => 'stores#contact'
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}
   devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions'}
 

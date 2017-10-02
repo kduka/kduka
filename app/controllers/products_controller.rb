@@ -100,13 +100,12 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    @update = @product.update(product_params)
+    @update =@product.update(product_params)
     if @update
       flash[:notice] = "Product Successfully updated!"
     else
       flash[:alert] = "Something went wrong, try again"
     end
-
     redirect_to(store_product_path(params[:store_id], params[:id]))
   end
 
