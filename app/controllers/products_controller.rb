@@ -5,10 +5,11 @@ class ProductsController < ApplicationController
 
   def index
     @subdomain = request.subdomain[/(\w+)/]
+
     @store = Store.where(subdomain: @subdomain).first
 
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke/users/sign_in")
+      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
     else
       if @store.homepage_status == true
         @products = Product.where(store_id: @store.id)
