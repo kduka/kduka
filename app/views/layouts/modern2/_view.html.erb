@@ -47,9 +47,25 @@
 				<div class="btn_form">
 					<%= f.hidden_field :product_id, value: @product.id %>
 
-					<%= f.button type:'submit', class: 'add-cart item_add' do %>
-					Add to Cart
-					<%end%>
+
+          <% exist=false %>
+          <% current_order.order_items.each do |oi| %>
+              <% if oi.product_id == @product.id %>
+                  <% exist = true %>
+              <% end %>
+          <% end %>
+          <% if !exist %>
+              <%= f.button type:'submit', class: 'add-cart item_add' do %>
+                  Add to Cart
+              <%end%>
+          <% else %>
+              <%= f.button type:'submit', class: 'add-cart item_add', disabled:'disabled' do %>
+                  Added
+              <%end%>
+          <% end %>
+
+
+
 				</div>
 				<% end %>
 			</div>

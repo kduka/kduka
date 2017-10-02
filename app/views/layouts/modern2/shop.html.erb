@@ -145,12 +145,14 @@
   <div style="margin-bottom: 1em;margin-top: 1em;width:100%">
       <div class="col-md-12">
         <% if !notice.nil? %>
-        <div class="alert alert-success" role="alert">
+        <div class=" text-center alert alert-success" role="alert">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong><%= notice %></strong>
         </div>
         <% end %>
         <% if !alert.nil? %>
-        <div class="alert alert-info" role="alert">
+        <div class=" text-center alert alert-info" role="alert">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong><%= alert %></strong>
         </div>
         <% end %>
