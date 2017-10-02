@@ -55,7 +55,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="cart cart box_1">
 				<!---->
 				<%= link_to(cart_path) do %>
-				<a style="padding-top:0.5em" class="w3view-cart cart-text" href="<%= cart_path %>"><i class="fa fa-cart-arrow-down"></i> <span style="font-size: 1em;color: #ffffff;vertical-align: middle;"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a>
+				<a style="padding-top:0.5em" class="w3view-cart" href="<%= cart_path %>"><i class="fa fa-cart-arrow-down"></i> <span class="cart-text" style="font-size: 1em;color: #ffffff;vertical-align: middle;"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a>
 				<% end %>
 				<!---->
 
@@ -101,11 +101,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<h3>Social Media</h3>
 					<div class="agileits_social_button">
 						<ul>
-							<li style="text-align:center !important;"><a href="#"><i style="padding-top:1.3em" class="fa fa-facebook"></i> </a></li>
-							<li style="text-align:center !important;"><a href="#"><i style="padding-top:1.3em" class="fa fa-twitter"></i> </a></li>
-							<li style="text-align:center !important;"><a href="#"><i style="padding-top:1.3em" class="fa fa-google"></i> </a></li>
-							<li style="text-align:center !important;"><a href="#"><i style="padding-top:1.3em" class="fa fa-pinterest"></i> </a></li>
-
+							<% if !@store.facebook.blank? %>
+							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.facebook %>"><i style="padding-top:1.3em" class="fa fa-facebook"></i> </a></li>
+							<% end %>
+							<% if !@store.twitter.blank? %>
+							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.twitter %>"><i style="padding-top:1.3em" class="fa fa-twitter"></i> </a></li>
+							<% end %>
+							<% if !@store.instagram.blank? %>
+							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.instagram %>"><i style="padding-top:1.3em" class="fa fa-instagram"></i> </a></li>
+							<% end %>
+							<% if !@store.linkedin.blank? %>
+							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.linkedin %>"><i style="padding-top:1.3em" class="fa fa-linkedin"></i> </a></li>
+							<% end %>
+							<% if !@store.youtube.blank? %>
+							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.youtube %>"><i style="padding-top:1.3em" class="fa fa-youtube"></i> </a></li>
+							<% end %>
+							<% if !@store.vimeo.blank? %>
+							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.vimeo %>"><i style="padding-top:1.3em" class="fa fa-vimeo"></i> </a></li>
+							<% end %>
+							<% if !@store.pinterest.blank? %>
+							<li style="text-align:center !important;margin-bottom:1em !important;"><a target="_blank" href="http://<%= @store.pinterest %>"><i style="padding-top:1.3em" class="fa fa-pinterest"></i> </a></li>
+							<% end %>
 						</ul>
 					</div>
 				</div>
