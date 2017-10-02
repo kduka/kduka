@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   resources :order_items, only: [:create, :update, :destroy]
   resources :store_campaigns
 
-  #match '/', to: 'user_sessions#new', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
+  match '/', to: 'stores#index', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
 
   #
   root to: "stores#index"
