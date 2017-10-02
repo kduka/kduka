@@ -87,6 +87,6 @@ Rails.application.configure do
       :authentication       => :plain,
       :enable_starttls_auto => false,
       :tls                  => true,
-      #:openssl_verify_mode => 'none'
+      :openssl_verify_mode => 'none'
   }
 end
