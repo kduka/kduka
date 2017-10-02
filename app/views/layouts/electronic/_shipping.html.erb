@@ -1,0 +1,205 @@
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk">
+</script>
+<div class="container-fluid">
+<div class="col-md-8 col-md-offset-2" style="margin-bottom:4em;margin-top:4em">
+  <h1 style="text-align:center;font-size:45px;font-weight:700">Shipping Details</h1><br><br>
+  <%= form_tag("/carts/pay", method: "post") do %>
+      <div class="form-group">
+        <%= label_tag(:first_name, "First Name") %>
+        <%= text_field_tag(:first_name, nil, :class => 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:second_name, "Second Name") %>
+        <%= text_field_tag(:second_name, nil, :class => 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:email, "Email") %>
+        <%= text_field_tag(:email, nil, :class => 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:phone_number, "Phone") %>
+        <%= text_field_tag(:phone_number, nil, :class => 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:address, "Address") %>
+        <%= text_field_tag(:address, nil, :class => 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:coupon, "Coupon") %>
+        <%= text_field_tag(:coupon, nil, :class => 'form-control', placeholder: 'Can Be Blank') %>
+      </div>
+      <p></p>
+
+      <% if @store.delivery_status == !true %>
+
+          <div class="form-group">
+            <label> Delivery Location</label>
+            <input id="locate" type="textbox" value="" class='form-control' placeholder='Delivery Location'/>
+            <span style="color:green;" class="price"></span>
+          </div>
+          <p></p>
+
+      <% end %>
+
+      <% if @store.delivery_status == true %>
+
+          <div class="form-group">
+            <label> Collection Point for Goods</label>
+            <textarea disabled type="text" value="" class='form-control' placeholder='Collection Instructions'><%= @store.detailed_location %></textarea>
+            <span style="color:green;" class="price">We shall send instructions for pickup and contact points after you make your order</span>
+          </div>
+          <p></p>
+
+      <% end %>
+
+      <input id="long" name="long" type="hidden" value="">
+      <input id="lat" name="lat" type="hidden" value="">
+      <div id="suggesstion-box"></div>
+      <div id="map"></div><br><br>
+      <!-- <%= debug @response %><br><br> -->
+      <%= submit_tag("Process Payment", :class => 'btn btn-success col-sm-12 col-md-6 col-md-offset-3') %><br>
+
+  <% end %>
+
+
+</div>
+</div>
+<script>
+
+    $(function () {
+        $('#locate').on('keyup', function () {
+            setTimeout(function () {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 8,
+                    center: {lat: -34.397, lng: 150.644}
+                });
+                var geocoder = new google.maps.Geocoder();
+
+                geocodeAddress(geocoder, map);
+
+            }, 1000);
+        });
+    });
+
+    function geocodeAddress(geocoder, resultsMap) {
+
+        var address = document.getElementById('locate').value;
+        geocoder.geocode({'address': address, region: 'KE'}, function (results, status) {
+            if (status === 'OK') {
+
+                var string = "";
+                console.log(results);
+                results.forEach(function (entry) {
+                    string = string + '<p onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
+
+
+                });
+                $('#suggesstion-box').show();
+                $('#suggesstion-box').html(string);
+                console.log(string);
+            } else {
+                $('#suggesstion-box').html("Not Found, Try different search words");
+            }
+        });
+    }
+
+    function selectlocation(val) {
+
+        $("#locate").val(val);
+        $("#suggesstion-box").hide();
+        $.ajax({
+            type: 'POST',
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
+            success: function (result) {
+                results = result['results'];
+                console.log(result);
+
+                var latitude = results[0]['geometry']['location']['lat'];
+                var longitude = results[0]['geometry']['location']['lng'];
+
+              /*$("#lat").val(latitude);
+               $("#long").val(longitude);*/
+                sendyit2(longitude, latitude);
+            },
+
+        });
+    }
+
+    function sendyit2(lng, lat) {
+
+        var body = {
+            "command": "request",
+            "data": {
+                "api_key": "<%= @store.sendy_key %>",
+                "api_username": "<%= @store.sendy_username %>",
+                "vendor_type": 1,
+                "from": {
+                    "from_name": "Green House",
+                    "from_lat": lat,
+                    "from_long": lng,
+                    "from_description": ""
+                },
+                "to": {
+                    "to_name": "KICC",
+                    "to_lat": -1.28869,
+                    "to_long": 36.823363,
+                    "to_description": ""
+                },
+                "recepient": {
+                    "recepient_name": "Sendy User",
+                    "recepient_phone": "0728561783",
+                    "recepient_email": "support@sendy.co.ke"
+                },
+                "delivery_details": {
+                    "pick_up_date": "2016-04-20 12:12:12",
+                    "collect_payment": {
+                        "status": false,
+                        "pay_method": 0,
+                        "amount": 10
+                    },
+                    "return": true,
+                    "note": " Sample note",
+                    "note_status": true,
+                    "request_type": "delivery",
+                    "order_type": "ondemand_delivery",
+                    "ecommerce_order": "ecommerce_order_001",
+                    "skew": 1,
+                    "package_size": [
+                        {
+                            "weight": 20,
+                            "height": 10,
+                            "width": 200,
+                            "length": 30,
+                            "item_name": "laptop"
+                        }
+                    ]
+                }
+            }
+        };
+
+        $.ajax({
+            url: 'https://apitest.sendyit.com/v1/',
+            method: 'post',
+            data: JSON.stringify(body),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Content-Type', 'text/plain')
+            },
+            success: function (res) {
+                res = JSON.parse(res);
+                console.log(res);
+
+                if (res['status'] == true) {
+                    $('.price').html(' <p> Price: ' + res['data']['amount'] + '</p> <p>Order Number: ' + res['data']['order_no'] + '</p>');
+                }
+                else {
+                    $('.price').html('Sorry, we cannot be able to do delivery for you at this time, please <a href="<%= contact_path %>">Contact Us</a>.');
+                }
+
+            }
+        });
+    }
+
+
+</script>
