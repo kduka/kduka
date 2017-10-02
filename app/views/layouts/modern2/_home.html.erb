@@ -1,90 +1,21 @@
 <div class="banner" style="background: url('<%= @store.banner_url.to_s %>') no-repeat center 0px;background-size:cover;">
 </div><br><br>
 <h3 style="text-align:center" class="title">Our<span> Products</span></h3><br><br>
+
+
 <div class="container">
-<div class="col-md-4 col-sm-12">
-  <div style="width:100% !important" class="product-grids simpleCart_shelfItem wow fadeInUp animated" data-wow-delay=".5s">
-    <div class="new-top">
-      <a href="single.html"><img src="images/g1.jpg" class="img-responsive" alt=""/></a>
-      <div class="new-text">
-        <ul>
-          <li><a href="single.html">Quick View </a></li>
-          <li><input type="number" class="item_quantity" min="1" value="1"></li>
-          <li><a class="item_add" href=""> Add to cart</a></li>
-        </ul>
+  <div class="products">
+    <div class="container">
+      <div class="col-md-12 product-model-sec">
+        <% @products.each do |product| %>
+            <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+        <% end %>
       </div>
-    </div>
-    <div class="new-bottom">
-      <h5><a class="name" href="single.html">Girl Dress </a></h5>
-      <div class="rating">
-        <span class="on">☆</span>
-        <span class="on">☆</span>
-        <span class="on">☆</span>
-        <span class="on">☆</span>
-        <span>☆</span>
-      </div>
-      <div class="ofr">
-        <p class="pric1"><del>$2000.00</del></p>
-        <p><span class="item_price">$500.00</span></p>
-      </div>
+
+      <div class="clearfix"> </div>
     </div>
   </div>
-</div>
-<div class="col-md-4 col-sm-12">
-  <div style="width:100% !important" class="product-grids simpleCart_shelfItem wow fadeInUp animated" data-wow-delay=".5s">
-    <div class="new-top">
-      <a href="single.html"><img src="images/g1.jpg" class="img-responsive" alt=""/></a>
-      <div class="new-text">
-        <ul>
-          <li><a href="single.html">Quick View </a></li>
-          <li><input type="number" class="item_quantity" min="1" value="1"></li>
-          <li><a class="item_add" href=""> Add to cart</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="new-bottom">
-      <h5><a class="name" href="single.html">Girl Dress </a></h5>
-      <div class="rating">
-        <span class="on">☆</span>
-        <span class="on">☆</span>
-        <span class="on">☆</span>
-        <span class="on">☆</span>
-        <span>☆</span>
-      </div>
-      <div class="ofr">
-        <p class="pric1"><del>$2000.00</del></p>
-        <p><span class="item_price">$500.00</span></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="col-md-4 col-sm-12">
-  <div style="width:100% !important" class="product-grids simpleCart_shelfItem wow fadeInUp animated" data-wow-delay=".5s">
-    <div class="new-top">
-      <a href="single.html"><img src="images/g1.jpg" class="img-responsive" alt=""/></a>
-      <div class="new-text">
-        <ul>
-          <li><a href="single.html">Quick View </a></li>
-          <li><input type="number" class="item_quantity" min="1" value="1"></li>
-          <li><a class="item_add" href=""> Add to cart</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="new-bottom">
-      <h5><a class="name" href="single.html">Girl Dress </a></h5>
-      <div class="rating">
-        <span class="on">☆</span>
-        <span class="on">☆</span>
-        <span class="on">☆</span>
-        <span class="on">☆</span>
-        <span>☆</span>
-      </div>
-      <div class="ofr">
-        <p class="pric1"><del>$2000.00</del></p>
-        <p><span class="item_price">$500.00</span></p>
-      </div>
-    </div>
-  </div>
-</div><br><br>
+
+  <br><br>
 <a href="<%= all_path %>" class="col-md-4 col-md-offset-4 col-sm-12 col-xs-12 btn btn-default">View More</a>
 </div>

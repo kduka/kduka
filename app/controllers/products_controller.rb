@@ -27,7 +27,11 @@ class ProductsController < ApplicationController
 
 
   def home
-    get_data
+    get_store
+    @products = Product.where(store_id:@store.id).limit(3).order('id desc')
+    @order_item = current_order.order_items.new
+    @categories = @store.category.all
+    set_shop
   end
 
   def about
