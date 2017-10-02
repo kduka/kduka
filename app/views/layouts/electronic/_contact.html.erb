@@ -2,7 +2,7 @@
 <div class="col-md-6 col-sm-12">
 <h1 style="text-align:center">Leave us a Message</h1><br><br>
 
-  <%= form_tag() do %>
+  <%= form_tag('/stores/contact') do %>
       <div class="form-group">
         <%= label_tag(:first_name, "Name") %>
         <%= text_field_tag(:first_name, nil, :class => 'form-control') %>

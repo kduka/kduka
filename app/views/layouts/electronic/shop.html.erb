@@ -55,7 +55,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="cart cart box_1">
 				<!---->
 				<%= link_to(cart_path) do %>
-				<a style="padding-top:0.5em" class="w3view-cart" href="<%= cart_path %>"><i class="fa fa-cart-arrow-down"></i> <span style="font-size: 1em;color: #ffffff;vertical-align: middle;"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a>
+				<a style="padding-top:0.5em" class="w3view-cart cart-text" href="<%= cart_path %>"><i class="fa fa-cart-arrow-down"></i> <span style="font-size: 1em;color: #ffffff;vertical-align: middle;"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a>
 				<% end %>
 				<!---->
 

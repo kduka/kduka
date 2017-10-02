@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid shopping-cart">
 <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-top:4em;margin-bottom:4em">
   <% if !@order_item.nil? && @order_item.errors.any? %>
     <div class="alert alert-danger">
@@ -18,9 +18,9 @@
     <% @order_items.each do |order_item| %>
           <%= render 'layouts/electronic/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
     <% end %>
-    <h2 style="color:#ff5063;text-align:center;margin-bottom:1.5em;font-size1.5em;font-weight:700">Total : <%= number_to_currency(current_order.subtotal, :unit => "Ksh ", :separator => ".", :delimiter => ",") %><h2>
+    <h2 style="color:#ff5063;text-align:center;margin-bottom:1.5em;font-size1.5em;font-weight:700">Total : <%= number_to_currency(current_order.subtotal, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h2>
     <p style="text-align:center;margin-bottom:4em;"><%= link_to "Empty cart", order_items_clear_path, remote: true, :class => "btn btn-danger" %></p>
     <%= link_to "Checkout", carts_shipping_path , :class => 'btn btn-success col-md-6 col-md-offset-3 col-sm-12' %>
   <% end %>
-</div>
+  </div>
 </div>
