@@ -34,7 +34,7 @@ body a:hover{
 }
 
 .banner{
-	background:url(/images/modern2/banner.jpg) no-repeat center 0px;
+	/*background:url(/images/modern2/banner.jpg) no-repeat center 0px;*/
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;

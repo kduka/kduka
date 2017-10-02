@@ -12,8 +12,12 @@
       <!--navbar-header-->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav top-nav-info">
-          <li><a href="<%=root_path%>" class="active">Home</a></li>
-          <li><a href="<%= about_path %>" class="">About</a></li>
+          <% if @store.homepage_status == true %>
+              <li><a href="<%= root_path %>" class="active">Home</a></li>
+          <% end %>
+          <% if @store.aboutpage_status == true %>
+              <li><a href="<%= about_path %>" class="">About</a></li>
+          <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
             <ul class="dropdown-menu multi-column multi-column1">
@@ -21,30 +25,31 @@
                 <div class="col-sm-4 menu-grids menulist1">
                   <!-- <h4>Bath & Care</h4> -->
                   <ul class="multi-column-dropdown ">
+                    <li><a class="list" href="<%= all_path %>"><h4>ALL PRODUCTS</h4></a>
                     <% @store.category.each do |c| %>
-                    <% if !c.nil? %>
-                    <li><a class="list" href="<%= product_category_path(c.id) %>"><h4><%= c.name%></h4></a>
-                            <% @sub = c.sub_category.all %>
-                            <% if !@sub.blank? %>
-                            <ul>
-                              <% @sub.each do |sub| %>
-                                  <li><a class="list" href=""><%= sub.name%></a></li>
-                              <%end%>
-                            </ul>
-                            <% end %>
+                        <% if !c.nil? %>
+                            <li><a class="list" href="<%= product_category_path(c.id) %>"><h4><%= c.name %></h4></a>
+                              <% @sub = c.sub_category.all %>
+                              <% if !@sub.blank? %>
+                                  <ul>
+                                    <% @sub.each do |sub| %>
+                                        <li><a class="list" href=""><%= sub.name %></a></li>
+                                    <% end %>
+                                  </ul>
+                              <% end %>
                             </li>
+                        <% end %>
                     <% end %>
-                    <%end%>
                   </ul>
 
                 </div>
-                <div class="clearfix"> </div>
+                <div class="clearfix"></div>
               </div>
             </ul>
           </li>
           <li><a href="<%= contact_path %>" class="">Contact Us</a></li>
         </ul>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
         <!--//navbar-collapse-->
 
       </div>
