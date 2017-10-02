@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_store!
+  before_action :authenticate_store!, only:[:contact]
   #before_action :set_admin, only: [:index]
   #after_action :set_shop_show, only: [:show, :edit]
   set_tab :home
@@ -159,6 +159,17 @@ class StoresController < ApplicationController
     else
       flash[:alert] = 'Something went wrong, please try again'
     end
+    redirect_to(request.referer)
+  end
+
+  def contact
+    get_store
+    @sendy  = ContactFormMailer.contact_form_email(params[:message],params[:email],params[:first_name],@store.display_email).deliver
+    if @sendy
+    flash[:notice] = "Mail Sent"
+    else
+      flash[:notice] = "Not Sent"
+      end
     redirect_to(request.referer)
   end
 
