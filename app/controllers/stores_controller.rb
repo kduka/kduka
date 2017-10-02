@@ -180,6 +180,6 @@ class StoresController < ApplicationController
   end
 
   def pages_params
-    params.require(:store).permit(:homepage_status,:homepage_text,:aboutpage_status,:aboutpage_text,:contactpage_status,:phone, :display_email)
+    params.require(:store).permit(:homepage_status,:homepage_text,:aboutpage_status,:aboutpage_text,:contactpage_status,:phone, :display_email,:banner)
   end
 end

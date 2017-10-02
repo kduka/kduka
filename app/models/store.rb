@@ -5,4 +5,6 @@ class Store < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :product
   has_many :category
+
+  mount_uploader :banner, BannerUploader
 end

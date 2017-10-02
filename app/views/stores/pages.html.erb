@@ -7,6 +7,16 @@
       </div>
 
       <div class="form-group">
+        Banner Image
+        <%= f.file_field :banner, class:'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= image_tag(@store.banner_url(:thumb).to_s) %>
+      </div>
+
+
+      <div class="form-group">
         <%= f.label "About Page Enabled" %>
         <%= f.check_box :aboutpage_status, id: 'aboutpageswitch' %>
       </div>
