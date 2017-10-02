@@ -55,7 +55,12 @@ end
   def set_shop
     @subdomain = request.subdomain[/(\w+)/]
     @store  = Store.where(subdomain:@subdomain).first
+
+    if @store.nil?
+      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+    end
     render :layout => "#{Layout.find(@store.layout_id).name}/shop"
+
   end
 
   def set_shop_show
@@ -77,9 +82,11 @@ end
     @store  = Store.where(subdomain:@subdomain).first
 
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke/users/sign_in")
-    else
-      @products = Product.where(store_id:@store.id)
+      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+    elsif
+    redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+      else
+      @products = Product.where(store_id:@store.id,active:true)
       @order_item = current_order.order_items.new
       @categories = @store.category.all
       set_shop

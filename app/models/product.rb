@@ -6,5 +6,5 @@ class Product < ActiveRecord::Base
   mount_uploader :img1, Img1Uploader
 
 
-  default_scope { where(active: true) }
+  #default_scope { where(active: true) }
 end

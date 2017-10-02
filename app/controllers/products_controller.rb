@@ -10,9 +10,12 @@ class ProductsController < ApplicationController
 
     if @store.nil?
       redirect_to("http://www.kduka.co.ke/users/sign_in") and return
-    else
+    elsif @store.active == !true
+      flash[:alert] = "Store is not active, please contact owner"
+      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+      else
       if @store.homepage_status == true
-        @products = Product.where(store_id: @store.id)
+        @products = Product.where(store_id: @store.id,active:true)
         @order_item = current_order.order_items.new
         @categories = @store.category.all
         redirect_to(home_path) and return
@@ -28,10 +31,15 @@ class ProductsController < ApplicationController
 
   def home
     get_store
-    @products = Product.where(store_id:@store.id).limit(3).order('id desc')
+
+    if @store.blank?
+      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+    else
+    @products = Product.where(store_id:@store.id,active:true).limit(3).order('id desc')
     @order_item = current_order.order_items.new
     @categories = @store.category.all
     set_shop
+      end
   end
 
   def about
@@ -58,7 +66,7 @@ class ProductsController < ApplicationController
     @order_item = current_order.order_items.new
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
-    @products = @store.product.where(category_id: params[:id])
+    @products = @store.product.where(category_id: params[:id],active:true)
     @categories = @store.category.all
     set_shop
   end
@@ -121,7 +129,11 @@ class ProductsController < ApplicationController
   end
 
   def view
-    @product = Product.where(sku: params[:sku]).first
+    @product = Product.where(sku: params[:sku],active:true).first
+
+    if @product.nil?
+      redirect_to(home_path) and return
+    end
     set_shop
   end
 

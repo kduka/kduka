@@ -52,4 +52,5 @@ Rails.application.routes.draw do
   #
   root to: "stores#index"
   #root to: "products#index"
+  get '*path' => redirect('/')
 end
