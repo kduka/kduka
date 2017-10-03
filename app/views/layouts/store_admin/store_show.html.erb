@@ -6,233 +6,235 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <html>
-	<head>
+<head>
 
 
-		<%= csrf_meta_tags %>
+  <%= csrf_meta_tags %>
 
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <% Dir.foreach("public/stylesheets/admin") do |item|
-      next if item == '.' or item == '..' %>
-        <%= stylesheet_link_tag    "admin/#{item}" %>
-    <% end %>
-    <% Dir.foreach("public/javascripts/admin") do |item|
-      next if item == '.' or item == '..' %>
-        <%= javascript_include_tag   "admin/#{item}" %>
-    <% end %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <% Dir.foreach("public/stylesheets/admin") do |item|
+    next if item == '.' or item == '..' %>
+      <%= stylesheet_link_tag "admin/#{item}" %>
+  <% end %>
+  <% Dir.foreach("public/javascripts/admin") do |item|
+    next if item == '.' or item == '..' %>
+      <%= javascript_include_tag "admin/#{item}" %>
+  <% end %>
 
-		<title>Home</title>
-		<script type="application/x-javascript">
-			addEventListener("load", function() {
-				setTimeout(hideURLbar, 0);
-			}, false);
-			function hideURLbar() {
-				window.scrollTo(0, 1);
-			}
-		</script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#demo-pie-1').pieChart({
-					barColor : '#3bb2d0',
-					trackColor : '#eee',
-					lineCap : 'round',
-					lineWidth : 8,
-					onStep : function(from, to, percent) {
-						$(this.element).find('.pie-value').text(Math.round(percent) + '%');
-					}
-				});
+  <title>Home</title>
+  <script type="application/x-javascript">
+      addEventListener("load", function () {
+          setTimeout(hideURLbar, 0);
+      }, false);
+      function hideURLbar() {
+          window.scrollTo(0, 1);
+      }
+  </script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('#demo-pie-1').pieChart({
+              barColor: '#3bb2d0',
+              trackColor: '#eee',
+              lineCap: 'round',
+              lineWidth: 8,
+              onStep: function (from, to, percent) {
+                  $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+              }
+          });
 
-				$('#demo-pie-2').pieChart({
-					barColor : '#fbb03b',
-					trackColor : '#eee',
-					lineCap : 'butt',
-					lineWidth : 8,
-					onStep : function(from, to, percent) {
-						$(this.element).find('.pie-value').text(Math.round(percent) + '%');
-					}
-				});
+          $('#demo-pie-2').pieChart({
+              barColor: '#fbb03b',
+              trackColor: '#eee',
+              lineCap: 'butt',
+              lineWidth: 8,
+              onStep: function (from, to, percent) {
+                  $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+              }
+          });
 
-				$('#demo-pie-3').pieChart({
-					barColor : '#ed6498',
-					trackColor : '#eee',
-					lineCap : 'square',
-					lineWidth : 8,
-					onStep : function(from, to, percent) {
-						$(this.element).find('.pie-value').text(Math.round(percent) + '%');
-					}
-				});
+          $('#demo-pie-3').pieChart({
+              barColor: '#ed6498',
+              trackColor: '#eee',
+              lineCap: 'square',
+              lineWidth: 8,
+              onStep: function (from, to, percent) {
+                  $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+              }
+          });
 
-			});
+      });
 
-		</script>
-	</head>
-	<body>
-		<div class="page-container">
-			<!--/content-inner-->
-			<div class="left-content">
-				<div class="inner-content">
-					<!-- header-starts -->
-					<div class="header-section">
-						<!-- top_bg -->
-						<div class="top_bg">
+  </script>
+</head>
+<body>
+<div class="page-container">
+  <!--/content-inner-->
+  <div class="left-content">
+    <div class="inner-content">
+      <!-- header-starts -->
+      <div class="header-section">
+        <!-- top_bg -->
+        <div class="top_bg">
 
-							<div class="header_top">
-								<div class="top_right">
-									<ul>
-										<h2><li><%= @store.name %></li></h2>
-										<li><%= link_to "Visit "+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke",target:'_blank' %> </li>
-									</ul>
-								</div>
-								<div class="top_left">
-								<span style="color:#fff"><i class="fa fa-user" ></i> <%= current_store.email%></span> |
-									<i class="fa fa-user" ></i><%= link_to "Logout", destroy_store_session_path , method:'delete' %></h2>
-								</div>
-								<div class="clearfix"></div>
-							</div>
+          <div class="header_top">
+            <div class="top_right">
+              <ul>
+                <h2>
+                  <li><%= @store.name %></li>
+                </h2>
+                <li><%= link_to "Visit "+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank' %> </li>
+              </ul>
+            </div>
+            <div class="top_left">
+              <span style="color:#fff"><i class="fa fa-user"></i> <%= current_store.email %></span> |
+              <i class="fa fa-user"></i><%= link_to "Logout", destroy_store_session_path, method: 'delete' %></h2>
+            </div>
+            <div class="clearfix"></div>
+          </div>
 
-						</div>
-						<div class="clearfix"></div>
-						<!-- /top_bg -->
-					</div>
-					<div class="header_bg">
-
-						<div class="header">
-							<div class="head-t">
-								<!-- <div class="logo">
-								<a href="index.html"><img src="images/logo.png" class="img-responsive" alt=""> </a>
-								</div> -->
-								<!-- start header_right -->
-								<div class="header_right">
-									<div class="rgt-bottom">
-
-										<div class="clearfix"></div>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-
-					</div>
-					<!-- //header-ends -->
-
-					<!--content-->
-
-					<div class="content">
-						<div class="col-md-12">
-        <% if !notice.nil? %>
-        <div class="alert alert-success" role="alert">
-          <strong><%= notice %></strong>
         </div>
-        <% end %>
-        <% if !alert.nil? %>
-        <div class="alert alert-info" role="alert">
-          <strong><%= alert %></strong>
+        <div class="clearfix"></div>
+        <!-- /top_bg -->
+      </div>
+      <div class="header_bg">
+
+        <div class="header">
+          <div class="head-t">
+            <!-- <div class="logo">
+            <a href="index.html"><img src="images/logo.png" class="img-responsive" alt=""> </a>
+            </div> -->
+            <!-- start header_right -->
+            <div class="header_right">
+              <div class="rgt-bottom">
+
+                <div class="clearfix"></div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
         </div>
-            <% end %>
 
       </div>
-						<%= yield %>
-					</div>
-					<!--content-->
+      <!-- //header-ends -->
 
-				</div>
-			</div>
-			<!--//content-inner-->
-			<!--/sidebar-menu-->
-			<div class="sidebar-menu">
-				<header class="logo1">
-					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>
-				</header>
-				<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
-				<div class="menu">
-					<ul id="menu" >
+      <!--content-->
 
-						<li>
-							<a href="<%= store_path(@store) %>"><i class="fa fa-tachometer"></i> <span>Overview</span></a>
-						</li>
-						<li id="menu-academico" >
-							<a href="#"><i class="fa fa-product-hunt"></i> <span> Products</span></a>
-							<ul id="menu-academico-sub" >
-								<li id="menu-academico-avaliacoes" >
-									<a href="<%= products_manage_path %>">Manage Products</a>
-								</li>
+      <div class="content">
+        <div class="col-md-12">
+          <% if !notice.nil? %>
+              <div class="alert alert-success" role="alert">
+                <strong><%= notice %></strong>
+              </div>
+          <% end %>
+          <% if !alert.nil? %>
+              <div class="alert alert-info" role="alert">
+                <strong><%= alert %></strong>
+              </div>
+          <% end %>
 
-								<li id="menu-academico-avaliacoes" >
-									<% if !Category.where(store_id:current_store.id).blank? %>
-									<a href="<%= new_store_product_path(@store) %>">Add Product</a>
-									<%end%>
-								</li>
-							</ul>
-						</li>
-						<li id="menu-academico" >
-							<a href="#"><i class="fa fa-dot-circle-o"></i> <span> Categories</span></a>
-							<ul id="menu-academico-sub" >
-								<li id="menu-academico-avaliacoes" >
-									<a href="<%= categories_path %>">View Categories</a>
-								</li>
+        </div>
+        <%= yield %>
+      </div>
+      <!--content-->
 
-								<li id="menu-academico-avaliacoes" >
+    </div>
+  </div>
+  <!--//content-inner-->
+  <!--/sidebar-menu-->
+  <div class="sidebar-menu">
+    <header class="logo1">
+      <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>
+    </header>
+    <div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
+    <div class="menu">
+      <ul id="menu">
 
-									<a href="<%= new_category_path(@store) %>">Add Category</a>
-
-								</li>
-
-							</ul>
-						</li>
-						<li>
-							<a href="<%= store_orders_url %>"><i class="fa fa-shopping-bag"></i> <span>Orders</span></a>
-						</li>
-						<li>
-							<a href="<%= stores_theme_path %>"><i class="fa fa-window-maximize"></i> <span>Layouts</span></a>
-						</li>
-            <li>
-              <a href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> <span>Pages</span></a>
+        <li>
+          <a href="<%= store_path(@store) %>"><i class="fa fa-tachometer"></i> <span>Overview</span></a>
+        </li>
+        <li id="menu-academico">
+          <a href="#"><i class="fa fa-product-hunt"></i> <span> Products</span></a>
+          <ul id="menu-academico-sub">
+            <li id="menu-academico-avaliacoes">
+              <a href="<%= products_manage_path %>">Manage Products</a>
             </li>
-						<li id="menu-academico" >
-							<a href="#"><i class="fa fa-gears"></i> <span> Account </span></a>
-							<ul id="menu-academico-sub" >
-								<li id="menu-academico-avaliacoes" >
-									<a href="<%= stores_social_path %>">Social Media</a>
-								</li>
 
-								<li id="menu-academico-avaliacoes" >
-									<a href="<%= edit_store_path(@store) %>">Edit Store Settings</a>
-								</li>
+            <li id="menu-academico-avaliacoes">
+              <% if !Category.where(store_id: current_store.id).blank? %>
+                  <a href="<%= new_store_product_path(@store) %>">Add Product</a>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li id="menu-academico">
+          <a href="#"><i class="fa fa-dot-circle-o"></i> <span> Categories</span></a>
+          <ul id="menu-academico-sub">
+            <li id="menu-academico-avaliacoes">
+              <a href="<%= categories_path %>">View Categories</a>
+            </li>
 
-                <li id="menu-academico-avaliacoes" >
-                  <a href="<%= stores_deliver_path %>">Delivery Settings</a>
-                </li>
+            <li id="menu-academico-avaliacoes">
 
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<script>
-			var toggle = true;
+              <a href="<%= new_category_path(@store) %>">Add Category</a>
 
-			$(".sidebar-icon").click(function() {
-				if (toggle) {
-					$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-					$("#menu span").css({
-						"position" : "absolute"
-					});
-				} else {
-					$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-					setTimeout(function() {
-						$("#menu span").css({
-							"position" : "relative"
-						});
-					}, 400);
-				}
+            </li>
 
-				toggle = !toggle;
-			});
-		</script>
-	</body>
+          </ul>
+        </li>
+        <li>
+          <a href="<%= store_orders_url %>"><i class="fa fa-shopping-bag"></i> <span>Orders</span></a>
+        </li>
+        <li>
+          <a href="<%= stores_theme_path %>"><i class="fa fa-window-maximize"></i> <span>Layouts</span></a>
+        </li>
+        <li>
+          <a href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> <span>Pages</span></a>
+        </li>
+        <li id="menu-academico">
+          <a href="#"><i class="fa fa-gears"></i> <span> Account </span></a>
+          <ul id="menu-academico-sub">
+            <li id="menu-academico-avaliacoes">
+              <a href="<%= stores_social_path %>">Social Media</a>
+            </li>
+
+            <li id="menu-academico-avaliacoes">
+              <a href="<%= edit_store_path(@store) %>">Edit Store Settings</a>
+            </li>
+
+            <li id="menu-academico-avaliacoes">
+              <a href="<%= stores_deliver_path %>">Delivery Settings</a>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<script>
+    var toggle = true;
+
+    $(".sidebar-icon").click(function () {
+        if (toggle) {
+            $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+            $("#menu span").css({
+                "position": "absolute"
+            });
+        } else {
+            $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+            setTimeout(function () {
+                $("#menu span").css({
+                    "position": "relative"
+                });
+            }, 400);
+        }
+
+        toggle = !toggle;
+    });
+</script>
+</body>
 </html>

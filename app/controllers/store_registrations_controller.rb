@@ -1,8 +1,12 @@
 class StoreRegistrationsController < Devise::RegistrationsController
-  
-  
+
+  prepend_before_action :require_no_authentication, only: [ :cancel]
+  prepend_before_action :kick_out, only:[:new,:create]
   
   def new
+    if store_signed_in?
+    flash[:custom] = "You Need to sign out of current store to create a new one"
+    end
     @store = Store.new
     set_admin
   end
@@ -46,6 +50,10 @@ class StoreRegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
+    end
+
+  def kick_out
+    sign_out :store
   end
   
   

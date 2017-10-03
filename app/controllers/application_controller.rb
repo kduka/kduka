@@ -25,7 +25,11 @@ Order.new(:ref => ref,:store_id => @store.id)
 end
 =end
     if !session[:order_id].nil?
-      Order.find(session[:order_id])
+      @find_order = Order.find(session[:order_id]) rescue nil
+      if !@find_order
+        session[:order_id]=nil
+        current_order
+      end
     else
       ref = [*'A'..'Z', *"0".."9"].sample(8).join
       @subdomain = request.subdomain[/(\w+)/]
@@ -74,7 +78,7 @@ end
   
   def get_store
     @subdomain = request.subdomain[/(\w+)/]
-    @store  = Store.where(subdomain:@subdomain).first
+    @store  = Store.where(subdomain:@subdomain,active:true).first
   end
 
   def get_data

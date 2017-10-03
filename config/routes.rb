@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
   match '/', to: 'products#index', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
   # get 'home/user'
   #
