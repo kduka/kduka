@@ -146,18 +146,27 @@ label{
     backface-visibility: hidden;
 }
 a.twitter .front {
-    background: #00acee;
+    background: #00acee !important;
 }
 a.facebook .front {
-    background: #3b5998;
+    background: #3b5998 !important;
 }
 a.instagram .front {
-    background: #f77737;
+    background: #f77737 !important;
 }
 a.pinterest .front {
-    background: #bd081c;
+    background: #bd081c !important;
 }
-.twitter .back,.facebook .back,.instagram .back,.pinterest .back{
+a.youtube .front {
+    background: #ff0000 !important;
+}
+a.vimeo .front {
+		background: #00ADEF !important;
+}
+a.linkedin .front {
+		background: #0077B5 !important;
+}
+.twitter .back,.facebook .back,.instagram .back,.pinterest .back, .youtube .back, .linkedin .back, .vimeo .back{
     background:#fff;
 }
 .model-3d-0 a:hover {
@@ -1454,7 +1463,7 @@ button.w3view-cart {
     outline: none;
     border: none;
     background: #17c3a2;
-    width: 48px;
+    width: 120px;
     height: 43px;
     font-size: 24px;
     color: #000;

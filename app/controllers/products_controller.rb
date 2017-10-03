@@ -4,16 +4,13 @@ class ProductsController < ApplicationController
   set_tab :home
 
   def index
-    @subdomain = request.subdomain[/(\w+)/]
-
-    @store = Store.where(subdomain: @subdomain).first
-
+    get_store
     if @store.nil?
       redirect_to("http://www.kduka.co.ke/users/sign_in") and return
     elsif @store.active == !true
       flash[:alert] = "Store is not active, please contact owner"
-      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
-      else
+      redirect_to("http://www.kduka.co.ke/stores/sign_in") and return
+    else
       if @store.homepage_status == true
         @products = Product.where(store_id: @store.id,active:true)
         @order_item = current_order.order_items.new
