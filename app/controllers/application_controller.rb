@@ -75,7 +75,7 @@ end
   def set_login
     render :layout => 'login/login'
   end
-  
+
   def get_store
     @subdomain = request.subdomain[/(\w+)/]
     @store  = Store.where(subdomain:@subdomain,active:true).first
@@ -83,11 +83,11 @@ end
 
   def get_data
     @subdomain = request.subdomain[/(\w+)/]
-    @store  = Store.where(subdomain:@subdomain).first
+    @store  = Store.where(subdomain:@subdomain,active:true).first
 
     if @store.nil?
       redirect_to("http://www.kduka.co.ke/users/sign_in") and return
-    elsif
+    elsif @store.active == !true
     redirect_to("http://www.kduka.co.ke/users/sign_in") and return
       else
       @products = Product.where(store_id:@store.id,active:true)

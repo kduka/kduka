@@ -1,0 +1,39 @@
+<div class="col-md-4 product-men">
+  <div class="men-pro-item simpleCart_shelfItem">
+    <div class="men-thumb-item" style="min-height:15em !important;max-height:15em !important;">
+      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
+      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
+        <div class="men-cart-pro">
+          <div class="inner-men-cart-pro">
+            <a href="<%= product_view_path(product.sku) %>" class="link-product-add-cart">Quick View</a>
+          </div>
+        </div>
+
+    </div>
+    <div class="item-info-product ">
+      <h4><a href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h4>
+      <div class="info-product-price">
+        <span class="item_price"><%= number_to_currency product.price %></span>
+      </div>
+            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+              <%= form_for order_item, remote: true do |f| %>
+                  <%= f.hidden_field :quantity, value: 1, class: "item_quantity", min: 1 %>
+                  <%= f.hidden_field :product_id, value: product.id %>
+                  <% exist=false %>
+                  <% current_order.order_items.each do |oi| %>
+                      <% if oi.product_id == product.id %>
+                          <% exist = true %>
+                      <% end %>
+                      <% end %>
+                      <% if !exist %>
+                              <%= f.submit 'Add to Cart', :class => 'button' %>
+                          <% else %>
+
+                          <%= f.submit 'Added', disabled: true, :class => 'button' %>
+                      <% end %>
+                  <% end %>
+                </div>
+
+    </div>
+  </div>
+</div>
