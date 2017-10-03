@@ -29,6 +29,8 @@ end
       if !@find_order
         session[:order_id]= nil
         current_order
+      else
+        Order.find(session[:order_id])
       end
     else
       ref = [*'A'..'Z', *"0".."9"].sample(8).join
