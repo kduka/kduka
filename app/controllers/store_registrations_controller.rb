@@ -20,7 +20,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
       flash[:notice] = "Done"
       redirect_to(users_stores_path)
     else
-      flash[:notice] = "Ooops"
+      flash[:notice] = "Sorry, we couldnt create the store. Please contact admin"
     end
   end
   

@@ -17,7 +17,8 @@ class UserRegistrationsController < Devise::RegistrationsController
       flash[:notice] = "Registration Successful!"
       redirect_to(new_user_session_path)
     else
-      flash[:notice] = "Sorry, SOmething went wrong"
+      flash[:notice] = "Sorry, Something went wrong. Please Contact Admin"
+      redirect_to(request.referer)
     end
   end
 

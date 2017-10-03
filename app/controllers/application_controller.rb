@@ -27,7 +27,7 @@ end
     if !session[:order_id].nil?
       @find_order = Order.find(session[:order_id]) rescue nil
       if !@find_order
-        session[:order_id]=nil
+        session[:order_id]= nil
         current_order
       end
     else
