@@ -12,25 +12,8 @@
   		</div>
   		<div class="col-md-8 single-right-left simpleCart_shelfItem">
   					<h3><%= @product.name %></h3>
-  					<p><span class="item_price"><%= @product.price %></span></p>
+  					<p><span class="item_price">Kes. <%= @product.price %></span></p>
   					<div class="occasion-cart">
-  						<!-- <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-  															<form action="#" method="post">
-  																<fieldset>
-  																	<input type="hidden" name="cmd" value="_cart">
-  																	<input type="hidden" name="add" value="1">
-  																	<input type="hidden" name="business" value=" ">
-  																	<input type="hidden" name="item_name" value="Wing Sneakers">
-  																	<input type="hidden" name="amount" value="650.00">
-  																	<input type="hidden" name="discount_amount" value="1.00">
-  																	<input type="hidden" name="currency_code" value="USD">
-  																	<input type="hidden" name="return" value=" ">
-  																	<input type="hidden" name="cancel_return" value=" ">
-                                    <input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}" required="">
-  																	<input type="submit" name="submit" value="Add to cart" class="button">
-  																</fieldset>
-  															</form>
-  														</div> -->
 
                               <%= form_for :order_item, :url => {controller:'order_items', action:'create'}, remote: true do |f| %>
                               <div class="">
@@ -42,30 +25,12 @@
                               <div>
                                 <%= f.hidden_field :product_id, value: @product.id %>
 
-
-                                <% exist=false %>
-                                <% current_order.order_items.each do |oi| %>
-                                    <% if oi.product_id == @product.id %>
-                                        <% exist = true %>
-                                    <% end %>
-                                <% end %>
-                                <% if !exist %>
-                                    <%= f.button type: 'submit', :class => "w3ls-cart" do %>
-                                        Add to Cart
-                                    <% end %>
-                                <% else %>
-                                    <%= f.button type: 'submit', :class => "w3ls-cart", disabled:'disabled' do %>
-                                        Added!
-                                    <% end %>
-                                <% end %>
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                                <%= f.submit 'Add to Cart', :class => 'button' %>
+                                </div>
 
                               </div>
                               <% end %>
-
-
-
-
-
 
 
 
