@@ -68,8 +68,10 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
     if @store.destroy
       flash[:notice] = "Store Destroyed"
+      redirect_to(request.referer)
     else
       flash[:alert] = "Something went wrong"
+      redirect_to(request.referer)
     end
 =begin
     respond_to do |format|
