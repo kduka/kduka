@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
 
-    $('#store_color').colorpicker();
+    $('.colorpicker').colorpicker();
 
     $('#example').DataTable();
     $('#myTable').DataTable();

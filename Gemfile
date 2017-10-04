@@ -15,6 +15,7 @@ gem 'execjs'
 gem 'mysql2'
 gem 'nprogress-rails'
 gem 'fog'
+gem 'bootstrap-colorpicker-rails'
 
 
 ruby "2.4.0"

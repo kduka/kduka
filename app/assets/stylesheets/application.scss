@@ -13,6 +13,7 @@
  *= require dataTables/jquery.dataTables
  *= require_tree .
  *= require_self
+ *= require bootstrap-colorpicker
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
