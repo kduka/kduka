@@ -18,7 +18,7 @@
                 <td><%= num %></td>
                 <td><%= s.name %></td>
                 <td><%= s.active %></td>
-                <td><%= link_to "Visit Shop (http://#{s.subdomain}.kduka.co.ke)", "http://#{s.subdomain}.kduka.co.ke", target:"_blank" %> |  <a href=""><span style="color:red"> Delete</span></a></td>
+                <td><%= link_to "Visit Shop (http://#{s.subdomain}.kduka.co.ke)", "http://#{s.subdomain}.kduka.co.ke", target:"_blank" %> |  <%= link_to "Delete", store_path(s), method:'delete', confirm:"Are you Sure you want to delete this store?" %></td>
               </tr>
               <% num = num + 1 %>
           <% end %>

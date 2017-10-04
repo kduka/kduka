@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
-  before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_store!, except:[:contact]
+  before_action :set_store, only: [:show, :edit, :update]
+  before_action :authenticate_store!, except:[:contact, :destroy]
   #before_action :set_admin, only: [:index]
   #after_action :set_shop_show, only: [:show, :edit]
   set_tab :home
@@ -65,11 +65,21 @@ class StoresController < ApplicationController
   # DELETE /stores/1
   # DELETE /stores/1.json
   def destroy
-    @store.destroy
+    @store = Store.find(params[:id])
+    if @store.destroy
+      flash[:notice] = "Store Destroyed"
+      redirect_to(request.referer)
+    else
+      flash[:alert] = "Something went wrong"
+      redirect_to(request.referer)
+    end
+=begin
     respond_to do |format|
       format.html {redirect_to stores_url, notice: 'Store was successfully destroyed.'}
       format.json {head :no_content}
-    end
+end
+=end
+
   end
 
   def categories
@@ -183,7 +193,7 @@ class StoresController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def store_params
-    params.require(:store).permit(:facebook, :linkedin, :twitter, :instagram, :pinterest, :vimeo, :youtube, :slogan, :subdomain, :layout_id, :name, :phone, :display_email,:logo,:logo_status,:business_location, :active)
+    params.require(:store).permit(:facebook, :linkedin, :twitter, :instagram, :pinterest, :vimeo, :youtube, :slogan, :subdomain, :layout_id, :name, :phone, :display_email,:logo,:logo_status,:business_location, :active, :store_color)
   end
 
   def delivery_params

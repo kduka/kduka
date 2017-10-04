@@ -18,7 +18,7 @@
                 <td><%= num %></td>
                 <td><%= link_to s.name, store_path(s), :title => 'Visit ' + s.name %></td>
                 <td><%= s.active %></td>
-                <td><%= link_to "Visit Shop", store_products_path(s), target:"_blank" %> |  <a href=""><span style="color:red"> Delete</span></a> | <%= link_to 'Categories', store_categories_url(s) %></td>
+                <td><%= link_to "Visit Shop", store_products_path(s), target:"_blank" %> |  <%= link_to "Delete", store_path(s), method:'delete', confirm:"Are you Sure you want to delete this store?"%> | <%= link_to 'Categories', store_categories_url(s) %></td>
               </tr>
               <% num = num + 1 %>
           <% end %>
