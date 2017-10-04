@@ -6,6 +6,11 @@
 	<%= f.select :layout_id, options_from_collection_for_select(Layout.all, 'id','d_name'),{} ,{:class=>'form-control'} %>
 </div>
 <p></p>
+      <div class="form-group">
+        Store Color
+        <%= f.text_field :store_color, :class=>'form-control', id:'store_color' %>
+      </div>
+      <p></p>
 
 <p><%= f.submit 'Save', class:'btn btn-primary' %>
 <% end %>

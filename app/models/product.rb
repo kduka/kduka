@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :store
-  has_many :order_items
+  has_many :order_items, :dependent => :destroy
   
   mount_uploader :image, AvatarUploader
   mount_uploader :img1, Img1Uploader
