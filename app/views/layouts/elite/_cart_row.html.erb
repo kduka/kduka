@@ -10,7 +10,7 @@
             <%= image_tag(product.image_url(:thumb).to_s, class:'text-center')  %>
         </div>
         <div class="col-md-8 col-sm-12">
-          <h2><%= product.name %></h2><br/>
+          <h2 style="color: <%= @store.store_color %> !important"><%= product.name %></h2><br/>
           <h4>Unit Price : <%= number_to_currency order_item.unit_price %></h4><br>
           <h4><span>Total Price : <%= number_to_currency order_item.total_price %></span></h4><br>
           <div class="qty">

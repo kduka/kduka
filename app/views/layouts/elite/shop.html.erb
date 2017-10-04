@@ -24,14 +24,49 @@ next if item == '.' or item == '..' %>
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+<style>
+.menu--shylock .menu__link::before {
+	background: <%= @store.store_color %> !important;
+}
+.menu--shylock .menu__link::after {
+  background: <%= @store.store_color %> !important;
+}
+.box_1 {
+  background: <%= @store.store_color %> !important;
+}
+button.w3view-cart {
+    background: <%= @store.store_color %> !important;
+}
+.carousel-caption h3 span {
+    color: <%= @store.store_color %> !important;
+}
+.hvr-outline-out {
+    background: <%= @store.store_color %> !important;
+}
+.hvr-outline-out:before {
+    border: <%= @store.store_color %> solid 4px !important;
+}
+.myclass:hover{
+	color: <%= @store.store_color %> !important;
+}
+.snipcart-details input.button {
+    background: <%= @store.store_color %> !important;
+}
+.link-product-add-cart:hover {
+    background:  <%= @store.store_color %> none repeat scroll 0 0 !important;
+}
+.single-right-left h3 {
+    color: <%= @store.store_color %> !important;
+}
+</style>
 </head>
 <body>
 <!-- header -->
 <div class="header" id="home">
 	<div class="container">
 		<ul>
-			<li style="border-right:0px !important"><i class="fa fa-phone" aria-hidden="true"></i><%= @store.phone %></li>
-			<li style="float:right;border-right:0px !important"><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></li>
+			<li style="border-right:0px !important"><i style="color:<%= @store.store_color %> !important" class="fa fa-phone" aria-hidden="true"></i><%= @store.phone %></li>
+			<li style="float:right;border-right:0px !important"><i style="color:<%= @store.store_color %> !important" class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></li>
 		</ul>
 	</div>
 </div>
@@ -160,7 +195,7 @@ next if item == '.' or item == '..' %>
 							</div>
 							<div class="w3-address-right">
 								<h6>Email Address</h6>
-								<p>Email :<a href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></p>
+								<p>Email :<a class="myclass" href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -179,10 +214,10 @@ next if item == '.' or item == '..' %>
 				<div class="col-md-5 sign-gd">
 					<h4>Quick <span>Links</span> </h4>
 					<ul>
-						<li><a href="<%= root_path %>">Home</a></li>
-						<li><a href="<%= about_path %>">About Us</a></li>
-						<li><a href="<%= contact_path %>">Contact Us</a></li>
-						<li><a href="<%= all_path %>">Products</a></li>
+						<li><a class="myclass" href="<%= root_path %>">Home</a></li>
+						<li><a class="myclass" href="<%= about_path %>">About Us</a></li>
+						<li><a class="myclass" href="<%= contact_path %>">Contact Us</a></li>
+						<li><a class="myclass" href="<%= all_path %>">Products</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"></div>
@@ -190,7 +225,7 @@ next if item == '.' or item == '..' %>
 		</div>
 		<div class="clearfix"></div>
 		<p class="copy-right">Copyright © <%= Time.current.year %> KDuka. All rights reserved | Developed by
-			<a target="_blank" class="mylink" href="http://www.zerone.co.ke/">Zerone I.T. Solutions</a></p>
+			<a target="_blank" class="mylink myclass" href="http://www.zerone.co.ke/">Zerone I.T. Solutions</a></p>
 	</div>
 </div>
 <!-- //footer -->

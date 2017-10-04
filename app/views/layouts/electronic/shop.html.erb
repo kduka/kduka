@@ -47,6 +47,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       });
   </script>
   <!-- //end-smooth-scrolling -->
+  <!--Custom Colors-->
+  <style>
+    .myclass:hover{
+      color: <%= @store.store_color %> !important;
+    }
+    .agileits_social_button ul li a:hover {
+      background-color: <%= @store.store_color %> !important;
+    }
+    .w3view-cart {
+      background: <%= @store.store_color %> !important;
+    }
+    a.act {
+      color: <%= @store.store_color %> !important;
+    }
+    h3.agileits-title:before {
+      background: <%= @store.store_color %> !important;
+    }
+    .banner h3 span {
+      color: <%= @store.store_color %> !important;
+    }
+    .w3ls-cart:hover{
+      background: <%= @store.store_color %> !important;
+      border: 1px solid <%= @store.store_color %> !important;
+    }
+    .w3_hs_bottom ul li a, .flex_ecommerce a {
+      background: <%= @store.store_color %> !important;
+    }
+  </style>
+  <!--Custom Colors-->
 </head>
 <body>
 <!-- header -->
@@ -106,7 +135,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   }
 
   .mylink:hover {
-    color: #000 !important;
     transition: all 0.5s !important;
   }
 
@@ -118,17 +146,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <div class="col-md-4 w3_footer_grid">
         <h3>Quick Links</h3>
         <ul class="info">
-          <li class="mylink"><a class="mylink" href="<%= root_path %>">Home</a></li>
-          <li class="mylink"><a class="mylink" href="<%= about_path %>">About Us</a></li>
-          <li class="mylink"><a class="mylink" href="<%= contact_path %>">Contact Us</a></li>
-          <li class="mylink"><a class="mylink" href="<%= all_path %>">Products</a></li>
+          <li class="mylink"><a class="mylink myclass" href="<%= root_path %>">Home</a></li>
+          <li class="mylink"><a class="mylink myclass" href="<%= about_path %>">About Us</a></li>
+          <li class="mylink"><a class="mylink myclass" href="<%= contact_path %>">Contact Us</a></li>
+          <li class="mylink"><a class="mylink myclass" href="<%= all_path %>">Products</a></li>
         </ul>
       </div>
       <div class="col-md-4 w3_footer_grid">
         <h3>Contact</h3>
         <ul class="address">
           <li class="mylink">
-            <i style="color:#fff" class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a class="mylink" href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a>
+            <i style="color:#fff" class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a class="mylink myclass" href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a>
           </li>
           <li style="color:#fff">
             <i style="color:#fff" class="glyphicon glyphicon-earphone" aria-hidden="true"></i><%= @store.phone %></li>
@@ -187,11 +215,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <div class="container">
       <p style="color:#fff">Copyright © <%= Time.current.year %> KDuka. All rights reserved | Developed by
-        <a target="_blank" class="mylink" href="http://www.zerone.co.ke/">Zerone I.T. Solutions</a></p>
+        <a target="_blank" class="mylink myclass" href="http://www.zerone.co.ke/">Zerone I.T. Solutions</a></p>
     </div>
   </div>
 </div>
 <!-- //footer -->
+
 <!-- cart-js -->
 
 <script>

@@ -44,6 +44,47 @@
 		});
 </script>
 <!--//end-smooth-scrolling-->
+<!--Custom Colors-->
+<style>
+  a:hover{
+    color: <%= @store.store_color %> !important;
+  }
+  .active{
+    color: <%= @store.store_color %> !important;
+  }
+  .breadcrumb1 li a{
+    color: #fff !important;
+  }
+  .breadcrumb1 li span {
+    color: #fff !important;
+  }
+  .breadcrumb1 li {
+    color: #fff !important;
+  }
+  .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background: <%= @store.store_color %> !important;
+  }
+  .row h4 {
+    color: <%= @store.store_color %> !important;
+  }
+  .single-info .quantity p {
+    color: <%= @store.store_color %> !important;
+  }
+  .add-cart:hover {
+    color: <%= @store.store_color %> !important;
+    border-color: <%= @store.store_color %> !important;
+  }
+  .cart-item-info h4 span {
+    color: <%= @store.store_color %> !important;
+  }
+  .new-text {
+  background: <%= @store.store_color %> !important;
+  }
+  .mylink:hover{
+    color: #fff !important;
+  }
+</style>
+<!--Custom Colors-->
 </head>
 <body>
 	<!--header-->
@@ -107,12 +148,12 @@
 					<ul>
             <% if !@store.phone.blank?%>
             <li>
-              <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> <%= @store.phone %>
+              <i style="color:<%= @store.store_color %> !important" class="glyphicon glyphicon-earphone" aria-hidden="true"></i> <%= @store.phone %>
             </li>
             <% end %>
             <% if !@store.display_email.blank?%>
             <li>
-              <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:<%= @store.display_email%>"><%= @store.display_email%></a>
+              <i style="color:<%= @store.store_color %> !important" class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:<%= @store.display_email%>"><%= @store.display_email%></a>
             </li>
             <% end %>
 					</ul>
@@ -122,10 +163,10 @@
 				</div>
 				<div class="nav navbar-nav navbar-right header-two-right">
 					<div class="header-right my-account">
-						<a href="<%= contact_path %>"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> CONTACT US</a>
+						<a href="<%= contact_path %>"><span style="color: <%= @store.store_color %> !important" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> CONTACT US</a>
 					</div>
           <div class="header-right cart">
-            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+            <a href="#"><span style="color: <%= @store.store_color %> !important" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
             <%= link_to(cart_path) do %>
             <h4 class="cart-text"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></h4>
             <% end %>
@@ -173,11 +214,11 @@
 		<div class="container">
 			<div class="footer-info">
 				<div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".5s">
-					<h4 class="footer-logo"><a href="<%= root_path %>"><%= @store.name %> <span class="tag"><%= @store.slogan %></span> </a></h4>
+					<h4 class="footer-logo"><a href="<%= root_path %>"><span style="color:<%= @store.store_color %>"><%= @store.name %></span> <span class="tag"><%= @store.slogan %></span> </a></h4>
 					<p>Copyright © <%= Time.current.year %> KDuka . All rights reserved | Developed by <a href="http://www.zerone.co.ke" target="_blank">Zerone I.T. Solutions</a></p>
 				</div>
 				<div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".7s">
-					<h3>Quick Links</h3>
+					<h3><span style="color:<%= @store.store_color %>">Quick Links</span></h3>
 					<ul>
             <li><a href="<%= root_path %>">Home</a></li>
 						<li><a href="<%= about_path %>">About Us</a></li>
@@ -186,7 +227,7 @@
 					</ul>
 				</div>
 				<div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".9s">
-					<h3>Social Media</h3>
+					<h3><span style="color:<%= @store.store_color %>">Social Media</span></h3>
           <div class="nav navbar-nav social-icons wow fadeInRight animated" data-wow-delay=".5s">
   					<ul>
               <% if !@store.facebook.blank? %>
@@ -237,6 +278,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!--//footer-->
 	<!-- the jScrollPane script -->
 
