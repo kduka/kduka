@@ -15,7 +15,7 @@
         </ul>
       </div>
     </div>
-    <h5><a href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h5>
+    <h5><a style="color:#000" class="myclass" href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h5>
     <div class="simpleCart_shelfItem">
       <p><i class="item_price"><%= number_to_currency product.price %></i></p>
       <%= form_for order_item, remote: true do |f| %>
