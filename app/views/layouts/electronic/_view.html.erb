@@ -9,7 +9,7 @@
       <p><%= @product.description%></p>
 
       <div class="modal_body_right_cart simpleCart_shelfItem">
-        <p><i class="item_price">Kes. <%= @product.price %></i></p>
+        <p><i class="item_price"><%= number_to_currency(@product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></i></p>
       </div>
       <!---->
       <div class="clearfix"></div>

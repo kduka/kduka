@@ -36,8 +36,7 @@
       <span>☆</span>
     </div>
     <div class="ofr">
-      <p class="pric1"><del>$2000.00</del></p>
-      <p><span class="item_price"><%= number_to_currency product.price %></span></p>
+      <p><span class="item_price"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span></p>
     </div>
     <div class="ofr">
       <p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>

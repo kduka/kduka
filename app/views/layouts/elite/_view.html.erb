@@ -12,7 +12,7 @@
   		</div>
   		<div class="col-md-8 single-right-left simpleCart_shelfItem">
   					<h3><%= @product.name %></h3>
-  					<p><span class="item_price">Kes. <%= @product.price %></span></p>
+  					<p><span class="item_price"><%= number_to_currency(@product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span></p>
   					<div class="occasion-cart">
 
                               <%= form_for :order_item, :url => {controller:'order_items', action:'create'}, remote: true do |f| %>
