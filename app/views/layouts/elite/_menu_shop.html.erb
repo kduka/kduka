@@ -23,15 +23,23 @@
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="agile_inner_drop_nav_info">
 									<div class="col-sm-12 multi-gd-img">
-										<ul class="multi-column-dropdown">
-											<li><a href="mens.html">Clothing</a></li>
-											<li><a href="mens.html">Wallets</a></li>
-											<li><a href="mens.html">Footwear</a></li>
-											<li><a href="mens.html">Watches</a></li>
-											<li><a href="mens.html">Accessories</a></li>
-											<li><a href="mens.html">Bags</a></li>
-											<li><a href="mens.html">Caps & Hats</a></li>
-										</ul>
+										<ul class="multi-column-dropdown ">
+	                    <li><a class="list" href="<%= all_path %>"><h4>All Products</h4></a>
+	                    <% @store.category.each do |c| %>
+	                        <% if !c.nil? %>
+	                            <li><a class="list" href="<%= product_category_path(c.id) %>"><h4><%= c.name %></h4></a>
+	                              <% @sub = c.sub_category.all %>
+	                              <% if !@sub.blank? %>
+	                                  <ul>
+	                                    <% @sub.each do |sub| %>
+	                                        <li><a class="list" href=""><%= sub.name %></a></li>
+	                                    <% end %>
+	                                  </ul>
+	                              <% end %>
+	                            </li>
+	                        <% end %>
+	                    <% end %>
+	                  </ul>
 									</div>
 
 									<div class="clearfix"></div>

@@ -32,13 +32,13 @@
 <div class="col-md-6 col-sm-12">
 <h1 style="text-align:center">Our Contacts</h1><br><br><br>
 <% if !@store.display_email.blank?%>
-  <h4 style="text-align:center"><strong><i class="fa fa-envelope"></i></strong> <%= @store.display_email %></h4><br>
+  <h3 style="text-align:center"><strong><i class="fa fa-envelope"></i></strong> <%= @store.display_email %></h3><br>
 <% end %><br>
 <% if !@store.phone.blank?%>
-  <h4 style="text-align:center"><strong><i class="fa fa-phone"></i></strong> <%= @store.phone %></h4><br>
+  <h3 style="text-align:center"><strong><i class="fa fa-phone"></i></strong> <%= @store.phone %></h3><br>
 <% end %><br>
   <% if !@store.business_location.blank?%>
-      <h4 style="text-align:center"><strong><i class="fa fa-map-marker"></i></strong> <%= @store.business_location %></h4>
+      <h3 style="text-align:center"><strong><i class="fa fa-map-marker"></i></strong> <%= @store.business_location %></h3>
   <% end %>
 
 </div>
