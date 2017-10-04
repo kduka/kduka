@@ -35,7 +35,7 @@ class StoresController < ApplicationController
   # POST /stores
   # POST /stores.json
   def create
-    @store = Store.new(store_params.merge(delivery_status: false))
+    @store = Store.new(store_params.merge(delivery_status: false,layout_id:1))
 
     respond_to do |format|
       if @store.save

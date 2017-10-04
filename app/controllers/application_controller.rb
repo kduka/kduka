@@ -88,9 +88,9 @@ end
     @store  = Store.where(subdomain:@subdomain,active:true).first
 
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+      redirect_to("http://www.kduka.co.ke/users/home") and return
     elsif @store.active == !true
-    redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+    redirect_to("http://www.kduka.co.ke/users/home") and return
       else
       @products = Product.where(store_id:@store.id,active:true)
       @order_item = current_order.order_items.new
