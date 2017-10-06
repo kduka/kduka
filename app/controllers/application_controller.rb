@@ -99,4 +99,8 @@ end
     end
   end
 
+  def no_layout
+    render layout:false
+  end
+
 end

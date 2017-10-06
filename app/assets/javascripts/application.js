@@ -15,3 +15,4 @@
 //= require dataTables/jquery.dataTables
 //= require bootstrap-colorpicker
 //= require_tree .
+

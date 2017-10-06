@@ -30,11 +30,35 @@
       Category
 	<%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name'),{} ,{:class=>'form-control'} %>
     </div>
+
+
+      <div class="form-group">
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity, class:'form-control' %>
+      </div>
     
     <div class="form-group">
-      <%= f.label :quantity %>
-      <%= f.number_field :quantity, class:'form-control' %>
+      <%= f.label :length %>
+      <%= f.number_field :length, class:'form-control' %>
     </div>
+
+      <div class="form-group">
+        <%= f.label :width %>
+        <%= f.number_field :width, class:'form-control' %>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :height %>
+        <%= f.number_field :height, class:'form-control' %>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :weight %>
+        <%= f.number_field :weight, class:'form-control' %>
+      </div>
+
 	
 	<div class="form-group">
       <%= f.label :active %>

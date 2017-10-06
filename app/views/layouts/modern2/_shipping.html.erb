@@ -40,33 +40,40 @@
       </div>
       <p></p>
 
-      <% if @store.delivery_status == !true %>
-
+      <div class="col-md-12">
+        <br>
+        <h2><p class="text-center">Choose a Delivery Method Below</p></h2>
+        <br>
+        <% if @store.auto_delivery_status == true %>
+        <div class="col-md-4">
           <div class="form-group">
-            <label> Delivery Location</label>
-            <input id="locate" type="textbox" value="" class='form-control' placeholder='Delivery Location'/>
-            <span style="color:green;" class="price"></span>
+            <%= label_tag(:email, "Home Delivery") %>
+            <input type="radio" name="delivery" id="auto">
           </div>
-          <p></p>
-
-      <% end %>
-
-      <% if @store.delivery_status == true %>
-
+        </div>
+            <% end %>
+        <% if @store.collection_point_status == true %>
+        <div class="col-md-4">
           <div class="form-group">
-            <label> Collection Point for Goods</label>
-            <textarea disabled type="text" value="" class='form-control' placeholder='Collection Instructions'><%= @store.detailed_location %></textarea>
-            <span style="color:green;" class="price">We shall send instructions for pickup and contact points after you make your order</span>
+            <%= label_tag(:email, "Collect at Drop Point") %>
+            <input type="radio" name="delivery" id="collection">
           </div>
-          <p></p>
+        </div>
+            <% end %>
+        <% if @store.manual_delivery_status == true %>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= label_tag(:email, "Direct Package From Vendor") %>
+            <input type="radio" name="delivery" id="manual">
+          </div>
+        </div>
+        <% end %>
+      </div>
 
-      <% end %>
+      <div class="delivery_options">
+      </div>
 
-      <input id="long" name="long" type="hidden" value="">
-      <input id="lat" name="lat" type="hidden" value="">
-      <div id="suggesstion-box"></div>
-      <div id="map"></div><br><br>
-      <!-- <%= debug @response %><br><br> -->
+
       <%= submit_tag("Process Payment", :class => 'btn btn-success col-sm-12 col-md-6 col-md-offset-3') %><br>
 
   <% end %>

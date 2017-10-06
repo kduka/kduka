@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store: one
+  code: MyString
+  number_of_use: 1
+  percentage: 1
+  expiry: 2017-10-04
+
+two:
+  store: two
+  code: MyString
+  number_of_use: 1
+  percentage: 1
+  expiry: 2017-10-04

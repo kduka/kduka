@@ -13,11 +13,28 @@ $(document).ready(function () {
 
     $("#deliveryswitch").change(function () {
         if (this.checked) {
-            $(".locate").attr('disabled', 'true');
-            $("#thedrop").removeAttr('disabled');
-        } else {
             $(".locate").removeAttr('disabled');
-            $("#thedrop").attr('disabled', 'true');
+        } else {
+
+            $(".locate").attr('disabled', 'true');
         }
     });
+
+    $("#collectswitch").change(function () {
+        if (this.checked) {
+            $(".collect").removeAttr('disabled');
+        } else {
+            $(".collect").attr('disabled', 'true');
+        }
+    });
+
+    $("#manualswitch").change(function () {
+        if (this.checked) {
+            $(".manual").removeAttr('disabled');
+        } else {
+            $(".manual").attr('disabled', 'true');
+        }
+    });
+
+
 });

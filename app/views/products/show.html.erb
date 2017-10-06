@@ -28,6 +28,10 @@
     <td><%= Category.find(@product.category_id).name rescue nil %></td>
   </tr>
   <tr>
+    <td>Details</td>
+    <td><%= "Dimensions: #{@product.length} x #{@product.width} x #{@product.height}  , Weight: #{@product.weight} Grams" %></td>
+  </tr>
+  <tr>
     <td>Image</td>
     <td><%= image_tag(@product.image_url(:thumb).to_s) %></td>
     </tr>

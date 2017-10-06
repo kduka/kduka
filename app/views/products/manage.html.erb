@@ -20,7 +20,7 @@
     <td><%= p.active %></td>
     <td><%= Category.find(p.category_id).name rescue nil %></td>
     <td><%= p.quantity %></td>
-    <td><%= link_to "Show", store_product_path(p.store_id,p)%> | <span style="color: red;text-decoration: none;"><%= link_to "Delete", store_product_path(p.store_id,p), method:'delete', confirm:"Are you Sure you want to delete this product?"%></span></td>
+    <td><%= link_to "Edit", edit_store_product_path(p.store_id,p)%> | <%= link_to "Show", store_product_path(p.store_id,p)%> | <span style="color: red;text-decoration: none;"><%= link_to "Delete", store_product_path(p.store_id,p), method:'delete', confirm:"Are you Sure you want to delete this product?"%></span></td>
   </tr>
   <% end %>
   </tbody>

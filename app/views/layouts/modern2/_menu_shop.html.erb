@@ -26,18 +26,9 @@
                   <!-- <h4>Bath & Care</h4> -->
                   <ul class="multi-column-dropdown ">
                     <li><a class="list" href="<%= all_path %>"><h4>ALL PRODUCTS</h4></a>
-                    <% @store.category.each do |c| %>
+                    <% @store.category.where(active:true).each do |c| %>
                         <% if !c.nil? %>
-                            <li><a class="list" href="<%= product_category_path(c.id) %>"><h4><%= c.name %></h4></a>
-                              <% @sub = c.sub_category.all %>
-                              <% if !@sub.blank? %>
-                                  <ul>
-                                    <% @sub.each do |sub| %>
-                                        <li><a class="list" href=""><%= sub.name %></a></li>
-                                    <% end %>
-                                  </ul>
-                              <% end %>
-                            </li>
+                            <li><a class="list" href="<%= product_category_path(c.id) %>"><h4><%= c.name %></h4></a></li>
                         <% end %>
                     <% end %>
                   </ul>

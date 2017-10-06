@@ -25,9 +25,9 @@
         <%= f.label "About Page Text" %>
 
         <% if (@store.aboutpage_status == false) %>
-            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch', id: 'aboutpage_text', disabled: 'disabled' %>
+            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea', id: 'aboutpage_text', disabled: 'disabled' %>
         <% else %>
-            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch', id: 'aboutpage_text'  %>
+            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea', id: 'aboutpage_text'  %>
         <% end %>
       </div>
 

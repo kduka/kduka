@@ -14,7 +14,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.find(current_user.id)
-    @store = @user.store.create(store_params.merge(subdomain:santize(params[:store][:subdomain]),layout_id:1,store_color:'#fc711b',homepage_status:true,aboutpage_status:true))
+    @store = @user.store.create(store_params.merge(subdomain:santize(params[:store][:subdomain]),layout_id:1,store_color:'#fc711b',homepage_status:true,aboutpage_status:true,manual_delivery_status:true))
 
     if @store.save
       flash[:notice] = "Done"

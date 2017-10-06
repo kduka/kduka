@@ -66,6 +66,14 @@ class ProductsController < ApplicationController
     @products = @store.product.where(category_id: params[:id],active:true)
     @categories = @store.category.all
     set_shop
+    end
+  def subcategory
+    @order_item = current_order.order_items.new
+    @subdomain = request.subdomain[/(\w+)/]
+    @store = Store.where(subdomain: @subdomain).first
+    @products = @store.product.where(category_id: params[:id],active:true)
+    @categories = @store.category.all
+    set_shop
   end
 
   def new
@@ -137,7 +145,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :active, :image, :category_id, :quantity, :img1)
+    params.require(:product).permit(:name, :price, :active, :image, :category_id, :quantity, :img1, :length, :width, :height, :weight)
   end
 
 end

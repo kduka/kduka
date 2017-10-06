@@ -1,23 +1,27 @@
 Social Media Widgets
 Conditions for Delivery - Manual Delivery, Automated, Collection Point
-jquery to autosize Text areas
-Displaying by SubCategories
-Store CReation duplicate checks for url
 Hide Sendy CRedentials
 Coupons
-
 Stock Management
-Welcome Page and Instructions
+Welcome Page and Instructions - Percentage setups
 Admin Area
 Verifications Mail Registering
-Active Stores and Products
-Check IF product NIls
 IMage Quality
+Pagination
+Validation of Registration
+SSL Certificate
+Billing
 
 LATER
 immediate disable on add
+Displaying by SubCategories
 
 DONE
+Product description ad weight
+Check IF product NIls
+Active Stores and Products
+Store Creation duplicate checks for url
+jquery to autosize Text areas
 contact form
 home bannner
 page checks conditions
@@ -27,5 +31,18 @@ duplicate products
 Logo
 Business Location
 
+Featured Categories on homepage
 
-11060624
+
+1. Setup Category
+2. Setup Products
+3. Select Layout and Color
+4. Setup Delivery Options
+5. Setup Accounts
+
+
+JUSTO:
+
+Update Templates on Shipping instructions .. ensure radio button ID Names are okay
+Collection auto manual partial renders
+

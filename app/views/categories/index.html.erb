@@ -20,7 +20,7 @@
       	<td><%= num %>
       	<td><%= category.name %></td>
       	<td><%= category.active %></td>
-        <td><%= link_to 'Show', category_path(category) %> | <%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Destroy', category_url(category.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td> <%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Destroy', category_url(category.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% num = num+1 %>
     <% end %>

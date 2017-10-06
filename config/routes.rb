@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   put 'stores/update_pages'
   get '/all' => 'products#all'
   post '/stores/contact' => 'stores#contact'
+  get '/carts/auto' => 'carts#auto'
+  get '/carts/manual' => 'carts#manual'
+  get '/carts/collection' => 'carts#collection'
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}
   devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions'}
 
@@ -47,6 +50,8 @@ Rails.application.routes.draw do
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
   resources :store_campaigns
+  resources :coupons
+
 
   #match '/', to: 'stores#index', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
 

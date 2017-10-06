@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Coupons</h1>
+<% if !@coupons.nil? %>
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Number of use</th>
+      <th>Percentage</th>
+      <th>Expiry</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @coupons.each do |coupon| %>
+      <tr>
+        <td><%= coupon.code %></td>
+        <td><%= coupon.number_of_use %></td>
+        <td><%= coupon.percentage %></td>
+        <td><%= coupon.expiry %></td>
+        <td><%= link_to 'Show', coupon %></td>
+        <td><%= link_to 'Edit', edit_coupon_path(coupon) %></td>
+        <td><%= link_to 'Destroy', coupon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+    <p>You have no coupons</p>
+    <% end %>
+<br>
+
+<%= link_to 'New Coupon', new_coupon_path %>

@@ -1,0 +1,26 @@
+<%= form_for :coupon, url:{controller:'coupons',action:'create'}, method:'put' do |f| %>
+
+  <div class="field">
+    <%= f.label :code %>
+    <%= f.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number_of_use %>
+    <%= f.number_field :number_of_use %>
+  </div>
+
+  <div class="field">
+    <%= f.label :percentage %>
+    <%= f.number_field :percentage %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expiry %>
+    <%= f.date_select :expiry %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

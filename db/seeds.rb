@@ -53,3 +53,10 @@ Layout.create!([
 Store.find(1).update({
     layout_id:1
                     })
+
+Delivery.create!([
+    {type:'auto',description:'This is Automatic delivery facilitated a third party. You need to have a Sendy account and credentials. You will provide a pickup location for the goods and work with Sendy to deliver the goods'},
+    {type:'collection',description:'You will provide a location where a client will be able to pick up the goods they purchase from your store. This will work with pay on delivery'},
+    {type:'manual',description:'You will facilitate the delivery of the goods. The client will provide location and instructions'}
+
+                 ])
