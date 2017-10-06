@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get '/carts/auto' => 'carts#auto'
   get '/carts/manual' => 'carts#manual'
   get '/carts/collection' => 'carts#collection'
+  get '/carts/location' => 'carts#location'
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}
   devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions'}
 

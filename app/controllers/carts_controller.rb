@@ -77,5 +77,8 @@ class CartsController < ApplicationController
     no_layout
   end
 
+  def location
+    no_layout
+  end
 
 end
