@@ -5,24 +5,24 @@ class CouponsController < ApplicationController
   # GET /coupons.json
   def index
     @coupons = Coupon.all
-    no_layout
+    set_shop_show
   end
 
   # GET /coupons/1
   # GET /coupons/1.json
   def show
-    no_layout
+    set_shop_show
   end
 
   # GET /coupons/new
   def new
     @coupon = Coupon.new
-    no_layout
+    set_shop_show
   end
 
   # GET /coupons/1/edit
   def edit
-    no_layout
+    set_shop_show
   end
 
   # POST /coupons
@@ -63,6 +63,10 @@ class CouponsController < ApplicationController
       format.html { redirect_to coupons_url, notice: 'Coupon was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def generate
+  set_shop_show
   end
 
   private

@@ -1,0 +1,36 @@
+<div class="col-md-6 col-md-offset-3 containerw3layouts-agileits">
+
+
+  <h1>Resend Confirmation Email</h1>
+
+  <div class="aitsloginwthree w3layouts agileits">
+    <div class="col-md-12">
+      <% if !notice.nil? %>
+          <div class="alert alert-success" role="alert">
+            <strong><%= notice %></strong>
+          </div>
+      <% end %>
+      <% if !alert.nil? %>
+          <div class="alert alert-info" role="alert">
+            <strong><%= alert %></strong>
+          </div>
+      <% end %>
+
+    </div>
+    <br><br><br>
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Resend confirmation instructions" %>
+    </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 
-
+<div class="cats">
 <h1>Categories</h1>
 
 <table class="table">
@@ -20,7 +20,7 @@
       	<td><%= num %>
       	<td><%= category.name %></td>
       	<td><%= category.active %></td>
-        <td> <%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Destroy', category_url(category.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td> <% if category.featured == true %> <%= link_to 'Remove From Featured', category_unfeature_path(category), remote:true %> <% else %> <%= link_to 'Make Featured', category_feature_path(category), remote:true %> <% end %> | <%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Destroy', category_url(category.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% num = num+1 %>
     <% end %>
@@ -30,3 +30,4 @@
 <br>
 
 <%= link_to 'New Category', new_category_path %>
+</div>

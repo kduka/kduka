@@ -35,6 +35,7 @@ class ProductsController < ApplicationController
     @products = Product.where(store_id:@store.id,active:true).limit(3).order('id desc')
     @order_item = current_order.order_items.new
     @categories = @store.category.all
+    @featured = @store.category.where(featured:true)
     set_shop
       end
   end
@@ -71,7 +72,7 @@ class ProductsController < ApplicationController
     @order_item = current_order.order_items.new
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
-    @products = @store.product.where(category_id: params[:id],active:true)
+    @products = @store.product.where(category_id: params[:id],active:true).paginate(:page => params[:page], :per_page => 20)
     @categories = @store.category.all
     set_shop
   end
@@ -110,7 +111,7 @@ class ProductsController < ApplicationController
 
   def all
     get_store
-    @products = Product.where(store_id: @store.id)
+    @products = Product.where(store_id: @store.id,active:true).paginate(:page => params[:page], :per_page => 15)
     @order_item = current_order.order_items.new
     @categories = @store.category.all
     set_shop

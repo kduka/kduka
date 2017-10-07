@@ -1,22 +1,27 @@
-Social Media Widgets
-Conditions for Delivery - Manual Delivery, Automated, Collection Point
-Hide Sendy CRedentials
 Coupons
-Stock Management
 Welcome Page and Instructions - Percentage setups
 Admin Area
-Verifications Mail Registering
-IMage Quality
-Pagination
-Validation of Registration
+Validation of Registration Page
 SSL Certificate
-Billing
+Limit API key
+Passwords
+
+
+EMAILS & Text
+On Order - To client, To Vendor
+
 
 LATER
 immediate disable on add
 Displaying by SubCategories
+Social Media Widgets
 
 DONE
+Pagination
+Image Quality
+Verifications Mail Registering
+Conditions for Delivery - Manual Delivery, Automated, Collection Point
+Hide Sendy CRedentials
 Product description ad weight
 Check IF product NIls
 Active Stores and Products
@@ -45,4 +50,22 @@ JUSTO:
 
 Update Templates on Shipping instructions .. ensure radio button ID Names are okay
 Collection auto manual partial renders
+Featured
+Install JPEGOptim
 
+git clone https://github.com/tjko/jpegoptim.git
+zcat jpegoptim-1.4.4.tar.gz | tar xf -
+		cd jpegoptim-1.4.4
+		./configure
+		make
+		make strip
+		make install
+
+
+HALF
+Coupon generation and use - Code for multiple generation left
+Featured Categories work.. Refresh on switch left
+
+AFTER PAYMENT API
+Stock Management
+Billing - Renewals.

@@ -78,6 +78,9 @@ class CartsController < ApplicationController
   end
 
   def location
+    get_store
+    @lng = params[:lng]
+    @lat = params[:lat]
     no_layout
   end
 

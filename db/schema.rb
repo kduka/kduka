@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005185642) do
+ActiveRecord::Schema.define(version: 20171006195400) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20171005185642) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "description"
+    t.boolean  "featured"
     t.index ["store_id"], name: "index_categories_on_store_id", using: :btree
   end
 
@@ -47,14 +48,8 @@ ActiveRecord::Schema.define(version: 20171005185642) do
     t.date     "expiry"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.boolean  "active"
     t.index ["store_id"], name: "index_coupons_on_store_id", using: :btree
-  end
-
-  create_table "deliveries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "type"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -167,9 +162,7 @@ ActiveRecord::Schema.define(version: 20171005185642) do
     t.string   "store_color"
     t.boolean  "manual_delivery_status"
     t.text     "manual_delivery_instructions", limit: 65535
-    t.integer  "delivery_id"
     t.boolean  "collection_point_status"
-    t.index ["delivery_id"], name: "index_stores_on_delivery_id", using: :btree
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
     t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true, using: :btree
@@ -218,7 +211,6 @@ ActiveRecord::Schema.define(version: 20171005185642) do
   add_foreign_key "orders", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"
-  add_foreign_key "stores", "deliveries"
   add_foreign_key "stores", "layouts"
   add_foreign_key "sub_categories", "categories"
 end

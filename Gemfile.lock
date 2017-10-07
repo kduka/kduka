@@ -54,6 +54,9 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    carrierwave-imageoptimizer (1.4.0)
+      carrierwave (>= 0.8, < 2.0)
+      image_optimizer (~> 1.6)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -73,6 +76,7 @@ GEM
     erubis (2.7.0)
     excon (0.58.0)
     execjs (2.7.0)
+    ffi (1.9.18-x86-mingw32)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.41.0)
@@ -227,6 +231,7 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.4)
+    image_optimizer (1.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.3)
     jbuilder (2.7.0)
@@ -316,6 +321,11 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rest-client (2.0.2-x86-mingw32)
+      ffi (~> 1.9)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     sass (3.4.24)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -358,11 +368,13 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
+    unf_ext (0.0.7.4-x86-mingw32)
     warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    will_paginate (3.1.6)
     xml-simple (1.1.5)
 
 PLATFORMS
@@ -373,6 +385,7 @@ DEPENDENCIES
   bootstrap-colorpicker-rails
   bootstrap-sass
   carrierwave
+  carrierwave-imageoptimizer
   coffee-rails
   devise
   execjs
@@ -397,6 +410,7 @@ DEPENDENCIES
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)
+  will_paginate
 
 RUBY VERSION
    ruby 2.4.0p0

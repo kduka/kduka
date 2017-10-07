@@ -16,6 +16,8 @@ gem 'mysql2'
 gem 'nprogress-rails'
 gem 'fog'
 gem 'bootstrap-colorpicker-rails'
+gem 'carrierwave-imageoptimizer'
+gem 'will_paginate'
 
 
 ruby "2.4.0"

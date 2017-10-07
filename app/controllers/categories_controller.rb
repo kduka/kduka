@@ -65,6 +65,16 @@ class CategoriesController < ApplicationController
     flash[:notice] =  'Category was successfully deleted.'
   end
 
+  def feature
+  @cat = Category.find(params[:id])
+  @cat.update(featured:true)
+  end
+
+  def unfeature
+    @cat = Category.find(params[:id])
+    @cat.update(featured:false)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category

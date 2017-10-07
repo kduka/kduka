@@ -7,25 +7,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-
-
   <%= csrf_meta_tags %>
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <% Dir.foreach("public/stylesheets/admin") do |item|
     next if item == '.' or item == '..' %>
-      <%= stylesheet_link_tag "admin/#{item}" %>
+      <%= stylesheet_link_tag    "admin/#{item}" %>
   <% end %>
   <% Dir.foreach("public/javascripts/admin") do |item|
     next if item == '.' or item == '..' %>
-      <%= javascript_include_tag "admin/#{item}" %>
+      <%= javascript_include_tag   "admin/#{item}" %>
   <% end %>
-
   <title>Home</title>
   <script type="application/x-javascript">
-      addEventListener("load", function () {
+      addEventListener("load", function() {
           setTimeout(hideURLbar, 0);
       }, false);
       function hideURLbar() {
@@ -33,33 +30,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       }
   </script>
   <script type="text/javascript">
-      $(document).ready(function () {
+      $(document).ready(function() {
           $('#demo-pie-1').pieChart({
-              barColor: '#3bb2d0',
-              trackColor: '#eee',
-              lineCap: 'round',
-              lineWidth: 8,
-              onStep: function (from, to, percent) {
+              barColor : '#3bb2d0',
+              trackColor : '#eee',
+              lineCap : 'round',
+              lineWidth : 8,
+              onStep : function(from, to, percent) {
                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
               }
           });
 
           $('#demo-pie-2').pieChart({
-              barColor: '#fbb03b',
-              trackColor: '#eee',
-              lineCap: 'butt',
-              lineWidth: 8,
-              onStep: function (from, to, percent) {
+              barColor : '#fbb03b',
+              trackColor : '#eee',
+              lineCap : 'butt',
+              lineWidth : 8,
+              onStep : function(from, to, percent) {
                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
               }
           });
 
           $('#demo-pie-3').pieChart({
-              barColor: '#ed6498',
-              trackColor: '#eee',
-              lineCap: 'square',
-              lineWidth: 8,
-              onStep: function (from, to, percent) {
+              barColor : '#ed6498',
+              trackColor : '#eee',
+              lineCap : 'square',
+              lineWidth : 8,
+              onStep : function(from, to, percent) {
                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
               }
           });
@@ -69,6 +66,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </script>
 </head>
 <body>
+
 <div class="page-container">
   <!--/content-inner-->
   <div class="left-content">
@@ -81,15 +79,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <div class="header_top">
             <div class="top_right">
               <ul>
-                <h2>
-                  <li><%= @store.name %></li>
-                </h2>
-                <li><%= link_to "Visit "+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank' %> </li>
+                <li>
+                  <a href=""><%= current_user.name %></a>
+                </li>
+                <li><%= link_to "LOGIN INTO STORE", new_store_session_path, target:'_blank'%></li>
               </ul>
             </div>
             <div class="top_left">
-              <span style="color:#fff"><i class="fa fa-user"></i> <%= current_store.email %></span> |
-              <i class="fa fa-user"></i><%= link_to "Logout", destroy_store_session_path, method: 'delete' %></h2>
+              <span style="color:#fff"><i class="fa fa-user" ></i> <%= current_user.email%></span> | <i class="fa fa-user" ></i><%= link_to "Logout", destroy_user_session_path , method:'delete' %></h2>
             </div>
             <div class="clearfix"></div>
           </div>
@@ -121,8 +118,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <!-- //header-ends -->
 
       <!--content-->
-
-      <div class="content">
+      <div class="row">
         <div class="col-md-12">
           <% if !notice.nil? %>
               <div class="alert alert-success" role="alert">
@@ -136,6 +132,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <% end %>
 
         </div>
+      </div>
+      <div class="content">
+
         <%= yield %>
       </div>
       <!--content-->
@@ -150,76 +149,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </header>
     <div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
     <div class="menu">
-      <ul id="menu">
-
+      <ul id="menu" >
         <li>
-          <a href="<%= store_path(@store) %>"><i class="fa fa-tachometer"></i> <span>Overview</span></a>
+          <a href="<%= new_user_session_path %>"><i class="fa fa-tachometer"></i> <span>Home</span></a>
         </li>
-        <li id="menu-academico">
-          <a href="#"><i class="fa fa-product-hunt"></i> <span> Products</span></a>
-          <ul id="menu-academico-sub">
-            <li id="menu-academico-avaliacoes">
-              <a href="<%= products_manage_path %>">Manage Products</a>
+        <li id="menu-academico" >
+          <a href="#"><i class="fa fa-table"></i> <span> Stores</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+          <ul id="menu-academico-sub" >
+            <li id="menu-academico-avaliacoes" >
+              <a href="<%= users_stores_path %>">Manage Stores</a>
             </li>
 
-            <li id="menu-academico-avaliacoes">
-              <% if !Category.where(store_id: current_store.id).blank? %>
-                  <a href="<%= new_store_product_path(@store) %>">Add Product</a>
-              <% end %>
+            <li id="menu-academico-avaliacoes" >
+              <a href="<%= new_store_registration_path %>">New Store</a>
             </li>
           </ul>
         </li>
-        <li id="menu-academico">
-          <a href="#"><i class="fa fa-dot-circle-o"></i> <span> Categories</span></a>
-          <ul id="menu-academico-sub">
-            <li id="menu-academico-avaliacoes">
-              <a href="<%= categories_path %>">View Categories</a>
-            </li>
-
-            <li id="menu-academico-avaliacoes">
-
-              <a href="<%= new_category_path(@store) %>">Add Category</a>
-
-            </li>
-
-          </ul>
+        <li>
+          <a href="#"><i class="fa fa-credit-card"></i> <span>Billing</span></a>
         </li>
         <li>
-          <a href="<%= store_orders_url %>"><i class="fa fa-shopping-bag"></i> <span>Orders</span></a>
-        </li>
-        <li>
-          <a href="<%= stores_theme_path %>"><i class="fa fa-window-maximize"></i> <span>Layouts</span></a>
-        </li>
-        <li>
-          <a href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> <span>Pages</span></a>
-        </li>
-        <li id="menu-academico">
-          <a href="#"><i class="fa fa-file-text"></i> <span>Coupons</span></a>
-          <ul id="menu-academico-sub">
-            <li id="menu-academico-avaliacoes">
-              <a href="<%= coupons_path %>">Create Coupon</a>
-            </li>
-            <li id="menu-academico-avaliacoes">
-              <a href="<%= coupons_generate_path %>">Generate Multiple Coupons</a>
-            </li>
-          </ul>
-        </li>
-        <li id="menu-academico">
-          <a href="#"><i class="fa fa-gears"></i> <span> Account </span></a>
-          <ul id="menu-academico-sub">
-            <li id="menu-academico-avaliacoes">
-              <a href="<%= stores_social_path %>">Social Media</a>
-            </li>
-
-            <li id="menu-academico-avaliacoes">
-              <a href="<%= edit_store_path(@store) %>">Edit Store Settings</a>
-            </li>
-
-            <li id="menu-academico-avaliacoes">
-              <a href="<%= stores_deliver_path %>">Delivery Settings</a>
-            </li>
-
-          </ul>
+          <a href="<%= store_account_path %>"><i class="fa fa-gears"></i> <span>Account</span></a>
         </li>
       </ul>
     </div>
@@ -229,17 +179,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
     var toggle = true;
 
-    $(".sidebar-icon").click(function () {
+    $(".sidebar-icon").click(function() {
         if (toggle) {
             $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
             $("#menu span").css({
-                "position": "absolute"
+                "position" : "absolute"
             });
         } else {
             $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-            setTimeout(function () {
+            setTimeout(function() {
                 $("#menu span").css({
-                    "position": "relative"
+                    "position" : "relative"
                 });
             }, 400);
         }
