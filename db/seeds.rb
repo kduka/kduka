@@ -46,8 +46,7 @@ Layout.create!([
                    {name: "modern", description: "Modern Theme", d_name: "Modern"},
                    {name: "electronic", description: "Electronic Theme", d_name: "Electronic Store"},
                    {name: "bigstore", description: "Big Store", d_name: "Big Store"},
-                   {name: "elite", description: "Elite Store", d_name: "Elite Store"},
-                   {name: "modern2", description: "Modern Theme 2", d_name: "Modern Theme 2"}
+                   {name: "elite", description: "Elite Store", d_name: "Elite Store"}
                ])
 
 Store.find(1).update({
