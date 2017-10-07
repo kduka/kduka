@@ -20,7 +20,7 @@
 <!-- /new_arrivals -->
 <div class="new_arrivals_agile_w3ls_info">
   <div class="container">
-      <h3 class="wthree_text_info">Our <span>Products</span></h3>
+      <h3 class="wthree_text_info">Latest <span>Products</span></h3>
     <div class="col-md-12">
         <div class="resp-tabs-container">
         <!--/tab_one-->
@@ -41,3 +41,27 @@
     </div>
   </div>
 <!-- //new_arrivals -->
+<% if !@featured.nil? %>
+    <% @featured.each do |category| %>
+        <div class="new_arrivals_agile_w3ls_info">
+          <div class="container">
+              <h3 class="wthree_text_info"><%= category.name %></h3>
+            <div class="col-md-12">
+                <div class="resp-tabs-container">
+                <!--/tab_one-->
+                  <div class="tab1">
+                    <% @cat_products = Product.where(active:true,category_id:category.id).limit(3).order('id desc') %>
+                    <% if !@cat_products.nil? %>
+                        <% @cat_products.each do |product| %>
+                            <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+                        <% end %>
+                    <% end %>
+                    <div class="clearfix"></div>
+                  </div><br><br><br>
+                  <a href="<%= product_category_path(category.id) %>" class="col-md-4 col-md-offset-4 col-sm-12 col-xs-12 btn btn-default">View More from <%= category.name %></a>
+                </div>
+              </div>
+            </div>
+          </div>
+    <% end %>
+<% end %>
