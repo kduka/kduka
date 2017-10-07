@@ -185,7 +185,7 @@ end
   end
 
 def setup
-  @store= Store.current
+  #@store= Store.current
 end
   private
 
