@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
   def manage
     @categories = Category.where(store_id: current_store.id)
     @store = Store.find(current_store.id)
-    @product = @store.product.all
+    @product = @store.product.all.order('id desc')
     set_shop_show
   end
 
@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
     @order_item = current_order.order_items.new
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
-    @products = @store.product.where(category_id: params[:id],active:true).paginate(:page => params[:page], :per_page => 20)
+    @products = @store.product.where(category_id: params[:id],active:true).paginate(:page => params[:page], :per_page => 20).order('id desc')
     @categories = @store.category.all
     set_shop
     end
@@ -72,7 +72,7 @@ class ProductsController < ApplicationController
     @order_item = current_order.order_items.new
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
-    @products = @store.product.where(category_id: params[:id],active:true)
+    @products = @store.product.where(category_id: params[:id],active:true).order('id desc')
     @categories = @store.category.all
     set_shop
   end
@@ -111,7 +111,7 @@ class ProductsController < ApplicationController
 
   def all
     get_store
-    @products = Product.where(store_id: @store.id,active:true).paginate(:page => params[:page], :per_page => 15)
+    @products = Product.where(store_id: @store.id,active:true).paginate(:page => params[:page], :per_page => 15).order('id desc')
     @order_item = current_order.order_items.new
     @categories = @store.category.all
     set_shop
