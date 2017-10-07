@@ -1,0 +1,12 @@
+<% if @store.auto_delivery_status == true %>
+    <div class="form-group">
+      <label> Delivery Location</label>
+      <input id="delivery_location" type="textbox" value="" class='form-control' onkeyup="locate();" placeholder='Delivery Location'/>
+      <span style="color:green;" class="price"></span>
+      <input id="long" name="long" type="hidden" value="">
+      <input id="lat" name="lat" type="hidden" value="">
+      <div id="suggesstion-box"></div>
+      <div id="map"></div><br><br>
+    </div>
+    <p></p>
+<% end %>

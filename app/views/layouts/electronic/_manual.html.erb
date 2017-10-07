@@ -1,0 +1,15 @@
+
+<% if @store.manual_delivery_status == true %>
+    <div class="form-group">
+      <label>Please read the following instructions</label>
+      <p></p>
+      <span style="color:green;" class="price"><%= @store.manual_delivery_instructions %></span>
+    </div>
+    <p></p>
+    <div class="form-group">
+      <label>Order Instructions</label>
+      <textarea type="text" value="" class='form-control' >Tell us where you want your goods delivered</textarea>
+
+    </div>
+    <p></p>
+<% end %>
