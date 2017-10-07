@@ -20,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     next if item == '.' or item == '..' %>
       <%= javascript_include_tag   "admin/#{item}" %>
   <% end %>
-  <title>Home</title>
+  <title>Admins</title>
   <script type="application/x-javascript">
       addEventListener("load", function() {
           setTimeout(hideURLbar, 0);
@@ -80,13 +80,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="top_right">
               <ul>
                 <li>
-                  <a href=""><%= current_user.name %></a>
+                  <a href=""><%= current_admin.email %></a>
                 </li>
-                <li><%= link_to "LOGIN INTO STORE", new_store_session_path, target:'_blank'%></li>
+
               </ul>
             </div>
             <div class="top_left">
-              <span style="color:#fff"><i class="fa fa-user" ></i> <%= current_user.email%></span> | <i class="fa fa-user" ></i><%= link_to "Logout", destroy_user_session_path , method:'delete' %></h2>
+              <span style="color:#fff"><i class="fa fa-user" ></i> <%= current_admin.email%></span> | <i class="fa fa-user" ></i><%= link_to "Logout", destroy_admin_session_path , method:'delete' %></h2>
             </div>
             <div class="clearfix"></div>
           </div>
@@ -151,25 +151,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="menu">
       <ul id="menu" >
         <li>
-          <a href="<%= new_user_session_path %>"><i class="fa fa-tachometer"></i> <span>Home</span></a>
-        </li>
-        <li id="menu-academico" >
-          <a href="#"><i class="fa fa-table"></i> <span> Stores</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-          <ul id="menu-academico-sub" >
-            <li id="menu-academico-avaliacoes" >
-              <a href="<%= users_stores_path %>">Manage Stores</a>
-            </li>
-
-            <li id="menu-academico-avaliacoes" >
-              <a href="<%= new_store_registration_path %>">New Store</a>
-            </li>
-          </ul>
+          <a href="<%= admins_path %>"><i class="fa fa-home"></i> <span>Home</span></a>
         </li>
         <li>
-          <a href="#"><i class="fa fa-credit-card"></i> <span>Billing</span></a>
-        </li>
-        <li>
-          <a href="<%= store_account_path %>"><i class="fa fa-gears"></i> <span>Account</span></a>
+          <a href="<%= edit_admin_registration_path %>"><i class="fa fa-gears"></i> <span>Account</span></a>
         </li>
       </ul>
     </div>

@@ -1,8 +1,10 @@
 class AdminsController < ApplicationController
-  def ndeto
+  before_action :authenticate_admin!
+
+  def index
     @stores = Store.all
     @users = User.all
-    render :layout => false
+    super_admin
   end
   
 end

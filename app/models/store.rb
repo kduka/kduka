@@ -5,6 +5,7 @@ class Store < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :product, :dependent => :destroy
   has_many :category, :dependent => :destroy
+  has_many :coupon, :dependent => :destroy
 
   mount_uploader :banner, BannerUploader
   mount_uploader :logo, LogoUploader

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
   match '/', to: 'products#index', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
   # get 'home/user'
   #
@@ -17,7 +16,7 @@ Rails.application.routes.draw do
   get 'store/account' => 'stores#account'
   get 'users/home' => 'users#home'
   get 'users/stores' => 'users#stores'
-  get 'admins/ndeto' => 'admins/ndeto'
+  get '/admins' => 'admins#index'
   get 'stores/social' => 'stores#social'
   get 'products/view/(:sku)' => 'products#view', as: 'product_view'
   get 'stores/theme' => 'stores#layouts'
@@ -40,9 +39,10 @@ Rails.application.routes.draw do
   get '/coupons/generate' => 'coupons#generate'
   get '/categories/feature/(:id)' => 'categories#feature', as: 'category_feature'
   get '/categories/unfeature/(:id)' => 'categories#unfeature', as: 'category_unfeature'
+  post '/coupons/create_coupons' => 'coupons#create_coupons'
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}
   devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'}
-
+  devise_for :admins, :controllers => {registrations: 'admins_registrations', sessions: 'admins_sessions'}
   resources :stores do
     resources :products
   end

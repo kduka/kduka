@@ -32,11 +32,11 @@ class CouponsController < ApplicationController
 
     respond_to do |format|
       if @coupon.save
-        format.html { redirect_to @coupon, notice: 'Coupon was successfully created.' }
-        format.json { render :show, status: :created, location: @coupon }
+        format.html {redirect_to @coupon, notice: 'Coupon was successfully created.'}
+        format.json {render :show, status: :created, location: @coupon}
       else
-        format.html { render :new }
-        format.json { render json: @coupon.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @coupon.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -46,11 +46,11 @@ class CouponsController < ApplicationController
   def update
     respond_to do |format|
       if @coupon.update(coupon_params)
-        format.html { redirect_to @coupon, notice: 'Coupon was successfully updated.' }
-        format.json { render :show, status: :ok, location: @coupon }
+        format.html {redirect_to @coupon, notice: 'Coupon was successfully updated.'}
+        format.json {render :show, status: :ok, location: @coupon}
       else
-        format.html { render :edit }
-        format.json { render json: @coupon.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @coupon.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -60,16 +60,27 @@ class CouponsController < ApplicationController
   def destroy
     @coupon.destroy
     respond_to do |format|
-      format.html { redirect_to coupons_url, notice: 'Coupon was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to coupons_url, notice: 'Coupon was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
   def generate
-  set_shop_show
+    set_shop_show
   end
 
-  private
+  def create_coupons
+    i = 0
+    num = params[:number].to_i
+    @store = Store.find(current_store.id)
+    while i < num do
+      @store.coupon.create(coupon_params.merge(code:rand))
+      i += 1
+    end
+    redirect_to(coupons_path)
+  end
+
+    private
     # Use callbacks to share common setup or constraints between actions.
     def set_coupon
       @coupon = Coupon.find(params[:id])
@@ -79,4 +90,8 @@ class CouponsController < ApplicationController
     def coupon_params
       params.require(:coupon).permit(:code, :number_of_use, :percentage, :expiry)
     end
-end
+
+    def rand
+      ref = [*'A'..'Z', *"0".."9"].sample(4).join
+    end
+  end

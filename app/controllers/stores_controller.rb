@@ -7,6 +7,7 @@ class StoresController < ApplicationController
   # GET /stores
   # GET /stores.json
   def index
+    @setup = setup
     @store = Store.where(user_id: current_store.id)
     @products = Product.where(store_id: current_store.id)
     set_shop_show
@@ -183,7 +184,9 @@ end
     redirect_to(request.referer)
   end
 
-
+def setup
+  @store= Store.current
+end
   private
 
   # Use callbacks to share common setup or constraints between actions.
