@@ -13,8 +13,12 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
         <ul class="nav navbar-nav">
+          <% if @store.homepage_status == true %>
           <li><a href="<%= root_path %>" class="act myclass"><i class="fa fa-home"></i> Home</a></li>
+          <% end %>
+          <% if @store.homepage_status == true %>
           <li><a href="<%= about_path %>" class="myclass">About Us</a></li>
+          <% end %>
           <!-- Mega Menu -->
           <li class="dropdown">
             <a href="#" class="dropdown-toggle myclass" data-toggle="dropdown">Products <b class="caret"></b></a>

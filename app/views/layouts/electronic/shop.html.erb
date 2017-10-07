@@ -74,6 +74,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     .w3_hs_bottom ul li a, .flex_ecommerce a {
       background: <%= @store.store_color %> !important;
     }
+    .navigation {
+    background: #000;
+    }
+    .w3_footer_grid h3:after {
+    background: <%= @store.store_color %> !important;
+    }
   </style>
   <!--Custom Colors-->
 </head>
@@ -139,12 +145,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   }
 
 </style>
-<div class="footer" style="background:#3c43a4">
+<div class="footer" style="background:#000">
   <div class="container">
     <div class="w3_footer_grids">
 
       <div class="col-md-4 w3_footer_grid">
-        <h3>Quick Links</h3>
+        <h3 style="color:#fff">Quick Links</h3>
         <ul class="info">
           <li class="mylink"><a class="mylink myclass" href="<%= root_path %>">Home</a></li>
           <li class="mylink"><a class="mylink myclass" href="<%= about_path %>">About Us</a></li>
@@ -153,7 +159,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </ul>
       </div>
       <div class="col-md-4 w3_footer_grid">
-        <h3>Contact</h3>
+        <h3 style="color:#fff">Contact</h3>
         <ul class="address">
           <li class="mylink">
             <i style="color:#fff" class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a class="mylink myclass" href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a>
@@ -163,7 +169,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </ul>
       </div>
       <div class="col-md-4 w3_footer_grid">
-        <h3>Social Media</h3>
+        <h3 style="color:#fff">Social Media</h3>
         <div class="agileits_social_button">
           <ul>
             <% if !@store.facebook.blank? %>
