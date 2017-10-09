@@ -298,6 +298,8 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
+    rails_autolink (1.1.6)
+      rails (> 3.1)
     rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.5)
     railties (5.0.2)
@@ -401,6 +403,7 @@ DEPENDENCIES
   rack-cors
   rails (= 5.0.2)
   rails_12factor
+  rails_autolink
   rest-client
   sdoc (~> 0.4.0)
   seed_dump

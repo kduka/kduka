@@ -6,5 +6,10 @@ class AdminsController < ApplicationController
     @users = User.all
     super_admin
   end
+
+  def layouts
+    @layouts = Layout.all
+    super_admin
+  end
   
 end

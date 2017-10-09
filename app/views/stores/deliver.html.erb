@@ -5,7 +5,7 @@
   <%= form_for :store, :url => {controller: 'stores', action: 'update_delivery'}, method: 'put' do |f| %>
 
       <div class="form-group">
-        <%= f.label "Disable Automatic Delivery Services" %>
+        <%= f.label "Enable Automatic Delivery Services" %>
         <%= f.check_box :auto_delivery_status, id: 'deliveryswitch' %>
       </div>
 

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Layouts</h1>
+
+<table id="data-tables" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Display name</th>
+      <th>Description</th>
+      <th>Preview</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @layouts.each do |layout| %>
+      <tr>
+        <td><%= layout.name %></td>
+        <td><%= layout.d_name %></td>
+        <td><%= layout.description %></td>
+        <td><%= image_tag(layout.preview_url(:thumb).to_s) %></td>
+        <td><%= link_to 'Show', layout %></td>
+        <td><%= link_to 'Edit', edit_layout_path(layout) %></td>
+        <td><%= link_to 'Destroy', layout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Layout', new_layout_path %>

@@ -1,0 +1,27 @@
+<% if !@important.blank? %>
+    <div style="margin-top:1em" class="alert alert-danger">
+      <h2> Hello, you need to setup the following before you can activate your store </h2>
+      <% @important.each do |k,m| %>
+          <p><%= "#{k}. " %><%= m.html_safe %></p>
+      <% end %>
+    </div>
+<% end %>
+
+<div class="text-center col-md-6 col-md-offset-3">
+
+  <% if @store.active == false %>
+      <h3> Click the Button Below to Activate your store </h3>
+  <%= form_for :store, :url => {controller: 'stores', action: 'activate'} do |f| %>
+          <% if @important.empty? == true %>
+          <p><%= f.submit 'Activate', class: 'btn btn-lg btn-success' %></p>
+          <% else %>
+              <p><%= f.submit 'Activate', class: 'btn btn-lg btn-success', disabled:'disabled' %></p>
+              <% end %>
+  <% end %>
+  <% else %>
+      <h3> Click the Button Below to De-Activate your store </h3>
+      <%= form_for :store, :url => {controller: 'stores', action: 'deactivate'} do |f| %>
+          <p><%= f.submit 'Deactivate', class: 'btn btn-lg btn-danger' %>
+      <% end %>
+  <% end %>
+</div>

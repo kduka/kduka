@@ -40,6 +40,10 @@ Rails.application.routes.draw do
   get '/categories/feature/(:id)' => 'categories#feature', as: 'category_feature'
   get '/categories/unfeature/(:id)' => 'categories#unfeature', as: 'category_unfeature'
   post '/coupons/create_coupons' => 'coupons#create_coupons'
+  get '/stores/active' => 'stores#active'
+  post '/stores/activate' => 'stores#activate'
+  post '/stores/deactivate' => 'stores#deactivate'
+  get '/admins/layouts' => 'admins#layouts'
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}
   devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'}
   devise_for :admins, :controllers => {registrations: 'admins_registrations', sessions: 'admins_sessions'}
@@ -55,6 +59,7 @@ Rails.application.routes.draw do
   resources :order_items, only: [:create, :update, :destroy]
   resources :store_campaigns
   resources :coupons
+  resources :layouts
 
 
   #match '/', to: 'stores#index', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]

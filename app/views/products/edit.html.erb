@@ -1,6 +1,20 @@
 <div class="col-md-6 col-md-offset-3">
 <h1>Editing Product</h1>
 
+  <% if @product.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@product.errors.count, "error") %> prohibited
+          this article from being saved:
+        </h2>
+        <ul>
+          <% @product.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
 <%= form_for :product,  :url => {:controller => 'products', :action => 'update'},method:'put' do |f| %>
     <% if @product.errors.any? %>
         <div id="error_explanation">
@@ -28,7 +42,7 @@
     
     <div class="form-group">
       Category
-	<%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name'),{} ,{:class=>'form-control'} %>
+	<%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name'),{} ,{:class=>'form-control'}, required:'required' %>
     </div>
 
 

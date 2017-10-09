@@ -3,7 +3,9 @@ Validation of Registration Page
 SSL Certificate
 Limit API key
 Passwords
-
+SHow Model Errors
+Enforce Not Null's in delivery settings- Always ensure one is checked
+Separate Alerts
 
 EMAILS & Text
 On Order - To client, To Vendor
@@ -43,7 +45,7 @@ Featured Categories on homepage
 2. Setup Products
 3. Select Layout and Color
 4. Setup Delivery Options
-5. Setup Accounts
+5. Setup Social Accounts
 
 
 JUSTO:

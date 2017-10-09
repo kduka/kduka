@@ -1,1 +1,15 @@
-STATS AND STUFF WILL COME HERE
+<% if !@setup.blank? %>
+    <div class="alert alert-info">
+
+      <br>
+      <strong>
+
+        <% @setup.each do |k,m| %>
+            <H3><%= "#{k}. " %><%= m.html_safe %></H3>
+        <% end %>
+      </strong>
+    </div>
+<% end %>
+
+<p>TOTAL STORE SALES</p>
+<p>ORDERS MADE</p>

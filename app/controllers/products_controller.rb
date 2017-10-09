@@ -87,8 +87,6 @@ class ProductsController < ApplicationController
     @store = Store.find(current_store.id)
     sku = [*'A'..'Z', *"0".."9"].sample(8).join
     @product = @store.product.create(product_params.merge(sku: sku))
-
-
     if @product.save
       flash[:notice] = "New Product Created!"
       redirect_to(request.referer)

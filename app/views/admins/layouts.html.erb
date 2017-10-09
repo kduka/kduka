@@ -1,0 +1,29 @@
+
+<h1>Coupons</h1>
+<% if !@layouts.nil? %>
+    <table id="data-tables" class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Preview</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @layouts.each do |l| %>
+          <tr>
+            <td><%= l.d_name %></td>
+            <td><%= image_tag(l.preview_url(:thumb).to_s) %></td>
+            <td><%= link_to 'Show', l %></td>
+            <td><%= link_to 'Edit', edit_layout_path(l) %></td>
+            <td><%= link_to 'Destroy', l, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <p>You have no Layouts</p>
+<% end %>
+<br>
+
+<%= link_to 'New Layout', new_layout_path %>

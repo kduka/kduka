@@ -1,7 +1,62 @@
 
+<% if !@setup.blank? %>
+    <div style="margin-top:1em" class="alert alert-info">
+      <h2> Here are some steps to help you setup your store! </h2>
+        <br>
+      <strong>
+
+      <% @setup.each do |k,m| %>
+          <p><%= "#{k}. " %><%= m.html_safe %></p>
+      <% end %>
+      </strong>
+    </div>
+<% end %>
 
 
-<p><strong>Total Products : <%= @products.count rescue nil%></strong></p>
-<p><strong>Active : <%= @store.active rescue nil %></strong></p>
+
+<% if !@important.blank? %>
+    <div style="margin-top:1em" class="alert alert-danger">
+      <h2> Hello, you need to setup the following before you can activate your store </h2>
+      <% @important.each do |k,m| %>
+          <p><%= "#{k}. " %><%= m.html_safe %></p>
+      <% end %>
+    </div>
+<% end %>
+
+<p><strong>Total Products : <%= @products.count %></strong></p>
+<p><strong>Active : <%= @store.active %></strong></p>
+
+<% if !@products.blank? %>
+    <table id="myTable" class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Active</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @products.each do |p| %>
+          <tr>
+            <td><%= p.name %></td>
+            <td><%= p.price %></td>
+            <td><%= p.active %></td>
+            <td><%= Category.find(p.category_id).name rescue nil %></td>
+            <td><%= p.quantity %></td>
+            <td><%= link_to "Show", store_product_path(p.store_id,p)%> | <span style="color: red;text-decoration: none;"><%= link_to "Delete", store_product_path(p.store_id,p), method:'delete', confirm:"Are you Sure you want to delete this product?"%></span></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+<% else %>
+
+    <p>You dont have any Products in this store yet</p>
+
+<% end %>
+
 
 

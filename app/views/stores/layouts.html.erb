@@ -1,17 +1,30 @@
-<div class="col-md-6 col-md-offset-3">
-<%= form_for :store, :url => {controller:'stores', action:'update_layout'}, method:'put' do |f|%>
+<div class="row">
+  <%= form_for :store, :url => {controller: 'stores', action: 'update_layout'}, method: 'put' do |f| %>
+      <% @layouts.each do |l| %>
+          <div style="margin-top:1em" class="col-md-3 text-center">
 
-<div class="form-group">
-	Layout
-	<%= f.select :layout_id, options_from_collection_for_select(Layout.all, 'id','d_name'),{} ,{:class=>'form-control'} %>
-</div>
-<p></p>
-      <div class="form-group">
-        Store Color
-        <%= f.text_field :store_color, :class=>'form-control colorpicker' %>
+            <div style="min-height: 300px;border-style: solid;border-color:#b52e31;margin:3px;background:url('<%= l.preview_url(:thumb).to_s %>');background-size: contain"></div>
+            <label>
+              <% if l.id == @store.layout_id %>
+                  <input name="layout" type="radio" value="<%= l.id %>" checked> <%= l.d_name %>
+              <% else %>
+                  <input name="layout" type="radio" value="<%= l.id %>"> <%= l.d_name %>
+              <% end %>
+            </label>
+          </div>
+      <% end %>
+
       </div>
-      <p></p>
-
-<p><%= f.submit 'Save', class:'btn btn-primary' %>
-<% end %>
-</div>
+      <br><br>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <p></p>
+          <div class="form-group">
+            Store Color
+            <%= f.text_field :store_color, :class => 'form-control colorpicker' %>
+          </div>
+          <p></p>
+          <p><%= f.submit 'Save', class: 'btn btn-primary' %>
+  <% end %>
+  </div>
+  </div>

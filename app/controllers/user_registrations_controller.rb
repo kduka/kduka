@@ -11,7 +11,7 @@ class UserRegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @user = User.create(user_params)
+    @user = User.create(user_params.merge(init:false))
 
     if @user.save
       flash[:notice] = "Registration Successful!"

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 =begin
 protect_from_forgery with: :exception
 =end
-  helper_method :current_order, :sign, :sub
+  helper_method :current_order, :sign, :sub, :important
 
   def after_sign_in_path_for(resource)
     case resource
@@ -117,5 +117,7 @@ end
   def no_layout
     render layout: false
   end
+
+
 
 end
