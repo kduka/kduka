@@ -6,10 +6,10 @@ class ProductsController < ApplicationController
   def index
     get_store
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+      redirect_to("http://www.kduka.co.ke/users/home") and return
     elsif @store.active == !true
       flash[:alert] = "Store is not active, please contact owner"
-      redirect_to("http://www.kduka.co.ke/stores/sign_in") and return
+      redirect_to("http://www.kduka.co.ke/stores/home") and return
     else
       if @store.homepage_status == true
         @products = Product.where(store_id: @store.id,active:true)
@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
     get_store
 
     if @store.blank?
-      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+      redirect_to("http://www.kduka.co.ke/users/home") and return
     else
     @products = Product.where(store_id:@store.id,active:true).limit(3).order('id desc')
     @order_item = current_order.order_items.new

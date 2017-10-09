@@ -84,7 +84,7 @@ end
     @store = Store.where(subdomain: @subdomain).first
 
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke/users/sign_in") and return
+      redirect_to("http://www.kduka.co.ke/users/home") and return
     end
     render :layout => "#{Layout.find(@store.layout_id).name}/shop"
 
