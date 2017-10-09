@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except:[:ndeto]
 
   def index
     @stores = Store.all
@@ -10,6 +10,10 @@ class AdminsController < ApplicationController
   def layouts
     @layouts = Layout.all
     super_admin
+  end
+
+  def ndeto
+
   end
   
 end
