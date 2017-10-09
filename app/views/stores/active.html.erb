@@ -1,11 +1,16 @@
-<% if !@important.blank? %>
-    <div style="margin-top:1em" class="alert alert-danger">
-      <h2> Hello, you need to setup the following before you can activate your store </h2>
-      <% @important.each do |k,m| %>
-          <p><%= "#{k}. " %><%= m.html_safe %></p>
-      <% end %>
-    </div>
-<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <% if !@important.blank? %>
+        <div style="margin-top:1em" class="alert alert-danger">
+          <h2> Hello, you need to setup the following before you can activate your store </h2>
+          <% @important.each do |k,m| %>
+              <p><%= "#{k}. " %><%= m.html_safe %></p>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
 
 <div class="text-center col-md-6 col-md-offset-3">
 
