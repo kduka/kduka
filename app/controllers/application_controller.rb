@@ -16,7 +16,13 @@ protect_from_forgery with: :exception
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    request.referrer
+    if resource_or_scope == :user
+      users_home_path
+    elsif resource_or_scope == :admin
+      admins_path
+    elsif resource_or_scope == :store
+      stores_path
+    end
   end
 
 
