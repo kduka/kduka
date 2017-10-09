@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   resources :store_campaigns
   resources :coupons
   resources :layouts
+  resources :home
 
   root to: "home#index"
   get '*path' => redirect('/')
