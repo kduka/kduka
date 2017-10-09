@@ -23,6 +23,8 @@
             Store Color
             <%= f.text_field :store_color, :class => 'form-control colorpicker' %>
           </div>
+          <br>
+          <div id="clrbx" style="height:250px;width:250px;padding:1em;border-style:solid;border-color:<%= @store.store_color %>;background-color:<%= @store.store_color %>" class="backcolor"></div>
           <p></p>
           <p><%= f.submit 'Save', class: 'btn btn-primary' %>
   <% end %>

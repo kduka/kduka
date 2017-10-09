@@ -4,6 +4,12 @@ $(document).ready(function () {
 
     $('.colorpicker').colorpicker();
 
+    $('.colorpicker').on('changeColor', function(ev) {
+
+        $('#clrbx').css("background-color", ev.color.toHex());
+    });
+
+
     $('#example').DataTable();
     $('#myTable').DataTable();
 
