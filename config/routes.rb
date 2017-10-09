@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   match '/', to: 'products#index', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
-  match '/', to: 'admins#index', constraints: { subdomain: 'www.kduka' }, via: [:get, :post, :put, :patch, :delete]
+  match '/', to: 'home#index', constraints: { subdomain: 'www.kduka' }, via: [:get, :post, :put, :patch, :delete]
   get '/products/category/(:id)', to: 'products#category', as: 'product_category'
   get 'carts/shipping' => 'carts#shipping'
   get 'carts/complete' => 'carts#complete'
@@ -61,6 +61,6 @@ Rails.application.routes.draw do
   resources :coupons
   resources :layouts
 
-  root to: "stores#index"
+  root to: "home#index"
   get '*path' => redirect('/')
 end
