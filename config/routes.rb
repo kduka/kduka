@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-
+  match '/', to: 'home#index', constraints: { domain: 'co.ke', subdomain:'www.duka' }, via: [:get, :post, :put, :patch, :delete]
   match '/', to: 'products#index', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
-  match '/', to: 'home#index', constraints: { subdomain: 'www.kduka' }, via: [:get, :post, :put, :patch, :delete]
+
   get '/products/category/(:id)', to: 'products#category', as: 'product_category'
   get 'carts/shipping' => 'carts#shipping'
   get 'carts/complete' => 'carts#complete'
