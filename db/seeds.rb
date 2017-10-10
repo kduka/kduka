@@ -1,3 +1,4 @@
+=begin
 Order.create!([
 
               ])
@@ -52,8 +53,10 @@ Layout.create!([
 Store.find(1).update({
     layout_id:1
                     })
+=end
 
 Admin.create!([
                  #{email: "martindeto@gmail.com", encrypted_password: "$2a$11$a/wd4pEKzIoPj2Wg4FBa4uIEoQJrgW2NBfFxBme.7uXk00EaUQoTe", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 34, current_sign_in_at: "2017-09-13 10:51:17", last_sign_in_at: "2017-08-27 10:19:49", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", callback_url: "http://www.google.com", consumer_key: "631N8K73Vk8giRs+7L4LFLcJlfsI7FC0", consumer_secret: "qh2kfvUbcjgVNyTKCDizSK15D0M=", name: "Martin Ndeto", username: nil},
-                 {:email => 'martindeto@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig'}
+                 #{:email => 'martindeto@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig'}
+                 {:email => 'jtowett89@gmail.com', :password => 'jupiter89', :password_confirmation => 'jupiter89'}
              ])
