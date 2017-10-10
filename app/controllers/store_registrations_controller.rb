@@ -1,8 +1,6 @@
 class StoreRegistrationsController < Devise::RegistrationsController
+  before_action :authenticate_user!, except:[:edit]
 
-  prepend_before_action :require_no_authentication, only: [ :cancel]
-  prepend_before_action :kick_out, only:[:new,:create]
-  
   def new
     if store_signed_in?
     flash[:custom] = "You Need to sign out of current store to create a new one"
@@ -55,20 +53,19 @@ class StoreRegistrationsController < Devise::RegistrationsController
   def kick_out
     sign_out :store
   end
-  
-  
 
   private
 
   def store_params
     params.require(:store).permit(:email, :username, :password, :password_confirmation, :active, :name, :display_email, :phone)
   end
-  
+
+
+
   def santize(name)
     lower = name.downcase
-    nospace = lower.gsub(/\s+/, "")
+    nospace = lower.gsub(/[^0-9a-z]/i, "")
     return nospace
   end
-
 
 end

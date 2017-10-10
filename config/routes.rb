@@ -42,6 +42,9 @@ Rails.application.routes.draw do
   post '/stores/deactivate' => 'stores#deactivate'
   get '/admins/layouts' => 'admins#layouts'
   get '/admins/ndeto' => 'admins#ndeto'
+  post 'users/remote_santize' => 'users/remote_santize'
+  post 'users/checkmail' => 'users/checkmail'
+
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}
   devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'}
