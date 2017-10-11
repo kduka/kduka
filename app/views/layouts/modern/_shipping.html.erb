@@ -1,3 +1,5 @@
+
+
 <!--breadcrumbs-->
 <div class="container-fluid breadcrumbs">
   <div class="container">
@@ -15,24 +17,21 @@
   <h1 style="text-align:center;font-size:35px;font-weight:700">Shipping Details</h1><br><br>
   <%= form_tag("/carts/pay", method: "post") do %>
       <div class="form-group">
-        <%= label_tag(:first_name, "First Name") %>
-        <%= text_field_tag(:first_name, nil, :class => 'form-control') %>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:second_name, "Second Name") %>
-        <%= text_field_tag(:second_name, nil, :class => 'form-control') %>
+        <%= label_tag(:first_name, "Full Name") %>
+        <%= text_field_tag(:full_name, nil, :class => 'form-control', id:'ship_full_name', onchange:'validate_ship();') %>
       </div>
       <div class="form-group">
         <%= label_tag(:email, "Email") %>
-        <%= text_field_tag(:email, nil, :class => 'form-control') %>
+        <%= text_field_tag(:email, nil, :class => 'form-control',id:'ship_email', onchange:'validate_ship();') %>
+        <div id="email_prev"></div>
       </div>
       <div class="form-group">
         <%= label_tag(:phone_number, "Phone") %>
-        <%= text_field_tag(:phone_number, nil, :class => 'form-control') %>
+        <%= text_field_tag(:phone_number, nil, :class => 'form-control', id:'ship_phone_number', onchange:'validate_ship();') %>
       </div>
       <div class="form-group">
         <%= label_tag(:address, "Address") %>
-        <%= text_field_tag(:address, nil, :class => 'form-control') %>
+        <%= text_field_tag(:address, nil, :class => 'form-control', onchange:'validate_ship()') %>
       </div>
       <div class="form-group">
         <%= label_tag(:coupon, "Coupon") %>
@@ -45,28 +44,28 @@
         <h2><p class="text-center">Choose a Delivery Method Below</p></h2>
         <br>
         <% if @store.auto_delivery_status == true %>
-        <div class="col-md-4">
-          <div class="form-group">
-            <%= label_tag(:email, "Home Delivery") %>
-            <input type="radio" name="delivery" id="auto">
-          </div>
-        </div>
-            <% end %>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= label_tag(:email, "Home Delivery") %>
+                <input type="radio" name="delivery" id="auto">
+              </div>
+            </div>
+        <% end %>
         <% if @store.collection_point_status == true %>
-        <div class="col-md-4">
-          <div class="form-group">
-            <%= label_tag(:email, "Collect at Drop Point") %>
-            <input type="radio" name="delivery" id="collection">
-          </div>
-        </div>
-            <% end %>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= label_tag(:email, "Collect at Drop Point") %>
+                <input type="radio" name="delivery" id="collection">
+              </div>
+            </div>
+        <% end %>
         <% if @store.manual_delivery_status == true %>
-        <div class="col-md-4">
-          <div class="form-group">
-            <%= label_tag(:email, "Direct Package From Vendor") %>
-            <input type="radio" name="delivery" id="manual">
-          </div>
-        </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= label_tag(:email, "Direct Package From Vendor") %>
+                <input type="radio" name="delivery" id="manual">
+              </div>
+            </div>
         <% end %>
       </div>
 
@@ -74,7 +73,7 @@
       </div>
 
 
-      <%= submit_tag("Process Payment", :class => 'btn btn-success col-sm-12 col-md-6 col-md-offset-3') %><br>
+      <%= submit_tag("Process Payment", :class => 'btn btn-success col-sm-12 col-md-6 col-md-offset-3', disabled:'disabled',id:'process') %><br>
 
   <% end %>
 

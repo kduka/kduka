@@ -5,21 +5,21 @@ var body = {
         "api_username": "<%= @store.sendy_username %>",
         "vendor_type": 1,
         "from": {
-            "from_name": "Green House",
-            "from_lat": <%= @lat %>,
-            "from_long": <%= @lng %>,
+            "from_name": "<%= @store.auto_delivery_location %>",
+            "from_lat": <%= @store.lat %>,
+            "from_long": <%= @store.lng %>,
             "from_description": ""
         },
         "to": {
-            "to_name": "KICC",
-            "to_lat": -1.28869,
-            "to_long": 36.823363,
+            "to_name": '<%= @locat %>',
+            "to_lat": <%= @lat %>,
+            "to_long": <%= @lng %>,
             "to_description": ""
         },
         "recepient": {
-            "recepient_name": "Sendy User",
-            "recepient_phone": "0728561783",
-            "recepient_email": "support@sendy.co.ke"
+            "recepient_name": '<%= @full_name %>',
+            "recepient_phone": '<%= @phone %>',
+            "recepient_email": '<%= @email %>'
         },
         "delivery_details": {
             "pick_up_date": "2016-04-20 12:12:12",
@@ -37,16 +37,18 @@ var body = {
             "skew": 1,
             "package_size": [
                 {
-                    "weight": 20,
-                    "height": 10,
-                    "width": 200,
-                    "length": 30,
-                    "item_name": "laptop"
+                    "weight": <%= @weight %>,
+                    "height": <%= @height %>,
+                    "width": <%= @width %>,
+                    "length": <%= @length %>,
+                    "item_name": "MISC"
                 }
             ]
         }
     }
 };
+
+console.log(body);
 
 $.ajax({
     url: 'https://apitest.sendyit.com/v1/',

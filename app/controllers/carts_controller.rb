@@ -79,8 +79,37 @@ class CartsController < ApplicationController
 
   def location
     get_store
+    @weight = 0
+    @height = 10
+    @width = 200
+    @length = 10
+
+    current_order.order_items.each do |oi|
+
+      product = Product.find(oi.product_id)
+
+    @weight = @weight + product.weight.to_i
+
+    @height = @height + product.height.to_i
+
+    if product.width > @width
+      @width = product.width.to_i
+    end
+
+    if product.length > @length
+      @length = product.width.to_i
+    end
+
+    end
+
+
+
+    @locat = params[:delivery_location]
     @lng = params[:lng]
     @lat = params[:lat]
+    @full_name = params[:full_name]
+    @email = params[:email]
+    @phone = params[:phone_number]
     no_layout
   end
 

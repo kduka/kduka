@@ -13,10 +13,10 @@
         <%= f.label "Set pickup point for goods (Automatic Delivery Services)" %>
 
         <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate', disabled: 'disabled' %>
-            <div id="suggesstion-box"></div>
+            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate', disabled: 'disabled',onkeyup:"locate();" %>
         <% else %>
             <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate'  %>
+            <p><div id="suggesstion-box"></div></p>
         <% end %>
       </div>
 
