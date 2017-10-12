@@ -78,7 +78,7 @@ h1 {
 	width: 100%;
 	/*-- w3layouts --*/
 	/*-- agileits --*/
-	float: left;
+	/*float: left;*/
 }
 
 .aitsloginwthree {
@@ -304,7 +304,7 @@ input[type="submit"]:hover {
 
 @media screen and (max-width: 1080px) {
 	h1 {
-		font-size: 45px; 
+		font-size: 45px;
 		margin: 50px 0;
 	}
 	.containerw3layouts-agileits {

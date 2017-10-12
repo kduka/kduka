@@ -10,7 +10,7 @@ class UserSessionsController < Devise::SessionsController
     clean_up_passwords(resource)
     yield resource if block_given?
     respond_with(resource, serialize_options(resource)) do |format|
-      format.html { set_login }
+      format.html { user_login }
     end
   end
 
