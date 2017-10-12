@@ -24,6 +24,15 @@
     </div>
 <% end %>
 </div>
+
+
+    <div class="col-md-12">
+      <% if can_be_active %>
+          <div style="margin-top:1em" class="alert alert-danger">
+            <a style='font-weight:bold;text-decoration:none;' href='<%= stores_active_path %>'>1. Activate your Store!</a>
+          </div>
+      <% end %>
+    </div>
 </div>
 <p><strong>Total Products : <%= @products.count %></strong></p>
 <p><strong>Active : <%= @store.active %></strong></p>
