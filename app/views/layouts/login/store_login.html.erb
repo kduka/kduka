@@ -1,0 +1,66 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- Head -->
+	<head>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<%= stylesheet_link_tag    'login.css', media: 'all', 'data-turbolinks-track' => true %>
+
+		<%= csrf_meta_tags %>
+
+		<title>KDuka Store Login</title>
+
+		<!-- Meta-Tags -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="keywords" content="KDuka Store Login Form">
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
+		<!-- //Meta-Tags -->
+
+		<!-- Custom-Style-Sheet -->
+		<!-- Index-Page-CSS  <link rel="stylesheet" href="css/style.css" type="text/css" media="all"> -->
+
+		<!-- //Custom-Style-Sheet -->
+
+		<!-- Fonts -->
+		<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" %>
+	<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Montserrat:400,700" %>
+		<!-- //Fonts -->
+
+	</head>
+	<!-- //Head -->
+
+	<!-- Body -->
+	<body style="background-color: #b52e31 !important;">
+
+
+		<div class="container">
+
+			<div class="row">
+				<%= yield %>
+			</div>
+		</div>
+
+
+		<div class="w3lsfooteragileits">
+
+		</div>
+
+	</body>
+	<!-- //Body -->
+
+</html>

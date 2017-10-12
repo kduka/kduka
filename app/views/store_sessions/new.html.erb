@@ -1,5 +1,5 @@
 
-<h1>STORE LOGIN</h1>
+<h1>Store Login</h1>
 
 
 <div class="col-md-6 col-md-offset-3 containerw3layouts-agileits">
@@ -21,20 +21,18 @@
 							</div>
 							<% end %>
 					</div></br>
-		
+
 		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-		<%= f.email_field :email, autofocus: true, class:'form-control',placeholder:"Email Address" %>
-		<%= f.password_field :password, autocomplete: "off", class:'form-control', placeholder:"Password" %>
+		<%= f.email_field :email, autofocus: true, class:'form-control',style:'text-align:center',placeholder:"Email Address" %>
+		<%= f.password_field :password, autocomplete: "off", class:'form-control',style:'text-align:center', placeholder:"Password" %>
 		<ul class="tick w3layouts agileinfo">
 			<li>
 				<%= f.check_box :remember_me %>
 				<label for="brand1"><span></span>Remember me</label>
 			</li>
 			<li>
-				
-				<%= link_to "Sign up", new_user_registration_path %> |
 				 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-				<%= link_to "Forgot your password?", new_password_path(resource_name) %>
+				Forgot your Password? <%= link_to " Click Here", new_password_path(resource_name) %>
 				<br />
 				<% end -%>
 			</li>
@@ -47,4 +45,7 @@
 
 	<div class="clear"></div>
 
+</div>
+<div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
+<p style="text-align:center;color:#fff">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="color:#05c2f9" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a><p>
 </div>

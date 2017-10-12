@@ -1,4 +1,335 @@
-<h1>OUR WEBSITE!!</h1>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>KDuka - Online Shopping Made Easy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="KDuka, Online Shopping Made Easy" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<% Dir.foreach("public/stylesheets/website") do |item|
+next if item == '.' or item == '..' %>
+<%= stylesheet_link_tag    "website/#{item}" %>
+<% end %>
+<% Dir.foreach("public/javascripts/website") do |item|
+next if item == '.' or item == '..' %>
+<%= javascript_include_tag    "website/#{item}" %>
+<% end %>
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+<!-- web fonts -->
+</head>
+<body class="cbp-spmenu-push">
+	<!-- banner -->
+	<div class="banner" id="home">
+		<div class="container">
+			<div class="w3layouts-header">
+				<div class="header-left">
+					<h1><a style="color:#000 !important" href="<%= root_path %>">K<span>Duka</span></a></h1>
+				</div>
+				<div class="top-nav">
+					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+						<h3>Menu</h3>
+						<ul>
+							<li><a href="#home" class="scroll"><i class="fa fa-home"></i> Home</a></li>
+							<li><a href="#about" class="scroll">About</a></li>
+							<li><a href="#features" class="scroll">Features</a></li>
+							<li><a href="#contact" class="scroll">Contact</a></li>
+              <li><a href="<%= new_user_registration_path %>"><i class="fa fa-edit"></i> User Sign Up</a></li>
+              <li><a href="<%= new_user_session_path %>"><i class="fa fa-user"></i> User Login</a></li>
+              <li><a href="<%= new_store_session_path %>"><i class="fa fa-sign-in"></i> Store Login</a></li>
+						</ul>
+					</nav>
+					<div class="main buttonset">
+					<!-- Class "cbp-spmenu-open" gets applied to menu and "cbp-spmenu-push-toleft" or "cbp-spmenu-push-toright" to the body -->
+					<button id="showRightPush"><%= image_tag("website/menu.png") %></button>
+					<!-- <span class="menu"></span> -->
+					</div>
+					<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+					<script src="js/classie.js"></script>
+					<script>
+					var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
+					showRightPush = document.getElementById( 'showRightPush' ),
+					body = document.body;
 
-<p><%= link_to "STORE LOGIN", new_store_session_path %></p>
-<P><%= link_to "USER LOGIN", new_user_session_path %></P>
+					showRightPush.onclick = function() {
+						classie.toggle( this, 'active' );
+						classie.toggle( body, 'cbp-spmenu-push-toleft' );
+						classie.toggle( menuRight, 'cbp-spmenu-open' );
+						disableOther( 'showRightPush' );
+					};
+
+					function disableOther( button ) {
+						if( button !== 'showRightPush' ) {
+							classie.toggle( showRightPush, 'disabled' );
+						}
+					}
+				 </script>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="banner-w3lsinfo">
+				<h2 style="text-transform:capitalize">Welcome to <span style="text-transform:uppercase">KDuka</span></h2>
+				<p>Where Online Shopping is Made Easy</p>
+			</div>
+			<div class="agileits-intro">
+				<p>introduction<a href="#introduction" class="scroll"> </a></p>
+			</div>
+		</div>
+	</div>
+	<!-- //banner -->
+	<!-- introduction -->
+	<div class="introduction" id="introduction">
+		<div class="container">
+			<h3 class="agileits-title">Introduction</h3>
+			<p>Kduka is a Kenyan based E-Commerce platform that enables its users
+        to easily create and manage online stores for the purpose of selling and delivering products to their
+        clients
+       </p>
+		</div>
+	</div>
+	<!-- //introduction -->
+	<!-- logo-singular -->
+	<div id="about" class="logo-singular">
+		<div class="container">
+			<h3 class="agileits-title">About Us</h3>
+			<div class="col-md-12 singular-left">
+				<p style="text-align:center" class="sing">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<div class="singular-grids">
+					<div class="col-md-4 col-xs-12">
+					<div class="singular-grid">
+						<div style="text-align:center" class="col-md-12 col-xs-12 singular-grid-left">
+							<span class="glyphicon glyphicon-info-sign"></span><br><br>
+						</div>
+						<div class="col-md-12 col-xs-12 singular-grid-right">
+							<h4 style="text-align:center">Contrary to popular random</h4>
+							<p style="text-align:justify">Lorem ipsum dolor sit amet,adipisicing elit.
+								Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					</div>
+					<div class="col-md-4 col-xs-12">
+					<div class="singular-grid agileits-w3layouts">
+						<div style="text-align:center" class="col-md-12 col-xs-12 singular-grid-left">
+							<span class="glyphicon glyphicon-user"></span><br><br>
+						</div>
+						<div class="col-md-12 col-xs-12 singular-grid-right">
+							<h4 style="text-align:center"> Nemo enim ipsam</h4>
+							<p style="text-align:justify">Lorem ipsum dolor sit amet,adipisicing elit.
+								Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					</div>
+					<div class="col-md-4 col-xs-12">
+					<div class="singular-grid agileits-w3layouts">
+						<div style="text-align:center" class="col-md-12 col-xs-12 singular-grid-left">
+							<span class="glyphicon glyphicon-thumbs-up"></span><br><br>
+						</div>
+						<div class="col-md-12 col-xs-12 singular-grid-right">
+							<h4 style="text-align:center">Ut enim ad minima</h4>
+							<p style="text-align:justify">Lorem ipsum dolor sit amet,adipisicing elit.
+								Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!-- //about-->
+	<!-- logins -->
+	<div class="download-agile">
+		<div class="container">
+			<style>
+				.link_color:hover{
+					color: #fff !important;
+					transition: all 0.5s;
+				}
+			</style>
+			<p>You can Log in if you already have an account or you can log in to your stores. If you don't have an account you can Sign Up</p>
+      <div class="col-md-4" style="margin-bottom:2em">
+			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_session_path %>" class="wthree-hvr"><span style="color:#05c2f9" class="link_color"><i class="fa fa-user"></i> User Login</span></a>
+      </div>
+      <div class="col-md-4" style="margin-bottom:2em">
+			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#05c2f9" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
+      </div>
+      <div class="col-md-4" style="margin-bottom:2em">
+			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_registration_path %>" class="wthree-hvr"><span style="color:#05c2f9" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
+      </div>
+		</div>
+	</div>
+	<!-- //logins -->
+
+	<!-- features start -->
+	<div class="services" id="features">
+		<div class="container">
+			<h3 class="agileits-title">Our Features</h3>
+			<div class="col-md-6 col-xs-12">
+				<div class="single-text w3-agile" style="margin-bottom:3em">
+					<p style="font-size:35px;text-align:left">Responsive Layouts</p>
+				</div>
+				<div class="clearfix"> </div>
+				<p class="w3-agile-amet">We offer responsive layouts (i.e. layouts compatible
+					 with various devices such as laptops, phones and tablets) to our users. There are various advantages for using responsive layouts such as<br><br>
+					 <ul style="list-style:circle;margin-left:2em">
+						 <li>More Mobile Traffic</li>
+						 <li>Faster Mobile Development at Lower Costs</li>
+						 <li>Faster loading in Webpages</li>
+					 </ul>
+					 <br><br>
+				 We also enable our users to customize the color accents for their preferred layouts according to their wishes. This is
+				 to enhance uniqueness for each user's store</p>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<%= image_tag("website/responsive.png", :style=>"width:100%;") %>
+			</div>
+		</div>
+	</div>
+	<div class="work">
+		<div class="container">
+			<div class="col-md-6 col-xs-12">
+				<%= image_tag("website/interfaces.png", :style=>"width:100%;") %>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<div class="single-text w3-agile" style="margin-bottom:3em">
+					<p style="font-size:35px;text-align:left;color:#05c2f9">Layout Variety</p>
+				</div>
+				<div class="clearfix"> </div>
+				<p style="color:#fff" class="w3-agile-amet">We offer a wide variety of user friendly layouts for our users to choose from. We aspire to help our users attract clients
+					 by availing visually friendly layouts to them<br><br>
+				 We also enable our users to customize the color accents for their preferred layouts according to their wishes. This is
+				 to enhance uniqueness for each user's store</p>
+			</div>
+		</div>
+	</div>
+	<div class="services" style="background:#b52e31">
+		<div class="container">
+			<div class="col-md-6 col-xs-12">
+				<div class="single-text w3-agile" style="margin-bottom:3em">
+					<p style="font-size:35px;text-align:left;color:#05c2f9">Powerful Analytics Tools</p>
+				</div>
+				<div class="clearfix"> </div>
+				<p class="w3-agile-amet" style="color:#fff">We offer responsive layouts (i.e. layouts compatible
+					 with various devices such as laptops, phones and tablets) to our users. We aspire to help our users attract clients
+					 by availing visually friendly layouts to them<br><br>
+				 We also enable our users to customize the color accents for their preferred layouts according to their wishes. This is
+				 to enhance uniqueness for each user's store</p>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<%= image_tag("website/responsive.png", :style=>"width:100%;") %>
+			</div>
+		</div>
+	</div>
+	<!-- //features end -->
+	<!-- contact -->
+	<div class="contact" id="contact">
+		<div class="container">
+			<p>Kduka is a Kenyan based E-Commerce platform that enables its users
+        to easily create and manage online stores for the purpose of selling
+				 and delivering products to their clients</p>
+			<div class="con">
+				<a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr">Contact Us</a>
+			</div>
+			<a data-toggle="modal" data-target=".bs-example-modal-md" href="#"> </a>
+			<div class="modal fade bs-example-modal-md light-box" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-md">
+					<div class="modal-content light-box-info">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+						<div class="pop">
+							<h3>Contact Us</h3>
+							<div class="contact-grids">
+								<div class="inp agileits-inp">
+									<h4 style="color:#b52e31">Contact Form</h4>
+									<form action="#" method="post">
+										<input type="text" name="Name" placeholder="Your Name" required="">
+										<input type="email" name="Email" placeholder="Email" required="">
+										<input type="text" name="Subject" placeholder="Subject" required="">
+										<textarea name="Message" placeholder="Message" required=""></textarea>
+										<input type="submit" value="SEND">
+									</form>
+								</div>
+								<h5 style="color:#b52e31">Address</h5>
+								<div class="contact-grid">
+									<h4>LOCATION</h4>
+									<p class="agile-qwe">8901 MARMORA ROAD,
+										GLASGOW, DO4 89GR.</p>
+								</div>
+								<div class="contact-grid">
+									<h4>CONTACT INFO</h4>
+									<p class="agile-qwe">+01 2478 0954 <br>
+										+01 2478 7854</p>
+								</div>
+								<div class="contact-grid">
+									<h4>MAIL US</h4>
+									<p class="agile-qwe"><a href="mailto:info@example.com">example@mail.com</a></p>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //contact -->
+	<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="footer-left agileits">
+				<p>Copyright © <%= Time.current.year %> KDuka. All rights reserved | Developed by <a href="http://www.zerone.co.ke/" target="_blank"> Zerone I.T. Solutions.</a></p>
+			</div>
+			<div class="footer-right">
+				<div class="social-icon agileits">
+					<a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
+					<a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a>
+					<a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a>
+					<a href="#" class="social-button dribbble"><i class="fa fa-dribbble"></i></a>
+					<a href="#" class="social-button skype"><i class="fa fa-skype"></i></a>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!-- //footer -->
+	<!-- start-smooth-scrolling -->
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smooth-scrolling -->
+	<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+			};
+			*/
+
+			$().UItoTop({ easingType: 'easeOutQuart' });
+
+		});
+	</script>
+	<!-- //here ends scrolling icon -->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>

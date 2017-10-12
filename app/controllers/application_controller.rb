@@ -99,6 +99,15 @@ end
     render :layout => 'login/login'
   end
 
+  def store_login
+      render :layout => 'login/store_login'
+  end
+
+
+    def user_login
+        render :layout => 'login/user_login'
+    end
+
   def get_store
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain, active: true).first
