@@ -79,7 +79,8 @@ class CartsController < ApplicationController
 
   def location
     get_store
-    @weight = 0
+
+    @weight = 10
     @height = 10
     @width = 200
     @length = 10
@@ -92,17 +93,14 @@ class CartsController < ApplicationController
 
     @height = @height + product.height.to_i
 
-    if product.width > @width
+    if product.width.to_i > @width
       @width = product.width.to_i
     end
 
-    if product.length > @length
+    if product.length.to_i > @length
       @length = product.width.to_i
     end
-
     end
-
-
 
     @locat = params[:delivery_location]
     @lng = params[:lng]

@@ -17,16 +17,16 @@
   <h1 style="text-align:center;font-size:35px;font-weight:700">Shipping Details</h1><br><br>
   <%= form_tag("/carts/pay", method: "post") do %>
       <div class="form-group">
-        <%= label_tag(:first_name, "Full Name") %>
+        <%= label_tag(:first_name, "Full Name") %><span class="red">*</span>
         <%= text_field_tag(:full_name, nil, :class => 'form-control', id:'ship_full_name', onchange:'validate_ship();') %>
       </div>
       <div class="form-group">
-        <%= label_tag(:email, "Email") %>
+        <%= label_tag(:email, "Email") %><span class="red">*</span>
         <%= text_field_tag(:email, nil, :class => 'form-control',id:'ship_email', onchange:'validate_ship();') %>
         <div id="email_prev"></div>
       </div>
       <div class="form-group">
-        <%= label_tag(:phone_number, "Phone") %>
+        <%= label_tag(:phone_number, "Phone (07xx xxx xxx)") %><span class="red">*</span>
         <%= text_field_tag(:phone_number, nil, :class => 'form-control', id:'ship_phone_number', onchange:'validate_ship();') %>
       </div>
       <div class="form-group">
@@ -47,7 +47,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <%= label_tag(:email, "Home Delivery") %>
-                <input type="radio" name="delivery" id="auto">
+                <input type="radio" name="delivery" id="auto" onchange='validate_ship();'>
               </div>
             </div>
         <% end %>
@@ -55,7 +55,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <%= label_tag(:email, "Collect at Drop Point") %>
-                <input type="radio" name="delivery" id="collection">
+                <input type="radio" name="delivery" id="collection" onchange='validate_ship()';>
               </div>
             </div>
         <% end %>
@@ -63,7 +63,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <%= label_tag(:email, "Direct Package From Vendor") %>
-                <input type="radio" name="delivery" id="manual">
+                <input type="radio" name="delivery" id="manual" onchange='validate_ship()';>
               </div>
             </div>
         <% end %>

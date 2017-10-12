@@ -101,6 +101,7 @@ function geocodeAddress(geocoder, resultsMap) {
 function selectlocation(val) {
 
     $("#delivery_location").val(val);
+    $("#selected_location").val(val);
     $("#suggesstion-box").hide();
     $.ajax({
         type: 'POST',
@@ -161,8 +162,8 @@ function validateEmail(email) {
 }
 
 function phonenumbers(phonenumber) {
-    var phoneno = /^(?:(?:254|\+254|0)?(07(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})|(?:254|\+254|0)?(7(?:(?:[3][0-9])|(?:5[0-6])|(8[5-9]))[0-9        ]{6})    |(?:254|\+254|0)?(77[0-6][0-9]{6})|(?:254|\+254|0)?(76[34][0-9]{6}))$/;
-
+    //var phoneno = /^(?:(?:254|\+254|0)?(07(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})|(?:254|\+254|0)?(7(?:(?:[3][0-9])|(?:5[0-6])|(8[5-9]))[0-9        ]{6})    |(?:254|\+254|0)?(77[0-6][0-9]{6})|(?:254|\+254|0)?(76[34][0-9]{6}))$/;
+    var phoneno = /(07)([0-3|7])(\d){7}/;
     if (phonenumber.match(phoneno)) {
        return true;
     } else {
@@ -173,7 +174,7 @@ function phonenumbers(phonenumber) {
 function validate_ship(){
     email = $("#ship_email").val();
     phone = $("#ship_phone_number").val();
-    if (not_null("ship_email") && not_null("full_name") && validateEmail(email) && phonenumbers(phone)){
+    if (not_null("ship_email") && not_null("full_name") && validateEmail(email) && phonenumbers(phone) && (auto() || manual() || collection())){
         $("#process").removeAttr('disabled');
     }else{
         $("#process").attr('disabled','true');
@@ -182,6 +183,40 @@ function validate_ship(){
 
 function not_null(id){
     if ($("#"+id).val() != ""){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function auto(){
+    if(($('#auto').is(':checked'))){
+        val = $("#delivery_location").val();
+
+        if (val != ""){
+            return true;
+        }
+
+    }else{
+        return false;
+    }
+
+}
+
+function collection(){
+    if($('#collection').is(':checked')) {
+        val = $("#collection_point").val();
+
+        if (val != ""){
+            return true;
+        }
+    }else{
+        return false;
+    }
+}
+
+function manual(){
+    if($('#manual').is(':checked')) {
         return true;
     }else{
         return false;

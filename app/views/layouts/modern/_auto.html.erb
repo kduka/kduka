@@ -1,12 +1,18 @@
 <% if @store.auto_delivery_status == true %>
+    <p class="text-center">Fill out your Name, Email and Phone Number First</p>
     <div class="form-group">
-      <label> Delivery Location</label>
-      <input id="delivery_location" type="textbox" value="" class='form-control' onkeyup="locate();" placeholder='Delivery Location'/>
-      <span style="color:green;" class="price"></span>
+      <label> Search for a delivery location</label>
+      <input id="delivery_location" type="textbox" value="" class='form-control' onkeyup="locate();" onchange='validate_ship()' placeholder='Delivery Location'/>
+      <div id="suggesstion-box"></div>
       <input id="long" name="long" type="hidden" value="">
       <input id="lat" name="lat" type="hidden" value="">
-      <div id="suggesstion-box"></div>
+
       <div id="map"></div><br><br>
+    </div>
+
+    <div class="form-group">
+      <input id="selected_location" type="text" name="selected_location" disabled style="border-style: none;background-color: white"/>
+      <span style="color:green;" class="price"></span>
     </div>
     <p></p>
 <% end %>

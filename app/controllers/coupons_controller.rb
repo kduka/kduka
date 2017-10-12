@@ -75,7 +75,7 @@ class CouponsController < ApplicationController
     num = params[:number].to_i
     @store = Store.find(current_store.id)
     while i < num do
-      @store.coupon.create(coupon_params.merge(code:rand))
+      @store.coupon.create(coupon_params.merge(code:randy))
       i += 1
     end
     redirect_to(coupons_path)
@@ -92,7 +92,7 @@ class CouponsController < ApplicationController
       params.require(:coupon).permit(:code, :number_of_use, :percentage, :expiry)
     end
 
-    def rand
+    def randy
       ref = [*'A'..'Z', *"0".."9"].sample(4).join
     end
   end
