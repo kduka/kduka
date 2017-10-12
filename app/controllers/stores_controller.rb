@@ -295,20 +295,13 @@ end
     if @auto == false && @manual == false && @collection == false
       messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{stores_deliver_path}'>You need to setup a delivery option first!</a>"
       @i+=1
+      messages[@i] = "<span style='font-weight:bold;text-decoration:none;color:#000'>Activate your Store</span>"
+
 
       deactivate_store
     end
 
-    if @store.active == false
-      if messages.empty?
-        messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{stores_active_path}'>Enable your account</a>"
-      else
-        messages[@i] = "<span style='color:black;font-weight:bold'>Activate your Store</span>"
-      end
 
-      @i+=1
-
-    end
     return messages
 
   end
