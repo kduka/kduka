@@ -29,14 +29,14 @@ next if item == '.' or item == '..' %>
 		<div class="container">
 			<div class="w3layouts-header">
 				<div class="header-left">
-					<h1><a style="color:#000 !important" href="<%= root_path %>">K<span>Duka</span></a></h1>
+					<h1><a style="color:#000 !important" href="<%= root_path %>">K<span style="color:#fff">Duka</span></a></h1>
 				</div>
 				<div class="top-nav">
 					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 						<h3>Menu</h3>
 						<ul>
 							<li><a href="#home" class="scroll"><i class="fa fa-home"></i> Home</a></li>
-							<li><a href="#about" class="scroll">About</a></li>
+							<li><a href="#introduction" class="scroll">About Us</a></li>
 							<li><a href="#features" class="scroll">Features</a></li>
 							<li><a href="#contact" class="scroll">Contact</a></li>
               <li><a href="<%= new_user_registration_path %>"><i class="fa fa-edit"></i> User Sign Up</a></li>
@@ -85,7 +85,7 @@ next if item == '.' or item == '..' %>
 	<!-- introduction -->
 	<div class="introduction" id="introduction">
 		<div class="container">
-			<h3 class="agileits-title">Introduction</h3>
+			<h3 class="agileits-title">A Few words about us</h3>
 			<p>Kduka is a Kenyan based E-Commerce platform that enables its users
         to easily create and manage online stores for the purpose of selling and delivering products to their
         clients
@@ -93,65 +93,15 @@ next if item == '.' or item == '..' %>
 		</div>
 	</div>
 	<!-- //introduction -->
-	<!-- logo-singular -->
-	<div id="about" class="logo-singular">
-		<div class="container">
-			<h3 class="agileits-title">About Us</h3>
-			<div class="col-md-12 singular-left">
-				<p style="text-align:center" class="sing">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-				<div class="singular-grids">
-					<div class="col-md-4 col-xs-12">
-					<div class="singular-grid">
-						<div style="text-align:center" class="col-md-12 col-xs-12 singular-grid-left">
-							<span class="glyphicon glyphicon-info-sign"></span><br><br>
-						</div>
-						<div class="col-md-12 col-xs-12 singular-grid-right">
-							<h4 style="text-align:center">Contrary to popular random</h4>
-							<p style="text-align:justify">Lorem ipsum dolor sit amet,adipisicing elit.
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					</div>
-					<div class="col-md-4 col-xs-12">
-					<div class="singular-grid agileits-w3layouts">
-						<div style="text-align:center" class="col-md-12 col-xs-12 singular-grid-left">
-							<span class="glyphicon glyphicon-user"></span><br><br>
-						</div>
-						<div class="col-md-12 col-xs-12 singular-grid-right">
-							<h4 style="text-align:center"> Nemo enim ipsam</h4>
-							<p style="text-align:justify">Lorem ipsum dolor sit amet,adipisicing elit.
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					</div>
-					<div class="col-md-4 col-xs-12">
-					<div class="singular-grid agileits-w3layouts">
-						<div style="text-align:center" class="col-md-12 col-xs-12 singular-grid-left">
-							<span class="glyphicon glyphicon-thumbs-up"></span><br><br>
-						</div>
-						<div class="col-md-12 col-xs-12 singular-grid-right">
-							<h4 style="text-align:center">Ut enim ad minima</h4>
-							<p style="text-align:justify">Lorem ipsum dolor sit amet,adipisicing elit.
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</div>
-				</div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //about-->
 	<!-- logins -->
 	<div class="download-agile">
 		<div class="container">
 			<style>
 				.link_color:hover{
 					color: #fff !important;
+					transition: all 0.5s;
+				}
+				.link_color{
 					transition: all 0.5s;
 				}
 			</style>
