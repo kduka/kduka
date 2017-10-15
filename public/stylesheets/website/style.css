@@ -255,7 +255,7 @@ h3.agileits-title {
 /*-- //logo-singular --*/
 /*-- services --*/
 .services{
-	background:#05c2f9;
+	background:#fff;
 	padding:6em 0;
 }
 .services h3{
@@ -608,7 +608,7 @@ h3.agileits-title {
 }
 .contact-grid{
 	float:left;
-	width:33.33%;
+	width:50%;
 	text-align: left;
 }
 .contact-grids {
