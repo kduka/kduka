@@ -1140,6 +1140,11 @@ button.close {
 		margin-left: 1em;
 	}
 }
+@media screen and (max-width: 720px){
+	.top-nav {
+	  margin-left: 30em;
+	}
+}
 @media screen and (max-width: 736px){
 	.top-nav {
 	  margin-left: 25em;
