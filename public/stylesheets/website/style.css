@@ -62,7 +62,7 @@ body a:hover{
 }
 .top-nav {
 	float: left;
-	margin-left:64em;
+	margin-left:65em;
 }
 button#showRightPush {
 	border: none;
@@ -1142,7 +1142,7 @@ button.close {
 }
 @media screen and (max-width: 736px){
 	.top-nav {
-	  margin-left: 33.8em;
+	  margin-left: 25em;
 	}
 	.banner-w3lsinfo {
 	  padding: 9em 0 0;
@@ -1357,7 +1357,7 @@ button.close {
 }
 @media screen and (max-width:480px){
 	.top-nav {
-	  margin-left: 15.5em;
+	  margin-left: 12.5em;
 	}
 	.banner-w3lsinfo h2 {
 		font-size: 2.6em;
