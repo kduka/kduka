@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="KDuka, Online Shopping Made Easy" />
-<%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i', media: 'all', 'data-turbolinks-track' => true %>
+<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+<%= stylesheet_link_tag 'application', '//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i', media: 'all', 'data-turbolinks-track' => true %>
 <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> -->
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Custom Theme files -->
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 <% Dir.foreach("public/stylesheets/website") do |item|
 next if item == '.' or item == '..' %>
@@ -29,14 +29,14 @@ next if item == '.' or item == '..' %>
 		<div class="container">
 			<div class="w3layouts-header">
 				<div class="header-left">
-					<h1><a style="color:#000 !important" href="<%= root_path %>">K<span>Duka</span></a></h1>
+					<h1><a style="color:#000 !important" href="<%= root_path %>">K<span style="color:#fff">Duka</span></a></h1>
 				</div>
 				<div class="top-nav">
 					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 						<h3>Menu</h3>
 						<ul>
 							<li><a href="#home" class="scroll"><i class="fa fa-home"></i> Home</a></li>
-							<li><a href="#about" class="scroll">About</a></li>
+							<li><a href="#introduction" class="scroll">About Us</a></li>
 							<li><a href="#features" class="scroll">Features</a></li>
 							<li><a href="#contact" class="scroll">Contact</a></li>
               <li><a href="<%= new_user_registration_path %>"><i class="fa fa-edit"></i> User Sign Up</a></li>
@@ -85,7 +85,7 @@ next if item == '.' or item == '..' %>
 	<!-- introduction -->
 	<div class="introduction" id="introduction">
 		<div class="container">
-			<h3 class="agileits-title">Introduction</h3>
+			<h3 class="agileits-title">A Few words about us</h3>
 			<p>Kduka is a Kenyan based E-Commerce platform that enables its users
         to easily create and manage online stores for the purpose of selling and delivering products to their
         clients
@@ -93,65 +93,15 @@ next if item == '.' or item == '..' %>
 		</div>
 	</div>
 	<!-- //introduction -->
-	<!-- logo-singular -->
-	<div id="about" class="logo-singular">
-		<div class="container">
-			<h3 class="agileits-title">About Us</h3>
-			<div class="col-md-12 singular-left">
-				<p style="text-align:center" class="sing">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-				<div class="singular-grids">
-					<div class="col-md-4 col-xs-12">
-					<div class="singular-grid">
-						<div style="text-align:center" class="col-md-12 col-xs-12 singular-grid-left">
-							<span class="glyphicon glyphicon-info-sign"></span><br><br>
-						</div>
-						<div class="col-md-12 col-xs-12 singular-grid-right">
-							<h4 style="text-align:center">Contrary to popular random</h4>
-							<p style="text-align:justify">Lorem ipsum dolor sit amet,adipisicing elit.
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					</div>
-					<div class="col-md-4 col-xs-12">
-					<div class="singular-grid agileits-w3layouts">
-						<div style="text-align:center" class="col-md-12 col-xs-12 singular-grid-left">
-							<span class="glyphicon glyphicon-user"></span><br><br>
-						</div>
-						<div class="col-md-12 col-xs-12 singular-grid-right">
-							<h4 style="text-align:center"> Nemo enim ipsam</h4>
-							<p style="text-align:justify">Lorem ipsum dolor sit amet,adipisicing elit.
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					</div>
-					<div class="col-md-4 col-xs-12">
-					<div class="singular-grid agileits-w3layouts">
-						<div style="text-align:center" class="col-md-12 col-xs-12 singular-grid-left">
-							<span class="glyphicon glyphicon-thumbs-up"></span><br><br>
-						</div>
-						<div class="col-md-12 col-xs-12 singular-grid-right">
-							<h4 style="text-align:center">Ut enim ad minima</h4>
-							<p style="text-align:justify">Lorem ipsum dolor sit amet,adipisicing elit.
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</div>
-				</div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //about-->
 	<!-- logins -->
 	<div class="download-agile">
 		<div class="container">
 			<style>
 				.link_color:hover{
 					color: #fff !important;
+					transition: all 0.5s;
+				}
+				.link_color{
 					transition: all 0.5s;
 				}
 			</style>
@@ -172,22 +122,18 @@ next if item == '.' or item == '..' %>
 	<!-- features start -->
 	<div class="services" id="features">
 		<div class="container">
-			<h3 class="agileits-title">Our Features</h3>
+			<h3 class="agileits-title" style="color:#000">Our Features</h3>
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:35px;text-align:left">Responsive Layouts</p>
+					<p style="font-size:35px;text-align:left;color:#05c2f9">Responsive Layouts</p>
 				</div>
 				<div class="clearfix"> </div>
-				<p class="w3-agile-amet">We offer responsive layouts (i.e. layouts compatible
-					 with various devices such as laptops, phones and tablets) to our users. There are various advantages for using responsive layouts such as<br><br>
-					 <ul style="list-style:circle;margin-left:2em">
-						 <li>More Mobile Traffic</li>
-						 <li>Faster Mobile Development at Lower Costs</li>
-						 <li>Faster loading in Webpages</li>
+					 <ul style="list-style:none;color:#6e6e6e;font-size:17px">
+						 <li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Excellent User Experience</li><br>
+						 <li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Super Flexible</li><br>
+						 <li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Faster loading in Webpages</li><br>
+						 <li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Very Easy to manage</li><br>
 					 </ul>
-					 <br><br>
-				 We also enable our users to customize the color accents for their preferred layouts according to their wishes. This is
-				 to enhance uniqueness for each user's store</p>
 			</div>
 			<div class="col-md-6 col-xs-12">
 				<%= image_tag("website/responsive.png", :style=>"width:100%;") %>
@@ -204,28 +150,30 @@ next if item == '.' or item == '..' %>
 					<p style="font-size:35px;text-align:left;color:#05c2f9">Layout Variety</p>
 				</div>
 				<div class="clearfix"> </div>
-				<p style="color:#fff" class="w3-agile-amet">We offer a wide variety of user friendly layouts for our users to choose from. We aspire to help our users attract clients
-					 by availing visually friendly layouts to them<br><br>
-				 We also enable our users to customize the color accents for their preferred layouts according to their wishes. This is
-				 to enhance uniqueness for each user's store</p>
+					<ul style="list-style:none;color:#fff;font-size:17px">
+	 					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Choose among our different user friendly layouts</li><br>
+	 					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Customize layout color accents for uniqueness</li><br>
+	 					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Have your Store up and running in minutes</li><br>
+	 				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="services" style="background:#b52e31">
+	<div class="services" style="background:#fff">
 		<div class="container">
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
 					<p style="font-size:35px;text-align:left;color:#05c2f9">Powerful Analytics Tools</p>
 				</div>
 				<div class="clearfix"> </div>
-				<p class="w3-agile-amet" style="color:#fff">We offer responsive layouts (i.e. layouts compatible
-					 with various devices such as laptops, phones and tablets) to our users. We aspire to help our users attract clients
-					 by availing visually friendly layouts to them<br><br>
-				 We also enable our users to customize the color accents for their preferred layouts according to their wishes. This is
-				 to enhance uniqueness for each user's store</p>
+				<ul style="list-style:none;color:#6e6e6e;font-size:17px">
+					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Know your visitors</li><br>
+					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Know what your customers are looking for</li><br>
+					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Find out how to optimise your store</li><br>
+					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Track where traffic is coming from</li><br>
+				</ul>
 			</div>
 			<div class="col-md-6 col-xs-12">
-				<%= image_tag("website/responsive.png", :style=>"width:100%;") %>
+				<%= image_tag("website/analytics.png", :style=>"width:100%;") %>
 			</div>
 		</div>
 	</div>
@@ -257,20 +205,15 @@ next if item == '.' or item == '..' %>
 										<input type="submit" value="SEND">
 									</form>
 								</div>
-								<h5 style="color:#b52e31">Address</h5>
+								<h5 style="color:#b52e31">Contact Details</h5>
 								<div class="contact-grid">
-									<h4>LOCATION</h4>
-									<p class="agile-qwe">8901 MARMORA ROAD,
-										GLASGOW, DO4 89GR.</p>
+									<h4>PHONE NUMBERS</h4>
+									<p class="agile-qwe">+254-773-054785<br>
+										+254-724-040839</p>
 								</div>
 								<div class="contact-grid">
-									<h4>CONTACT INFO</h4>
-									<p class="agile-qwe">+01 2478 0954 <br>
-										+01 2478 7854</p>
-								</div>
-								<div class="contact-grid">
-									<h4>MAIL US</h4>
-									<p class="agile-qwe"><a href="mailto:info@example.com">example@mail.com</a></p>
+									<h4>EMAIL</h4>
+									<p class="agile-qwe"><a href="mailto:contact@kduka.co.ke">contact@kduka.co.ke</a></p>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -291,9 +234,6 @@ next if item == '.' or item == '..' %>
 				<div class="social-icon agileits">
 					<a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
 					<a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a>
-					<a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a>
-					<a href="#" class="social-button dribbble"><i class="fa fa-dribbble"></i></a>
-					<a href="#" class="social-button skype"><i class="fa fa-skype"></i></a>
 				</div>
 			</div>
 			<div class="clearfix"> </div>
