@@ -1086,7 +1086,7 @@ button.close {
 }
 @media screen and (max-width: 768px){
 	.top-nav {
-	  margin-left: 30em;
+	  margin-left: 25em;
 	}
 	.banner-w3lsinfo p {
 		font-size: 16px;
@@ -1142,7 +1142,7 @@ button.close {
 }
 @media screen and (max-width: 720px){
 	.top-nav {
-	  margin-left: 30em;
+	  margin-left: 25em;
 	}
 }
 @media screen and (max-width: 736px){
