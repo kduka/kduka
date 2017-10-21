@@ -1,5 +1,5 @@
-<div class="col-md-6 col-md-offset-3" style="margin-bottom: 2em;">
-<h1>Generate Coupons (Mass Create)</h1>
+<div class="skil" style="margin-bottom: 2em;">
+<h1 style="text-align:center">Generate Coupons (Mass Create)</h1>
 
 <%= form_for :coupon, url:{controller:'coupons',action:'create_coupons'} do |f| %>
 
@@ -28,8 +28,8 @@
       <%= f.check_box :active %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Generate Coupons", class:'btn btn-primary' %>
+    <div class="actions" style="text-align:center">
+      <%= f.submit "Generate Coupons", class:'btn btn-primary btn-lg' %>
     </div>
-<% end %>
+<% end %><br>
 </div>

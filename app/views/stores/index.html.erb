@@ -1,3 +1,4 @@
+<div class="skil">
 <div class="row">
 <div class="col-md-12">
 <% if !@setup.blank? %>
@@ -34,8 +35,38 @@
       <% end %>
     </div>
 </div>
-<p><strong>Total Products : <%= @products.count %></strong></p>
-<p><strong>Active : <%= @store.active %></strong></p>
+
+<div class="content-top-1 col-md-4">
+  <div class="col-md-6 top-content">
+    <h5>Total Products</h5>
+    <label><%= @products.count %></label>
+  </div>
+  <div class="col-md-6 top-content1">
+    <div id="demo-pie-1" class="pie-title-center" data-percent="100"> <span class="pie-value">100%</span> </div>
+  </div>
+    <div class="clearfix"> </div>
+</div>
+<div class="content-top-1 col-md-4">
+  <div class="col-md-12 top-content" style="text-align:center">
+    <h5>Active</h5>
+    <label><%= @store.active %></label><br>
+  </div>
+   <div class="clearfix"> </div>
+</div>
+<div class="content-top-1 col-md-4">
+  <a href="<%= products_manage_path %>">
+  <div class="col-md-6 top-content">
+    <h5>Active Products</h5>
+    <label><%= @products.count %></label>
+  </div>
+  <div class="col-md-6 top-content1">
+    <div id="demo-pie-3" class="pie-title-center" data-percent="100"> <span class="pie-value">100%</span> </div>
+  </div>
+  <div class="clearfix"> </div>
+</a>
+</div>
+<div class="container-fluid" style="margin-bottom:3em"></div>
+
 
 <% if !@products.blank? %>
     <table id="myTable" class="table">
@@ -68,3 +99,4 @@
     <p>You dont have any Products in this store yet</p>
 
 <% end %>
+</div>

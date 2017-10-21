@@ -10,24 +10,24 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class="field">
       <%= f.label :name %><br />
       <%= f.text_field :name, autofocus: true, class:'form-control' %>
-    </div>
-    
-    
+    </div><br><br>
+
+
     <div class="field">
       <%= f.label :description %><br />
       <%= f.text_area :description, autofocus: true, class:'form-control' %>
-    </div>
+    </div><br><br>
 
 	<div class="field">
-      <%= f.label :active %><br />
+      <%= f.label :active %>
       <%= f.check_box :active, autofocus: true %>
-    </div>
-    
-  <div class="actions">
-    <%= f.submit "Save Category", :class=>'btn btn-primary' %>
+    </div><br><br>
+
+  <div class="actions" style="text-align:center">
+    <%= f.submit "Save Category", :class=>'btn btn-primary btn-lg' %>
   </div>
 <% end %>

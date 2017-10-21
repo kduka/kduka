@@ -3,7 +3,7 @@
 <% if user_signed_in? %>
     <h1 style="text-align:center;margin-bottom:2em">Your Stores</h1>
 <% unless @stores.blank? %>
-        <table class="table">
+        <table id="myTable" class="table dataTable no-footer">
           <thead>
           <tr>
             <th>#</th>
@@ -27,8 +27,8 @@
         </table>
 <% else %>
 You have no stores
-<% end %>
-<p><%= link_to "Add New Store", new_store_registration_path, :class => 'btn btn-primary' %></p>
+<% end %><br><br>
+<p style="text-align:center"><%= link_to "Add New Store", new_store_registration_path,:style=>'padding:1em;font-weight:900', :class => 'btn btn-primary' %></p>
 
 <% else %>
 <p>Please Log In</p>

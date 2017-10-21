@@ -1,5 +1,5 @@
-
-<h1>Coupons</h1>
+<div class="skil"><br>
+<h1 style="text-align:center">Coupons</h1><br>
 <% if !@coupons.nil? %>
 <table id="data-tables" class="table">
   <thead>
@@ -28,6 +28,7 @@
 <% else %>
     <p>You have no coupons</p>
     <% end %>
-<br>
+<br><br>
 
-<%= link_to 'New Coupon', new_coupon_path %>
+<p style="text-align:center"><%= link_to 'Add New Coupon', new_coupon_path,class:'btn btn-primary btn-lg' %></p>
+</div>

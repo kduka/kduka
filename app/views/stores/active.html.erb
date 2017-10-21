@@ -1,5 +1,6 @@
+<div class="skil">
 <div class="row">
-  <div class="col-md-12">
+  <div class="container-fluid">
     <% if !@important.blank? %>
         <div style="margin-top:1em" class="alert alert-danger">
           <h2> Hello, you need to setup the following before you can activate your store </h2>
@@ -12,7 +13,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="container-fluid">
     <% if can_be_active %>
         <div style="margin-top:1em" class="alert alert-danger">
           <a style='font-weight:bold;text-decoration:none;' href='<%= stores_active_path %>'>1. Activate your Store!</a>
@@ -22,20 +23,21 @@
 </div>
 
 
-<div class="text-center col-md-6 col-md-offset-3">
+<div class="container-fluid">
   <% if @store.active == false %>
-      <h3> Click the Button Below to Activate your store </h3>
+      <h3 style="text-align:center"> Click the Button Below to Activate your store </h3>
       <%= form_for :store, :url => {controller: 'stores', action: 'activate'} do |f| %>
           <% if @store.important == false  %>
-              <p><%= f.submit 'Activate', class: 'btn btn-lg btn-success', disabled: 'disabled' %></p>
+              <p style="text-align:center"><%= f.submit 'Activate Store', class: 'btn btn-lg btn-success', disabled: 'disabled' %></p>
           <% else %>
-              <p><%= f.submit 'Activate', class: 'btn btn-lg btn-success' %></p>
+              <p style="text-align:center"><%= f.submit 'Activate Store', class: 'btn btn-lg btn-success' %></p>
           <% end %>
       <% end %>
   <% else %>
-      <h3> Click the Button Below to De-Activate your store </h3>
+      <h3 style="text-align:center"> Click the Button Below to De-Activate your store </h3>
       <%= form_for :store, :url => {controller: 'stores', action: 'deactivate'} do |f| %>
-          <p><%= f.submit 'Deactivate', class: 'btn btn-lg btn-danger' %>
+          <p style="text-align:center"><%= f.submit 'Deactivate Store', class: 'btn btn-lg btn-danger' %>
       <% end %>
   <% end %>
+</div>
 </div>

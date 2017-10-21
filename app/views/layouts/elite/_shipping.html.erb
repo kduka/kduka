@@ -2,33 +2,31 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk">
 </script>
-<div class="container-fluid">
-<div class="col-md-8 col-md-offset-2" style="margin-bottom:4em;margin-top:4em">
+<div class="container">
+<div class="col-md-6" style="margin-bottom:3em;margin-top:4em;padding: 2em">
   <h1 style="text-align:center;font-size:35px;font-weight:700">Shipping Details</h1><br><br>
-  <%= form_tag("/carts/pay", method: "post") do %>
+  <%= form_tag("/carts/pay", method: "post", id:'ship_form') do %>
       <div class="form-group">
-        <%= label_tag(:first_name, "First Name") %>
-        <%= text_field_tag(:first_name, nil, :class => 'form-control') %>
+        <%= label_tag(:first_name, "Full Name") %><span class="red">*</span>
+        <%= text_field_tag(:full_name, nil, :class => 'ship_form form-control', id:'ship_full_name', onchange:'val_ship();collect();manual_()') %>
       </div>
       <div class="form-group">
-        <%= label_tag(:second_name, "Second Name") %>
-        <%= text_field_tag(:second_name, nil, :class => 'form-control') %>
+        <%= label_tag(:email, "Email") %><span class="red">*</span>
+        <%= text_field_tag(:email, nil, :class => 'ship_form form-control',id:'ship_email', onchange:'val_ship();val_email();collect();manual_()') %>
+        <div id="email_prev"></div>
       </div>
       <div class="form-group">
-        <%= label_tag(:email, "Email") %>
-        <%= text_field_tag(:email, nil, :class => 'form-control') %>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:phone_number, "Phone") %>
-        <%= text_field_tag(:phone_number, nil, :class => 'form-control') %>
+        <%= label_tag(:phone_number, "Phone (07xx xxx xxx)") %><span class="red">*</span>
+        <%= text_field_tag(:phone_number, nil, :class => 'ship_form form-control', id:'ship_phone_number', onchange:'val_ship();val_phone();collect();manual_()') %>
+        <div id="phone_prev"></div>
       </div>
       <div class="form-group">
         <%= label_tag(:address, "Address") %>
-        <%= text_field_tag(:address, nil, :class => 'form-control') %>
+        <%= text_field_tag(:address, nil, :class => 'ship_form form-control', onchange:'val_ship();collect();') %>
       </div>
       <div class="form-group">
         <%= label_tag(:coupon, "Coupon") %>
-        <%= text_field_tag(:coupon, nil, :class => 'form-control', placeholder: 'Can Be Blank') %>
+        <%= text_field_tag(:coupon, nil, :class => 'ship_form form-control', placeholder: 'Can Be Blank') %>
       </div>
       <p></p>
 
@@ -37,174 +35,49 @@
         <h2><p class="text-center">Choose a Delivery Method Below</p></h2>
         <br>
         <% if @store.auto_delivery_status == true %>
-        <div class="col-md-3">
-          <div class="form-group">
-            <%= label_tag(:email, "Home Delivery") %>
-            <input type="radio" name="delivery" id="auto">
-          </div>
-        </div>
-            <% end %>
+            <div class="col-md-12" style="text-align:center">
+              <div class="form-group">
+                <input class="ship_form" type="radio" name="delivery" id="auto" value="auto">
+                <%= label_tag(:auto,"Home Delivery") %>
+              </div>
+            </div>
+
+        <% end %>
         <% if @store.collection_point_status == true %>
-        <div class="col-md-4">
-          <div class="form-group">
-            <%= label_tag(:email, "Collect at Drop Point") %>
-            <input type="radio" name="delivery" id="collection">
-          </div>
-        </div>
-            <% end %>
+            <div class="col-md-12" style="text-align:center">
+              <div class="form-group">
+                <input class="ship_form" type="radio" value="collection" name="delivery" id="collection" onchange='collect()'>
+                <%= label_tag(:collection,"Collect at Drop Point") %>
+              </div>
+            </div>
+        <% end %>
         <% if @store.manual_delivery_status == true %>
-        <div class="col-md-5">
-          <div class="form-group">
-            <%= label_tag(:email, "Direct Package From Vendor") %>
-            <input type="radio" name="delivery" id="manual">
-          </div>
-        </div>
+            <div class="col-md-12" style="text-align:center">
+              <div class="form-group">
+                <input class="ship_form" value="manual" type="radio" name="delivery" id="manual" onchange='manual_()';>
+                <%= label_tag(:manual,"Direct Package From Vendor") %>
+              </div>
+            </div>
         <% end %>
       </div>
+      <p style="text-align:center"><span class="warn_fill_fields"></span></p><br>
 
       <div class="delivery_options">
+
       </div>
-      <%= submit_tag("Process Payment", :class => 'btn btn-success col-sm-12 col-md-6 col-md-offset-3') %><br>
+
+
+      <input type="submit" value="Finalize Order" class='ship-form btn btn-info col-sm-12 col-md-6 col-md-offset-3' disabled id='process' style="margin-top: 1em" />
+      <input type="submit" value="Edit Order" class='ship-form btn btn-info col-sm-12 col-md-6 col-md-offset-3' id='edit' style="display:none;margin-top: 1em" />
 
   <% end %>
 
 
 </div>
+<div class="col-md-6" style="margin-bottom:3em;margin-top:4em;padding: 2em">
+  <h1 style="text-align:center;font-size:35px;font-weight:700">Final Order Details</h1><br><br>
+  <div id="order_details">
+    <%= render "layouts/#{Layout.find(@store.layout_id).name}/order_details" %>
+  </div>
 </div>
-<script>
-
-    $(function () {
-        $('#locate').on('keyup', function () {
-            setTimeout(function () {
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 8,
-                    center: {lat: -34.397, lng: 150.644}
-                });
-                var geocoder = new google.maps.Geocoder();
-
-                geocodeAddress(geocoder, map);
-
-            }, 1000);
-        });
-    });
-
-    function geocodeAddress(geocoder, resultsMap) {
-
-        var address = document.getElementById('locate').value;
-        geocoder.geocode({'address': address, region: 'KE'}, function (results, status) {
-            if (status === 'OK') {
-
-                var string = "";
-                console.log(results);
-                results.forEach(function (entry) {
-                    string = string + '<p onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
-
-
-                });
-                $('#suggesstion-box').show();
-                $('#suggesstion-box').html(string);
-                console.log(string);
-            } else {
-                $('#suggesstion-box').html("Not Found, Try different search words");
-            }
-        });
-    }
-
-    function selectlocation(val) {
-
-        $("#locate").val(val);
-        $("#suggesstion-box").hide();
-        $.ajax({
-            type: 'POST',
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
-            success: function (result) {
-                results = result['results'];
-                console.log(result);
-
-                var latitude = results[0]['geometry']['location']['lat'];
-                var longitude = results[0]['geometry']['location']['lng'];
-
-              /*$("#lat").val(latitude);
-               $("#long").val(longitude);*/
-                sendyit2(longitude, latitude);
-            },
-
-        });
-    }
-
-    function sendyit2(lng, lat) {
-
-        var body = {
-            "command": "request",
-            "data": {
-                "api_key": "<%= @store.sendy_key %>",
-                "api_username": "<%= @store.sendy_username %>",
-                "vendor_type": 1,
-                "from": {
-                    "from_name": "Green House",
-                    "from_lat": lat,
-                    "from_long": lng,
-                    "from_description": ""
-                },
-                "to": {
-                    "to_name": "KICC",
-                    "to_lat": -1.28869,
-                    "to_long": 36.823363,
-                    "to_description": ""
-                },
-                "recepient": {
-                    "recepient_name": "Sendy User",
-                    "recepient_phone": "0728561783",
-                    "recepient_email": "support@sendy.co.ke"
-                },
-                "delivery_details": {
-                    "pick_up_date": "2016-04-20 12:12:12",
-                    "collect_payment": {
-                        "status": false,
-                        "pay_method": 0,
-                        "amount": 10
-                    },
-                    "return": true,
-                    "note": " Sample note",
-                    "note_status": true,
-                    "request_type": "delivery",
-                    "order_type": "ondemand_delivery",
-                    "ecommerce_order": "ecommerce_order_001",
-                    "skew": 1,
-                    "package_size": [
-                        {
-                            "weight": 20,
-                            "height": 10,
-                            "width": 200,
-                            "length": 30,
-                            "item_name": "laptop"
-                        }
-                    ]
-                }
-            }
-        };
-
-        $.ajax({
-            url: 'https://apitest.sendyit.com/v1/',
-            method: 'post',
-            data: JSON.stringify(body),
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Content-Type', 'text/plain')
-            },
-            success: function (res) {
-                res = JSON.parse(res);
-                console.log(res);
-
-                if (res['status'] == true) {
-                    $('.price').html(' <p> Price: ' + res['data']['amount'] + '</p> <p>Order Number: ' + res['data']['order_no'] + '</p>');
-                }
-                else {
-                    $('.price').html('Sorry, we cannot be able to do delivery for you at this time, please <a href="<%= contact_path %>">Contact Us</a>.');
-                }
-
-            }
-        });
-    }
-
-
-</script>
+</div>
