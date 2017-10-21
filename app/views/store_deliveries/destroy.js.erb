@@ -1,0 +1,6 @@
+<% if @store_delivery.errors.any? || @store_delivery.errors.any? %>
+    alert("Something Went Wrong")
+<% else %>
+$(".del_opts").html("<%= escape_javascript(render "locations") %>")
+
+<% end %>

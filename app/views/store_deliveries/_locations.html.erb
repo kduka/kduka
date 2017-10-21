@@ -1,0 +1,11 @@
+<table>
+  <thead>
+  <th colspan="20"></th>
+  <th></th>
+  </thead>
+<% StoreDelivery.where(store_id:current_store.id).each do |d| %>
+      <tr>
+        <td><%= "Areas : #{d.delivery_areas}  Price: #{d.price}" %></td> <td> <%= link_to store_delivery_path(d.id), method:'delete',remote:true do %><i style="color: red" class="fa fa-times"></i><% end %> </td>
+      </tr>
+<% end %>
+</table>

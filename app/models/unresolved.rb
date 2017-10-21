@@ -1,0 +1,2 @@
+class Unresolved < ApplicationRecord
+end

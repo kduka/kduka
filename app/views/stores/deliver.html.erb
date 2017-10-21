@@ -1,6 +1,15 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk">
 </script>
+
+<style>
+  #fixed-div {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+  }
+</style>
+<div id="fixed-div"></div>
 <div class="col-md-6 col-md-offset-3">
   <%= form_for :store, :url => {controller: 'stores', action: 'update_delivery'}, method: 'put' do |f| %>
 
@@ -71,16 +80,26 @@
         <% end %>
       </div>
 
+      <div class="form-group" style="background-color: whitesmoke;border-radius: 1px;" >
+        <%= f.label "Add a Delivery Option" %>
+        <%= text_area_tag(:delivery_option,nil,id:'del_opt',class:'manual form-control') %>
+        <%= f.label "Price" %>
+        <%= text_field_tag(:delivery_price,nil, id: 'del_price', type:'number',class:'manual form-control') %>
+        <span class="del_opt_err"></span>
+      <br>
+        <p>
+        <button class="btn btn-info" id="add-delivery" value="">Add Option</button>
+        </p>
+        <div style="margin-top: 2em; margin-bottom: 1em;" class="manual del_opts"><%= render "store_deliveries/locations" %></div>
+      </div>
 
       <div class="form-group">
         <%= f.hidden_field :lat, class: 'form-control' %>
       </div>
 
-
       <div class="form-group">
         <%= f.hidden_field :lng, class: 'form-control' %>
       </div>
-
 
       <p><%= f.submit 'Save', class: 'btn btn-primary' %>
   <% end %>

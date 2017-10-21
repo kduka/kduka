@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009050247) do
+ActiveRecord::Schema.define(version: 20171019112817) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -56,6 +56,20 @@ ActiveRecord::Schema.define(version: 20171009050247) do
     t.index ["store_id"], name: "index_coupons_on_store_id", using: :btree
   end
 
+  create_table "ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "MSISDN"
+    t.string   "BusinessShortCode"
+    t.string   "InvoiceNumber"
+    t.string   "TransID"
+    t.integer  "TransAmount"
+    t.string   "ThirdPartyTransID"
+    t.string   "TransTime"
+    t.string   "KYCName"
+    t.string   "KYCValue"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "description"
@@ -84,16 +98,26 @@ ActiveRecord::Schema.define(version: 20171009050247) do
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.decimal  "subtotal",                         precision: 12, scale: 3
-    t.decimal  "tax",                              precision: 12, scale: 3
-    t.decimal  "shipping",                         precision: 12, scale: 3
-    t.decimal  "total",                            precision: 12, scale: 3
+    t.decimal  "subtotal",                             precision: 12, scale: 3
+    t.decimal  "tax",                                  precision: 12, scale: 3
+    t.decimal  "shipping",                             precision: 12, scale: 3
+    t.decimal  "total",                                precision: 12, scale: 3
     t.integer  "order_status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ref"
     t.integer  "store_id"
-    t.text     "order_instructions", limit: 65535
+    t.text     "order_instructions",     limit: 65535
+    t.integer  "amount_received"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "name"
+    t.integer  "number_of_transactions"
+    t.string   "delivery_type"
+    t.string   "delivery_order"
+    t.string   "del_location"
+    t.string   "del_lat"
+    t.string   "del_long"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
     t.index ["store_id"], name: "index_orders_on_store_id", using: :btree
   end
@@ -116,8 +140,19 @@ ActiveRecord::Schema.define(version: 20171009050247) do
     t.integer  "length"
     t.integer  "height"
     t.integer  "weight"
+    t.integer  "number_sold"
+    t.integer  "viewed"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["store_id"], name: "index_products_on_store_id", using: :btree
+  end
+
+  create_table "store_deliveries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "store_id"
+    t.string   "delivery_areas"
+    t.integer  "price"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["store_id"], name: "index_store_deliveries_on_store_id", using: :btree
   end
 
   create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -187,6 +222,12 @@ ActiveRecord::Schema.define(version: 20171009050247) do
     t.index ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
   end
 
+  create_table "unresolveds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "transid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -219,6 +260,7 @@ ActiveRecord::Schema.define(version: 20171009050247) do
   add_foreign_key "orders", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"
+  add_foreign_key "store_deliveries", "stores"
   add_foreign_key "stores", "layouts"
   add_foreign_key "sub_categories", "categories"
 end

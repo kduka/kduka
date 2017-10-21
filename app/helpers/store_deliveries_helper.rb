@@ -1,0 +1,2 @@
+module StoreDeliveriesHelper
+end

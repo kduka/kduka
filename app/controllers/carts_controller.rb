@@ -6,6 +6,7 @@ class CartsController < ApplicationController
   end
 
   def shipping
+
     set_shop
   end
 
@@ -65,13 +66,16 @@ class CartsController < ApplicationController
   end
 
   def auto
+    @data = params[:cond]
     get_store
     no_layout
   end
+
   def manual
     get_store
     no_layout
   end
+
   def collection
     get_store
     no_layout
@@ -89,17 +93,17 @@ class CartsController < ApplicationController
 
       product = Product.find(oi.product_id)
 
-    @weight = @weight + product.weight.to_i
+      @weight = @weight + product.weight.to_i
 
-    @height = @height + product.height.to_i
+      @height = @height + product.height.to_i
 
-    if product.width.to_i > @width
-      @width = product.width.to_i
-    end
+      if product.width.to_i > @width
+        @width = product.width.to_i
+      end
 
-    if product.length.to_i > @length
-      @length = product.width.to_i
-    end
+      if product.length.to_i > @length
+        @length = product.width.to_i
+      end
     end
 
     @locat = params[:delivery_location]
@@ -110,5 +114,31 @@ class CartsController < ApplicationController
     @phone = params[:phone_number]
     no_layout
   end
+
+  def update_shipping
+    get_store
+    amount = params[:amount]
+    orderid = params[:orderid]
+    type = params[:type]
+    name = params[:name]
+    phone = params[:phone]
+    email = params[:email]
+    delivery_location = params[:delivery_location]
+    lat=params[:lat]
+    lng = params[:lng]
+    instructions = params[:instructions]
+
+    current_order.update(shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location:delivery_location,del_lat:lat,del_long:lng,order_instructions:instructions)
+
+  end
+
+  def checkout
+
+  end
+
+  def red
+    redirect_to(params[:url])
+  end
+
 
 end

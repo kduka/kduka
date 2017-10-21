@@ -8,16 +8,15 @@ class StoresController < ApplicationController
   def index
 
     @store = Store.find(current_store.id)
+    @setup = setup
     if @store.init == false
-      @setup = setup
       if setup.empty? && @store.important == true
         flash[:notice] = 'Congratulations! Your Account is all setup!'
         @store.update(init: true)
       end
     end
-
+    @important = important
     if @store.important == false
-      @important = important
       if @important.empty? && @store.init == true
         flash[:notice] = 'Congratulations! Your Account is all setup!'
         @store.update(important: true)
@@ -102,7 +101,9 @@ end
   end
 
   def orders
-    @order = Order.where(store_id: current_store.id, order_status_id: 2)
+    @order = Order.where(store_id: current_store.id,order_status_id:[5,2])
+
+    puts @order
     set_shop_show
   end
 
@@ -258,6 +259,9 @@ end
 
       @i+=1
     end
+    if !messages.empty?
+      remove_init
+    end
 
     return messages
 
@@ -309,5 +313,10 @@ end
   def deactivate_store
     @store = Store.find(current_store.id)
     @store.update(active: false, important: false)
+  end
+
+  def remove_init
+    @store = Store.find(current_store.id)
+    @store.update(init: false)
   end
 end

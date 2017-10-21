@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 =begin
 protect_from_forgery with: :exception
 =end
-  helper_method :current_order, :sign, :sub, :can_be_active
+  helper_method :current_order, :sign, :can_be_active, :get_store
 
   def after_sign_in_path_for(resource)
     case resource
@@ -23,12 +23,6 @@ protect_from_forgery with: :exception
     elsif resource_or_scope == :store
       stores_path
     end
-  end
-
-
-
-  def sub
-    #@sub = "Subdomain: " + request.subdomain + "     Domain: " + request.domain + "     Truncated: " + request.subdomain[/(\w+)/]
   end
 
   def current_order

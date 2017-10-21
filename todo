@@ -7,8 +7,23 @@ SHow Model Errors
 Enforce Not Null's in delivery settings - Always ensure one is checked
 JS Validations in creating stuff
 
+Make sure they can only select a location from given co-ordinates
 
-Make sure they can only select a ocation from given co-ordinates
+Finances page for transfer of funds
+    Show total Balances
+    Shipping Totals
+    Available balance, Max Withdrawal
+Sendy trigger for setting an order after payment
+Sendy validation of inputs
+Website Contact Form Email
+Disable actions when processing and updating orders
+Text Notifications
+
+Online Checkout
+B2B integration
+Billing Integration
+
+
 
 
 
@@ -22,6 +37,12 @@ Displaying by SubCategories
 Social Media Widgets
 
 DONE
+Show transactions for orders
+What happens when one makes multiple payments
+Unresolved payments that dont reflect to any order
+Options on delivery locations
+Add new order status on seed file when pushing
+Email when a client pays
 Welcome Page and Instructions - Percentage setups
 Coupons
 Admin Area
