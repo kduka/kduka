@@ -1,15 +1,20 @@
 
 <% if @store.manual_delivery_status == true %>
     <div class="form-group">
-      <label>Please read the following instructions</label>
+      <label><span class="select_instructions">Select a location below</span></label>
       <p></p>
       <span style="color:green;" class="price"><%= @store.manual_delivery_instructions %></span>
     </div>
     <p></p>
-    <div class="form-group">
-      <label>Order Instructions</label>
-      <textarea type="text" value="" class='form-control' >Tell us where you want your goods delivered</textarea>
 
+    <% StoreDelivery.where(store_id:@store.id).each do |sd| %>
+        <div class="form-group">
+         <label><input onchange="_manual_()" required class="ship_form" type="radio" name="del_opt" value="<%= sd.price %>" /> <%= "#{sd.delivery_areas} : #{sd.price}" %></label>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <label><input id="other" class="ship_form" type="radio" name="del_opt" value="0" onchange="_manual_()" /> Other</label>
+      <textarea id="instructions" type="text" onkeyup="_manual_()" class='ship_form form-control' placeholder="Provide additional instructions here"></textarea>
     </div>
     <p></p>
 <% end %>

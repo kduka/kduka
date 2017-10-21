@@ -31,8 +31,8 @@ var body = {
             "return": true,
             "note": " Sample note",
             "note_status": true,
-            "request_type": "delivery",
-            "order_type": "ondemand_delivery",
+            "request_type": "quote",
+            "order_type": "batch_later_order",
             "ecommerce_order": "ecommerce_order_001",
             "skew": 1,
             "package_size": [
@@ -62,10 +62,19 @@ $.ajax({
         console.log(res);
 
         if (res['status'] == true) {
-            $('.price').html(' <p> Price: ' + res['data']['amount'] + '</p> <p>Order Number: ' + res['data']['order_no'] + '</p>');
+
+            $('.price').html(' <p> Delivery Charge: ' + res['data']['amount']);
+
+            $("#delivery_order").val(res['data']['order_no']);
+            $("#delivery_amount").val(res['data']['amount']);
+            $("#lat").val('<%= @lat %>')
+            $("#long").val('<%= @lng %>')
+            $("#process").attr("value","Finalize");
+            $("#process").removeAttr("disabled");
+
         }
         else {
-            $('.price').html('Sorry, we cannot be able to do delivery for you at this time, please <a href="<%= contact_path %>">Contact Us</a>.');
+            $('.price').html('<p> Sorry, we cannot be able to do delivery for you at this time, please <a href="<%= contact_path %>">Contact Us</a>.</p>');
         }
 
     }

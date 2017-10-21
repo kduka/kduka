@@ -21,37 +21,121 @@
  */
 
 $(function () {
-    $('textarea').each(function() {
+
+    $("#checkout").click(function (e) {
+
+    });
+
+    $("#process").click(function (e) {
+        e.preventDefault();
+        finalize();
+        $.ajax({
+            url:"/carts/checkout",
+            method:'get'
+        });
+    });
+
+    $("#edit").click(function (e) {
+        e.preventDefault();
+        $("#process").attr('style',"display:block;margin-top: 1em");
+        $("#edit").attr('style',"display:none;margin-top: 1em");
+        $('.ship_form').removeAttr('disabled');
+    });
+
+    $("#add-delivery").click(function (e) {
+        e.preventDefault();
+        del_opt = $("#del_opt").val();
+        del_price = $("#del_price").val();
+
+        if (del_opt == "") {
+            $(".del_opt_err").html("<span style='color:red;'>Please fill the delivery option, It cant be empty</span>");
+        } else if (del_price == "") {
+            $(".del_opt_err").html("<span style='color:red;'>Please specify the price, It cant be empty</span>");
+        } else {
+            $.ajax({
+                url: '/store_deliveries',
+                method: 'post',
+                data: {
+                    del_opt: del_opt,
+                    del_price: del_price
+                },
+                success: function (e) {
+                    $(".del_opt_err").html("");
+                    $("#del_opt").val("");
+                    $("#del_price").val("");
+                }
+            })
+        }
+    });
+
+    $('textarea').each(function () {
         $(this).height($(this).prop('scrollHeight'));
     });
 
     $('#auto').click(function () {
+        $("#process").attr("disabled","true");
+        full_name = $("#ship_full_name").val();
+        phone = $("#ship_phone_number").val();
+        email = $("#ship_email").val();
+        var data;
+        if (full_name != "" && phonenumbers(phone) && validateEmail(email)) {
+            $(".warn_fill_fields").html("<p style='color: green'>Type below to search for your nearest location</p>");
+            data = 'true'
+        } else {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name, Email and Phone Number First!</p>");
+            data = 'false'
+        }
+
         if ($(this).is(':checked')) {
             $.ajax({
                 url: '/carts/auto',
-                success:function (res) {
-                    $(".delivery_options").html(res)
+                data: {
+                    cond: data
+                },
+                success: function (res) {
+                    $(".delivery_options").html(res);
                 }
             });
         }
     });
 
     $('#manual').click(function () {
-        if ($(this).is(':checked')) {
+        $("#process").attr("disabled","true");
+        full_name = $("#ship_full_name").val();
+        phone = $("#ship_phone_number").val();
+        var data;
+        if (full_name != "" && phonenumbers(phone)) {
+            $(".warn_fill_fields").html("<p style='color: green'></p>");
+        } else {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
+            $(".delivery_options").html("");
+        }
+        if ($(this).is(':checked')  && full_name != "" && phonenumbers(phone)) {
             $.ajax({
                 url: '/carts/manual',
-                success:function (res) {
-                    $(".delivery_options").html(res)
+                success: function (res) {
+                    $(".delivery_options").html(res);
                 }
             });
         }
     });
 
     $('#collection').click(function () {
-        if ($(this).is(':checked')) {
+        $("#process").attr("disabled","true");
+        full_name = $("#ship_full_name").val();
+        phone = $("#ship_phone_number").val();
+        var data;
+        if (full_name != "" && phonenumbers(phone)) {
+            $(".warn_fill_fields").html("<p style='color: green'></p>");
+        } else {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
+            $(".delivery_options").html("");
+        }
+
+        if ($(this).is(':checked') && full_name != "" && phonenumbers(phone)) {
             $.ajax({
                 url: '/carts/collection',
-                success:function (res) {
+                success: function (res) {
                     $(".delivery_options").html(res)
                 }
             });
@@ -59,15 +143,6 @@ $(function () {
     });
 
 
-    $("#ship_email").change(function () {
-        email = $("#ship_email").val();
-        if (validateEmail(email)){
-
-        }else{
-
-            $("#email_prev").html("<span style='color:red' >This is not a valid email</span>");
-        }
-    })
 });
 
 function geocodeAddress(geocoder, resultsMap) {
@@ -97,11 +172,12 @@ function geocodeAddress(geocoder, resultsMap) {
 }
 
 
-
 function selectlocation(val) {
 
     $("#delivery_location").val(val);
+    $("#sel_loc").val(val);
     $("#suggesstion-box").hide();
+    $("#process").attr("value","Processing ... ");
     $.ajax({
         type: 'POST',
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
@@ -120,18 +196,18 @@ function selectlocation(val) {
 
 
             $.ajax({
-                url:'/carts/location',
-                success:function () {
+                url: '/carts/location',
+                success: function () {
 
                 },
-                method:'post',
+                method: 'post',
                 data: {
-                    'delivery_location':location,
+                    'delivery_location': location,
                     'lng': longitude,
                     'lat': latitude,
-                    'full_name':full_name,
-                    'email':email,
-                    'phone_number':phone_number
+                    'full_name': full_name,
+                    'email': email,
+                    'phone_number': phone_number
                 }
             });
         },
@@ -139,7 +215,7 @@ function selectlocation(val) {
     });
 }
 
-function locate(){
+function locate() {
     setTimeout(function () {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 8,
@@ -161,29 +237,204 @@ function validateEmail(email) {
 }
 
 function phonenumbers(phonenumber) {
-    var phoneno = /^(?:(?:254|\+254|0)?(07(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})|(?:254|\+254|0)?(7(?:(?:[3][0-9])|(?:5[0-6])|(8[5-9]))[0-9        ]{6})    |(?:254|\+254|0)?(77[0-6][0-9]{6})|(?:254|\+254|0)?(76[34][0-9]{6}))$/;
-
+    //var phoneno = /^(?:(?:254|\+254|0)?(07(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})|(?:254|\+254|0)?(7(?:(?:[3][0-9])|(?:5[0-6])|(8[5-9]))[0-9        ]{6})    |(?:254|\+254|0)?(77[0-6][0-9]{6})|(?:254|\+254|0)?(76[34][0-9]{6}))$/;
+    var phoneno = /^(07)([0-9|7])(\d){7}$/;
     if (phonenumber.match(phoneno)) {
-       return true;
+        return true;
+    } else {
+        return false;
+    }
+}
+/*
+ function validate_ship(){
+ email = $("#ship_email").val();
+ phone = $("#ship_phone_number").val();
+ if (not_null("ship_email") && not_null("full_name") && validateEmail(email) && phonenumbers(phone) && (auto() || manual() || collection())){
+ $("#process").removeAttr('disabled');
+ }else{
+ $("#process").attr('disabled','true');
+ }
+ }*/
+
+function val_ship() {
+
+    full_name = $("#ship_full_name").val();
+    phone = $("#ship_phone_number").val();
+    email = $("#ship_email").val();
+
+    if (full_name != "" && phonenumbers(phone) && validateEmail(email)) {
+        if ($("#auto").is(':checked')) {
+            $(".warn_fill_fields").html("<p style='color: green'>Type below to search for your nearest location</p>");
+        }else{
+            $(".warn_fill_fields").html("");
+        }
+        $("#delivery_location").removeAttr("disabled");
+    } else {
+        if ($("#auto").is(':checked')) {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name, Email and Phone Number First!</p>");
+        }else{
+            $("#delivery_location").removeAttr("disabled");
+        }
+        $("#delivery_location").attr("disabled", "true");
+
+    }
+}
+
+function not_null(id) {
+    if ($("#" + id).val() != "") {
+        return true;
     } else {
         return false;
     }
 }
 
-function validate_ship(){
-    email = $("#ship_email").val();
-    phone = $("#ship_phone_number").val();
-    if (not_null("ship_email") && not_null("full_name") && validateEmail(email) && phonenumbers(phone)){
-        $("#process").removeAttr('disabled');
-    }else{
-        $("#process").attr('disabled','true');
+function auto() {
+    if (($('#auto').is(':checked'))) {
+        selval = $("#sel_loc").val();
+
+        if (selval != "") {
+            return true;
+        }
+
+    } else {
+        return false;
     }
+
 }
 
-function not_null(id){
-    if ($("#"+id).val() != ""){
-        return true;
-    }else{
+function collection() {
+    if ($('#collection').is(':checked')) {
+        val = $("#collection_point").val();
+
+        if (val != "") {
+            return true;
+        }
+    } else {
         return false;
     }
 }
+
+function manual() {
+    if ($('#manual').is(':checked')) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+    function val_phone() {
+        phone = $("#ship_phone_number").val();
+        if (!phonenumbers(phone)) {
+            $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 07XXXXXXXX</p>")
+        } else {
+            $("#phone_prev").html("");
+        }
+    }
+
+    function val_email() {
+        if (!validateEmail(email)) {
+            $("#email_prev").html("<p style='color:red;'>Email is not a valid email address</p>");
+        } else {
+            $("#email_prev").html("");
+        }
+    }
+
+    function finalize(){
+        full_name = $("#ship_full_name").val();
+        phone = $("#ship_phone_number").val();
+        email = $("#ship_email").val();
+        //delivery_type = $("#delivery").val();
+        delivery_order = $("#delivery_order").val();
+        delivery_location = $("#sel_loc").val();
+
+        lat = $("#lat").val();
+        lng = $("#long").val();
+        instructions = $("#instructions").val();
+
+        if($("#auto").is(':checked')){
+            delivery_amount = $("#delivery_amount").val();
+        }else if($("#manual").is(':checked')){
+            delivery_amount = $("input:radio[name=del_opt]").val();
+        }else if($("#collection").is(':checked')){
+            delivery_amount = 0;
+        }
+
+
+
+        $.ajax({
+            url:'/carts/update_shipping',
+            method:'post',
+            data:{
+                amount:delivery_amount,
+                orderid:delivery_order,
+                type:$("input:radio[name=delivery]").val(),
+                email:$("#ship_email").val(),
+                name:$("#ship_full_name").val(),
+                phone:$("#ship_phone_number").val(),
+                delivery_location:delivery_location,
+                lat:lat,
+                lng:lng,
+                instructions:instructions
+            },
+
+            success:function () {
+                $('.ship_form').attr('disabled', 'true');
+                $("#process").attr('style',"display:none;margin-top: 1em");
+                $("#edit").attr('style',"display:block;margin-top: 1em");
+            }
+        });
+    }
+
+    function collect() {
+        if ($("#collection").is(':checked')) {
+            if (full_name != "" && phonenumbers(phone)) {
+                $.ajax({
+                    url: '/carts/collection',
+                    success: function (res) {
+                        $(".delivery_options").html(res);
+                    }
+                });
+                $("#process").removeAttr("disabled");
+
+            } else {
+                $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
+                $(".delivery_options").html("");
+            }
+        }
+    }
+
+function manual_() {
+    if ($("#manual").is(':checked')) {
+        if (full_name != "" && phonenumbers(phone)) {
+            $.ajax({
+                url: '/carts/manual',
+                success: function (res) {
+                    $(".delivery_options").html(res);
+                }
+            });
+        } else {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
+            $(".delivery_options").html("");
+        }
+    }
+}
+
+function _manual_(){
+    if($("input:radio[name=delivery]").val() != ""){
+        if($("#other").is(':checked')){
+           if ($("#instructions").val() != ""){
+               $("#process").removeAttr("disabled");
+           }else{
+               $("#process").attr("disabled","true");
+           }
+        }else{
+            $("#process").removeAttr("disabled");
+            $(".select_instructions").html('');
+            $("#instructions").val('');
+        }
+    }
+}
+
+
+
+

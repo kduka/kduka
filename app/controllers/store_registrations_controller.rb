@@ -1,5 +1,8 @@
 class StoreRegistrationsController < Devise::RegistrationsController
+  prepend_before_action :require_no_authentication, only: [ :cancel]
+  prepend_before_action :kick_out, only:[:new,:create]
   before_action :authenticate_user!, except:[:edit]
+
 
   def new
     if store_signed_in?

@@ -1,0 +1,6 @@
+<% if @del_opt.errors.any? || @del_opt.errors.any? %>
+    alert("Something Went Wrong")
+<% else %>
+$(".del_opts").html("<%= escape_javascript(render "locations") %>")
+
+<% end %>

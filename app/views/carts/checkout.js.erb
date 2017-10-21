@@ -1,0 +1,16 @@
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://safaricom.co.ke/mpesa_online/lnmo_checkout_server.php?wsdl=",
+    "method": "POST",
+    "headers": {
+        "content-type": "text/xml",
+        "cache-control": "no-cache",
+        "postman-token": "19709844-23d0-df44-37f1-4251d560458f"
+    },
+    "data": "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:tns='tns:ns'>\n    <soapenv:Header>\n    <tns:CheckOutHeader>\n    <MERCHANT_ID>898945</MERCHANT_ID>\n\t<PASSWORD>MmRmNTliMjIzNjJhNmI5ODVhZGU5OTAxYWQ4NDJkZmI2MWE4ODg1ODFhMTQ3ZmZmNTFjMjg4M2UyYWQ5NTU3Yw==</PASSWORD>\n    <TIMESTAMP>20141128174717</TIMESTAMP>\n  </tns:CheckOutHeader>\n    </soapenv:Header>\n<soapenv:Body>\n  <tns:processCheckOutRequest>\n\t<MERCHANT_TRANSACTION_ID>911-000</MERCHANT_TRANSACTION_ID>\n    <REFERENCE_ID>1112254500</REFERENCE_ID>\n\t<AMOUNT>54</AMOUNT>\n    <MSISDN>2547204871865</MSISDN>\n\t<!--Optional:-->\n\t<ENC_PARAMS></ENC_PARAMS>\n    <CALL_BACK_URL>http://172.21.20.215:8080/test</CALL_BACK_URL>\n\t<CALL_BACK_METHOD>xml</CALL_BACK_METHOD>\n    <TIMESTAMP>20141128174717</TIMESTAMP>\n  </tns:processCheckOutRequest>\n    </soapenv:Body>\n</soapenv:Envelope>"
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});

@@ -134,7 +134,8 @@ class ProductsController < ApplicationController
 
   def view
     @product = Product.where(sku: params[:sku],active:true).first
-
+    viewed = @product.viewed += 1
+    @product.update(viewed:viewed)
     if @product.nil?
       redirect_to(home_path) and return
     end
