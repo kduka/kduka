@@ -1,5 +1,5 @@
 class StoreDeliveriesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_store!
   def create
     del_opt = params[:del_opt]
     del_price = params[:del_price]
