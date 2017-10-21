@@ -1,201 +1,574 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
-	<head>
-    <%= csrf_meta_tags %>
+<head>
+<title>KDuka User Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="KDuka, Online shopping made easy" />
+<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<% Dir.foreach("public/stylesheets/admin") do |item|
+  next if item == '.' or item == '..' %>
+    <%= stylesheet_link_tag "admin/#{item}" %>
+<% end %>
+<% Dir.foreach("public/javascripts/admin") do |item|
+  next if item == '.' or item == '..' %>
+    <%= javascript_include_tag "admin/#{item}" %>
+<% end %>
+ <script type="text/javascript">
 
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <% Dir.foreach("public/stylesheets/admin") do |item|
-      next if item == '.' or item == '..' %>
-        <%= stylesheet_link_tag    "admin/#{item}" %>
-    <% end %>
-    <% Dir.foreach("public/javascripts/admin") do |item|
-      next if item == '.' or item == '..' %>
-        <%= javascript_include_tag   "admin/#{item}" %>
-    <% end %>
-		<title>Home</title>
-		<script type="application/x-javascript">
-			addEventListener("load", function() {
-				setTimeout(hideURLbar, 0);
-			}, false);
-			function hideURLbar() {
-				window.scrollTo(0, 1);
-			}
-		</script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#demo-pie-1').pieChart({
-					barColor : '#3bb2d0',
-					trackColor : '#eee',
-					lineCap : 'round',
-					lineWidth : 8,
-					onStep : function(from, to, percent) {
-						$(this.element).find('.pie-value').text(Math.round(percent) + '%');
-					}
-				});
+        $(document).ready(function () {
+            $('#demo-pie-1').pieChart({
+                barColor: '#3bb2d0',
+                trackColor: '#eee',
+                lineCap: 'round',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
 
-				$('#demo-pie-2').pieChart({
-					barColor : '#fbb03b',
-					trackColor : '#eee',
-					lineCap : 'butt',
-					lineWidth : 8,
-					onStep : function(from, to, percent) {
-						$(this.element).find('.pie-value').text(Math.round(percent) + '%');
-					}
-				});
+            $('#demo-pie-2').pieChart({
+                barColor: '#fbb03b',
+                trackColor: '#eee',
+                lineCap: 'butt',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
 
-				$('#demo-pie-3').pieChart({
-					barColor : '#ed6498',
-					trackColor : '#eee',
-					lineCap : 'square',
-					lineWidth : 8,
-					onStep : function(from, to, percent) {
-						$(this.element).find('.pie-value').text(Math.round(percent) + '%');
-					}
-				});
+            $('#demo-pie-3').pieChart({
+                barColor: '#ed6498',
+                trackColor: '#eee',
+                lineCap: 'square',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
 
-			});
 
-		</script>
-	</head>
-	<body>
-		
-		<div class="page-container">
-			<!--/content-inner-->
-			<div class="left-content">
-				<div class="inner-content">
-					<!-- header-starts -->
-					<div class="header-section">
-						<!-- top_bg -->
+        });
+
+    </script>
+</head>
+<body>
+   <div class="page-container">
+   <!--/content-inner-->
+	<div class="left-content">
+	   <div class="inner-content">
+		<!-- header-starts -->
+			<div class="header-section">
+			<!-- top_bg -->
 						<div class="top_bg">
 
-							<div class="header_top">
-								<div class="top_right">
-									<ul>
-										<li>
-											<a href=""><%= current_user.name %></a>
-										</li>
-										<li><%= link_to "LOGIN INTO STORE", new_store_session_path, target:'_blank'%></li>
-									</ul>
-								</div>
-								<div class="top_left">
-									<span style="color:#fff"><i class="fa fa-user" ></i> <%= current_user.email%></span> | <i class="fa fa-user" ></i><%= link_to "Logout", destroy_user_session_path , method:'delete' %></h2>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-
-						</div>
-						<div class="clearfix"></div>
-						<!-- /top_bg -->
-					</div>
-					<div class="header_bg">
-
-						<div class="header">
-							<div class="head-t">
-								<!-- <div class="logo">
-								<a href="index.html"><img src="images/logo.png" class="img-responsive" alt=""> </a>
-								</div> -->
-								<!-- start header_right -->
-								<div class="header_right">
-									<div class="rgt-bottom">
-
-										<div class="clearfix"></div>
+								<div class="header_top">
+									<div class="top_right">
+										<ul>
+											<li><%= link_to "LOGIN INTO STORE", new_store_session_path, target:'_blank'%></li>
+										</ul>
 									</div>
-									<div class="clearfix"></div>
+									<div class="top_left">
+										<h2 style="text-transform:lowercase"><span style="color:#fff"><i class="fa fa-user" ></i> <%= current_user.email%></span></h2>
+									</div>
+										<div class="clearfix"> </div>
 								</div>
-								<div class="clearfix"></div>
+
+						</div>
+					<div class="clearfix"></div>
+				<!-- /top_bg -->
+				</div>
+				<div class="header_bg">
+
+							<div class="header">
+								<div class="head-t">
+									<div class="logo">
+										<h1><a href="<%= users_home_path %>"><%= current_user.name %></a></h1>
+									</div>
+										<!-- start header_right -->
+									<div class="header_right">
+                    <div class="rgt-bottom">
+										<div class="create_btn" style="float:right">
+											<%= link_to "Logout", destroy_user_session_path ,style:'float:right', method:'delete' %>
+										</div>
+										<div class="clearfix"> </div>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+								<div class="clearfix"> </div>
 							</div>
 						</div>
 
-					</div>
+				</div>
 					<!-- //header-ends -->
+				<!--content-->
+			<div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <% if !notice.nil? %>
+            <div class="alert alert-success" role="alert">
+              <strong><%= notice %></strong>
+            </div>
+            <% end %>
+            <% if !alert.nil? %>
+            <div class="alert alert-info" role="alert">
+              <strong><%= alert %></strong>
+            </div>
+            <% end %>
 
-					<!--content-->
-					<div class="row">
-						<div class="col-md-12">
-							<% if !notice.nil? %>
-							<div class="alert alert-success" role="alert">
-								<strong><%= notice %></strong>
-							</div>
-							<% end %>
-							<% if !alert.nil? %>
-							<div class="alert alert-info" role="alert">
-								<strong><%= alert %></strong>
-							</div>
-							<% end %>
+          </div>
+        </div>
+        <div style="height:auto !important">
+        <%= yield %>
+        </div>
 
+        <!--//area-->
+          <!-- <div class="col-md-12 skil">
+            <div class="content-top-1 col-md-4">
+              <div class="col-md-6 top-content">
+                <h5>Total Products (All Stores)</h5>
+                <label>89</label>
+              </div>
+              <div class="col-md-6 top-content1">
+                <div id="demo-pie-1" class="pie-title-center" data-percent="100"> <span class="pie-value">100%</span> </div>
+              </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="content-top-1 col-md-4">
+              <div class="col-md-6 top-content">
+                <h5>Average Products Per Store</h5>
+                <label>18</label>
+              </div>
+              <div class="col-md-6 top-content1">
+                <div id="demo-pie-2" class="pie-title-center" data-percent="20"> <span class="pie-value">20%</span> </div>
+              </div>
+               <div class="clearfix"> </div>
+            </div>
+            <div class="content-top-1 col-md-4">
+              <a href="<%= users_stores_path %>">
+              <div class="col-md-6 top-content">
+                <h5>Number of Active Stores</h5>
+                <label>5</label>
+              </div>
+              <div class="col-md-6 top-content1">
+                <div id="demo-pie-3" class="pie-title-center" data-percent="100"> <span class="pie-value">100%</span> </div>
+              </div>
+              <div class="clearfix"> </div>
+            </a>
+            </div>
+          </div>
+
+        <div class="clearfix"></div>
+        <div class="area" style="margin-top:2em">
+          <div class="col-md-12 chrt-two area">
+            <h3 class="sub-tittle" style="text-align:center">Product Sales and Views</h3>
+              <div style="area">
+                <canvas id="canvas" style="width:100%;height:100%"></canvas>
+              </div>
+                <button id="randomizeData">Randomize Data</button>
+                    <script>
+                        var randomScalingFactor = function() {
+                        return Math.round(Math.random() * 100 * (Math.random() > 0.5 ? 1 : 1));
+                          };
+                        var randomColor = function(opacity) {
+                        return 'rgba(63,191,191,0.4)';
+                          };
+
+                        var lineChartData = {
+                          labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                          datasets: [
+                            {
+                                label: "Product Sales",
+                                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+                                yAxisID: "y-axis-1",
+                            },
+                            {
+                                label: "Product Views",
+                                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+                                  yAxisID: "y-axis-2"
+                                  }]
+                                };
+
+                                $.each(lineChartData.datasets, function(i, dataset) {
+                                  dataset.borderColor = randomColor(0.4);
+                                  dataset.backgroundColor = randomColor(1);
+                                  dataset.pointBorderColor = randomColor(0.7);
+                                  dataset.pointBackgroundColor = randomColor(0.5);
+                                  dataset.pointBorderWidth = 1;
+                                });
+
+                                console.log(lineChartData);
+
+                                window.onload = function() {
+                                  var ctx = document.getElementById("canvas").getContext("2d");
+                                  window.myLine = Chart.Line(ctx, {
+                                    data: lineChartData,
+                                    options: {
+
+                                      hoverMode: 'label',
+                                      stacked: false,
+                                      scales: {
+                                        xAxes: [{
+                                          display: true,
+                                          gridLines: {
+                                            offsetGridLines: false
+                                          }
+                                        }],
+                                        yAxes: [{
+                                          type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                                          display: true,
+                                          position: "left",
+                                          id: "y-axis-1",
+                                        }, {
+                                          type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                                          display: true,
+                                          position: "right",
+                                          id: "y-axis-2",
+
+                                          // grid line settings
+                                          gridLines: {
+                                            drawOnChartArea: false, // only want the grid lines for one axis to show up
+                                          },
+                                        }],
+                                      }
+                                    }
+                                  });
+                                };
+
+                                $('#randomizeData').click(function() {
+                                  lineChartData.datasets[0].data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
+
+                                  lineChartData.datasets[1].data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
+
+                                  window.myLine.update();
+                                });
+                    </script>
+                      <script src="js/Chart.js"></script>
+          </div>
+          <div class="clearfix"></div>
+        </div> -->
+            <!--//area-->
+		<div class="fo-top-di">
+			<div class="footer">
+					<div class="col-md-4 cust">
+						<h4>CUSTOMER CARE</h4>
+							<li><a href="#">Help Center</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Store Setup</a></li>
+					</div>
+					<div class="col-md-4 our-st">
+						<div class="our-left">
+							<h4>OUR CONTACTS</h4>
 						</div>
+							<li><i class="fa fa-phone"></i> +254-724-040839</li>
+              <li><i class="fa fa-phone"></i> +254-773-054785</li>
+              <li><i class="fa fa-phone"></i> +254-714-764162</li>
+							<li><a href="mailto:contact@kduka.co.ke"><i class="fa fa-envelope"></i> contact@kduka.co.ke</a></li>
 					</div>
-					<div class="content">
-						
-						<%= yield %>
+          <div class="col-md-4 our-st">
+						<div class="our-left">
+							<h4>FOLLOW US ON</h4>
+						</div>
+
+              <style>
+              .my_ul {
+                  list-style-type: none;
+                  margin: 0;
+                  padding: 0;
+                  overflow: hidden;
+              }
+
+              .my_li {
+                  float: left;
+              }
+
+              .my_li a {
+                  display: block;
+                  text-align: center;
+                  padding: 16px;
+                  text-decoration: none;
+              }
+              </style>
+              <ul class="my_ul">
+                <li class="my_li"><a href="#"><i class="fa fa-facebook"> </i></a></li>
+                <li class="my_li"><a href="#"><i class="fa fa-twitter"> </i></a></li>
+                <li class="my_li"><a href="#"><i class="fa fa-google"> </i></a></li>
+            </ul>
 					</div>
-					<!--content-->
-
-				</div>
+					<div class="clearfix"> </div>
+						<p>Copyright © <%= Time.current.year %> KDuka. All Rights Reserved | Developed by <a href="http://www.zerone.co.ke/">Zerone I.T. Solutions</a></p>
 			</div>
-			<!--//content-inner-->
-			<!--/sidebar-menu-->
-			<div class="sidebar-menu">
-				<header class="logo1">
-					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>
-				</header>
-				<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
-				<div class="menu">
-					<ul id="menu" >
-						<li>
-							<a href="<%= users_home_path %>"><i class="fa fa-tachometer"></i> <span>Home</span></a>
-						</li>
-						<li id="menu-academico" >
-							<a href="#"><i class="fa fa-table"></i> <span> Stores</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-							<ul id="menu-academico-sub" >
-								<li id="menu-academico-avaliacoes" >
-									<a href="<%= users_stores_path %>">Manage Stores</a>
-								</li>
-
-								<li id="menu-academico-avaliacoes" >
-									<a href="<%= new_store_registration_path %>">New Store</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-credit-card"></i> <span>Billing</span></a>
-						</li>
-						<li>
-							<a href="<%= store_account_path %>"><i class="fa fa-gears"></i> <span>Account</span></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="clearfix"></div>
 		</div>
-		<script>
-			var toggle = true;
+			</div>
+			<!--content-->
+		</div>
+</div>
+				<!--//content-inner-->
+			<!--/sidebar-menu-->
+				<div class="sidebar-menu">
+					<header class="logo1">
+						<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>
+					</header>
+						<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
+                           <div class="menu">
+                             <ul id="menu" >
+                   						<li>
+                   							<a href="<%= users_home_path %>"><i class="fa fa-tachometer"></i> <span>Home</span></a>
+                   						</li>
+                   						<li id="menu-academico" >
+                   							<a href="#"><i class="fa fa-table"></i> <span> Stores</span></a>
+                   							<ul id="menu-academico-sub" >
+                   								<li id="menu-academico-avaliacoes" >
+                   									<a href="<%= users_stores_path %>">Manage Stores</a>
+                   								</li>
 
-			$(".sidebar-icon").click(function() {
-				if (toggle) {
-					$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-					$("#menu span").css({
-						"position" : "absolute"
-					});
-				} else {
-					$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-					setTimeout(function() {
-						$("#menu span").css({
-							"position" : "relative"
-						});
-					}, 400);
+                   								<li id="menu-academico-avaliacoes" >
+                   									<a href="<%= new_store_registration_path %>">New Store</a>
+                   								</li>
+                   							</ul>
+                   						</li>
+                   						<li>
+                   							<a href="#"><i class="fa fa-credit-card"></i> <span>Billing</span></a>
+                   						</li>
+                   						<li>
+                   							<a href="<%= store_account_path %>"><i class="fa fa-gears"></i> <span>Account</span></a>
+                   						</li>
+                   					</ul>
+								</div>
+							  </div>
+							  <div class="clearfix"></div>
+							</div>
+							<script>
+							var toggle = true;
+
+							$(".sidebar-icon").click(function() {
+							  if (toggle)
+							  {
+								$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+								$("#menu span").css({"position":"absolute"});
+							  }
+							  else
+							  {
+								$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+								setTimeout(function() {
+								  $("#menu span").css({"position":"relative"});
+								}, 400);
+							  }
+
+											toggle = !toggle;
+										});
+							</script>
+   <!-- real-time -->
+	<script type="text/javascript">
+
+	$(function() {
+
+		// We use an inline data source in the example, usually data would
+		// be fetched from a server
+
+		var data = [],
+			totalPoints = 300;
+
+		function getRandomData() {
+
+			if (data.length > 0)
+				data = data.slice(1);
+
+			// Do a random walk
+
+			while (data.length < totalPoints) {
+
+				var prev = data.length > 0 ? data[data.length - 1] : 50,
+					y = prev + Math.random() * 10 - 5;
+
+				if (y < 0) {
+					y = 0;
+				} else if (y > 100) {
+					y = 100;
 				}
 
-				toggle = !toggle;
+				data.push(y);
+			}
+
+			// Zip the generated y values with the x values
+
+			var res = [];
+			for (var i = 0; i < data.length; ++i) {
+				res.push([i, data[i]])
+			}
+
+			return res;
+		}
+
+		// Set up the control widget
+
+		var updateInterval = 30;
+		$("#updateInterval").val(updateInterval).change(function () {
+			var v = $(this).val();
+			if (v && !isNaN(+v)) {
+				updateInterval = +v;
+				if (updateInterval < 1) {
+					updateInterval = 1;
+				} else if (updateInterval > 2000) {
+					updateInterval = 2000;
+				}
+				$(this).val("" + updateInterval);
+			}
+		});
+
+		var plot = $.plot("#placeholder", [ getRandomData() ], {
+			series: {
+				shadowSize: 0	// Drawing is faster without shadows
+			},
+			yaxis: {
+				min: 0,
+				max: 100
+			},
+			xaxis: {
+				show: false
+			}
+		});
+
+		function update() {
+
+			plot.setData([getRandomData()]);
+
+			// Since the axes don't change, we don't need to call plot.setupGrid()
+
+			plot.draw();
+			setTimeout(update, updateInterval);
+		}
+
+		update();
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+<!-- /real-time -->
+    <script>
+
+		$(function() {
+
+			"use strict";
+
+			$(".gantt").gantt({
+				source: [{
+					name: "Sprint 0",
+					desc: "Analysis",
+					values: [{
+						from: "/Date(1320192000000)/",
+						to: "/Date(1322401600000)/",
+						label: "Requirement Gathering",
+						customClass: "ganttRed"
+					}]
+				},{
+					name: " ",
+					desc: "Scoping",
+					values: [{
+						from: "/Date(1322611200000)/",
+						to: "/Date(1323302400000)/",
+						label: "Scoping",
+						customClass: "ganttRed"
+					}]
+				},{
+					name: "Sprint 1",
+					desc: "Development",
+					values: [{
+						from: "/Date(1323802400000)/",
+						to: "/Date(1325685200000)/",
+						label: "Development",
+						customClass: "ganttGreen"
+					}]
+				},{
+					name: " ",
+					desc: "Showcasing",
+					values: [{
+						from: "/Date(1325685200000)/",
+						to: "/Date(1325695200000)/",
+						label: "Showcasing",
+						customClass: "ganttBlue"
+					}]
+				},{
+					name: "Sprint 2",
+					desc: "Development",
+					values: [{
+						from: "/Date(1326785200000)/",
+						to: "/Date(1325785200000)/",
+						label: "Development",
+						customClass: "ganttGreen"
+					}]
+				},{
+					name: " ",
+					desc: "Showcasing",
+					values: [{
+						from: "/Date(1328785200000)/",
+						to: "/Date(1328905200000)/",
+						label: "Showcasing",
+						customClass: "ganttBlue"
+					}]
+				},{
+					name: "Release Stage",
+					desc: "Training",
+					values: [{
+						from: "/Date(1330011200000)/",
+						to: "/Date(1336611200000)/",
+						label: "Training",
+						customClass: "ganttOrange"
+					}]
+				},{
+					name: " ",
+					desc: "Deployment",
+					values: [{
+						from: "/Date(1336611200000)/",
+						to: "/Date(1338711200000)/",
+						label: "Deployment",
+						customClass: "ganttOrange"
+					}]
+				},{
+					name: " ",
+					desc: "Warranty Period",
+					values: [{
+						from: "/Date(1336611200000)/",
+						to: "/Date(1349711200000)/",
+						label: "Warranty Period",
+						customClass: "ganttOrange"
+					}]
+				}],
+				navigate: "scroll",
+				scale: "weeks",
+				maxScale: "months",
+				minScale: "days",
+				itemsPerPage: 10,
+				onItemClick: function(data) {
+					alert("Item clicked - show some details");
+				},
+				onAddClick: function(dt, rowId) {
+					alert("Empty space clicked - add an item!");
+				},
+				onRender: function() {
+					if (window.console && typeof console.log === "function") {
+						console.log("chart rendered");
+					}
+				}
 			});
-		</script>
-	</body>
+
+			$(".gantt").popover({
+				selector: ".bar",
+				title: "I'm a popover",
+				content: "And I'm the content of said popover.",
+				trigger: "hover"
+			});
+
+			prettyPrint();
+
+		});
+
+    </script>
+</body>
 </html>

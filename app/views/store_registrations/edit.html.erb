@@ -1,10 +1,10 @@
-<div class="col-md-6 col-md-offset-3">
-  <h2>Edit Store</h2>
+  <h2 style="text-align:center">Edit Store</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
       <%= devise_error_messages! %>
-
+      <div class="col-md-12 col-xs-12">
+      <div class="col-md-6 col-xs-12">
       <div class="field">
         <%= f.label "Store Active" %><br/>
         <%= f.text_field :name, autofocus: true, class: 'form-control' %>
@@ -24,6 +24,8 @@
         <%= f.label "Upload Logo" %><br/>
         <%= f.file_field :logo, autofocus: true, class: 'form-control' %>
       </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
 
       <div class="field">
         <%= f.label "Preview Logo" %><br/>
@@ -41,6 +43,16 @@
       </div>
 
       <div class="field">
+        <%= f.label :display_email %><br/>
+        <%= f.text_field :display_email, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :phone %><br/>
+        <%= f.text_field :phone, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="field">
         <%= f.label :password %>
         <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -52,21 +64,13 @@
         <%= f.label :password_confirmation %><br/>
         <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
       </div>
-
-      <div class="field">
-        <%= f.label :display_email %><br/>
-        <%= f.text_field :display_email, autofocus: true, class: 'form-control' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :phone %><br/>
-        <%= f.text_field :phone, autofocus: true, class: 'form-control' %>
-      </div>
+    </div>
+  </div>
 
 
-      <div class="actions">
+
+
+      <div class="actions" style="text-align:center">
         <%= f.submit "Create Store", class: 'btn btn-primary' %>
       </div>
   <% end %>
-
-</div>

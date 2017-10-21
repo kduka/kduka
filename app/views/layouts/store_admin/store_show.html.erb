@@ -1,18 +1,11 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
 <head>
 
 
   <%= csrf_meta_tags %>
-
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <% Dir.foreach("public/stylesheets/admin") do |item|
     next if item == '.' or item == '..' %>
@@ -23,7 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <%= javascript_include_tag "admin/#{item}" %>
   <% end %>
 
-  <title>Home</title>
+  <title>KDuka Store Dashboard</title>
   <script type="application/x-javascript">
       addEventListener("load", function () {
           setTimeout(hideURLbar, 0);
