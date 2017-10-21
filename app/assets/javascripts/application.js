@@ -327,7 +327,7 @@ function manual() {
         if (!phonenumbers(phone)) {
             $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 07XXXXXXXX</p>")
         } else {
-            $("#phone_prev").html("")
+            $("#phone_prev").html("");
         }
     }
 
@@ -391,7 +391,7 @@ function manual() {
                 $.ajax({
                     url: '/carts/collection',
                     success: function (res) {
-                        $(".delivery_options").html(res)
+                        $(".delivery_options").html(res);
                     }
                 });
                 $("#process").removeAttr("disabled");
@@ -409,7 +409,7 @@ function manual_() {
             $.ajax({
                 url: '/carts/manual',
                 success: function (res) {
-                    $(".delivery_options").html(res)
+                    $(".delivery_options").html(res);
                 }
             });
         } else {
