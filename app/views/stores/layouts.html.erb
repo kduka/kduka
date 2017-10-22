@@ -1,7 +1,19 @@
+<div class="skil">
+<div class="catalog">
+  <div id="tabs" class="tabs">
+    <div class="graph">
+  <nav>
+			<ul>
+				<li class="tab-current"><a href="#section-1"><span>Choose Layout</span></a></li>
+				<li><a href="#section-2"><span>Choose Layout Color</span></a></li>
+			</ul>
+	</nav>
+  <div class="content tab">
+<section id="section-1" class="content-current">
 <div class="row">
   <%= form_for :store, :url => {controller: 'stores', action: 'update_layout'}, method: 'put' do |f| %>
       <% @layouts.each do |l| %>
-          <div style="margin-top:1em" class="col-md-3 text-center">
+          <div style="margin-top:1em" class="col-md-4 text-center">
 
             <div style="min-height: 300px;border-style: solid;border-color:#b52e31;margin:3px;background:url('<%= l.preview_url(:thumb).to_s %>');background-size: contain"></div>
             <label>
@@ -13,11 +25,11 @@
             </label>
           </div>
       <% end %>
-
-      </div>
       <br><br>
+    </div>
+    </section>
+    <section id="section-2">
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
           <p></p>
           <div class="form-group">
             Store Color
@@ -25,8 +37,17 @@
           </div>
           <br>
           <div id="clrbx" style="height:250px;width:250px;padding:1em;border-style:solid;border-color:<%= @store.store_color %>;background-color:<%= @store.store_color %>" class="backcolor"></div>
-          <p></p>
-          <p><%= f.submit 'Save', class: 'btn btn-primary' %>
+          <br><br>
+        </div>
+        </section>
+      </div>
+
+          <p style="text-align:center"><%= f.submit 'Save Layout Details', class: 'btn btn-primary btn-lg' %></p>
   <% end %>
-  </div>
-  </div>
+</div>
+</div>
+</div>
+<script>
+			new CBPFWTabs( document.getElementById( 'tabs' ) );
+</script>
+</div>

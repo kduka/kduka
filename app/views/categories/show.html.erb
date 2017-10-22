@@ -1,5 +1,5 @@
-
-<h1><%= Category.find(params[:id]).name %></h1>
+<div class="skil">
+<h1 style="text-align:center"><%= Category.find(params[:id]).name %></h1>
 
 <table class="table">
   <thead>
@@ -8,7 +8,7 @@
       <th>Name</th>
       <th>Active</th>
       <th></th>
-      
+
     </tr>
   </thead>
 
@@ -31,4 +31,5 @@
 <%= link_to 'New Category', new_category_path %>
 
 
-<%= link_to "Back" , categories_path %>  ||  <%= link_to "New Sub-category" ,  new_category_sub_category_path(params[:id]) %>  
+<%= link_to "Back" , categories_path %>  ||  <%= link_to "New Sub-category" ,  new_category_sub_category_path(params[:id]) %>
+</div> 

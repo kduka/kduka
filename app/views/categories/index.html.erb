@@ -1,19 +1,15 @@
 
-<div class="cats">
-<h1>Categories</h1>
-  <p><h4>Categories group your products. Every product must be in a category</h4></p>
+<div class="skil">
+<h1 style="text-align:center">Categories</h1>
 
-  <p><%= link_to 'New Category', new_category_path, class:'btn btn-primary',style:'margin:1em' %></p>
-</br>
-
-<table class="table">
+<table id="myTable" class="table datatables no-footer">
   <thead>
     <tr>
     	<th>#</th>
       <th>Name</th>
       <th>Active</th>
       <th></th>
-      
+
     </tr>
   </thead>
 
@@ -33,5 +29,5 @@
 
 <br>
 
-
+<p style="text-align:center"><%= link_to 'Add New Category', new_category_path, class:'btn btn-primary btn-lg' %></p>
 </div>

@@ -1,5 +1,5 @@
-<div class="col-md-6 col-md-offset-3">
-<h1>Editing Product</h1>
+<div class="skil">
+<h1 style="text-align:center">Editing Product</h1>
 
   <% if @product.errors.any? %>
       <div id="error_explanation">
@@ -38,8 +38,8 @@
       <%= f.text_field :price, class:'form-control' %>
     </div>
 
-    
-    
+
+
     <div class="form-group">
       Category
 	    <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name'),{} ,{:class=>'form-control',required:'required'} %>
@@ -50,7 +50,7 @@
         <%= f.label :quantity %>
         <%= f.number_field :quantity, class:'form-control' %>
       </div>
-    
+
     <div class="form-group">
       <%= f.label :length %>
       <%= f.number_field :length, class:'form-control' %>
@@ -73,22 +73,22 @@
         <%= f.number_field :weight, class:'form-control' %>
       </div>
 
-	
+
 	<div class="form-group">
       <%= f.label :active %>
       <%= f.check_box :active %>
     </div>
-    
+
 	<div class="form-group">
       Upload an Image
       <%= f.file_field :image, class:'form-control' %>
     </div>
-    
+
     <div class="form-group">
       Upload an Image1
       <%= f.file_field :img1, class:'form-control' %>
     </div>
-	
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -9,8 +9,9 @@
     right: 1em;
   }
 </style>
+<div class="skil">
+  <br><h1 style="text-align:center">Delivery Settings</h1><br>
 <div id="fixed-div"></div>
-<div class="col-md-6 col-md-offset-3">
   <%= form_for :store, :url => {controller: 'stores', action: 'update_delivery'}, method: 'put' do |f| %>
 
       <div class="form-group">
@@ -100,12 +101,12 @@
       <div class="form-group">
         <%= f.hidden_field :lng, class: 'form-control' %>
       </div>
-
-      <p><%= f.submit 'Save', class: 'btn btn-primary' %>
+      <br><br>
+      <p style="text-align:center"><%= f.submit 'Save Delivery Settings', class: 'btn btn-primary btn-lg' %>
   <% end %>
-</div>
 
 <div id="map"></div>
+</div>
 
 <script>
 
@@ -185,4 +186,3 @@
 
 
 </script>
-
