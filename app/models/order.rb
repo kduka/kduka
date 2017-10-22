@@ -16,6 +16,7 @@ private
   def set_order_status
     self.order_status_id = 1
     self.number_of_transactions = 0
+    self.tax = 0
   end
 
   def update_subtotal

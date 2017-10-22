@@ -9,7 +9,7 @@
 
     <% StoreDelivery.where(store_id:@store.id).each do |sd| %>
         <div class="form-group">
-         <label><input onchange="_manual_()" required class="ship_form" type="radio" name="del_opt" value="<%= sd.price %>" /> <%= "#{sd.delivery_areas} : #{sd.price}" %></label>
+         <label><input onchange="_manual_()" area="<%= sd.delivery_areas %>" required class="ship_form" type="radio" name="del_opt" value="<%= sd.price %>" /> <%= "#{sd.delivery_areas} : #{sd.price}" %></label>
         </div>
     <% end %>
     <div class="form-group">

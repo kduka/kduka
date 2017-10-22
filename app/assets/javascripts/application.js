@@ -345,8 +345,6 @@ function manual() {
         email = $("#ship_email").val();
         //delivery_type = $("#delivery").val();
         delivery_order = $("#delivery_order").val();
-        delivery_location = $("#sel_loc").val();
-
         lat = $("#lat").val();
         lng = $("#long").val();
         instructions = $("#instructions").val();
@@ -354,11 +352,19 @@ function manual() {
         if($("#auto").is(':checked')){
             delivery_amount = $("#delivery_amount").val();
         }else if($("#manual").is(':checked')){
-            delivery_amount = $("input:radio[name=del_opt]").val();
+            delivery_amount = $("input[name='del_opt']:checked"). val();
+
         }else if($("#collection").is(':checked')){
             delivery_amount = 0;
         }
 
+        if($("#auto").is(':checked')){
+            delivery_location = $("#sel_loc").val();
+        }else if($("#manual").is(':checked')){
+            delivery_location = $("input[name='del_opt']:checked").attr("area");
+        }else if($("#collection").is(':checked')){
+            delivery_location = $("#collection_point").val();
+        }
 
 
         $.ajax({
