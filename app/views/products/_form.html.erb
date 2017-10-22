@@ -30,19 +30,21 @@
 </div>
 
 <div class="form-group">
-	Category
+  <%= f.label "Category" %>
 	<%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name'),{} ,{:class=>'form-control'} %>
 </div>
 
 <div class="form-group">
-	<%= f.label :quantity %>
+	<%= f.label "Number of products in stock" %>
 	<%= f.text_field :quantity, class:'form-control' %>
 </div>
 
 <div class="form-group">
-	<%= f.label :active %>
+	<%= f.label "Show product in the store" %>
 	<%= f.check_box :active %>
 </div>
+
+    <p><em>Weight and Size of the Product(For Shipping)</em></p>
 
     <div class="form-group">
       <%= f.label :length %>
@@ -66,6 +68,8 @@
       <%= f.number_field :weight, class:'form-control' %>
     </div>
 
+    <p><em>Upload images of the products</em></p>
+
 <div class="form-group">
 	Main Image
 	<%= f.file_field :image, class:'form-control' %>
@@ -78,6 +82,6 @@
 
 
 <div class="actions">
-	<%= f.submit %>
+	<%= f.submit "Save Product" %>
 </div>
 <% end %>

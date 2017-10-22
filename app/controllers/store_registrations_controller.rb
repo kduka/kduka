@@ -18,7 +18,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
     @store = @user.store.create(store_params.merge(subdomain:santize(params[:store][:subdomain]),layout_id:1,store_color:'#fc711b',homepage_status:true,aboutpage_status:true,manual_delivery_status:false,auto_delivery_status:false,collection_point_status:false,init:false,important:false,active:false))
 
     if @store.save
-      flash[:notice] = "Your Store has been created! Login here"
+      flash[:notice] = "Your Store has been created!"
       redirect_to(users_stores_path)
     else
       flash[:notice] = "Sorry, we couldnt create the store. Please contact admin"

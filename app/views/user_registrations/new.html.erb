@@ -28,12 +28,12 @@
     </div>
 
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label "Store Login Email" %><br />
       <%= f.email_field :email, autofocus: true, class:'form-control',style:'text-align:center' %>
     </div>
 
     <div class="field">
-      <%= f.label :password %>
+      <%= f.label "Store Login Password" %>
       <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
@@ -48,6 +48,7 @@
     <div class="actions">
       <%= f.submit "Sign up" %>
     </div>
+
 <% end %>
 
 
@@ -58,5 +59,7 @@
 <div class="clear"><div>
 <div class="col-md-12" style="margin-top:3em !important;margin-bottom:0em;">
 <p style="text-align:center">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="color:#fff" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a><p>
+</div>
+</div>
 </div>
 </div>

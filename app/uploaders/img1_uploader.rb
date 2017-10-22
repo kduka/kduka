@@ -6,8 +6,11 @@ class Img1Uploader < CarrierWave::Uploader::Base
   include CarrierWave::ImageOptimizer
 
   # Choose what kind of storage to use for this uploader:
-  #storage :file
-  storage :fog
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
   process optimize:[{ quality: 50 }]
 
   # Override the directory where uploaded files will be stored.

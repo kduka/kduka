@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   def home
     @user = User.find(current_user.id)
-    if @user.init == nil
-      @setup = setup
+    @setup = setup
+    if @user.init == false
       if setup.empty?
         flash[:notice] = "Congratulations! Your Account is all setup!"
         @user.update(init:true)
@@ -52,15 +52,17 @@ private
     @user = User.find(current_user.id)
     messages = Hash.[]
     @i = 1
-    stores = @user.store.all
+    stores = @user.store.first
+
     if stores.nil?
+      @user.update(init:false)
       messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{new_store_registration_path}'>Create your first store! </a>"
       @i+=1
     else
-      @user.store.update(init:true)
+      @user.update(init:true)
     end
 
-    return messages
+    messages
 
   end
 

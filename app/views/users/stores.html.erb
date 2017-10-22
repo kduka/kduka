@@ -1,6 +1,7 @@
 
 <% if user_signed_in? %>
     <h1>Your Stores</h1>
+    <%= link_to "MANAGE A STORE", new_store_session_path , class:'btn btn-primary',style:'margin:1em;', target:'_blank' %>
 <% unless @stores.blank? %>
         <table class="table">
           <thead>
