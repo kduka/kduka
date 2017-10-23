@@ -348,6 +348,7 @@ function manual() {
         lat = $("#lat").val();
         lng = $("#long").val();
         instructions = $("#instructions").val();
+        coupon = $("#coupon").val();
 
         if($("#auto").is(':checked')){
             delivery_amount = $("#delivery_amount").val();
@@ -380,7 +381,8 @@ function manual() {
                 delivery_location:delivery_location,
                 lat:lat,
                 lng:lng,
-                instructions:instructions
+                instructions:instructions,
+                coupon:coupon
             },
 
             success:function () {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019112817) do
+ActiveRecord::Schema.define(version: 20171023134034) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +31,46 @@ ActiveRecord::Schema.define(version: 20171019112817) do
     t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "business_to_consumers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "Trans_Id"
+    t.string   "Type"
+    t.string   "CompanyId"
+    t.string   "CompanyDesc"
+    t.string   "Remarks"
+    t.string   "CallbackURL"
+    t.string   "IPNEnabled"
+    t.string   "IPNDataFormat"
+    t.string   "IPNDataFormatDesc"
+    t.string   "IsDelivered"
+    t.string   "TypeDesc"
+    t.string   "Payee"
+    t.string   "PrimaryAccountNumber"
+    t.string   "Amount"
+    t.string   "BankCode"
+    t.string   "MCCMNC"
+    t.string   "MCCMNCDesc"
+    t.string   "Reference"
+    t.string   "SystemTraceAuditNUmber"
+    t.string   "Status"
+    t.string   "StatusDesc"
+    t.string   "B2MResponseCode"
+    t.string   "B2MResponseDesc"
+    t.string   "B2MResultCode"
+    t.string   "B2MResultDesc"
+    t.string   "B2MTransactionID"
+    t.string   "TransactionDateTime"
+    t.string   "WorkingAccountAvailableFunds"
+    t.string   "UtilityAccountAvailableFunds"
+    t.string   "ChargePaidAccountAvailableFunds"
+    t.string   "WalletAccountAvailableFunds"
+    t.string   "TransactionCreditParty"
+    t.string   "IPNStatus"
+    t.string   "IPNStatusDesc"
+    t.string   "IPNResponse"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

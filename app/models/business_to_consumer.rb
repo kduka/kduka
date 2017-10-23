@@ -1,0 +1,2 @@
+class BusinessToConsumer < ApplicationRecord
+end

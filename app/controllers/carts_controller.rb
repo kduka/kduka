@@ -127,8 +127,9 @@ class CartsController < ApplicationController
     lat=params[:lat]
     lng = params[:lng]
     instructions = params[:instructions]
+    coupon = params[:coupon]
 
-    current_order.update(shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location:delivery_location,del_lat:lat,del_long:lng,order_instructions:instructions)
+    current_order.update(shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location:delivery_location,del_lat:lat,del_long:lng,order_instructions:instructions,coupon:coupon)
 
   end
 

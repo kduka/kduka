@@ -1,0 +1,77 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Id: MyString
+  Type: MyString
+  CompanyId: MyString
+  CompanyDesc: MyString
+  Remarks: MyString
+  CallbackURL: MyString
+  IPNEnabled: MyString
+  IPNDataFormat: MyString
+  IPNDataFormatDesc: MyString
+  IsDelivered: MyString
+  Type: MyString
+  TypeDesc: MyString
+  Payee: 
+  PrimaryAccountNumber: MyString
+  Amount: MyString
+  BankCode: MyString
+  MCCMNC: MyString
+  MCCMNCDesc: MyString
+  Reference: MyString
+  SystemTraceAuditNUmber: MyString
+  Status: 
+  StatusDesc: MyString
+  B2MResponseCode: MyString
+  B2MResponseDesc: MyString
+  B2MResultCode: MyString
+  B2MResultDesc: MyString
+  B2MTransactionID: MyString
+  TransactionDateTime: MyString
+  WorkingAccountAvailableFunds: MyString
+  UtilityAccountAvailableFunds: MyString
+  ChargePaidAccountAvailableFunds: MyString
+  WalletAccountAvailableFunds: MyString
+  TransactionCreditParty: MyString
+  IPNStatus: 
+  IPNStatusDesc: MyString
+  IPNResponse: MyString
+
+two:
+  Id: MyString
+  Type: MyString
+  CompanyId: MyString
+  CompanyDesc: MyString
+  Remarks: MyString
+  CallbackURL: MyString
+  IPNEnabled: MyString
+  IPNDataFormat: MyString
+  IPNDataFormatDesc: MyString
+  IsDelivered: MyString
+  Type: MyString
+  TypeDesc: MyString
+  Payee: 
+  PrimaryAccountNumber: MyString
+  Amount: MyString
+  BankCode: MyString
+  MCCMNC: MyString
+  MCCMNCDesc: MyString
+  Reference: MyString
+  SystemTraceAuditNUmber: MyString
+  Status: 
+  StatusDesc: MyString
+  B2MResponseCode: MyString
+  B2MResponseDesc: MyString
+  B2MResultCode: MyString
+  B2MResultDesc: MyString
+  B2MTransactionID: MyString
+  TransactionDateTime: MyString
+  WorkingAccountAvailableFunds: MyString
+  UtilityAccountAvailableFunds: MyString
+  ChargePaidAccountAvailableFunds: MyString
+  WalletAccountAvailableFunds: MyString
+  TransactionCreditParty: MyString
+  IPNStatus: 
+  IPNStatusDesc: MyString
+  IPNResponse: MyString

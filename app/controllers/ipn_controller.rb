@@ -12,51 +12,51 @@ class IpnController < ApplicationController
     kyc_name = r["KYCInfo"]["KYCInfo"]["KYCName"]
     kyc_value = r["KYCInfo"]["KYCInfo"]["KYCValue"]
 
-    @ipn = Ipn.create(MSISDN:msisdn,BusinessShortCode:business_short_code,InvoiceNumber:invoice_number,TransID:trans_id,TransAmount:trans_amount,ThirdPartyTransID:third_party_trans_id,TransTime:trans_time,KYCName:kyc_name,KYCValue:kyc_value)
+    @ipn = Ipn.create(MSISDN: msisdn, BusinessShortCode: business_short_code, InvoiceNumber: invoice_number, TransID: trans_id, TransAmount: trans_amount, ThirdPartyTransID: third_party_trans_id, TransTime: trans_time, KYCName: kyc_name, KYCValue: kyc_value)
     if @ipn
-    render :json => {'status':'ok'}
-      check_order(third_party_trans_id,trans_amount,trans_id)
+      render :json => {'status': 'ok'}
+      check_order(third_party_trans_id, trans_amount, trans_id)
     end
   end
 
 
-    def check_order(ref,amount,transid)
+  def check_order(ref, amount, transid)
 
-      # BROKEN DOWN INCASE I NEED TO ADD MORE STUFF DEPENDING ON THE ORDER STATUS
+    # BROKEN DOWN INCASE I NEED TO ADD MORE STUFF DEPENDING ON THE ORDER STATUS
 
-    @order = Order.where(ref:ref).first
+    @order = Order.where(ref: ref).first
 
     if @order.nil?
-      Unresolved.create(transid:transid)
+      Unresolved.create(transid: transid)
     elsif @order.order_status_id == 5
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
-      @order.update(number_of_transactions:transactions,amount_received:newamount)
+      @order.update(number_of_transactions: transactions, amount_received: newamount)
 
       complete(@order)
     elsif @order.order_status_id == 2
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
-      @order.update(number_of_transactions:transactions,amount_received:newamount)
+      @order.update(number_of_transactions: transactions, amount_received: newamount)
       complete(@order)
     elsif @order.order_status_id == 1
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
-      @order.update(number_of_transactions:transactions,amount_received:newamount)
+      @order.update(number_of_transactions: transactions, amount_received: newamount)
       complete(@order)
     end
 
-    end
+  end
 
   def complete(ref)
     @order = ref
     if @order.total.to_i <= @order.amount_received.to_i
-       @order.update(order_status_id:2)
-       update_inventory(@order)
-       PaymentsMailer.full_payment_recieved(@order).deliver
-       PaymentsMailer.merchant_payment_recieved(@order).deliver
+      @order.update(order_status_id: 2)
+      update_inventory(@order)
+      PaymentsMailer.full_payment_recieved(@order).deliver
+      PaymentsMailer.merchant_payment_recieved(@order).deliver
     else
-      @order.update(order_status_id:5)
+      @order.update(order_status_id: 5)
       PaymentsMailer.partial_payment_recieved(@order).deliver
       PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
     end
@@ -67,28 +67,57 @@ class IpnController < ApplicationController
       @product = Product.find(oi.product_id)
       nu = @product.quantity - oi.quantity
       sold = @product.number_sold += 1
-      @product.update(quantity:nu,number_sold:sold)
+      @product.update(quantity: nu, number_sold: sold)
     end
+  end
+
+  def b2c
+    response = JSON.parse(request.body.read)
+    render :json => response
   end
 
 end
 
 =begin
-<?xml version="1.0" encoding="utf-16"?>
-    <InstantPaymentNofication xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="e8677df8-7036-c34b-6c30-08d2ba167992">
-<MSISDN>245713047983</MSISDN>
-       <BusinessShortCode>3434334</BusinessShortCode>
-<InvoiceNumber>ABC123</InvoiceNumber>
-       <TransID>hjfgerew</TransID>
-<TransAmount>2000</TransAmount>
-       <ThirdPartyTransID>XYZ</ThirdPartyTransID>
-<TransTime>?</TransTime>
-<KYCInfo>
-<KYCInfo>
-<KYCName>?</KYCName>
-<KYCValue>?</KYCValue>
-</KYCInfo>
-       </KYCInfo>
-</InstantPaymentNofication>
-1401423339
+{
+"Id":"Pi1_34714098-5612-cf57-3912-08d45bdc34qw",
+"Type":1,"TypeDesc":"Account-To-Mobile",
+"CompanyId":"7e1b82f6-f9cd-cb2c-d03c-08d1ddb81057",
+"CompanyDesc":"Demo",
+"Remarks":"Account to M-Pesa",
+"CallbackURL":"http://yourEndpointURL/api/callback",
+"IPNEnabled":true,
+"IPNDataFormat":1,
+"IPNDataFormatDesc":"JSON",
+"IsDelivered":true,
+"OrderLines":[{
+  "Type":1,
+  "TypeDesc":"Business Payment",
+  "Payee":"JOHN DOE",
+  "PrimaryAccountNumber":"254723123456",
+  "Amount":5000.0000,
+  "BankCode":null,
+  "MCCMNC":63902,
+  "MCCMNCDesc":"Kenya - Safaricom",
+  "Reference":"c9ae5911-06a0-46df-bc49-04aad23er45r",
+  "SystemTraceAuditNumber":"c9ae591106a046dfbc4904a8d123sdfg",
+  "Status": 3,
+  "StatusDesc":"Completed",
+  "B2MResponseCode":"0",
+  "B2MResponseDesc":"Accept the service request successfully.",
+  "B2MResultCode":"0",
+  "B2MResultDesc":"The service request is processed successfully.",
+  "B2MTransactionID":"LBN464UBNH",
+  "TransactionDateTime":"23.02.2017 11:03:52",
+  "WorkingAccountAvailableFunds":500000.00,
+  "UtilityAccountAvailableFunds":425079.00,
+  "ChargePaidAccountAvailableFunds":0.00,
+  "WalletAccountAvailableFunds":0.00,
+  "TransactionCreditParty":"254723123456 - JOHN DOE",
+  "IPNStatus":0,
+  "IPNStatusDesc":"Pending",
+  "IPNResponse":null}]
+}
 =end
+
+

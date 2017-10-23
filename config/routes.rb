@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   get '/carts/checkout' => 'carts#checkout'
   get '/carts/trigger' => 'carts#trigger'
   post '/carts/red' => 'carts#red'
+  post '/ipn/b2c' => 'ipn#b2c'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}
