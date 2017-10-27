@@ -20,7 +20,7 @@ class CreateBusinessToConsumers < ActiveRecord::Migration[5.0]
       t.string :MCCMNC
       t.string :MCCMNCDesc
       t.string :Reference
-      t.string :SystemTraceAuditNUmber
+      t.string :SystemTraceAuditNumber
       t.string :Status
       t.string :StatusDesc
       t.string :B2MResponseCode

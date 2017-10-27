@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'carts/complete' => 'carts#complete'
   post 'carts/pay' => 'carts#pay'
   get 'carts/success', to: 'carts#success', as: 'cart_success'
-  get '/order_items/clear' => 'order_items#clear'
+  get '/order/clear' => 'order_items#clear', as: 'order_items_clear'
   get '/products/manage/(:store_id)', to: 'products#manage', as: 'products_manage'
   get 'stores/orders/(:store_id)', to: 'stores#orders', as: 'store_orders'
   get 'store/account' => 'stores#account'
@@ -56,6 +56,13 @@ Rails.application.routes.draw do
   get '/carts/trigger' => 'carts#trigger'
   post '/carts/red' => 'carts#red'
   post '/ipn/b2c' => 'ipn#b2c'
+  get '/admins/init' => 'admins#init'
+  get 'stores/funds' => 'stores/funds'
+  get 'carts/pay' => 'carts#pay'
+  post 'carts/confirm' => 'carts#confirm'
+  post 'stores/b2c' => 'stores/b2c'
+  post 'stores/b2b' => 'stores/b2b'
+  post 'stores/eft' => 'stores/eft'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}

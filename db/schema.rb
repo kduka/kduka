@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023134034) do
+ActiveRecord::Schema.define(version: 20171027051523) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20171023134034) do
     t.string   "MCCMNC"
     t.string   "MCCMNCDesc"
     t.string   "Reference"
-    t.string   "SystemTraceAuditNUmber"
+    t.string   "SystemTraceAuditNumber"
     t.string   "Status"
     t.string   "StatusDesc"
     t.string   "B2MResponseCode"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 20171023134034) do
     t.string   "IPNResponse"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "o_Type"
+    t.string   "o_TypeDesc"
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -158,6 +160,7 @@ ActiveRecord::Schema.define(version: 20171023134034) do
     t.string   "del_location"
     t.string   "del_lat"
     t.string   "del_long"
+    t.string   "coupon"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
     t.index ["store_id"], name: "index_orders_on_store_id", using: :btree
   end
@@ -184,6 +187,14 @@ ActiveRecord::Schema.define(version: 20171023134034) do
     t.integer  "viewed"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["store_id"], name: "index_products_on_store_id", using: :btree
+  end
+
+  create_table "store_amounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "store_id"
+    t.integer  "amount",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["store_id"], name: "index_store_amounts_on_store_id", using: :btree
   end
 
   create_table "store_deliveries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -262,6 +273,21 @@ ActiveRecord::Schema.define(version: 20171023134034) do
     t.index ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
   end
 
+  create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "amount"
+    t.integer  "store_id"
+    t.integer  "balance"
+    t.string   "trans_type"
+    t.string   "name"
+    t.string   "ref"
+    t.string   "account"
+    t.string   "bankcode"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "foreign_ref"
+    t.index ["store_id"], name: "index_transactions_on_store_id", using: :btree
+  end
+
   create_table "unresolveds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "transid"
     t.datetime "created_at", null: false
@@ -300,7 +326,9 @@ ActiveRecord::Schema.define(version: 20171023134034) do
   add_foreign_key "orders", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"
+  add_foreign_key "store_amounts", "stores"
   add_foreign_key "store_deliveries", "stores"
   add_foreign_key "stores", "layouts"
   add_foreign_key "sub_categories", "categories"
+  add_foreign_key "transactions", "stores"
 end

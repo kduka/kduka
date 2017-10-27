@@ -3,8 +3,10 @@
 	<%= notice %>
 </p>
 
+  <h4>Earnings: Ksh <%= StoreAmount.where(store_id:current_store.id).first.amount %></h4>
+
 <p>
-	<strong>Total Orders : <%= @order.count %></strong>
+	<strong>Total Orders : <%= @order.count %> </strong>
 </p>
 
 <% if !@order.blank? %>

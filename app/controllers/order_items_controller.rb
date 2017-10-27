@@ -34,10 +34,10 @@ class OrderItemsController < ApplicationController
 
   def clear
     @order = current_order
-    
+    if current_order.order_status_id == 1
     @order.destroy
-    session[:order_id] = nil
-    
+    end
+    session[:order_id] = nil?
   end
 
   def updater(id,quantity)

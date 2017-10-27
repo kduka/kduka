@@ -26,19 +26,10 @@ protect_from_forgery with: :exception
   end
 
   def current_order
-=begin
-if !session[:order_id].nil?
-Order.find(session[:order_id])
-else
-ref = [*'A'..'Z', *"0".."9"].sample(8).join
-@store  = Store.where(subdomain:request.subdomain).first
-Order.new(:ref => ref,:store_id => @store.id)
-end
-=end
     if !session[:order_id].nil?
       @find_order = Order.find(session[:order_id]) rescue nil
       if !@find_order
-        session[:order_id]= nil
+        session[:order_id] = nil
         current_order
       else
         Order.find(session[:order_id])

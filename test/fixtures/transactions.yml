@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  store: one
+  balance: 1
+  type: 
+  name: MyString
+  ref: MyString
+  account: MyString
+  bankcode: MyString
+
+two:
+  amount: 1
+  store: two
+  balance: 1
+  type: 
+  name: MyString
+  ref: MyString
+  account: MyString
+  bankcode: MyString

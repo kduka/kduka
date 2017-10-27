@@ -1,0 +1,20 @@
+
+<div class="container">
+  <div class="col-md-6 col-md-offset-3" style="margin-bottom:3em;margin-top:4em;padding: 2em">
+    <h1 style="text-align:center;font-size:35px;font-weight:700">Pay for Order</h1><br><br>
+    <p>1. Go to your MPESA MENU</p>
+    <p>2. Select Lipa na M-PESA</p>
+    <p>3. Select Pay Bill</p>
+    <p>4. Enter Business Number: 766645</p>
+    <p>5. Enter Account No: <%= current_order.ref %></p>
+    <p>6. Enter Amount : <%= current_order.total %></p>
+    <p>7. Enter your PIN</p>
+    <p>8. After you get your confirmation message click the button below</p>
+
+
+    <button class='btn btn-success btn-lg col-sm-12 col-md-6 col-md-offset-3' id="confirmation_id"  style="display:block;margin-top: 1em" ><span class="conf_text">Confirm</span></button>
+    <br><br>
+
+  </div>
+  <div class="col-md-offset-3 col-md-6"><p><span class="conf_message"></span></p></div>
+</div>

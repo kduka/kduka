@@ -101,7 +101,7 @@ end
   end
 
   def orders
-    @order = Order.where(store_id: current_store.id,order_status_id:[5,2])
+    @order = Order.where(store_id: current_store.id, order_status_id: [5, 2])
 
     puts @order
     set_shop_show
@@ -148,7 +148,7 @@ end
 
   def update_layout
     @store = Store.find(current_store.id)
-    if @store.update(layout_id:params[:layout])
+    if @store.update(layout_id: params[:layout])
       flash[:notice] = 'Layout Updated'
     else
       flash[:alert] = 'Something went wrong, please try again'
@@ -266,6 +266,154 @@ end
     return messages
 
   end
+
+  def funds
+    set_shop_show
+  end
+
+  def b2c
+    name = params[:name]
+    account = params[:phone]
+    amount = params[:amount]
+    ref = [*'A'..'Z', *"0".."9"].sample(10).join
+    uref = "Pi1_#{ref}"
+    require 'uri'
+    require 'net/http'
+
+    url = URI("http://52.20.176.4:8090/api/eft/")
+
+    http = Net::HTTP.new(url.host, url.port)
+
+    request = Net::HTTP::Post.new(url)
+    request["content-type"] = 'application/json'
+    request["authorization"] = 'Basic YXBpYWNjb3VudDphYmMuMTIz'
+    request["cache-control"] = 'no-cache'
+    request.body = "{
+                        'Type':1,
+                        'CompanyId':'b4acf6e8-86c9-cd2d-62f8-08d32aed8aa2',
+                        'Remarks':'Transaction send #{Time.now}',
+                        'IPNDataFormat':1,
+                        'IPNEnabled':true,
+                        'CallbackURL': 'http://www.kduka.co.ke/ipn/b2c',
+                        'OrderLines':[
+                                      {
+                                      'Payee':'#{name}',
+                                      'PrimaryAccountNumber':'#{account}',
+                                      'Amount':#{amount},
+                                      'Reference':'#{ref}',
+                                      'SystemTraceAuditNumber':'#{uref}',
+                                      'MCCMNC':63902
+                                      }
+                                     ]
+                   }"
+
+    response = http.request(request)
+    if response.kind_of? Net::HTTPSuccess
+      puts "HTTP WORKED = #{response.read_body}"
+      Transaction.create(account:account,name:name,trans_type:'M-PESA',store_id:current_store.id,ref:ref,amount:amount,foreign_ref:response.read_body)
+    else
+      puts "HTTP DIDNT = #{response.read_body}"
+      end
+    no_layout
+  end
+
+  def b2b
+    name = params[:name]
+    account = params[:account]
+    amount = params[:amount]
+    type = params[:type]
+
+    ref = [*'A'..'Z', *"0".."9"].sample(16).join
+    uref = "Pi1_#{ref}"
+    require 'uri'
+    require 'net/http'
+
+    url = URI("http://52.20.176.4:8090/api/eft/")
+
+    http = Net::HTTP.new(url.host, url.port)
+
+    request = Net::HTTP::Post.new(url)
+    request["content-type"] = 'application/json'
+    request["authorization"] = 'Basic YXBpYWNjb3VudDphYmMuMTIz'
+    request["cache-control"] = 'no-cache'
+    request.body = "{ 'Type':2,
+                      'CompanyId':'b4acf6e8-86c9-cd2d-62f8-08d32aed8aa2',
+                      'Remarks':'Transaction send #{Time.now}',
+                      'IPNDataFormat':1,
+                      'IPNEnabled':true,
+                      'CallbackURL':  'http://www.kduka.co.ke/ipn/b2c',
+                      'OrderLines':[{ 'Type':#{type},
+                                      'Payee':'#{name}',
+                                      'PrimaryAccountNumber':'#{account}',
+                                      'Amount':#{amount},
+                                      'Reference':'#{ref}',
+                                      'SystemTraceAuditNumber':'#{uref}'
+                                    }]
+                    }"
+    response = http.request(request)
+    if response.kind_of? Net::HTTPSuccess
+      @type_n
+      if type.to_i == 6
+        @type_n = "Till Number"
+      elsif type.to_i == 7
+        @type_n = "Paybill"
+      end
+
+      puts type.to_s + " " + @type_n
+      puts "HTTP WORKED = #{response.read_body}"
+      Transaction.create(account:account,name:name,trans_type:@type_n,store_id:current_store.id,ref:ref,amount:amount,foreign_ref:response.read_body)
+    else
+      puts "HTTP DIDNT = #{response.read_body}"
+    end
+    no_layout
+  end
+
+  def eft
+    name = params[:name]
+    account = params[:account]
+    amount = params[:amount]
+    bankcode = params[:bankcode]
+
+    ref = [*'A'..'Z', *"0".."9"].sample(16).join
+    uref = "Pi1_#{ref}"
+    require 'uri'
+    require 'net/http'
+
+    url = URI("http://52.20.176.4:8090/api/eft/")
+
+    http = Net::HTTP.new(url.host, url.port)
+
+    request = Net::HTTP::Post.new(url)
+    request["content-type"] = 'application/json'
+    request["authorization"] = 'Basic YXBpYWNjb3VudDphYmMuMTIz'
+    request["cache-control"] = 'no-cache'
+    request.body = "{ 'Type':0,
+                      'CompanyId':'b4acf6e8-86c9-cd2d-62f8-08d32aed8aa2',
+                      'Remarks':'Transaction send #{Time.now}',
+                      'IPNDataFormat':1,
+                      'IPNEnabled':true,
+                      'CallbackURL':  'http://www.kduka.co.ke/ipn/b2c',
+                      'OrderLines':[{
+                                      'Payee':'#{name}',
+                                      'PrimaryAccountNumber':'#{account}',
+                                      'Amount':#{amount},
+                                      'BankCode':'#{bankcode}',
+                                      'Reference':'#{ref}',
+                                      'SystemTraceAuditNumber':'#{uref}',
+                                      'MCCMNC':63902
+                                    }]
+                    }"
+    puts request.body
+    response = http.request(request)
+    if response.kind_of? Net::HTTPSuccess
+      puts "HTTP WORKED = #{response.read_body}"
+      Transaction.create(account:account,name:name,trans_type:"EFT",store_id:current_store.id,ref:ref,amount:amount,foreign_ref:response.read_body,bankcode:bankcode)
+    else
+      puts "HTTP DIDNT = #{response.read_body}"
+    end
+    no_layout
+  end
+
 
   private
 

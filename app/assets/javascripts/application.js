@@ -22,24 +22,124 @@
 
 $(function () {
 
-    $("#checkout").click(function (e) {
+    $("#b2c").click(function (e) {
+        e.preventDefault();
+        name = $("#client_name").val();
+        phone = $("#client_account").val();
+        amount = $("#amount").val();
 
+        $.ajax({
+           url:'/stores/b2c',
+            method:'post',
+            data:{
+               name:name,
+                phone:phone,
+                amount:amount
+            },
+            success:function (f) {
+
+            }
+        });
+    });
+
+    $("#b2bpay").click(function (e) {
+        e.preventDefault();
+        name = $("#client_name_pay").val();
+        account = $("#client_account_pay").val();
+        amount = $("#amount_pay").val();
+
+        $.ajax({
+            url:'/stores/b2b',
+            method:'post',
+            data:{
+                name:name,
+                account:account,
+                amount:amount,
+                type:"7"
+            },
+            success:function (f) {
+
+            }
+        });
+    });
+
+    $("#b2btill").click(function (e) {
+        e.preventDefault();
+        name = $("#client_name_till").val();
+        account = $("#client_account_till").val();
+        amount = $("#amount_till").val();
+
+        $.ajax({
+            url:'/stores/b2b',
+            method:'post',
+            data:{
+                name:name,
+                account:account,
+                amount:amount,
+                type:"6"
+            },
+            success:function (f) {
+
+            }
+        });
+    });
+
+    $("#eft").click(function (e) {
+        e.preventDefault();
+        name = $("#client_name_eft").val();
+        account = $("#client_account_eft").val();
+        amount = $("#amount_eft").val();
+        bankcode = $("#bank_code").val();
+
+        $.ajax({
+            url:'/stores/eft',
+            method:'post',
+            data:{
+                name:name,
+                account:account,
+                amount:amount,
+                type:"6",
+                bankcode:bankcode
+            },
+            success:function (f) {
+
+            }
+        });
+    });
+
+    $("#confirmation_id").click(function (e) {
+        $(".conf_text").html("Confirming Order ...");
+        $.ajax({
+            url: '/carts/confirm',
+            method: 'post',
+            success: function (e) {
+                if (e == "complete") {
+                    $(".conf_text").html("Success!");
+                    $(".conf_message").html("<span style='color: green'>Payment Complete.Your order has been placed. Check the provided email for further details! </span>");
+                    window.location = "/carts/success"
+                } else if (e == 'none') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                }else{
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>" + e + "</span>");
+                }
+
+            }
+        });
     });
 
     $("#process").click(function (e) {
         e.preventDefault();
         finalize();
-        $.ajax({
-            url:"/carts/checkout",
-            method:'get'
-        });
     });
 
     $("#edit").click(function (e) {
         e.preventDefault();
-        $("#process").attr('style',"display:block;margin-top: 1em");
-        $("#edit").attr('style',"display:none;margin-top: 1em");
+        $("#process").attr('style', "display:block;margin-top: 1em");
+        $("#edit").attr('style', "display:none;margin-top: 1em");
         $('.ship_form').removeAttr('disabled');
+        $("#complete").attr("disabled","true");
     });
 
     $("#add-delivery").click(function (e) {
@@ -73,7 +173,7 @@ $(function () {
     });
 
     $('#auto').click(function () {
-        $("#process").attr("disabled","true");
+        $("#process").attr("disabled", "true");
         full_name = $("#ship_full_name").val();
         phone = $("#ship_phone_number").val();
         email = $("#ship_email").val();
@@ -100,7 +200,7 @@ $(function () {
     });
 
     $('#manual').click(function () {
-        $("#process").attr("disabled","true");
+        $("#process").attr("disabled", "true");
         full_name = $("#ship_full_name").val();
         phone = $("#ship_phone_number").val();
         var data;
@@ -110,7 +210,7 @@ $(function () {
             $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
             $(".delivery_options").html("");
         }
-        if ($(this).is(':checked')  && full_name != "" && phonenumbers(phone)) {
+        if ($(this).is(':checked') && full_name != "" && phonenumbers(phone)) {
             $.ajax({
                 url: '/carts/manual',
                 success: function (res) {
@@ -121,7 +221,7 @@ $(function () {
     });
 
     $('#collection').click(function () {
-        $("#process").attr("disabled","true");
+        $("#process").attr("disabled", "true");
         full_name = $("#ship_full_name").val();
         phone = $("#ship_phone_number").val();
         var data;
@@ -177,7 +277,7 @@ function selectlocation(val) {
     $("#delivery_location").val(val);
     $("#sel_loc").val(val);
     $("#suggesstion-box").hide();
-    $("#process").attr("value","Processing ... ");
+    $("#process").attr("value", "Processing ... ");
     $.ajax({
         type: 'POST',
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
@@ -265,14 +365,14 @@ function val_ship() {
     if (full_name != "" && phonenumbers(phone) && validateEmail(email)) {
         if ($("#auto").is(':checked')) {
             $(".warn_fill_fields").html("<p style='color: green'>Type below to search for your nearest location</p>");
-        }else{
+        } else {
             $(".warn_fill_fields").html("");
         }
         $("#delivery_location").removeAttr("disabled");
     } else {
         if ($("#auto").is(':checked')) {
             $(".warn_fill_fields").html("<p style='color: red'>Fill your Name, Email and Phone Number First!</p>");
-        }else{
+        } else {
             $("#delivery_location").removeAttr("disabled");
         }
         $("#delivery_location").attr("disabled", "true");
@@ -322,94 +422,95 @@ function manual() {
     }
 }
 
-    function val_phone() {
-        phone = $("#ship_phone_number").val();
-        if (!phonenumbers(phone)) {
-            $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 07XXXXXXXX</p>")
+function val_phone() {
+    phone = $("#ship_phone_number").val();
+    if (!phonenumbers(phone)) {
+        $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 07XXXXXXXX</p>")
+    } else {
+        $("#phone_prev").html("");
+    }
+}
+
+function val_email() {
+    if (!validateEmail(email)) {
+        $("#email_prev").html("<p style='color:red;'>Email is not a valid email address</p>");
+    } else {
+        $("#email_prev").html("");
+    }
+}
+
+function finalize() {
+    full_name = $("#ship_full_name").val();
+    phone = $("#ship_phone_number").val();
+    email = $("#ship_email").val();
+    //delivery_type = $("#delivery").val();
+    delivery_order = $("#delivery_order").val();
+    lat = $("#lat").val();
+    lng = $("#long").val();
+    instructions = $("#instructions").val();
+    coupon = $("#coupon").val();
+
+    if ($("#auto").is(':checked')) {
+        delivery_amount = $("#delivery_amount").val();
+    } else if ($("#manual").is(':checked')) {
+        delivery_amount = $("input[name='del_opt']:checked").val();
+
+    } else if ($("#collection").is(':checked')) {
+        delivery_amount = 0;
+    }
+
+    if ($("#auto").is(':checked')) {
+        delivery_location = $("#sel_loc").val();
+    } else if ($("#manual").is(':checked')) {
+        delivery_location = $("input[name='del_opt']:checked").attr("area");
+    } else if ($("#collection").is(':checked')) {
+        delivery_location = $("#collection_point").val();
+    }
+
+
+    $.ajax({
+        url: '/carts/update_shipping',
+        method: 'post',
+        data: {
+            amount: delivery_amount,
+            orderid: delivery_order,
+            type: $("input:radio[name=delivery]").val(),
+            email: $("#ship_email").val(),
+            name: $("#ship_full_name").val(),
+            phone: $("#ship_phone_number").val(),
+            delivery_location: delivery_location,
+            lat: lat,
+            lng: lng,
+            instructions: instructions,
+            coupon: coupon
+        },
+
+        success: function () {
+            $('.ship_form').attr('disabled', 'true');
+            $("#process").attr('style', "display:none;margin-top: 1em");
+            $("#edit").attr('style', "display:block;margin-top: 1em");
+            $("#complete").removeAttr("disabled");
+        }
+    });
+}
+
+function collect() {
+    if ($("#collection").is(':checked')) {
+        if (full_name != "" && phonenumbers(phone)) {
+            $.ajax({
+                url: '/carts/collection',
+                success: function (res) {
+                    $(".delivery_options").html(res);
+                }
+            });
+            $("#process").removeAttr("disabled");
+
         } else {
-            $("#phone_prev").html("");
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
+            $(".delivery_options").html("");
         }
     }
-
-    function val_email() {
-        if (!validateEmail(email)) {
-            $("#email_prev").html("<p style='color:red;'>Email is not a valid email address</p>");
-        } else {
-            $("#email_prev").html("");
-        }
-    }
-
-    function finalize(){
-        full_name = $("#ship_full_name").val();
-        phone = $("#ship_phone_number").val();
-        email = $("#ship_email").val();
-        //delivery_type = $("#delivery").val();
-        delivery_order = $("#delivery_order").val();
-        lat = $("#lat").val();
-        lng = $("#long").val();
-        instructions = $("#instructions").val();
-        coupon = $("#coupon").val();
-
-        if($("#auto").is(':checked')){
-            delivery_amount = $("#delivery_amount").val();
-        }else if($("#manual").is(':checked')){
-            delivery_amount = $("input[name='del_opt']:checked"). val();
-
-        }else if($("#collection").is(':checked')){
-            delivery_amount = 0;
-        }
-
-        if($("#auto").is(':checked')){
-            delivery_location = $("#sel_loc").val();
-        }else if($("#manual").is(':checked')){
-            delivery_location = $("input[name='del_opt']:checked").attr("area");
-        }else if($("#collection").is(':checked')){
-            delivery_location = $("#collection_point").val();
-        }
-
-
-        $.ajax({
-            url:'/carts/update_shipping',
-            method:'post',
-            data:{
-                amount:delivery_amount,
-                orderid:delivery_order,
-                type:$("input:radio[name=delivery]").val(),
-                email:$("#ship_email").val(),
-                name:$("#ship_full_name").val(),
-                phone:$("#ship_phone_number").val(),
-                delivery_location:delivery_location,
-                lat:lat,
-                lng:lng,
-                instructions:instructions,
-                coupon:coupon
-            },
-
-            success:function () {
-                $('.ship_form').attr('disabled', 'true');
-                $("#process").attr('style',"display:none;margin-top: 1em");
-                $("#edit").attr('style',"display:block;margin-top: 1em");
-            }
-        });
-    }
-
-    function collect() {
-        if ($("#collection").is(':checked')) {
-            if (full_name != "" && phonenumbers(phone)) {
-                $.ajax({
-                    url: '/carts/collection',
-                    success: function (res) {
-                        $(".delivery_options").html(res);
-                    }
-                });
-                $("#process").removeAttr("disabled");
-
-            } else {
-                $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
-                $(".delivery_options").html("");
-            }
-        }
-    }
+}
 
 function manual_() {
     if ($("#manual").is(':checked')) {
@@ -427,15 +528,15 @@ function manual_() {
     }
 }
 
-function _manual_(){
-    if($("input:radio[name=delivery]").val() != ""){
-        if($("#other").is(':checked')){
-           if ($("#instructions").val() != ""){
-               $("#process").removeAttr("disabled");
-           }else{
-               $("#process").attr("disabled","true");
-           }
-        }else{
+function _manual_() {
+    if ($("input:radio[name=delivery]").val() != "") {
+        if ($("#other").is(':checked')) {
+            if ($("#instructions").val() != "") {
+                $("#process").removeAttr("disabled");
+            } else {
+                $("#process").attr("disabled", "true");
+            }
+        } else {
             $("#process").removeAttr("disabled");
             $(".select_instructions").html('');
             $("#instructions").val('');

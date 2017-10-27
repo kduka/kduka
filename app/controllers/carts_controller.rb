@@ -10,6 +10,7 @@ class CartsController < ApplicationController
     set_shop
   end
 
+=begin
   def pay
     @user = User.find(1)
     # Configure transaction details
@@ -52,6 +53,7 @@ class CartsController < ApplicationController
     @order_url = pesapal.generate_order_url
     redirect_to @order_url
   end
+=end
 
   def complete
     @order = Order.where(ref: params[:pesapal_merchant_reference]).first
@@ -129,7 +131,7 @@ class CartsController < ApplicationController
     instructions = params[:instructions]
     coupon = params[:coupon]
 
-    current_order.update(shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location:delivery_location,del_lat:lat,del_long:lng,order_instructions:instructions,coupon:coupon)
+    current_order.update(shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location: delivery_location, del_lat: lat, del_long: lng, order_instructions: instructions, coupon: coupon)
 
   end
 
@@ -139,6 +141,27 @@ class CartsController < ApplicationController
 
   def red
     redirect_to(params[:url])
+  end
+
+  def pay
+    set_shop
+  end
+
+  def confirm
+    if current_order.order_status_id == 2
+      session[:order_id]= nil
+      @status = "complete"
+    elsif current_order.order_status_id == 5
+      bal = current_order.total - current_order.amount_received
+      @status = "Incomplete Payment. Please send Ksh #{bal} to complete the Order"
+    elsif current_order.order_status_id == 1
+      @status = "none"
+    end
+    no_layout
+  end
+
+  def clear
+    session[:order_id] = nil
   end
 
 

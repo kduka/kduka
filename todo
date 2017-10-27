@@ -19,11 +19,13 @@ Website Contact Form Email
 Disable actions when processing and updating orders
 Text Notifications
 
-Online Checkout
-B2B integration
+
 Billing Integration
 CHECK MANUAL DELIVERY OPTION DEFAULTS
-Shipping charge for manual
+
+JS Validation in transactions
+Coupon integration
+
 
 
 
@@ -39,6 +41,7 @@ Displaying by SubCategories
 Social Media Widgets
 
 DONE
+Shipping charge for manual
 Show transactions for orders
 What happens when one makes multiple payments
 Unresolved payments that dont reflect to any order

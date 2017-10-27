@@ -15,7 +15,7 @@ class IpnController < ApplicationController
     @ipn = Ipn.create(MSISDN: msisdn, BusinessShortCode: business_short_code, InvoiceNumber: invoice_number, TransID: trans_id, TransAmount: trans_amount, ThirdPartyTransID: third_party_trans_id, TransTime: trans_time, KYCName: kyc_name, KYCValue: kyc_value)
     if @ipn
       render :json => {'status': 'ok'}
-      check_order(third_party_trans_id, trans_amount, trans_id)
+      check_order(invoice_number, trans_amount, trans_id)
     end
   end
 
@@ -32,24 +32,24 @@ class IpnController < ApplicationController
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
       @order.update(number_of_transactions: transactions, amount_received: newamount)
-
-      complete(@order)
+      complete(@order,amount)
     elsif @order.order_status_id == 2
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
       @order.update(number_of_transactions: transactions, amount_received: newamount)
-      complete(@order)
+      complete(@order,amount)
     elsif @order.order_status_id == 1
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
       @order.update(number_of_transactions: transactions, amount_received: newamount)
-      complete(@order)
+      complete(@order,amount)
     end
 
   end
 
-  def complete(ref)
+  def complete(ref,amount)
     @order = ref
+    store_amount(ref,amount)
     if @order.total.to_i <= @order.amount_received.to_i
       @order.update(order_status_id: 2)
       update_inventory(@order)
@@ -73,7 +73,31 @@ class IpnController < ApplicationController
 
   def b2c
     response = JSON.parse(request.body.read)
-    render :json => response
+    @params = Hash.[]
+    response.each do |(k, a)|
+      if k == "Id"
+        @params["Trans_#{k}"] = a
+      elsif k == "OrderLines"
+        response["OrderLines"][0].each do |(c, b)|
+          if c == "Type" or c == "TypeDesc"
+            @params["o_#{c}"] = b
+          else
+            @params["#{c}"] = b
+          end
+        end
+      else
+        @params["#{k}"] = a
+      end
+    end
+    BusinessToConsumer.create(@params)
+    render :json => @params
+
+  end
+
+  def store_amount(order,amount)
+    @store_amount = StoreAmount.where(store_id: order.store_id).first
+    nu = @store_amount.amount + amount.to_i
+    @store_amount.update(amount: nu)
   end
 
 end
@@ -118,6 +142,10 @@ end
   "IPNStatusDesc":"Pending",
   "IPNResponse":null}]
 }
+
+
+
+
 =end
 
 
