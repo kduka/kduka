@@ -130,8 +130,27 @@ class CartsController < ApplicationController
     lng = params[:lng]
     instructions = params[:instructions]
     coupon = params[:coupon]
+    address = params[:address]
 
-    current_order.update(shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location: delivery_location, del_lat: lat, del_long: lng, order_instructions: instructions, coupon: coupon)
+
+    if !coupon.nil?
+    @coupon = Coupon.where(code:coupon).first
+    if !@coupon.nil?
+      if @coupon.number_of_use > 0
+        if @coupon.coupon_type == 'percent'
+          discount = (@coupon.percentage.to_d/100) * current_order.total
+          current_order.update(discount:discount,coupon:coupon)
+        elsif @coupon.coupon_type == 'fixed'
+          discount = @coupon.amount
+          current_order.update(discount:discount,coupon:coupon)
+        end
+      end
+    else
+      current_order.update(coupon:"Invalid Coupon",discount:0)
+    end
+    end
+
+    current_order.update(address: address, shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location: delivery_location, del_lat: lat, del_long: lng, order_instructions: instructions)
 
   end
 
@@ -144,6 +163,7 @@ class CartsController < ApplicationController
   end
 
   def pay
+    lock_coupon
     set_shop
   end
 
@@ -162,6 +182,20 @@ class CartsController < ApplicationController
 
   def clear
     session[:order_id] = nil
+  end
+
+  private
+
+  def lock_coupon
+    @coupon = Coupon.where(code: current_order.coupon).first
+
+    if @coupon.number_of_use > 0
+      nu = @coupon.number_of_use - 1
+      @coupon.update(number_of_use:nu)
+    else
+      flash[:alert] = "Coupon is Invalid"
+      current_order.update(coupon:"Invalid Coupon",discount:0)
+    end
   end
 
 

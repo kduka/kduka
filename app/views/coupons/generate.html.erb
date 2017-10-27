@@ -1,35 +1,90 @@
-<div class="skil" style="margin-bottom: 2em;">
-<h1 style="text-align:center">Generate Coupons (Mass Create)</h1>
 
-<%= form_for :coupon, url:{controller:'coupons',action:'create_coupons'} do |f| %>
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Percentage Discount</a></li>
+  <li><a data-toggle="tab" href="#menu1">Fixed Amount discount</a></li>
+</ul>
 
-    <div class="form-group">
-      <label>Number of Codes</label>
-      <input name="number" type="number" value="1" class="form-control"/>
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+    <h3>Percentage Discount</h3>
+    <div class="skil" style="margin-bottom: 2em;">
+      <h1 style="text-align:center">Generate Coupons (Mass Create)</h1>
+
+      <%= form_for :coupon, url:{controller:'coupons',action:'create_coupons'} do |f| %>
+
+          <div class="form-group">
+            <label>Number of Codes</label>
+            <input name="number" type="number" value="1" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Number of Use for each" %>
+            <%= f.number_field :number_of_use, class:'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :percentage %>
+            <%= f.number_field :percentage, class:'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :expiry %>
+            <%= f.date_select :expiry, class:'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :active %>
+            <%= f.check_box :active %>
+          </div>
+          <input type="hidden" name="type" value="percent">
+
+          <div class="actions" style="text-align:center">
+            <%= f.submit "Generate Coupons", class:'btn btn-primary btn-lg' %>
+          </div>
+      <% end %><br>
     </div>
 
-    <div class="form-group">
-      <%= f.label "Number of Use for each" %>
-      <%= f.number_field :number_of_use, class:'form-control' %>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+    <h3>Fixed Amount Discount</h3>
+    <div class="skil" style="margin-bottom: 2em;">
+      <h1 style="text-align:center">Generate Coupons (Mass Create)</h1>
+
+      <%= form_for :coupon, url:{controller:'coupons',action:'create_coupons'} do |f| %>
+
+          <div class="form-group">
+            <label>Number of Codes</label>
+            <input name="number" type="number" value="1" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Number of Use for each" %>
+            <%= f.number_field :number_of_use, class:'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :amount %>
+            <%= f.number_field :amount, class:'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :expiry %>
+            <%= f.date_select :expiry, class:'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :active %>
+            <%= f.check_box :active %>
+          </div>
+
+          <input type="hidden" name="type" value="fixed">
+
+          <div class="actions" style="text-align:center">
+            <%= f.submit "Generate Coupons", class:'btn btn-primary btn-lg' %>
+          </div>
+      <% end %><br>
     </div>
 
-    <div class="form-group">
-      <%= f.label :percentage %>
-      <%= f.number_field :percentage, class:'form-control' %>
-    </div>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :expiry %>
-      <%= f.date_select :expiry, class:'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :active %>
-      <%= f.check_box :active %>
-    </div>
-
-    <div class="actions" style="text-align:center">
-      <%= f.submit "Generate Coupons", class:'btn btn-primary btn-lg' %>
-    </div>
-<% end %><br>
 </div>

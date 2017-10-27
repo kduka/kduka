@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027051523) do
+ActiveRecord::Schema.define(version: 20171027202029) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 20171027051523) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.boolean  "active"
+    t.integer  "amount"
+    t.string   "coupon_type"
     t.index ["store_id"], name: "index_coupons_on_store_id", using: :btree
   end
 
@@ -161,6 +163,9 @@ ActiveRecord::Schema.define(version: 20171027051523) do
     t.string   "del_lat"
     t.string   "del_long"
     t.string   "coupon"
+    t.boolean  "coupon_status",                                                 default: false
+    t.string   "address"
+    t.integer  "discount"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
     t.index ["store_id"], name: "index_orders_on_store_id", using: :btree
   end

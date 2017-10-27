@@ -29,7 +29,7 @@ class CouponsController < ApplicationController
   # POST /coupons
   # POST /coupons.json
   def create
-    @coupon = Coupon.new(coupon_params)
+    @coupon = Coupon.new(coupon_params.merge(coupon_type:params[:type]))
 
     respond_to do |format|
       if @coupon.save
@@ -61,7 +61,7 @@ class CouponsController < ApplicationController
   def destroy
     @coupon.destroy
     respond_to do |format|
-      format.html {redirect_to coupons_url, notice: 'Coupon was successfully destroyed.'}
+      format.html {redirect_to coupons_url, notice: 'Coupon was successfully deleted.'}
       format.json {head :no_content}
     end
   end
@@ -75,7 +75,7 @@ class CouponsController < ApplicationController
     num = params[:number].to_i
     @store = Store.find(current_store.id)
     while i < num do
-      @store.coupon.create(coupon_params.merge(code:randy))
+      @store.coupon.create(coupon_params.merge(code:randy,coupon_type:params[:type]))
       i += 1
     end
     redirect_to(coupons_path)
@@ -89,7 +89,7 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:code, :number_of_use, :percentage, :expiry)
+      params.require(:coupon).permit(:code, :number_of_use, :percentage, :expiry, :amount)
     end
 
     def randy

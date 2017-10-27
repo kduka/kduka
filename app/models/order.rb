@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
     order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end
   def total
-    subtotal + self[:tax].to_i + self[:shipping].to_i
+    subtotal + self[:tax].to_i + self[:shipping].to_i - self[:discount].to_i
   end
 
 private

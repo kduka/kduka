@@ -19,25 +19,25 @@
   <%= form_tag("/carts/pay", method: "post", id:'ship_form') do %>
       <div class="form-group">
         <%= label_tag(:first_name, "Full Name") %><span class="red" style="font-size:30px">*</span>
-        <%= text_field_tag(:full_name, nil, :class => 'ship_form form-control', id:'ship_full_name', onchange:'val_ship();collect();manual_()') %>
+        <%= text_field_tag(:full_name, nil,:value => "#{current_order.name}", :class => 'ship_form form-control', id:'ship_full_name', onchange:'val_ship();collect();manual_()') %>
       </div>
       <div class="form-group">
         <%= label_tag(:email, "Email") %><span class="red" style="font-size:30px">*</span>
-        <%= text_field_tag(:email, nil, :class => 'ship_form form-control',id:'ship_email', onchange:'val_ship();val_email();collect();manual_()') %>
+        <%= text_field_tag(:email, nil, :value => "#{current_order.email}", :class => 'ship_form form-control',id:'ship_email', onchange:'val_ship();val_email();collect();manual_()') %>
         <div id="email_prev"></div>
       </div>
       <div class="form-group">
         <%= label_tag(:phone_number, "Phone (07xx xxx xxx)") %><span class="red" style="font-size:30px">*</span>
-        <%= text_field_tag(:phone_number, nil, :class => 'ship_form form-control', id:'ship_phone_number', onchange:'val_ship();val_phone();collect();manual_()') %>
+        <%= text_field_tag(:phone_number, nil, :value => "#{current_order.phone}" , :class => 'ship_form form-control', id:'ship_phone_number', onchange:'val_ship();val_phone();collect();manual_()') %>
         <div id="phone_prev"></div>
       </div>
       <div class="form-group">
         <%= label_tag(:address, "Address") %>
-        <%= text_field_tag(:address, nil, :class => 'ship_form form-control', onchange:'val_ship();collect();') %>
+        <%= text_field_tag(:address, nil,:value => "#{current_order.address}", id:'ship_address', :class => 'ship_form form-control', onchange:'val_ship();collect();') %>
       </div>
       <div class="form-group">
         <%= label_tag(:coupon, "Coupon") %>
-        <%= text_field_tag(:coupon, nil, :class => 'ship_form form-control', placeholder: 'Can Be Blank',id:'coupon') %>
+        <%= text_field_tag(:coupon, nil,:value => "", :class => 'ship_form form-control', placeholder: 'Can Be Blank',id:'coupon') %>
       </div>
       <p></p>
 

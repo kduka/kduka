@@ -449,6 +449,7 @@ function finalize() {
     lng = $("#long").val();
     instructions = $("#instructions").val();
     coupon = $("#coupon").val();
+    address = $("#ship_address").val();
 
     if ($("#auto").is(':checked')) {
         delivery_amount = $("#delivery_amount").val();
@@ -482,7 +483,8 @@ function finalize() {
             lat: lat,
             lng: lng,
             instructions: instructions,
-            coupon: coupon
+            coupon:coupon,
+            address:address
         },
 
         success: function () {
