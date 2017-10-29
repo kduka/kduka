@@ -275,6 +275,22 @@ end
     name = params[:name]
     account = params[:phone]
     amount = params[:amount]
+
+
+    @storeamount = StoreAmount.where(store_id: current_store.id).first
+    @charges
+    if @storeamount.amount > 500
+      @charges = 45.to_d + (@storeamount.amount.to_d * 0.01)
+    else
+      @charges = 52.to_d + (@storeamount.amount.to_d * 0.01)
+    end
+
+    @max = (@storeamount.amount.to_d - @charges ).to_i
+
+    if amount.to_i > @max
+      amount = @max
+    end
+
     ref = [*'A'..'Z', *"0".."9"].sample(10).join
     uref = "Pi1_#{ref}"
     require 'uri'
@@ -311,9 +327,24 @@ end
     if response.kind_of? Net::HTTPSuccess
       puts "HTTP WORKED = #{response.read_body}"
       Transaction.create(account:account,name:name,trans_type:'M-PESA',store_id:current_store.id,ref:ref,amount:amount,foreign_ref:response.read_body)
-    else
-      puts "HTTP DIDNT = #{response.read_body}"
+
+
+      @storeamount = StoreAmount.where(store_id: current_store.id).first
+
+      if amount.to_i > 500
+        @trans_charges = 45.to_d + (amount.to_d * 0.01)
+      else
+        @trans_charges = 52.to_d + (amount.to_d * 0.01)
       end
+
+      nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+      @storeamount.update(amount:nu)
+      Earning.create(trans_id:response.read_body,store_id:current_store.id,amount:(@storeamount.amount.to_d * 0.01).to_i,ref:ref);
+      @status = true
+    else
+      @status = false
+      puts "HTTP DIDNT = #{response.read_body}"
+    end
     no_layout
   end
 
@@ -322,6 +353,21 @@ end
     account = params[:account]
     amount = params[:amount]
     type = params[:type]
+
+
+    @storeamount = StoreAmount.where(store_id: current_store.id).first
+    @charges
+    if @storeamount.amount > 500
+      @charges = 45.to_d + (@storeamount.amount.to_d * 0.01)
+    else
+      @charges = 52.to_d + (@storeamount.amount.to_d * 0.01)
+    end
+
+    @max = (@storeamount.amount.to_d - @charges ).to_i
+
+    if amount.to_i > @max
+      amount = @max
+    end
 
     ref = [*'A'..'Z', *"0".."9"].sample(16).join
     uref = "Pi1_#{ref}"
@@ -362,7 +408,21 @@ end
       puts type.to_s + " " + @type_n
       puts "HTTP WORKED = #{response.read_body}"
       Transaction.create(account:account,name:name,trans_type:@type_n,store_id:current_store.id,ref:ref,amount:amount,foreign_ref:response.read_body)
+
+      @storeamount = StoreAmount.where(store_id: current_store.id).first
+
+      if amount.to_i > 500
+        @trans_charges = 45.to_d + (amount.to_d * 0.01)
+      else
+        @trans_charges = 52.to_d + (amount.to_d * 0.01)
+      end
+
+      nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+      @storeamount.update(amount:nu)
+      Earning.create(trans_id:response.read_body,store_id:current_store.id,amount:(@storeamount.amount.to_d * 0.01).to_i,ref:ref);
+      @status = true
     else
+      @status = false
       puts "HTTP DIDNT = #{response.read_body}"
     end
     no_layout
@@ -373,6 +433,21 @@ end
     account = params[:account]
     amount = params[:amount]
     bankcode = params[:bankcode]
+
+    @storeamount = StoreAmount.where(store_id: current_store.id).first
+    @charges
+    if @storeamount.amount > 500
+      @charges = 45.to_d + (@storeamount.amount.to_d * 0.01)
+    else
+      @charges = 52.to_d + (@storeamount.amount.to_d * 0.01)
+    end
+
+    @max = (@storeamount.amount.to_d - @charges ).to_i
+
+    if amount.to_i > @max
+      amount = @max
+    end
+
 
     ref = [*'A'..'Z', *"0".."9"].sample(16).join
     uref = "Pi1_#{ref}"
@@ -408,7 +483,21 @@ end
     if response.kind_of? Net::HTTPSuccess
       puts "HTTP WORKED = #{response.read_body}"
       Transaction.create(account:account,name:name,trans_type:"EFT",store_id:current_store.id,ref:ref,amount:amount,foreign_ref:response.read_body,bankcode:bankcode)
+
+      @storeamount = StoreAmount.where(store_id: current_store.id).first
+
+      if amount.to_i > 500
+        @trans_charges = 45.to_d + (amount.to_d * 0.01)
+      else
+        @trans_charges = 52.to_d + (amount.to_d * 0.01)
+      end
+
+      nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+      @storeamount.update(amount:nu)
+      Earning.create(trans_id:response.read_body,store_id:current_store.id,amount:(@storeamount.amount.to_d * 0.01).to_i,ref:ref);
+      @status = true
     else
+      @status = false
       puts "HTTP DIDNT = #{response.read_body}"
     end
     no_layout

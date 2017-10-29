@@ -977,7 +977,7 @@ h2.inner,h3.inner {
 	float:right;
 }
 .content {
-    padding: 3em 2em 1em;
+    padding: 0em 2em 1em;
 }
 .demo-container {
     box-sizing: border-box;

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trans_id: MyString
+  store: one
+  amount: 1
+  ref: MyString
+
+two:
+  trans_id: MyString
+  store: two
+  amount: 1
+  ref: MyString
