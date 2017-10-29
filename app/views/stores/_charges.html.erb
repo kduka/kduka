@@ -1,0 +1,22 @@
+<%
+
+  @storeamount = StoreAmount.where(store_id: current_store.id).first
+  @charges
+  if @storeamount.amount > 500
+    @temp = @storeamount.amount.to_i - 45
+    @max = @temp - (@temp.to_d*0.01).to_i
+    #@charges = 45 + (@storeamount.amount.to_d * 0.01)
+  else
+    @temp = @storeamount.amount.to_i - 52
+    @max = @temp - (@temp.to_d*0.01).to_i
+
+    if @max <= 0
+    @max = 0
+    end
+    #@charges = 52 + (@storeamount.amount.to_d * 0.01)
+  end
+
+%>
+
+<p> Available Balance: Ksh <%= @max %> </p>
+<p> <b>Charges:</b><span class="charge" data-full="<%= @storeamount.amount %>" data="<%= @max %>">0</span>    <b>Balance:</b><span class="bal"><%= "  Ksh : #{@max}" %></span></p>

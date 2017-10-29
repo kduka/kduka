@@ -1,1 +1,36 @@
-alert("success!");
+<% if @status %>
+
+<% if @type_n == "Till Number" %>
+$("#client_name_till").val("");
+$("#client_account_till").val("");
+$("#amount_till").val("");
+$(".trans_messages_till").html("<p style='color:green'> Transaction Successful! </p>");
+$("#b2btill").removeAttr("disabled");
+$(".b2bpay_till").html("Transfer Funds");
+<% elsif @type_n == "Paybill" %>
+$("#client_name").val("");
+$("#client_account").val("");
+$("#amount").val("");
+$(".trans_messages_pay").html("<p style='color:green'> Transaction Successful! </p>");
+$("#b2bpay").removeAttr("disabled");
+$(".b2bpay_text").html("Transfer Funds");
+<% end %>
+$(".balance").html("<%= escape_javascript(render "stores/balance") %>");
+$(".history").html("<%= escape_javascript(render "stores/history") %>");
+$(".conditions_b2c").html("<%= escape_javascript(render "stores/charges") %>");
+$(".conditions_till").html("<%= escape_javascript(render "stores/charges") %>");
+$(".conditions_pay").html("<%= escape_javascript(render "stores/charges") %>");
+$(".conditions_eft").html("<%= escape_javascript(render "stores/charges") %>");
+<% else %>
+<% if @type_n == "Till Number" %>
+$(".trans_messages_till").html("<p style='color:red'> Transaction Failed! Something went wrong </p>");
+$("#b2btill").removeAttr("disabled");
+$(".b2btill_text").html("Transfer Funds");
+<% elsif @type_n == "Paybill" %>
+$(".trans_messages_pay").html("<p style='color:red'> Transaction Failed! Something went wrong </p>");
+$("#b2bpay").removeAttr("disabled");
+$(".b2bpay_text").html("Transfer Funds");
+<% end %>
+$("#b2bpay").removeAttr("disabled");
+$(".b2bpay_text").html("Transfer Funds");
+<% end %>

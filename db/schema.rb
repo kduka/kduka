@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027202029) do
+ActiveRecord::Schema.define(version: 20171028112636) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -98,6 +98,16 @@ ActiveRecord::Schema.define(version: 20171027202029) do
     t.integer  "amount"
     t.string   "coupon_type"
     t.index ["store_id"], name: "index_coupons_on_store_id", using: :btree
+  end
+
+  create_table "earnings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "trans_id"
+    t.integer  "store_id"
+    t.integer  "amount"
+    t.string   "ref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_earnings_on_store_id", using: :btree
   end
 
   create_table "ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -328,6 +338,7 @@ ActiveRecord::Schema.define(version: 20171027202029) do
 
   add_foreign_key "categories", "stores"
   add_foreign_key "coupons", "stores"
+  add_foreign_key "earnings", "stores"
   add_foreign_key "orders", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"

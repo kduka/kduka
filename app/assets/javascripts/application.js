@@ -22,12 +22,16 @@
 
 $(function () {
 
+
+
     $("#b2c").click(function (e) {
         e.preventDefault();
-        name = $("#client_name").val();
-        phone = $("#client_account").val();
-        amount = $("#amount").val();
-
+        $(".b2c_text").html("Processing");
+        $("#b2c").attr("disabled","true");
+        $(".trans_messages").html("<p style=''> Please wait ...</p>");
+        name = $("#client_name_b2c").val();
+        phone = $("#client_account_b2c").val();
+        amount = $("#amount_b2c").val();
         $.ajax({
            url:'/stores/b2c',
             method:'post',
@@ -44,6 +48,9 @@ $(function () {
 
     $("#b2bpay").click(function (e) {
         e.preventDefault();
+        $(".b2bpay_text").html("Processing");
+        $("#b2bpay").attr("disabled","true");
+        $(".trans_messages_pay").html("<p style=''> Please wait ...</p>");
         name = $("#client_name_pay").val();
         account = $("#client_account_pay").val();
         amount = $("#amount_pay").val();
@@ -65,6 +72,9 @@ $(function () {
 
     $("#b2btill").click(function (e) {
         e.preventDefault();
+        $(".b2btill_text").html("Processing");
+        $("#b2btill").attr("disabled","true");
+        $(".trans_messages_till").html("<p style=''> Please wait ...</p>");
         name = $("#client_name_till").val();
         account = $("#client_account_till").val();
         amount = $("#amount_till").val();
@@ -86,6 +96,9 @@ $(function () {
 
     $("#eft").click(function (e) {
         e.preventDefault();
+        $(".eft_text").html("Processing");
+        $("#eft").attr("disabled","true");
+        $(".trans_messages_eft").html("<p style=''> Please wait ...</p>");
         name = $("#client_name_eft").val();
         account = $("#client_account_eft").val();
         amount = $("#amount_eft").val();
@@ -345,6 +358,16 @@ function phonenumbers(phonenumber) {
         return false;
     }
 }
+
+function phonecheck(phonenumber) {
+    //var phoneno = /^(?:(?:254|\+254|0)?(07(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})|(?:254|\+254|0)?(7(?:(?:[3][0-9])|(?:5[0-6])|(8[5-9]))[0-9        ]{6})    |(?:254|\+254|0)?(77[0-6][0-9]{6})|(?:254|\+254|0)?(76[34][0-9]{6}))$/;
+    var phoneno = /^(2547)([0-9|7])(\d){7}$/;
+    if (phonenumber.match(phoneno)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 /*
  function validate_ship(){
  email = $("#ship_email").val();
@@ -426,6 +449,15 @@ function val_phone() {
     phone = $("#ship_phone_number").val();
     if (!phonenumbers(phone)) {
         $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 07XXXXXXXX</p>")
+    } else {
+        $("#phone_prev").html("");
+    }
+}
+
+function val_phone2() {
+    phoneno = $("#client_account_b2c").val();
+    if (!phonecheck(phoneno)) {
+        $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 2547XXXXXXXX</p>")
     } else {
         $("#phone_prev").html("");
     }
@@ -546,6 +578,132 @@ function _manual_() {
     }
 }
 
+function b2c_val(){
+client_name = $("#client_name_b2c").val();
+client_account = $("#client_account_b2c").val();
+amount = $("#amount_b2c").val();
+
+if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+    $("#b2c").removeAttr("disabled");
+}else{
+    $("#b2c").attr("disabled","true");
+}
+}
+
+function b2bpay_val(){
+    client_name = $("#client_name_pay").val();
+    client_account = $("#client_account_pay").val();
+    amount = $("#amount_pay").val();
+
+    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+        $("#b2bpay").removeAttr("disabled");
+    }else{
+        $("#b2bpay").attr("disabled","true");
+    }
+}
+
+function b2btill_val(){
+    client_name = $("#client_name_till").val();
+    client_account = $("#client_account_till").val();
+    amount = $("#amount_till").val();
+
+    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+        $("#b2btill").removeAttr("disabled");
+    }else{
+        $("#b2btill").attr("disabled","true");
+    }
+}
+
+function eft_val(){
+    client_name = $("#client_name_eft").val();
+    client_account = $("#client_account_eft").val();
+    amount = $("#amount_eft").val();
+    bank_code = $("#bank_code").val();
+
+    if (client_name != "" && (bank_code!= "" && $.isNumeric(bank_code)) && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+        $("#eft").removeAttr("disabled");
+    }else{
+        $("#eft").attr("disabled","true");
+    }
+}
+
+
+function set_max(post){
+    max = $('.charge','.conditions_'+post).attr('data');
+    amt = $("#amount_"+post).val();
+    full = $(".charge",'.conditions_'+post).attr('data-full');
+    if(parseInt(amt) > parseInt(max)){
+        $("#amount_"+post).val(max);
+    }
+}
+
+function set_bal(post){
+    max = $('.charge','.conditions_'+post).attr('data');
+    amt = $("#amount_"+post).val();
+    full = $(".charge",'.conditions_'+post).attr('data-full');
+
+    if(amt == ""){
+        $('.charge','.conditions_'+post).html("0");
+    }else if(parseInt(amt) > 500){
+        $('.charge','.conditions_'+post).html("Ksh: " + (45 +parseInt(parseFloat(amt)*0.01)));
+        $('.bal','.conditions_'+post).html("Ksh: " + (parseInt(full) - (parseInt(amt) + (45 +parseInt(amt*0.01)))));
+    }else{
+        bal = (parseInt(full) - (parseInt(amt) + (52 + parseInt(amt*0.01))));
+        $('.charge','.conditions_'+post).html("Ksh: " + (52 +parseInt(parseFloat(amt)*0.01)));
+        if(bal<=0){
+            bal =0;
+            $('.charge','.conditions_'+post).html("Ksh: 0");
+        }
+
+        $('.bal','.conditions_'+post).html("Ksh: " + bal);
+    }
+}
+
+function check_num(post) {
+    amt = $("#amount_"+post).val();
+
+    if ($.isNumeric(amt) || amt == ""){
+        $("#amount_prev_"+post).html("");
+    }else{
+        $("#amount_prev_"+post).html("<p style='color: red'>Amount must be a number</p>");
+    }
+}
+
+function val_b2bpay() {
+    val = $("#client_account_pay").val();
+    if ($.isNumeric(val)){
+        $(".pay_acc_prev").html("")
+    }else{
+        $(".pay_acc_prev").html("<p style='color: red'>Paybill is a Number!</p>")
+    }
+}
+
+function val_b2btill() {
+    val = $("#client_account_till").val();
+    if ($.isNumeric(val)){
+        $(".till_acc_prev").html("")
+    }else{
+        $(".till_acc_prev").html("<p style='color: red'>Till Number is a Number!</p>")
+    }
+}
+
+function val_eft() {
+    val = $("#client_account_eft").val();
+    if ($.isNumeric(val)){
+        $(".eft_acc_prev").html("")
+    }else{
+        $(".eft_acc_prev").html("<p style='color: red'>Account Number must be a Number!</p>")
+    }
+}
+
+function val_eft2() {
+    val = $("#bank_code").val();
+    if ($.isNumeric(val)){
+        $(".code_acc_prev").html("")
+    }else{
+        $(".code_acc_prev").html("<p style='color: red'>Bank code is a five digit number!</p>")
+    }
+}
 
 
 

@@ -1,9 +1,8 @@
-<% @transactions = Transaction.where(store_id:current_store.id) %>
+<% @transactions = Transaction.where(store_id:current_store.id).limit(10).order('created_at desc') %>
 <h1>History</h1>
 <table id="myTable" class="table">
   <thead>
   <tr>
-
     <th>Name</th>
     <th>Account</th>
     <th>Type</th>
@@ -24,3 +23,5 @@
   <% end %>
   </tbody>
 </table>
+<br>
+<p><button class="btn btn-primary" >View Full History</button></p>

@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
-  <h1>Account Balance : Ksh <%= StoreAmount.where(store_id:current_store.id).first.amount %></h1>
+  <h1><span class="balance"><%= render 'balance' %></span></h1>
 </div>
 </div>
 <br><br>
@@ -20,21 +20,29 @@
     <%= form_tag('') do%>
         <div class="form-group">
           <label>Recepient's Name</label>
-          <input type="text" id="client_name" class="form-control"/>
+          <input type="text" id="client_name_b2c" onchange="b2c_val();" class="form-control"/>
         </div>
-
         <div class="form-group">
           <label>Recepient's Phone Number</label>
-          <input type="text" id="client_account" class="form-control" placeholder="254xxxxxxxxx"/>
+          <input type="text" id="client_account_b2c" onchange="b2c_val();val_phone2()" class="form-control" placeholder="254xxxxxxxxx"/>
+          <div id="phone_prev"></div>
         </div>
 
         <div class="form-group">
           <label>Amount</label>
-          <input type="text" id="amount" class="form-control" />
+          <input type="text" id="amount_b2c" onchange="b2c_val();set_bal('b2c');" onkeyup="set_max('b2c');check_num('b2c')" class="form-control" />
+          <div id="amount_prev_b2c"></div>
         </div>
 
-        <button id="b2c" class="btn btn-success">Transfer Funds</button>
+        <button id="b2c" disabled class="btn btn-success"><span class="b2c_text">Transfer Funds</span></button>
+
     <% end %>
+    <br>
+    <span class="trans_messages"></span>
+    <br>
+    <div class="conditions_b2c">
+      <%= render 'charges' %>
+    </div>
   </div>
   <div style="margin-bottom: 3em;padding-top: 2em"  id="menu2" class="col-md-offset-3 col-md-6 tab-pane fade">
     <h3>Paybill</h3>
@@ -43,44 +51,60 @@
     <%= form_tag('') do%>
         <div class="form-group">
           <label>Recepients Name</label>
-          <input id="client_name_pay" type="text" name="client_name" class="form-control"/>
+          <input id="client_name_pay" onchange="b2bpay_val()" type="text" name="client_name" class="form-control"/>
         </div>
 
         <div class="form-group">
           <label>Paybill Number</label>
-          <input id="client_account_pay" type="text" name="client_account" class="form-control"/>
+          <input id="client_account_pay" type="text" onchange="b2bpay_val();val_b2bpay()"  name="client_account"  class="form-control"/>
+          <div class="pay_acc_prev"></div>
         </div>
 
         <div class="form-group">
           <label>Amount</label>
-          <input  type="text" id="amount_pay" class="form-control" />
+          <input  type="number" id="amount_pay" onchange="b2bpay_val();set_bal('pay')" onkeyup="set_max('pay');check_num('pay')" class="form-control" />
+          <div id="amount_prev_pay"></div>
         </div>
 
-        <button id="b2bpay" class="btn btn-success">Transfer Funds</button>
+        <button id="b2bpay" disabled class="btn btn-success"><span class="b2bpay_text">Transfer Funds</span></button>
     <% end %>
+    <br>
+    <span class="trans_messages_pay"></span>
+    <br>
+    <div class="conditions_pay">
+      <%= render 'charges' %>
+    </div>
   </div>
   <div style="margin-bottom: 3em;padding-top: 2em"  id="menu3" class="col-md-offset-3 col-md-6 tab-pane fade">
-    <h3>Till NUmber</h3>
+    <h3>Till Number</h3>
     <p>Enter the following details</p>
     <br><br>
     <%= form_tag('') do%>
         <div class="form-group">
           <label>Recepients Name</label>
-          <input id="client_name_till" type="text" name="client_name" class="form-control"/>
+          <input id="client_name_till" type="text" onchange="b2btill_val()" name="client_name" class="form-control"/>
         </div>
 
         <div class="form-group">
           <label>Till Number</label>
-          <input id="client_account_till" type="text" name="client_account" class="form-control"/>
+          <input id="client_account_till" type="text" onchange="b2btill_val();val_b2btill()" name="client_account" class="form-control"/>
+          <div class="till_acc_prev"></div>
         </div>
 
         <div class="form-group">
           <label>Amount</label>
-          <input  type="text" id="amount_till" class="form-control" />
+          <input  type="text" onchange="b2btill_val();set_bal('till')" onkeyup="set_max('till');check_num('till')" id="amount_till" class="form-control" />
+          <div id="amount_prev_till"></div>
         </div>
 
-        <button id="b2btill" class="btn btn-success">Transfer Funds</button>
+        <button id="b2btill" disabled class="btn btn-success"><span class="b2btill_text">Transfer Funds</span></button>
     <% end %>
+    <br>
+    <span class="trans_messages_till"></span>
+    <br>
+    <div class="conditions_till">
+      <%= render 'charges' %>
+    </div>
   </div>
   <div style="margin-bottom: 3em;padding-top: 2em"  id="menu4" class="col-md-offset-3 col-md-6 tab-pane fade">
     <h3>Bank Account</h3>
@@ -89,26 +113,35 @@
     <%= form_tag('') do%>
         <div class="form-group">
           <label>Recepients Name</label>
-          <input type="text" id="client_name_eft" class="form-control"/>
+          <input type="text" id="client_name_eft" onchange="eft_val()" class="form-control"/>
         </div>
 
         <div class="form-group">
           <label>Bank Code</label>
-          <input type="text" id="bank_code" class="form-control"/>
+          <input type="text" id="bank_code" onchange="eft_val();val_eft2()"  class="form-control"/>
+          <div class="code_acc_prev"></div>
         </div>
 
         <div class="form-group">
           <label>Account Number</label>
-          <input type="text" id="client_account_eft" class="form-control" />
+          <input type="text" id="client_account_eft" onchange="eft_val();val_eft()" class="form-control" />
+          <div class="eft_acc_prev"></div>
         </div>
 
         <div class="form-group">
           <label>Amount</label>
-          <input type="text" id="amount_eft" class="form-control" />
+          <input type="text" id="amount_eft" onchange="eft_val();set_bal('eft')" onkeyup="set_max('eft');check_num('eft')" class="form-control" />
+          <div id="amount_prev_eft"></div>
         </div>
 
-        <button id="eft" class="btn btn-success">Transfer Funds</button>
+        <button id="eft" disabled class="btn btn-success"><span class="eft_text">Transfer Funds</span></button>
     <% end %>
+    <br>
+    <span class="trans_messages_eft"></span>
+    <br>
+    <div class="conditions_eft">
+      <%= render 'charges' %>
+    </div>
   </div>
 </div>
 </div>
