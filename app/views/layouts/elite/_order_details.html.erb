@@ -1,12 +1,15 @@
-<p>Full Name: <%= current_order.name %></p><br>
-<p>Email: <%= current_order.email %></p><br>
-<p>Phone: <%= current_order.phone %></p><br>
-<p>Location: <%= current_order.del_location %></p><br>
-<p>Sub-Total: <%= current_order.subtotal %></p><br>
-<p>Shipping: <%= current_order.shipping %></p><br>
-<p>Tax: <%= current_order.tax %></p><br>
-<p>Total: <%= current_order.total %></p><br>
-<p>Instructions: <%= current_order.order_instructions %></p><br>
+<p><label>Full Name: </label> <span style="float:right"><%= current_order.name %></span></p><br>
+<p><label>Email: </label> <span style="float:right"><%= current_order.email %></span></p><br>
+<p><label>Phone: </label> <span style="float:right"><%= current_order.phone %></span></p><br>
+<p><label>Address: </label> <span style="float:right"><%= current_order.address %></span></p><br>
+<p><label>Location: </label> <span style="float:right"><%= current_order.del_location %></span></p><br>
+<p><label>Sub-Total: </label> <span style="float:right"><%= current_order.subtotal %></span></p><br>
+<p><label>Shipping: </label> <span style="float:right"><%= current_order.shipping %></span></p><br>
+<p><label>Tax: </label> <span style="float:right"><%= current_order.tax %></span></p><br>
+<p><label>Coupon: </label> <span style="float:right"><%= current_order.coupon %></span></p><br>
+<p><label>Discount: </label> <span style="float:right"><%= current_order.discount %></span></p><br>
+<p><label>Total: </label> <span style="float:right"><%= current_order.total %></span></p><br>
+<p><label>Instructions: </label> <span style="float:right"><%= current_order.order_instructions %></span></p><br>
 
 
-<button class='btn btn-success col-sm-12 col-md-6 col-md-offset-3'  id='checkout' style="display:block;margin-top: 1em" >Pay and Complete</button>
+<a href="<%= carts_pay_path %>" id="complete" disabled class='btn btn-success col-sm-12 col-md-6 col-md-offset-3'  style="display:block;margin-top</label>1em" >Pay and Complete</a>
