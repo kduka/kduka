@@ -280,12 +280,12 @@ end
     @storeamount = StoreAmount.where(store_id: current_store.id).first
     @charges
     if @storeamount.amount > 500
-      @charges = 45.to_d + (@storeamount.amount.to_d * 0.01)
+      @temp = @storeamount.amount.to_i - 45
+      @max = @temp - (@temp.to_d*0.01).to_i
     else
-      @charges = 52.to_d + (@storeamount.amount.to_d * 0.01)
+      @temp = @storeamount.amount.to_i - 52
+      @max = @temp - (@temp.to_d*0.01).to_i
     end
-
-    @max = (@storeamount.amount.to_d - @charges ).to_i
 
     if amount.to_i > @max
       amount = @max
@@ -358,12 +358,12 @@ end
     @storeamount = StoreAmount.where(store_id: current_store.id).first
     @charges
     if @storeamount.amount > 500
-      @charges = 45.to_d + (@storeamount.amount.to_d * 0.01)
+      @temp = @storeamount.amount.to_i - 45
+      @max = @temp - (@temp.to_d*0.01).to_i
     else
-      @charges = 52.to_d + (@storeamount.amount.to_d * 0.01)
+      @temp = @storeamount.amount.to_i - 52
+      @max = @temp - (@temp.to_d*0.01).to_i
     end
-
-    @max = (@storeamount.amount.to_d - @charges ).to_i
 
     if amount.to_i > @max
       amount = @max
@@ -437,12 +437,12 @@ end
     @storeamount = StoreAmount.where(store_id: current_store.id).first
     @charges
     if @storeamount.amount > 500
-      @charges = 45.to_d + (@storeamount.amount.to_d * 0.01)
+      @temp = @storeamount.amount.to_i - 45
+      @max = @temp - (@temp.to_d*0.01).to_i
     else
-      @charges = 52.to_d + (@storeamount.amount.to_d * 0.01)
+      @temp = @storeamount.amount.to_i - 52
+      @max = @temp - (@temp.to_d*0.01).to_i
     end
-
-    @max = (@storeamount.amount.to_d - @charges ).to_i
 
     if amount.to_i > @max
       amount = @max

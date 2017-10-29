@@ -189,13 +189,18 @@ class CartsController < ApplicationController
   def lock_coupon
     @coupon = Coupon.where(code: current_order.coupon).first
 
-    if @coupon.number_of_use > 0
-      nu = @coupon.number_of_use - 1
-      @coupon.update(number_of_use:nu)
-    else
-      flash[:alert] = "Coupon is Invalid"
-      current_order.update(coupon:"Invalid Coupon",discount:0)
-    end
+
+  if !@coupon.nil?
+  if @coupon.number_of_use > 0
+    nu = @coupon.number_of_use - 1
+    @coupon.update(number_of_use:nu)
+  else
+    flash[:alert] = "Coupon is Invalid"
+    current_order.update(coupon:"Invalid Coupon",discount:0)
+  end
+  end
+
+
   end
 
 

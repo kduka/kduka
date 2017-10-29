@@ -645,7 +645,7 @@ function set_bal(post){
     if(amt == ""){
         $('.charge','.conditions_'+post).html("0");
     }else if(parseInt(amt) > 500){
-        $('.charge','.conditions_'+post).html("Ksh: " + (45 +parseInt(parseFloat(amt)*0.01)));
+        $('.charge','.conditions_'+post).html("Ksh: " + (parseInt(45) +parseInt(parseFloat(amt)*0.01)));
         $('.bal','.conditions_'+post).html("Ksh: " + (parseInt(full) - (parseInt(amt) + (45 +parseInt(amt*0.01)))));
     }else{
         bal = (parseInt(full) - (parseInt(amt) + (52 + parseInt(amt*0.01))));
