@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 20171027202029) do
     t.string   "coupon"
     t.boolean  "coupon_status",                                                 default: false
     t.string   "address"
-    t.integer  "discount"
+    t.integer  "discount",                                                      default: 0
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
     t.index ["store_id"], name: "index_orders_on_store_id", using: :btree
   end
