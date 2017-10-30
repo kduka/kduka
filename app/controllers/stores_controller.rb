@@ -148,7 +148,8 @@ end
 
   def update_layout
     @store = Store.find(current_store.id)
-    if @store.update(layout_id: params[:layout])
+    puts params[:store][:store_color]
+    if @store.update(layout_id: params[:layout],store_color:params[:store][:store_color])
       flash[:notice] = 'Layout Updated'
     else
       flash[:alert] = 'Something went wrong, please try again'
