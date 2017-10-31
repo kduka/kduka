@@ -4,49 +4,78 @@
       <br>
       <strong>
 
-        <% @setup.each do |k,m| %>
+        <% @setup.each do |k, m| %>
             <H3><%= "#{k}. " %><%= m.html_safe %></H3>
         <% end %>
       </strong>
     </div>
 <% end %>
 <div class="area">
-<div class="content-top-1 col-md-4">
-  <div class="col-md-6 top-content">
-    <h5>Total Products</h5>
-    <label>89</label>
+  <div class="content-top-1 col-md-4">
+    <div class="col-md-6 top-content">
+      <h5>Products in stores</h5>
+
+      <%
+        @pn = 0
+        @store = Store.where(user_id: current_user.id)
+        @store.each do |s|
+          @products = Product.where(store_id: s.id)
+
+          @products.each do |p|
+          @pn = @pn + 1
+          end
+        end
+        @perc = (@pn.to_d/100 * 100).to_i
+      %>
+      <label><%= @pn %></label>
+    </div>
+    <div class="col-md-6 top-content1">
+      <% @pn/100 * 100 %>
+      <div id="demo-pie-1" class="pie-title-center" data-percent="<%= @perc %>"><span class="pie-value"></span></div>
+    </div>
+    <div class="clearfix"></div>
   </div>
-  <div class="col-md-6 top-content1">
-    <div id="demo-pie-1" class="pie-title-center" data-percent="100"> <span class="pie-value">100%</span> </div>
+  <div class="content-top-1 col-md-4">
+    <div class="col-md-6 top-content">
+      <h5>Total Store Sales</h5>
+      <%
+        @amount = 0
+        @store = Store.where(user_id: current_user.id)
+        @store.each do |s|
+          @amounts = StoreAmount.where(store_id: s.id)
+
+          @amounts.each do |a|
+            @amount = @amount + a.amount
+          end
+        end
+      %>
+      <label><%= @amount %></label>
+    </div>
+    <div class="col-md-6 top-content1">
+      <div id="demo-pie-2" class="pie-title-center" data-percent="<%= (@amount.to_d/140000) * 100 %>"><span class="pie-value"></span></div>
+    </div>
+    <div class="clearfix"></div>
   </div>
-    <div class="clearfix"> </div>
-</div>
-<div class="content-top-1 col-md-4">
-  <div class="col-md-6 top-content">
-    <h5>Total Store Sales</h5>
-    <label>18</label>
+  <div class="content-top-1 col-md-4">
+    <a href="<%= users_stores_path %>">
+      <div class="col-md-6 top-content">
+        <h5>Active Stores</h5>
+        <%
+          @storeno = Store.where(user_id:current_user.id)
+          @storescount = @storeno.count
+        %>
+        <label><%= @storescount %></label>
+      </div>
+      <div class="col-md-6 top-content1">
+        <div id="demo-pie-3" class="pie-title-center" data-percent="<%= (@storescount.to_d/3) * 100 %>"><span class="pie-value"><%= @storescount %>/3</span></div>
+      </div>
+      <div class="clearfix"></div>
+    </a>
   </div>
-  <div class="col-md-6 top-content1">
-    <div id="demo-pie-2" class="pie-title-center" data-percent="20"> <span class="pie-value">20%</span> </div>
-  </div>
-   <div class="clearfix"> </div>
-</div>
-<div class="content-top-1 col-md-4">
-  <a href="<%= users_stores_path %>">
-  <div class="col-md-6 top-content">
-    <h5>Active Stores</h5>
-    <label>5</label>
-  </div>
-  <div class="col-md-6 top-content1">
-    <div id="demo-pie-3" class="pie-title-center" data-percent="100"> <span class="pie-value">100%</span> </div>
-  </div>
-  <div class="clearfix"> </div>
-</a>
-</div>
 </div>
 
 <div class="clearfix"></div>
-<div class="area" style="margin-top:2em">
+<!--<div class="area" style="margin-top:2em">
 <div class="col-md-12 chrt-two area">
 <h3 class="sub-tittle" style="text-align:center">Product Sales and Views</h3>
   <div class="area">
@@ -133,4 +162,51 @@
           <script src="js/Chart.js"></script>
 </div>
 <div class="clearfix"></div>
+</div>-->
+
+
+<div class="skil">
+  <% if user_signed_in? %>
+      <%= link_to "MANAGE A STORE", new_store_session_path, class: 'btn btn-primary', style: 'margin:1em;', target: '_blank' %>
+      <h1 style="text-align:center;margin-bottom:2em">Your Stores</h1>
+
+      <% unless @stores.blank? %>
+          <table id="myTable" class="table dataTable no-footer">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Store Name</th>
+              <th>Active</th>
+              <th>Products</th>
+              <th>Sales</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% num = 1 %>
+            <% @stores.each do |s| %>
+                <tr>
+                  <td><%= num %></td>
+                  <td><%= s.name %></td>
+                  <td><%= s.active %></td>
+                  <% @store_products = Product.where(store_id:s.id) %>
+                  <% @store_sales = StoreAmount.where(store_id:s.id).first %>
+                  <td><%= @store_products.count %></td>
+                  <td><%= @store_sales.amount %></td>
+                  <td><%= link_to "Visit Shop (http://#{s.subdomain}.kduka.co.ke)", "http://#{s.subdomain}.kduka.co.ke", target: "_blank" %>
+                    |  <%= link_to "Delete", store_path(s), method: 'delete', confirm: "Are you Sure you want to delete this store?" %></td>
+                </tr>
+                <% num = num + 1 %>
+            <% end %>
+            </tbody>
+          </table>
+      <% else %>
+          You have no stores
+      <% end %><br><br>
+      <p style="text-align:center"><%= link_to "Add New Store", new_store_registration_path, :style => 'padding:1em;font-weight:900', :class => 'btn btn-primary' %></p>
+
+  <% else %>
+      <p>Please Log In</p>
+  <% end %>
 </div>
+

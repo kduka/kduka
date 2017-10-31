@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   def home
+    @stores = Store.where(user_id:current_user.id)
     @user = User.find(current_user.id)
     @setup = setup
     if @user.init == false

@@ -1,7 +1,7 @@
 class PaymentsMailer < ApplicationMailer
   def full_payment_recieved(o)
     @order = o
-    mail(to: "test@kduka.co.ke", subject: "Full Payment Recieved Client", from: "Store Contact Form <test@kduka.co.ke>", reply_to:"test@kduka.co.ke")
+    mail(to: "#{o.email}", subject: "Full Payment Recieved Client", from: "Store Contact Form <test@kduka.co.ke>", reply_to:"test@kduka.co.ke")
   end
 
 
@@ -17,6 +17,6 @@ class PaymentsMailer < ApplicationMailer
 
   def partial_payment_recieved(o)
     @order = o
-    mail(to: "test@kduka.co.ke", subject: "Client Email for recieved Partial Payment", from: "Test <test@kduka.co.ke>", reply_to:"test@kduka.co.ke")
+    mail(to: "#{o.email}", subject: "Client Email for recieved Partial Payment", from: "Test <test@kduka.co.ke>", reply_to:"test@kduka.co.ke")
   end
 end
