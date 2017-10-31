@@ -24,12 +24,16 @@
 
     <div class="field">
       <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, class:'form-control',style:'text-align:center' %>
+      <%= f.text_field :name, autofocus: true, class:'form-control',style:'text-align:center'%>
+      <div class="user_name_prev"></div>
+      <br>
     </div>
 
     <div class="field">
       <%= f.label "Store Login Email" %><br />
-      <%= f.email_field :email, autofocus: true, class:'form-control',style:'text-align:center' %>
+      <%= f.email_field :email, autofocus: true, class:'form-control',style:'text-align:center'%>
+      <div class="user_email_prev"></div>
+      <br>
     </div>
 
     <div class="field">
@@ -38,15 +42,19 @@
           <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "off", class:'form-control',style:'text-align:center' %>
+      <div class="user_password_prev"></div>
+      <br>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control',style:'text-align:center' %>
+      <div class="user_password_confirmation_prev"></div>
+      <br>
     </div>
 
     <div class="actions">
-      <%= f.submit "Sign up" %>
+      <%= f.submit "Sign up", disabled:'disabled', style:'color:white;background-color:grey', id:'user_sign_up' %>
     </div>
 
 <% end %>

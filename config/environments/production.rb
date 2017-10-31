@@ -83,7 +83,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
       :address              => "mail.kduka.co.ke",
       :port                 => '465',
-      :user_name            => 'contact-form@kduka.co.ke',
+      :user_name            => 'no-reply@kduka.co.ke',
       :password             => 'Spiderpig69..',
       :authentication       => :plain,
       :enable_starttls_auto => false,

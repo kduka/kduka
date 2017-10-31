@@ -255,8 +255,69 @@ $(function () {
         }
     });
 
+    $("#user_name").change(function (e) {
+        user = $("#user_name").val()
+        if (user.length < 3){
+            $(".user_name_prev").html("<p style='color:red;font-size: 15px;'>Enter a valid name please</p>");
+            $("#user_name").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }else{
+            $(".user_name_prev").html("");
+            $("#user_name").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }
+        user_reg();
+    });
+
+    $("#user_email").change(function (e) {
+        email = $("#user_email").val();
+        if (!validateEmail(email)){
+            $(".user_email_prev").html("<p style='color:red;font-size: 15px;'>Enter a valid email please</p>");
+            $("#user_email").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }else{
+            $(".user_email_prev").html("");
+            $("#user_email").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }
+        user_reg();
+    });
+
+ $("#user_password").keyup(function (e) {
+        password = $("#user_password").val();
+        if (!pass(password)){
+            $(".user_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
+            $("#user_password").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }else{
+            $(".user_password_prev").html("");
+            $("#user_password").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+
+        }
+     user_reg();
+    });
+
+ $("#user_password_confirmation").keyup(function (e) {
+        password = $("#user_password").val();
+        password_c = $("#user_password_confirmation").val();
+        if (password == password_c){
+            $(".user_password_confirmation_prev").html("");
+            $("#user_password_confirmation").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }else{
+            $(".user_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
+            $("#user_password_confirmation").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+
+        }
+     user_reg();
+    });
 
 });
+
+
+function pass(pass){
+    var re = /^(?=.*[A-Z])(?=)(?=.*[0-9])(?=.).{6,}$/;
+    if (pass.match(re)) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
 
 function geocodeAddress(geocoder, resultsMap) {
 
@@ -627,7 +688,6 @@ function eft_val(){
     }
 }
 
-
 function set_max(post){
     max = $('.charge','.conditions_'+post).attr('data');
     amt = $("#amount_"+post).val();
@@ -704,6 +764,23 @@ function val_eft2() {
         $(".code_acc_prev").html("<p style='color: red'>Bank code is a five digit number!</p>")
     }
 }
+
+function user_reg(){
+user_name = $("#user_name").val();
+user_email = $("#user_email").val();
+user_password = $("#user_password").val();
+user_password_confirmation = $("#user_password_confirmation").val();
+
+if((user_name != "" && user_name.length > 3) && validateEmail(user_email) && (pass(user_password) && user_password.length > 5) && (user_password_confirmation != "" && user_password_confirmation.length > 5)){
+    $("#user_sign_up").removeAttr("disabled");
+    $("#user_sign_up").removeAttr("style");
+}else{
+    $("#user_sign_up").attr("disabled","true");
+
+}
+}
+
+
 
 
 
