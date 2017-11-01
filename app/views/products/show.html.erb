@@ -33,13 +33,25 @@
     <td><%= "Dimensions: #{@product.length} x #{@product.width} x #{@product.height}  , Weight: #{@product.weight} Grams" %></td>
   </tr>
   <tr>
-    <td>Image</td>
+    <td>Main Image</td>
     <td><%= image_tag(@product.image_url(:thumb).to_s) %></td>
     </tr>
      <tr>
-    <td>Image1</td>
+    <td>Image 1</td>
     <td><%= image_tag(@product.img1_url(:thumb).to_s) %></td>
     </tr>
+  <tr>
+    <td>Image 2</td>
+    <td><%= image_tag(@product.img2_url(:thumb).to_s) %></td>
+  </tr>
+  <tr>
+    <td>Image 3</td>
+    <td><%= image_tag(@product.img3_url(:thumb).to_s) %></td>
+  </tr>
+  <tr>
+    <td>Image 4</td>
+    <td><%= image_tag(@product.img4_url(:thumb).to_s) %></td>
+  </tr>
   </tbody>
 </table>
 

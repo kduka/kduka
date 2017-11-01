@@ -4,11 +4,11 @@ class Product < ActiveRecord::Base
   validates :name, :price, :category_id,:quantity, presence: true
   after_initialize :init
 
-
   mount_uploader :image, AvatarUploader
   mount_uploader :img1, Img1Uploader
-
-
+  mount_uploader :img2, Img2Uploader
+  mount_uploader :img3, Img3Uploader
+  mount_uploader :img4, Img4Uploader
 
   def init
     self.viewed  ||= 0

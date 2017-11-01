@@ -29147,6 +29147,572 @@ return jQuery;
 
 	return $.fn.dataTable;
 }));
+/* =========================================================
+ * bootstrap-colorpicker.js 
+ * http://www.eyecon.ro/bootstrap-colorpicker
+ * =========================================================
+ * Copyright 2012 Stefan Petre
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================= */
+
+ 
+!function( $ ) {
+	
+	// Color object
+	
+	var Color = function(val) {
+		this.value = {
+			h: 1,
+			s: 1,
+			b: 1,
+			a: 1
+		};
+		this.setColor(val);
+	};
+	
+	Color.prototype = {
+		constructor: Color,
+		
+		//parse a string to HSB
+		setColor: function(val){
+			val = val.toLowerCase();
+			var that = this;
+			$.each( CPGlobal.stringParsers, function( i, parser ) {
+				var match = parser.re.exec( val ),
+					values = match && parser.parse( match ),
+					space = parser.space||'rgba';
+				if ( values ) {
+					if (space === 'hsla') {
+						that.value = CPGlobal.RGBtoHSB.apply(null, CPGlobal.HSLtoRGB.apply(null, values));
+					} else {
+						that.value = CPGlobal.RGBtoHSB.apply(null, values);
+					}
+					return false;
+				}
+			});
+		},
+		
+		setHue: function(h) {
+			this.value.h = 1- h;
+		},
+		
+		setSaturation: function(s) {
+			this.value.s = s;
+		},
+		
+		setLightness: function(b) {
+			this.value.b = 1- b;
+		},
+		
+		setAlpha: function(a) {
+			this.value.a = parseInt((1 - a)*100, 10)/100;
+		},
+		
+		// HSBtoRGB from RaphaelJS
+		// https://github.com/DmitryBaranovskiy/raphael/
+		toRGB: function(h, s, b, a) {
+			if (!h) {
+				h = this.value.h;
+				s = this.value.s;
+				b = this.value.b;
+			}
+			h *= 360;
+			var R, G, B, X, C;
+			h = (h % 360) / 60;
+			C = b * s;
+			X = C * (1 - Math.abs(h % 2 - 1));
+			R = G = B = b - C;
+
+			h = ~~h;
+			R += [C, X, 0, 0, X, C][h];
+			G += [X, C, C, X, 0, 0][h];
+			B += [0, 0, X, C, C, X][h];
+			return {
+				r: Math.round(R*255),
+				g: Math.round(G*255),
+				b: Math.round(B*255),
+				a: a||this.value.a
+			};
+		},
+		
+		toHex: function(h, s, b, a){
+			var rgb = this.toRGB(h, s, b, a);
+			return '#'+((1 << 24) | (parseInt(rgb.r) << 16) | (parseInt(rgb.g) << 8) | parseInt(rgb.b)).toString(16).substr(1);
+		},
+		
+		toHSL: function(h, s, b, a){
+			if (!h) {
+				h = this.value.h;
+				s = this.value.s;
+				b = this.value.b;
+			}
+			var H = h,
+				L = (2 - s) * b,
+				S = s * b;
+			if (L > 0 && L <= 1) {
+				S /= L;
+			} else {
+				S /= 2 - L;
+			}
+			L /= 2;
+			if (S > 1) {
+				S = 1;
+			}
+			return {
+				h: H,
+				s: S,
+				l: L,
+				a: a||this.value.a
+			};
+		}
+	};
+	
+	// Picker object
+	
+	var Colorpicker = function(element, options){
+		this.element = $(element);
+		var format = options.format||this.element.data('color-format')||'hex';
+		this.format = CPGlobal.translateFormats[format];
+		this.isInput = this.element.is('input');
+		this.component = this.element.is('.color') ? this.element.find('.add-on') : false;
+		
+		this.picker = $(CPGlobal.template)
+							.appendTo('body')
+							.on('mousedown', $.proxy(this.mousedown, this));
+		
+		if (this.isInput) {
+			this.element.on({
+				'focus': $.proxy(this.show, this),
+				'keyup': $.proxy(this.update, this)
+			});
+		} else if (this.component){
+			this.component.on({
+				'click': $.proxy(this.show, this)
+			});
+		} else {
+			this.element.on({
+				'click': $.proxy(this.show, this)
+			});
+		}
+		if (format === 'rgba' || format === 'hsla') {
+			this.picker.addClass('alpha');
+			this.alpha = this.picker.find('.colorpicker-alpha')[0].style;
+		}
+		
+		if (this.component){
+			this.picker.find('.colorpicker-color').hide();
+			this.preview = this.element.find('i')[0].style;
+		} else {
+			this.preview = this.picker.find('div:last')[0].style;
+		}
+		
+		this.base = this.picker.find('div:first')[0].style;
+		this.update();
+	};
+	
+	Colorpicker.prototype = {
+		constructor: Colorpicker,
+		
+		show: function(e) {
+			this.picker.show();
+			this.height = this.component ? this.component.outerHeight() : this.element.outerHeight();
+			this.place();
+			$(window).on('resize', $.proxy(this.place, this));
+			if (!this.isInput) {
+				if (e) {
+					e.stopPropagation();
+					e.preventDefault();
+				}
+			}
+			$(document).on({
+				'mousedown': $.proxy(this.hide, this)
+			});
+			this.element.trigger({
+				type: 'show',
+				color: this.color
+			});
+		},
+		
+		update: function(){
+			this.color = new Color(this.isInput ? this.element.prop('value') : this.element.data('color'));
+			this.picker.find('i')
+				.eq(0).css({left: this.color.value.s*100, top: 100 - this.color.value.b*100}).end()
+				.eq(1).css('top', 100 * (1 - this.color.value.h)).end()
+				.eq(2).css('top', 100 * (1 - this.color.value.a));
+			this.previewColor();
+		},
+		
+		setValue: function(newColor) {
+			this.color = new Color(newColor);
+			this.picker.find('i')
+				.eq(0).css({left: this.color.value.s*100, top: 100 - this.color.value.b*100}).end()
+				.eq(1).css('top', 100 * (1 - this.color.value.h)).end()
+				.eq(2).css('top', 100 * (1 - this.color.value.a));
+			this.previewColor();
+			this.element.trigger({
+				type: 'changeColor',
+				color: this.color
+			});
+		},
+		
+		hide: function(){
+			this.picker.hide();
+			$(window).off('resize', this.place);
+			if (!this.isInput) {
+				$(document).off({
+					'mousedown': this.hide
+				});
+				if (this.component){
+					this.element.find('input').prop('value', this.format.call(this));
+				}
+				this.element.data('color', this.format.call(this));
+			} else {
+				this.element.prop('value', this.format.call(this));
+			}
+			this.element.trigger({
+				type: 'hide',
+				color: this.color
+			});
+		},
+		
+		place: function(){
+			var offset = this.component ? this.component.offset() : this.element.offset();
+			this.picker.css({
+				top: offset.top + this.height,
+				left: offset.left
+			});
+		},
+		
+		//preview color change
+		previewColor: function(){
+			try {
+				this.preview.backgroundColor = this.format.call(this);
+			} catch(e) {
+				this.preview.backgroundColor = this.color.toHex();
+			}
+			//set the color for brightness/saturation slider
+			this.base.backgroundColor = this.color.toHex(this.color.value.h, 1, 1, 1);
+			//set te color for alpha slider
+			if (this.alpha) {
+				this.alpha.backgroundColor = this.color.toHex();
+			}
+		},
+		
+		pointer: null,
+		
+		slider: null,
+		
+		mousedown: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			
+			var target = $(e.target);
+			
+			//detect the slider and set the limits and callbacks
+			var zone = target.closest('div');
+			if (!zone.is('.colorpicker')) {
+				if (zone.is('.colorpicker-saturation')) {
+					this.slider = $.extend({}, CPGlobal.sliders.saturation);
+				} 
+				else if (zone.is('.colorpicker-hue')) {
+					this.slider = $.extend({}, CPGlobal.sliders.hue);
+				}
+				else if (zone.is('.colorpicker-alpha')) {
+					this.slider = $.extend({}, CPGlobal.sliders.alpha);
+				} else {
+					return false;
+				}
+				var offset = zone.offset();
+				//reference to knob's style
+				this.slider.knob = zone.find('i')[0].style;
+				this.slider.left = e.pageX - offset.left;
+				this.slider.top = e.pageY - offset.top;
+				this.pointer = {
+					left: e.pageX,
+					top: e.pageY
+				};
+				//trigger mousemove to move the knob to the current position
+				$(document).on({
+					mousemove: $.proxy(this.mousemove, this),
+					mouseup: $.proxy(this.mouseup, this)
+				}).trigger('mousemove');
+			}
+			return false;
+		},
+		
+		mousemove: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			var left = Math.max(
+				0,
+				Math.min(
+					this.slider.maxLeft,
+					this.slider.left + ((e.pageX||this.pointer.left) - this.pointer.left)
+				)
+			);
+			var top = Math.max(
+				0,
+				Math.min(
+					this.slider.maxTop,
+					this.slider.top + ((e.pageY||this.pointer.top) - this.pointer.top)
+				)
+			);
+			this.slider.knob.left = left + 'px';
+			this.slider.knob.top = top + 'px';
+			if (this.slider.callLeft) {
+				this.color[this.slider.callLeft].call(this.color, left/100);
+			}
+			if (this.slider.callTop) {
+				this.color[this.slider.callTop].call(this.color, top/100);
+			}
+			this.previewColor();
+			this.element.trigger({
+				type: 'changeColor',
+				color: this.color
+			});
+			return false;
+		},
+		
+		mouseup: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			$(document).off({
+				mousemove: this.mousemove,
+				mouseup: this.mouseup
+			});
+			return false;
+		}
+	}
+
+	$.fn.colorpicker = function ( option, val ) {
+		return this.each(function () {
+			var $this = $(this),
+				data = $this.data('colorpicker'),
+				options = typeof option === 'object' && option;
+			if (!data) {
+				$this.data('colorpicker', (data = new Colorpicker(this, $.extend({}, $.fn.colorpicker.defaults,options))));
+			}
+			if (typeof option === 'string') data[option](val);
+		});
+	};
+
+	$.fn.colorpicker.defaults = {
+	};
+	
+	$.fn.colorpicker.Constructor = Colorpicker;
+	
+	var CPGlobal = {
+	
+		// translate a format from Color object to a string
+		translateFormats: {
+			'rgb': function(){
+				var rgb = this.color.toRGB();
+				return 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')';
+			},
+			
+			'rgba': function(){
+				var rgb = this.color.toRGB();
+				return 'rgba('+rgb.r+','+rgb.g+','+rgb.b+','+rgb.a+')';
+			},
+			
+			'hsl': function(){
+				var hsl = this.color.toHSL();
+				return 'hsl('+Math.round(hsl.h*360)+','+Math.round(hsl.s*100)+'%,'+Math.round(hsl.l*100)+'%)';
+			},
+			
+			'hsla': function(){
+				var hsl = this.color.toHSL();
+				return 'hsla('+Math.round(hsl.h*360)+','+Math.round(hsl.s*100)+'%,'+Math.round(hsl.l*100)+'%,'+hsl.a+')';
+			},
+			
+			'hex': function(){
+				return  this.color.toHex();
+			}
+		},
+		
+		sliders: {
+			saturation: {
+				maxLeft: 100,
+				maxTop: 100,
+				callLeft: 'setSaturation',
+				callTop: 'setLightness'
+			},
+			
+			hue: {
+				maxLeft: 0,
+				maxTop: 100,
+				callLeft: false,
+				callTop: 'setHue'
+			},
+			
+			alpha: {
+				maxLeft: 0,
+				maxTop: 100,
+				callLeft: false,
+				callTop: 'setAlpha'
+			}
+		},
+		
+		// HSBtoRGB from RaphaelJS
+		// https://github.com/DmitryBaranovskiy/raphael/
+		RGBtoHSB: function (r, g, b, a){
+			r /= 255;
+			g /= 255;
+			b /= 255;
+
+			var H, S, V, C;
+			V = Math.max(r, g, b);
+			C = V - Math.min(r, g, b);
+			H = (C === 0 ? null :
+				V == r ? (g - b) / C :
+				V == g ? (b - r) / C + 2 :
+					(r - g) / C + 4
+				);
+			H = ((H + 360) % 6) * 60 / 360;
+			S = C === 0 ? 0 : C / V;
+			return {h: H||1, s: S, b: V, a: a||1};
+		},
+		
+		HueToRGB: function (p, q, h) {
+			if (h < 0)
+				h += 1;
+			else if (h > 1)
+				h -= 1;
+
+			if ((h * 6) < 1)
+				return p + (q - p) * h * 6;
+			else if ((h * 2) < 1)
+				return q;
+			else if ((h * 3) < 2)
+				return p + (q - p) * ((2 / 3) - h) * 6;
+			else
+				return p;
+		},
+	
+		HSLtoRGB: function (h, s, l, a)
+		{
+			if (s < 0) {
+				s = 0;
+			}
+			var q;
+			if (l <= 0.5) {
+				q = l * (1 + s);
+			} else {
+				q = l + s - (l * s);
+			}
+			
+			var p = 2 * l - q;
+
+			var tr = h + (1 / 3);
+			var tg = h;
+			var tb = h - (1 / 3);
+
+			var r = Math.round(CPGlobal.HueToRGB(p, q, tr) * 255);
+			var g = Math.round(CPGlobal.HueToRGB(p, q, tg) * 255);
+			var b = Math.round(CPGlobal.HueToRGB(p, q, tb) * 255);
+			return [r, g, b, a||1];
+		},
+		
+		// a set of RE's that can match strings and generate color tuples.
+		// from John Resig color plugin
+		// https://github.com/jquery/jquery-color/
+		stringParsers: [
+			{
+				re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+				parse: function( execResult ) {
+					return [
+						execResult[ 1 ],
+						execResult[ 2 ],
+						execResult[ 3 ],
+						execResult[ 4 ]
+					];
+				}
+			}, {
+				re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+				parse: function( execResult ) {
+					return [
+						2.55 * execResult[1],
+						2.55 * execResult[2],
+						2.55 * execResult[3],
+						execResult[ 4 ]
+					];
+				}
+			}, {
+				re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,
+				parse: function( execResult ) {
+					return [
+						parseInt( execResult[ 1 ], 16 ),
+						parseInt( execResult[ 2 ], 16 ),
+						parseInt( execResult[ 3 ], 16 )
+					];
+				}
+			}, {
+				re: /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,
+				parse: function( execResult ) {
+					return [
+						parseInt( execResult[ 1 ] + execResult[ 1 ], 16 ),
+						parseInt( execResult[ 2 ] + execResult[ 2 ], 16 ),
+						parseInt( execResult[ 3 ] + execResult[ 3 ], 16 )
+					];
+				}
+			}, {
+				re: /hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+				space: 'hsla',
+				parse: function( execResult ) {
+					return [
+						execResult[1]/360,
+						execResult[2] / 100,
+						execResult[3] / 100,
+						execResult[4]
+					];
+				}
+			}
+		],
+		template: '<div class="colorpicker dropdown-menu">'+
+							'<div class="colorpicker-saturation"><i><b></b></i></div>'+
+							'<div class="colorpicker-hue"><i></i></div>'+
+							'<div class="colorpicker-alpha"><i></i></div>'+
+							'<div class="colorpicker-color"><div /></div>'+
+						'</div>'
+	};
+
+}( window.jQuery )
+;
+(function() {
+
+
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+
+
+}).call(this);
 (function() {
 
 
@@ -29162,6 +29728,831 @@ return jQuery;
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
+
+
+
+
+
+
+
+/**
+ * Created by root on 10/6/17.
+ */
+
+
+$(function () {
+
+
+
+    $("#b2c").click(function (e) {
+        e.preventDefault();
+        $(".b2c_text").html("Processing");
+        $("#b2c").attr("disabled","true");
+        $(".trans_messages").html("<p style=''> Please wait ...</p>");
+        name = $("#client_name_b2c").val();
+        phone = $("#client_account_b2c").val();
+        amount = $("#amount_b2c").val();
+        $.ajax({
+           url:'/stores/b2c',
+            method:'post',
+            data:{
+               name:name,
+                phone:phone,
+                amount:amount
+            },
+            success:function (f) {
+
+            }
+        });
+    });
+
+    $("#b2bpay").click(function (e) {
+        e.preventDefault();
+        $(".b2bpay_text").html("Processing");
+        $("#b2bpay").attr("disabled","true");
+        $(".trans_messages_pay").html("<p style=''> Please wait ...</p>");
+        name = $("#client_name_pay").val();
+        account = $("#client_account_pay").val();
+        amount = $("#amount_pay").val();
+
+        $.ajax({
+            url:'/stores/b2b',
+            method:'post',
+            data:{
+                name:name,
+                account:account,
+                amount:amount,
+                type:"7"
+            },
+            success:function (f) {
+
+            }
+        });
+    });
+
+    $("#b2btill").click(function (e) {
+        e.preventDefault();
+        $(".b2btill_text").html("Processing");
+        $("#b2btill").attr("disabled","true");
+        $(".trans_messages_till").html("<p style=''> Please wait ...</p>");
+        name = $("#client_name_till").val();
+        account = $("#client_account_till").val();
+        amount = $("#amount_till").val();
+
+        $.ajax({
+            url:'/stores/b2b',
+            method:'post',
+            data:{
+                name:name,
+                account:account,
+                amount:amount,
+                type:"6"
+            },
+            success:function (f) {
+
+            }
+        });
+    });
+
+    $("#eft").click(function (e) {
+        e.preventDefault();
+        $(".eft_text").html("Processing");
+        $("#eft").attr("disabled","true");
+        $(".trans_messages_eft").html("<p style=''> Please wait ...</p>");
+        name = $("#client_name_eft").val();
+        account = $("#client_account_eft").val();
+        amount = $("#amount_eft").val();
+        bankcode = $("#bank_code").val();
+
+        $.ajax({
+            url:'/stores/eft',
+            method:'post',
+            data:{
+                name:name,
+                account:account,
+                amount:amount,
+                type:"6",
+                bankcode:bankcode
+            },
+            success:function (f) {
+
+            }
+        });
+    });
+
+    $("#confirmation_id").click(function (e) {
+        $(".conf_text").html("Confirming Order ...");
+        $.ajax({
+            url: '/carts/confirm',
+            method: 'post',
+            success: function (e) {
+                if (e == "complete") {
+                    $(".conf_text").html("Success!");
+                    $(".conf_message").html("<span style='color: green'>Payment Complete.Your order has been placed. Check the provided email for further details! </span>");
+                    window.location = "/carts/success"
+                } else if (e == 'none') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                }else{
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>" + e + "</span>");
+                }
+
+            }
+        });
+    });
+
+    $("#process").click(function (e) {
+        e.preventDefault();
+        finalize();
+    });
+
+    $("#edit").click(function (e) {
+        e.preventDefault();
+        $("#process").attr('style', "display:block;margin-top: 1em");
+        $("#edit").attr('style', "display:none;margin-top: 1em");
+        $('.ship_form').removeAttr('disabled');
+        $("#complete").attr("disabled","true");
+    });
+
+    $("#add-delivery").click(function (e) {
+        e.preventDefault();
+        del_opt = $("#del_opt").val();
+        del_price = $("#del_price").val();
+
+        if (del_opt == "") {
+            $(".del_opt_err").html("<span style='color:red;'>Please fill the delivery option, It cant be empty</span>");
+        } else if (del_price == "") {
+            $(".del_opt_err").html("<span style='color:red;'>Please specify the price, It cant be empty</span>");
+        } else {
+            $.ajax({
+                url: '/store_deliveries',
+                method: 'post',
+                data: {
+                    del_opt: del_opt,
+                    del_price: del_price
+                },
+                success: function (e) {
+                    $(".del_opt_err").html("");
+                    $("#del_opt").val("");
+                    $("#del_price").val("");
+                }
+            })
+        }
+    });
+
+    $('textarea').each(function () {
+        $(this).height($(this).prop('scrollHeight'));
+    });
+
+    $('#auto').click(function () {
+        $("#process").attr("disabled", "true");
+        full_name = $("#ship_full_name").val();
+        phone = $("#ship_phone_number").val();
+        email = $("#ship_email").val();
+        var data;
+        if (full_name != "" && phonenumbers(phone) && validateEmail(email)) {
+            $(".warn_fill_fields").html("<p style='color: green'>Type below to search for your nearest location</p>");
+            data = 'true'
+        } else {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name, Email and Phone Number First!</p>");
+            data = 'false'
+        }
+
+        if ($(this).is(':checked')) {
+            $.ajax({
+                url: '/carts/auto',
+                data: {
+                    cond: data
+                },
+                success: function (res) {
+                    $(".delivery_options").html(res);
+                }
+            });
+        }
+    });
+
+    $('#manual').click(function () {
+        $("#process").attr("disabled", "true");
+        full_name = $("#ship_full_name").val();
+        phone = $("#ship_phone_number").val();
+        var data;
+        if (full_name != "" && phonenumbers(phone)) {
+            $(".warn_fill_fields").html("<p style='color: green'></p>");
+        } else {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
+            $(".delivery_options").html("");
+        }
+        if ($(this).is(':checked') && full_name != "" && phonenumbers(phone)) {
+            $.ajax({
+                url: '/carts/manual',
+                success: function (res) {
+                    $(".delivery_options").html(res);
+                }
+            });
+        }
+    });
+
+    $('#collection').click(function () {
+        $("#process").attr("disabled", "true");
+        full_name = $("#ship_full_name").val();
+        phone = $("#ship_phone_number").val();
+        var data;
+        if (full_name != "" && phonenumbers(phone)) {
+            $(".warn_fill_fields").html("<p style='color: green'></p>");
+        } else {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
+            $(".delivery_options").html("");
+        }
+
+        if ($(this).is(':checked') && full_name != "" && phonenumbers(phone)) {
+            $.ajax({
+                url: '/carts/collection',
+                success: function (res) {
+                    $(".delivery_options").html(res)
+                }
+            });
+        }
+    });
+
+    $("#user_name").change(function (e) {
+        user = $("#user_name").val()
+        if (user.length < 3){
+            $(".user_name_prev").html("<p style='color:red;font-size: 15px;'>Enter a valid name please</p>");
+            $("#user_name").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }else{
+            $(".user_name_prev").html("");
+            $("#user_name").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }
+        user_reg();
+    });
+
+    $("#user_email").change(function (e) {
+        email = $("#user_email").val();
+        if (!validateEmail(email)){
+            $(".user_email_prev").html("<p style='color:red;font-size: 15px;'>Enter a valid email please</p>");
+            $("#user_email").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }else{
+            $(".user_email_prev").html("");
+            $("#user_email").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }
+        user_reg();
+    });
+
+ $("#user_password").keyup(function (e) {
+        password = $("#user_password").val();
+        if (!pass(password)){
+            $(".user_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
+            $("#user_password").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }else{
+            $(".user_password_prev").html("");
+            $("#user_password").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+
+        }
+     user_reg();
+    });
+
+    $("#store_password").change(function (e) {
+        password = $("#store_password").val();
+        if (!pass(password)){
+            $(".store_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
+            $("#store_password").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }else{
+            $(".store_password_prev").html("");
+            $("#store_password").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+
+        }
+        store_reg();
+    });
+
+ $("#user_password_confirmation").keyup(function (e) {
+        password = $("#user_password").val();
+        password_c = $("#user_password_confirmation").val();
+        if (password == password_c){
+            $(".user_password_confirmation_prev").html("");
+            $("#user_password_confirmation").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }else{
+            $(".user_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
+            $("#user_password_confirmation").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+
+        }
+     user_reg();
+    });
+
+    $("#s_email").change(function () {
+        //alert(validateEmail($("#s_email").val()));
+    });
+
+    $("#store_password_confirmation").keyup(function (e) {
+        password = $("#store_password").val();
+        password_c = $("#store_password_confirmation").val();
+        if (password == password_c){
+            $(".store_password_confirmation_prev").html("");
+            $("#store_password_confirmation").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }else{
+            $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
+            $("#store_password_confirmation").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+
+        }
+        store_reg();
+    });
+
+    $("#s_email").change(function () {
+        //alert(validateEmail($("#s_email").val()));
+    })
+
+
+});
+
+
+function pass(pass){
+    var re = /^(?=.*[A-Z])(?=)(?=.*[0-9])(?=.).{6,}$/;
+    if (pass.match(re)) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+
+    var address = document.getElementById('delivery_location').value;
+    geocoder.geocode({
+        'address': address, componentRestrictions: {
+            country: 'KE'
+        }
+    }, function (results, status) {
+        if (status === 'OK') {
+
+            var string = "";
+            console.log(results);
+            results.forEach(function (entry) {
+                string = string + '<p onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
+
+
+            });
+            $('#suggesstion-box').show();
+            $('#suggesstion-box').html(string);
+            console.log(string);
+        } else {
+            $('#suggesstion-box').html("Not Found, Try different search words");
+        }
+    });
+}
+
+
+function selectlocation(val) {
+
+    $("#delivery_location").val(val);
+    $("#sel_loc").val(val);
+    $("#suggesstion-box").hide();
+    $("#process").attr("value", "Processing ... ");
+    $.ajax({
+        type: 'POST',
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
+        success: function (result) {
+            results = result['results'];
+            console.log(result);
+
+            var latitude = results[0]['geometry']['location']['lat'];
+            var longitude = results[0]['geometry']['location']['lng'];
+            var location = $("#delivery_location").val();
+            var full_name = $("#ship_full_name").val();
+            var email = $("#ship_email").val();
+            var phone_number = $("#ship_phone_number").val();
+
+            //sendyit2(longitude, latitude);
+
+
+            $.ajax({
+                url: '/carts/location',
+                success: function () {
+
+                },
+                method: 'post',
+                data: {
+                    'delivery_location': location,
+                    'lng': longitude,
+                    'lat': latitude,
+                    'full_name': full_name,
+                    'email': email,
+                    'phone_number': phone_number
+                }
+            });
+        },
+
+    });
+}
+
+function locate() {
+    setTimeout(function () {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: {lat: -34.397, lng: 150.644}
+        });
+        var geocoder = new google.maps.Geocoder();
+        geocodeAddress(geocoder, map);
+    }, 1000);
+}
+
+function phonenumbers(phonenumber) {
+    //var phoneno = /^(?:(?:254|\+254|0)?(07(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})|(?:254|\+254|0)?(7(?:(?:[3][0-9])|(?:5[0-6])|(8[5-9]))[0-9        ]{6})    |(?:254|\+254|0)?(77[0-6][0-9]{6})|(?:254|\+254|0)?(76[34][0-9]{6}))$/;
+    var phoneno = /^(07)([0-9|7])(\d){7}$/;
+    if (phonenumber.match(phoneno)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function phonecheck(phonenumber) {
+    //var phoneno = /^(?:(?:254|\+254|0)?(07(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})|(?:254|\+254|0)?(7(?:(?:[3][0-9])|(?:5[0-6])|(8[5-9]))[0-9        ]{6})    |(?:254|\+254|0)?(77[0-6][0-9]{6})|(?:254|\+254|0)?(76[34][0-9]{6}))$/;
+    var phoneno = /^(2547)([0-9|7])(\d){7}$/;
+    if (phonenumber.match(phoneno)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+/*
+ function validate_ship(){
+ email = $("#ship_email").val();
+ phone = $("#ship_phone_number").val();
+ if (not_null("ship_email") && not_null("full_name") && validateEmail(email) && phonenumbers(phone) && (auto() || manual() || collection())){
+ $("#process").removeAttr('disabled');
+ }else{
+ $("#process").attr('disabled','true');
+ }
+ }*/
+
+function val_ship() {
+
+    full_name = $("#ship_full_name").val();
+    phone = $("#ship_phone_number").val();
+    email = $("#ship_email").val();
+
+    if (full_name != "" && phonenumbers(phone) && validateEmail(email)) {
+        if ($("#auto").is(':checked')) {
+            $(".warn_fill_fields").html("<p style='color: green'>Type below to search for your nearest location</p>");
+        } else {
+            $(".warn_fill_fields").html("");
+        }
+        $("#delivery_location").removeAttr("disabled");
+    } else {
+        if ($("#auto").is(':checked')) {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name, Email and Phone Number First!</p>");
+        } else {
+            $("#delivery_location").removeAttr("disabled");
+        }
+        $("#delivery_location").attr("disabled", "true");
+
+    }
+}
+
+function not_null(id) {
+    if ($("#" + id).val() != "") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function auto() {
+    if (($('#auto').is(':checked'))) {
+        selval = $("#sel_loc").val();
+
+        if (selval != "") {
+            return true;
+        }
+
+    } else {
+        return false;
+    }
+
+}
+
+function collection() {
+    if ($('#collection').is(':checked')) {
+        val = $("#collection_point").val();
+
+        if (val != "") {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
+
+function manual() {
+    if ($('#manual').is(':checked')) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function val_phone() {
+    phone = $("#ship_phone_number").val();
+    if (!phonenumbers(phone)) {
+        $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 07XXXXXXXX</p>")
+    } else {
+        $("#phone_prev").html("");
+    }
+}
+
+function val_phone2() {
+    phoneno = $("#client_account_b2c").val();
+    if (!phonecheck(phoneno)) {
+        $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 2547XXXXXXXX</p>")
+    } else {
+        $("#phone_prev").html("");
+    }
+}
+
+function val_email() {
+    if (!validateEmail(email)) {
+        $("#email_prev").html("<p style='color:red;'>Email is not a valid email address</p>");
+    } else {
+        $("#email_prev").html("");
+    }
+}
+
+function finalize() {
+    full_name = $("#ship_full_name").val();
+    phone = $("#ship_phone_number").val();
+    email = $("#ship_email").val();
+    //delivery_type = $("#delivery").val();
+    delivery_order = $("#delivery_order").val();
+    lat = $("#lat").val();
+    lng = $("#long").val();
+    instructions = $("#instructions").val();
+    coupon = $("#coupon").val();
+    address = $("#ship_address").val();
+
+    if ($("#auto").is(':checked')) {
+        delivery_amount = $("#delivery_amount").val();
+    } else if ($("#manual").is(':checked')) {
+        delivery_amount = $("input[name='del_opt']:checked").val();
+
+    } else if ($("#collection").is(':checked')) {
+        delivery_amount = 0;
+    }
+
+    if ($("#auto").is(':checked')) {
+        delivery_location = $("#sel_loc").val();
+    } else if ($("#manual").is(':checked')) {
+        delivery_location = $("input[name='del_opt']:checked").attr("area");
+    } else if ($("#collection").is(':checked')) {
+        delivery_location = $("#collection_point").val();
+    }
+
+
+    $.ajax({
+        url: '/carts/update_shipping',
+        method: 'post',
+        data: {
+            amount: delivery_amount,
+            orderid: delivery_order,
+            type: $("input:radio[name=delivery]").val(),
+            email: $("#ship_email").val(),
+            name: $("#ship_full_name").val(),
+            phone: $("#ship_phone_number").val(),
+            delivery_location: delivery_location,
+            lat: lat,
+            lng: lng,
+            instructions: instructions,
+            coupon:coupon,
+            address:address
+        },
+
+        success: function () {
+            $('.ship_form').attr('disabled', 'true');
+            $("#process").attr('style', "display:none;margin-top: 1em");
+            $("#edit").attr('style', "display:block;margin-top: 1em");
+            $("#complete").removeAttr("disabled");
+        }
+    });
+}
+
+function collect() {
+    if ($("#collection").is(':checked')) {
+        if (full_name != "" && phonenumbers(phone)) {
+            $.ajax({
+                url: '/carts/collection',
+                success: function (res) {
+                    $(".delivery_options").html(res);
+                }
+            });
+            $("#process").removeAttr("disabled");
+
+        } else {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
+            $(".delivery_options").html("");
+        }
+    }
+}
+
+function manual_() {
+    if ($("#manual").is(':checked')) {
+        if (full_name != "" && phonenumbers(phone)) {
+            $.ajax({
+                url: '/carts/manual',
+                success: function (res) {
+                    $(".delivery_options").html(res);
+                }
+            });
+        } else {
+            $(".warn_fill_fields").html("<p style='color: red'>Fill your Name and Phone Number First!</p>");
+            $(".delivery_options").html("");
+        }
+    }
+}
+
+function _manual_() {
+    if ($("input:radio[name=delivery]").val() != "") {
+        if ($("#other").is(':checked')) {
+            if ($("#instructions").val() != "") {
+                $("#process").removeAttr("disabled");
+            } else {
+                $("#process").attr("disabled", "true");
+            }
+        } else {
+            $("#process").removeAttr("disabled");
+            $(".select_instructions").html('');
+            $("#instructions").val('');
+        }
+    }
+}
+
+function b2c_val(){
+client_name = $("#client_name_b2c").val();
+client_account = $("#client_account_b2c").val();
+amount = $("#amount_b2c").val();
+
+if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+    $("#b2c").removeAttr("disabled");
+}else{
+    $("#b2c").attr("disabled","true");
+}
+}
+
+function b2bpay_val(){
+    client_name = $("#client_name_pay").val();
+    client_account = $("#client_account_pay").val();
+    amount = $("#amount_pay").val();
+
+    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+        $("#b2bpay").removeAttr("disabled");
+    }else{
+        $("#b2bpay").attr("disabled","true");
+    }
+}
+
+function b2btill_val(){
+    client_name = $("#client_name_till").val();
+    client_account = $("#client_account_till").val();
+    amount = $("#amount_till").val();
+
+    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+        $("#b2btill").removeAttr("disabled");
+    }else{
+        $("#b2btill").attr("disabled","true");
+    }
+}
+
+function eft_val(){
+    client_name = $("#client_name_eft").val();
+    client_account = $("#client_account_eft").val();
+    amount = $("#amount_eft").val();
+    bank_code = $("#bank_code").val();
+
+    if (client_name != "" && (bank_code!= "" && $.isNumeric(bank_code)) && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+        $("#eft").removeAttr("disabled");
+    }else{
+        $("#eft").attr("disabled","true");
+    }
+}
+
+function set_max(post){
+    max = $('.charge','.conditions_'+post).attr('data');
+    amt = $("#amount_"+post).val();
+    full = $(".charge",'.conditions_'+post).attr('data-full');
+    if(parseInt(amt) > parseInt(max)){
+        $("#amount_"+post).val(max);
+    }
+}
+
+function set_bal(post){
+    max = $('.charge','.conditions_'+post).attr('data');
+    amt = $("#amount_"+post).val();
+    full = $(".charge",'.conditions_'+post).attr('data-full');
+
+    if(amt == ""){
+        $('.charge','.conditions_'+post).html("0");
+    }else if(parseInt(amt) > 500){
+        $('.charge','.conditions_'+post).html("Ksh: " + (parseInt(45) +parseInt(parseFloat(amt)*0.01)));
+        $('.bal','.conditions_'+post).html("Ksh: " + (parseInt(full) - (parseInt(amt) + (45 +parseInt(amt*0.01)))));
+    }else{
+        bal = (parseInt(full) - (parseInt(amt) + (52 + parseInt(amt*0.01))));
+        $('.charge','.conditions_'+post).html("Ksh: " + (52 +parseInt(parseFloat(amt)*0.01)));
+        if(bal<=0){
+            bal =0;
+            $('.charge','.conditions_'+post).html("Ksh: 0");
+        }
+
+        $('.bal','.conditions_'+post).html("Ksh: " + bal);
+    }
+}
+
+function check_num(post) {
+    amt = $("#amount_"+post).val();
+
+    if ($.isNumeric(amt) || amt == ""){
+        $("#amount_prev_"+post).html("");
+    }else{
+        $("#amount_prev_"+post).html("<p style='color: red'>Amount must be a number</p>");
+    }
+}
+
+function val_b2bpay() {
+    val = $("#client_account_pay").val();
+    if ($.isNumeric(val)){
+        $(".pay_acc_prev").html("")
+    }else{
+        $(".pay_acc_prev").html("<p style='color: red'>Paybill is a Number!</p>")
+    }
+}
+
+function val_b2btill() {
+    val = $("#client_account_till").val();
+    if ($.isNumeric(val)){
+        $(".till_acc_prev").html("")
+    }else{
+        $(".till_acc_prev").html("<p style='color: red'>Till Number is a Number!</p>")
+    }
+}
+
+function val_eft() {
+    val = $("#client_account_eft").val();
+    if ($.isNumeric(val)){
+        $(".eft_acc_prev").html("")
+    }else{
+        $(".eft_acc_prev").html("<p style='color: red'>Account Number must be a Number!</p>")
+    }
+}
+
+function val_eft2() {
+    val = $("#bank_code").val();
+    if ($.isNumeric(val)){
+        $(".code_acc_prev").html("")
+    }else{
+        $(".code_acc_prev").html("<p style='color: red'>Bank code is a five digit number!</p>")
+    }
+}
+
+function user_reg(){
+user_name = $("#user_name").val();
+user_email = $("#user_email").val();
+user_password = $("#user_password").val();
+user_password_confirmation = $("#user_password_confirmation").val();
+
+if((user_name != "" && user_name.length > 3) && validateEmail(user_email) && (pass(user_password) && user_password.length > 5) && (user_password_confirmation != "" && user_password_confirmation.length > 5)){
+    $("#user_sign_up").removeAttr("disabled");
+    $("#user_sign_up").removeAttr("style");
+}else{
+    $("#user_sign_up").attr("disabled","true");
+
+}
+}
+
+function valmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (email.match(re)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function store_reg(){
+    store_name = $("#store_name").val();
+    store_phone = $("#store_phone").val();
+    url = $("#url").val();
+    store_password = $("#store_password").val();
+    email = $("#store_email").val();
+    store_password_confirmation =  $("#store_password_confirmation").val();
+    store_display_email =  $("#store_display_email").val();
+
+    if(store_name.length > 3 && $.isNumeric(store_phone) && url.length > 3 && store_password.length > 5 && store_password_confirmation.length > 5 && validateEmail(email) && validateEmail(store_display_email)){
+        $("#store_sign_up").removeAttr("disabled");
+    }else{
+        $("#store_sign_up").attr("disabled","true");
+
+    }
+
+}
 
 
 

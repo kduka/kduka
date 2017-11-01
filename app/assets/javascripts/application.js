@@ -292,6 +292,19 @@ $(function () {
      user_reg();
     });
 
+    $("#store_password").change(function (e) {
+        password = $("#store_password").val();
+        if (!pass(password)){
+            $(".store_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
+            $("#store_password").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }else{
+            $(".store_password_prev").html("");
+            $("#store_password").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+
+        }
+        store_reg();
+    });
+
  $("#user_password_confirmation").keyup(function (e) {
         password = $("#user_password").val();
         password_c = $("#user_password_confirmation").val();
@@ -305,6 +318,29 @@ $(function () {
         }
      user_reg();
     });
+
+    $("#s_email").change(function () {
+        //alert(validateEmail($("#s_email").val()));
+    });
+
+    $("#store_password_confirmation").keyup(function (e) {
+        password = $("#store_password").val();
+        password_c = $("#store_password_confirmation").val();
+        if (password == password_c){
+            $(".store_password_confirmation_prev").html("");
+            $("#store_password_confirmation").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }else{
+            $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
+            $("#store_password_confirmation").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+
+        }
+        store_reg();
+    });
+
+    $("#s_email").change(function () {
+        //alert(validateEmail($("#s_email").val()));
+    })
+
 
 });
 
@@ -398,16 +434,6 @@ function locate() {
         var geocoder = new google.maps.Geocoder();
         geocodeAddress(geocoder, map);
     }, 1000);
-}
-
-function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if (email.match(re)) {
-        return true;
-    } else {
-        return false;
-    }
 }
 
 function phonenumbers(phonenumber) {
@@ -778,6 +804,34 @@ if((user_name != "" && user_name.length > 3) && validateEmail(user_email) && (pa
     $("#user_sign_up").attr("disabled","true");
 
 }
+}
+
+function valmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (email.match(re)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function store_reg(){
+    store_name = $("#store_name").val();
+    store_phone = $("#store_phone").val();
+    url = $("#url").val();
+    store_password = $("#store_password").val();
+    email = $("#store_email").val();
+    store_password_confirmation =  $("#store_password_confirmation").val();
+    store_display_email =  $("#store_display_email").val();
+
+    if(store_name.length > 3 && $.isNumeric(store_phone) && url.length > 3 && store_password.length > 5 && store_password_confirmation.length > 5 && validateEmail(email) && validateEmail(store_display_email)){
+        $("#store_sign_up").removeAttr("disabled");
+    }else{
+        $("#store_sign_up").attr("disabled","true");
+
+    }
+
 }
 
 

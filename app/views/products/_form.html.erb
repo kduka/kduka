@@ -1,87 +1,103 @@
-<%= form_for @product,  :url => {:controller => 'products', :action => 'create'}  do |f| %>
+<%= form_for @product, :url => {:controller => 'products', :action => 'create'} do |f| %>
 
     <% @product.errors.full_messages.each do |message| %>
 
         <%= message %>
 
-    <%end%>
-<% if @product.errors.any? %>
-<div id="error_explanation">
-	<h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <% end %>
+    <% if @product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-	<ul>
-		<% @product.errors.full_messages.each do |message| %>
-		<li>
-			<%= message %>
-		</li>
-		<% end %>
-	</ul>
-</div>
-<% end %>
+          <ul>
+            <% @product.errors.full_messages.each do |message| %>
+                <li>
+                  <%= message %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-<div class="form-group">
-	<%= f.label :name %>
-	<%= f.text_field :name, class:'form-control' %>
-</div>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
 
-<div class="form-group">
-	<%= f.label :price %>
-	<%= f.text_field :price, class:'form-control' %>
-</div>
+    <div class="form-group">
+      <%= f.label :price %>
+      <%= f.text_field :price, class: 'form-control' %>
+    </div>
 
-<div class="form-group">
-  <%= f.label "Category" %>
-	<%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name'),{} ,{:class=>'form-control'} %>
-</div>
+    <div class="form-group">
+      <%= f.label "Category" %>
+      <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id', 'name'), {}, {:class => 'form-control'} %>
+    </div>
 
-<div class="form-group">
-	<%= f.label "Number of products in stock" %>
-	<%= f.text_field :quantity, class:'form-control' %>
-</div>
+    <div class="form-group">
+      <%= f.label "Number of products in stock" %>
+      <%= f.text_field :quantity, class: 'form-control' %>
+    </div>
 
-<div class="form-group">
-	<%= f.label "Show product in the store" %>
-	<%= f.check_box :active %>
-</div>
+    <div class="form-group">
+      <%= f.label "Show product in the store" %>
+      <%= f.check_box :active %>
+    </div>
 
     <p><em>Weight and Size of the Product(For Shipping)</em></p>
 
     <div class="form-group">
       <%= f.label :length %>
-      <%= f.number_field :length, class:'form-control' %>
+      <%= f.number_field :length, class: 'form-control' %>
     </div>
 
     <div class="form-group">
       <%= f.label :width %>
-      <%= f.number_field :width, class:'form-control' %>
+      <%= f.number_field :width, class: 'form-control' %>
     </div>
 
 
     <div class="form-group">
       <%= f.label :height %>
-      <%= f.number_field :height, class:'form-control' %>
+      <%= f.number_field :height, class: 'form-control' %>
     </div>
 
 
     <div class="form-group">
       <%= f.label :weight %>
-      <%= f.number_field :weight, class:'form-control' %>
+      <%= f.number_field :weight, class: 'form-control' %>
     </div>
 
     <p><em>Upload images of the products</em></p>
 
-<div class="form-group">
-	Main Image
-	<%= f.file_field :image, class:'form-control' %>
-</div>
+    <div class="form-group">
+      Main Image
+      <%= f.file_field :image, class: 'form-control' %>
+    </div>
 
-<div class="form-group">
-	Image 1
-	<%= f.file_field :img1, class:'form-control' %>
-</div><br><br>
+    <div class="form-group">
+      Image 1
+      <%= f.file_field :img1, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      Image 2
+      <%= f.file_field :img2, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      Image 3
+      <%= f.file_field :img3, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      Image 4
+      <%= f.file_field :img4, class: 'form-control' %>
+    </div>
 
 
-<div class="actions" style="text-align:center">
-	<%= f.submit(class:'btn btn-primary btn-lg',style:'font-weight:900') %><br><br>
-</div>
+
+    <div class="actions" style="text-align:center">
+      <%= f.submit(class: 'btn btn-primary btn-lg', style: 'font-weight:900') %><br><br>
+    </div>
 <% end %>

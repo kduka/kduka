@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171028112636) do
+ActiveRecord::Schema.define(version: 20171031110258) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -200,6 +200,9 @@ ActiveRecord::Schema.define(version: 20171028112636) do
     t.integer  "weight"
     t.integer  "number_sold"
     t.integer  "viewed"
+    t.string   "img2"
+    t.string   "img3"
+    t.string   "img4"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["store_id"], name: "index_products_on_store_id", using: :btree
   end
