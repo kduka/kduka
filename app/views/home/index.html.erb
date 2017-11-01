@@ -197,12 +197,13 @@ next if item == '.' or item == '..' %>
 							<div class="contact-grids">
 								<div class="inp agileits-inp">
 									<h4 style="color:#b52e31">Contact Form</h4>
+                  <div id="success"></div>
 									<form action="#" method="post">
-										<input type="text" name="Name" placeholder="Your Name" required="">
-										<input type="email" name="Email" placeholder="Email" required="">
-										<input type="text" name="Subject" placeholder="Subject" required="">
-										<textarea name="Message" placeholder="Message" required=""></textarea>
-										<input type="submit" value="SEND">
+										<input id="name" type="text" name="Name" placeholder="Your Name" required="">
+										<input id="email" type="email" name="Email" placeholder="Email" required="">
+										<input id="subject" type="text" name="Subject" placeholder="Subject" required="">
+										<textarea id="message" name="Message" placeholder="Message" required=""></textarea>
+										<input id="sendmail" type="submit" value="SEND">
 									</form>
 								</div>
 								<h5 style="color:#b52e31">Contact Details</h5>
