@@ -5,7 +5,7 @@ class CouponsController < ApplicationController
   # GET /coupons
   # GET /coupons.json
   def index
-    @coupons = Coupon.all
+    @coupons = Coupon.where(store_id:current_store.id)
     set_shop_show
   end
 

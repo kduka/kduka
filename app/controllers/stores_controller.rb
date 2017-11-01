@@ -269,6 +269,12 @@ end
   end
 
   def funds
+    @find = StoreAmount.where(store_id:current_store.id).first
+
+    if @find.nil?
+      StoreAmount.create(amount:0,store_id:current_store.id)
+    end
+
     set_shop_show
   end
 

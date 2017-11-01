@@ -89,9 +89,9 @@ class ProductsController < ApplicationController
     @product = @store.product.create(product_params.merge(sku: sku))
     if @product.save
       flash[:notice] = "New Product Created!"
-      redirect_to(request.referer)
+      redirect_to(products_manage_path)
     else
-      flash[:error] = "Error! couldnt save product"
+      flash[:alert] = "Error! couldnt save product"
       redirect_to(request.referer)
     end
   end

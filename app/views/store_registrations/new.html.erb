@@ -9,22 +9,25 @@
   <div class="field">
   	<br />
       <%= f.label "Store Name" %>
-      <%= f.text_field :name, autofocus: true, class:'form-control', placeholder:'The name of your store users will see i.e Johns Store', onchange:'store_reg()' %>
+      <%= f.text_field :name, autofocus: true, class:'form-control text-center', placeholder:'The name of your store users will see i.e Johns Store', onchange:'store_reg()' %>
+    <div class="store_name_prev"></div>
    </div>
 
   <div class="field">
   	<br />
       <%= f.label "Url" %>
       If you enter 'john', your store will be john.kduka.co.ke<br/>
-      <%= f.text_field :subdomain, autofocus: true, class:'form-control', placeholder:'Your url will be storename.myduka.com', id:'url', onchange:'store_reg()'%>
+      <%= f.text_field :subdomain, autofocus: true, class:'form-control text-center', placeholder:'Your url will be storename.myduka.com', id:'url', onchange:'store_reg()'%>
     <p style="color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
+
+    <div class="url_prev"></div>
     <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
     </div>
 
   <div class="field">
   	<br />
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true,class:'form-control',placeholder:'Email to be used to login into the store account',onchange:'store_reg()' %>
+    <%= f.email_field :email, autofocus: true,class:'form-control text-center',placeholder:'Email to be used to login into the store account',onchange:'store_reg()',data:'false' %>
     <p style="color: green;font-weight:bold" id="email_prev"></p>
     <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
   </div>
@@ -32,7 +35,8 @@
   <div class="field">
     <br />
     <%= f.label :display_email %>
-    <%= f.text_field :display_email, autofocus: true, class:'form-control' ,placeholder:'Email you want your clients to see',onchange:'store_reg()' %>
+    <%= f.text_field :display_email, 'data-valid':'false', autofocus: true, class:'form-control text-center' ,placeholder:'Email you want your clients to see',onchange:'store_reg()' %>
+    <div class="display_email_prev"></div>
     <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
   </div>
 </div>
@@ -40,7 +44,8 @@
   <div class="field">
     <br />
     <%= f.label :phone %>
-    <%= f.text_field :phone, autofocus: true, class:'form-control',placeholder:'Phone Number you want your clients to see',onchange:'store_reg()' %>
+    <%= f.text_field :phone, autofocus: true, class:'form-control text-center',placeholder:'Phone Number you want your clients to see',onchange:'store_reg()' %>
+    <div class="phone_prev"></div>
     <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
   </div>
 
@@ -50,7 +55,7 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", class:'form-control' ,placeholder:'Password',onchange:'store_reg()'%>
+    <%= f.password_field :password, autocomplete: "off", class:'form-control text-center' ,placeholder:'Password',onchange:'store_reg()', 'data-valid':'false'%>
     <span class="store_password_prev"></span>
     <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
   </div>
@@ -58,7 +63,7 @@
   <div class="field">
   	<br />
     <%= f.label "Repeat Password" %>
-    <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control',placeholder:'Repeat Password' ,onchange:'store_reg()'%>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control text-center',placeholder:'Repeat Password' ,onchange:'store_reg()'%>
     <span class="store_password_confirmation_prev"></span>
     <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
   </div>

@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get '/admins/ndeto' => 'admins#ndeto'
   post 'users/remote_santize' => 'users/remote_santize'
   post 'users/checkmail' => 'users/checkmail'
+  post 'users/checkmail_user' => 'users/checkmail_user'
   post '/ipn' => 'ipn#index'
   post '/carts/update_shipping' => 'carts#update_shipping'
   get '/carts/checkout' => 'carts#checkout'

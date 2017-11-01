@@ -10,23 +10,35 @@
   }
 </style>
 <div class="skil">
-  <br><h1 style="text-align:center">Delivery Settings</h1><br>
-<div id="fixed-div"></div>
+  <br>
+  <h1 style="text-align:center">Delivery Settings</h1><br>
+  <div id="fixed-div"></div>
   <%= form_for :store, :url => {controller: 'stores', action: 'update_delivery'}, method: 'put' do |f| %>
-
+<span style="color: green">
+      <p>To use this option, <a href="https://sendyit.com/"> Create an account at  SendyIt</a> to get an Username and Password. This option enables third party delivery.</p>
+      <p>Your Users will be able to search for locations and we'll pace the delivery for you. Always ensure you have a good standing balance in order for your clients to place orders.</p>
+      <p>Client will pay for the given quotation when completing an Order.</p></span>
+      <br>
       <div class="form-group">
         <%= f.label "Enable Automatic Delivery Services" %>
         <%= f.check_box :auto_delivery_status, id: 'deliveryswitch' %>
       </div>
 
+
+
       <div class="form-group">
-        <%= f.label "Set pickup point for goods (Automatic Delivery Services)" %>
+        <%= f.label "Set pickup point for goods (This is where the goods will be picked from)" %>
 
         <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate', disabled: 'disabled',onkeyup:"locate();" %>
+            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate', disabled: 'disabled', onkeyup: "locate();" %>
+            <p>
+            <div id="suggesstion-box"></div>
+            </p>
         <% else %>
-            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate'  %>
-            <p><div id="suggesstion-box"></div></p>
+            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate' %>
+            <p>
+            <div id="suggesstion-box"></div>
+            </p>
         <% end %>
       </div>
 
@@ -34,9 +46,9 @@
         <%= f.label "Sendy Username" %>
 
         <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', disabled: 'disabled', class:'locate form-control' %>
+            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
         <% else %>
-            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', class:'locate form-control' %>
+            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', class: 'locate form-control' %>
         <% end %>
       </div>
 
@@ -44,12 +56,14 @@
         <%= f.label "Sendy Key" %>
 
         <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', disabled: 'disabled', class:'locate form-control' %>
+            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
         <% else %>
-            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', class:'locate form-control' %>
+            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', class: 'locate form-control' %>
         <% end %>
       </div>
-
+<br><br>
+      <span style="color: green">Option for having your client collect their goods from a certain collection point</span>
+      <br>
       <div class="form-group">
         <%= f.label "Enable Collection Point" %>
         <%= f.check_box :collection_point_status, id: 'collectswitch' %>
@@ -65,14 +79,16 @@
         <% end %>
       </div>
 
-
+      <br><br>
+      <span style="color: green">You can set your own locations and their shipping prices for your clients</span>
+      <br>
       <div class="form-group">
         <%= f.label "Enable Manual Delivery" %>
         <%= f.check_box :manual_delivery_status, id: 'manualswitch' %>
       </div>
 
       <div class="form-group">
-        <%= f.label "Manual Delivery Instruction to Client" %>
+        <%= f.label "Type any instructions you want to give to the client" %>
         <% if (@store.manual_delivery_status == false) %>
             <%= f.text_area :manual_delivery_instructions, class: 'form-control manual', id: 'thedrop', disabled: "disabled" %>
 
@@ -81,15 +97,15 @@
         <% end %>
       </div>
 
-      <div class="form-group" style="background-color: whitesmoke;border-radius: 1px;" >
-        <%= f.label "Add a Delivery Option" %>
-        <%= text_area_tag(:delivery_option,nil,id:'del_opt',class:'manual form-control') %>
+      <div class="form-group" style="background-color: whitesmoke;border-radius: 1px;">
+        <%= f.label "Add a Delivery Location" %>
+        <%= text_area_tag(:delivery_option, nil, id: 'del_opt', class: 'manual form-control') %>
         <%= f.label "Price" %>
-        <%= text_field_tag(:delivery_price,nil, id: 'del_price', type:'number',class:'manual form-control') %>
+        <%= text_field_tag(:delivery_price, nil, id: 'del_price', type: 'number', class: 'manual form-control') %>
         <span class="del_opt_err"></span>
-      <br>
+        <br>
         <p>
-        <button class="btn btn-info" id="add-delivery" value="">Add Option</button>
+          <button class="btn btn-info" id="add-delivery" value="">Add Option</button>
         </p>
         <div style="margin-top: 2em; margin-bottom: 1em;" class="manual del_opts"><%= render "store_deliveries/locations" %></div>
       </div>
@@ -105,7 +121,7 @@
       <p style="text-align:center"><%= f.submit 'Save Delivery Settings', class: 'btn btn-primary btn-lg' %>
   <% end %>
 
-<div id="map"></div>
+  <div id="map"></div>
 </div>
 
 <script>

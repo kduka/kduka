@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except:[:checkmail_user]
   def home
     @stores = Store.where(user_id:current_user.id)
     @user = User.find(current_user.id)
@@ -38,6 +38,19 @@ class UsersController < ApplicationController
   def checkmail
     email = params[:email]
     @email = Store.where(email:email).first
+
+    if !@email.nil?
+      @email = "<span style='color:red'>This email is already taken!</span>"
+    else
+      @email = "<span style='color:green'>Available</span>"
+    end
+
+    no_layout
+  end
+
+  def checkmail_user
+    email = params[:email]
+    @email = User.where(email:email).first
 
     if !@email.nil?
       @email = "<span style='color:red'>This email is already taken!</span>"

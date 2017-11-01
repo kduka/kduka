@@ -96,6 +96,11 @@ class IpnController < ApplicationController
 
   def store_amount(order,amount)
     @store_amount = StoreAmount.where(store_id: order.store_id).first
+    if @store_amount.nil?
+      StoreAmount.create(amount:0,store_id:order.store_id)
+      @store_amount = StoreAmount.where(store_id: order.store_id).first
+    end
+
     nu = @store_amount.amount + amount.to_i
     @store_amount.update(amount: nu)
   end

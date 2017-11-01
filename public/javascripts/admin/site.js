@@ -58,29 +58,12 @@ $(document).ready(function () {
         });
     });
 
-    $("#s_email").keyup(function () {
-        email = $("#s_email").val()
+    $("#store_email").keyup(function () {
+        email = $("#store_email").val()
         validateEmail(email)
 
     });
+
+
 });
 
-function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if (email.match(re)) {
-        $.ajax({
-            url:'/users/checkmail',
-            data:{
-                email:email
-            },
-            method:'post',
-            success:function (res) {
-                //alert(res);
-                $("#email_prev").html(res)
-            }
-        });
-    } else {
-        $("#email_prev").html("<span style='color:red' >This is not a valid email</span>")
-    }
-}
