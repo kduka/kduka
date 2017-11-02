@@ -68,11 +68,13 @@ class CategoriesController < ApplicationController
   def feature
   @cat = Category.find(params[:id])
   @cat.update(featured:true)
+    redirect_to(request.referer)
   end
 
   def unfeature
     @cat = Category.find(params[:id])
     @cat.update(featured:false)
+    redirect_to(request.referer)
   end
 
   private
