@@ -15,7 +15,7 @@
       <% @layouts.each do |l| %>
           <div style="margin-top:1em" class="col-md-4 text-center">
 
-            <div style="min-height: 200px;border-style: solid;border-color:#b52e31;margin:3px;background:url('<%= l.preview_url(:thumb).to_s %>');background-size: contain"></div>
+            <div style="min-height: 200px;border-style: solid;border-color:#b52e31;margin:3px;background:url('<%= l.preview_url(:thumb).to_s %>');background-size: contain;background-repeat: no-repeat;"></div>
             <label>
               <% if l.id == @store.layout_id %>
                   <input name="layout" type="radio" value="<%= l.id %>" checked> <%= l.d_name %>
