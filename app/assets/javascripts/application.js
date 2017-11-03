@@ -833,6 +833,7 @@ function user_reg() {
         $("#user_sign_up").removeAttr("style");
     } else {
         $("#user_sign_up").attr("disabled", "true");
+        $("#user_sign_up").attr("style", 'color:white;background-color:grey');
 
     }
 }
