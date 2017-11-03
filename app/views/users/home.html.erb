@@ -190,7 +190,11 @@
                   <td><%= s.name %></td>
                   <td><%= s.active %></td>
                   <% @store_products = Product.where(store_id:s.id) %>
-                  <% @store_sales = StoreAmount.where(store_id:s.id).first %>
+                  <%
+
+                    @store_sales = StoreAmount.where(store_id:s.id).first rescue nil
+
+                  %>
                   <td><%= @store_products.count %></td>
                   <td><%= @store_sales.amount %></td>
                   <td><%= link_to "Visit Shop (http://#{s.subdomain}.kduka.co.ke)", "http://#{s.subdomain}.kduka.co.ke", target: "_blank" %>
