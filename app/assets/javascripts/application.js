@@ -582,7 +582,7 @@ function val_phone2() {
 }
 
 function val_email() {
-    if (!validateEmail(email)) {
+    if (!valmail(email)) {
         $("#email_prev").html("<p style='color:red;'>Email is not a valid email address</p>");
     } else {
         $("#email_prev").html("");
