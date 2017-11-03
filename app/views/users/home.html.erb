@@ -190,9 +190,12 @@
                   <td><%= s.name %></td>
                   <td><%= s.active %></td>
                   <% @store_products = Product.where(store_id:s.id) %>
-                  <%
+                  <% @store_sales = StoreAmount.where(store_id:s.id).first
 
-                    @store_sales = StoreAmount.where(store_id:s.id).first rescue nil
+
+                     if @store_sales.nil?
+                       StoreAmount.create(amount:0,store_id:s.id)
+                       @store_sales = StoreAmount.where(store_id: s.id).first
 
                   %>
                   <td><%= @store_products.count %></td>
