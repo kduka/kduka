@@ -25,6 +25,10 @@
     <td><%= @product.quantity %></td>
   </tr>
   <tr>
+    <td>Description</td>
+    <td><%= @product.description %></td>
+  </tr>
+  <tr>
     <td>Category</td>
     <td><%= Category.find(@product.category_id).name rescue nil %></td>
   </tr>
