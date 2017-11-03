@@ -196,7 +196,7 @@
                      if @store_sales.nil?
                        StoreAmount.create(amount:0,store_id:s.id)
                        @store_sales = StoreAmount.where(store_id: s.id).first
-
+                      end
                   %>
                   <td><%= @store_products.count %></td>
                   <td><%= @store_sales.amount %></td>
