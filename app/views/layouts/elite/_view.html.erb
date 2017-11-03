@@ -4,9 +4,18 @@
   	<div class="container">
   	     <div class="col-md-4 single-right-left ">
   			<div class="grid images_3_of_2">
-  				<div class="flexslider">
-  					<%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
-  					<div class="clearfix"></div>
+          <div class="flexslider">
+  					<ul class="slides">
+  						<li data-thumb="<%=  image_tag(@product.image_url.to_s , alt:"")%>">
+  							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+  						</li>
+  						<li data-thumb="<%=  image_tag(@product.image_url.to_s , alt:"")%>">
+  							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+  						</li>
+  						<li data-thumb="<%=  image_tag(@product.image_url.to_s , alt:"")%>">
+  							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+  						</li>
+  					</ul>
   				</div>
   			</div>
   		</div>

@@ -26,7 +26,19 @@
 	<div class="container">
 		<div class="single-info">
 			<div class="col-md-6 single-top wow fadeInLeft animated" data-wow-delay=".5s">
-					<%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
+				<div class="flexslider">
+					<ul class="slides">
+						<li data-thumb="<%=  image_tag(@product.image_url.to_s , alt:"")%>">
+							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						</li>
+						<li data-thumb="<%=  image_tag(@product.image_url.to_s , alt:"")%>">
+							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						</li>
+						<li data-thumb="<%=  image_tag(@product.image_url.to_s , alt:"")%>">
+							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<div class="col-md-6 single-top-left simpleCart_shelfItem wow fadeInRight animated" data-wow-delay=".5s">
 				<h3 style="font-size:55px;text-transform:capitalize;text-align:left;color:<%= @store.store_color %> !important"><%= @product.name %></h3><br><br>

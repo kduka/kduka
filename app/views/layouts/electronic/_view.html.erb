@@ -2,7 +2,19 @@
 <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom:4em;margin-top:4em">
   <div class="modal-body">
     <div class="col-md-5 modal_body_left">
-      <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
+      <div class="flexslider">
+        <ul class="slides">
+          <li data-thumb="<%=  image_tag(@product.image_url.to_s , alt:"")%>">
+            <div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+          </li>
+          <li data-thumb="<%=  image_tag(@product.image_url.to_s , alt:"")%>">
+            <div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+          </li>
+          <li data-thumb="<%=  image_tag(@product.image_url.to_s , alt:"")%>">
+            <div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="col-md-7 modal_body_right">
       <h4><%= @product.name%></h4>
