@@ -8,6 +8,8 @@
     <th>subdomain</th>
     <th>User</th>
     <th>Email</th>
+    <th>Active</th>
+    <th>Products</th>
   </tr>
   </thead>
   <tbody>
@@ -17,6 +19,8 @@
     <td><%=link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke" %></td>
     <td><%= User.find(p.user_id).name %></td>
     <td><%= p.email %></td>
+    <td><%= p.active %></td>
+    <td><%= Product.where(store_id:p.id).count rescue nil %></td>
   </tr>
   <% end %>
   </tbody>
