@@ -19,6 +19,7 @@ gem 'bootstrap-colorpicker-rails'
 gem 'carrierwave-imageoptimizer'
 gem 'will_paginate'
 gem 'rails_autolink'
+gem "figaro"
 
 
 ruby "2.4.0"
