@@ -15,10 +15,15 @@
   						<li data-thumb="<%= @product.img2_url(:thumb).to_s %>">
   							<div class="thumb-image"> <%=  image_tag(@product.img2_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
   						</li>
+              <li data-thumb="<%= @product.img3_url(:thumb).to_s %>">
+  							<div class="thumb-image"> <%=  image_tag(@product.img3_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+  						</li>
+              <li data-thumb="<%= @product.img4_url(:thumb).to_s %>">
+  							<div class="thumb-image"> <%=  image_tag(@product.img4_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+  						</li>
   					</ul>
   					<div class="clearfix"></div>
-				</div>
-          <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
+				  </div>
   			</div>
   		</div>
   		<div class="col-md-8 single-right-left simpleCart_shelfItem">
