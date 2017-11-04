@@ -4,6 +4,20 @@
   	<div class="container">
   	     <div class="col-md-4 single-right-left ">
   			<div class="grid images_3_of_2">
+          <div class="flexslider">
+  					<ul class="slides">
+  						<li data-thumb="<%= @product.image_url(:thumb).to_s %>">
+  							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+  						</li>
+  						<li data-thumb="<%= @product.img1_url(:thumb).to_s %>">
+  							<div class="thumb-image"> <%=  image_tag(@product.img1_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+  						</li>
+  						<li data-thumb="<%= @product.img2_url(:thumb).to_s %>">
+  							<div class="thumb-image"> <%=  image_tag(@product.img2_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+  						</li>
+  					</ul>
+  					<div class="clearfix"></div>
+				</div>
           <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
   			</div>
   		</div>
