@@ -20,28 +20,28 @@
 				<div class="flexslider">
 					<ul class="slides">
 						<% if !@product.image.blank? %>
-						<li data-thumb="<%= @product.image_url(:thumb).to_s %>" style="height:7em !important">
-							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						<li data-thumb="<%= @product.image_url(:thumb).to_s %>">
+							<div class="thumb-image" style="height:8em !important"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
 						</li>
 						<% end %>
 						<% if !@product.img1.blank? %>
-						<li data-thumb="<%= @product.img1_url(:thumb).to_s %>" style="height:7em !important">
-							<div class="thumb-image"> <%=  image_tag(@product.img1_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						<li data-thumb="<%= @product.img1_url(:thumb).to_s %>">
+							<div class="thumb-image" style="height:8em !important"> <%=  image_tag(@product.img1_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
 						</li>
 						<% end %>
 						<% if !@product.img2.blank? %>
-						<li data-thumb="<%= @product.img2_url(:thumb).to_s %>" style="height:7em !important">
-							<div class="thumb-image"> <%=  image_tag(@product.img2_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						<li data-thumb="<%= @product.img2_url(:thumb).to_s %>">
+							<div class="thumb-image" style="height:8em !important"> <%=  image_tag(@product.img2_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
 						</li>
 						<% end %>
 						<% if !@product.img3.blank? %>
-						<li data-thumb="<%= @product.img3_url(:thumb).to_s %>" style="height:7em !important">
-							<div class="thumb-image"> <%=  image_tag(@product.img3_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						<li data-thumb="<%= @product.img3_url(:thumb).to_s %>">
+							<div class="thumb-image" style="height:8em !important"> <%=  image_tag(@product.img3_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
 						</li>
 						<% end %>
 						<% if !@product.img4.blank? %>
-						<li data-thumb="<%= @product.img4_url(:thumb).to_s %>" style="height:7em !important">
-							<div class="thumb-image"> <%=  image_tag(@product.img4_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						<li data-thumb="<%= @product.img4_url(:thumb).to_s %>">
+							<div class="thumb-image" style="height:8em !important"> <%=  image_tag(@product.img4_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
 						</li>
 						<% end %>
 					</ul>
