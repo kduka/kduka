@@ -6,10 +6,10 @@ CarrierWave.configure do |config|
 
   
   config.fog_credentials = {
-    :provider               => 'AWS',                             # required
-    :aws_access_key_id      => 'AKIAIRP66RXFG6BGWDOQ',            # required
-    :aws_secret_access_key  => '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',     # required
-    :region                 => 'us-east-2'                       # optional, defaults to 'us-east-1'
+    :provider               => ENV['aws_provider'],                             # required
+    :aws_access_key_id      => ENV['aws_access_key_id'],            # required
+    :aws_secret_access_key  => ENV['aws_secret_access_key'],     # required
+    :region                 => ENV['aws_region']                       # optional, defaults to 'us-east-1'
   }
   config.fog_directory  = 'kduka'               # required
   #config.fog_host       = 'https://assets.example.com'           # optional, defaults to nil

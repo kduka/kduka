@@ -84,7 +84,7 @@ Rails.application.configure do
       :address              => "mail.kduka.co.ke",
       :port                 => '465',
       :user_name            => 'no-reply@kduka.co.ke',
-      :password             => 'Spiderpig69..',
+      :password             => ENV['smtp_password'],
       :authentication       => :plain,
       :enable_starttls_auto => false,
       :tls                  => true,

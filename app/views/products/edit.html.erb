@@ -42,7 +42,7 @@
 
     <div class="form-group">
       Category
-	    <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name'),{} ,{:class=>'form-control',required:'required'} %>
+	    <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name',@product.category_id),{} ,{:class=>'form-control',required:'required',selected: :category_id} %>
     </div>
 
 

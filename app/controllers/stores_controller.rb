@@ -303,21 +303,21 @@ end
     require 'uri'
     require 'net/http'
 
-    url = URI("http://52.20.176.4:8090/api/eft/")
+    url = URI("#{ENV['chase_endpoint']}")
 
     http = Net::HTTP.new(url.host, url.port)
 
     request = Net::HTTP::Post.new(url)
     request["content-type"] = 'application/json'
-    request["authorization"] = 'Basic YXBpYWNjb3VudDphYmMuMTIz'
+    request["authorization"] = "#{ENV['auth_token']}"
     request["cache-control"] = 'no-cache'
     request.body = "{
                         'Type':1,
-                        'CompanyId':'b4acf6e8-86c9-cd2d-62f8-08d32aed8aa2',
-                        'Remarks':'Transaction send #{Time.now}',
+                        'CompanyId':'#{ENV['chase_id_api']}',
+                        'Remarks':'Transaction send #{amount} to #{account} at #{Time.now}',
                         'IPNDataFormat':1,
                         'IPNEnabled':true,
-                        'CallbackURL': 'http://www.kduka.co.ke/ipn/b2c',
+                        'CallbackURL': '#{ENV['callback_url']}',
                         'OrderLines':[
                                       {
                                       'Payee':'#{name}',
@@ -381,20 +381,20 @@ end
     require 'uri'
     require 'net/http'
 
-    url = URI("http://52.20.176.4:8090/api/eft/")
+    url = URI("#{ENV['chase_endpoint']}")
 
     http = Net::HTTP.new(url.host, url.port)
 
     request = Net::HTTP::Post.new(url)
     request["content-type"] = 'application/json'
-    request["authorization"] = 'Basic YXBpYWNjb3VudDphYmMuMTIz'
+    request["authorization"] = "#{ENV['auth_token']}"
     request["cache-control"] = 'no-cache'
     request.body = "{ 'Type':2,
-                      'CompanyId':'b4acf6e8-86c9-cd2d-62f8-08d32aed8aa2',
-                      'Remarks':'Transaction send #{Time.now}',
+                      'CompanyId':'#{ENV['chase_id_api']}',
+                      'Remarks':'Transaction send #{amount} to #{account} at #{Time.now}',
                       'IPNDataFormat':1,
                       'IPNEnabled':true,
-                      'CallbackURL':  'http://www.kduka.co.ke/ipn/b2c',
+                      'CallbackURL':  '#{ENV['callback_url']}',
                       'OrderLines':[{ 'Type':#{type},
                                       'Payee':'#{name}',
                                       'PrimaryAccountNumber':'#{account}',
@@ -461,20 +461,20 @@ end
     require 'uri'
     require 'net/http'
 
-    url = URI("http://52.20.176.4:8090/api/eft/")
+    url = URI("#{ENV['chase_endpoint']}")
 
     http = Net::HTTP.new(url.host, url.port)
 
     request = Net::HTTP::Post.new(url)
     request["content-type"] = 'application/json'
-    request["authorization"] = 'Basic YXBpYWNjb3VudDphYmMuMTIz'
+    request["authorization"] = "#{ENV['auth_token']}"
     request["cache-control"] = 'no-cache'
     request.body = "{ 'Type':0,
-                      'CompanyId':'b4acf6e8-86c9-cd2d-62f8-08d32aed8aa2',
-                      'Remarks':'Transaction send #{Time.now}',
+                      'CompanyId':'#{ENV['chase_id_api']}',
+                      'Remarks':'Transaction send #{amount} to #{account} at #{Time.now}',
                       'IPNDataFormat':1,
                       'IPNEnabled':true,
-                      'CallbackURL':  'http://www.kduka.co.ke/ipn/b2c',
+                      'CallbackURL':  '#{ENV['callback_url']}',
                       'OrderLines':[{
                                       'Payee':'#{name}',
                                       'PrimaryAccountNumber':'#{account}',
