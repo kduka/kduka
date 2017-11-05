@@ -1,6 +1,6 @@
 class StorePasswordsController < Devise::PasswordsController
   def new
     self.resource = resource_class.new
-    set_login
+    store_login
   end
 end
