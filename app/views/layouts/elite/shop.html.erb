@@ -58,6 +58,10 @@ button.w3view-cart {
 .single-right-left h3 {
     color: <%= @store.store_color %> !important;
 }
+.flex-control-thumbs img {
+		height: 7em !important;
+		width: auto !important;
+ }
 </style>
 </head>
 <body>
@@ -249,6 +253,18 @@ button.w3view-cart {
 		paypal.minicart.reset();
 	}
 </script>
+<!-- Flexslider -->
+<script>
+						// Can also be used with $(document).ready()
+							$(window).load(function() {
+								$('.flexslider').flexslider({
+								animation: "slide",
+								controlNav: "thumbnails"
+								});
+							});
+						</script>
+
+<!-- Flexslider end -->
 
 	<!-- //cart-js -->
 <!-- script for responsive tabs -->

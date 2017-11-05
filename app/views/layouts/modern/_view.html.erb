@@ -1,12 +1,3 @@
-<script>
-	// Can also be used with $(document).ready()
-	$(window).load(function() {
-		$('.flexslider').flexslider({
-			animation : "slide",
-			controlNav : "thumbnails"
-		});
-	});
-</script>
 <!--breadcrumbs-->
 <div class="breadcrumbs">
 	<div class="container">
@@ -26,7 +17,36 @@
 	<div class="container">
 		<div class="single-info">
 			<div class="col-md-6 single-top wow fadeInLeft animated" data-wow-delay=".5s">
-				<%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%>
+				<div class="flexslider">
+					<ul class="slides">
+						<% if !@product.image.blank? %>
+						<li data-thumb="<%= @product.image_url(:thumb).to_s %>">
+							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						</li>
+						<% end %>
+						<% if !@product.img1.blank? %>
+						<li data-thumb="<%= @product.img1_url(:thumb).to_s %>">
+							<div class="thumb-image"> <%=  image_tag(@product.img1_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						</li>
+						<% end %>
+						<% if !@product.img2.blank? %>
+						<li data-thumb="<%= @product.img2_url(:thumb).to_s %>">
+							<div class="thumb-image"> <%=  image_tag(@product.img2_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						</li>
+						<% end %>
+						<% if !@product.img3.blank? %>
+						<li data-thumb="<%= @product.img3_url(:thumb).to_s %>">
+							<div class="thumb-image"> <%=  image_tag(@product.img3_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						</li>
+						<% end %>
+						<% if !@product.img4.blank? %>
+						<li data-thumb="<%= @product.img4_url(:thumb).to_s %>">
+							<div class="thumb-image"> <%=  image_tag(@product.img4_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
+						</li>
+						<% end %>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
 			</div>
 			<div class="col-md-6 single-top-left simpleCart_shelfItem wow fadeInRight animated" data-wow-delay=".5s">
 				<h3 style="font-size:55px;text-transform:capitalize;text-align:left;color:<%= @store.store_color %> !important"><%= @product.name %></h3><br><br>

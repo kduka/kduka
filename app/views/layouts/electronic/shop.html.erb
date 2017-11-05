@@ -80,6 +80,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     .w3_footer_grid h3:after {
     background: <%= @store.store_color %> !important;
     }
+    .flex-control-thumbs img {
+        height: 7em !important;
+        width: auto !important;
+     }
   </style>
   <!--Custom Colors-->
 </head>
@@ -244,5 +248,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     });
 </script>
 <!-- //cart-js -->
+<!-- Flexslider -->
+<script>
+						// Can also be used with $(document).ready()
+							$(window).load(function() {
+								$('.flexslider').flexslider({
+								animation: "slide",
+								controlNav: "thumbnails"
+								});
+							});
+						</script>
+
+<!-- Flexslider end -->
 </body>
 </html>

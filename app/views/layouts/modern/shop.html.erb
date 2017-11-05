@@ -83,6 +83,10 @@
   .mylink:hover{
     color: #fff !important;
   }
+  .flex-control-thumbs img {
+      height: 7em !important;
+      width: 100% !important;
+   }
 </style>
 <!--Custom Colors-->
 </head>
@@ -304,6 +308,18 @@
 		});
 	</script>
 	<!--//smooth-scrolling-of-move-up-->
+  <!-- Flexslider -->
+  <script>
+  						// Can also be used with $(document).ready()
+  							$(window).load(function() {
+  								$('.flexslider').flexslider({
+  								animation: "slide",
+  								controlNav: "thumbnails"
+  								});
+  							});
+  						</script>
+
+  <!-- Flexslider end -->
 
 </body>
 </html>
