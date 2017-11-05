@@ -280,7 +280,7 @@ $(function () {
 
     $("#url").change(function (e) {
         url = $("#url").val();
-        if (url.length < 3 ) {
+        if (url.length < 3) {
             $(".url_prev").html("<p style='color:red;font-size: 15px;'>Your store address has a minimum 3 characters</p>");
             $("#url").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
         } else {
@@ -292,10 +292,10 @@ $(function () {
 
     $("#store_phone").change(function () {
         phone = $("#store_phone").val();
-        if($.isNumeric(phone) && phonecheck(phone)){
+        if ($.isNumeric(phone) && phonecheck(phone)) {
             $(".phone_prev").html("");
             $("#store_phone").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-        }else{
+        } else {
             $(".phone_prev").html("<p style='color:red;font-size: 15px;'>Please enter a valid phone number in format 2547xxxxxxxx</p>");
             $("#store_phone").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
         }
@@ -303,10 +303,10 @@ $(function () {
 
     $("#store_display_email").change(function () {
         email = $("#store_display_email").val();
-        if(valmail(email)){
+        if (valmail(email)) {
             $(".display_email_prev").html("");
             $("#store_display_email").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-        }else{
+        } else {
             $(".display_email_prev").html("<p style='color:red;font-size: 15px;'>Please enter a valid email</p>");
             $("#store_display_email").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
         }
@@ -373,7 +373,39 @@ $(function () {
         store_reg();
     });
 
+    $("#sort_product").click(function () {
+        val = $("#sorter_id").val();
+        cat = $("#category_id").val();
+        //alert(cat);
+        $.ajax({
+            url: '/products/sort',
+            method: 'post',
+            data: {
+                sorter:val,
+                cat:cat
+            },
+            success:function (e) {
+                //alert(e);
+                $(".product_box").html(e);
+            }
+        });
+    });
 
+    $("#product_search").click(function (e) {
+        e.preventDefault();
+       key = $("#keywords").val();
+
+       $.ajax({
+          url:'/products/search',
+           method:'post',
+           data:{
+              key:key
+           },
+           success:function (e) {
+               $(".product_box").html(e);
+           }
+       });
+    });
 });
 
 

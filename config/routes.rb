@@ -65,6 +65,8 @@ Rails.application.routes.draw do
   post 'stores/b2b' => 'stores/b2b'
   post 'stores/eft' => 'stores/eft'
   post '/home/web_mail' => 'home#web_mail'
+  post  '/products/sort' => 'products#sort'
+  post  '/products/search' => 'products#search'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}

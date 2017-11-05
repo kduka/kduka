@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
       redirect_to("http://www.kduka.co.ke/stores/home") and return
     else
       if @store.homepage_status == true
-        @products = Product.where(store_id: @store.id,active:true)
+        @products = Product.where(store_id: @store.id, active: true)
         @order_item = current_order.order_items.new
         @categories = @store.category.all
         redirect_to(home_path) and return
@@ -25,19 +25,18 @@ class ProductsController < ApplicationController
     set_shop
   end
 
-
   def home
     get_store
 
     if @store.blank?
       redirect_to("http://www.kduka.co.ke/users/home") and return
     else
-    @products = Product.where(store_id:@store.id,active:true).limit(3).order('id desc')
-    @order_item = current_order.order_items.new
-    @categories = @store.category.all
-    @featured = @store.category.where(featured:true)
-    set_shop
-      end
+      @products = Product.where(store_id: @store.id, active: true).limit(3).order('id desc')
+      @order_item = current_order.order_items.new
+      @categories = @store.category.all
+      @featured = @store.category.where(featured: true)
+      set_shop
+    end
   end
 
   def about
@@ -64,15 +63,16 @@ class ProductsController < ApplicationController
     @order_item = current_order.order_items.new
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
-    @products = @store.product.where(category_id: params[:id],active:true).paginate(:page => params[:page], :per_page => 20).order('id desc')
+    @products = @store.product.where(category_id: params[:id], active: true).paginate(:page => params[:page], :per_page => 20).order('id desc')
     @categories = @store.category.all
     set_shop
-    end
+  end
+
   def subcategory
     @order_item = current_order.order_items.new
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
-    @products = @store.product.where(category_id: params[:id],active:true).order('id desc')
+    @products = @store.product.where(category_id: params[:id], active: true).order('id desc')
     @categories = @store.category.all
     set_shop
   end
@@ -109,7 +109,7 @@ class ProductsController < ApplicationController
 
   def all
     get_store
-    @products = Product.where(store_id: @store.id,active:true).paginate(:page => params[:page], :per_page => 15).order('id desc')
+    @products = Product.where(store_id: @store.id, active: true).paginate(:page => params[:page], :per_page => 3).order('id desc')
     @order_item = current_order.order_items.new
     @categories = @store.category.all
     set_shop
@@ -133,19 +133,62 @@ class ProductsController < ApplicationController
   end
 
   def view
-    @product = Product.where(sku: params[:sku],active:true).first
+    @product = Product.where(sku: params[:sku], active: true).first
     viewed = @product.viewed += 1
-    @product.update(viewed:viewed)
+    @product.update(viewed: viewed)
     if @product.nil?
       redirect_to(home_path) and return
     end
     set_shop
   end
 
+  def sort
+    get_store
+    sorter = params[:sorter]
+    cat = params[:cat]
+
+    if cat.blank?
+      if sorter == 'nto'
+        @products = Product.where(store_id: @store.id, active: true).order('created_at desc')
+      elsif sorter == 'otn'
+        @products = Product.where(store_id: @store.id, active: true).order('created_at asc')
+      elsif  sorter == 'htl'
+        @products = Product.where(store_id: @store.id, active: true).order('price desc')
+      elsif  sorter == 'lth'
+        @products = Product.where(store_id: @store.id, active: true).order('price asc')
+      end
+    else
+      if sorter == 'nto'
+        @products = Product.where(store_id: @store.id, active: true,category_id:cat).order('created_at desc')
+      elsif sorter == 'otn'
+        @products = Product.where(store_id: @store.id, active: true,category_id:cat).order('created_at asc')
+      elsif  sorter == 'htl'
+        @products = Product.where(store_id: @store.id, active: true,category_id:cat).order('price desc')
+      elsif  sorter == 'lth'
+        @products = Product.where(store_id: @store.id, active: true,category_id:cat).order('price asc')
+      end
+    end
+
+
+    @order_item = current_order.order_items.new
+    @categories = @store.category.all
+    no_layout
+  end
+
+  def search
+    get_store
+    key = params[:key]
+    #@products = Product.where(store_id: @store.id, active: true).order('created_at desc')
+    @products = Product.where("name LIKE :query", query: "%#{key}%")
+    @order_item = current_order.order_items.new
+    @categories = @store.category.all
+    no_layout
+  end
+
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :active, :image, :category_id, :quantity, :img1, :length, :width, :height, :weight, :img2, :img3, :img4,:description)
+    params.require(:product).permit(:name, :price, :active, :image, :category_id, :quantity, :img1, :length, :width, :height, :weight, :img2, :img3, :img4, :description)
   end
 
 end
