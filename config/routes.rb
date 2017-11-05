@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   post  '/products/search' => 'products#search'
 
 
-  devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions'}
+  devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'}
   devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'}
   devise_for :admins, :controllers => {registrations: 'admins_registrations', sessions: 'admins_sessions'}
 

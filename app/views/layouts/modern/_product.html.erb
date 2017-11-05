@@ -57,7 +57,7 @@
           </div>
             <div class="col-md-2 faq">
               <h4 style="color:#fff !important">Sort </h4>
-              <button id="sort_product" class="form-control btn btn-primary">Sort</button>
+              <button style="background-color: <%= @store.store_color %>" id="sort_product" class="form-control btn btn-primary">Sort</button>
             </div>
           </div>
         <div class="col-md-4 sidebar-row">
@@ -68,7 +68,7 @@
             <br>
           </div>
           <div class="col-md-3">
-            <button class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
+            <button style="background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
           </div>
           <% end %>
         </div>

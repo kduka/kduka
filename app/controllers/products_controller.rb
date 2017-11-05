@@ -179,7 +179,12 @@ class ProductsController < ApplicationController
     get_store
     key = params[:key]
     #@products = Product.where(store_id: @store.id, active: true).order('created_at desc')
-    @products = Product.where("name ILIKE :query OR description ILIKE :query", query: "%#{key}%").where(store_id: @store.id, active: true,)
+    if Rails.env.production?
+      @products = Product.where("name ILIKE :query OR description ILIKE :query", query: "%#{key}%").where(store_id: @store.id, active: true,)
+    else
+      @products = Product.where("name LIKE :query OR description LIKE :query", query: "%#{key}%").where(store_id: @store.id, active: true,)
+    end
+
     @order_item = current_order.order_items.new
     @categories = @store.category.all
     no_layout

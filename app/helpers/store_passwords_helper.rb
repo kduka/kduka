@@ -1,0 +1,2 @@
+module StorePasswordsHelper
+end
