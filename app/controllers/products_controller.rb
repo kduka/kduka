@@ -11,23 +11,22 @@ class ProductsController < ApplicationController
       flash[:alert] = "Store is not active, please contact owner"
       redirect_to("http://www.kduka.co.ke/stores/home") and return
     else
+
       if @store.homepage_status == true
         @products = Product.where(store_id: @store.id, active: true)
         @order_item = current_order.order_items.new
         @categories = @store.category.all
         redirect_to(home_path) and return
-      end
-
-      if @store.homepage_status == false
+      else
         redirect_to(about_path) and return
       end
+
     end
     set_shop
   end
 
   def home
     get_store
-
     if @store.blank?
       redirect_to("http://www.kduka.co.ke/users/home") and return
     else
