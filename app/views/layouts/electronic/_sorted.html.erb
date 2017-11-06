@@ -1,0 +1,7 @@
+<% if @products.nil? %>
+    <p class="text-center">This store does not have any active Products</p>
+<% else %>
+    <% @products.each do |product| %>
+        <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+    <% end %>
+<% end %>

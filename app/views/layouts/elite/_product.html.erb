@@ -1,5 +1,42 @@
 <!--products-->
   <div class="container" style="margin-top:4em;margin-bottom:4em">
+    <div class="col-md-8 sidebar-row">
+
+    <div class="col-md-5 faq">
+      <h4> Category </h4>
+      <%= select_tag(:category_id, options_from_collection_for_select(@categories, 'id','name') ,{:class=>'form-control',required:'required',:include_blank => true}) %>
+    </div>
+
+      <div class="col-md-5 faq">
+        <h4> Sorting </h4>
+          <select id="sorter_id" name="sorter" class="form-control">
+            <optgroup label="Date">
+              <option value="nto">New to Old</option>
+              <option value="otn">Old to New</option>
+            </optgroup>
+            <optgroup label="Price">
+              <option value="htl">Highest to Lowest</option>
+              <option value="lth">Lowest to Highest</option>
+            </optgroup>
+          </select>
+      </div>
+        <div class="col-md-2 faq">
+          <h4 style="color:#fff !important">Sort </h4>
+          <button style="background-color: <%= @store.store_color %>" id="sort_product" class="form-control btn btn-primary">Sort</button>
+        </div>
+      </div>
+    <div class="col-md-4 sidebar-row">
+      <h4>SEARCH</h4>
+      <%= form_tag("") do %>
+      <div class="col-md-9">
+        <input class="form-control" id="keywords" />
+        <br>
+      </div>
+      <div class="col-md-3">
+        <button style="background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
+      </div>
+      <% end %>
+    </div>
     <div class="col-md-12">
       <% if @products.nil? %>
           <p class="text-center">This store does not have any active Products</p>
