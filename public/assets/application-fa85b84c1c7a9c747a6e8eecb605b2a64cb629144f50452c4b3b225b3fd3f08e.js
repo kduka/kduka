@@ -29717,6 +29717,10 @@ return jQuery;
 
 
 }).call(this);
+(function() {
+
+
+}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -29743,24 +29747,23 @@ return jQuery;
 $(function () {
 
 
-
     $("#b2c").click(function (e) {
         e.preventDefault();
         $(".b2c_text").html("Processing");
-        $("#b2c").attr("disabled","true");
+        $("#b2c").attr("disabled", "true");
         $(".trans_messages").html("<p style=''> Please wait ...</p>");
         name = $("#client_name_b2c").val();
         phone = $("#client_account_b2c").val();
         amount = $("#amount_b2c").val();
         $.ajax({
-           url:'/stores/b2c',
-            method:'post',
-            data:{
-               name:name,
-                phone:phone,
-                amount:amount
+            url: '/stores/b2c',
+            method: 'post',
+            data: {
+                name: name,
+                phone: phone,
+                amount: amount
             },
-            success:function (f) {
+            success: function (f) {
 
             }
         });
@@ -29769,22 +29772,22 @@ $(function () {
     $("#b2bpay").click(function (e) {
         e.preventDefault();
         $(".b2bpay_text").html("Processing");
-        $("#b2bpay").attr("disabled","true");
+        $("#b2bpay").attr("disabled", "true");
         $(".trans_messages_pay").html("<p style=''> Please wait ...</p>");
         name = $("#client_name_pay").val();
         account = $("#client_account_pay").val();
         amount = $("#amount_pay").val();
 
         $.ajax({
-            url:'/stores/b2b',
-            method:'post',
-            data:{
-                name:name,
-                account:account,
-                amount:amount,
-                type:"7"
+            url: '/stores/b2b',
+            method: 'post',
+            data: {
+                name: name,
+                account: account,
+                amount: amount,
+                type: "7"
             },
-            success:function (f) {
+            success: function (f) {
 
             }
         });
@@ -29793,22 +29796,22 @@ $(function () {
     $("#b2btill").click(function (e) {
         e.preventDefault();
         $(".b2btill_text").html("Processing");
-        $("#b2btill").attr("disabled","true");
+        $("#b2btill").attr("disabled", "true");
         $(".trans_messages_till").html("<p style=''> Please wait ...</p>");
         name = $("#client_name_till").val();
         account = $("#client_account_till").val();
         amount = $("#amount_till").val();
 
         $.ajax({
-            url:'/stores/b2b',
-            method:'post',
-            data:{
-                name:name,
-                account:account,
-                amount:amount,
-                type:"6"
+            url: '/stores/b2b',
+            method: 'post',
+            data: {
+                name: name,
+                account: account,
+                amount: amount,
+                type: "6"
             },
-            success:function (f) {
+            success: function (f) {
 
             }
         });
@@ -29817,7 +29820,7 @@ $(function () {
     $("#eft").click(function (e) {
         e.preventDefault();
         $(".eft_text").html("Processing");
-        $("#eft").attr("disabled","true");
+        $("#eft").attr("disabled", "true");
         $(".trans_messages_eft").html("<p style=''> Please wait ...</p>");
         name = $("#client_name_eft").val();
         account = $("#client_account_eft").val();
@@ -29825,16 +29828,16 @@ $(function () {
         bankcode = $("#bank_code").val();
 
         $.ajax({
-            url:'/stores/eft',
-            method:'post',
-            data:{
-                name:name,
-                account:account,
-                amount:amount,
-                type:"6",
-                bankcode:bankcode
+            url: '/stores/eft',
+            method: 'post',
+            data: {
+                name: name,
+                account: account,
+                amount: amount,
+                type: "6",
+                bankcode: bankcode
             },
-            success:function (f) {
+            success: function (f) {
 
             }
         });
@@ -29853,7 +29856,7 @@ $(function () {
                 } else if (e == 'none') {
                     $(".conf_text").html("Confirm");
                     $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
-                }else{
+                } else {
                     $(".conf_text").html("Confirm");
                     $(".conf_message").html("<span style='color: red'>" + e + "</span>");
                 }
@@ -29872,7 +29875,7 @@ $(function () {
         $("#process").attr('style', "display:block;margin-top: 1em");
         $("#edit").attr('style', "display:none;margin-top: 1em");
         $('.ship_form').removeAttr('disabled');
-        $("#complete").attr("disabled","true");
+        $("#complete").attr("disabled", "true");
     });
 
     $("#add-delivery").click(function (e) {
@@ -29977,95 +29980,167 @@ $(function () {
 
     $("#user_name").change(function (e) {
         user = $("#user_name").val()
-        if (user.length < 3){
+        if (user.length < 3) {
             $(".user_name_prev").html("<p style='color:red;font-size: 15px;'>Enter a valid name please</p>");
-            $("#user_name").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
-        }else{
+            $("#user_name").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        } else {
             $(".user_name_prev").html("");
-            $("#user_name").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+            $("#user_name").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
         }
         user_reg();
+    });
+
+    $("#store_name").change(function (e) {
+        store = $("#store_name").val()
+        if (store.length < 4) {
+            $(".store_name_prev").html("<p style='color:red;font-size: 15px;'>Store name has a minimum 5 characters</p>");
+            $("#store_name").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        } else {
+            $(".store_name_prev").html("");
+            $("#store_name").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }
+        store_reg();
+    });
+
+    $("#url").change(function (e) {
+        url = $("#url").val();
+        if (url.length < 3) {
+            $(".url_prev").html("<p style='color:red;font-size: 15px;'>Your store address has a minimum 3 characters</p>");
+            $("#url").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        } else {
+            $(".url_prev").html("");
+            $("#url").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        }
+        store_reg();
+    });
+
+    $("#store_phone").change(function () {
+        phone = $("#store_phone").val();
+        if ($.isNumeric(phone) && phonecheck(phone)) {
+            $(".phone_prev").html("");
+            $("#store_phone").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        } else {
+            $(".phone_prev").html("<p style='color:red;font-size: 15px;'>Please enter a valid phone number in format 2547xxxxxxxx</p>");
+            $("#store_phone").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }
+    });
+
+    $("#store_display_email").change(function () {
+        email = $("#store_display_email").val();
+        if (valmail(email)) {
+            $(".display_email_prev").html("");
+            $("#store_display_email").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        } else {
+            $(".display_email_prev").html("<p style='color:red;font-size: 15px;'>Please enter a valid email</p>");
+            $("#store_display_email").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }
     });
 
     $("#user_email").change(function (e) {
         email = $("#user_email").val();
-        if (!validateEmail(email)){
-            $(".user_email_prev").html("<p style='color:red;font-size: 15px;'>Enter a valid email please</p>");
-            $("#user_email").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
-        }else{
-            $(".user_email_prev").html("");
-            $("#user_email").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        validateEmail2(email);
+    });
+
+    $("#user_password").keyup(function (e) {
+        password = $("#user_password").val();
+        if (!pass(password)) {
+            $(".user_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
+            $("#user_password").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        } else {
+            $(".user_password_prev").html("");
+            $("#user_password").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+
         }
         user_reg();
     });
 
- $("#user_password").keyup(function (e) {
-        password = $("#user_password").val();
-        if (!pass(password)){
-            $(".user_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
-            $("#user_password").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
-        }else{
-            $(".user_password_prev").html("");
-            $("#user_password").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-
-        }
-     user_reg();
-    });
-
     $("#store_password").change(function (e) {
         password = $("#store_password").val();
-        if (!pass(password)){
+        if (!pass(password)) {
             $(".store_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
-            $("#store_password").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
-        }else{
+            $("#store_password").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        } else {
             $(".store_password_prev").html("");
-            $("#store_password").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+            $("#store_password").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
 
         }
         store_reg();
     });
 
- $("#user_password_confirmation").keyup(function (e) {
+    $("#user_password_confirmation").keyup(function (e) {
         password = $("#user_password").val();
         password_c = $("#user_password_confirmation").val();
-        if (password == password_c){
+        if (password == password_c) {
+            $("#user_password_confirmation").attr('data-valid', 'true');
             $(".user_password_confirmation_prev").html("");
-            $("#user_password_confirmation").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-        }else{
+            $("#user_password_confirmation").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        } else {
+            $("#user_password_confirmation").attr('data-valid', 'false');
             $(".user_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
-            $("#user_password_confirmation").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
-
+            $("#user_password_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
         }
-     user_reg();
-    });
-
-    $("#s_email").change(function () {
-        //alert(validateEmail($("#s_email").val()));
     });
 
     $("#store_password_confirmation").keyup(function (e) {
         password = $("#store_password").val();
         password_c = $("#store_password_confirmation").val();
-        if (password == password_c){
+        if (password == password_c) {
             $(".store_password_confirmation_prev").html("");
-            $("#store_password_confirmation").attr('style','text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-        }else{
+            $("#store_password_confirmation").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+            $("#store_password_confirmation").attr('data-valid', 'true');
+        } else {
             $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
-            $("#store_password_confirmation").attr('style','text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+            $("#store_password_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+            $("#store_password_confirmation").attr('data-valid', 'false');
 
         }
         store_reg();
     });
 
-    $("#s_email").change(function () {
-        //alert(validateEmail($("#s_email").val()));
-    })
+    $("#sort_product").click(function () {
+        val = $("#sorter_id").val();
+        cat = $("#category_id").val();
+        //alert(cat);
+        $.ajax({
+            url: '/products/sort',
+            method: 'post',
+            data: {
+                sorter:val,
+                cat:cat
+            },
+            success:function (e) {
+                //alert(e);
+                $(".product_box").html(e);
+            }
+        });
+    });
 
+    $("#product_search").click(function (e) {
+        e.preventDefault();
+       key = $("#keywords").val();
 
+       $.ajax({
+          url:'/products/search',
+           method:'post',
+           data:{
+              key:key
+           },
+           success:function (e) {
+               $(".product_box").html(e);
+           }
+       });
+    });
+
+    $("#store_store_font").change(function () {
+        font = $("#store_store_font").val();
+        //alert(font);
+        $(".change_font").attr('style','padding:1em;font-family:"'+font+'"');
+        $(".change_font").html('The quick brown fox jumps over the lazy dog');
+    });
 });
 
 
-function pass(pass){
+function pass(pass) {
     var re = /^(?=.*[A-Z])(?=)(?=.*[0-9])(?=.).{6,}$/;
     if (pass.match(re)) {
         return true;
@@ -30100,7 +30175,6 @@ function geocodeAddress(geocoder, resultsMap) {
         }
     });
 }
-
 
 function selectlocation(val) {
 
@@ -30271,7 +30345,7 @@ function val_phone2() {
 }
 
 function val_email() {
-    if (!validateEmail(email)) {
+    if (!valmail(email)) {
         $("#email_prev").html("<p style='color:red;'>Email is not a valid email address</p>");
     } else {
         $("#email_prev").html("");
@@ -30322,8 +30396,8 @@ function finalize() {
             lat: lat,
             lng: lng,
             instructions: instructions,
-            coupon:coupon,
-            address:address
+            coupon: coupon,
+            address: address
         },
 
         success: function () {
@@ -30385,145 +30459,146 @@ function _manual_() {
     }
 }
 
-function b2c_val(){
-client_name = $("#client_name_b2c").val();
-client_account = $("#client_account_b2c").val();
-amount = $("#amount_b2c").val();
+function b2c_val() {
+    client_name = $("#client_name_b2c").val();
+    client_account = $("#client_account_b2c").val();
+    amount = $("#amount_b2c").val();
 
-if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
-    $("#b2c").removeAttr("disabled");
-}else{
-    $("#b2c").attr("disabled","true");
-}
+    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
+        $("#b2c").removeAttr("disabled");
+    } else {
+        $("#b2c").attr("disabled", "true");
+    }
 }
 
-function b2bpay_val(){
+function b2bpay_val() {
     client_name = $("#client_name_pay").val();
     client_account = $("#client_account_pay").val();
     amount = $("#amount_pay").val();
 
-    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
         $("#b2bpay").removeAttr("disabled");
-    }else{
-        $("#b2bpay").attr("disabled","true");
+    } else {
+        $("#b2bpay").attr("disabled", "true");
     }
 }
 
-function b2btill_val(){
+function b2btill_val() {
     client_name = $("#client_name_till").val();
     client_account = $("#client_account_till").val();
     amount = $("#amount_till").val();
 
-    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
         $("#b2btill").removeAttr("disabled");
-    }else{
-        $("#b2btill").attr("disabled","true");
+    } else {
+        $("#b2btill").attr("disabled", "true");
     }
 }
 
-function eft_val(){
+function eft_val() {
     client_name = $("#client_name_eft").val();
     client_account = $("#client_account_eft").val();
     amount = $("#amount_eft").val();
     bank_code = $("#bank_code").val();
 
-    if (client_name != "" && (bank_code!= "" && $.isNumeric(bank_code)) && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)){
+    if (client_name != "" && (bank_code != "" && $.isNumeric(bank_code)) && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
         $("#eft").removeAttr("disabled");
-    }else{
-        $("#eft").attr("disabled","true");
+    } else {
+        $("#eft").attr("disabled", "true");
     }
 }
 
-function set_max(post){
-    max = $('.charge','.conditions_'+post).attr('data');
-    amt = $("#amount_"+post).val();
-    full = $(".charge",'.conditions_'+post).attr('data-full');
-    if(parseInt(amt) > parseInt(max)){
-        $("#amount_"+post).val(max);
+function set_max(post) {
+    max = $('.charge', '.conditions_' + post).attr('data');
+    amt = $("#amount_" + post).val();
+    full = $(".charge", '.conditions_' + post).attr('data-full');
+    if (parseInt(amt) > parseInt(max)) {
+        $("#amount_" + post).val(max);
     }
 }
 
-function set_bal(post){
-    max = $('.charge','.conditions_'+post).attr('data');
-    amt = $("#amount_"+post).val();
-    full = $(".charge",'.conditions_'+post).attr('data-full');
+function set_bal(post) {
+    max = $('.charge', '.conditions_' + post).attr('data');
+    amt = $("#amount_" + post).val();
+    full = $(".charge", '.conditions_' + post).attr('data-full');
 
-    if(amt == ""){
-        $('.charge','.conditions_'+post).html("0");
-    }else if(parseInt(amt) > 500){
-        $('.charge','.conditions_'+post).html("Ksh: " + (parseInt(45) +parseInt(parseFloat(amt)*0.01)));
-        $('.bal','.conditions_'+post).html("Ksh: " + (parseInt(full) - (parseInt(amt) + (45 +parseInt(amt*0.01)))));
-    }else{
-        bal = (parseInt(full) - (parseInt(amt) + (52 + parseInt(amt*0.01))));
-        $('.charge','.conditions_'+post).html("Ksh: " + (52 +parseInt(parseFloat(amt)*0.01)));
-        if(bal<=0){
-            bal =0;
-            $('.charge','.conditions_'+post).html("Ksh: 0");
+    if (amt == "") {
+        $('.charge', '.conditions_' + post).html("0");
+    } else if (parseInt(amt) > 500) {
+        $('.charge', '.conditions_' + post).html("Ksh: " + (parseInt(45) + parseInt(parseFloat(amt) * 0.01)));
+        $('.bal', '.conditions_' + post).html("Ksh: " + (parseInt(full) - (parseInt(amt) + (45 + parseInt(amt * 0.01)))));
+    } else {
+        bal = (parseInt(full) - (parseInt(amt) + (52 + parseInt(amt * 0.01))));
+        $('.charge', '.conditions_' + post).html("Ksh: " + (52 + parseInt(parseFloat(amt) * 0.01)));
+        if (bal <= 0) {
+            bal = 0;
+            $('.charge', '.conditions_' + post).html("Ksh: 0");
         }
 
-        $('.bal','.conditions_'+post).html("Ksh: " + bal);
+        $('.bal', '.conditions_' + post).html("Ksh: " + bal);
     }
 }
 
 function check_num(post) {
-    amt = $("#amount_"+post).val();
+    amt = $("#amount_" + post).val();
 
-    if ($.isNumeric(amt) || amt == ""){
-        $("#amount_prev_"+post).html("");
-    }else{
-        $("#amount_prev_"+post).html("<p style='color: red'>Amount must be a number</p>");
+    if ($.isNumeric(amt) || amt == "") {
+        $("#amount_prev_" + post).html("");
+    } else {
+        $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number</p>");
     }
 }
 
 function val_b2bpay() {
     val = $("#client_account_pay").val();
-    if ($.isNumeric(val)){
+    if ($.isNumeric(val)) {
         $(".pay_acc_prev").html("")
-    }else{
+    } else {
         $(".pay_acc_prev").html("<p style='color: red'>Paybill is a Number!</p>")
     }
 }
 
 function val_b2btill() {
     val = $("#client_account_till").val();
-    if ($.isNumeric(val)){
+    if ($.isNumeric(val)) {
         $(".till_acc_prev").html("")
-    }else{
+    } else {
         $(".till_acc_prev").html("<p style='color: red'>Till Number is a Number!</p>")
     }
 }
 
 function val_eft() {
     val = $("#client_account_eft").val();
-    if ($.isNumeric(val)){
+    if ($.isNumeric(val)) {
         $(".eft_acc_prev").html("")
-    }else{
+    } else {
         $(".eft_acc_prev").html("<p style='color: red'>Account Number must be a Number!</p>")
     }
 }
 
 function val_eft2() {
     val = $("#bank_code").val();
-    if ($.isNumeric(val)){
+    if ($.isNumeric(val)) {
         $(".code_acc_prev").html("")
-    }else{
+    } else {
         $(".code_acc_prev").html("<p style='color: red'>Bank code is a five digit number!</p>")
     }
 }
 
-function user_reg(){
-user_name = $("#user_name").val();
-user_email = $("#user_email").val();
-user_password = $("#user_password").val();
-user_password_confirmation = $("#user_password_confirmation").val();
+function user_reg() {
+    user_name = $("#user_name").val();
+    user_email = $("#user_email").val();
+    user_password = $("#user_password").val();
+    user_password_confirmation = $("#user_password_confirmation").val();
 
-if((user_name != "" && user_name.length > 3) && validateEmail(user_email) && (pass(user_password) && user_password.length > 5) && (user_password_confirmation != "" && user_password_confirmation.length > 5)){
-    $("#user_sign_up").removeAttr("disabled");
-    $("#user_sign_up").removeAttr("style");
-}else{
-    $("#user_sign_up").attr("disabled","true");
+    if (user_name.length > 3 && valmail(user_email) && pass(user_password) && pass(user_password_confirmation) && $("#user_email").attr('data-valid') == 'true' && $("#user_password_confirmation").attr('data-valid') == 'true') {
+        $("#user_sign_up").removeAttr("disabled");
+        $("#user_sign_up").removeAttr("style");
+    } else {
+        $("#user_sign_up").attr("disabled", "true");
+        $("#user_sign_up").attr("style", 'color:white;background-color:grey');
 
-}
+    }
 }
 
 function valmail(email) {
@@ -30531,27 +30606,82 @@ function valmail(email) {
 
     if (email.match(re)) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
-function store_reg(){
+function store_reg() {
     store_name = $("#store_name").val();
     store_phone = $("#store_phone").val();
     url = $("#url").val();
     store_password = $("#store_password").val();
     email = $("#store_email").val();
-    store_password_confirmation =  $("#store_password_confirmation").val();
-    store_display_email =  $("#store_display_email").val();
-
-    if(store_name.length > 3 && $.isNumeric(store_phone) && url.length > 3 && store_password.length > 5 && store_password_confirmation.length > 5 && validateEmail(email) && validateEmail(store_display_email)){
+    store_password_confirmation = $("#store_password_confirmation").val();
+    store_display_email = $("#store_display_email").val();
+    if (store_name.length > 3 && $.isNumeric(store_phone) && url.length > 2 && pass(store_password) && pass(store_password_confirmation) && valmail(email) && valmail(store_display_email) && $("#store_email").attr('data-valid') == 'true' && $("#store_password_confirmation").attr('data-valid') == 'true') {
         $("#store_sign_up").removeAttr("disabled");
-    }else{
-        $("#store_sign_up").attr("disabled","true");
+    } else {
+        $("#store_sign_up").attr("disabled", "true");
 
     }
 
+}
+
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (email.match(re)) {
+        $.ajax({
+            url: '/users/checkmail',
+            data: {
+                email: email
+            },
+            method: 'post',
+            success: function (res) {
+                //alert(res);
+                $("#email_prev").html(res);
+                if (res == "<span style='color:green'>Available</span>") {
+                    $("#store_email").attr('data-valid', 'true');
+                } else {
+                    $("#store_email").attr('data-valid', 'false');
+                }
+            }
+        });
+    } else {
+        $("#email_prev").html("<span style='color:red' >This is not a valid email</span>");
+        $("#store_sign_up").attr("disabled", "true");
+    }
+}
+
+function validateEmail2(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (email.match(re)) {
+        $.ajax({
+            url: '/users/checkmail_user',
+            data: {
+                email: email
+            },
+            method: 'post',
+            success: function (res) {
+                //alert(res);
+
+                if (res == "<span style='color:green'>Available</span>") {
+                    $("#user_email").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+                    $(".user_email_prev").html(res);
+                    $("#user_email").attr('data-valid', 'true');
+                } else {
+                    $(".user_email_prev").html(res);
+                    $("#user_email").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+                    $("#user_email").attr('data-valid', 'false');
+                }
+            }
+        });
+    } else {
+        $(".user_email_prev").html("<span style='color:red' >This is not a valid email</span>");
+        $("#user_email").attr('data-valid', 'false');
+    }
 }
 
 
