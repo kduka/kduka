@@ -312,7 +312,7 @@ $(function () {
         }
     });
 
-    $("#user_email").change(function (e) {
+    $("#user_email").keyup(function (e) {
         email = $("#user_email").val();
         validateEmail2(email);
     });
@@ -355,6 +355,7 @@ $(function () {
             $(".user_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
             $("#user_password_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
         }
+        user_reg();
     });
 
     $("#store_password_confirmation").keyup(function (e) {
@@ -867,7 +868,7 @@ function user_reg() {
     user_password = $("#user_password").val();
     user_password_confirmation = $("#user_password_confirmation").val();
 
-    if (user_name.length > 3 && valmail(user_email) && pass(user_password) && pass(user_password_confirmation) && $("#user_email").attr('data-valid') == 'true' && $("#user_password_confirmation").attr('data-valid') == 'true') {
+    if (user_name.length > 3 && valmail(user_email) && pass(user_password) && $("#user_email").attr('data-valid') == 'true' && $("#user_password_confirmation").attr('data-valid') == 'true') {
         $("#user_sign_up").removeAttr("disabled");
         $("#user_sign_up").removeAttr("style");
     } else {
