@@ -87,6 +87,12 @@
       height: 7em !important;
       width: 100% !important;
    }
+   @media (max-width: 767px){
+      button.navbar-toggle {
+          border-color: <%= @store.store_color %> !important;
+          background-color: <%= @store.store_color %> !important;
+      }
+    }
 </style>
 <!--Custom Colors-->
 </head>

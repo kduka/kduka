@@ -959,8 +959,3 @@ function validateEmail2(email) {
         $("#user_email").attr('data-valid', 'false');
     }
 }
-
-
-
-
-

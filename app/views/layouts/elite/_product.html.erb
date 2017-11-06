@@ -34,11 +34,11 @@
         <br>
       </div>
       <div class="col-md-3">
-        <button style="margin-top:2.2em;background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
+        <button style="margin-top:1.3em;background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
       </div>
       <% end %>
     </div>
-    <div class="col-md-12">
+    <div class="product_box col-md-12">
       <% if @products.nil? %>
           <p class="text-center">This store does not have any active Products</p>
           <% else %>
