@@ -13,7 +13,7 @@ class IpnController < ApplicationController
     trans_time = r["TransTime"]
     bill_ref_no = r["BillRefNumber"]
 
-    @ipn = Ipn.create(MSISDN: msisdn, BusinessShortCode: business_short_code, InvoiceNumber: invoice_number, TransID: trans_id, TransAmount: trans_amount, ThirdPartyTransID: third_party_trans_id, TransTime: trans_time,bill_ref_no:bill_ref_no)
+    @ipn = Ipn.create(MSISDN: msisdn, BusinessShortCode: business_short_code, InvoiceNumber: invoice_number, TransID: trans_id, TransAmount: trans_amount, ThirdPartyTransID: third_party_trans_id, TransTime: trans_time, bill_ref_no:bill_ref_no)
     if @ipn
       render :json => {'status': 'ok'}
       check_order(bill_ref_no, trans_amount, trans_id)

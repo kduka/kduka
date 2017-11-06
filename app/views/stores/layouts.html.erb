@@ -6,7 +6,7 @@
 			<ul>
 				<li class="tab-current"><a href="#section-1"><span>Choose Layout</span></a></li>
 				<li><a href="#section-2"><span>Choose Layout Color</span></a></li>
-        <li><a href="#section-3"><span>Choose Store Font</span></a></li>
+        <!--<li><a href="#section-3"><span>Choose Store Font</span></a></li>-->
 			</ul>
 	</nav>
   <div class="content tab">
@@ -41,16 +41,17 @@
           <br><br>
         </div>
         </section>
-      <section id="section-3">
+      <!--<section id="section-3">
         <div class="row">
+          <p style="color: red">This feature is currently in testing, we'll let you have it soon!</p>
           <div class="col-md-6 form-group">
             Store Font
-            <%= f.select :store_font, options_from_collection_for_select(Font.all, 'name','name',@store.store_font),{} ,{:class=>'form-control',required:'required'} %>
+            <%= f.select :store_font, options_from_collection_for_select(Font.all, 'name','name',@store.store_font),{} ,{:class=>'form-control',disabled:'disabled'} %>
           </div>
           <div class="col-md-6" id="fntbx">
 
             Type your own text
-            <input id="your_text" type="text" class="form-control">
+            <input id="your_text" type="text" class="form-control" disabled>
             <br>
             <b>Preview</b>
             <br>
@@ -59,7 +60,7 @@
           </div>
           <br><br>
         </div>
-      </section>
+      </section>-->
       </div>
 
           <p style="text-align:center"><%= f.submit 'Save Layout Details', class: 'btn btn-primary btn-lg' %></p>
