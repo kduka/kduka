@@ -1,5 +1,10 @@
 class IpnController < ApplicationController
   def index
+
+    puts request.body.read
+
+
+    puts "SEPRATOR"
     response = Hash.from_xml(request.body.read)
 
     puts response
