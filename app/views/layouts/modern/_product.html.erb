@@ -61,14 +61,15 @@
             </div>
           </div>
         <div class="col-md-4 sidebar-row">
-          <h4>SEARCH</h4>
+
           <%= form_tag("") do %>
           <div class="col-md-9">
+            <h4>Search</h4>
             <input class="form-control" id="keywords" />
             <br>
           </div>
           <div class="col-md-3">
-            <button style="background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
+            <button style="margin-top:2.2em;background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
           </div>
           <% end %>
         </div>
