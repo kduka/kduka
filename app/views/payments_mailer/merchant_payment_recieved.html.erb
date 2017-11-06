@@ -243,11 +243,11 @@
                                     </p>
                                     <br>
 
-                                    <p>Name: <%= @order.name %></p>
-                                    <p>Phone: <%= @order.phone %></p>
-                                    <p>Email: <%= @order.email %></p>
-                                    <p>Delivery Type: <%= @order.delivery_type.to_s.humanize %></p>
-                                    <p>Delivery Location: <%= @order.del_location %></p>
+                                    <p>Name: <%= @order.name %></p><br>
+                                    <p>Phone: <%= @order.phone %></p><br>
+                                    <p>Email: <%= @order.email %></p><br>
+                                    <p>Delivery Type: <%= @order.delivery_type.to_s.humanize %></p><br>
+                                    <p>Delivery Location: <%= @order.del_location %></p><br>
                                     <p></p>
 
 
@@ -260,8 +260,8 @@
                                     @orderitems.each do |oi|
                                       product = Product.find(oi.product_id)
                                   %>
-                                        <p style='font-weight:bold'><%= " #{@count}: #{product.name} (#{product.quantity})  Unit Price: #{product.price} " %></p>
-                                        <p><%= image_tag(product.image_url(:thumb).to_s) %></p>
+                                        <p style='font-weight:bold'><%= " #{@count}: #{product.name} (#{oi.quantity})  Unit Price: #{product.price} " %></p><br>
+                                        <p><%= image_tag(product.image_url(:thumb).to_s) %></p><br>
                                         <% @count = @count+1 %>
                                     <% end %>
                                     <br/>

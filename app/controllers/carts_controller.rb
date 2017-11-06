@@ -6,7 +6,10 @@ class CartsController < ApplicationController
   end
 
   def shipping
-
+    if current_order.order_items.count.nil? or current_order.order_items.count == 0
+      redirect_to(all_path) and return
+    end
+    @items = current_order.order_items.count
     set_shop
   end
 
@@ -146,7 +149,7 @@ class CartsController < ApplicationController
         end
       end
     else
-      current_order.update(coupon:"Invalid Coupon",discount:0)
+      current_order.update(coupon:"No Coupon",discount:0)
     end
     end
 
