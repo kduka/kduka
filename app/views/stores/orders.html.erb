@@ -3,7 +3,14 @@
 	<%= notice %>
 </p>
 
-  <h4>Earnings: Ksh <%= StoreAmount.where(store_id:current_store.id).first.amount %></h4>
+  <%
+    @store_amount = StoreAmount.where(store_id: order.store_id).first
+    if @store_amount.nil?
+      StoreAmount.create(amount:0,store_id:order.store_id)
+      @store_amount = StoreAmount.where(store_id: order.store_id).first
+    end
+  %>
+  <h4>Earnings: Ksh <%= @store_amount.amount %></h4>
 
 <p>
 	<strong>Total Orders : <%= @order.count %> </strong>
