@@ -1,17 +1,9 @@
 class IpnController < ApplicationController
   def index
 
-    puts request.body.read
-
-
-    puts "SEPRATOR"
     response = Hash.from_xml(request.body.read)
 
-    puts response
-
-    render :json => response
-=begin
-    r = response["InstantPaymentNofication"]
+    r = response["InstantPaymentNotification"]
     msisdn = r["MSISDN"]
     business_short_code = r["BusinessShortCode"]
     invoice_number = r["InvoiceNumber"]
@@ -19,14 +11,44 @@ class IpnController < ApplicationController
     trans_amount = r["TransAmount"]
     third_party_trans_id = r["ThirdPartyTransID"]
     trans_time = r["TransTime"]
-    kyc_name = r["KYCInfo"]["KYCInfo"]["KYCName"]
-    kyc_value = r["KYCInfo"]["KYCInfo"]["KYCValue"]
+    bill_ref_no = r["BillRefNumber"]
 
-    @ipn = Ipn.create(MSISDN: msisdn, BusinessShortCode: business_short_code, InvoiceNumber: invoice_number, TransID: trans_id, TransAmount: trans_amount, ThirdPartyTransID: third_party_trans_id, TransTime: trans_time, KYCName: kyc_name, KYCValue: kyc_value)
+    @ipn = Ipn.create(MSISDN: msisdn, BusinessShortCode: business_short_code, InvoiceNumber: invoice_number, TransID: trans_id, TransAmount: trans_amount, ThirdPartyTransID: third_party_trans_id, TransTime: trans_time,bill_ref_no:bill_ref_no)
     if @ipn
       render :json => {'status': 'ok'}
-      check_order(invoice_number, trans_amount, trans_id)
+      check_order(bill_ref_no, trans_amount, trans_id)
     end
+
+
+
+=begin
+
+ <InstantPaymentNotification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="Pi4_94bebd26-9393-c287-0651-08d5254a589a">
+ 	<MSISDN>254724040839</MSISDN>
+ 	<BusinessShortCode>766645</BusinessShortCode>
+ 	<InvoiceNumber></InvoiceNumber>
+ 	<TransID>LK612QR655</TransID>
+ 	<TransAmount>3.00</TransAmount>
+ 	<ThirdPartyTransID></ThirdPartyTransID>
+ 	<TransTime>20171106221246</TransTime>
+ 	<BillRefNumber>mart</BillRefNumber>
+ 	<OrgAccountBalance>18.00</OrgAccountBalance>
+ 	<KYCInfoList>
+ 		<KYCInfo>
+ 			<KYCName>[Personal Details][First Name]</KYCName>
+ 			<KYCValue>MARTIN</KYCValue>
+ 		</KYCInfo>
+ 		<KYCInfo>
+ 			<KYCName>[Personal Details][Middle Name]</KYCName>
+ 			<KYCValue>NGUI</KYCValue>
+ 		</KYCInfo>
+ 		<KYCInfo>
+ 			<KYCName>[Personal Details][Last Name]</KYCName>
+ 			<KYCValue>NDETO</KYCValue>
+ 		</KYCInfo>
+ 	</KYCInfoList>
+ </InstantPaymentNotification>
+
 =end
   end
 
