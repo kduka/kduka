@@ -41,7 +41,9 @@ class ProductsController < ApplicationController
 
   def about
     get_store
-    if @store.aboutpage_status == false
+    if @store.nil?
+      redirect_to("http://www.kduka.co.ke") and return
+    elsif @store.aboutpage_status == false
       redirect_to(all_path) and return
     else
       get_data
@@ -109,7 +111,11 @@ class ProductsController < ApplicationController
 
   def all
     get_store
-    @products = Product.where(store_id: @store.id, active: true).paginate(:page => params[:page], :per_page => 3).order('id desc')
+    if @store.nil?
+      redirect_to("http://www.kduka.co.ke") and return
+    end
+
+    @products = Product.where(store_id: @store.id, active:true).paginate(:page => params[:page], :per_page => 15).order('id desc')
     @order_item = current_order.order_items.new
     @categories = @store.category.all
     set_shop
@@ -133,6 +139,10 @@ class ProductsController < ApplicationController
   end
 
   def view
+    get_store
+    if @store.nil?
+      redirect_to("http://www.kduka.co.ke") and return
+    end
     @product = Product.where(sku: params[:sku], active: true).first
     viewed = @product.viewed += 1
     @product.update(viewed: viewed)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031110258) do
+ActiveRecord::Schema.define(version: 20171105191547) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -108,6 +108,12 @@ ActiveRecord::Schema.define(version: 20171031110258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_earnings_on_store_id", using: :btree
+  end
+
+  create_table "fonts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -274,6 +280,7 @@ ActiveRecord::Schema.define(version: 20171031110258) do
     t.boolean  "collection_point_status"
     t.boolean  "init"
     t.boolean  "important"
+    t.string   "store_font"
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
     t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true, using: :btree

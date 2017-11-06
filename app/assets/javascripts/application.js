@@ -406,6 +406,13 @@ $(function () {
            }
        });
     });
+
+    $("#store_store_font").change(function () {
+        font = $("#store_store_font").val();
+        //alert(font);
+        $(".change_font").attr('style','padding:1em;font-family:"'+font+'"');
+        $(".change_font").html('The quick brown fox jumps over the lazy dog');
+    });
 });
 
 

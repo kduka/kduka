@@ -1,3 +1,4 @@
+=begin
 Order.create!([
 
               ])
@@ -59,4 +60,13 @@ Admin.create!([
                  {:email => 'martindeto@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig'},
                  {:email => 'jtowett89@gmail.com', :password => 'jupiter89', :password_confirmation => 'jupiter89'}
              ])
+=end
+
+Font.create!([
+                  {:name => 'Helvetica'},
+                  {:name => 'Verdana'},
+                  {:name => 'Tahoma'},
+                  {:name => 'Times'},
+                  {:name => 'Courier'},
+              ])
 
