@@ -3,7 +3,7 @@ class PaymentsMailer < ApplicationMailer
     @order = o
     @orderitems = o.order_items.all
     @store = Store.find(o.store_id)
-    mail(to: o.email, subject: "Payment Recieved [#{o.ref}]", from: "#{@store.name} <no-reply@kduka.co.ke>", reply_to:@store.display_email)
+    mail(to: o.email, subject: "Payment Recieved [##{o.ref}]", from: "#{@store.name} <no-reply@kduka.co.ke>", reply_to:@store.display_email)
   end
 
 
@@ -11,7 +11,7 @@ class PaymentsMailer < ApplicationMailer
     @order = o
     @orderitems = o.order_items.all
     @store = Store.find(o.store_id)
-    mail(to: @store.display_email , subject: "New Order #{o.ref}", from:"#{@store.name} <no-reply@kduka.co.ke>", reply_to:o.email)
+    mail(to: @store.display_email , subject: "New Order [##{o.ref}]", from:"#{@store.name} <no-reply@kduka.co.ke>", reply_to:o.email)
   end
 
   def partial_merchant_payment_recieved(o)
