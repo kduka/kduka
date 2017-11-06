@@ -1,5 +1,6 @@
 <% @transactions = Transaction.where(store_id:current_store.id).limit(10).order('created_at desc') %>
 <h1>History</h1>
+<div style="overflow-x:scroll;">
 <table id="myTable" class="table">
   <thead>
   <tr>
@@ -23,5 +24,6 @@
   <% end %>
   </tbody>
 </table>
+</div>
 <br>
 <p><button class="btn btn-primary" >View Full History</button></p>

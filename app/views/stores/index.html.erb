@@ -69,6 +69,7 @@
 
 
 <% if !@products.blank? %>
+<div style="overflow-x:scroll;">
     <table id="myTable" class="table">
       <thead>
       <tr>
@@ -93,7 +94,7 @@
       <% end %>
       </tbody>
     </table>
-
+</div>
 <% else %>
 
     <p>You dont have any Products in this store yet</p>
