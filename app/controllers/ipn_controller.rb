@@ -1,6 +1,11 @@
 class IpnController < ApplicationController
   def index
     response = Hash.from_xml(request.body.read)
+
+    puts response
+
+    render :json => response
+=begin
     r = response["InstantPaymentNofication"]
     msisdn = r["MSISDN"]
     business_short_code = r["BusinessShortCode"]
@@ -17,6 +22,7 @@ class IpnController < ApplicationController
       render :json => {'status': 'ok'}
       check_order(invoice_number, trans_amount, trans_id)
     end
+=end
   end
 
 
