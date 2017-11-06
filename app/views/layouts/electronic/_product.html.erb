@@ -21,13 +21,13 @@
     <div class="col-md-8 sidebar-row">
 
     <div class="col-md-5 faq">
-      <h4> Category </h4>
-      <%= select_tag(:category_id, options_from_collection_for_select(@categories, 'id','name') ,{:class=>'form-control',required:'required',:include_blank => true}) %>
+      <h4 class="my_input"> Category </h4>
+      <%= select_tag(:category_id, options_from_collection_for_select(@categories, 'id','name') ,{:class=>'form-control my_input',required:'required',:include_blank => true}) %>
     </div>
 
       <div class="col-md-5 faq">
-        <h4> Sorting </h4>
-          <select id="sorter_id" name="sorter" class="form-control">
+        <h4 class="my_input"> Sorting </h4>
+          <select id="sorter_id" name="sorter" class="my_input form-control">
             <optgroup label="Date">
               <option value="nto">New to Old</option>
               <option value="otn">Old to New</option>
@@ -47,16 +47,16 @@
 
       <%= form_tag("") do %>
       <div class="col-md-9">
-        <h4>Search</h4>
-        <input class="form-control" id="keywords" />
+        <h4 class="my_input">Search</h4>
+        <input class="my_input form-control" id="keywords" />
         <br>
       </div>
       <div class="col-md-3">
-        <button style="margin-top:2.2em;background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
+        <button style="margin-top:1.3em;background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
       </div>
       <% end %>
     </div>
-    <div class="col-md-12">
+    <div class="product_box col-md-12">
       <% if @products.nil? %>
           <p class="text-center">This store does not have any active Products</p>
           <% else %>

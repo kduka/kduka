@@ -59,7 +59,7 @@
 		<div class="top_nav_right">
 			<div class="wthreecartaits wthreecartaits2 cart cart box_1">
 				<a href="<%= cart_path %>">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>  <span class="cart-text"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></button>
+						<button class="w3view-cart" type="submit" name="submit" value=""><i style="color:#fff" class="fa fa-cart-arrow-down" aria-hidden="true"></i>  <span class="cart-text"><span style="color:#fff"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></span></button>
 					</a>
 					</div>
 		</div>
