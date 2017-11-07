@@ -1,3 +1,4 @@
+=begin
 Order.create!([
 
               ])
@@ -67,3 +68,9 @@ Font.create!([
                   {:name => 'Courier'},
               ])
 
+=end
+
+StoreAmount.create!([
+                 {:amount => 'Helvetica',:id=>'1'},
+
+             ])
