@@ -5,9 +5,13 @@ class StoreRegistrationsController < Devise::RegistrationsController
 
 
   def new
-    if store_signed_in?
-    flash[:custom] = "You Need to sign out of current store to create a new one"
+    @stores = Store.where(user_id:current_user.id).count
+
+    if @stores > 2
+      flash[:alert] = "You have reached the maximum number of stores allowed. Contact us to get more"
+      redirect_to(users_home_path) and return
     end
+
     @store = Store.new
     set_admin
   end
