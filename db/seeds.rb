@@ -71,6 +71,6 @@ Font.create!([
 =end
 
 StoreAmount.create!([
-                 {:amount => 'Helvetica',:id=>'1'},
+                 {:amount => 1000,:id=>'1'},
 
              ])
