@@ -32,9 +32,9 @@ body a:hover{
 }
 /*-- banner --*/
 .banner{
-	background:url(/images/website/banner.jpg) no-repeat center;
+	background:url(/images/website/banner1.jpg) no-repeat center;
 	min-height:800px;
-	border-top:10px solid #b52e31;
+	border-top:10px solid #06B216;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	background-size:cover;
@@ -77,7 +77,7 @@ nav#cbp-spmenu-s2 {
 	text-align: center;
 }
 nav#cbp-spmenu-s2 a {
-    color: #05c2f9;
+    color: #06B216;
     display: block;
     padding: 20px 25px;
     font-size: 18px;
@@ -98,7 +98,7 @@ nav#cbp-spmenu-s2 a.active,nav#cbp-spmenu-s2 a:hover {
 	color:#000;
 }
 nav#cbp-spmenu-s2 h3 {
-	background:#05c2f9;
+	background:#06B216;
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 600;
@@ -182,8 +182,8 @@ h3.agileits-title {
 }
 .download-agile a {
     padding: .6em 1em;
-    border: 2px solid #b52e31;
-    color: #b52e31;
+    border: 2px solid #06B216;
+    color: #06B216;
     font-size: 2em;
     text-decoration: none;
 }
@@ -249,7 +249,7 @@ h3.agileits-title {
 	margin-top: 5em;
 }
 .singular-grid:hover span.glyphicon {
-    background: #05c2f9;
+    background: #06B216;
     color: #fff;
 }
 /*-- //logo-singular --*/
@@ -306,7 +306,7 @@ h3.agileits-title {
 /*-- //services --*/
 /*-- work --*/
 .work{
-	background:#d8e7ff;
+	background:#ececec;
 	padding:6em 0;
 }
 .work h3{
@@ -526,7 +526,7 @@ h3.agileits-title {
 /*-- contact --*/
 .contact{
 	padding:6em 0;
-	background:#05c2f9;
+	background:#06B216;
 	text-align:center;
 }
 .contact p{
@@ -537,6 +537,8 @@ h3.agileits-title {
 	margin:0 auto 3em;
 }
 .con a{
+	border-color: #fff;
+	border-style: solid;
 	padding: 13px 60px;
 	font-size: 25px;
 	font-weight:700;
@@ -577,7 +579,7 @@ h3.agileits-title {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background:#b52e31;
+	background:#06B216;
 	-webkit-transform: scaleY(0);
 	transform: scaleY(0);
 	-webkit-transform-origin: 50% 0;
@@ -629,7 +631,7 @@ h3.agileits-title {
 }
 .contact-grid p a:hover{
 	text-decoration:none;
-	color:#05c2f9;
+	color:#06B216;
 }
 button.close {
     outline: none;
@@ -640,14 +642,14 @@ button.close {
 .inp h4{
 	font-size: 20px;
 	font-weight:700;
-	color:#05c2f9;
+	color:#06B216;
 	margin:0 0 1em;
 	text-align:left;
 }
 .contact-grids h5{
 	font-size: 20px;
 	font-weight:700;
-	color:#05c2f9;
+	color:#06B216;
 	margin:0 0 1em;
 	text-align:left;
 }
@@ -676,7 +678,7 @@ button.close {
 }
 .inp input[type="submit"]{
 	outline:none;
-	background:#05c2f9;
+	background:#06B216;
 	 border-radius:5px;
 	-webkit-border-radius:5px;
 	-moz-border-radius:5px;
@@ -695,7 +697,7 @@ button.close {
 	margin-bottom:2em;
 }
 .inp input[type="submit"]:hover{
-	background:#b52e31;
+	background:#06B216;
 }
 .map-w3ls iframe {
     width: 100%;
@@ -722,7 +724,7 @@ button.close {
 	color:#fff;
 }
 .footer-left p a:hover{
-	color:#b52e31;
+	color:#06B216;
 }
 .footer-right{
 	float:right;

@@ -42,7 +42,13 @@ next if item == '.' or item == '..' %>
 		<div class="container">
 			<div class="w3layouts-header">
 				<div class="header-left">
-					<h1><a style="color:#000 !important" href="<%= root_path %>">K<span style="color:#fff">Duka</span></a></h1>
+          <style>
+            .my_overlay{
+              background:#fff;
+              opacity:0.2;
+            }
+          </style>
+					<h1><a style="color:#000 !important" href="<%= root_path %>"><%= image_tag("website/logo.png") %></a></h1>
 				</div>
 				<div class="top-nav">
 					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
@@ -86,8 +92,8 @@ next if item == '.' or item == '..' %>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="banner-w3lsinfo">
-				<h2 style="text-transform:capitalize">Welcome to <span style="text-transform:uppercase">KDuka</span></h2>
-				<p>Where Online Shopping is Made Easy</p>
+				<h2 style="text-transform:capitalize;font-weight: bold;color: #000">Welcome to <span style="color: #014e08">KDuka</span></h2>
+				<p style="font-weight: bold;color: #000;">Where Online Shopping is Made Easy</p>
 			</div>
 			<div class="agileits-intro">
 				<p>introduction<a href="#introduction" class="scroll"> </a></p>
@@ -120,13 +126,13 @@ next if item == '.' or item == '..' %>
 			</style>
 			<p>You can Log in if you already have an account or you can log in to your stores. If you don't have an account you can Sign Up</p>
       <div class="col-md-4" style="margin-bottom:2em">
-			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_session_path %>" class="wthree-hvr"><span style="color:#05c2f9" class="link_color"><i class="fa fa-user"></i> User Login</span></a>
+			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-user"></i> User Login</span></a>
       </div>
       <div class="col-md-4" style="margin-bottom:2em">
-			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#05c2f9" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
+			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
       </div>
       <div class="col-md-4" style="margin-bottom:2em">
-			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_registration_path %>" class="wthree-hvr"><span style="color:#05c2f9" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
+			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
       </div>
 		</div>
 	</div>
@@ -138,14 +144,14 @@ next if item == '.' or item == '..' %>
 			<h3 class="agileits-title" style="color:#000">Our Features</h3>
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:35px;text-align:left;color:#05c2f9">Responsive Layouts</p>
+					<p style="font-size:35px;text-align:left;color:#06B216">Responsive Layouts</p>
 				</div>
 				<div class="clearfix"> </div>
 					 <ul style="list-style:none;color:#6e6e6e;font-size:17px">
-						 <li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Excellent User Experience</li><br>
-						 <li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Super Flexible</li><br>
-						 <li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Faster loading in Webpages</li><br>
-						 <li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Very Easy to manage</li><br>
+						 <li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Excellent User Experience</li><br>
+						 <li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Super Flexible</li><br>
+						 <li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Faster loading in Webpages</li><br>
+						 <li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Very Easy to manage</li><br>
 					 </ul>
 			</div>
 			<div class="col-md-6 col-xs-12">
@@ -160,13 +166,13 @@ next if item == '.' or item == '..' %>
 			</div>
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:35px;text-align:left;color:#05c2f9">Layout Variety</p>
+					<p style="font-size:35px;text-align:left;color:#06B216">Layout Variety</p>
 				</div>
 				<div class="clearfix"> </div>
 					<ul style="list-style:none;color:#6e6e6e;font-size:17px">
-	 					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Choose among our different user friendly layouts</li><br>
-	 					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Customize layout color accents for uniqueness</li><br>
-	 					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Have your Store up and running in minutes</li><br>
+	 					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Choose among our different user friendly layouts</li><br>
+	 					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Customize layout color accents for uniqueness</li><br>
+	 					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Have your Store up and running in minutes</li><br>
 	 				</ul>
 			</div>
 		</div>
@@ -175,14 +181,14 @@ next if item == '.' or item == '..' %>
 		<div class="container">
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:35px;text-align:left;color:#05c2f9">Powerful Analytics Tools</p>
+					<p style="font-size:35px;text-align:left;color:#06B216">Powerful Analytics Tools</p>
 				</div>
 				<div class="clearfix"> </div>
 				<ul style="list-style:none;color:#6e6e6e;font-size:17px">
-					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Know your visitors</li><br>
-					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Know what your customers are looking for</li><br>
-					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Find out how to optimise your store</li><br>
-					<li><i style="color:#05c2f9;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Track where traffic is coming from</li><br>
+					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Know your visitors</li><br>
+					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Know what your customers are looking for</li><br>
+					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Find out how to optimise your store</li><br>
+					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Track where traffic is coming from</li><br>
 				</ul>
 			</div>
 			<div class="col-md-6 col-xs-12">
@@ -194,7 +200,7 @@ next if item == '.' or item == '..' %>
 	<!-- contact -->
 	<div class="contact" id="contact">
 		<div class="container">
-			<p>Kduka is a Kenyan based E-Commerce platform that enables its users
+			<p style="font-weight: bold;">Kduka is a Kenyan based E-Commerce platform that enables its users
         to easily create and manage online stores for the purpose of selling
 				 and delivering products to their clients</p>
 			<div class="con">
@@ -209,7 +215,7 @@ next if item == '.' or item == '..' %>
 							<h3>Contact Us</h3>
 							<div class="contact-grids">
 								<div class="inp agileits-inp">
-									<h4 style="color:#b52e31">Contact Form</h4>
+									<h4 style="color:#06B216">Contact Form</h4>
                   <div id="success"></div>
 									<form action="#" method="post">
 										<input id="name" type="text" name="Name" placeholder="Your Name" required="">
@@ -219,7 +225,7 @@ next if item == '.' or item == '..' %>
 										<input id="sendmail" type="submit" value="SEND">
 									</form>
 								</div>
-								<h5 style="color:#b52e31">Contact Details</h5>
+								<h5 style="color:#06B216">Contact Details</h5>
 								<div class="contact-grid">
 									<h4>PHONE NUMBERS</h4>
 									<p class="agile-qwe">+254-773-054785<br>
