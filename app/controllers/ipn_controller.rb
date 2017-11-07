@@ -105,6 +105,7 @@ class IpnController < ApplicationController
   end
 
   def b2c
+    puts request.body.read
     response = JSON.parse(request.body.read)
     @params = Hash.[]
     response.each do |(k, a)|
