@@ -407,8 +407,7 @@ end
                     }"
     puts request.body
     response = http.request(request)
-
-    put "AFTER REQUEST"
+    puts "AFTER REQUEST"
     if response.kind_of? Net::HTTPSuccess
       @type_n
       if type.to_i == 6
