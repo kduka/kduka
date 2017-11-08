@@ -8,9 +8,9 @@ $(".trans_messages_till").html("<p style='color:green'> Transaction Successful! 
 $("#b2btill").removeAttr("disabled");
 $(".b2bpay_till").html("Transfer Funds");
 <% elsif @type_n == "Paybill" %>
-$("#client_name").val("");
-$("#client_account").val("");
-$("#amount").val("");
+$("#client_name_pay").val("");
+$("#client_account_pay").val("");
+$("#amount_pay").val("");
 $(".trans_messages_pay").html("<p style='color:green'> Transaction Successful! </p>");
 $("#b2bpay").removeAttr("disabled");
 $(".b2bpay_text").html("Transfer Funds");
