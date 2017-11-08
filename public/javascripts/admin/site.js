@@ -12,6 +12,7 @@ $(document).ready(function () {
 
     $('#example').DataTable();
     $('#myTable').DataTable();
+    $('#myTable2').DataTable();
 
     if ($("#delivery_status").val() == 1) {
         $(".locate").attr('disabled', 'true');

@@ -2,8 +2,8 @@ class AdminsController < ApplicationController
   before_action :authenticate_admin!, except: [:ndeto]
 
   def index
-    @stores = Store.all
-    @users = User.all
+    @stores = Store.all.order("created_at desc")
+    @users = User.all.order("created_at desc")
     super_admin
   end
 
