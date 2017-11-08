@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   get 'store_deliveries/create'
-
   get 'store_deliveries/new'
-
   get 'ipn/index'
 
   match '/', to: 'home#index', constraints: { domain: 'co.ke', subdomain:'www.kduka' }, via: [:get, :post, :put, :patch, :delete]
@@ -67,6 +65,8 @@ Rails.application.routes.draw do
   post '/home/web_mail' => 'home#web_mail'
   post  '/products/sort' => 'products#sort'
   post  '/products/search' => 'products#search'
+  get  '/home/404' => 'home#not_found'
+  get  '/home/error' => 'home#error'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'}
@@ -90,5 +90,5 @@ Rails.application.routes.draw do
   resources :store_deliveries
 
   root to: "home#index"
-  get '*path' => redirect('/')
+  get '*path' => redirect('/home/error')
 end

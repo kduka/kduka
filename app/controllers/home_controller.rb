@@ -16,4 +16,12 @@ class HomeController < ApplicationController
     no_layout
   end
 
+  def not_found
+    no_layout
+  end
+
+  def error
+    no_layout
+  end
+
 end

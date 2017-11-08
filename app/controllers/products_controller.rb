@@ -6,10 +6,10 @@ class ProductsController < ApplicationController
   def index
     get_store
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke/users/home") and return
+      redirect_to(home_404_path) and return
     elsif @store.active == !true
       flash[:alert] = "Store is not active, please contact owner"
-      redirect_to("http://www.kduka.co.ke/stores/home") and return
+      redirect_to("http://www.kduka.co.ke/") and return
     else
 
       if @store.homepage_status == true
@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
   def home
     get_store
     if @store.blank?
-      redirect_to("http://www.kduka.co.ke/users/home") and return
+      redirect_to(home_404_path) and return
     else
       @products = Product.where(store_id: @store.id, active: true).limit(3).order('id desc')
       @order_item = current_order.order_items.new
@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
   def about
     get_store
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke") and return
+      redirect_to(home_404_path) and return
     elsif @store.aboutpage_status == false
       redirect_to(all_path) and return
     else
@@ -111,7 +111,7 @@ class ProductsController < ApplicationController
   def all
     get_store
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke") and return
+      redirect_to(home_404_path) and return
     end
 
     @products = Product.where(store_id: @store.id, active:true).paginate(:page => params[:page], :per_page => 15).order('id desc')
@@ -140,7 +140,7 @@ class ProductsController < ApplicationController
   def view
     get_store
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke") and return
+      redirect_to(home_404_path) and return
     end
     @product = Product.where(sku: params[:sku], active: true).first
     viewed = @product.viewed += 1

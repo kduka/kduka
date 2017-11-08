@@ -1,0 +1,49 @@
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>KDuka - Store not found</title>
+  <!-- Custom Theme files -->
+  <% Dir.foreach("public/stylesheets/404") do |item|
+    next if item == '.' or item == '..' %>
+      <%= stylesheet_link_tag "404/#{item}" %>
+      <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+  <% end %>
+
+  <!-- Custom Theme files -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="KDuka - Not Found" />
+  <!--Google Fonts-->
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <!--Google Fonts-->
+</head>
+<body>
+<!--404 page start here-->
+<div class="not-found">
+  <div class="notfound-top">
+    <h1>404</h1>
+  </div>
+  <div class="content">
+    <a href="<%= root_path %>"> <%= image_tag("website/logo.png") %><P>BACK TO WEBSITE</P> </a>
+    <h3>We couldn't find the store you are looking for. PLease contact the owner to ensure its active!</h3>
+    <ul class="social-icon">
+      <li><a  class="fa" href="https://www.facebook.com/kdukaofficial"><i class="fa fa-facebook"></i> </a></li>
+      <li><a  class="tw" href="https://www.twitter.com/kdukaofficial"> <i class="fa fa-twitter"></i></a></li>
+      <li><a  class="tw" href="https://www.linkedin.com/kdukaofficial"><i class="fa fa-linkedin"></i></a></li>
+      <li><a  class="g" href="#"> </a></li>
+    </ul>
+  </div>
+  <div class="clear"> </div>
+</div>
+<div class="copyright">
+  <p>© 2017 KDuka. All rights reserved
+</div>
+<!--404 page end here-->
+</body>
+</html>
