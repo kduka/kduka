@@ -384,12 +384,13 @@ end
     url = URI("#{ENV['chase_endpoint']}")
 
     http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     http.read_timeout = 500
 
     request = Net::HTTP::Post.new(url)
     request["content-type"] = 'application/json'
     request["authorization"] = "#{ENV['auth_token']}"
-    puts "#{ENV['auth_token']}"
     request["cache-control"] = 'no-cache'
     request.body = "{ 'Type':2,
                       'CompanyId':'#{ENV['chase_id_api']}',
