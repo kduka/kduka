@@ -1,7 +1,7 @@
 class UserConfirmationsController < Devise::ConfirmationsController
   def new
     self.resource = resource_class.new
-    store_login
+    user_login
   end
 
   # POST /resource/confirmation
@@ -12,8 +12,12 @@ class UserConfirmationsController < Devise::ConfirmationsController
     if successfully_sent?(resource)
       respond_with({}, location: after_resending_confirmation_instructions_path_for(resource_name))
     else
+      respond_with(resource)
+     # redirect_to(request.referer)
+=begin
       flash[:alert] = "This email is already confirmed!"
       redirect_to(request.referer)
+=end
     end
   end
 end

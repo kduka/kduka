@@ -32,6 +32,8 @@ module ShoppingCartExample
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
-    
+    config.to_prepare do
+      Devise::ConfirmationsController.layout "login/user_login"
+    end
   end
 end

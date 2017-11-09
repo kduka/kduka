@@ -46,7 +46,7 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	text-align: center;
-	background-color: #153038;
+	background-color: #153038 !important;
 }
 
 body a, body a:hover, input[type="button"], input[type="submit"], input[type="submit"]:hover {
@@ -67,6 +67,16 @@ h1 {
 	color: #FFF;
 }
 
+#error_explanation h2{
+	color: red;
+	font-weight: bold;
+	font-size: 14px !important;
+}
+
+#error_explanation h2 ul li{
+	color: red !important;
+	font-weight: bold !important;
+}
 .containerw3layouts-agileits {
 	width: 50%;
 	margin: 0 auto;

@@ -188,7 +188,7 @@
                                     <td valign="top" class="specbundle">
                                       <div class="contentEditableContainer contentTextEditable">
                                         <div class="contentEditable">
-                                          <p style='text-align:left;margin:0;font-family:Georgia,Time,sans-serif;font-size:26px;color:#DC2828;'>
+                                          <p style='text-align:left;margin:0;font-family:Georgia,Time,sans-serif;font-size:26px;color:#06B216;'>
                                             <span class="font">Confirm your email</span></p>
                                         </div>
                                       </div>
@@ -236,7 +236,7 @@
                                   <div class="contentEditable" align='center'>
                                     <p>Welcome to KDuka! We just need you to confirm that this email belongs to you before we get started.</p>
                                     <br>
-                                    <p style="color:#DC2828 !important;font-weight: bold"><%= link_to 'Confirm my email', confirmation_url(@resource, confirmation_token: @token) %></p>
+                                    <p><%= link_to 'Click here to confirm this email', confirmation_url(@resource, confirmation_token: @token),style:'color:#06B216;font-weight: bold;font-size:20px;text-decoration: underline' %></p>
                                     <br>
                                     <p>If you didn't request this, please ignore this email.</p>
                                     <br/>
