@@ -68,6 +68,30 @@ button.w3view-cart {
 		width: auto !important;
  }
 </style>
+<style>
+.our_logo{
+	max-width: 150px !important;
+	max-height: 70px !important;
+}
+@media (max-width:480px) {
+	.our_logo{
+		max-width: 70px !important;
+		max-height: 70px !important;
+	}
+}
+@media (max-width:720px) {
+	.our_logo{
+		max-width: 70px !important;
+		max-height: 70px !important;
+	}
+}
+@media (max-width:1080px) {
+	.our_logo{
+		max-width: 70px !important;
+		max-height: 100px !important;
+	}
+}
+</style>
 </head>
 <body>
 <!-- header -->
@@ -85,7 +109,17 @@ button.w3view-cart {
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<!-- header-bot -->
 			<div class="col-md-4 logo_agile">
-				<h1><a href="<%= root_path %>"><%= @store.name %></a></h1>
+				<h1><a href="<%= root_path %>">
+				<style>
+
+				</style>
+				<% if @store.logo_status %>
+						<%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
+				<% else %>
+						<%= @store.name %>
+
+				<% end %>
+				</a></h1>
 			</div>
         <!-- header-bot -->
 		<div class="col-md-4 agileits-social top_content" style="float:right">
