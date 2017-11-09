@@ -169,7 +169,34 @@
 					</ul>
 				</div>
 				<div class="nav navbar-nav logo wow zoomIn animated" data-wow-delay=".7s">
-					<h1><%= link_to(root_path) do %> <span style="color: <%= @store.store_color %> !important"><%= @store.name %></span> <span class="tag"> <% if !@store.slogan.blank? %> <%= @store.slogan %> <%end%></span> <% end %></h1>
+					<h1><%= link_to(root_path) do %> <span style="color: <%= @store.store_color %> !important">
+          <style>
+          @@media (max-width:480px) {
+            .our_logo{
+              max-width: 5em !important;
+              max-height: 5em !important;
+            }
+          }
+          @@media (max-width:720px) {
+            .our_logo{
+              max-width: 10em !important;
+              max-height: 5em !important;
+            }
+          }
+          @@media (max-width:1080px) {
+            .our_logo{
+              max-width: 10em !important;
+              max-height: 5em !important;
+            }
+          }
+          </style>
+          <% if @store.logo_status %>
+              <%= image_tag(@store.logo_url.to_s),class:"our_logo" %>
+          <% else %>
+              <%= @store.name %>
+
+          <% end %>
+          </span> <span class="tag"> <% if !@store.slogan.blank? %> <%= @store.slogan %> <%end%></span> <% end %></h1>
 				</div>
 				<div class="nav navbar-nav navbar-right header-two-right">
 					<div class="header-right my-account">
