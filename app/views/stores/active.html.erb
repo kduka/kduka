@@ -36,7 +36,7 @@
   <% else %>
       <h3 style="text-align:center"> Click the Button Below to De-Activate your store </h3>
       <%= form_for :store, :url => {controller: 'stores', action: 'deactivate'} do |f| %>
-          <p style="text-align:center"><%= f.submit 'Deactivate Store', class: 'btn btn-lg btn-danger' %>
+          <p style="text-align:center"><%= f.submit 'Deactivate Store', class: 'btn btn-lg btn-danger', style:'background-color:red !important;border-color:red !important' %>
       <% end %>
   <% end %>
 </div>
