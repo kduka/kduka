@@ -94,6 +94,26 @@
       }
     }
 </style>
+<style>
+@media (max-width:480px) {
+  .our_logo{
+    max-width: 70px !important;
+    max-height: 70px !important;
+  }
+}
+@media (max-width:720px) {
+  .our_logo{
+    max-width: 70px !important;
+    max-height: 70px !important;
+  }
+}
+@media (max-width:1080px) {
+  .our_logo{
+    max-width: 70px !important;
+    max-height: 100px !important;
+  }
+}
+</style>
 <!--Custom Colors-->
 </head>
 <body>
@@ -170,26 +190,7 @@
 				</div>
 				<div class="nav navbar-nav logo wow zoomIn animated" data-wow-delay=".7s">
 					<h1><%= link_to(root_path) do %> <span style="color: <%= @store.store_color %> !important">
-          <style>
-          @media (max-width:480px) {
-            .our_logo{
-              max-width: 70px !important;
-              max-height: 70px !important;
-            }
-          }
-          @media (max-width:720px) {
-            .our_logo{
-              max-width: 70px !important;
-              max-height: 70px !important;
-            }
-          }
-          @media (max-width:1080px) {
-            .our_logo{
-              max-width: 70px !important;
-              max-height: 100px !important;
-            }
-          }
-          </style>
+
           <% if @store.logo_status %>
               <%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
           <% else %>
