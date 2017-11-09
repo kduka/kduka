@@ -49,6 +49,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <!-- //end-smooth-scrolling -->
   <!--Custom Colors-->
   <style>
+  <% if !@store.store_font.nil? %>
+  body{
+    font-family: <<%= @store.store_font %> !important;
+  }
+  <% end %>
     .myclass:hover{
       color: <%= @store.store_color %> !important;
     }
