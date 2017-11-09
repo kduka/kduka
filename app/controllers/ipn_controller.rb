@@ -1,6 +1,8 @@
 class IpnController < ApplicationController
   def index
 
+    puts request.body.read
+
     response = Hash.from_xml(request.body.read)
 
     r = response["InstantPaymentNotification"]
