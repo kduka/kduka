@@ -1,5 +1,5 @@
 
-<h1>User Login</h1>
+<h1 style="color:#fff !important"><br><br>User Login<br><br></h1>
 
 <div class="col-md-6 col-md-offset-3 containerw3layouts-agileits">
 
@@ -25,7 +25,7 @@
 			<li>
 				<%= f.check_box :remember_me %>
 			</li>
-			<li>
+			<li style="text-align:center !important">
 				<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
 				<%= link_to "Sign up", new_registration_path(resource_name) %> |
 				<% end -%> <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
