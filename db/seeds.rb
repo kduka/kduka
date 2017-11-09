@@ -69,8 +69,3 @@ Font.create!([
               ])
 
 =end
-
-StoreAmount.create!([
-                 {:amount => 1000,:id=>'1'},
-
-             ])

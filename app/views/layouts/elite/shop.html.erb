@@ -27,7 +27,7 @@ next if item == '.' or item == '..' %>
 <style>
 <% if !@store.store_font.nil? %>
 body{
-  font-family: <<%= @store.store_font %> !important;
+  font-family: <%= @store.store_font %> !important;
 }
 <% end %>
 @media (max-width: 767px){
