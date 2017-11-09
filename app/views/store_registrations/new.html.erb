@@ -1,3 +1,8 @@
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 <div class="skil" style="padding-bottom:3em">
 <h2 style="text-align:center">New Store</h2>
 
@@ -21,7 +26,7 @@
     <p style="color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
 
     <div class="url_prev"></div>
-    <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
+      <a data-toggle="tooltip" data-placement="right" title="If you enter 'john', your store will be john.kduka.co.ke"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
     </div>
 
   <div class="field">
@@ -29,7 +34,7 @@
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true,class:'form-control text-center',placeholder:'Email to be used to login into the store account',onchange:'store_reg()',data:'false' %>
     <p style="color: green;font-weight:bold" id="email_prev"></p>
-    <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
+    <a data-toggle="tooltip" data-placement="right" title="This is the email that you will use to log in to the store that you are now creating"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
   </div>
 
   <div class="field">
@@ -37,7 +42,7 @@
     <%= f.label :display_email %>
     <%= f.text_field :display_email, 'data-valid':'false', autofocus: true, class:'form-control text-center' ,placeholder:'Email you want your clients to see',onchange:'store_reg()' %>
     <div class="display_email_prev"></div>
-    <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
+    <a data-toggle="tooltip" data-placement="right" title="This is the email that will be seen by your clients when they visit your online store. Messages from your store's contact page will be sent to this email"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
   </div>
 </div>
 <div class="col-md-6 col-xs-12">
@@ -46,7 +51,7 @@
     <%= f.label :phone %>
     <%= f.text_field :phone, autofocus: true, class:'form-control text-center',placeholder:'Phone Number you want your clients to see',onchange:'store_reg()' %>
     <div class="phone_prev"></div>
-    <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
+    <a data-toggle="tooltip" data-placement="right" title="This is the phone number that will be seen by your clients when they visit your online store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
   </div>
 
   <div class="field">
@@ -57,7 +62,7 @@
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off", class:'form-control text-center' ,placeholder:'Password',onchange:'store_reg()', 'data-valid':'false'%>
     <span class="store_password_prev"></span>
-    <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
+    <a data-toggle="tooltip" data-placement="right" title="Your store's password should be at least six(6) characters long, contain at least one upper case letter and one number"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
   </div>
 
   <div class="field">
@@ -65,7 +70,7 @@
     <%= f.label "Repeat Password" %>
     <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control text-center',placeholder:'Repeat Password' ,onchange:'store_reg()'%>
     <span class="store_password_confirmation_prev"></span>
-    <p><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></p>
+    <a data-toggle="tooltip" data-placement="right" title="This should match the password you inserted above"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
   </div>
 
 </div>
