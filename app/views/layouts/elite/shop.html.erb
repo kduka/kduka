@@ -107,7 +107,7 @@ button.w3view-cart {
 				}
 				</style>
 				<% if @store.logo_status %>
-						<%= image_tag(@store.logo_url.to_s),class:"our_logo" %>
+						<%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
 				<% else %>
 						<%= @store.name %>
 
