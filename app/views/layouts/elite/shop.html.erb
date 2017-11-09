@@ -87,24 +87,24 @@ button.w3view-cart {
 			<div class="col-md-4 logo_agile">
 				<h1><a href="<%= root_path %>">
 				<style>
-				@@media (max-width:480px) {
-					.our_logo{
-						max-width: 5em !important;
-						max-height: 5em !important;
-					}
-				}
-				@@media (max-width:720px) {
-					.our_logo{
-						max-width: 10em !important;
-						max-height: 5em !important;
-					}
-				}
-				@@media (max-width:1080px) {
-					.our_logo{
-						max-width: 10em !important;
-						max-height: 5em !important;
-					}
-				}
+				@media (max-width:480px) {
+          .our_logo{
+            max-width: 5em !important;
+            max-height: 5em !important;
+          }
+        }
+        @media (max-width:720px) {
+          .our_logo{
+            max-width: 10em !important;
+            max-height: 5em !important;
+          }
+        }
+        @media (max-width:1080px) {
+          .our_logo{
+            max-width: 10em !important;
+            max-height: 5em !important;
+          }
+        }
 				</style>
 				<% if @store.logo_status %>
 						<%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
