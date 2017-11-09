@@ -107,7 +107,12 @@ next if item == '.' or item == '..' %>
 			<h3 class="agileits-title">A Few words about us</h3>
 			<p>Kduka is a Kenyan based E-Commerce platform that enables its users
         to easily create and manage online stores for the purpose of selling and delivering products to their
-        clients
+        clients</p>
+      <br>
+
+      <p>We enable our users to create multiple stores(e-commerce website), add their products and customize the look and feel of their website in minutes.</p>
+<br>
+      <p>No coding expertise is required</p>
        </p>
 		</div>
 	</div>
@@ -126,14 +131,19 @@ next if item == '.' or item == '..' %>
 			</style>
 			<p>You can Log in if you already have an account or you can log in to your stores. If you don't have an account you can Sign Up</p>
       <div class="col-md-4" style="margin-bottom:2em">
+        <p>New Users</p>
+        <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
+      </div>
+
+      <div class="col-md-4" style="margin-bottom:2em">
+        <p>Login as a User</p>
 			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-user"></i> User Login</span></a>
       </div>
       <div class="col-md-4" style="margin-bottom:2em">
+        <p>Login into a Store</p>
 			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
       </div>
-      <div class="col-md-4" style="margin-bottom:2em">
-			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
-      </div>
+
 		</div>
 	</div>
 	<!-- //logins -->
