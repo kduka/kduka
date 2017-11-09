@@ -11,14 +11,14 @@ class StoresController < ApplicationController
     @setup = setup
     if @store.init == false
       if setup.empty? && @store.important == true
-        flash[:notice] = 'Congratulations! Your Account is all setup!'
+        flash[:notice] = 'Congratulations! Your Account is all setup! Go to activation settings to activate it'
         @store.update(init: true)
       end
     end
     @important = important
     if @store.important == false
       if @important.empty? && @store.init == true
-        flash[:notice] = 'Congratulations! Your Account is all setup!'
+        flash[:notice] = 'Congratulations! Your Account is all setup! Go to activation settings to activate it'
         @store.update(important: true)
       end
     end
@@ -246,7 +246,7 @@ end
     @i = 1
     cats = @store.category.all.first
     if cats.nil?
-      messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{new_category_path}'>Create Category </a>"
+      messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{new_category_path}'>Click here to create a new category </a>"
       @i+=1
     end
 
@@ -255,7 +255,7 @@ end
       if cats.nil?
         messages[@i] = "<span style='color:black'>Create Products</span>"
       else
-        messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{new_store_product_path(current_store.id)}'>Create Products</a>"
+        messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{new_store_product_path(current_store.id)}'>Click here to create a new product</a>"
       end
 
       @i+=1
@@ -550,11 +550,9 @@ end
     @collection = @store.collection_point_status
 
     if @auto == false && @manual == false && @collection == false
-      messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{stores_deliver_path}'>You need to setup a delivery option first!</a>"
+      messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{stores_deliver_path}'>You need to setup a delivery option first! Click here.</a>"
       @i+=1
       messages[@i] = "<span style='font-weight:bold;text-decoration:none;color:#000'>Activate your Store</span>"
-
-
       deactivate_store
     end
 

@@ -5,6 +5,7 @@
       <strong>
 
         <% @setup.each do |k, m| %>
+
             <H3><%= "#{k}. " %><%= m.html_safe %></H3>
         <% end %>
       </strong>
@@ -167,7 +168,7 @@
 
 <div class="skil">
   <% if user_signed_in? %>
-      <%= link_to "MANAGE A STORE", new_store_session_path, class: 'btn btn-primary', style: 'margin:1em;', target: '_blank' %>
+      <%= link_to "LOGIN INTO A STORE", new_store_session_path, class: 'btn btn-primary', style: 'margin:1em;', target: '_blank' %>
       <h1 style="text-align:center;margin-bottom:2em">Your Stores</h1>
 
       <% unless @stores.blank? %>
@@ -201,8 +202,9 @@
                   %>
                   <td><%= @store_products.count %></td>
                   <td><%= @store_sales.amount %></td>
-                  <td><%= link_to "Visit Shop (http://#{s.subdomain}.kduka.co.ke)", "http://#{s.subdomain}.kduka.co.ke", target: "_blank" %>
-                    |  <%= link_to "Delete", store_path(s), method: 'delete', confirm: "Are you Sure you want to delete this store?" %></td>
+                  <td><%= link_to "Manage Store", new_store_session_path , target: "_blank", style:'color:#06B216' %> |
+                    <%= link_to "Visit Shop (http://#{s.subdomain}.kduka.co.ke)", "http://#{s.subdomain}.kduka.co.ke", target: "_blank" %> |
+                    <%= link_to "Delete", store_path(s), method: 'delete', confirm: "Are you Sure you want to delete this store?", style:'color:red' %></td>
                 </tr>
                 <% num = num + 1 %>
             <% end %>

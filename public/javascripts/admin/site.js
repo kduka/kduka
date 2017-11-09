@@ -14,6 +14,10 @@ $(document).ready(function () {
     $('#myTable').DataTable();
     $('#myTable2').DataTable();
 
+    /*$('#mySortTable').DataTable({
+        aaSorting: [[4, 'asc']]
+    });*/
+
     if ($("#delivery_status").val() == 1) {
         $(".locate").attr('disabled', 'true');
     }

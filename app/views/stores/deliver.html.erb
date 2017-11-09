@@ -14,54 +14,8 @@
   <h1 style="text-align:center">Delivery Settings</h1><br>
   <div id="fixed-div"></div>
   <%= form_for :store, :url => {controller: 'stores', action: 'update_delivery'}, method: 'put' do |f| %>
-<span style="color: green">
-      <p>To use this option, <a href="https://sendyit.com/"> Create an account at  SendyIt</a> to get a Username and Password. This option enables third party delivery.</p>
-      <p>Your Users will be able to search for locations and we'll pace the delivery for you. Always ensure you have a good standing balance in order for your clients to place orders.</p>
-      <p>Client will pay for the given quotation when completing an Order.</p></span>
-      <br>
-      <div class="form-group">
-        <%= f.label "Enable Automatic Delivery Services" %>
-        <%= f.check_box :auto_delivery_status, id: 'deliveryswitch' %>
-      </div>
 
-
-
-      <div class="form-group">
-        <%= f.label "Set pickup point for goods (This is where the goods will be picked from)" %>
-
-        <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate', disabled: 'disabled', onkeyup: "locate();" %>
-            <p>
-            <div id="suggesstion-box"></div>
-            </p>
-        <% else %>
-            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate' %>
-            <p>
-            <div id="suggesstion-box"></div>
-            </p>
-        <% end %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Sendy Username" %>
-
-        <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
-        <% else %>
-            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', class: 'locate form-control' %>
-        <% end %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Sendy Key" %>
-
-        <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
-        <% else %>
-            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', class: 'locate form-control' %>
-        <% end %>
-      </div>
-<br><br>
+<br>
       <span style="color: green">Option for having your client collect their goods from a certain collection point</span>
       <br>
       <div class="form-group">
@@ -108,6 +62,57 @@
           <button class="btn btn-info" id="add-delivery" value="">Add Option</button>
         </p>
         <div style="margin-top: 2em; margin-bottom: 1em;" class="manual del_opts"><%= render "store_deliveries/locations" %></div>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <%= f.label "Enable Automatic Delivery Services" %>
+        <%= f.check_box :auto_delivery_status, id: 'deliveryswitch' %>
+      </div>
+      <span style="color: green">
+      <p>To use this option, <a href="https://sendyit.com/"> Create an account at  SendyIt</a> to get a Username and Password. This option enables third party delivery.</p>
+      <p>Your Users will be able to search for locations and we'll pace the delivery for you. Always ensure you have a good standing balance in order for your clients to place orders.</p>
+      <p>Client will pay for the given quotation when completing an Order.</p></span>
+      <br>
+
+
+
+
+      <div class="form-group">
+        <%= f.label "Set pickup point for goods (This is where the goods will be picked from)" %>
+
+        <% if (@store.auto_delivery_status == false) %>
+            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate', disabled: 'disabled', onkeyup: "locate();" %>
+            <p>
+            <div id="suggesstion-box"></div>
+            </p>
+        <% else %>
+            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate' %>
+            <p>
+            <div id="suggesstion-box"></div>
+            </p>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Sendy Username" %>
+
+        <% if (@store.auto_delivery_status == false) %>
+            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
+        <% else %>
+            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', class: 'locate form-control' %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Sendy Key" %>
+
+        <% if (@store.auto_delivery_status == false) %>
+            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
+        <% else %>
+            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', class: 'locate form-control' %>
+        <% end %>
       </div>
 
       <div class="form-group">
