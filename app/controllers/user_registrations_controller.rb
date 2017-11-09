@@ -12,10 +12,9 @@ class UserRegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.create(user_params.merge(init:false))
-
     if @user.save
       flash[:notice] = "Registration Successful! Please check your email for a confirmation message"
-      redirect_to(new_user_session_path)
+      redirect_to(request.referer)
     else
       flash[:notice] = "Sorry, Something went wrong. Please Contact Admin"
       redirect_to(request.referer)

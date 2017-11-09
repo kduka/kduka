@@ -26,31 +26,31 @@
 
     <div class="field">
       <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, class:'form-control',style:'text-align:center', onchange:'user_reg()'%>
+      <%= f.text_field :name, autofocus: true,style:'text-align:center', onchange:'user_reg()'%>
       <div class="user_name_prev"></div>
       <br>
     </div>
 
     <div class="field">
       <%= f.label "User Login Email" %><br />
-      <%= f.email_field :email, autofocus: true, class:'form-control',style:'text-align:center', onkeyup:'user_reg()'%>
+      <%= f.email_field :email, autofocus: true,style:'text-align:center', onkeyup:'user_reg()'%>
       <div class="user_email_prev"></div>
       <br>
     </div>
 
     <div class="field">
-      <%= f.label "Store Login Password" %>
+      <%= f.label "User Login Password" %>
       <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
-      <%= f.password_field :password, autocomplete: "off", class:'form-control',style:'text-align:center', onkeyup:'user_reg()'%>
+      <%= f.password_field :password, autocomplete: "off",style:'text-align:center', onkeyup:'user_reg()'%>
       <div class="user_password_prev"></div>
       <br>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control',style:'text-align:center' %>
+      <%= f.password_field :password_confirmation, autocomplete: "off",style:'text-align:center' %>
       <div class="user_password_confirmation_prev"></div>
       <br>
     </div>
