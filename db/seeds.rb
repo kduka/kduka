@@ -69,3 +69,11 @@ Font.create!([
               ])
 
 =end
+
+Font.create!([
+                  {:name => 'Arial'},
+                  {:name => 'Georgia'},
+                  {:name => 'Comic Sans MS'},
+                  {:name => 'Bookman'},
+                  {:name => 'Garamond'},
+              ])
