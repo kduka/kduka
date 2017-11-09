@@ -1,7 +1,6 @@
 <div class="skil">
 <% if !@categories.blank? %>
-<p><strong>Total Products : <%= @product.count rescue nil %></strong></p>
-<p><strong>Active : <%= @store.active %></strong></p>
+<h3><strong>Total Products : <%= @product.count rescue nil %></strong></h3>
 <% if !@product.blank? %>
 <table id="data-tables" class="table datatables no-footer">
   <thead>
@@ -28,12 +27,17 @@
 </table>
 
     <% else %>
+          <div class="text-center">
+          <br><br>
 
-    <p>You dont have any Products in this store yet</p>
+    <p style="color: orange;font-size: 25px;">You dont have any Products in this store yet</p>
+          <br><br>
+
+          <%= link_to "Add Product", new_store_product_path(current_store.id), class:'btn btn-primary',style:'background-color:#06B216 !important;border-color:#06B216 !important' %>
 
     <% end %>
 
-
+      </div>
 
 <%else%>
     <a href="<%= new_category_path(@store) %>">Create a Category</a> First!

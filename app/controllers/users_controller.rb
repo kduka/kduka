@@ -70,7 +70,7 @@ private
 
     if stores.nil?
       @user.update(init:false)
-      messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{new_store_registration_path}'>Create your first store! </a>"
+      messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{new_store_registration_path}'>Click here to create your first store! </a>"
       @i+=1
     else
       @user.update(init:true)
