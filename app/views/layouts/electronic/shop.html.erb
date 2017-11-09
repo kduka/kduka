@@ -135,7 +135,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <h1><a href="<%= root_path %>">
 
         <% if @store.logo_status %>
-            <%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
+            <span style="text-align:center"><%= image_tag(@store.logo_url.to_s,class:"our_logo") %></span>
         <% else %>
             <%= @store.name %>
 
