@@ -13,6 +13,7 @@ $(document).ready(function () {
     $('#example').DataTable();
     $('#myTable').DataTable();
     $('#myTable2').DataTable();
+    $('#data-tables').DataTable();
 
     /*$('#mySortTable').DataTable({
         aaSorting: [[4, 'asc']]

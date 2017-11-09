@@ -25,6 +25,9 @@ a:focus, a:active, a:hover ,a.dropdown-toggle{
     transition: all 0.3s;
 	text-decoration:none;
 }
+.nav-tabs > li > a {
+    color: #06B216 !important;
+}
 a {
     background-color:none;
 }
