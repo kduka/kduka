@@ -1,14 +1,21 @@
 <div class="skil">
+  <script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+  });
+  </script>
   <%= form_for :store, :url => {controller: 'stores', action: 'update_pages'}, method: 'put' do |f| %>
 
       <div class="form-group">
-        <%= f.label "Home Page Enabled" %>
+        <%= f.label "Enable Home Page" %>
         <%= f.check_box :homepage_status, id: 'homepageswitch' %>
+        <a data-toggle="tooltip" data-placement="right" title="If you check this your home page will be visible to your clients"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
         Banner Image
         <%= f.file_field :banner, class:'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This will be the banner image client will see when they visit your store's home page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
@@ -17,8 +24,9 @@
 
 
       <div class="form-group">
-        <%= f.label "About Page Enabled" %>
+        <%= f.label "Enable About Page" %>
         <%= f.check_box :aboutpage_status, id: 'aboutpageswitch' %>
+        <a data-toggle="tooltip" data-placement="right" title="If you check this your about page will be visible to your clients"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
@@ -27,6 +35,7 @@
         <% if (@store.aboutpage_status == false) %>
             <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea', id: 'aboutpage_text', disabled: 'disabled' %>
         <% else %>
+        <a data-toggle="tooltip" data-placement="right" title="This is the text that will appear in your about page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
             <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea', id: 'aboutpage_text'  %>
         <% end %>
       </div>

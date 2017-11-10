@@ -10,21 +10,29 @@
       </ul>
     </div>
   <% end %>
+  <script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+  });
+  </script>
 
   <div class="field">
       <%= f.label :name %><br />
       <%= f.text_field :name, autofocus: true, class:'form-control' ,required:'required' %>
+      <a data-toggle="tooltip" data-placement="right" title="This is the category name"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
     </div><br><br>
 
 
     <div class="field">
       <%= f.label :description %><br />
       <%= f.text_area :description, autofocus: true, class:'form-control' %>
+      <a data-toggle="tooltip" data-placement="right" title="This is the category description"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
     </div><br><br>
 
 	<div class="field">
       <%= f.label "Make Category Active" %>
       <%= f.check_box :active, autofocus: true %>
+      <a data-toggle="tooltip" data-placement="right" title="If you check this, the category will be available when creating your products and will also appear in your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
     </div><br><br>
 
   <div class="actions" style="text-align:center">

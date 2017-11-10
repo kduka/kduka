@@ -3,6 +3,11 @@
   <div id="tabs" class="tabs">
     <div class="graph">
   <nav>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
 			<ul>
 				<li class="tab-current"><a href="#section-1"><span>Choose Layout</span></a></li>
 				<li><a href="#section-2"><span>Choose Layout Color</span></a></li>
@@ -35,6 +40,7 @@
           <div class="form-group">
             Store Color
             <%= f.text_field :store_color, :class => 'form-control colorpicker' %>
+            <a data-toggle="tooltip" data-placement="right" title="This color will appear in your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
           </div>
           <br>
           <div id="clrbx" style="height:250px;width:250px;padding:1em;border-style:solid;border-color:<%= @store.store_color %>;background-color:<%= @store.store_color %>" class="backcolor"></div>
@@ -47,6 +53,7 @@
           <div class="col-md-6  form-group">
             Store Font
             <%= f.select :store_font, options_from_collection_for_select(Font.all, 'name','name',@store.store_font),{:include_blank => 'Default'} ,{:class=>'form-control'} %>
+            <a data-toggle="tooltip" data-placement="right" title="This will appear as your store's main font"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
           </div>
           <div class="col-md-6" id="fntbx">
             <b>Preview</b>

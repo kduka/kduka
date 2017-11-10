@@ -1,43 +1,55 @@
 <div class="skil"><br>
+  <script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+  });
+  </script>
 <h1 style="text-align:center">Social Media Settings</h1><br>
 <%= form_for :store, :url => {controller:'stores', action:'update_social'}, method:'put' do |f|%>
 
 <div class="form-group">
       <%= f.label "Facebook Link" %>
       <%= f.text_field :facebook, class:'form-control'%>
+      <a data-toggle="tooltip" data-placement="right" title="This is the link to your facebook page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
 </div>
 
 
 <div class="form-group">
       <%= f.label "Instagram Link" %>
       <%= f.text_field :instagram, class:'form-control'%>
+      <a data-toggle="tooltip" data-placement="right" title="This is the link to your instagram page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
 </div>
 
 
 <div class="form-group">
       <%= f.label "Twitter Link" %>
       <%= f.text_field :twitter, class:'form-control'%>
+      <a data-toggle="tooltip" data-placement="right" title="This is the link to your twitter page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
 </div>
 
 <div class="form-group">
       <%= f.label "LinkedIn Link" %>
       <%= f.text_field :linkedin, class:'form-control'%>
+      <a data-toggle="tooltip" data-placement="right" title="This is the link to your linkedin page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
 </div>
 
 <div class="form-group">
       <%= f.label "Youtube Link" %>
       <%= f.text_field :youtube, class:'form-control'%>
+      <a data-toggle="tooltip" data-placement="right" title="This is the link to your Youtube channel"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
 </div>
 
 <div class="form-group">
       <%= f.label "Pinterest Link" %>
       <%= f.text_field :pinterest, class:'form-control'%>
+      <a data-toggle="tooltip" data-placement="right" title="This is the link to your pinterest page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
 </div>
 
 
 <div class="form-group">
       <%= f.label "Vimeo Link" %>
       <%= f.text_field :vimeo, class:'form-control'%>
+      <a data-toggle="tooltip" data-placement="right" title="This is the link to your viemo channel"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
 </div>
 <p></p>
 

@@ -1,4 +1,9 @@
 <div class="skil">
+  <script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+  });
+  </script>
 <h1 style="text-align:center">Editing Product</h1>
 
   <% if @product.errors.any? %>
@@ -30,38 +35,37 @@
 
     <div class="form-group">
       <%= f.label :name %>
-      <%= f.text_field :name,class:'form-control' %>
+      <%= f.text_field :name, class: 'form-control', required:'required' %>
+      <a data-toggle="tooltip" data-placement="right" title="This will be the name of your product that will appear in your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
     </div>
 
     <div class="form-group">
       <%= f.label :price %>
-      <%= f.text_field :price, class:'form-control' %>
+      <%= f.number_field :price, class: 'form-control' , required:'required', min:0%>
+      <a data-toggle="tooltip" data-placement="right" title="This will be the price of your product in Kenyan Shillings"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
     </div>
-
-
 
     <div class="form-group">
-      Category
-	    <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name',@product.category_id),{} ,{:class=>'form-control',required:'required',selected: :category_id} %>
+      <%= f.label "Category" %>
+      <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id', 'name'), {}, {:class => 'form-control', required:'required'} %>
+      <a data-toggle="tooltip" data-placement="right" title="This is the category in which your product will belong. You are responsible for creating your store categories"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+    </div>
+    <div class="form-group">
+      <%= f.label "Number of products in stock" %>
+      <%= f.number_field :quantity, class: 'form-control', required:'required', min:0 %>
+      <a data-toggle="tooltip" data-placement="right" title="This is the amount of this product that will be in stock (available for sale)"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
     </div>
 
-
-      <div class="form-group">
-        <%= f.label :quantity %>
-        <%= f.number_field :quantity, class:'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :description %>
-        <%= f.text_area :description, class:'form-control' %>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label "Show product in the store" %>
-        <%= f.check_box :active %>
-      </div>
-      <br>
+    <div class="form-group">
+      <%= f.label "Description" %>
+      <%= f.text_area :description, class: 'form-control' %>
+      <a data-toggle="tooltip" data-placement="right" title="This is your product's description that will appear when someone views this specific product in your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+    </div>
+    <div class="form-group">
+      <%= f.label "Show product in the store" %>
+      <%= f.check_box :active %>
+      <a data-toggle="tooltip" data-placement="right" title="If you check this, your product will be visible to your clients when they visit your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+    </div>
 
       <p><em>Weight and Size of the Product(Optional, recommended if you want to use automated delivery)</em></p>
 
@@ -69,51 +73,60 @@
       <div class="form-group">
         <%= f.label "Length (cm)" %>
         <%= f.number_field :length, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is the length of your product in centimeters"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
         <%= f.label "Width (cm)" %>
         <%= f.number_field :width, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is the width of your product in centimeters"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
 
       <div class="form-group">
         <%= f.label "Height (cm)" %>
         <%= f.number_field :height, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is the height of your product in centimeters"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
 
       <div class="form-group">
         <%= f.label "Weight (kgs)" %>
         <%= f.number_field :weight, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is the weight of your product in kilograms"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
 
       <p><em>Upload images of the products</em></p>
 
-	<div class="form-group">
-      Upload an Image
-      <%= f.file_field :image, class:'form-control' %>
-    </div>
+      <div class="form-group">
+        Main Image
+        <%= f.file_field :image, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is the main image for your product. It will be the first image people see for your product"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+      </div>
 
-    <div class="form-group">
-      Image 1
-      <%= f.file_field :img1, class:'form-control' %>
-    </div>
+      <div class="form-group">
+        Image 1
+        <%= f.file_field :img1, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+      </div>
 
       <div class="form-group">
         Image 2
         <%= f.file_field :img2, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
         Image 3
         <%= f.file_field :img3, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
         Image 4
         <%= f.file_field :img4, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
   <div class="actions">

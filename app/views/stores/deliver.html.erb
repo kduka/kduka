@@ -1,7 +1,11 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk">
 </script>
-
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 <style>
   #fixed-div {
     position: fixed;
@@ -19,8 +23,9 @@
       <span style="color: green">Option for having your client collect their goods from a certain collection point</span>
       <br>
       <div class="form-group">
-        <%= f.label "Enable Collection Point" %>
+        <%= f.label "Enable Collection Point",style:'font-weight:900' %>
         <%= f.check_box :collection_point_status, id: 'collectswitch' %>
+        <a data-toggle="tooltip" data-placement="right" title="If you check this clients will be able to collect their goods from a certain collection point that you will specify"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
@@ -30,6 +35,7 @@
 
         <% else %>
             <%= f.text_area :collection_point, class: 'form-control collect', id: 'thedrop' %>
+            <a data-toggle="tooltip" data-placement="right" title="This will be your drop point"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
         <% end %>
       </div>
 
@@ -37,8 +43,9 @@
       <span style="color: green">You can set your own locations and their shipping prices for your clients</span>
       <br>
       <div class="form-group">
-        <%= f.label "Enable Manual Delivery" %>
+        <%= f.label "Enable Manual Delivery",style:'font-weight:900' %>
         <%= f.check_box :manual_delivery_status, id: 'manualswitch' %>
+        <a data-toggle="tooltip" data-placement="right" title="If you check this clients will be able to collect their goods from a certain collection points that you will specify. You can add a collection point and its corresponding shipping price"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
@@ -53,11 +60,12 @@
 
       <div class="form-group" style="background-color: whitesmoke;border-radius: 1px;">
         <%= f.label "Add a Delivery Location" %>
-        <%= text_area_tag(:delivery_option, nil, id: 'del_opt', class: 'manual form-control') %>
+        <%= text_area_tag(:delivery_option, nil, id: 'del_opt', class: 'manual form-control') %><br>
         <%= f.label "Price" %>
         <%= text_field_tag(:delivery_price, nil, id: 'del_price', type: 'number', class: 'manual form-control') %>
+        <a data-toggle="tooltip" data-placement="right" title="Cost to deliver to the specified location"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
         <span class="del_opt_err"></span>
-        <br>
+        <br><br><br>
         <p>
           <button class="btn btn-info" id="add-delivery" value="">Add Option</button>
         </p>
@@ -69,6 +77,7 @@
       <div class="form-group">
         <%= f.label "Enable Automatic Delivery Services" %>
         <%= f.check_box :auto_delivery_status, id: 'deliveryswitch' %>
+        <a data-toggle="tooltip" data-placement="right" title="If you check this you will be able to use third party delivery services to deliver products to your clients"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
       <span style="color: green">
       <p>To use this option, <a href="https://sendyit.com/"> Create an account at  SendyIt</a> to get a Username and Password. This option enables third party delivery.</p>
@@ -89,6 +98,7 @@
             </p>
         <% else %>
             <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate' %>
+            <a data-toggle="tooltip" data-placement="right" title="Location from which the goods will be picked from for them to be delivered to your clients"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
             <p>
             <div id="suggesstion-box"></div>
             </p>
@@ -102,6 +112,7 @@
             <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
         <% else %>
             <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', class: 'locate form-control' %>
+            <a data-toggle="tooltip" data-placement="right" title="Your Sendy username after registering at www.sendyit.com"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
         <% end %>
       </div>
 
@@ -112,6 +123,7 @@
             <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
         <% else %>
             <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', class: 'locate form-control' %>
+            <a data-toggle="tooltip" data-placement="right" title="Your Sendy key given to you after registering at www.sendyit.com"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
         <% end %>
       </div>
 
