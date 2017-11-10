@@ -1,32 +1,42 @@
 <div class="skil">
+  <script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+  });
+  </script>
   <br><h1 style="text-align:center">Store Settings</h1><br>
   <%= form_for :store, :url => {controller: 'stores', action: 'update_store'}, method: 'put' do |f| %>
 
       <div class="form-group">
         <%= f.label "Store Name" %>
-        <%= f.text_area :name, class: 'form-control' %>
+        <%= f.text_area :name, class: 'form-control',required:'required' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is your store name"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
         <%= f.label "Store URL" %>
         <p>If you enter "john" we will automatically create john.kduka.co.ke for you.</p>
-        <%= f.text_field :subdomain, class: 'form-control', placeholder: 'john' %>
+        <%= f.text_field :subdomain, class: 'form-control', placeholder: 'john',required:'required' %>
+        <a data-toggle="tooltip" data-placement="right" title='This is the link you will give your clients to access your store. If you enter "john" we will automatically create john.kduka.co.ke for you'><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
 
       <div class="form-group">
         <%= f.label "Slogan" %>
         <%= f.text_area :slogan, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is your store's slogan"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="field">
-        <%= f.label "Use Logo" %><br />
+        <%= f.label "Use Logo" %>
         <%= f.check_box :logo_status %>
-      </div>
+        <a data-toggle="tooltip" data-placement="right" title="If you check this, you'll be able to use your logo in your store in place of your store name"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+      </div><br>
 
       <div class="field">
-        <%= f.label "Upload Logo" %><br />
+        <%= f.label "Upload Logo" %>
         <%= f.file_field :logo, autofocus: true, class:'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="Select the logo which you want to upload to your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="field">
@@ -38,6 +48,7 @@
         <%= f.label "Display Email" %>
         <p>The email clients can contact you with</p>
         <%= f.text_field :display_email, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is the email that will be accessible to your clients when they visit your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
 
@@ -45,12 +56,14 @@
         <%= f.label "Phone" %>
         <p>The number clients can contact you with</p>
         <%= f.text_field :phone, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is the phone number that will be accessible to your clients when they visit your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
 
       <div class="form-group">
         <%= f.label "Business Location" %>
         <p>Where are you located</p>
         <%= f.text_area :business_location, class: 'form-control' %>
+        <a data-toggle="tooltip" data-placement="right" title="This is your business location"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div><br><br>
 
       <p style="text-align:center"><%= f.submit 'Save Store Settings', class: 'btn btn-success btn-lg' %>

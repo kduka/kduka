@@ -210,20 +210,6 @@
               <a href="<%= stores_path %>"><i class="fa fa-tachometer"></i> <span>Overview</span></a>
             </li>
             <li id="menu-academico">
-              <a href="#"><i class="fa fa-product-hunt"></i> <span> Products</span></a>
-              <ul id="menu-academico-sub">
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= products_manage_path %>">Manage Products</a>
-                </li>
-
-                <li id="menu-academico-avaliacoes">
-                  <% if !Category.where(store_id: current_store.id).blank? %>
-                      <a href="<%= new_store_product_path(@store) %>">Add Product</a>
-                  <% end %>
-                </li>
-              </ul>
-            </li>
-            <li id="menu-academico">
               <a href="#"><i class="fa fa-dot-circle-o"></i> <span> Categories</span></a>
               <ul id="menu-academico-sub">
                 <li id="menu-academico-avaliacoes">
@@ -238,11 +224,25 @@
 
               </ul>
             </li>
+            <li id="menu-academico">
+              <a href="#"><i class="fa fa-product-hunt"></i> <span> Products</span></a>
+              <ul id="menu-academico-sub">
+                <li id="menu-academico-avaliacoes">
+                  <a href="<%= products_manage_path %>">Manage Products</a>
+                </li>
+
+                <li id="menu-academico-avaliacoes">
+                  <% if !Category.where(store_id: current_store.id).blank? %>
+                      <a href="<%= new_store_product_path(@store) %>">Add Product</a>
+                  <% end %>
+                </li>
+              </ul>
+            </li>
             <li>
               <a href="<%= store_orders_url %>"><i class="fa fa-shopping-bag"></i> <span>Orders</span></a>
             </li>
             <li>
-              <a href="<%= stores_theme_path %>"><i class="fa fa-window-maximize"></i> <span>Layouts</span></a>
+              <a href="<%= stores_theme_path %>"><i class="fa fa-desktop"></i> <span>Layouts</span></a>
             </li>
             <li>
               <a href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> <span>Pages</span></a>
