@@ -17,7 +17,9 @@
     </div>
     <h5><a style="color:#000" class="myclass" href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h5>
     <div class="simpleCart_shelfItem">
-      <p><i class="item_price" style="font-weight:900"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></i></p>
+      <p>
+        <i class="item_price" style="font-weight:900"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></i>
+      </p>
       <p><%= product.quantity %> Units in Stock</p>
       <%= form_for order_item, remote: true do |f| %>
           <%= f.hidden_field :quantity, value: 1, class: "item_quantity", min: 1 %>
@@ -27,17 +29,23 @@
               <% if oi.product_id == product.id %>
                   <% exist = true %>
               <% end %>
+          <% end %>
+          <% if product.quantity < 1 %>
+              <%= f.button type: 'submit', :class => "w3ls-cart",disabled:'disabled' do %>
+                  Out of Stock!
               <% end %>
+          <% else %>
               <% if !exist %>
                   <%= f.button type: 'submit', :class => "w3ls-cart" do %>
                       Add to Cart
-                      <% end %>
-                  <% else %>
-                  <%= f.button type: 'submit', :class => "w3ls-cart", disabled:'disabled' do %>
+                  <% end %>
+              <% else %>
+                  <%= f.button type: 'submit', :class => "w3ls-cart", disabled: 'disabled' do %>
                       Added!
                   <% end %>
               <% end %>
           <% end %>
-              </div>
-              </div>
-              </div>
+      <% end %>
+    </div>
+  </div>
+</div>

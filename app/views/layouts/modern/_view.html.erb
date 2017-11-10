@@ -1,96 +1,102 @@
 <!--breadcrumbs-->
 <div class="breadcrumbs">
-	<div class="container">
-		<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-			<li>
-				<a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
-			</li>
-			<li class="active">
-				View Product
-			</li>
-		</ol>
-	</div>
+  <div class="container">
+    <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+      <li>
+        <a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+      </li>
+      <li class="active">
+        View Product
+      </li>
+    </ol>
+  </div>
 </div>
 <!--//breadcrumbs-->
 <!--single-page-->
 <div class="single">
-	<div class="container">
-		<div class="single-info">
-			<div class="col-md-6 single-top wow fadeInLeft animated" data-wow-delay=".5s">
-				<div class="flexslider">
-					<ul class="slides">
-						<% if !@product.image.blank? %>
-						<li data-thumb="<%= @product.image_url(:thumb).to_s %>">
-							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-						</li>
-						<% end %>
-						<% if !@product.img1.blank? %>
-						<li data-thumb="<%= @product.img1_url(:thumb).to_s %>">
-							<div class="thumb-image"> <%=  image_tag(@product.img1_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-						</li>
-						<% end %>
-						<% if !@product.img2.blank? %>
-						<li data-thumb="<%= @product.img2_url(:thumb).to_s %>">
-							<div class="thumb-image"> <%=  image_tag(@product.img2_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-						</li>
-						<% end %>
-						<% if !@product.img3.blank? %>
-						<li data-thumb="<%= @product.img3_url(:thumb).to_s %>">
-							<div class="thumb-image"> <%=  image_tag(@product.img3_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-						</li>
-						<% end %>
-						<% if !@product.img4.blank? %>
-						<li data-thumb="<%= @product.img4_url(:thumb).to_s %>">
-							<div class="thumb-image"> <%=  image_tag(@product.img4_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-						</li>
-						<% end %>
-					</ul>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-			<div class="col-md-6 single-top-left simpleCart_shelfItem wow fadeInRight animated" data-wow-delay=".5s">
-				<h3 style="font-size:55px;text-transform:capitalize;text-align:left;color:<%= @store.store_color %> !important"><%= @product.name %></h3><br><br>
+  <div class="container">
+    <div class="single-info">
+      <div class="col-md-6 single-top wow fadeInLeft animated" data-wow-delay=".5s">
+        <div class="flexslider">
+          <ul class="slides">
+            <% if !@product.image.blank? %>
+                <li data-thumb="<%= @product.image_url(:thumb).to_s %>">
+                  <div class="thumb-image"> <%= image_tag(@product.image_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                </li>
+            <% end %>
+            <% if !@product.img1.blank? %>
+                <li data-thumb="<%= @product.img1_url(:thumb).to_s %>">
+                  <div class="thumb-image"> <%= image_tag(@product.img1_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                </li>
+            <% end %>
+            <% if !@product.img2.blank? %>
+                <li data-thumb="<%= @product.img2_url(:thumb).to_s %>">
+                  <div class="thumb-image"> <%= image_tag(@product.img2_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                </li>
+            <% end %>
+            <% if !@product.img3.blank? %>
+                <li data-thumb="<%= @product.img3_url(:thumb).to_s %>">
+                  <div class="thumb-image"> <%= image_tag(@product.img3_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                </li>
+            <% end %>
+            <% if !@product.img4.blank? %>
+                <li data-thumb="<%= @product.img4_url(:thumb).to_s %>">
+                  <div class="thumb-image"> <%= image_tag(@product.img4_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                </li>
+            <% end %>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="col-md-6 single-top-left simpleCart_shelfItem wow fadeInRight animated" data-wow-delay=".5s">
+        <h3 style="font-size:55px;text-transform:capitalize;text-align:left;color:<%= @store.store_color %> !important"><%= @product.name %></h3>
+        <br><br>
 
-				<h6 class="item_price"><%= number_to_currency(@product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h6>
-				<p>
-					<%= @product.description%>
-				</p>
+        <h6 class="item_price"><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h6>
+        <p>
+          <%= @product.description %>
+        </p>
 
-				<div class="clearfix"></div>
-				<%= form_for :order_item, :url => {controller:'order_items', action:'create'}, remote: true do |f| %>
-				<div class="quantity">
-					<p class="qty">
-						Quantity :
-					</p>
-					<%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1 %>
-				</div>
-				<div class="btn_form">
-					<%= f.hidden_field :product_id, value: @product.id %>
+        <div class="clearfix"></div>
+        <%= form_for :order_item, :url => {controller: 'order_items', action: 'create'}, remote: true do |f| %>
+            <div class="quantity">
+              <p class="qty">
+                Quantity :
+              </p>
+              <%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1 %>
+            </div>
+            <div class="btn_form">
+              <%= f.hidden_field :product_id, value: @product.id %>
 
 
-          <% exist=false %>
-          <% current_order.order_items.each do |oi| %>
-              <% if oi.product_id == @product.id %>
-                  <% exist = true %>
+              <% exist=false %>
+              <% current_order.order_items.each do |oi| %>
+                  <% if oi.product_id == @product.id %>
+                      <% exist = true %>
+                  <% end %>
               <% end %>
-          <% end %>
-          <% if !exist %>
-              <%= f.button type:'submit', class: 'add-cart item_add' do %>
-                  Add to Cart
-              <%end%>
-          <% else %>
-              <%= f.button type:'submit', class: 'add-cart item_add', disabled:'disabled' do %>
-                  Added
-              <%end%>
-          <% end %>
+              <% if @product.quantity < 1 %>
+                  <%= f.button type: 'submit', class: 'add-cart item_add',disabled:'disabled' do %>
+                      Out of Stock
+                  <% end %>
+              <% else %>
+                  <% if !exist %>
+                      <%= f.button type: 'submit', class: 'add-cart item_add' do %>
+                          Add to Cart
+                      <% end %>
+                  <% else %>
+                      <%= f.button type: 'submit', class: 'add-cart item_add', disabled: 'disabled' do %>
+                          Added
+                      <% end %>
+                  <% end %>
+              <% end %>
 
 
-
-				</div>
-				<% end %>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
+            </div>
+        <% end %>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </div>
 <!--//single-page-->

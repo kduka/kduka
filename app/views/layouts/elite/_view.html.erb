@@ -53,7 +53,22 @@
                                 <%= f.hidden_field :product_id, value: @product.id %>
 
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                <%= f.submit 'Add to Cart', :class => 'button' %>
+                                  <% exist=false %>
+                                  <% current_order.order_items.each do |oi| %>
+                                      <% if oi.product_id == product.id %>
+                                          <% exist = true %>
+                                      <% end %>
+                                  <% end %>
+                                  <% if @product.quantity < 1 %>
+                                      <%= f.submit  "Out of Stock", :class => "button", disabled:'disabled' %>
+                                  <% else %>
+                                      <% if !exist %>
+                                          <%= f.submit 'Add to Cart', :class => 'button' %>
+                                      <% else %>
+
+                                          <%= f.submit 'Added', disabled: true, :class => 'button' %>
+                                      <% end %>
+                                  <% end %>
                                 </div>
 
                               </div>

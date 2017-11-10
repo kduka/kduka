@@ -1,46 +1,52 @@
 <div class="col-md-4 col-xs-12">
-<div style="width:100% !important" class="product-grids simpleCart_shelfItem wow fadeInUp animated" data-wow-delay=".5s">
-  <div class="new-top text-center">
-    <!--<img src="images/g1.jpg" class="img-responsive" alt=""/></a>-->
-    <%= image_tag(product.image_url(:thumb).to_s, class:'text-center')  %>
-    <div class="new-text">
-      <ul>
-        <li><a href="<%= product_view_path(product.sku)%>" class="mylink">Quick View </a></li>
-        <%= form_for order_item, remote: true do |f| %>
-        <li><%= f.number_field :quantity, value: 1, class: "item_quantity", min: 1 %></li>
-        <%= f.hidden_field :product_id, value: product.id %>
+  <div style="width:100% !important" class="product-grids simpleCart_shelfItem wow fadeInUp animated" data-wow-delay=".5s">
+    <div class="new-top text-center">
+      <!--<img src="images/g1.jpg" class="img-responsive" alt=""/></a>-->
+      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
+      <div class="new-text">
+        <ul>
+          <li><a href="<%= product_view_path(product.sku) %>" class="mylink">Quick View </a></li>
+          <%= form_for order_item, remote: true do |f| %>
+              <li><%= f.number_field :quantity, value: 1, class: "item_quantity", min: 1 %></li>
+              <%= f.hidden_field :product_id, value: product.id %>
 
-            <% exist=false %>
-            <% current_order.order_items.each do |oi| %>
-                <% if oi.product_id == product.id %>
-                    <% exist = true %>
-                <% end %>
-            <% end %>
-            <% if !exist %>
-               <li> <%= f.submit "Add to Cart", :class=> "form-control item_add" %>
-            <% else %>
-                <li><%= f.submit "Added", :class=> "form-control item_add", disabled:'disabled' %></li>
-            <% end %>
+              <% exist=false %>
+              <% current_order.order_items.each do |oi| %>
+                  <% if oi.product_id == product.id %>
+                      <% exist = true %>
+                  <% end %>
+              <% end %>
 
-            <% end %>
-      </ul>
-    </div>
-  </div>
-  <div class="new-bottom">
-    <h5><a class="name" href=""><%= product.name %></a></h5>
-    <div class="rating">
-      <span class="on">☆</span>
-      <span class="on">☆</span>
-      <span class="on">☆</span>
-      <span class="on">☆</span>
-      <span>☆</span>
-    </div>
-    <div class="ofr">
-      <p><span class="item_price" style="font-weight:900"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span></p>
-    </div>
-    <div class="ofr">
-      <p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>
-    </div>
-  </div>
-</div>
-</div>
+              <% if product.quantity < 1 %>
+                  <li><%= f.submit "Out of Stock", :class => "form-control item_add", style: 'color:red', disabled: 'disabled' %></li>
+              <% else %>
+                  <% if !exist %>
+                      <li> <%= f.submit "Add to Cart", :class => "form-control item_add" %>
+                  <% else %>
+                      <li><%= f.submit "Added", :class => "form-control item_add", disabled: 'disabled' %></li>
+                  <% end %>
+              <% end %>
+              <% end %>
+              </ul>
+              </div>
+              </div>
+              <div class="new-bottom">
+                <h5><a class="name" href=""><%= product.name %></a></h5>
+                <div class="rating">
+                  <span class="on">☆</span>
+                  <span class="on">☆</span>
+                  <span class="on">☆</span>
+                  <span class="on">☆</span>
+                  <span>☆</span>
+                </div>
+                <div class="ofr">
+                  <p>
+                    <span class="item_price" style="font-weight:900"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
+                  </p>
+                </div>
+                <div class="ofr">
+                  <p><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>
+                </div>
+              </div>
+              </div>
+              </div>
