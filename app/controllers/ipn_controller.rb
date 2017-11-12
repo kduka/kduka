@@ -1,9 +1,13 @@
 class IpnController < ApplicationController
   def index
 
-    puts request.body.read
+    data =  request.body.read
 
-    response = Hash.from_xml(request.body.read)
+    puts data
+
+    response = Hash.from_xml(data)
+
+    puts response
 
     r = response["InstantPaymentNotification"]
     msisdn = r["MSISDN"]
@@ -76,7 +80,7 @@ class IpnController < ApplicationController
     elsif @order.order_status_id == 1
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
-      @order.update(number_of_transactions: transactions, amount_received: newamount)
+      @order.update(number_of_transactions: transactions, amount_received: newamount,date_placed:Time.now)
       complete(@order,amount)
     end
 
