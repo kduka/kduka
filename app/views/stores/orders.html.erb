@@ -53,8 +53,13 @@
                   <td><%= p.number_of_transactions %></td>
                   <td><%= p.amount_received %></td>
                   </tr>
-              <% else %>
-                  <tr style="font-weight:bold">
+              <% else
+
+                   if p.order_status_id == 2 %>
+                      <tr style="color: #06B216;font-weight:bold">
+                  <% else %>
+                      <tr style="color: orange;font-weight:bold">
+                  <% end %>
                     <td><%= link_to p.ref, store_order_path(p.ref) %></td>
                     <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>
                     <td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
