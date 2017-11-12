@@ -67,6 +67,8 @@ Rails.application.routes.draw do
   post  '/products/search' => 'products#search'
   get  '/home/404' => 'home#not_found'
   get  '/home/error' => 'home#error'
+  get '/help' => redirect('http://kduka.co.ke/help')
+  get '/order/(:ref)' => 'stores#order', as: 'store_order'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'}

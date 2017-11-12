@@ -1,0 +1,44 @@
+<div class="col-md-6 col-md-offset-3">
+  <br>
+  <%= link_to "Back", store_orders_path, class:'btn btn-primary' %>
+  <br>
+<h2>Name: <%= @order.name %></h2>
+<h2>Phone: <%= @order.phone %></h2>
+<h2>Email: <%= @order.email %></h2>
+<h2>Location: <%= @order.del_location %></h2>
+<h2>Instructions: <%= @order.order_instructions %></h2>
+<% @oi.each do |oi|
+    product = Product.find(oi.product_id)
+%>
+
+
+    <!--cart-items-->
+    <div style="padding:2em !important" class="cart-items">
+      <div class="container-fluid">
+        <div class="cart-header2 wow fadeInUp animated" data-wow-delay=".9s">
+          <div class="alert-close2"> </div>
+          <%= form_tag("/") do |f| %>
+              <div class="cart-sec simpleCart_shelfItem">
+                <div class="col-md-4 col-sm-12">
+                  <!-- <img src="images/g9.jpg" class="img-responsive" alt=""> -->
+                  <%= image_tag(product.image_url(:thumb).to_s, class:'text-center')  %>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                  <h4 style="color:#06B216"><%= product.name %></h4><br/>
+                  <h4>Unit Price : <%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4><br>
+                  <div class="qty">
+                    <%= product.quantity %>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div><br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!--//cart-items-->
+
+
+
+<% end %>
+</div>

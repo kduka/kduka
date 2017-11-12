@@ -1,29 +1,57 @@
-<% @transactions = Transaction.where(store_id:current_store.id).limit(10).order('created_at desc') %>
+<% @transactions = Transaction.where(store_id: current_store.id).limit(10).order('created_at desc') %>
 <h1>History</h1>
 <div style="overflow-x:scroll;">
-<table id="myTable" class="table">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Account</th>
-    <th>Type</th>
-    <th>Amount</th>
-    <th>Reference</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @transactions.each do |p| %>
-      <tr>
-
-        <td><%= p.name %></td>
-        <td><%= p.account %></td>
-        <td><%= p.trans_type %></td>
-        <td><%= p.amount %></td>
-        <td><%= p.ref %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-</div>
-<br>
-<p><button class="btn btn-primary" >View Full History</button></p>
+  <table id="myHistoryTable" class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Account</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Reference</th>
+      <th>Status</th>
+      <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @transactions.each do |p| %>
+        <% if p.transaction_status_id == 1 %>
+            <tr style="color: orange">
+              <td><%= p.name %></td>
+              <td><%= p.account %></td>
+              <td><%= p.trans_type %></td>
+              <td><%= p.amount %></td>
+              <td><%= p.ref %></td>
+              <td><%= TransactionStatus.find(p.transaction_status_id).status rescue nil %></td>
+              <td><%= p.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            </tr>
+        <% elsif p.transaction_status_id == 2 %>
+            <tr style="color: #06b216">
+              <td><%= p.name %></td>
+              <td><%= p.account %></td>
+              <td><%= p.trans_type %></td>
+              <td><%= p.amount %></td>
+              <td><%= p.ref %></td>
+              <td><%= TransactionStatus.find(p.transaction_status_id).status rescue nil %></td>
+              <td><%= p.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            </tr>
+            <% %>
+        <% else %>
+            <tr style="color: red">
+              <td><%= p.name %></td>
+              <td><%= p.account %></td>
+              <td><%= p.trans_type %></td>
+              <td><%= p.amount %></td>
+              <td><%= p.ref %></td>
+              <td><%= TransactionStatus.find(p.transaction_status_id).status rescue nil %></td>
+              <td><%= p.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            </tr>
+        <% end %>
+        <% end %>
+        </tbody>
+        </table>
+        </div>
+        <br>
+        <p>
+          <button class="btn btn-primary">View Full History</button>
+        </p>

@@ -149,7 +149,7 @@ end
   def update_layout
     @store = Store.find(current_store.id)
     puts params[:store][:store_color]
-    if @store.update(layout_id: params[:layout],store_color:params[:store][:store_color],store_font:params[:store][:store_font])
+    if @store.update(layout_id: params[:layout], store_color: params[:store][:store_color], store_font: params[:store][:store_font])
       flash[:notice] = 'Layout Updated'
     else
       flash[:alert] = 'Something went wrong, please try again'
@@ -201,7 +201,6 @@ end
     end
     redirect_to(request.referer)
   end
-
 
   def active
     @store = Store.find(current_store.id)
@@ -269,10 +268,10 @@ end
   end
 
   def funds
-    @find = StoreAmount.where(store_id:current_store.id).first
+    @find = StoreAmount.where(store_id: current_store.id).first
 
     if @find.nil?
-      StoreAmount.create(amount:0,store_id:current_store.id)
+      StoreAmount.create(amount: 0, store_id: current_store.id)
     end
 
     set_shop_show
@@ -306,9 +305,11 @@ end
     url = URI("#{ENV['chase_endpoint']}")
 
     http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
+    if Rails.env.production?
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
     request = Net::HTTP::Post.new(url)
     request["content-type"] = 'application/json'
     request["authorization"] = "#{ENV['auth_token']}"
@@ -335,7 +336,7 @@ end
     response = http.request(request)
     if response.kind_of? Net::HTTPSuccess
       puts "HTTP WORKED = #{response.read_body}"
-      Transaction.create(account:account,name:name,trans_type:'M-PESA',store_id:current_store.id,ref:ref,amount:amount,foreign_ref:response.read_body)
+      Transaction.create(account: account, name: name, trans_type: 'M-PESA', store_id: current_store.id, ref: ref, amount: amount, foreign_ref: response.read_body, transaction_status_id: 1)
 
 
       @storeamount = StoreAmount.where(store_id: current_store.id).first
@@ -347,8 +348,8 @@ end
       end
 
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-      @storeamount.update(amount:nu)
-      Earning.create(trans_id:response.read_body,store_id:current_store.id,amount:(@storeamount.amount.to_d * 0.01).to_i,ref:ref);
+      @storeamount.update(amount: nu)
+      Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
       @status = true
     else
       @status = false
@@ -378,7 +379,7 @@ end
       amount = @max
     end
 
-    ref = [*'A'..'Z', *"0".."9"].sample(16).join
+    ref = [*'A'..'Z', *"0".."9"].sample(10).join
     uref = "Pi1_#{ref}"
     require 'uri'
     require 'net/http'
@@ -386,9 +387,10 @@ end
     url = URI("#{ENV['chase_endpoint']}")
 
     http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
+    if Rails.env.production?
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
 
     request = Net::HTTP::Post.new(url)
     request["content-type"] = 'application/json'
@@ -421,7 +423,7 @@ end
 
       puts type.to_s + " " + @type_n
       puts "HTTP WORKED = #{response.read_body}"
-      Transaction.create(account:account,name:name,trans_type:@type_n,store_id:current_store.id,ref:ref,amount:amount,foreign_ref:response.read_body)
+      Transaction.create(account: account, name: name, trans_type: @type_n, store_id: current_store.id, ref: ref, amount: amount, foreign_ref: response.read_body, transaction_status_id: 1)
 
       @storeamount = StoreAmount.where(store_id: current_store.id).first
 
@@ -432,8 +434,8 @@ end
       end
 
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-      @storeamount.update(amount:nu)
-      Earning.create(trans_id:response.read_body,store_id:current_store.id,amount:(@storeamount.amount.to_d * 0.01).to_i,ref:ref);
+      @storeamount.update(amount: nu)
+      Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
       @status = true
     else
       @status = false
@@ -463,7 +465,7 @@ end
     end
 
 
-    ref = [*'A'..'Z', *"0".."9"].sample(16).join
+    ref = [*'A'..'Z', *"0".."9"].sample(10).join
     uref = "Pi1_#{ref}"
     require 'uri'
     require 'net/http'
@@ -471,9 +473,10 @@ end
     url = URI("#{ENV['chase_endpoint']}")
 
     http = Net::HTTP.new(url.host, url.port)
+    if Rails.env.production?
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
+    end
     request = Net::HTTP::Post.new(url)
     request["content-type"] = 'application/json'
     request["authorization"] = "#{ENV['auth_token']}"
@@ -498,7 +501,7 @@ end
     response = http.request(request)
     if response.kind_of? Net::HTTPSuccess
       puts "HTTP WORKED = #{response.read_body}"
-      Transaction.create(account:account,name:name,trans_type:"EFT",store_id:current_store.id,ref:ref,amount:amount,foreign_ref:response.read_body,bankcode:bankcode)
+      Transaction.create(account: account, name: name, trans_type: "EFT", store_id: current_store.id, ref: ref, amount: amount, foreign_ref: response.read_body, bankcode: bankcode, transaction_status_id: 1)
 
       @storeamount = StoreAmount.where(store_id: current_store.id).first
 
@@ -509,14 +512,31 @@ end
       end
 
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-      @storeamount.update(amount:nu)
-      Earning.create(trans_id:response.read_body,store_id:current_store.id,amount:(@storeamount.amount.to_d * 0.01).to_i,ref:ref);
+      @storeamount.update(amount: nu)
+      Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
       @status = true
     else
       @status = false
       puts "HTTP DIDNT = #{response.read_body}"
     end
     no_layout
+  end
+
+  def order
+    @order = Order.where(ref: params[:ref], store_id: current_store.id).first
+
+    if @order.nil?
+      flash[:alert] = "We couldnt find your order, please try again"
+      redirect_to(request.referer) and return
+    else
+      if !@order.read
+        @order.update(read: true)
+      end
+      @oi = OrderItem.where(order_id: @order.id)
+      set_shop_show
+    end
+
+
   end
 
 
@@ -529,7 +549,7 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def store_params
-    params.require(:store).permit(:facebook, :linkedin, :twitter, :instagram, :pinterest, :vimeo, :youtube, :slogan, :subdomain, :layout_id, :name, :phone, :display_email, :logo, :logo_status, :business_location, :active, :store_color,:store_font)
+    params.require(:store).permit(:facebook, :linkedin, :twitter, :instagram, :pinterest, :vimeo, :youtube, :slogan, :subdomain, :layout_id, :name, :phone, :display_email, :logo, :logo_status, :business_location, :active, :store_color, :store_font)
   end
 
   def delivery_params

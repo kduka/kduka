@@ -1,149 +1,166 @@
 <div class="skil">
-<div class="row">
-  <div class="col-md-12">
- <!--   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <div id="chart_div"></div>-->
-    <script>
-        google.charts.load('current', {'packages':['line']});
-        google.charts.setOnLoadCallback(drawChart);
+  <div class="row">
+    <div class="col-md-12">
+      <!--   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+         <div id="chart_div"></div>-->
+      <script>
+          google.charts.load('current', {'packages': ['line']});
+          google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
+          function drawChart() {
 
-            var data = new google.visualization.DataTable();
-            data.addColumn('number', 'Day');
-            data.addColumn('number', 'Guardians of the Galaxy');
+              var data = new google.visualization.DataTable();
+              data.addColumn('number', 'Day');
+              data.addColumn('number', 'Guardians of the Galaxy');
 
 
-            data.addRows([
-                [1,  41.8],
-                [2,  32.4],
-                [3,  25.7],
-                [4,  10.5],
-                [5,  10.4],
-                [6,  7.7],
-                [7,  9.6],
-                [8,  10.6],
-                [9,  14.8],
-                [10, 11.6],
-                [11, 4.7],
-                [12, 5.2],
-                [13, 3.6],
-                [14, 3.4]
-            ]);
+              data.addRows([
+                  [1, 41.8],
+                  [2, 32.4],
+                  [3, 25.7],
+                  [4, 10.5],
+                  [5, 10.4],
+                  [6, 7.7],
+                  [7, 9.6],
+                  [8, 10.6],
+                  [9, 14.8],
+                  [10, 11.6],
+                  [11, 4.7],
+                  [12, 5.2],
+                  [13, 3.6],
+                  [14, 3.4]
+              ]);
 
-            var options = {
-                chart: {
-                    title: 'Sales',
-                    subtitle: 'This week'
-                },
-                width: 1280,
-                height: 500
-            };
+              var options = {
+                  chart: {
+                      title: 'Sales',
+                      subtitle: 'This week'
+                  },
+                  width: 1280,
+                  height: 500
+              };
 
-            var chart = new google.charts.Line(document.getElementById('chart_div'));
+              var chart = new google.charts.Line(document.getElementById('chart_div'));
 
-            chart.draw(data, google.charts.Line.convertOptions(options));
-        }
-    </script>
-  </div>
-<div class="col-md-12">
-<% if !@setup.blank? %>
-    <div style="margin-top:1em" class="alert alert-info">
-      <h2> Here are some steps to help you setup your store! </h2>
-        <br>
-      <strong>
-
-      <% @setup.each do |k,m| %>
-          <p><%= "#{k}. " %><%= m.html_safe %></p>
-      <% end %>
-      </strong>
+              chart.draw(data, google.charts.Line.convertOptions(options));
+          }
+      </script>
     </div>
-<% end %>
-</div>
+    <div class="col-md-12">
+      <% if !@setup.blank? %>
+          <div style="margin-top:1em" class="alert alert-info">
+            <h2> Here are some steps to help you setup your store! </h2>
+            <br>
+            <strong>
 
-<div class="col-md-12">
-<% if !@important.blank? %>
-    <div style="margin-top:1em" class="alert alert-danger">
-      <h2> Hello, you need to setup the following before you can activate your store </h2>
-      <% @important.each do |k,m| %>
-          <p><%= "#{k}. " %><%= m.html_safe %></p>
+              <% @setup.each do |k, m| %>
+                  <p><%= "#{k}. " %><%= m.html_safe %></p>
+              <% end %>
+            </strong>
+          </div>
       <% end %>
     </div>
-<% end %>
-</div>
+
+    <div class="col-md-12">
+      <% if !@important.blank? %>
+          <div style="margin-top:1em" class="alert alert-danger">
+            <h2> Hello, you need to setup the following before you can activate your store </h2>
+            <% @important.each do |k, m| %>
+                <p><%= "#{k}. " %><%= m.html_safe %></p>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
 
 
     <div class="col-md-12">
       <% if can_be_active %>
           <div style="margin-top:1em" class="alert alert-danger">
-            <a style='font-weight:bold;text-decoration:none;' href='<%= stores_active_path %>'>1. Activate your Store!</a>
+            <a style='font-weight:bold;text-decoration:none;' href='<%= stores_active_path %>'>1. Activate your
+              Store!</a>
           </div>
       <% end %>
     </div>
-</div>
+  </div>
 
-<div class="content-top-1 col-md-4">
-  <div class="col-md-6 top-content">
-    <h5>Total Products</h5>
-    <label><%= @products.count %></label>
+  <div class="content-top-1 col-md-4">
+    <div class="col-md-6 top-content">
+      <h5>Total Products</h5>
+      <label><%= @products.count %></label>
+    </div>
+    <div class="col-md-6 top-content1">
+      <div id="demo-pie-1" class="pie-title-center" data-percent="100"><span class="pie-value">100%</span></div>
+    </div>
+    <div class="clearfix"></div>
   </div>
-  <div class="col-md-6 top-content1">
-    <div id="demo-pie-1" class="pie-title-center" data-percent="100"> <span class="pie-value">100%</span> </div>
+  <div class="content-top-1 col-md-4">
+    <div class="col-md-12 top-content" style="text-align:center">
+      <h5>Active</h5>
+      <label><%= @store.active.to_s.humanize %></label><br>
+    </div>
+    <div class="clearfix"></div>
   </div>
-    <div class="clearfix"> </div>
-</div>
-<div class="content-top-1 col-md-4">
-  <div class="col-md-12 top-content" style="text-align:center">
-    <h5>Active</h5>
-    <label><%= @store.active.to_s.humanize %></label><br>
+  <div class="content-top-1 col-md-4">
+    <a href="<%= products_manage_path %>">
+      <div class="col-md-6 top-content">
+        <h5>Active Products</h5>
+        <label><%= @products.count %></label>
+      </div>
+      <div class="col-md-6 top-content1">
+        <div id="demo-pie-3" class="pie-title-center" data-percent="100"><span class="pie-value">100%</span></div>
+      </div>
+      <div class="clearfix"></div>
+    </a>
   </div>
-   <div class="clearfix"> </div>
-</div>
-<div class="content-top-1 col-md-4">
-  <a href="<%= products_manage_path %>">
-  <div class="col-md-6 top-content">
-    <h5>Active Products</h5>
-    <label><%= @products.count %></label>
-  </div>
-  <div class="col-md-6 top-content1">
-    <div id="demo-pie-3" class="pie-title-center" data-percent="100"> <span class="pie-value">100%</span> </div>
-  </div>
-  <div class="clearfix"> </div>
-</a>
-</div>
-<div class="container-fluid" style="margin-bottom:3em"></div>
+  <div class="container-fluid" style="margin-bottom:3em"></div>
 
 
-<% if !@products.blank? %>
-<div style="overflow-x:scroll;">
-    <table id="myTable" class="table">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Active</th>
-        <th>Category</th>
-        <th>Quantity</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @products.each do |p| %>
+  <% if !@products.blank? %>
+      <div style="overflow-x:scroll;">
+        <h4 style="color: #06B216;font-weight: bold"> Your Stock </h4>
+        <br>
+        <table id="myProductTable" class="table">
+          <thead>
           <tr>
-            <td><%= p.name %></td>
-            <td><%= p.price %></td>
-            <td><%= p.active %></td>
-            <td><%= Category.find(p.category_id).name rescue nil %></td>
-            <td><%= p.quantity %></td>
-            <td><%= link_to "Show", store_product_path(p.store_id,p),style:"color:#06B216;text-decoration: none;"%> | <span><%= link_to "Delete", store_product_path(p.store_id,p), method:'delete', confirm:"Are you Sure you want to delete this product?",style:"color: red;text-decoration: none;" %></span></td>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Active</th>
+            <th>Category</th>
+
+            <th></th>
           </tr>
-      <% end %>
-      </tbody>
-    </table>
-</div>
-<% else %>
+          </thead>
+          <tbody>
+          <% @products.each do |p| %>
+              <tr>
+                <% if p.quantity < 1 %>
+                    <td><%= p.name %>
+                      <a data-toggle="tooltip" data-placement="right" title="You have run out of stock for this item"><span style="background-color: red;color:#fff;padding: 2px;font-size: 11px;">Out of Stock</span></a>
+                    </td>
+                <% elsif p.quantity < 10 %>
+                    <td><%= p.name %>
+                      <a data-toggle="tooltip" data-placement="right" title="Your current stock is running low"><span style="background-color: orange;color:#fff;padding: 2px;font-size: 11px;">Low</span></a>
+                    </td>
+                <% else %>
+                    <td><%= p.name %></td>
+                <% end %>
+                <td><%= p.quantity %></td>
+                <td><%= p.price %></td>
+                <td><%= p.active %></td>
+                <td><%= Category.find(p.category_id).name rescue nil %></td>
+                <td><%= link_to "Show", store_product_path(p.store_id, p), style: "color:#06B216;text-decoration: none;" %>
+                  |
+                  <span><%= link_to "Delete", store_product_path(p.store_id, p), method: 'delete', confirm: "Are you Sure you want to delete this product?", style: "color: red;text-decoration: none;" %></span>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+  <% else %>
 
-    <p>You dont have any Products in this store yet</p>
+      <p>You dont have any Products in this store yet</p>
 
-<% end %>
+  <% end %>
 </div>

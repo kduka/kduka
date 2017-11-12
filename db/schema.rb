@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106192714) do
+ActiveRecord::Schema.define(version: 20171112132006) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -105,9 +105,11 @@ ActiveRecord::Schema.define(version: 20171106192714) do
     t.integer  "store_id"
     t.integer  "amount"
     t.string   "ref"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "transaction_status_id"
     t.index ["store_id"], name: "index_earnings_on_store_id", using: :btree
+    t.index ["transaction_status_id"], name: "index_earnings_on_transaction_status_id", using: :btree
   end
 
   create_table "fonts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -183,6 +185,8 @@ ActiveRecord::Schema.define(version: 20171106192714) do
     t.boolean  "coupon_status",                                                 default: false
     t.string   "address"
     t.integer  "discount",                                                      default: 0
+    t.boolean  "read",                                                          default: false
+    t.datetime "date_placed"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
     t.index ["store_id"], name: "index_orders_on_store_id", using: :btree
   end
@@ -299,6 +303,12 @@ ActiveRecord::Schema.define(version: 20171106192714) do
     t.index ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
   end
 
+  create_table "transaction_statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "amount"
     t.integer  "store_id"
@@ -308,10 +318,12 @@ ActiveRecord::Schema.define(version: 20171106192714) do
     t.string   "ref"
     t.string   "account"
     t.string   "bankcode"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.string   "foreign_ref"
+    t.integer  "transaction_status_id"
     t.index ["store_id"], name: "index_transactions_on_store_id", using: :btree
+    t.index ["transaction_status_id"], name: "index_transactions_on_transaction_status_id", using: :btree
   end
 
   create_table "unresolveds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -350,6 +362,7 @@ ActiveRecord::Schema.define(version: 20171106192714) do
   add_foreign_key "categories", "stores"
   add_foreign_key "coupons", "stores"
   add_foreign_key "earnings", "stores"
+  add_foreign_key "earnings", "transaction_statuses"
   add_foreign_key "orders", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"
@@ -358,4 +371,5 @@ ActiveRecord::Schema.define(version: 20171106192714) do
   add_foreign_key "stores", "layouts"
   add_foreign_key "sub_categories", "categories"
   add_foreign_key "transactions", "stores"
+  add_foreign_key "transactions", "transaction_statuses"
 end

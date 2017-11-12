@@ -22,6 +22,18 @@
 
 $(function () {
 
+    $('#myOrderTable').DataTable({
+        "order": [[ 1, "desc" ]]
+    });
+
+    $('#myHistoryTable').DataTable({
+        "order": [[ 6, "desc" ]]
+    });
+
+    $('#myProductTable').DataTable({
+        "order": [[ 1, "asc" ]]
+    });
+
 
     $("#b2c").click(function (e) {
         e.preventDefault();

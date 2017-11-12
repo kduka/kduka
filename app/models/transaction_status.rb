@@ -1,0 +1,2 @@
+class TransactionStatus < ApplicationRecord
+end

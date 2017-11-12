@@ -1,58 +1,80 @@
 <div class="skil">
-<p id="notice">
-	<%= notice %>
-</p>
+  <p id="notice">
+    <%= notice %>
+  </p>
 
   <%
-    @store_amount = StoreAmount.where(store_id:current_store.id).first
+    @store_amount = StoreAmount.where(store_id: current_store.id).first
     if @store_amount.nil?
-      StoreAmount.create(amount:0,store_id:current_store.id)
-      @store_amount = StoreAmount.where(store_id:current_store.id).first
+      StoreAmount.create(amount: 0, store_id: current_store.id)
+      @store_amount = StoreAmount.where(store_id: current_store.id).first
     end
   %>
   <h4>Earnings: Ksh <%= @store_amount.amount %></h4>
 
-<p>
-	<strong>Total Orders : <%= @order.count %> </strong>
-</p>
+  <p>
+    <strong>Total Orders : <%= @order.count %> </strong>
+  </p>
 
-<% if !@order.blank? %>
-<div style="overflow-x:scroll;">
-<table id="myTable" class="table">
-	<thead>
-		<tr>
-			<th>Order Status</th>
-			<th>Reference</th>
-			<th>Subtotal</th>
-			<th>Tax</th>
-			<th>Shipping</th>
-			<th>Total</th>
-			<th>Number of Transactions</th>
-			<th>Amount Received</th>
+  <% if !@order.blank? %>
+      <div style="overflow-x:scroll;">
+        <table id="myOrderTable" class="table">
+          <thead>
+          <tr>
+            <th>Reference</th>
+            <th>Order Date</th>
+            <th>Order Status</th>
+            <th>Subtotal</th>
+            <th>Tax</th>
+            <th>Shipping</th>
+            <th>Total</th>
+            <th>Number of Transactions</th>
+            <th>Amount Received</th>
 
-		</tr>
-	</thead>
-	<tbody>
-		<% @order.each do |p| %>
-		<tr>
-			<td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
-			<td><%= p.ref %></td>
-			<td><%= p.subtotal %></td>
-			<td><%= p.tax %></td>
-			<td><%= p.shipping %></td>
-			<td><%= p.total %></td>
-			<td><%= p.number_of_transactions %></td>
-			<td><%= p.amount_received %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
-</div>
-<% else %>
+          </tr>
+          </thead>
+          <tbody>
+          <% @order.each do |p|
 
-<p>
-	You dont have any Orders yet.
-</p>
+            if p.read
 
-<% end %>
+              if p.order_status_id == 2 %>
+                      <tr style="color: #06B216">
+                  <% else %>
+                      <tr style="color: orange">
+                  <% end %>
+                  <td><%= link_to p.ref, store_order_path(p.ref) %></td>
+                  <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>
+                  <td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
+                  <td><%= p.subtotal %></td>
+                  <td><%= p.tax %></td>
+                  <td><%= p.shipping %></td>
+                  <td><%= p.total %></td>
+                  <td><%= p.number_of_transactions %></td>
+                  <td><%= p.amount_received %></td>
+                  </tr>
+              <% else %>
+                  <tr style="font-weight:bold">
+                    <td><%= link_to p.ref, store_order_path(p.ref) %></td>
+                    <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>
+                    <td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
+                    <td><%= p.subtotal %></td>
+                    <td><%= p.tax %></td>
+                    <td><%= p.shipping %></td>
+                    <td><%= p.total %></td>
+                    <td><%= p.number_of_transactions %></td>
+                    <td><%= p.amount_received %></td>
+                  </tr>
+              <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+  <% else %>
+
+      <p>
+        You dont have any Orders yet.
+      </p>
+
+  <% end %>
 </div>
