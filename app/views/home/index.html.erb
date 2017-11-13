@@ -61,6 +61,7 @@ next if item == '.' or item == '..' %>
               <li><a href="<%= new_user_registration_path %>"><i class="fa fa-edit"></i> User Sign Up</a></li>
               <li><a href="<%= new_user_session_path %>"><i class="fa fa-user"></i> User Login</a></li>
               <li><a href="<%= new_store_session_path %>"><i class="fa fa-sign-in"></i> Store Login</a></li>
+              <li><a target="_blank" href="http://www.kduka.co.ke/help"><i class="fa fa-question-circle"></i> Help</a></li>
 						</ul>
 					</nav>
 					<div class="main buttonset">
@@ -129,12 +130,11 @@ next if item == '.' or item == '..' %>
 					transition: all 0.5s;
 				}
 			</style>
-			<p>You can Log in if you already have an account or you can log in to your stores. If you don't have an account you can Sign Up</p>
+			<p>You can Log in if you already have an account or you can log in to your stores. If you don't have an account you can Sign Up. If you need help please <a target="_blank" href="http://www.kduka.co.ke/help">click here</a></p>
       <div class="col-md-4" style="margin-bottom:2em">
         <p>New Users</p>
         <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
       </div>
-
       <div class="col-md-4" style="margin-bottom:2em">
         <p>Login as a User</p>
 			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-user"></i> User Login</span></a>
