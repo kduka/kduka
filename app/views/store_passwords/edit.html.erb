@@ -1,0 +1,58 @@
+<h1 style="color:#fff !important"><br><br>Change your password<br><br></h1>
+<div class="col-md-6 col-md-offset-3 containerw3layouts-agileits">
+  <!-- <div class="w3imageaits">
+		<%= image_tag("web.jpg") %>
+	</div> -->
+
+  <div class="aitsloginwthree w3layouts agileits">
+    <div class="col-md-12">
+      <% if !notice.nil? %>
+          <div class="alert alert-success" role="alert">
+            <strong><%= notice %></strong>
+          </div>
+      <% end %>
+      <% if !alert.nil? %>
+          <div class="alert alert-info" role="alert">
+            <strong><%= alert %></strong>
+          </div>
+      <% end %>
+    </div>
+    </br>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put}) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
+        <a href="<%= root_path %>"> <%= image_tag("website/logo.png") %><BR><BR><BR><BR></a>
+
+
+        <%= f.password_field :password, id: 'pass_store', autocomplete: "off", style: 'text-align:center', placeholder: "Password" %>
+        <div class="store_password_prev"></div>
+        <%= f.password_field :password_confirmation, id: 'store_pass_confirmation', autocomplete: "off", style: 'text-align:center', placeholder: "Confirm Password" %>
+        <div class="store_password_confirmation_prev"></div>
+        <ul class="tick w3layouts agileinfo">
+          <li>
+            <%= f.check_box :remember_me %>
+          </li>
+          <div class="send-button wthree agileits">
+            <%= f.submit "Reset Password",id:'reseter', disabled:'disabled', style:'background-color:grey' %>
+          </div>
+          <li style="text-align:center !important">
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                Forgot your Password? <%= link_to " Click Here", new_password_path(resource_name) %>
+                <br/>
+            <% end -%>
+          </li>
+        </ul>
+    <% end %>
+  </div>
+
+  <div class="clear"></div>
+
+</div>
+<div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
+  <p style="text-align:center;color: white">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved |
+    Developed by
+    <a style="color:#fff;text-decoration: underline" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a>
+  <p>
+</div>
+

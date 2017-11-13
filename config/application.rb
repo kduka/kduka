@@ -34,6 +34,8 @@ module ShoppingCartExample
     end
     config.to_prepare do
       Devise::ConfirmationsController.layout "login/user_login"
+      StorePasswordsController.layout "login/store_login"
+      UserPasswordsController.layout "login/user_login"
     end
   end
 end

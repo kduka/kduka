@@ -5,6 +5,14 @@ class UserPasswordsController < Devise::PasswordsController
     set_login
   end
 
+  # GET /resource/password/edit?reset_password_token=abcdef
+  def edit
+    self.resource = resource_class.new
+    set_minimum_password_length
+    resource.reset_password_token = params[:reset_password_token]
+    store_login
+  end
+
   # POST /resource/password
   def create
     self.resource = resource_class.send_reset_password_instructions(resource_params)

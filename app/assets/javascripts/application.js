@@ -22,6 +22,44 @@
 
 $(function () {
 
+    $("#pass_store").keyup(function () {
+        password = $("#pass_store").val();
+        if (!pass(password)) {
+            $(".store_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
+            $("#pass_store").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+            $("#pass_store").attr('data-valid', 'false');
+        } else {
+            $(".store_password_prev").html("");
+            $("#pass_store").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+            $("#pass_store").attr('data-valid', 'true');
+        }
+        res_check();
+    });
+
+
+    $("#store_pass_confirmation").keyup(function () {
+        password = $("#pass_store").val();
+        password_c = $("#store_pass_confirmation").val();
+        if (password == password_c && pass(password)) {
+            $(".store_password_confirmation_prev").html("");
+            $("#store_pass_confirmation").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #06B216;');
+            $("#store_pass_confirmation").attr('data-valid', 'true');
+        } else {
+            $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
+            $("#store_pass_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+            $("#store_pass_confirmation").attr('data-valid', 'false');
+        }
+        res_check();
+    });
+
+    $("#verify").click(function (e) {
+       e.preventDefault();
+       loc = $("#locate").val();
+       user = $("#sendyuser").val();
+       pass = $("#sendykey").val();
+       alert(loc + user + pass);
+    });
+
     $('#myOrderTable').DataTable({
         "order": [[ 1, "desc" ]]
     });
@@ -970,5 +1008,15 @@ function validateEmail2(email) {
     } else {
         $(".user_email_prev").html("<span style='color:red' >This is not a valid email</span>");
         $("#user_email").attr('data-valid', 'false');
+    }
+}
+
+function res_check(){
+    if ($("#pass_store").attr('data-valid') == 'true' && $("#store_pass_confirmation").attr('data-valid') == 'true'){
+        $("#reseter").removeAttr('disabled');
+        $("#reseter").removeAttr('style');
+    }else{
+        $("#reseter").attr('disabled','true');
+        $("#reseter").attr('style','background-color:grey');
     }
 }
