@@ -264,9 +264,6 @@ ActiveRecord::Schema.define(version: 20171112132006) do
     t.string   "youtube"
     t.string   "slogan"
     t.integer  "layout_id"
-    t.string   "auto_delivery_location"
-    t.string   "lat"
-    t.string   "lng"
     t.boolean  "auto_delivery_status"
     t.string   "collection_point"
     t.string   "sendy_username"
@@ -283,9 +280,12 @@ ActiveRecord::Schema.define(version: 20171112132006) do
     t.boolean  "manual_delivery_status"
     t.text     "manual_delivery_instructions", limit: 65535
     t.boolean  "collection_point_status"
+    t.string   "auto_delivery_location"
     t.boolean  "init"
     t.boolean  "important"
     t.string   "store_font"
+    t.string   "lat"
+    t.string   "lng"
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
     t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true, using: :btree
