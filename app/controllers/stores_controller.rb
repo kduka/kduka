@@ -572,7 +572,7 @@ end
   end
 
   def delivery_params
-    params.require(:store).permit(:collection_point, :collection_point_status, :lng, :lat, :detailed_location, :auto_delivery_status, :sendy_username, :sendy_key, :manual_delivery_status, :manual_delivery_instructions, :auto_delivery_location)
+    params.require(:store).permit(:collection_point, :collection_point_status, :detailed_location, :manual_delivery_status, :manual_delivery_instructions, :auto_delivery_location)
   end
 
   def pages_params
