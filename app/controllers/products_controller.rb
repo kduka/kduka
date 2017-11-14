@@ -142,11 +142,12 @@ class ProductsController < ApplicationController
     if @store.nil?
       redirect_to(home_404_path) and return
     end
-    @product = Product.where(sku: params[:sku], active: true).first
-    viewed = @product.viewed += 1
-    @product.update(viewed: viewed)
+    @product = Product.where(sku: params[:sku], active: true,store_id:@store.id).first
     if @product.nil?
-      redirect_to(home_path) and return
+      redirect_to(all_path) and return
+    else
+      viewed = @product.viewed += 1
+      @product.update(viewed: viewed)
     end
     set_shop
   end
