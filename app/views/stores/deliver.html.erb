@@ -80,7 +80,7 @@ $(document).ready(function(){
         <a data-toggle="tooltip" data-placement="right" title="If you check this you will be able to use third party delivery services to deliver products to your clients"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
       <span style="color: green">
-      <p>To use this option, <a href="https://sendyit.com/"> Create an account at  SendyIt</a> to get a Username and Password. This option enables third party delivery.</p>
+      <p>To use this option, <a href="https://sendyit.com/" target="_blank"> Create an account at  SendyIt</a> to get a Username and Password. This option enables third party delivery.</p>
       <p>Your Users will be able to search for locations and we'll pace the delivery for you. Always ensure you have a good standing balance in order for your clients to place orders.</p>
       <p>Client will pay for the given quotation when completing an Order.</p></span>
       <br>
@@ -89,15 +89,15 @@ $(document).ready(function(){
 
 
       <div class="form-group">
-        <%= f.label "Set pickup point for goods (This is where the goods will be picked from)" %>
+        <%= f.label "Type pickup point for goods (This is where the goods will be picked from)" %>
 
         <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate', disabled: 'disabled', onkeyup: "locate();" %>
+            <input class="form-control locate" type="text" disabled id="locate" onkeyup="locate();" >
             <p>
             <div id="suggesstion-box"></div>
             </p>
         <% else %>
-            <%= f.text_field :auto_delivery_location, class: 'form-control locate', id: 'locate' %>
+            <input class="form-control locate" type="text" id="locate" onkeyup="locate();" >
             <a data-toggle="tooltip" data-placement="right" title="Location from which the goods will be picked from for them to be delivered to your clients"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
             <p>
             <div id="suggesstion-box"></div>
@@ -106,12 +106,17 @@ $(document).ready(function(){
       </div>
 
       <div class="form-group">
+        <%= f.label "Selected pick up Location (Business or Warehouse location)" %>
+        <%= f.text_field :auto_delivery_location, class: 'form-control locate', id:'sel_loc', disabled: 'disabled',style:"background-color:white;border-style: none !important;color:#06B216 !important;font-weight: bold;" %>
+      </div>
+
+      <div class="form-group">
         <%= f.label "Sendy Username" %>
 
         <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
+            <%= f.text_field :sendy_username, class: 'form-control', id:'sendyuser', disabled: 'disabled', class: 'locate form-control' %>
         <% else %>
-            <%= f.text_field :sendy_username, class: 'form-control', id: 'locate', class: 'locate form-control' %>
+            <%= f.text_field :sendy_username, class: 'form-control', id:'sendyuser', class: 'locate form-control' %>
             <a data-toggle="tooltip" data-placement="right" title="Your Sendy username after registering at www.sendyit.com"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
         <% end %>
       </div>
@@ -120,12 +125,16 @@ $(document).ready(function(){
         <%= f.label "Sendy Key" %>
 
         <% if (@store.auto_delivery_status == false) %>
-            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', disabled: 'disabled', class: 'locate form-control' %>
+            <%= f.text_field :sendy_key, class: 'form-control', id:'sendykey', disabled: 'disabled', class: 'locate form-control' %>
         <% else %>
-            <%= f.text_field :sendy_key, class: 'form-control', id: 'locate', class: 'locate form-control' %>
+            <%= f.text_field :sendy_key, class: 'form-control', id:'sendykey', class: 'locate form-control' %>
             <a data-toggle="tooltip" data-placement="right" title="Your Sendy key given to you after registering at www.sendyit.com"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
         <% end %>
       </div>
+      <br>
+      <div class="status alert alert-success" hidden></div>
+      <div class="error alert alert-danger" hidden></div>
+      <input id="verify" type="button" class="btn btn-primary" value="Verify and Save Sendy Credentials" >
 
       <div class="form-group">
         <%= f.hidden_field :lat, class: 'form-control' %>
@@ -177,7 +186,7 @@ $(document).ready(function(){
                     if (String(entry['formatted_address']) == 'Kenya') {
                         string = "<p>No Location Found. Try different Search Words</p>"
                     } else {
-                        string = string + '<p onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
+                        string = string + '<p style="background-color: whitesmoke;border-style: solid;border-color: #06B216;font-weight: bold;" onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
                     }
 
 
@@ -198,7 +207,8 @@ $(document).ready(function(){
 
     function selectlocation(val) {
 
-        $("#locate").val(val);
+        $("#locate").val('');
+        $("#sel_loc").val(val);
         $("#suggesstion-box").hide();
         $.ajax({
             type: 'POST',

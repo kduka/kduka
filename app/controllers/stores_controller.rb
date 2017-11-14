@@ -539,6 +539,25 @@ end
 
   end
 
+  def sendy
+    @username = params[:user]
+    @key = params[:passw]
+    @location = params[:loc]
+    @lat = params[:lat]
+    @lng = params[:lng]
+    no_layout
+  end
+
+  def save_sendy
+    @lat = params[:lat]
+    @lng = params[:lng]
+    @username = params[:user]
+    @key = params[:passw]
+    @location = params[:loc]
+    @store = Store.find(current_store.id)
+    @store.update(lat:@lat,lng:@lng,sendy_username:@username,sendy_key:@key,auto_delivery_location:@location);
+  end
+
 
   private
 

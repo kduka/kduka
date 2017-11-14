@@ -36,7 +36,6 @@ $(function () {
         res_check();
     });
 
-
     $("#store_pass_confirmation").keyup(function () {
         password = $("#pass_store").val();
         password_c = $("#store_pass_confirmation").val();
@@ -45,33 +44,50 @@ $(function () {
             $("#store_pass_confirmation").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #06B216;');
             $("#store_pass_confirmation").attr('data-valid', 'true');
         } else {
-            $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
+            $(".store_password_confirmation_prev").html("<p style='color:red;font-size:15px;'>Password don't match!</p>");
             $("#store_pass_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
             $("#store_pass_confirmation").attr('data-valid', 'false');
         }
+
         res_check();
     });
 
     $("#verify").click(function (e) {
-       e.preventDefault();
-       loc = $("#locate").val();
-       user = $("#sendyuser").val();
-       pass = $("#sendykey").val();
-       alert(loc + user + pass);
+        e.preventDefault();
+        loc = $("#sel_loc").val();
+        user = $("#sendyuser").val();
+        passw = $("#sendykey").val();
+        lat = $("#store_lat").val();
+        lng = $("#store_lng").val();
+        //alert(loc + user + passw);
+
+        $.ajax({
+            url: '/stores/sendy',
+            method: 'post',
+            data: {
+                loc: loc,
+                user: user,
+                passw: passw,
+                lat:lat,
+                lng:lng
+            },
+            success: function (e) {
+
+            }
+        });
     });
 
     $('#myOrderTable').DataTable({
-        "order": [[ 1, "desc" ]]
+        "order": [[1, "desc"]]
     });
 
     $('#myHistoryTable').DataTable({
-        "order": [[ 6, "desc" ]]
+        "order": [[6, "desc"]]
     });
 
     $('#myProductTable').DataTable({
-        "order": [[ 1, "asc" ]]
+        "order": [[1, "asc"]]
     });
-
 
     $("#b2c").click(function (e) {
         e.preventDefault();
@@ -432,10 +448,10 @@ $(function () {
             url: '/products/sort',
             method: 'post',
             data: {
-                sorter:val,
-                cat:cat
+                sorter: val,
+                cat: cat
             },
-            success:function (e) {
+            success: function (e) {
                 //alert(e);
                 $(".product_box").html(e);
             }
@@ -444,24 +460,24 @@ $(function () {
 
     $("#product_search").click(function (e) {
         e.preventDefault();
-       key = $("#keywords").val();
+        key = $("#keywords").val();
 
-       $.ajax({
-          url:'/products/search',
-           method:'post',
-           data:{
-              key:key
-           },
-           success:function (e) {
-               $(".product_box").html(e);
-           }
-       });
+        $.ajax({
+            url: '/products/search',
+            method: 'post',
+            data: {
+                key: key
+            },
+            success: function (e) {
+                $(".product_box").html(e);
+            }
+        });
     });
 
     $("#store_store_font").change(function () {
         font = $("#store_store_font").val();
         //alert(font);
-        $(".change_font").attr('style','padding:1em;font-family:"'+font+'"');
+        $(".change_font").attr('style', 'padding:1em;font-family:"' + font + '"');
         $(".change_font").html('The quick brown fox jumps over the lazy dog');
     });
 });
@@ -1011,12 +1027,12 @@ function validateEmail2(email) {
     }
 }
 
-function res_check(){
-    if ($("#pass_store").attr('data-valid') == 'true' && $("#store_pass_confirmation").attr('data-valid') == 'true'){
+function res_check() {
+    if ($("#pass_store").attr('data-valid') == 'true' && $("#store_pass_confirmation").attr('data-valid') == 'true') {
         $("#reseter").removeAttr('disabled');
         $("#reseter").removeAttr('style');
-    }else{
-        $("#reseter").attr('disabled','true');
-        $("#reseter").attr('style','background-color:grey');
+    } else {
+        $("#reseter").attr('disabled', 'true');
+        $("#reseter").attr('style', 'background-color:grey');
     }
 }

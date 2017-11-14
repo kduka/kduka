@@ -1,0 +1,98 @@
+var body = {
+    "command": "request",
+    "data": {
+    "api_key": "<%= @key %>",
+        "api_username": "<%= @username %>",
+        "vendor_type": 1,
+        "from": {
+        "from_name": "<%= @location %>",
+            "from_lat": <%= @lat %>,
+            "from_long": <%= @lng %>,
+            "from_description": ""
+    },
+    "to": {
+        "to_name": "KICC",
+            "to_lat": -1.28869,
+            "to_long": 36.823363,
+            "to_description": ""
+    },
+    "recepient": {
+        "recepient_name": "Sendy User",
+            "recepient_phone": "0728561783",
+            "recepient_email": "support@sendy.co.ke"
+    },
+    "delivery_details": {
+        "pick_up_date": "2016-04-20 12:12:12",
+            "collect_payment": {
+            "status": false,
+                "pay_method": 0,
+                "amount": 10
+        },
+        "return": true,
+            "note": " Sample note",
+            "note_status": true,
+            "request_type": "quote",
+            "order_type": "ondemand_delivery",
+            "ecommerce_order":"ecommerce_order_001",
+            "skew":1,
+            "package_size": [
+            {
+                "weight": 20,
+                "height": 10,
+                "width": 200,
+                "length": 30,
+                "item_name": "laptop"
+            }
+        ]
+    }
+},
+    "request_token_id":"request_token_id"
+};
+
+console.log(body);
+
+$.ajax({
+    url: 'https://api.sendyit.com/v1/',
+    method: 'post',
+    data: JSON.stringify(body),
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader('Content-Type', 'text/plain')
+    },
+    success: function (res) {
+        res = JSON.parse(res);
+        console.log(res);
+
+        if (res['status'] == true) {
+            $(".status").removeAttr('hidden').html('Credentials Saved! Please make sure you top up your account so that clients can use the delivery options');
+            $(".error").attr('hidden','hidden');
+
+            $.ajax({
+                url:'/stores/save_sendy',
+                method:'post',
+                data: {
+                    loc: loc,
+                    user: user,
+                    passw: passw,
+                    lat:lat,
+                    lng:lng
+                },
+                success: function () {
+                    //alert(e);
+                }
+            })
+
+        }
+        else {
+            $(".status").attr('hidden','hidden');
+            $(".error").removeAttr('hidden');
+            $(".error").html('Invalid Credentials or Location')
+            //$('.price').html('<p> Sorry, we cannot be able to do delivery for you at this time, please <a href="<%= contact_path %>">Contact Us</a>.</p>');
+        }
+
+    }
+});
+
+
+
+
+
