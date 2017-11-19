@@ -75,6 +75,8 @@ a{
   font-family: <%= @store.store_font %> !important;
 }
 <% end %>
+
+<% if !@store.store_color.nil? %>
   a:hover{
     color: <%= @store.store_color %> !important;
   }
@@ -146,6 +148,7 @@ a{
     max-height: 100px !important;
   }
 }
+<% end %>
 </style>
 <!--Custom Colors-->
 </head>
@@ -284,10 +287,7 @@ a{
 	<div class="footer col-md-12">
 		<div class="container">
 			<div class="footer-info">
-				<div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".5s">
-					<h4 class="footer-logo"><a href="<%= root_path %>"><span style="color:<%= @store.store_color %>"><%= @store.name %></span> <span class="tag"><%= @store.slogan %></span> </a></h4>
-					<p>Copyright © <%= Time.current.year %> KDuka . All rights reserved | Developed by <a href="http://www.zerone.co.ke" target="_blank">Zerone I.T. Solutions</a></p>
-				</div>
+
 				<div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".7s">
 					<h3><span style="color:<%= @store.store_color %>">Quick Links</span></h3>
 					<ul>
@@ -344,6 +344,10 @@ a{
               <% end %>
   					</ul>
   				</div>
+				</div>
+        <div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".5s">
+					<h4 class="footer-logo"><a href="<%= root_path %>"><span style="color:<%= @store.store_color %>"><%= @store.name %></span> <span class="tag"><%= @store.slogan %></span> </a></h4>
+					<p>Copyright © <%= Time.current.year %> KDuka . All rights reserved | Developed by <a href="http://www.zerone.co.ke" target="_blank">Zerone I.T. Solutions</a></p>
 				</div>
 				<div class="clearfix"></div>
 			</div>

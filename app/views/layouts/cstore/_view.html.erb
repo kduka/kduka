@@ -1,0 +1,85 @@
+<section id="banner_parallax" data-parallax="scroll" data-image-src="<%= @store.banner_url.to_s %>">
+    <h2>Product</h2>
+</section>
+<!-- /#banner_parallax -->
+
+<!--=======PRODUCT=======-->
+<div id="product" class="container-fluid">
+    <div class="container">
+        <div class="row product_section">
+            <div class="col-sm-6 product_1_img">
+                <div class="col-sm-10 pull-right">
+                  <% if !@product.image.blank? %>
+                    <img class="pt_main_img img-responsive" id="zoom_03" src="<%= @product.image_url.to_s %>" data-zoom-image="<%= @product.image_url.to_s %>" alt="Image" />
+                  <% end %>
+
+                </div>
+                <div class=" hidden-xs col-sm-2 row pull-left" id="pt_gallery">
+                  <% if !@product.image.blank? %>
+                    <a href="#" data-image="<%= @product.image_url.to_s %>" data-zoom-image="<%= @product.image_url.to_s %>">
+                        <img src="<%= @product.image_url.to_s %>" alt="Image" />
+                    </a>
+                  <% end %>
+                  <% if !@product.img1.blank? %>
+                    <a href="#" data-image="<%= @product.img1_url.to_s %>" data-zoom-image="<%= @product.img1_url.to_s %>">
+                        <img src="<%= @product.img1_url.to_s %>" alt="Image" />
+                    </a>
+                  <% end %>
+                  <% if !@product.img2.blank? %>
+                    <a href="#" data-image="<%= @product.img2_url.to_s %>" data-zoom-image="<%= @product.img2_url.to_s %>">
+                        <img src="<%= @product.img2_url.to_s %>" alt="Image" />
+                    </a>
+                  <% end %>
+                  <% if !@product.img3.blank? %>
+                    <a href="#" data-image="<%= @product.img3_url.to_s %>" data-zoom-image="<%= @product.img3_url.to_s %>">
+                        <img src="<%= @product.img3_url.to_s %>" alt="Image" />
+                    </a>
+                  <% end %>
+                  <% if !@product.img4.blank? %>
+                    <a href="#" data-image="<%= @product.img4_url.to_s %>" data-zoom-image="<%= @product.img4_url.to_s %>">
+                        <img src="<%= @product.img4_url.to_s %>" alt="Image" />
+                    </a>
+                  <% end %>
+                </div>
+            </div>
+
+            <div class="col-sm-6 product_content">
+                <h3><%= @product.name %></h3>
+                <span><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
+
+                <div class="pt_desc">
+                    <p><%= @product.description %></p>
+                </div><br><br>
+                <div class="pt_add_cart">
+                  <%= form_for :order_item, :url => {controller: 'order_items', action: 'create'}, remote: true do |f| %>
+                        <%= f.number_field :quantity, value: 1, class: "item_quantity", min: 1 %>
+                        <%= f.hidden_field :product_id, value: @product.id %>
+                        <% exist=false %>
+                        <% current_order.order_items.each do |oi| %>
+                            <% if oi.product_id == @product.id %>
+                                <% exist = true %>
+                            <% end %>
+                        <% end %>
+                        <% if @product.quantity < 1 %>
+                            <%= f.button type: 'submit', disabled: 'disabled' do %>
+                                <i class="fa fa-lg fa-cart-plus"></i> Out of Stock!
+                            <% end %>
+                        <% else %>
+                            <% if !exist %>
+                                <%= f.button type: 'submit' do %>
+                                    <i class="fa fa-lg fa-cart-plus"></i> Add to Cart
+                                <% end %>
+                            <% else %>
+                                <%= f.button type: 'submit', disabled: 'disabled' do %>
+                                    <i class="fa fa-lg fa-cart-plus"></i> Added!
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /#product -->

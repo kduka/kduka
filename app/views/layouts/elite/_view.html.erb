@@ -55,7 +55,7 @@
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
                                   <% exist=false %>
                                   <% current_order.order_items.each do |oi| %>
-                                      <% if oi.product_id == product.id %>
+                                      <% if oi.product_id == @product.id %>
                                           <% exist = true %>
                                       <% end %>
                                   <% end %>

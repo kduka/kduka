@@ -1,0 +1,58 @@
+<!--=======NAVBAR START=======-->
+<header>
+    <nav class="navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- change logo path inside of (src="...") attribute -->
+                <div style="min-width:346px;min-height:113px">
+                <a href="<%= root_path %>">
+                  <% if @store.logo_status %>
+                  <%= image_tag(@store.logo_url.to_s,style:"max-width:346px;max-height:113px") %>
+                  <% else %>
+                      <h2 style="color:<%= @store.store_color %> !important;padding-top:1.2em"><%= @store.name %></h2>
+                  <% end %>
+                </a>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <!-- this part for only mobile devices -->
+                <ul class="navbar-nav text-center list-inline visible-xs xs-nav-top">
+                    <li><a href="<%= cart_path %>"><i class="fa fa-cart-arrow-down"></i><span class="badge"> <%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-left">
+                  <% if @store.homepage_status == true %>
+                  <li><a href="<%= root_path %>" class="active"><i class="fa fa-home"></i> Home</a></li>
+                  <% end %>
+                  <% if @store.homepage_status == true %>
+                  <li><a href="<%= about_path %>">About Us</a></li>
+                  <% end %>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="<%= all_path %>"><h4>ALL PRODUCTS</h4></a>
+                          <% @store.category.where(active:true).each do |c| %>
+                              <% if !c.nil? %>
+                                  <li><a href="<%= product_category_path(c.id) %>"><h4><%= c.name %></h4></a></li>
+                              <% end %>
+                          <% end %>
+                        </ul>
+                    </li>
+
+                    <li><a href="<%= contact_path %>">Contact</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav hidden-xs navbar-right">
+                    <li><a href="<%= cart_path %>"><i class="fa fa-cart-arrow-down" style="font-size:25px !important;"></i><span class="badge cart-text"> <%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %> </span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

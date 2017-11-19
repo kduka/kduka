@@ -1,0 +1,56 @@
+.progressround {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.progressround div {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.progressround div span {
+    position: absolute;
+    font-size: 48px;
+    line-height: 175px;
+    height: 175px;
+    width: 175px;
+    left: 12.5px;
+    top: 12.5px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.progressround .background {
+    background-color: #FF9500;
+}
+
+.progressround .rotate {
+    clip: rect(0 100px 200px 0);
+    background-color: #FF9500;
+}
+
+.progressround .left {
+    clip: rect(0 100px 200px 0);
+    opacity: 1;
+    background-color: #FF9500;
+}
+
+.progressround .right {
+    clip: rect(0 100px 200px 0);
+    transform: rotate(180deg);
+    opacity: 0;
+    background-color: #FF9500;
+}
+
+@keyframes toggle {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }

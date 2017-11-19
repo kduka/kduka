@@ -78,6 +78,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     font-family: <%= @store.store_font %> !important;
   }
   <% end %>
+
+  <% if !@store.store_color.nil? %>
     .myclass:hover{
       color: <%= @store.store_color %> !important;
     }
@@ -153,6 +155,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       max-height: 100px !important;
     }
   }
+  <% end %>
   </style>
   <!--Custom Colors-->
 </head>
@@ -248,17 +251,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <ul>
             <% if !@store.facebook.blank? %>
                 <li style="text-align:center !important;margin-bottom:1em !important;">
-                  <a target="_blank" href="http://<%= @store.facebook %>"><i style="padding-top:1.3em" class="fa fa-facebook"></i>
+                  <a target="_blank" href="<%= @store.facebook %>"><i style="padding-top:1.3em" class="fa fa-facebook"></i>
                   </a></li>
             <% end %>
             <% if !@store.twitter.blank? %>
                 <li style="text-align:center !important;margin-bottom:1em !important;">
-                  <a target="_blank" href="http://<%= @store.twitter %>"><i style="padding-top:1.3em" class="fa fa-twitter"></i>
+                  <a target="_blank" href="<%= @store.twitter %>"><i style="padding-top:1.3em" class="fa fa-twitter"></i>
                   </a></li>
             <% end %>
             <% if !@store.instagram.blank? %>
                 <li style="text-align:center !important;margin-bottom:1em !important;">
-                  <a target="_blank" href="http://<%= @store.instagram %>"><i style="padding-top:1.3em" class="fa fa-instagram"></i>
+                  <a target="_blank" href="<%= @store.instagram %>"><i style="padding-top:1.3em" class="fa fa-instagram"></i>
                   </a></li>
             <% end %>
             <% if !@store.linkedin.blank? %>

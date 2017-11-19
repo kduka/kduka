@@ -1,0 +1,70 @@
+<!--=======BANNER=======-->
+<section id="banner_parallax" data-parallax="scroll" data-image-src="<%= @store.banner_url.to_s %>">
+    <h2>PRODUCTS</h2>
+</section>
+<!-- /#banner_parallax -->
+<div style="width:100%">
+<div class="container" style="margin-top:4em;margin-bottom:0em">
+  <div class="col-md-8 sidebar-row">
+
+  <div class="col-md-5">
+    <h4 class="my_input"> Category </h4>
+    <%= select_tag(:category_id, options_from_collection_for_select(@categories, 'id','name') ,{:class=>'form-control my_input',required:'required',:include_blank => true}) %>
+  </div>
+
+    <div class="col-md-5">
+      <h4 class="my_input"> Sorting </h4>
+        <select id="sorter_id" name="sorter" class="my_input form-control">
+          <optgroup label="Date">
+            <option value="nto">New to Old</option>
+            <option value="otn">Old to New</option>
+          </optgroup>
+          <optgroup label="Price">
+            <option value="htl">Highest to Lowest</option>
+            <option value="lth">Lowest to Highest</option>
+          </optgroup>
+        </select>
+    </div>
+      <div class="col-md-2">
+        <h4 style="color:#fff !important">Sort </h4>
+        <button style="background-color: <%= @store.store_color %>" id="sort_product" class="form-control btn btn-primary">Sort</button>
+      </div>
+    </div>
+  <div class="col-md-4 sidebar-row">
+
+    <%= form_tag("") do %>
+    <div class="col-md-9">
+      <h4 class="my_input">Search</h4>
+      <input class="my_input form-control" id="keywords" />
+      <br>
+    </div>
+    <div class="col-md-3">
+      <h4 style="color:#fff !important">Search </h4>
+      <button style="background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
+    </div>
+    <% end %>
+  </div>
+</div>
+  <section id="ft_products">
+      <div class="container">
+          <div class="row product_box">
+
+            <!---->
+                <% if @products.nil? %>
+                    <h1 class="text-center">This store does not have any active Products</h1>
+                <% else %>
+                    <% @products.each do |product| %>
+                        <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+                    <% end %>
+
+                <% end%>
+                <br>
+                <div class="text-center" style="font-size: medium"> <%= will_paginate @products %></div>
+
+                <div class="clearfix"></div>
+            <!---->
+          </div>
+      </div>
+      <!-- /.container -->
+  </section>
+</div>

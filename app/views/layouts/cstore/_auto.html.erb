@@ -1,0 +1,20 @@
+<% if @store.auto_delivery_status == true %>
+    <div class="form-group">
+      <% if @data == 'false' %>
+      <input  id="delivery_location" disabled type="textbox" value="" class='ship_form form-control' onkeyup="locate();" onchange='validate_ship()' placeholder='Delivery Location'/>
+          <% elsif @data == 'true' %>
+          <input id="delivery_location" type="textbox" value="" class='ship_form form-control' onkeyup="locate();" onchange='validate_ship()' placeholder='Delivery Location'/>
+          <% end %>
+      <div id="suggesstion-box"></div>
+      <input id="long" name="long" type="hidden" value="">
+      <input id="lat" name="lat" type="hidden" value="">
+      <input id="delivery_order" name="delivery_order" type="hidden" value="">
+      <input id="delivery_amount" name="delivery_amount" type="hidden" value="">
+      <div id="map"></div><br><br>
+    </div>
+    <div class="form-group">
+      <input id="sel_loc" type="text" name="selected_location" style="border-style: none;background-color: white" disabled />
+      <p><span style="color:green;" class="price">Delivery Charge: </span></p>
+    </div>
+    <p></p>
+<% end %>

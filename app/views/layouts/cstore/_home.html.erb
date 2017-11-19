@@ -1,0 +1,83 @@
+<!--=======BANNER=======-->
+<div id="banner">
+
+    <div class="tp-banner-container">
+        <div class="tp-banner">
+            <ul>
+                <!-- SLIDE  -->
+                <li data-slotamount="7" data-masterspeed="1500">
+                    <!-- MAIN IMAGE -->
+                    <img src="<%= @store.banner_url.to_s %>" alt="slidebg1" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                    <!-- LAYERS -->
+
+
+                    <!-- LAYER -->
+                    <div class="tp-caption finewide_large_white customin customout tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-40" data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="500" data-start="500" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="chars" data-elementdelay="0.08" data-endelementdelay="0.08" data-end="3600000" data-endspeed="500" style="z-index: 2; max-width: auto; max-height: auto; white-space: nowrap;">WELCOME TO
+                    </div>
+
+                    <!-- LAYER -->
+                    <div class="tp-caption whitedivider3px customin customout tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="0" data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="700" data-start="800" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-end="3600000" data-endspeed="500" style="z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;">&nbsp;
+                    </div>
+
+                    <!-- LAYER -->
+                    <div class="tp-caption finewide_medium_white randomrotate customout tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="30" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="500" data-start="500" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="chars" data-elementdelay="0.08" data-endelementdelay="0.08" data-end="3600000" data-endspeed="500" style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><%= @store.name %>
+                    </div>
+                </li>
+
+        </div>
+        <!-- /.tp-banner -->
+    </div>
+    <!-- /.tp-banner-container -->
+</div>
+<!-- /#banner -->
+
+
+<!--=======FEATURED PRODUCTS=======-->
+<section id="ft_products">
+    <div class="container">
+        <div class="col-sm-12">
+            <h2>Latest Products</h2>
+        </div>
+        <div class="row">
+
+          <!---->
+              <% if @products.nil? %>
+                  <h1 class="text-center">This store does not have any active Products</h1>
+              <% else %>
+                  <% @products.each do |product| %>
+                      <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+                  <% end %>
+
+              <% end%>
+
+              <div class="clearfix"></div>
+            <br><br><br><p style="text-align:center"><a href="<%= all_path %>" class="my_buttons">View More</a></p>
+          <!---->
+        </div>
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /#ft_products-->
+<% if !@featured.nil? %>
+    <% @featured.each do |category| %>
+    <section id="ft_products">
+        <div class="container">
+            <div class="col-sm-12">
+                <h2><%= category.name %></h2>
+            </div>
+            <div class="row">
+              <% @cat_products = Product.where(active:true,category_id:category.id).limit(3).order('id desc') %>
+              <% if !@cat_products.nil? %>
+                  <% @cat_products.each do |product| %>
+                      <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+                  <% end %>
+              <% end %>
+
+                  <div class="clearfix"></div>
+                <br><br><br><p style="text-align:center"><a href="<%= product_category_path(category.id) %>" class="my_buttons">View More from <%= category.name %></a></p>
+            </div>
+        </div>
+        <!-- /.container -->
+    </section>
+    <% end %>
+<% end %>

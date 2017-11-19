@@ -1,0 +1,78 @@
+<!--=======BANNER=======-->
+<section id="banner_parallax" data-parallax="scroll" data-image-src="<%= @store.banner_url.to_s %>">
+    <h2>Contact</h2>
+</section>
+<!-- /#banner_parallax -->
+<div style="margin-bottom: 1em;margin-top: 1em;width:100%">
+  <div class="col-md-12">
+    <% if !notice.nil? %>
+        <div class="text-center alert alert-success" role="alert">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong><%= notice %></strong>
+        </div>
+    <% end %>
+    <% if !alert.nil? %>
+        <div class="text-center alert alert-info" role="alert">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong><%= alert %></strong>
+        </div>
+    <% end %>
+
+  </div>
+</div>
+<!--=======CONTACT SECTION 1=======-->
+<section class="contact_sec_1 text-center">
+    <div class="container">
+        <div class="col-sm-12">
+            <h2>Get in Touch</h2>
+            <h5>Find our contact details below.</h5>
+        </div>
+        <% if !@store.display_email.blank?%>
+        <div class="col-sm-4">
+            <i class="fa fa-5x fa-envelope"></i>
+            <h3>Email</h3>
+            <p><%= @store.display_email %></p>
+        </div>
+        <% end %>
+        <% if !@store.business_location.blank?%>
+        <div class="col-sm-4">
+            <i class="fa fa-5x fa-map-marker"></i>
+            <h3>Location</h3>
+            <p><%= @store.business_location %></p>
+        </div>
+        <% end %>
+        <% if !@store.phone.blank?%>
+        <div class="col-sm-4">
+            <i class="fa fa-5x fa-volume-control-phone"></i>
+            <h3>Phone</h3>
+            <p><%= @store.phone %></p>
+        </div>
+        <% end %>
+
+    </div><!-- /.container -->
+</section><!-- /.contact_sec_1 -->
+
+<!--=======CONTACT SECTION 2=======-->
+<div class="contact_sec_2">
+    <div class="container">
+            <div class="row">
+              <%= form_tag('/stores/contact') do %>
+                <div class="col-sm-6 form-group">
+                  <%= label_tag(:first_name, "Name") %>
+                  <%= text_field_tag(:first_name, nil,:required=>'required', :class => 'form-control') %>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <%= label_tag(:email, "Email") %>
+                  <%= text_field_tag(:email, nil,:required=>'required', :class => 'form-control') %>
+                </div>
+                <div class="col-xs-12 form-group">
+                  <%= label_tag(:message, "Message") %>
+                  <%= text_area_tag(:message, nil,:required=>'required', :class => 'form-control', :style=> 'height:10em') %>
+                </div>
+                <div class="text-center form-group">
+                    <%= submit_tag("Send Message", :class => 'btn btn-default buttons my_buttons') %>
+                </div>
+              <% end %>
+            </div>
+    </div><!-- /.container -->
+</div><!-- /.contact_sec_2 -->

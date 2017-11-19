@@ -1,0 +1,48 @@
+<div class="col-md-4 col-sm-12">
+<div class="ftp_item text-center">
+    <%= image_tag(product.image_url(:thumb).to_s, class: 'img_responsive',style:'min-height:20em;max-height:20em;margin-top:3em;margin-bottom:3em;max-width:100%') %>
+    <div class="hover_quick_view">
+        <a href="<%= product_view_path(product.sku) %>"><i class="fa fa-eye"></i> Quick View</a>
+    </div>
+
+    <div class="ftp_item_content_text">
+        <!-- Product heading will goes here -->
+        <h3><%= product.name %></h3>
+        <!-- Product price will goes here ... for mention previous price just write inside of <del> tag -->
+        <h4 class="item_price"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4>
+        <p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>
+    </div>
+    <div class="ftp_item_content_btn">
+      <!---->
+      <%= form_for order_item, remote: true do |f| %>
+          <%= f.hidden_field :quantity, value: 1, class: "item_quantity", min: 1 %>
+          <%= f.hidden_field :product_id, value: product.id %>
+          <% exist=false %>
+          <% current_order.order_items.each do |oi| %>
+              <% if oi.product_id == product.id %>
+                  <% exist = true %>
+              <% end %>
+              <% end %>
+          <% if product.quantity < 1 %>
+          <%= button_tag type: 'submit',:class=>'button',disabled:'disabled',:style=>'height:auto !important' do %>
+              <i class="fa fa-cart-arrow-down"></i> Out of Stock
+          <% end %>
+          <% else %>
+              <% if !exist %>
+
+              <%= button_tag type: 'submit',:class=>'button',:style=>'height:auto !important' do %>
+                  <i class="fa fa-cart-arrow-down"></i> Add to Cart
+              <% end %>
+
+                  <% else %>
+
+                  <%= button_tag type: 'submit',:class=>'button',disabled:true,:style=>'height:auto !important' do %>
+                      <i class="fa fa-cart-arrow-down"></i> Added
+                  <% end %>
+              <% end %>
+          <% end %>
+      <% end %>
+      <!---->
+    </div>
+</div>
+</div>

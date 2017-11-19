@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="KDuka - Online Shopping made easy">
+    <meta name="author" content="KDuka">
+    <!-- Site Title-->
+    <title><%= @store.name %></title>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <% Dir.foreach("public/stylesheets/#{Layout.find(@store.layout_id).name}") do |item|
+      next if item == '.' or item == '..' %>
+        <%= stylesheet_link_tag "#{Layout.find(@store.layout_id).name}/#{item}" %>
+    <% end %>
+    <% Dir.foreach("public/javascripts/#{Layout.find(@store.layout_id).name}") do |item|
+      next if item == '.' or item == '..' %>
+        <%= javascript_include_tag "#{Layout.find(@store.layout_id).name}/#{item}" %>
+    <% end %>
+
+    <style>
+    <% if !@store.store_font.nil? %>
+    body{
+      font-family: <%= @store.store_font %> !important;
+    }
+    h1{
+      font-family: <%= @store.store_font %> !important;
+    }
+    h2{
+      font-family: <%= @store.store_font %> !important;
+    }
+    h3{
+      font-family: <%= @store.store_font %> !important;
+    }
+    h4{
+      font-family: <%= @store.store_font %> !important;
+    }
+    h5{
+      font-family: <%= @store.store_font %> !important;
+    }
+    h6{
+      font-family: <%= @store.store_font %> !important;
+    }
+    p{
+      font-family: <%= @store.store_font %> !important;
+    }
+    a{
+      font-family: <%= @store.store_font %> !important;
+    }
+    <% end %>
+
+    <% if !@store.store_color.nil? %>
+    .breadcrumb>li>a:hover {
+        color: <%= @store.store_color %> !important
+    }
+
+    .breadcrumb .active {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .qv_product_content>span {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .qv_product_content .qv_pt_star li a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .qv_review a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .qv_review_add a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .qv_add_cart input {
+        border-bottom: 2px solid <%= @store.store_color %> !important;
+    }
+
+    .qv_add_cart button {
+        background: <%= @store.store_color %> !important;
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+
+    .qv_product_content button:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .qv_product_content .qv_add_to_wish i {
+        color: <%= @store.store_color %> !important
+    }
+
+    /*----------------------------------------
+                    02. NAVBER
+    ------------------------------------------*/
+
+    header .active {
+        color: <%= @store.store_color %> !important;
+        transition: all 0.5s !important;
+    }
+
+    .navbar-default .navbar-nav>.open>a,
+    .navbar-default .navbar-nav>.open>a:focus,
+    .navbar-default .navbar-nav>.open>a:hover {
+        color: <%= @store.store_color %> !important;
+        transition: all 0.5s !important;
+    }
+
+    .navbar-default ul li a:hover {
+        color: <%= @store.store_color %> !important;
+        transition: all 0.5s !important;
+    }
+
+    .navbar-right .badge {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .shop_now_btn {
+        background: <%= @store.store_color %> !important;
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+
+    .shop_now_btn:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+
+    /*----------------------------------------
+                    04. SHOWCASE
+    ------------------------------------------*/
+
+    .showcase_text h3 {
+        text-shadow: 1px 1px 2px <%= @store.store_color %> !important, 0 0 25px <%= @store.store_color %> !important, 0 0 5px <%= @store.store_color %> !important;
+    }
+
+    .showcase_text a {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #ft_products .ftp_item_tag {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #ft_products .tag_color {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #ft_products .hover_quick_view a {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #ft_products .ftp_item_content_text ul li a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #ft_products .ftp_item_content_btn button {
+        border: 1px solid <%= @store.store_color %> !important;
+        color: <%= @store.store_color %> !important;
+        transition: all 0.5s !important;
+    }
+
+    #ft_products .ftp_item_content_btn button:hover {
+        background: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+        color: #fff !important;
+        transition: all 0.5s !important;
+    }
+
+    /*----------------------------------------
+                06. NEW PRODUCT
+    ------------------------------------------*/
+
+    .new_product_color ul li:nth-child(5) {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .new_product_size ul li a {
+        border: 2px solid <%= @store.store_color %> !important;
+        color: <%= @store.store_color %> !important;
+    }
+
+    .new_product_add_cart button {
+        background: <%= @store.store_color %> !important;
+        border: 2px solid <%= @store.store_color %> !important;
+        transition: all 0.5s !important;
+    }
+
+    .new_product_add_cart button:hover {
+        color: <%= @store.store_color %> !important;
+        border: 2px solid <%= @store.store_color %> !important;
+        background: #fff !important;
+        transition: all 0.5s !important;
+    }
+
+
+    /*----------------------------------------
+                07. ONESELL PRODUCT
+    ------------------------------------------*/
+
+    .onsell_product_size ul li a {
+        border: 2px solid <%= @store.store_color %> !important;
+        color: <%= @store.store_color %> !important;
+    }
+
+    .onsell_product_add_cart button {
+        background: <%= @store.store_color %> !important;
+        border: 2px solid <%= @store.store_color %> !important;
+        transition: all 0.5s !important;
+    }
+
+    .onsell_product_add_cart button:hover {
+        color: <%= @store.store_color %> !important;
+        background: #fff !important;
+        border: 2px solid <%= @store.store_color %> !important;
+        transition: all 0.5s !important;
+    }
+
+
+    /*----------------------------------------
+                08. RECENT BLOG
+    ------------------------------------------*/
+
+    #recent_blog .rec-blog-text span>a {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #recent_blog .rec-blog-text span>a:hover {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #recent_blog .rec-blog-text>a {
+        background: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    #recent_blog .rec-blog-text a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    /*----------------------------------------
+                10. FEEDBACK
+    ------------------------------------------*/
+
+    .item_feedback i {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #feedback .item_feedback:hover h3 {
+        color: <%= @store.store_color %> !important;
+    }
+
+    /*----------------------------------------
+                11. SERVICES
+    ------------------------------------------*/
+
+    #services i {
+        color: <%= @store.store_color %> !important;
+    }
+
+    /*----------------------------------------
+            13. LISTING SIDEBAR ITEM 1
+    ------------------------------------------*/
+
+    #listing .sidebar_item_1 li span {
+        color: <%= @store.store_color %> !important;
+    }
+
+    /*----------------------------------------
+            14. LISTING SIDEBAR ITEM 2
+    ------------------------------------------*/
+
+    #listing .sidebar_item_2 li span {
+        color: <%= @store.store_color %> !important;
+    }
+
+    /*----------------------------------------
+            15. LISTING SIDEBAR ITEM 3
+    ------------------------------------------*/
+    .ui-widget-header {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .ui-state-default,
+    .ui-widget-content .ui-state-default,
+    .ui-widget-header .ui-state-default,
+    .ui-button,
+    html .ui-button.ui-state-disabled:hover,
+    html .ui-button.ui-state-disabled:active {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .ui-button:hover,
+    .ui-button:focus {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #listing .price-field button {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #listing .price-field button:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    /*----------------------------------------
+            16. LISTING SIDEBAR ITEM 4
+    ------------------------------------------*/
+    #listing .sidebar_item_4 ul li a {
+        background: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    #listing .sidebar_item_4 ul li a:hover {
+        color: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    /*----------------------------------------
+            18. LISTING SIDEBAR ITEM 6
+    ------------------------------------------*/
+    #listing .sidebar_item_6 ul li a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+
+    /*----------------------------------------
+            19. LISTING SIDEBAR ITEM 7
+    ------------------------------------------*/
+
+    #listing .sidebar_item_7 ul li a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+
+    /*----------------------------------------
+            20. LISTING SIDEBAR ITEM 8
+    ------------------------------------------*/
+
+    #listing .sidebar_item_10 .ft-item:hover h5 {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #listing .sidebar_item_10 h6 {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #listing .sidebar_item_10 li {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #listing .sidebar_item_10 li a {
+        color: <%= @store.store_color %> !important;
+    }
+
+
+    /*----------------------------------------
+            21. LISTING SIDEBAR ITEM 9
+    ------------------------------------------*/
+
+    #listing .sidebar_item_11 li a {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #listing .sidebar_item_11 li a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+
+    /*----------------------------------------
+            22. LISTING SIDEBAR ITEM 10
+    ------------------------------------------*/
+
+    #listing .sidebar_item_12 a {
+        color: <%= @store.store_color %> !important;
+    }
+
+
+    /*----------------------------------------
+        23. SHOP FILTERING BY CATEGORY
+    ------------------------------------------*/
+
+    #listing .shop_filtering_list li {
+        color: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    #listing .shop_filtering_list li:hover {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #listing .shop_filtering_list .active {
+        background: <%= @store.store_color %> !important;
+    }
+
+
+    /*----------------------------------------
+                24. PRODUCTS
+    ------------------------------------------*/
+    #listing .shop_item_tag {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #listing .shop_tag_color {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #listing .shop_hover_out_of_stock button {
+        border: 1px solid <%= @store.store_color %> !important;
+        color: <%= @store.store_color %> !important;
+    }
+
+    #listing .shop_hover_out_of_stock button:hover {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #listing .shop_hover_quick_view a {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #listing .shop_item_content_text ul li a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .shop_hover_quick_view .shop_item_content_btn button {
+        border: 1px solid <%= @store.store_color %> !important;
+        color: <%= @store.store_color %> !important;
+    }
+
+    #listing .shop_item_content_btn button:hover {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #pt_gallery .active img {
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+
+    .product_content>span {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .product_content .pt_star li a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .pt_review a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .pt_review_add a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .pt_add_cart input {
+        border-bottom: 2px solid <%= @store.store_color %> !important;
+    }
+
+    .pt_add_cart button {
+        background: <%= @store.store_color %> !important;
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+    .pt_add_cart button:hover {
+        color: <%= @store.store_color %> !important;
+        background: #FFF !important;
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+
+    .product_content button:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .product_content .add_to_wish i {
+        color: <%= @store.store_color %> !important
+    }
+    .product_content .pt_tag ul li a {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .product_content .pt_category ul li a {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .pt_tab_menu ul li a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .pt_tab_menu .active {
+        border-top: 2px solid <%= @store.store_color %> !important;
+    }
+
+    .pt_reviewer h5 a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .pt_reviewer li a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .pt_reviewer_form li a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .pt_reviewer_form form input {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    .pt_reviewer_form form textarea {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    .pt_reviewer_form form button {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .pt_reviewer_form form button:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .related-products .rltd_item_tag {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .related-products .rltd_tag_color {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .related-products .rltd_hover_quick_view a {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .related-products .rltd_item_content_text ul li a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .related-products .rltd_item_content_btn button {
+        border: 1px solid <%= @store.store_color %> !important;
+        color: <%= @store.store_color %> !important;
+    }
+
+    .related-products .rltd_item_content_btn button:hover {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #blog_main_post_area .breadcrumb>li>a:hover {
+        color: <%= @store.store_color %> !important
+    }
+
+    #blog_main_post_area .breadcrumb .active {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_main_post_area .blog_post_item span {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_main_post_area .blog_post_content>a {
+        border: 1px solid <%= @store.store_color %> !important;
+        background: <%= @store.store_color %> !important;
+    }
+
+    #blog_main_post_area .com_cat a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_main_post_area .pagination>.active>a {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    #blog_main_post_area .pagination>.active>a,
+    .pagination>.active>a:focus,
+    .pagination>.active>a:hover,
+    .pagination>.active>span,
+    .pagination>.active>span:focus,
+    .pagination>.active>span:hover {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #blog_main_post_area .pagination a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .search input[type=text] {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .search button {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .recent-posts>ul>li>a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .recent-comments>ul>li>a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .categories ul>li>a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .archives ul>li>a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .tags ul li {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .tags ul li a {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .meta ul>li>a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .subscribe_form input[type=email] {
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+
+    #blog_sidebar .subscribe_form input[type=submit] {
+        background: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    .post_tags ul li a {
+        border: 1px solid <%= @store.store_color %> !important;
+        background: <%= @store.store_color %> !important;
+    }
+
+    .post_commenter a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .post_comment form input {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    .post_comment form textarea {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    .post_comment form button {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .post_comment form button:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .portfolio_menu ul li {
+        color: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    .portfolio_menu ul li:hover {
+        background: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    .portfolio_menu ul .active {
+        background: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    .portfolio_item .portfolio_content h3 {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .portfolio_item .portfolio_content a {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .portfolio_item .portfolio_content a:hover {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+    .about_sec_1 a {
+        border: 2px solid <%= @store.store_color %> !important;
+        color: <%= @store.store_color %> !important;
+    }
+
+    .about_sec_1 a:hover {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .about_sec_4 i {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .about_sec_4 h4 {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .about_sec_6 i {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .about_sec_6 .adout_item_feedback:hover h4 {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .sevices_sec_1 .col-sm-6:first-child {
+        background: <%= @store.store_color %> !important;
+    }
+    .sevices_sec_1 a:hover {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .sevices_sec_2 i {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .sevices_sec_3 .best_2 h4 {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .contact_sec_1 i {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .contact_sec_2 button[type=submit] {
+        color: <%= @store.store_color %> !important;
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+
+    .contact_sec_2 button[type=submit]:hover {
+        background: <%= @store.store_color %> !important;
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+    .my_buttons{
+      max-width: 100%;
+      font-size: 16px;
+      font-weight: 700;
+      color: <%= @store.store_color %> !important;
+      border: 2px solid  <%= @store.store_color %> !important;
+      text-transform: uppercase;
+      border-radius: 0;
+      padding: 10px 60px;
+      -webkit-transition: all linear 0.3s;
+      transition: all linear 0.3s;
+      margin-top: 30px;
+    }
+    .my_buttons:hover{
+      max-width: 100%;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff !important;
+      background: <%= @store.store_color %> !important;
+      border: 2px solid <%= @store.store_color %> !important;
+      text-transform: uppercase;
+      border-radius: 0;
+      padding: 10px 60px;
+      -webkit-transition: all linear 0.3s;
+      transition: all linear 0.3s;
+      margin-top: 30px;
+    }
+
+    .error_page h2 span {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .error_page input {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    .error_page button {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .empty_cart>i {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .empty_cart a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .cart_item h5 a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .proceed button {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .faq h3 {
+        color: <%= @store.store_color %> !important
+    }
+    .checkout .total button {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .login_form a {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .login_form form button {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .login_form form .cr_btn {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .login_form form .cr_btn:hover {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .wishlist_item button {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .wishlist_item button:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .coming_soon #clock span {
+        color: <%= @store.store_color %> !important
+    }
+
+    .coming_soon h4 span {
+        color: <%= @store.store_color %> !important;
+    }
+
+    .coming_soon form input {
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+
+    .coming_soon form button {
+        background: <%= @store.store_color %> !important;
+    }
+
+    .coming_soon ul li a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+
+    #backtotop {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #backtotop i {
+        background: <%= @store.store_color %> !important;
+    }
+
+    #backtotop i:hover {
+        color: #fff !important;
+        border: 2px solid <%= @store.store_color %> !important;
+    }
+
+    footer ul li a {
+        color: <%= @store.store_color %> !important;
+        padding: 13px 10px;
+        border: 2px solid <%= @store.store_color %> !important;
+        border-radius: 50%;
+        margin-right: 5px;
+        transition: all 0.5s !important;
+    }
+
+    footer ul li a:hover {
+        color: #fff !important;
+        border: 2px solid #fff !important;
+        transition: all 0.5s !important;
+    }
+
+    footer input[type=email] {
+        border: 1px solid <%= @store.store_color %> !important;
+    }
+
+    footer button {
+        background: <%= @store.store_color %> !important;
+    }
+
+
+    /*----------------------------------------
+        IF SCREEN SIZE LESS THAN 992px WIDE
+    ------------------------------------------*/
+
+    @media screen and (max-width: 991px) {
+        .new_product_size ul li a {
+            border: 1px solid <%= @store.store_color %> !important;
+        }
+        .onsell_product_size ul li a {
+            border: 1px solid <%= @store.store_color %> !important;
+        }
+        #listing .sidebar_item_10 li a {
+            color: <%= @store.store_color %> !important;
+        }
+        .sevices_sec_3 .best_2 h4 {
+            color: <%= @store.store_color %> !important;
+        }
+    }
+
+
+    /*----------------------------------------
+        IF SCREEN SIZE LESS THAN 768px WIDE
+    ------------------------------------------*/
+
+    @media screen and (max-width: 767px) {
+        .xs-nav-top .badge {
+            background: <%= @store.store_color %> !important;
+        }
+        .navbar-default .navbar-toggle .icon-bar {
+            background: <%= @store.store_color %> !important;
+        }
+        .contact_sec_1 i {
+            color: <%= @store.store_color %> !important;
+        }
+    }
+    <% end %>
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!--=======PRELOADER=======-->
+    <div id="preloader"></div>
+    <%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop" %>
+    <%= yield %>
+    <!-- footer -->
+    <style>
+      .mylink {
+        color: #fff !important;
+        transition: all 0.5s !important;
+      }
+
+      .mylink:hover {
+        transition: all 0.5s !important;
+      }
+
+    </style>
+
+
+    <!--=======FOOTER=======-->
+    <footer>
+        <div class="container">
+            <div class="col-sm-12  text-center">
+              <br>
+                <ul class="list-inline">
+
+                  <% if !@store.facebook.blank? %>
+                    <li><a href="<%= @store.facebook %>" target="_blank"><i class="fa fa-fw fa-lg fa-facebook"></i></a></li>
+                  <% end %>
+                  <% if !@store.twitter.blank? %>
+                    <li><a href="<%= @store.twitter %>" target="_blank"><i class="fa fa-fw fa-lg fa-twitter"></i></a></li>
+                  <% end %>
+                  <% if !@store.instagram.blank? %>
+                    <li><a href="<%= @store.instagram %>" target="_blank"><i class="fa fa-fw fa-lg fa-instagram"></i></a></li>
+                  <% end %>
+                  <% if !@store.linkedin.blank? %>
+                    <li><a href="<%= @store.linkedin %>" target="_blank"><i class="fa fa-fw fa-lg fa-linkedin"></i></a></li>
+                  <% end %>
+                  <% if !@store.youtube.blank? %>
+                    <li><a href="<%= @store.youtube %>" target="_blank"><i class="fa fa-fw fa-lg fa-youtube"></i></a></li>
+                  <% end %>
+                  <% if !@store.vimeo.blank? %>
+                    <li><a href="<%= @store.vimeo %>" target="_blank"><i class="fa fa-fw fa-lg fa-vimeo"></i></a></li>
+                  <% end %>
+                  <% if !@store.pinterest.blank? %>
+                    <li><a href="<%= @store.pinterest %>" target="_blank"><i class="fa fa-fw fa-lg fa-pinterest"></i></a></li>
+                  <% end %>
+
+                </ul>
+                <h4><%= @store.name %></h4>
+                <div class="clearfix"></div>
+                <p style="color:#fff">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a href="http://www.zerone.co.ke" target="_blank" style="color:<%= @store.store_color %>">Zerone I.T. Solutions</a> </p>
+            </div>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <!-- /footer -->
+
+    <!--=======BACK TO TOP=======-->
+    <div id="backtotop"><i class="fa fa-2x fa-angle-double-up"></i></div>
+
+</body>
+
+</html>

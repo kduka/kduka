@@ -1,0 +1,119 @@
+/* 1.2 rev 1412181400 */
+
+/*
+    Main carousel wrapper.
+*/
+.kc-wrap {
+    /* Various commands to stop items being selected when mouse-dragging/touching. */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /* Disable IE10/11 default actions */
+    -ms-touch-action: none;
+    overflow:hidden;
+    position:relative;
+    background-image:;
+    background-position: center;
+    width:100%;
+    /* This makes wrapper scale vertically in proportion to width */
+    padding-bottom:30%;
+}
+.kc-horizon {
+    visibility:hidden;
+}
+.kc-horizon+div{
+    display: none!important;
+}
+/* 
+    This wraps carousel items.
+*/
+.kc-item {
+    position:absolute;
+    /* These sizes are from the examples - change as appropriate */
+    width:188px;
+    height:250px;
+    -webkit-tap-highlight-color:rgba(0,0,0,0); 
+    visibility:hidden;
+}
+
+
+/*
+    Item Shadows are made from three sections, bottom, left and right.
+    This appears to give better performance than using CSS shadows, and minimizes the
+    pixel area of shadow drawn.
+    The image URLs used for the shadows will actually be copied into <img> elements.
+    You can of course change the images if required.
+*/
+
+.kc-shadow-bottom {
+    position:absolute !important;
+    top:100% !important;
+    width:100% !important;
+    height:10% !important;
+    background-image:url(shadow-bottom.png);
+    left:0px !important;
+}
+.kc-shadow-left,.kc-shadow-right {
+    position:absolute !important;
+    top:0% !important;    
+    width:10% !important;
+    height:100% !important;
+    left:-10% !important;
+    background-image:url(shadow-left.png);
+}
+.kc-shadow-right {
+    left:100% !important;
+    background-image:url(shadow-right.png);
+}
+
+@-moz-document url-prefix() {
+    /* Fix for FireFox specific dark edge showing on shadows */
+    .kc-shadow-bottom,.kc-shadow-left,.kc-shadow-right {
+         outline: 1px solid transparent;
+    }
+    .kc-reflection {
+         outline: 1px solid transparent;
+    }
+}
+
+/*
+    Reflection.
+    This is applied to an inserted <canvas> element that is the reflection.
+*/
+
+.kc-reflection {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:0px;
+}
+
+/* The wrapping element of navigation buttons (if used) */
+.kc-nav-wrap {
+    display:inline-block;
+    position:absolute;
+    z-index:1000;
+}
+/* Navigation button */
+.kc-nav-button, .kc-nav-button-active {
+    width:16px;
+    height:16px;
+    background-color: #888;
+    float:left;
+    margin-right:10px;
+    cursor: pointer;
+    border-radius: 16px;
+    border:1px solid rgba(0,0,0,0.5);
+}
+/* Navigation button active */
+.kc-nav-button.active {
+    background-color: #fff;
+}
+
+/* No margin on  last one. */
+.kc-nav-button.last {
+    margin-right:0;
+}

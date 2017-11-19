@@ -34,7 +34,8 @@
         <br>
       </div>
       <div class="col-md-3">
-        <button style="margin-top:1.3em;background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
+        <h4 style="color:#fff !important">Search </h4>
+        <button style="background-color: <%= @store.store_color %>" class="form-control btn btn-primary" id="product_search" ><i class="fa fa-search"></i> </button>
       </div>
       <% end %>
     </div>
@@ -46,6 +47,8 @@
         <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
       <% end %>
       <% end %>
+      <br>
+      <div class="text-center" style="font-size: medium"> <%= will_paginate @products %></div>
     </div>
 
     <div class="clearfix"> </div>

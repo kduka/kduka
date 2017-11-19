@@ -72,11 +72,15 @@ Font.create!([
                  {:name => 'Bookman'},
                  {:name => 'Garamond'},
              ])
+
+             TransactionStatus.create!([
+                 {:status => 'Pending'},
+                 {:status => 'Success'},
+                 {:status => 'Failed'}
+                                       ])
 =end
 
-TransactionStatus.create!([
-    {:status => 'Pending'},
-    {:status => 'Success'},
-    {:status => 'Failed'}
-                          ])
 
+Layout.create!([
+    {name: "cstore", description: "CStore Theme", d_name: "Cstore"}
+  ])
