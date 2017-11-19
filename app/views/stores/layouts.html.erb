@@ -19,9 +19,26 @@
 <div class="row">
   <%= form_for :store, :url => {controller: 'stores', action: 'update_layout'}, method: 'put' do |f| %>
       <% @layouts.each do |l| %>
+          <div id="<%= l.name %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" style="width:90% !important;margin-left:auto;margin-right:auto">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" style="text-align:center"><%= l.name%></h4>
+                </div>
+                <div class="modal-body">
+                  <%= image_tag(l.preview_url.to_s,style:'width:100% !important') %>
+                </div>
+                <div class="modal-footer" style="text-align:center">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div style="margin-top:1em" class="col-md-4 text-center">
-
+            <a data-toggle="modal" href="#<%= l.name %>">
             <div style="min-height: 200px;border-style: solid;border-color:#06B216;margin:3px;background:url('<%= l.preview_url(:thumb).to_s %>');background-size: contain;background-repeat: no-repeat;"></div>
+            </a>
             <label>
               <% if l.id == @store.layout_id %>
                   <input name="layout" type="radio" value="<%= l.id %>" checked> <%= l.d_name %>
