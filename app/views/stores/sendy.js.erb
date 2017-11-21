@@ -52,7 +52,7 @@ var body = {
 console.log(body);
 
 $.ajax({
-    <% if Rails.env.development? %>
+    <% if Rails.env.production? %>
     url: 'https://api.sendyit.com/v1/',
     <% else %>
     url: 'https://apitest.sendyit.com/v1/',
