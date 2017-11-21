@@ -47,7 +47,8 @@ Product.create!([
 Layout.create!([
                    {name: "modern", description: "Modern Theme", d_name: "Modern"},
                    {name: "electronic", description: "Electronic Theme", d_name: "Electronic Store"},
-                   {name: "elite", description: "Elite Store", d_name: "Elite Store"}
+                   {name: "elite", description: "Elite Store", d_name: "Elite Store"},
+ {name: "cstore", description: "CStore Theme", d_name: "Cstore"}
                ])
 
 Store.find(1).update({
@@ -80,7 +81,7 @@ Font.create!([
                                        ])
 =end
 
+OrderStatus.create!([
+                        {name: "Complete"},
+                    ])
 
-Layout.create!([
-    {name: "cstore", description: "CStore Theme", d_name: "Cstore"}
-  ])

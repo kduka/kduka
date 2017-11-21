@@ -171,15 +171,17 @@ class CartsController < ApplicationController
   end
 
   def confirm
-    if current_order.order_status_id == 2
+    ref = params[:ref]
+    @order = Order.where(ref:ref).first
+    if @order.order_status_id == 2
       session[:order_id]= nil
       @status = "complete"
-    elsif current_order.order_status_id == 5
-      bal = current_order.total - current_order.amount_received
+    elsif @order.order_status_id == 5
+      bal = @order.total - @order.amount_received
       @status = "Incomplete Payment. Please send Ksh #{bal} to complete the Order"
-    elsif current_order.order_status_id == 3
+    elsif @order.order_status_id == 3
       @status = "shipped"
-    elsif current_order.order_status_id == 1
+    elsif @order.order_status_id == 1
       @status = "none"
     end
     no_layout

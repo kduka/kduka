@@ -29760,7 +29760,6 @@ $(function () {
         res_check();
     });
 
-
     $("#store_pass_confirmation").keyup(function () {
         password = $("#pass_store").val();
         password_c = $("#store_pass_confirmation").val();
@@ -29769,33 +29768,50 @@ $(function () {
             $("#store_pass_confirmation").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #06B216;');
             $("#store_pass_confirmation").attr('data-valid', 'true');
         } else {
-            $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
+            $(".store_password_confirmation_prev").html("<p style='color:red;font-size:15px;'>Password don't match!</p>");
             $("#store_pass_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
             $("#store_pass_confirmation").attr('data-valid', 'false');
         }
+
         res_check();
     });
 
     $("#verify").click(function (e) {
-       e.preventDefault();
-       loc = $("#locate").val();
-       user = $("#sendyuser").val();
-       pass = $("#sendykey").val();
-       alert(loc + user + pass);
+        e.preventDefault();
+        loc = $("#sel_loc").val();
+        user = $("#sendyuser").val();
+        passw = $("#sendykey").val();
+        lat = $("#store_lat").val();
+        lng = $("#store_lng").val();
+        //alert(loc + user + passw);
+
+        $.ajax({
+            url: '/stores/sendy',
+            method: 'post',
+            data: {
+                loc: loc,
+                user: user,
+                passw: passw,
+                lat: lat,
+                lng: lng
+            },
+            success: function (e) {
+
+            }
+        });
     });
 
     $('#myOrderTable').DataTable({
-        "order": [[ 1, "desc" ]]
+        "order": [[1, "desc"]]
     });
 
     $('#myHistoryTable').DataTable({
-        "order": [[ 6, "desc" ]]
+        "order": [[6, "desc"]]
     });
 
     $('#myProductTable').DataTable({
-        "order": [[ 1, "asc" ]]
+        "order": [[1, "asc"]]
     });
-
 
     $("#b2c").click(function (e) {
         e.preventDefault();
@@ -29895,9 +29911,13 @@ $(function () {
 
     $("#confirmation_id").click(function (e) {
         $(".conf_text").html("Confirming Order ...");
+        ref = $("#ref").val();
         $.ajax({
             url: '/carts/confirm',
             method: 'post',
+            data:{
+                ref:ref
+            },
             success: function (e) {
                 if (e == "complete") {
                     $(".conf_text").html("Success!");
@@ -29906,11 +29926,14 @@ $(function () {
                 } else if (e == 'none') {
                     $(".conf_text").html("Confirm");
                     $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                } else if (e == 'shipped') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: #06b216'>Order Complete and Shipped</span>");
+                    window.location = "/carts/success"
                 } else {
                     $(".conf_text").html("Confirm");
                     $(".conf_message").html("<span style='color: red'>" + e + "</span>");
                 }
-
             }
         });
     });
@@ -29964,7 +29987,7 @@ $(function () {
         phone = $("#ship_phone_number").val();
         email = $("#ship_email").val();
         var data;
-        if (full_name != "" && phonenumbers(phone) && validateEmail(email)) {
+        if (full_name != "" && phonenumbers(phone) && valmail(email)) {
             $(".warn_fill_fields").html("<p style='color: green'>Type below to search for your nearest location</p>");
             data = 'true'
         } else {
@@ -30156,10 +30179,10 @@ $(function () {
             url: '/products/sort',
             method: 'post',
             data: {
-                sorter:val,
-                cat:cat
+                sorter: val,
+                cat: cat
             },
-            success:function (e) {
+            success: function (e) {
                 //alert(e);
                 $(".product_box").html(e);
             }
@@ -30168,25 +30191,73 @@ $(function () {
 
     $("#product_search").click(function (e) {
         e.preventDefault();
-       key = $("#keywords").val();
+        key = $("#keywords").val();
 
-       $.ajax({
-          url:'/products/search',
-           method:'post',
-           data:{
-              key:key
-           },
-           success:function (e) {
-               $(".product_box").html(e);
-           }
-       });
+        $.ajax({
+            url: '/products/search',
+            method: 'post',
+            data: {
+                key: key
+            },
+            success: function (e) {
+                $(".product_box").html(e);
+            }
+        });
     });
 
     $("#store_store_font").change(function () {
         font = $("#store_store_font").val();
         //alert(font);
-        $(".change_font").attr('style','padding:1em;font-family:"'+font+'"');
+        $(".change_font").attr('style', 'padding:1em;font-family:"' + font + '"');
         $(".change_font").html('The quick brown fox jumps over the lazy dog');
+    });
+
+    $("#complete_delivery").click(function () {
+        order_no = $("#del_order").val();
+        //alert(order_no);
+
+        $.ajax({
+            url: '/stores/complete_order',
+            data: {
+                orderno: order_no
+            },
+            method: 'post',
+            success: function (e) {
+                //alert(e)
+            }
+        })
+    });
+
+    $("#complete").click(function (e) {
+        e.preventDefault();
+        code = $("#delivery_code").val();
+        ref = $("#order_ref").val();
+        $.ajax({
+            url:'/stores/close_order',
+            method:'post',
+            data:{
+                code:code,
+                ref:ref
+            },
+            success:function (e) {
+               // alert(e);
+            }
+        })
+    });
+
+    $("#change_shipping_status").click(function () {
+        ref = $("#order_ref").val();
+        $.ajax({
+            url:'/stores/update_order2',
+            method:'post',
+            data:{
+                status:3,
+                ref:ref
+            },
+            success:function (e) {
+                // alert(e);
+            }
+        })
     });
 });
 
@@ -30439,7 +30510,7 @@ function finalize() {
         data: {
             amount: delivery_amount,
             orderid: delivery_order,
-            type: $("input:radio[name=delivery]").val(),
+            type: $("input[name='delivery']:checked").val(),
             email: $("#ship_email").val(),
             name: $("#ship_full_name").val(),
             phone: $("#ship_phone_number").val(),
@@ -30735,13 +30806,13 @@ function validateEmail2(email) {
     }
 }
 
-function res_check(){
-    if ($("#pass_store").attr('data-valid') == 'true' && $("#store_pass_confirmation").attr('data-valid') == 'true'){
+function res_check() {
+    if ($("#pass_store").attr('data-valid') == 'true' && $("#store_pass_confirmation").attr('data-valid') == 'true') {
         $("#reseter").removeAttr('disabled');
         $("#reseter").removeAttr('style');
-    }else{
-        $("#reseter").attr('disabled','true');
-        $("#reseter").attr('style','background-color:grey');
+    } else {
+        $("#reseter").attr('disabled', 'true');
+        $("#reseter").attr('style', 'background-color:grey');
     }
 }
 ;

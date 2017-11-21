@@ -187,9 +187,13 @@ $(function () {
 
     $("#confirmation_id").click(function (e) {
         $(".conf_text").html("Confirming Order ...");
+        ref = $("#ref").val();
         $.ajax({
             url: '/carts/confirm',
             method: 'post',
+            data:{
+                ref:ref
+            },
             success: function (e) {
                 if (e == "complete") {
                     $(".conf_text").html("Success!");
@@ -499,6 +503,38 @@ $(function () {
             }
         })
     });
+
+    $("#complete").click(function (e) {
+        e.preventDefault();
+        code = $("#delivery_code").val();
+        ref = $("#order_ref").val();
+        $.ajax({
+            url:'/stores/close_order',
+            method:'post',
+            data:{
+                code:code,
+                ref:ref
+            },
+            success:function (e) {
+               // alert(e);
+            }
+        })
+    });
+
+    $("#change_shipping_status").click(function () {
+        ref = $("#order_ref").val();
+        $.ajax({
+            url:'/stores/update_order2',
+            method:'post',
+            data:{
+                status:3,
+                ref:ref
+            },
+            success:function (e) {
+                // alert(e);
+            }
+        })
+    });
 });
 
 
@@ -750,7 +786,7 @@ function finalize() {
         data: {
             amount: delivery_amount,
             orderid: delivery_order,
-            type: $("input:radio[name=delivery]").val(),
+            type: $("input[name='delivery']:checked").val(),
             email: $("#ship_email").val(),
             name: $("#ship_full_name").val(),
             phone: $("#ship_phone_number").val(),

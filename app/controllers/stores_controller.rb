@@ -101,7 +101,7 @@ end
   end
 
   def orders
-    @order = Order.where(store_id: current_store.id, order_status_id: [5, 2, 3])
+    @order = Order.where(store_id: current_store.id, order_status_id: [5, 2, 3, 6])
 
     puts @order
     set_shop_show
@@ -474,8 +474,8 @@ end
 
     http = Net::HTTP.new(url.host, url.port)
     if Rails.env.production?
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
     request = Net::HTTP::Post.new(url)
     request["content-type"] = 'application/json'
@@ -555,12 +555,40 @@ end
     @key = params[:passw]
     @location = params[:loc]
     @store = Store.find(current_store.id)
-    @store.update(lat:@lat,lng:@lng,sendy_username:@username,sendy_key:@key,auto_delivery_location:@location);
+    @store.update(lat: @lat, lng: @lng, sendy_username: @username, sendy_key: @key, auto_delivery_location: @location);
   end
 
   def complete_order
     @store = Store.find(current_store.id)
     @orderno = params[:orderno]
+  end
+
+  def close_order
+    code = params[:code]
+    ref = params[:ref]
+    @order = Order.where(ref: ref).first
+
+
+    if @order.order_status_id == 6
+        @status = "done"
+    else
+      if @order.delivery_code == code
+        @order.update(order_status_id: 6)
+        @status = true
+      else
+        @status = false
+      end
+    end
+  end
+
+  def update_order2
+    status = params[:status]
+    ref = params[:ref]
+
+    @order = Order.where(ref:ref).first
+
+    @status = @order.update(order_status_id: status)
+
   end
 
   def update_order
@@ -569,7 +597,7 @@ end
 
     @order = Order.where(delivery_order:ref).first
 
-    @order.update(order_status_id:status)
+    @status = @order.update(order_status_id: status)
 
   end
 

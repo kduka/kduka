@@ -1,0 +1,7 @@
+<% if @status  %>
+$("#complete_delivery").attr('disabled', 'disabled');
+$("#complete_delivery").html('Shipping')
+$(".del_err").html('<p style="color: green">Status changed to shipping. Customer has been notified</p>');
+<% else %>
+$(".del_err").html('<p style="color: red">Something went wrong, Try again</p>');
+<% end  %>

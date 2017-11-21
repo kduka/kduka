@@ -1,0 +1,8 @@
+<% if @status %>
+$("#complete").attr('disabled','disabled');
+$("#complete").html('Complete!');
+$(".comp_err").html('<p style="color: green">Order is now Completed</p>');
+alert('Order is now Completed');
+<% else %>
+$(".comp_err").html('<p style="color: red">The delivery code you entered is wrong</p>')
+<% end %>

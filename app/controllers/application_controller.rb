@@ -31,6 +31,9 @@ protect_from_forgery with: :exception
       if !@find_order
         session[:order_id] = nil
         current_order
+      elsif @find_order.order_status_id != 1
+        session[:order_id] = nil
+        current_order
       else
         Order.find(session[:order_id])
       end

@@ -3,21 +3,30 @@
   <%= link_to "Back", store_orders_path, class:'btn btn-primary' %>
 
   <% if @order.order_status_id == 3 %>
-      <button class="btn btn-info" > Already Shipped </button> <button class="btn btn-success" > Complete Order </button>
+     <button class="btn btn-info" > Already Shipped </button>
+      <p><%= form_tag("") do %> <input type="text" id="delivery_code" placeholder="Delivery Code" />  <button id="complete" class="btn btn-success" > Complete Order </button><% end %></p>
+      <div class="comp_err"></div>
+      <% elsif @order.order_status_id == 6 %>
+      <button class="btn btn-info" > Order is Complete </button>
       <% else %>
       <% if @order.delivery_type == "auto" %>
       <button class="btn btn-success" id="complete_delivery" >Deliver</button>
+          <div class="del_err"></div>
       <% else %>
-          <button class="btn btn-success" id="change_shipping_status" >Change Status to Shipping</button>
+          <button type="submit" class="btn btn-success" id="change_shipping_status" >Change Status to Shipping</button>
+          <div class="ship_err"></div>
       <% end %>
       <% end %>
   <br>
+
 <h2>Name: <%= @order.name %></h2>
 <h2>Phone: <%= @order.phone %></h2>
 <h2>Email: <%= @order.email %></h2>
 <h2>Location: <%= @order.del_location %></h2>
   <input type="hidden" value="<%= @order.delivery_order %>" id="del_order">
+  <input type="hidden" value="<%= @order.ref %>" id="order_ref">
 <h2>Instructions: <%= @order.order_instructions %></h2>
+  <h2>Order Number: <%= @order.ref %></h2>
 
 <% @oi.each do |oi|
     product = Product.find(oi.product_id)

@@ -73,6 +73,9 @@ Rails.application.routes.draw do
   post '/stores/save_sendy' => 'stores#save_sendy'
   post '/stores/complete_order' => 'stores#complete_order'
   post '/stores/update_order' => 'stores#update_order'
+  post '/stores/close_order' => 'stores#close_order'
+  post '/stores/update_order' => 'stores#update_order'
+  post '/stores/update_order2' => 'stores#update_order2'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'}
