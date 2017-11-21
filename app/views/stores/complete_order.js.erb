@@ -1,0 +1,62 @@
+var body = {
+"command": "complete",
+    "data": {
+    "api_key": "<%= @store.sendy_key %>",
+        "api_username": "<%= @store.sendy_username %>",
+        "order_no": "<%= @orderno %>",
+        "delivery_details": {
+        "pick_up_date": "<%= Time.now %>",
+            "collect_payment": {
+            "status": false,
+        },
+        "return": false,
+            "note": "",
+            "note_status": false
+    }
+},
+"request_token_id": "request_token_id"
+}
+
+console.log(body);
+
+$.ajax({
+    <% if Rails.env.production? %>
+    url: 'https://api.sendyit.com/v1/',
+    <% else %>
+    url: 'https://apitest.sendyit.com/v1/',
+    <% end %>
+    method: 'post',
+    data: JSON.stringify(body),
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader('Content-Type', 'text/plain')
+    },
+    success: function (res) {
+        res = JSON.parse(res);
+        console.log(res);
+        if (res['status'] == true) {
+            $("#complete_delivery").attr('disabled','disabled');
+            alert("Delivery request successful")
+
+            $.ajax({
+                url:'/stores/update_order',
+                data:{
+                    status:3,
+                    ref:'<%= @orderno %>'
+                },
+                success:function (e) {
+                    //alert(e);
+                },
+                method:'post'
+            })
+        }
+        else {
+            $('.price').html('<p> Sorry, we cannot be able to do delivery for you at this time, please <a href="">Contact Us</a>.</p>');
+        }
+
+    }
+});
+
+
+
+
+

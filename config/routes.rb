@@ -71,6 +71,8 @@ Rails.application.routes.draw do
   get '/order/(:ref)' => 'stores#order', as: 'store_order'
   post '/stores/sendy' => 'stores#sendy'
   post '/stores/save_sendy' => 'stores#save_sendy'
+  post '/stores/complete_order' => 'stores#complete_order'
+  post '/stores/update_order' => 'stores#update_order'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'}

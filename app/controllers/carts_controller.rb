@@ -177,6 +177,8 @@ class CartsController < ApplicationController
     elsif current_order.order_status_id == 5
       bal = current_order.total - current_order.amount_received
       @status = "Incomplete Payment. Please send Ksh #{bal} to complete the Order"
+    elsif current_order.order_status_id == 3
+      @status = "shipped"
     elsif current_order.order_status_id == 1
       @status = "none"
     end
@@ -186,6 +188,7 @@ class CartsController < ApplicationController
   def clear
     session[:order_id] = nil
   end
+
 
   private
 

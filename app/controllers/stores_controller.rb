@@ -101,7 +101,7 @@ end
   end
 
   def orders
-    @order = Order.where(store_id: current_store.id, order_status_id: [5, 2])
+    @order = Order.where(store_id: current_store.id, order_status_id: [5, 2, 3])
 
     puts @order
     set_shop_show
@@ -556,6 +556,21 @@ end
     @location = params[:loc]
     @store = Store.find(current_store.id)
     @store.update(lat:@lat,lng:@lng,sendy_username:@username,sendy_key:@key,auto_delivery_location:@location);
+  end
+
+  def complete_order
+    @store = Store.find(current_store.id)
+    @orderno = params[:orderno]
+  end
+
+  def update_order
+    status = params[:status]
+    ref = params[:ref]
+
+    @order = Order.where(delivery_order:ref).first
+
+    @order.update(order_status_id:status)
+
   end
 
 

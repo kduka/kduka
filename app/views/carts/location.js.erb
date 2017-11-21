@@ -51,7 +51,11 @@ var body = {
 console.log(body);
 
 $.ajax({
+    <% if Rails.env.production? %>
+    url: 'https://api.sendyit.com/v1/',
+    <% else %>
     url: 'https://apitest.sendyit.com/v1/',
+    <% end %>
     method: 'post',
     data: JSON.stringify(body),
     beforeSend: function (xhr) {

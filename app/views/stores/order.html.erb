@@ -1,12 +1,24 @@
 <div class="col-md-6 col-md-offset-3">
   <br>
   <%= link_to "Back", store_orders_path, class:'btn btn-primary' %>
+
+  <% if @order.order_status_id == 3 %>
+      <button class="btn btn-info" > Already Shipped </button> <button class="btn btn-success" > Complete Order </button>
+      <% else %>
+      <% if @order.delivery_type == "auto" %>
+      <button class="btn btn-success" id="complete_delivery" >Deliver</button>
+      <% else %>
+          <button class="btn btn-success" id="change_shipping_status" >Change Status to Shipping</button>
+      <% end %>
+      <% end %>
   <br>
 <h2>Name: <%= @order.name %></h2>
 <h2>Phone: <%= @order.phone %></h2>
 <h2>Email: <%= @order.email %></h2>
 <h2>Location: <%= @order.del_location %></h2>
+  <input type="hidden" value="<%= @order.delivery_order %>" id="del_order">
 <h2>Instructions: <%= @order.order_instructions %></h2>
+
 <% @oi.each do |oi|
     product = Product.find(oi.product_id)
 %>

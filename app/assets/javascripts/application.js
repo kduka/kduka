@@ -68,8 +68,8 @@ $(function () {
                 loc: loc,
                 user: user,
                 passw: passw,
-                lat:lat,
-                lng:lng
+                lat: lat,
+                lng: lng
             },
             success: function (e) {
 
@@ -198,11 +198,14 @@ $(function () {
                 } else if (e == 'none') {
                     $(".conf_text").html("Confirm");
                     $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                } else if (e == 'shipped') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: #06b216'>Order Complete and Shipped</span>");
+                    window.location = "/carts/success"
                 } else {
                     $(".conf_text").html("Confirm");
                     $(".conf_message").html("<span style='color: red'>" + e + "</span>");
                 }
-
             }
         });
     });
@@ -256,7 +259,7 @@ $(function () {
         phone = $("#ship_phone_number").val();
         email = $("#ship_email").val();
         var data;
-        if (full_name != "" && phonenumbers(phone) && validateEmail(email)) {
+        if (full_name != "" && phonenumbers(phone) && valmail(email)) {
             $(".warn_fill_fields").html("<p style='color: green'>Type below to search for your nearest location</p>");
             data = 'true'
         } else {
@@ -479,6 +482,22 @@ $(function () {
         //alert(font);
         $(".change_font").attr('style', 'padding:1em;font-family:"' + font + '"');
         $(".change_font").html('The quick brown fox jumps over the lazy dog');
+    });
+
+    $("#complete_delivery").click(function () {
+        order_no = $("#del_order").val();
+        //alert(order_no);
+
+        $.ajax({
+            url: '/stores/complete_order',
+            data: {
+                orderno: order_no
+            },
+            method: 'post',
+            success: function (e) {
+                //alert(e)
+            }
+        })
     });
 });
 
