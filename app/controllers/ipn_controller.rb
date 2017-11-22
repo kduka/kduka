@@ -104,9 +104,11 @@ class IpnController < ApplicationController
   def update_inventory(o)
     o.order_items.all.each do |oi|
       @product = Product.find(oi.product_id)
-      nu = @product.quantity - oi.quantity
-      sold = @product.number_sold += 1
-      @product.update(quantity: nu, number_sold: sold)
+      if !@product.nil?
+        nu = @product.quantity - oi.quantity
+        sold = @product.number_sold += 1
+        @product.update(quantity: nu, number_sold: sold)
+      end
     end
   end
 
@@ -124,12 +126,17 @@ class IpnController < ApplicationController
           else
             @params["#{c}"] = b
           end
+          if c == "Reference"
+            @ref = b
+          end
         end
       else
         @params["#{k}"] = a
       end
     end
     BusinessToConsumer.create(@params)
+    @transaction = Transaction.where(ref:@ref)
+    @transaction.update(transaction_status_id:2)
     render :json => @params
 
   end
@@ -137,12 +144,18 @@ class IpnController < ApplicationController
   def store_amount(order,amount)
     @store_amount = StoreAmount.where(store_id: order.store_id).first
     if @store_amount.nil?
-      StoreAmount.create(amount:0,store_id:order.store_id)
-      @store_amount = StoreAmount.where(store_id: order.store_id).first
+      StoreAmount.create(amount:0,actual:0,store_id:order.store_id)
+      @store_amount = StoreAmount.where(store_id:order.store_id).first
     end
-
-    nu = @store_amount.amount + amount.to_i
-    @store_amount.update(amount: nu)
+    if @store_amount.actual.nil?
+      @store_amount.update(actual: 0)
+    end
+    nu = @store_amount.actual + amount.to_i
+    if @store_amount.lifetime_earnings.nil?
+      @store_amount.update(lifetime_earnings: 0)
+    end
+    le = @store_amount.lifetime_earnings.to_i + amount.to_i
+    @store_amount.update(actual: nu,lifetime_earnings:le)
   end
 
 end

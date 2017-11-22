@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="KDuka, Online Shopping Made Easy" />
 <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+  <% if Rails.env.production?  %>
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -28,6 +29,7 @@
       gtag('config', 'UA-109847469-1');
   </script>
   <!--End of Tawk.to Script-->
+      <% end %>
 <%= stylesheet_link_tag 'application', '//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i', media: 'all', 'data-turbolinks-track' => true %>
 <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> -->
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>

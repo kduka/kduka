@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121172849) do
+ActiveRecord::Schema.define(version: 20171122174232) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20171121172849) do
     t.datetime "updated_at",                      null: false
     t.string   "o_Type"
     t.string   "o_TypeDesc"
+    t.string   "Remark"
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -188,6 +189,8 @@ ActiveRecord::Schema.define(version: 20171121172849) do
     t.boolean  "read",                                                          default: false
     t.datetime "date_placed"
     t.string   "delivery_code"
+    t.datetime "ship_date"
+    t.datetime "complete_date"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
     t.index ["store_id"], name: "index_orders_on_store_id", using: :btree
   end
@@ -221,9 +224,11 @@ ActiveRecord::Schema.define(version: 20171121172849) do
 
   create_table "store_amounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "store_id"
-    t.integer  "amount",     default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "amount",            default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "actual"
+    t.integer  "lifetime_earnings", default: 0
     t.index ["store_id"], name: "index_store_amounts_on_store_id", using: :btree
   end
 

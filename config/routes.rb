@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   post '/stores/close_order' => 'stores#close_order'
   post '/stores/update_order' => 'stores#update_order'
   post '/stores/update_order2' => 'stores#update_order2'
+  get '/stores/transactions' => 'stores#transactions'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'}

@@ -489,6 +489,8 @@ $(function () {
     });
 
     $("#complete_delivery").click(function () {
+        $("#complete_delivery").html('Requesting Delivery ..');
+        $(".del_err").html('<p style="color: green">Please Wait .... </p>');
         order_no = $("#del_order").val();
         //alert(order_no);
 
@@ -499,7 +501,7 @@ $(function () {
             },
             method: 'post',
             success: function (e) {
-                //alert(e)
+
             }
         })
     });
@@ -558,16 +560,16 @@ function geocodeAddress(geocoder, resultsMap) {
     }, function (results, status) {
         if (status === 'OK') {
 
-            var string = "";
-            console.log(results);
+            var string = "<br> <p>Click on a location below</p> <br>";
+           //console.log(results);
             results.forEach(function (entry) {
-                string = string + '<p onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
+                string = string + '<p style="border-color:black;padding: 1px;border-style: solid" onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
 
 
             });
             $('#suggesstion-box').show();
             $('#suggesstion-box').html(string);
-            console.log(string);
+            //.log(string);
         } else {
             $('#suggesstion-box').html("Not Found, Try different search words");
         }
@@ -585,7 +587,7 @@ function selectlocation(val) {
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
         success: function (result) {
             results = result['results'];
-            console.log(result);
+            //console.log(result);
 
             var latitude = results[0]['geometry']['location']['lat'];
             var longitude = results[0]['geometry']['location']['lng'];
@@ -618,6 +620,7 @@ function selectlocation(val) {
 }
 
 function locate() {
+    $('#suggesstion-box').html("<br><br><p style='color: blue'>Please Wait. Searching for location ...</p>");
     setTimeout(function () {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 8,

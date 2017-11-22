@@ -271,7 +271,7 @@ end
     @find = StoreAmount.where(store_id: current_store.id).first
 
     if @find.nil?
-      StoreAmount.create(amount: 0, store_id: current_store.id)
+      StoreAmount.create(amount: 0,actual:0,lifetime_earnings:0, store_id: current_store.id)
     end
 
     set_shop_show
@@ -348,7 +348,9 @@ end
       end
 
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-      @storeamount.update(amount: nu)
+      nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+      @storeamount.update(amount: nu,actual:nua)
       Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
       @status = true
     else
@@ -434,7 +436,9 @@ end
       end
 
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-      @storeamount.update(amount: nu)
+      nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+      @storeamount.update(amount: nu,actual:nua)
       Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
       @status = true
     else
@@ -512,7 +516,9 @@ end
       end
 
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-      @storeamount.update(amount: nu)
+      nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+      @storeamount.update(amount: nu,actual:nua)
       Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
       @status = true
     else
@@ -568,12 +574,14 @@ end
     ref = params[:ref]
     @order = Order.where(ref: ref).first
 
-
     if @order.order_status_id == 6
         @status = "done"
     else
       if @order.delivery_code == code
-        @order.update(order_status_id: 6)
+        @order.update(order_status_id: 6, complete_date:Time.now)
+        @store_amount = StoreAmount.where(store_id:current_store.id).first
+        nu = @store_amount.amount.to_i + @order.amount_received.to_i
+        @store_amount.update(amount:nu)
         @status = true
       else
         @status = false
@@ -587,7 +595,7 @@ end
 
     @order = Order.where(ref:ref).first
 
-    @status = @order.update(order_status_id: status)
+    @status = @order.update(order_status_id: status,ship_date:Time.now)
 
   end
 
@@ -597,8 +605,12 @@ end
 
     @order = Order.where(delivery_order:ref).first
 
-    @status = @order.update(order_status_id: status)
+    @status = @order.update(order_status_id: status,ship_date:Time.now)
 
+  end
+
+  def transactions
+  set_shop_show
   end
 
 

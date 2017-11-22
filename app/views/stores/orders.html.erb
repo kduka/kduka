@@ -6,15 +6,16 @@
   <%
     @store_amount = StoreAmount.where(store_id: current_store.id).first
     if @store_amount.nil?
-      StoreAmount.create(amount: 0, store_id: current_store.id)
+      StoreAmount.create(amount: 0, actual:0, store_id: current_store.id)
       @store_amount = StoreAmount.where(store_id: current_store.id).first
     end
   %>
   <h4>Earnings: Ksh <%= @store_amount.amount %></h4>
 
-  <p>
-    <strong>Total Orders : <%= @order.count %> </strong>
-  </p>
+  <br>
+    <h4>Total Orders : <%= @order.count %> </h4>
+  <br>
+  <br>
 
   <% if !@order.blank? %>
       <div style="overflow-x:scroll;">

@@ -7,7 +7,7 @@
         <ul>
           <li><a href="<%= product_view_path(product.sku) %>" class="mylink">Quick View </a></li>
           <%= form_for order_item, remote: true do |f| %>
-              <li><%= f.number_field :quantity, value: 1, class: "item_quantity", min: 1 %></li>
+              <li><%= f.number_field :quantity, value: 1, class: "item_quantity", min: 1,max:product.quantity %></li>
               <%= f.hidden_field :product_id, value: product.id %>
 
               <% exist=false %>

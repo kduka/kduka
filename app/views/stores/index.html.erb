@@ -86,29 +86,30 @@
   <div class="content-top-1 col-md-4">
     <div class="col-md-6 top-content">
       <h5>Total Products</h5>
-      <label><%= @products.count %></label>
+      <label style="color: #06B216"><%= @products.count %></label>
     </div>
-    <div class="col-md-6 top-content1">
+<!--    <div class="col-md-6 top-content1">
       <div id="demo-pie-1" class="pie-title-center" data-percent="100"><span class="pie-value">100%</span></div>
-    </div>
+    </div>-->
     <div class="clearfix"></div>
   </div>
   <div class="content-top-1 col-md-4">
-    <div class="col-md-12 top-content" style="text-align:center">
-      <h5>Active</h5>
-      <label><%= @store.active.to_s.humanize %></label><br>
+    <div class="col-md-6 top-content" style="text-align:center">
+      <h5>Available Balance</h5>
+      <label style="color: #06B216">Ksh: <%= StoreAmount.where(store_id:current_store.id).first.amount rescue 0 %></label><br>
     </div>
     <div class="clearfix"></div>
   </div>
   <div class="content-top-1 col-md-4">
     <a href="<%= products_manage_path %>">
-      <div class="col-md-6 top-content">
-        <h5>Active Products</h5>
-        <label><%= @products.count %></label>
+      <div class="col-md-12 top-content">
+        <h5>Total Earnings</h5>
+
+        <label style="color: #06B216">Ksh: <%= StoreAmount.where(store_id:current_store.id).first.lifetime_earnings rescue 0 %></label>
       </div>
-      <div class="col-md-6 top-content1">
+      <!--<div class="col-md-6 top-content1">
         <div id="demo-pie-3" class="pie-title-center" data-percent="100"><span class="pie-value">100%</span></div>
-      </div>
+      </div>-->
       <div class="clearfix"></div>
     </a>
   </div>

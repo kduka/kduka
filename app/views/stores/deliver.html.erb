@@ -180,7 +180,7 @@ $(document).ready(function(){
             if (status === 'OK') {
 
                 var string = "";
-                console.log(results);
+                //console.log(results);
                 results.forEach(function (entry) {
 
                     if (String(entry['formatted_address']) == 'Kenya') {
@@ -193,7 +193,7 @@ $(document).ready(function(){
                 });
                 $('#suggesstion-box').show();
                 $('#suggesstion-box').html(string);
-                console.log(string);
+                //console.log(string);
                 // resultsMap.setCenter(results[0].geometry.location);
                 // var marker = new google.maps.Marker({
                 //   map: resultsMap,
@@ -215,7 +215,7 @@ $(document).ready(function(){
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
             success: function (result) {
                 results = result['results'];
-                console.log(result);
+                //console.log(result);
 
                 var latitude = results[0]['geometry']['location']['lat'];
                 var longitude = results[0]['geometry']['location']['lng'];
