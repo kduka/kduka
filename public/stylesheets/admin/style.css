@@ -3747,7 +3747,7 @@ input[type=date], input[type=time], input[type=datetime-local], input[type=month
 		width: 57%;
 }
 .skil {
-    width: 37%;
+    width: 100%;
 }
 .mid-content-top {
     width: 61%;

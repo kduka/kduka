@@ -1,57 +1,62 @@
-<div class="col-md-6 col-md-offset-3">
-  <br>
-  <%= link_to "Back", store_orders_path, class:'btn btn-primary' %>
+<div class="skil">
+<div class="col-md-6 col-md-offset-3 col-xs-12">
+  <br><br><br>
+  <div style="text-align:center !important">
+  <%= link_to "Back to Orders", store_orders_path, class:'btn-lg btn btn-primary' %>
 
   <% if @order.order_status_id == 3 %>
-     <button class="btn btn-info" > Already Shipped </button>
-      <p><%= form_tag("") do %> <input type="text" id="delivery_code" placeholder="Delivery Code" />  <button id="complete" class="btn btn-success" > Complete Order </button><% end %></p>
+     <button class="btn-lg btn btn-info" > Already Shipped </button>
+      <p><%= form_tag("") do %> <br><input class="form-control" type="text" id="delivery_code" placeholder="Delivery Code" /><br>  <button id="complete" class="btn-lg btn btn-success" > Complete Order </button><% end %></p>
       <div class="comp_err"></div>
       <% elsif @order.order_status_id == 6 %>
-      <button class="btn btn-info" > Order is Complete </button>
+      <button class="btn btn-info btn-lg" > Order is Complete </button>
       <% else %>
       <% if @order.delivery_type == "auto" %>
-      <button class="btn btn-success" id="complete_delivery" >Deliver</button>
+      <button class="btn-lg btn btn-success" id="complete_delivery" >Deliver</button>
           <div class="del_err"></div>
       <% else %>
-          <button type="submit" class="btn btn-success" id="change_shipping_status" >Change Status to Shipping</button>
+          <button type="submit" class="btn-lg btn btn-success" id="change_shipping_status" >Change Status to Shipping</button>
           <div class="ship_err"></div>
       <% end %>
-      <% end %>
+  <% end %>
+    </div>
   <br>
-
-<h2>Name: <%= @order.name %></h2>
-<h2>Phone: <%= @order.phone %></h2>
-<h2>Email: <%= @order.email %></h2>
-<h2>Location: <%= @order.del_location %></h2>
+<div style="text-align:center !important">
+<h3>Name: <%= @order.name %></h2>
+<h3>Phone: <%= @order.phone %></h2>
+<h3>Email: <%= @order.email %></h2>
+<h3>Location: <%= @order.del_location %></h2>
   <input type="hidden" value="<%= @order.delivery_order %>" id="del_order">
   <input type="hidden" value="<%= @order.ref %>" id="order_ref">
-<h2>Instructions: <%= @order.order_instructions %></h2>
-  <h2>Order Number: <%= @order.ref %></h2>
-
+<h3>Instructions: <%= @order.order_instructions %></h2>
+<h3>Order Number: <%= @order.ref %></h2>
+</div><br><br>
+</div>
 <% @oi.each do |oi|
     product = Product.find(oi.product_id)
 %>
 
 
     <!--cart-items-->
-    <div style="padding:2em !important" class="cart-items">
+    <div class="cart-items">
       <div class="container-fluid">
         <div class="cart-header2 wow fadeInUp animated" data-wow-delay=".9s">
           <div class="alert-close2"> </div>
           <%= form_tag("/") do |f| %>
               <div class="cart-sec simpleCart_shelfItem">
-                <div class="col-md-4 col-sm-12">
-                  <!-- <img src="images/g9.jpg" class="img-responsive" alt=""> -->
-                  <%= image_tag(product.image_url(:thumb).to_s, class:'text-center')  %>
+                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-1 col-sm-12" style="text-align:center !important">
+                  <%= image_tag(product.image_url(:thumb).to_s, class:'text-center',style:'max-height:10em')  %>
                 </div>
-                <div class="col-md-8 col-sm-12">
+                <div class="col-md-3"></div>
+                <div class="col-md-8 col-sm-12" style="text-align:center !important">
                   <h4 style="color:#06B216"><%= product.name %></h4><br/>
                   <h4>Unit Price : <%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4><br>
                   <div class="qty">
                     <%= product.quantity %>
                   </div>
                 </div>
-                <div class="clearfix"></div>
+              </div>
               </div><br>
           <% end %>
         </div>
