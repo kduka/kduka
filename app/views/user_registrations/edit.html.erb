@@ -5,7 +5,7 @@
       });
   </script>
   <br><h1 style="text-align:center">Email and Password</h1><br>
-  <%= form_for(:store, url:{:controller => 'store_registrations', :action => 'update_password'}) do |f| %>
+  <%= form_for(:user, url:{:controller => 'user_registrations', :action => 'update_password'}) do |f| %>
       <%= devise_error_messages! %>
       <div class="form-group">
         <%= f.label :email %><br/>
@@ -39,8 +39,8 @@
         <div class="store_password_conf_prev"></div>
         <a data-toggle="tooltip" data-placement="right" title="Repeat New Password"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
       </div>
-    </div>
-  </div>
-<br><br>
+      </div>
+      </div>
+      <br><br>
       <p style="text-align:center"><%= f.submit 'Save', class: 'btn btn-success btn-lg', id:'changebtn', disabled:'disabled' %>
   <% end %>

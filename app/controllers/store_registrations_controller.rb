@@ -1,11 +1,11 @@
 class StoreRegistrationsController < Devise::RegistrationsController
-  prepend_before_action :require_no_authentication, only: [ :cancel]
-  prepend_before_action :kick_out, only:[:new,:create]
-  before_action :authenticate_user!, except:[:edit]
+  prepend_before_action :require_no_authentication, only: [:cancel]
+  prepend_before_action :kick_out, only: [:new, :create]
+  before_action :authenticate_user!, except: [:edit]
 
 
   def new
-    @stores = Store.where(user_id:current_user.id).count
+    @stores = Store.where(user_id: current_user.id).count
 
     if @stores > 2
       flash[:alert] = "You have reached the maximum number of stores allowed. Contact us to get more"
@@ -15,11 +15,11 @@ class StoreRegistrationsController < Devise::RegistrationsController
     @store = Store.new
     set_admin
   end
-  
+
   # POST /resource
   def create
     @user = User.find(current_user.id)
-    @store = @user.store.create(store_params.merge(subdomain:santize(params[:store][:subdomain]),layout_id:1,store_color:'#fc711b',homepage_status:true,aboutpage_status:true,manual_delivery_status:false,auto_delivery_status:false,collection_point_status:false,init:false,important:false,active:false))
+    @store = @user.store.create(store_params.merge(subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#fc711b', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
 
     if @store.save
       flash[:notice] = "Your Store has been created! You can Login and add your products"
@@ -29,15 +29,25 @@ class StoreRegistrationsController < Devise::RegistrationsController
       redirect_to(users_home_path)
     end
   end
-  
-    # GET /resource/edit
+
+  # GET /resource/edit
   def edit
-    
+    set_shop_show
+  end
+
+  def update_password
+    @store = current_store
+    if update_resource2(@store, pass_params, params[:store][:current_password])
+      #flash[:notice] = "Well done"
+      redirect_to(request.referer) and return
+    else
+      #flash[:alert] ="bULL SPIT"
+      redirect_to(request.referer) and return
+    end
   end
 
 
-  
-    def update
+  def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
@@ -46,7 +56,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
     if resource_updated
       if is_flashing_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-          :update_needs_confirmation : :updated
+                        :update_needs_confirmation : :updated
         set_flash_message :notice, flash_key
       end
       bypass_sign_in resource, scope: resource_name
@@ -56,7 +66,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
-    end
+  end
 
   def kick_out
     sign_out :store
@@ -64,10 +74,56 @@ class StoreRegistrationsController < Devise::RegistrationsController
 
   private
 
+  def update_resource2(resource, params, current)
+
+    store = Store.find_for_authentication(id: current_store.id)
+
+
+    if params[:password] == params[:password_confirmation] && params[:password] != ""
+      if store.valid_password?(current)
+        if resource.update(params)
+          flash[:success] = "Success"
+        else
+          flash[:alert] = "Couldnt update password, try again later"
+        end
+      else
+        flash[:alert] = "The current password you entered is wrong"
+      end
+    elsif params[:password] != params[:password_confirmation]
+      flash[:alert] = "Passwords do not match"
+    end
+
+    if params[:password] == "" && params[:password_confirmation] == ""
+
+      if store.valid_password?(current)
+        if params[:email] != ""
+          store2 = Store.where(email:params[:email]).first
+          if store2.nil?
+            if resource.update(email:params[:email])
+              flash[:notice] = "Email successfully changed"
+            else
+              flash[:alert] = "Couldn't change email"
+            end
+          else
+            flash[:alert] = "Email already exists"
+          end
+        end
+
+      else
+        flash[:alert] = "The current password you entered is wrong"
+      end
+    end
+
+  end
+
   def store_params
     params.require(:store).permit(:email, :username, :password, :password_confirmation, :active, :name, :display_email, :phone)
   end
 
+  def pass_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:store).permit(:password, :password_confirmation, :email)
+  end
 
 
   def santize(name)

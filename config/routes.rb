@@ -79,6 +79,7 @@ Rails.application.routes.draw do
   get '/stores/transactions' => 'stores#transactions'
 
 
+
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'}
   devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'}
   devise_for :admins, :controllers => {registrations: 'admins_registrations', sessions: 'admins_sessions'}
@@ -89,6 +90,14 @@ Rails.application.routes.draw do
 
   resources :categories do
     resources :sub_categories
+  end
+
+  devise_scope :store do
+    post 'store_registrations_update_password' => 'store_registrations#update_password'
+  end
+
+  devise_scope :user do
+    post 'user_registrations_update_password' => 'user_registrations#update_password'
   end
   resources :users
   resource :cart, only: [:show]
