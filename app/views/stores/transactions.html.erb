@@ -1,5 +1,6 @@
+<div class="skil">
 <% @transactions = Transaction.where(store_id: current_store.id).order('created_at desc') %>
-<h1>History</h1>
+<h1 style="text-align:center">Transaction History</h1>
 <div style="overflow-x:scroll;">
   <table id="myHistoryTable" class="table">
     <thead>
@@ -52,4 +53,4 @@
   </table>
 </div>
 <br>
-
+</div>
