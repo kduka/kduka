@@ -36,7 +36,6 @@ $.ajax({
         if (res['status'] == true) {
             $("#complete_delivery").attr('disabled','disabled');
             alert("Delivery request successful")
-
             $.ajax({
                 url:'/stores/update_order',
                 data:{
@@ -50,7 +49,7 @@ $.ajax({
             })
         }
         else {
-            $('.price').html('<p> Sorry, we cannot be able to do delivery for you at this time, please <a href="">Contact Us</a>.</p>');
+            $('.del_err').html('<p>'+res['description']+'</p>');
         }
 
     }
