@@ -33,11 +33,42 @@ class AdminsController < ApplicationController
       end
       @store_amount = StoreAmount.where(store_id: store.id).first
       if @store_amount.nil?
-        StoreAmount.create(store_id: store.id,amount:@amount)
+        StoreAmount.create(store_id: store.id, amount: @amount)
       else
         @store_amount.update(amount: @amount)
       end
     end
   end
 
+  def confirm_without_store
+    users = User.where(confirm_without_store:nil)
+    if !users.nil?
+      users.each do |u|
+        store = Store.where(user_id: u.id)
+        if !store.nil?
+          PromoteMailer.confirmed_without_store(u).deliver
+          u.update(confirm_without_store:Time.now)
+          puts u.name
+        end
+      end
+    else
+      puts "NOTHING"
+      end
+    redirect_to(admins_path)
+  end
+
+  def store_not_active
+    users = User.where(store_not_active: nil)
+    if !users.nil?
+      users.each do |u|
+        store = Store.where(user_id: u.id, active: false)
+        if !store.nil?
+          PromoteMailer.store_not_active(u).deliver
+          u.update(store_not_active:Time.now)
+          puts u.name
+        end
+      end
+    end
+    redirect_to(admins_path)
+  end
 end

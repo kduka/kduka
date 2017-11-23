@@ -77,6 +77,8 @@ Rails.application.routes.draw do
   post '/stores/update_order' => 'stores#update_order'
   post '/stores/update_order2' => 'stores#update_order2'
   get '/stores/transactions' => 'stores#transactions'
+  get 'admins/confirm_without_store' => 'admins#confirm_without_store'
+  get 'admins/store_not_active' => 'admins#store_not_active'
 
 
 
