@@ -7,6 +7,9 @@ protect_from_forgery with: :exception
   def after_sign_in_path_for(resource)
     case resource
       when User then
+        if resource.sign_in_count == 1
+          PromoteMailer.confirmed_without_store(resource).deliver
+        end
         users_home_path
       when Store then
         stores_path

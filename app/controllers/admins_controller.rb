@@ -61,7 +61,7 @@ class AdminsController < ApplicationController
     users = User.where(store_not_active: nil)
     if !users.nil?
       users.each do |u|
-        store = Store.where(user_id: u.id, active: false)
+        store = Store.where(user_id: u.id, active: false).first
         if !store.nil?
           PromoteMailer.store_not_active(u).deliver
           u.update(store_not_active:Time.now)
