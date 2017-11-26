@@ -73,9 +73,13 @@ class AdminsController < ApplicationController
     redirect_to(admins_path)
 =end
 order = Order.all
-
     order.each do |o|
+      if o.date_placed.nil?
+        order.update(date_placed2:o.created_at.strftime("%Y-%m-%-d"))
+      else
+        order.update(date_placed:o.created_at)
       order.update(date_placed2:o.date_placed.strftime("%Y-%m-%-d"))
+      end
     end
   end
 end
