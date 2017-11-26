@@ -80,7 +80,7 @@ class IpnController < ApplicationController
     elsif @order.order_status_id == 1
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
-      @order.update(number_of_transactions: transactions, amount_received: newamount,date_placed:Time.now,date_placed2:TIme.now.strftime("%Y-%m-%-d"))
+      @order.update(number_of_transactions: transactions, amount_received: newamount,date_placed:Time.now,date_placed2:Time.now.strftime("%Y-%m-%-d"))
       complete(@order,amount)
     end
 
