@@ -58,6 +58,7 @@ class AdminsController < ApplicationController
   end
 
   def store_not_active
+=begin
     users = User.where(store_not_active: nil)
     if !users.nil?
       users.each do |u|
@@ -70,5 +71,11 @@ class AdminsController < ApplicationController
       end
     end
     redirect_to(admins_path)
+=end
+order = Order.all
+
+    order.each do |o|
+      order.update(date_placed2:o.date_placed.strftime("%Y-%m-%-d"))
+    end
   end
 end

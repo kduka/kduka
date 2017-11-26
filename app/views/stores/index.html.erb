@@ -1,8 +1,8 @@
 <div class="skil">
   <div class="row">
     <div class="col-md-12">
-      <!--   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-         <div id="chart_div"></div>-->
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <div id="chart_div"></div>
       <script>
           google.charts.load('current', {'packages': ['line']});
           google.charts.setOnLoadCallback(drawChart);
@@ -10,35 +10,48 @@
           function drawChart() {
 
               var data = new google.visualization.DataTable();
-              data.addColumn('number', 'Day');
-              data.addColumn('number', 'Guardians of the Galaxy');
+              data.addColumn('date', 'Day');
+              data.addColumn('number', 'Ksh');
 
 
               data.addRows([
-                  [1, 41.8],
-                  [2, 32.4],
-                  [3, 25.7],
-                  [4, 10.5],
-                  [5, 10.4],
-                  [6, 7.7],
-                  [7, 9.6],
-                  [8, 10.6],
-                  [9, 14.8],
-                  [10, 11.6],
-                  [11, 4.7],
-                  [12, 5.2],
-                  [13, 3.6],
-                  [14, 3.4]
+                  <%
+                  #order = Order.where('created_at >= ?',1.week.ago).where(store_id:current_store.id).distinct(:date_placed)
+                  order = Order.where('created_at >= ?',1.week.ago).where(store_id:current_store.id).distinct.pluck(:date_placed2)
+
+
+                  if !order.nil?
+                  order.each do |c|%>
+                  [new Date(<%= c.strftime("%Y") %>, <%= c.strftime("%m") %>, <%= c.strftime("%-d") %>), <% sale = Order.where(date_placed2:c,store_id:current_store.id,order_status_id: [5, 2, 3, 6]); amount = 0; sale.each do |s| amount = amount + s.amount_received end %> <%= amount %>],
+                  <%
+                  end
+                  end
+                   %>
               ]);
 
-              var options = {
-                  chart: {
-                      title: 'Sales',
-                      subtitle: 'This week'
-                  },
-                  width: 1280,
-                  height: 500
-              };
+              if (data.getNumberOfRows() == 0) { // if you have no data, add a data point and make the series transparent
+                  data.addRow([new Date(), 0])
+                  var options = {
+                      0: {
+                          color: 'transparent'
+                      },
+                      hAxis: {
+                          title: 'Date'
+                      },
+                      vAxis: {
+                          title: 'Sales'
+                      }
+                  }
+              }else {
+                  var options = {
+                      hAxis: {
+                          title: 'Date'
+                      },
+                      vAxis: {
+                          title: 'Sales'
+                      }
+                  };
+              }
 
               var chart = new google.charts.Line(document.getElementById('chart_div'));
 
@@ -88,15 +101,15 @@
       <h5>Total Products</h5>
       <label style="color: #06B216"><%= @products.count %></label>
     </div>
-<!--    <div class="col-md-6 top-content1">
-      <div id="demo-pie-1" class="pie-title-center" data-percent="100"><span class="pie-value">100%</span></div>
-    </div>-->
+    <!--    <div class="col-md-6 top-content1">
+          <div id="demo-pie-1" class="pie-title-center" data-percent="100"><span class="pie-value">100%</span></div>
+        </div>-->
     <div class="clearfix"></div>
   </div>
   <div class="content-top-1 col-md-4">
     <div class="col-md-6 top-content" style="text-align:center">
       <h5>Available Balance</h5>
-      <label style="color: #06B216">Ksh: <%= StoreAmount.where(store_id:current_store.id).first.amount rescue 0 %></label><br>
+      <label style="color: #06B216">Ksh: <%= StoreAmount.where(store_id: current_store.id).first.amount rescue 0 %></label><br>
     </div>
     <div class="clearfix"></div>
   </div>
@@ -105,7 +118,7 @@
       <div class="col-md-12 top-content">
         <h5>Total Earnings</h5>
 
-        <label style="color: #06B216">Ksh: <%= StoreAmount.where(store_id:current_store.id).first.lifetime_earnings rescue 0 %></label>
+        <label style="color: #06B216">Ksh: <%= StoreAmount.where(store_id: current_store.id).first.lifetime_earnings rescue 0 %></label>
       </div>
       <!--<div class="col-md-6 top-content1">
         <div id="demo-pie-3" class="pie-title-center" data-percent="100"><span class="pie-value">100%</span></div>
