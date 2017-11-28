@@ -99,7 +99,7 @@
               data.addRows([
                   <%
                   #order = Order.where('created_at >= ?',1.week.ago).where(store_id:current_store.id).distinct(:date_placed)
-                  order = Order.where('created_at <= ?',1.week.ago).where(store_id:current_store.id,order_status_id: [5, 2, 3, 6]).distinct.pluck(:date_placed2)
+                  order = Order.where('created_at >= ?',1.week.ago).where(store_id:current_store.id,order_status_id: [5, 2, 3, 6]).distinct.pluck(:date_placed2)
 
 
                   if !order.nil?
