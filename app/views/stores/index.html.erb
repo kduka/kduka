@@ -233,11 +233,11 @@
               <tr>
                 <% if p.quantity < 1 %>
                     <td><%= p.name %>
-                      <a data-toggle="tooltip" data-placement="right" title="You have run out of stock for this item"><span style="background-color: red;color:#fff;padding: 2px;font-size: 11px;">Out of Stock</span></a>
+                      <a data-toggle="tooltip" data-placement="right" title="You have run out of stock for this item"><span class="label label-danger">Out of Stock</span></a>
                     </td>
                 <% elsif p.quantity < 10 %>
                     <td><%= p.name %>
-                      <a data-toggle="tooltip" data-placement="right" title="Your current stock is running low"><span style="background-color: orange;color:#fff;padding: 2px;font-size: 11px;">Low</span></a>
+                      <a data-toggle="tooltip" data-placement="right" title="Your current stock is running low"><span class="label label-warning">Low</span></a>
                     </td>
                 <% else %>
                     <td><%= p.name %></td>
