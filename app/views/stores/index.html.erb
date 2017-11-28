@@ -99,12 +99,12 @@
               data.addRows([
                   <%
                   #order = Order.where('created_at >= ?',1.week.ago).where(store_id:current_store.id).distinct(:date_placed)
-                  order = Order.where('date_placed >= ?',1.week.ago).where(store_id:current_store.id,order_status_id: [5, 2, 3, 6]).distinct.pluck(:date_placed2)
+                  order = Order.where('date_placed >= ?',1.week.ago).where(store_id:current_store.id,order_status_id: [5, 2, 3, 6]).distinct.pluck(:date_placed)
 
 
                   if !order.nil?
                   order.each do |c|%>
-                  [new Date(<%= c.strftime("%Y") %>, <%= c.strftime("%m") %>, <%= c.strftime("%-d") %>), <% sale = Order.where(date_placed2:c,store_id:current_store.id,order_status_id: [5, 2, 3, 6]); amount = 0; sale.each do |s| amount = amount + s.amount_received end %> <%= amount %>],
+                  [new Date(<%= c.strftime("%Y") %>, <%= c.strftime("%m") %>, <%= c.strftime("%-d") %>), <% sale = Order.where(date_placed2:c.strftime("%Y-%m-%d"),store_id:current_store.id,order_status_id: [5, 2, 3, 6]); amount = 0; sale.each do |s| amount = amount + s.amount_received end %> <%= amount %>],
                   <%
                   end
                   end
