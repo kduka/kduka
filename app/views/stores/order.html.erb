@@ -22,14 +22,16 @@
     </div>
   <br>
 <div style="text-align:center !important">
-<h3>Name: <%= @order.name %></h2>
-<h3>Phone: <%= @order.phone %></h2>
-<h3>Email: <%= @order.email %></h2>
-<h3>Location: <%= @order.del_location %></h2>
+<h3>Name: <%= @order.name %></h3>
+<h3>Phone: <%= @order.phone %></h3>
+<h3>Email: <%= @order.email %></h3>
+<h3>Location: <%= @order.del_location %></h3>
   <input type="hidden" value="<%= @order.delivery_order %>" id="del_order">
   <input type="hidden" value="<%= @order.ref %>" id="order_ref">
-<h3>Instructions: <%= @order.order_instructions %></h2>
-<h3>Order Number: <%= @order.ref %></h2>
+<h3>Instructions: <%= @order.order_instructions %></h3>
+<h3>Order Number: <%= @order.ref %></h3>
+<h3>Placed on: <%= @order.date_placed.strftime("%Y-%m-%d %H:%M") %></h3>
+<h3>Completed on: <%= "<span style='color:#06b216'>#{@order.complete_date.strftime("%Y-%m-%d %H:%M")}".html_safe rescue '<span style="color:orange">Not Complete</span>'.html_safe %></h3>
 </div><br><br>
 </div>
 <% @oi.each do |oi|
@@ -53,7 +55,7 @@
                   <h4 style="color:#06B216"><%= product.name %></h4><br/>
                   <h4>Unit Price : <%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4><br>
                   <div class="qty">
-                    <%= product.quantity %>
+                    Quantity: <%= oi.quantity %>
                   </div>
                 </div>
               </div>

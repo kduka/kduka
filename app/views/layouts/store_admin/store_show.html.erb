@@ -217,7 +217,7 @@
               <%
               @o = Order.where(store_id:current_store.id,read:false,order_status_id: [5, 2]).count
               %>
-              <a href="<%= store_orders_url %>"><i class="fa fa-shopping-bag"></i> <span>Orders  <% if @o > 0 %><%= "<span style='background-color:#fff;border-radius:7px;color:#000;padding:3px;font-weight:bold;'>".html_safe %><%= @o %><%= "</span>".html_safe %><% end %></span></a>
+              <a href="<%= store_orders_url %>"><i class="fa fa-shopping-bag"></i> <span>Orders  <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %> </span> </a>
             </li>
             <li>
               <a href="<%= stores_theme_path %>"><i class="fa fa-desktop"></i> <span>Layouts</span></a>

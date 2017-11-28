@@ -5,7 +5,89 @@
       <div id="chart_div"></div>
       <script>
           google.charts.load('current', {'packages': ['line']});
+          google.charts.load('current', {'packages':['corechart']});
           google.charts.setOnLoadCallback(drawChart);
+          google.charts.setOnLoadCallback(topseller);
+          google.charts.setOnLoadCallback(mostviewed);
+
+          function mostviewed() {
+
+              var data = google.visualization.arrayToDataTable([
+                  ['Product', 'Views'],
+
+                  <%
+                    products = Product.where(store_id:current_store.id).order("viewed DESC").limit(6)
+
+                    products.each do |p| %>
+                    <%= "['#{p.name}',#{p.viewed}],".html_safe %>
+                   <% end %>
+              ]);
+
+              var options = {
+                  title: 'Most Viewed Products',
+                  sliceVisibilityThreshold: 0,
+                  is3D:true,
+                  legend: {
+                      labeledValueText: 'both',
+                      textStyle: {
+                          fontSize: 12
+                      }
+                  },
+                  pieSliceText: 'value'
+              };
+
+              var chart = new google.visualization.PieChart(document.getElementById('mostviewed'));
+
+              chart.draw(data, options);
+          }
+          function topseller() {
+
+              var data = google.visualization.arrayToDataTable([
+
+                  <%
+                  @o = Order.where(store_id:current_store.id,order_status_id:6).where(:complete_date => Time.now.beginning_of_month..Time.now.end_of_month)
+                  puts "ORDERS FOUND = #{@o.count}"
+
+                  orders = Hash.[]
+
+
+                  @o.each do |o|
+                  oi = o.order_items.all
+                  oi.each do |oi|
+                  if orders[oi.product_id].nil?
+                  orders[oi.product_id] = oi.quantity
+                  else
+                  new_quantity = orders[oi.product_id].to_i + oi.quantity
+                  orders[oi.product_id] = new_quantity
+                  end
+                  end
+                  end
+
+                  %>
+                      ['Product','Number sold'],
+                 <% orders.each do |(p,n)| %>
+                 <%= "['#{Product.find(p).name}',#{n}],".html_safe %>
+                 <% end %>
+
+              ]);
+
+              var options = {
+                  title: 'Top sellers this month',
+                  sliceVisibilityThreshold: 0,
+                  is3D:true,
+                  legend: {
+                      labeledValueText: 'both',
+                      textStyle: {
+                          fontSize: 12
+                      }
+                  },
+                  pieSliceText: 'value'
+              };
+
+              var chart = new google.visualization.PieChart(document.getElementById('topseller'));
+
+              chart.draw(data, options);
+          }
 
           function drawChart() {
 
@@ -17,7 +99,7 @@
               data.addRows([
                   <%
                   #order = Order.where('created_at >= ?',1.week.ago).where(store_id:current_store.id).distinct(:date_placed)
-                  order = Order.where('created_at >= ?',1.week.ago).where(store_id:current_store.id,order_status_id: [5, 2, 3, 6]).distinct.pluck(:date_placed2)
+                  order = Order.where('created_at <= ?',1.week.ago).where(store_id:current_store.id,order_status_id: [5, 2, 3, 6]).distinct.pluck(:date_placed2)
 
 
                   if !order.nil?
@@ -96,24 +178,20 @@
     </div>
   </div>
 
-  <div class="content-top-1 col-md-4">
-    <div class="col-md-6 top-content">
-      <h5>Total Products</h5>
-      <label style="color: #06B216"><%= @products.count %></label>
-    </div>
+
     <!--    <div class="col-md-6 top-content1">
           <div id="demo-pie-1" class="pie-title-center" data-percent="100"><span class="pie-value">100%</span></div>
         </div>-->
-    <div class="clearfix"></div>
-  </div>
-  <div class="content-top-1 col-md-4">
+  <br>
+  <div class="row">
+  <div class=" col-md-6">
     <div class="col-md-6 top-content" style="text-align:center">
       <h5>Available Balance</h5>
       <label style="color: #06B216">Ksh: <%= StoreAmount.where(store_id: current_store.id).first.amount rescue 0 %></label><br>
     </div>
-    <div class="clearfix"></div>
+
   </div>
-  <div class="content-top-1 col-md-4">
+  <div class=" col-md-6">
     <a href="<%= products_manage_path %>">
       <div class="col-md-12 top-content">
         <h5>Total Earnings</h5>
@@ -125,6 +203,11 @@
       </div>-->
       <div class="clearfix"></div>
     </a>
+  </div>
+  </div>
+  <div class="row">
+  <div id="topseller" class="content-top-1 col-md-6"></div>
+  <div id="mostviewed" class="content-top-1 col-md-6"></div>
   </div>
   <div class="container-fluid" style="margin-bottom:3em"></div>
 
