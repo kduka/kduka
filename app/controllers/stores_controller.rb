@@ -613,6 +613,13 @@ end
   set_shop_show
   end
 
+  def myorders
+    @orders = Order.where(store_id:current_store.id,order_status_id:[2,3,5,6])
+    respond_to do |f|
+      f.xls
+    end
+  end
+
 
   private
 

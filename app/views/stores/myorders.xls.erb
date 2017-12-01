@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Phone</Data></Cell>
+        <Cell><Data ss:Type="String">Email</Data></Cell>
+        <Cell><Data ss:Type="String">REF ID</Data></Cell>
+        <Cell><Data ss:Type="String">Status</Data></Cell>
+        <Cell><Data ss:Type="String">Subtotal</Data></Cell>
+        <Cell><Data ss:Type="String">Tax</Data></Cell>
+        <Cell><Data ss:Type="String">Shipping</Data></Cell>
+        <Cell><Data ss:Type="String">Total</Data></Cell>
+        <Cell><Data ss:Type="String">Amount Received</Data></Cell>
+        <Cell><Data ss:Type="String">Coupon</Data></Cell>
+        <Cell><Data ss:Type="String">Discount</Data></Cell>
+        <Cell><Data ss:Type="String">Placed On</Data></Cell>
+        <Cell><Data ss:Type="String">Shipped On</Data></Cell>
+        <Cell><Data ss:Type="String">Completed On</Data></Cell>
+        <Cell><Data ss:Type="String">Delivery Type</Data></Cell>
+        <Cell><Data ss:Type="String">Sendy Delivery ID</Data></Cell>
+
+        <Cell><Data ss:Type="String">Discount</Data></Cell>
+      </Row>
+      <% @orders.each do |o| %>
+          <Row>
+            <Cell><Data ss:Type="String"><%= o.name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.phone %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.email %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.ref %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= OrderStatus.find(o.order_status_id).name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.subtotal %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.tax %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.shipping %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.total %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.amount_received %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.coupon %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.discount %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil%></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.ship_date.strftime("%Y-%m-%d %H:%M") rescue nil%></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.complete_date.strftime("%Y-%m-%d %H:%M") rescue nil%></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.delivery_type %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= o.delivery_order %></Data></Cell>
+          </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

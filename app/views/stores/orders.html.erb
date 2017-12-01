@@ -1,4 +1,6 @@
 <div class="skil">
+  <%= link_to "Download", stores_myorders_path(format: "xls"), class: 'btn btn-primary' %>
+  <hr>
   <p id="notice">
     <%= notice %>
   </p>
@@ -10,10 +12,7 @@
       @store_amount = StoreAmount.where(store_id: current_store.id).first
     end
   %>
-  <h4>Earnings: Ksh <%= @store_amount.amount %></h4>
-
-  <br>
-    <h4>Total Orders : <%= @order.count %> </h4>
+  <h4><span class="label label-success">Earnings: Ksh <%= @store_amount.amount %></span></h4> <h4><span class="label label-info">Total Orders : <%= @order.count %></span> </h4>
   <br>
   <br>
 

@@ -1,4 +1,7 @@
 <div class="skil">
+  <%= link_to "Add Product", new_store_product_path(@store.id), class:'btn btn-primary' %>
+  <%= link_to "Download", products_allproducts_path(format: "xls"), class: 'btn btn-primary' %>
+<hr>
 <% if !@categories.blank? %>
 <h3><strong>Total Products : <%= @product.count rescue nil %></strong></h3>
 <% if !@product.blank? %>

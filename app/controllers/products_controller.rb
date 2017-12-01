@@ -114,7 +114,7 @@ class ProductsController < ApplicationController
       redirect_to(home_404_path) and return
     end
 
-    @products = Product.where(store_id: @store.id, active:true).paginate(:page => params[:page], :per_page => 15).order('id desc')
+    @products = Product.where(store_id: @store.id, active: true).paginate(:page => params[:page], :per_page => 15).order('id desc')
     @order_item = current_order.order_items.new
     @categories = @store.category.all
     set_shop
@@ -142,7 +142,7 @@ class ProductsController < ApplicationController
     if @store.nil?
       redirect_to(home_404_path) and return
     end
-    @product = Product.where(sku: params[:sku], active: true,store_id:@store.id).first
+    @product = Product.where(sku: params[:sku], active: true, store_id: @store.id).first
     if @product.nil?
       redirect_to(all_path) and return
     else
@@ -162,20 +162,20 @@ class ProductsController < ApplicationController
         @products = Product.where(store_id: @store.id, active: true).order('created_at desc')
       elsif sorter == 'otn'
         @products = Product.where(store_id: @store.id, active: true).order('created_at asc')
-      elsif  sorter == 'htl'
+      elsif sorter == 'htl'
         @products = Product.where(store_id: @store.id, active: true).order('price desc')
-      elsif  sorter == 'lth'
+      elsif sorter == 'lth'
         @products = Product.where(store_id: @store.id, active: true).order('price asc')
       end
     else
       if sorter == 'nto'
-        @products = Product.where(store_id: @store.id, active: true,category_id:cat).order('created_at desc')
+        @products = Product.where(store_id: @store.id, active: true, category_id: cat).order('created_at desc')
       elsif sorter == 'otn'
-        @products = Product.where(store_id: @store.id, active: true,category_id:cat).order('created_at asc')
-      elsif  sorter == 'htl'
-        @products = Product.where(store_id: @store.id, active: true,category_id:cat).order('price desc')
-      elsif  sorter == 'lth'
-        @products = Product.where(store_id: @store.id, active: true,category_id:cat).order('price asc')
+        @products = Product.where(store_id: @store.id, active: true, category_id: cat).order('created_at asc')
+      elsif sorter == 'htl'
+        @products = Product.where(store_id: @store.id, active: true, category_id: cat).order('price desc')
+      elsif sorter == 'lth'
+        @products = Product.where(store_id: @store.id, active: true, category_id: cat).order('price asc')
       end
     end
 
@@ -198,6 +198,14 @@ class ProductsController < ApplicationController
     @order_item = current_order.order_items.new
     @categories = @store.category.all
     no_layout
+  end
+
+  def allproducts
+    @products = Product.where(store_id:current_store.id)
+    respond_to do |f|
+      f.csv {send_data @products.to_csv}
+      f.xls
+    end
   end
 
   private

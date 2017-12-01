@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Category</Data></Cell>
+        <Cell><Data ss:Type="String">Price</Data></Cell>
+        <Cell><Data ss:Type="String">SKU</Data></Cell>
+        <Cell><Data ss:Type="String">Stock</Data></Cell>
+        <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Number Sold</Data></Cell>
+        <Cell><Data ss:Type="String">Number of Views</Data></Cell>
+      </Row>
+      <% @products.each do |product| %>
+          <Row>
+            <Cell><Data ss:Type="String"><%= product.name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= Category.find(product.category_id).name %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= product.price %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= product.sku %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= product.quantity %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= product.description %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= product.number_sold %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= product.viewed %></Data></Cell>
+          </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
