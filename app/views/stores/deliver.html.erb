@@ -16,6 +16,7 @@ $(document).ready(function(){
 <div class="skil">
   <br>
   <h1 style="text-align:center">Delivery Settings</h1><br>
+  <h3 style="text-align:center;font-weight: bold">Select <span style="color: #06B216;">AT LEAST</span> one option below</h3><br>
   <div id="fixed-div"></div>
   <%= form_for :store, :url => {controller: 'stores', action: 'update_delivery'}, method: 'put' do |f| %>
 
