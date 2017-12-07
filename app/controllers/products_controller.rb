@@ -25,6 +25,27 @@ class ProductsController < ApplicationController
     set_shop
   end
 
+  def full_site
+    @store = Store.where(subdomain:'test', active: true).first
+    if @store.nil?
+      redirect_to(home_404_path) and return
+    elsif @store.active == !true
+      flash[:alert] = "Store is not active, please contact owner"
+      redirect_to("http://www.kduka.co.ke/") and return
+    else
+      if @store.homepage_status == true
+        @products = Product.where(store_id: @store.id, active: true)
+        @order_item = current_order.order_items.new
+        @categories = @store.category.all
+        redirect_to(home_path) and return
+      else
+        redirect_to(about_path) and return
+      end
+
+    end
+    set_shop
+  end
+
   def home
     get_store
     if @store.blank?
