@@ -46,7 +46,7 @@ protect_from_forgery with: :exception
       @subdomain = request.subdomain[/(\w+)/]
       @store = Store.where(subdomain: @subdomain).first
       if @store.nil?
-        @store = Store.where(subdomain:'test').first
+        @store = Store.where(domain:request.domain,own_domain:true).first
       end
       Order.new(:ref => ref, store_id: @store.id, delivery_code:del_code)
     end
@@ -78,9 +78,8 @@ protect_from_forgery with: :exception
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
     if @store.nil?
-      @store = Store.where(subdomain:'test').first
+      @store = Store.where(domain:request.domain,own_domain:true).first
     end
-    # TODO
     if @store.nil?
       redirect_to("http://www.kduka.co.ke/users/home") and return
     end
@@ -109,18 +108,16 @@ protect_from_forgery with: :exception
   def get_store
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain, active: true).first
-    # TODO
     if @store.nil?
-      @store = Store.where(subdomain:'test').first
+      @store = Store.where(domain:request.domain,own_domain:true).first
     end
   end
 
   def get_data
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain, active: true).first
-
     if @store.nil?
-      @store = Store.where(subdomain:'test').first
+      @store = Store.where(domain:request.domain,own_domain:true).first
     end
 
     if @store.nil?

@@ -86,7 +86,7 @@ class ProductsController < ApplicationController
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
     if @store.nil?
-      @store = Store.where(subdomain:'test').first
+      @store = Store.where(domain:request.domain,own_domain:true).first
     end
     @products = @store.product.where(category_id: params[:id], active: true).paginate(:page => params[:page], :per_page => 20).order('id desc')
     @categories = @store.category.all
@@ -98,7 +98,7 @@ class ProductsController < ApplicationController
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
     if @store.nil?
-      @store = Store.where(subdomain:'test').first
+      @store = Store.where(domain:request.domain,own_domain:true).first
     end
     @products = @store.product.where(category_id: params[:id], active: true).order('id desc')
     @categories = @store.category.all
