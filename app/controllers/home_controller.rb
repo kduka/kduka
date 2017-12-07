@@ -21,6 +21,8 @@ class HomeController < ApplicationController
   end
 
   def error
+    puts request.subdomain
+    puts request.domain
     no_layout
   end
 
