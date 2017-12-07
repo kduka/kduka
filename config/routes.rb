@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   get 'store_deliveries/create'
   get 'store_deliveries/new'
   get 'ipn/index'
+
+
   #match '/', to: 'products#index', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
   match '/', to: 'home#index', constraints: { domain: 'co.ke', subdomain:'www.kduka' }, via: [:get, :post, :put, :patch, :delete]
   #match '/', to: 'products#full_site', constraints: { domain: 'm-jiadvertize.com', subdomain:'www' }, via: [:get, :post, :put, :patch, :delete]
   match '/', to: 'products#index', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
+
 
   get '/products/category/(:id)', to: 'products#category', as: 'product_category'
   get 'carts/shipping' => 'carts#shipping'
