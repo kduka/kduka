@@ -84,6 +84,9 @@ class ProductsController < ApplicationController
   def category
     @order_item = current_order.order_items.new
     @subdomain = request.subdomain[/(\w+)/]
+    if @subdomain.nil?
+      @subdomain = 'test'
+    end
     @store = Store.where(subdomain: @subdomain).first
     @products = @store.product.where(category_id: params[:id], active: true).paginate(:page => params[:page], :per_page => 20).order('id desc')
     @categories = @store.category.all
@@ -93,6 +96,9 @@ class ProductsController < ApplicationController
   def subcategory
     @order_item = current_order.order_items.new
     @subdomain = request.subdomain[/(\w+)/]
+    if @subdomain.nil?
+      @subdomain = 'test'
+    end
     @store = Store.where(subdomain: @subdomain).first
     @products = @store.product.where(category_id: params[:id], active: true).order('id desc')
     @categories = @store.category.all
