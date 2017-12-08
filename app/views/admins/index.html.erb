@@ -9,7 +9,10 @@
     <th>User</th>
     <th>Email</th>
     <th>Active</th>
+    <th>Categories</th>
     <th>Products</th>
+    <th>Created at</th>
+    <th>Updated at</th>
   </tr>
   </thead>
   <tbody>
@@ -20,7 +23,10 @@
     <td><%= User.find(p.user_id).name %></td>
     <td><%= p.email %></td>
     <td><%= p.active %></td>
-    <td><%= Product.where(store_id:p.id).count rescue nil %></td>
+    <td><%= Category.where(store_id:p.id).count rescue 0 %></td>
+    <td><%= Product.where(store_id:p.id).count rescue 0 %></td>
+    <td><%= p.created_at %></td>
+    <td><%= p.updated_at %></td>
   </tr>
   <% end %>
   </tbody>
