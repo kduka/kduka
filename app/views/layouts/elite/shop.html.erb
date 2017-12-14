@@ -56,6 +56,9 @@ a{
 <% end %>
 
 <% if !@store.store_color.nil? %>
+ul.multi-column-dropdown li a:hover {
+    color: <%= @store.store_color %> !important;
+}
 @media (max-width: 767px){
 	.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
 	    background-color: <%= @store.store_color %> !important;

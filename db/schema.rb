@@ -230,7 +230,7 @@ ActiveRecord::Schema.define(version: 20171214060032) do
     t.integer  "amount",            default: 0
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.integer  "actual"
+    t.integer  "actual",            default: 0
     t.integer  "lifetime_earnings", default: 0
     t.index ["store_id"], name: "index_store_amounts_on_store_id", using: :btree
   end
@@ -273,9 +273,6 @@ ActiveRecord::Schema.define(version: 20171214060032) do
     t.string   "youtube"
     t.string   "slogan"
     t.integer  "layout_id"
-    t.string   "auto_delivery_location"
-    t.string   "lat"
-    t.string   "lng"
     t.boolean  "auto_delivery_status"
     t.string   "collection_point"
     t.string   "sendy_username"
@@ -292,9 +289,12 @@ ActiveRecord::Schema.define(version: 20171214060032) do
     t.boolean  "manual_delivery_status"
     t.text     "manual_delivery_instructions", limit: 65535
     t.boolean  "collection_point_status"
+    t.string   "auto_delivery_location"
     t.boolean  "init"
     t.boolean  "important"
     t.string   "store_font"
+    t.string   "lat"
+    t.string   "lng"
     t.string   "domain"
     t.boolean  "own_domain",                                 default: false
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
