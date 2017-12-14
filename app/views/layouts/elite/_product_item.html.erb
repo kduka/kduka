@@ -12,8 +12,15 @@
     <div class="item-info-product ">
       <h4><a href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h4>
       <div class="info-product-price">
+        <% if product.discount_status %>
+            <p><span class="item_price" style="font-weight:900;color:red"><s><%= number_to_currency(product.discount_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span></p>
+        <% else %>
+            <p>
+              <br>
+            </p>
+        <% end %>
         <span class="item_price" style="font-weight:900"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
-        <p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>
+        <!--<p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>-->
       </div>
             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
               <%= form_for order_item, remote: true do |f| %>

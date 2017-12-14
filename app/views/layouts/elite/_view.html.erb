@@ -39,6 +39,9 @@
   		<div class="col-md-8 single-right-left simpleCart_shelfItem">
   					<h3><%= @product.name %></h3>
   					<p><%= @product.description %></p>
+        <% if @product.discount_status %>
+            <p><span class="item_price" style="font-weight:900;color:red"><s><%= number_to_currency(@product.discount_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span></p>
+        <% end %>
   					<p><span class="item_price"><%= number_to_currency(@product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span></p>
   					<div class="occasion-cart">
 

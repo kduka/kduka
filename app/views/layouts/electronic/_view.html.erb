@@ -38,6 +38,14 @@
         <p><%= @product.description %></p>
 
         <div class="modal_body_right_cart simpleCart_shelfItem">
+          <% if @product.discount_status %>
+              <p>
+                <i class="item_price" style="font-weight:900;color: red;">DISCOUNT!</i>
+              </p>
+              <p>
+                <i class="item_price" style="font-weight:900;color: red;"><s><%= number_to_currency(@product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></i>
+              </p>
+          <% end %>
           <p>
             <i class="item_price"><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></i>
           </p>

@@ -2,10 +2,28 @@
   <div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
     <div class="hs-wrapper hs-wrapper1">
       <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
-      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
-      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
-      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
-      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
+      <% if product.img1_url.nil? %>
+          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
+      <% else %>
+          <%= image_tag(product.img1_url(:thumb).to_s, class: 'text-center') %>
+      <% end %>
+
+      <% if product.img2_url.nil? %>
+          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
+      <% else %>
+          <%= image_tag(product.img2_url(:thumb).to_s, class: 'text-center') %>
+      <% end %>
+
+      <% if product.img3_url.nil? %>
+          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
+      <% else %>
+          <%= image_tag(product.img3_url(:thumb).to_s, class: 'text-center') %>
+      <% end %>
+      <% if product.img4_url.nil? %>
+          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
+      <% else %>
+          <%= image_tag(product.img4_url(:thumb).to_s, class: 'text-center') %>
+      <% end %>
       <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
       <div class="w3_hs_bottom w3_hs_bottom_sub">
         <ul>
@@ -20,7 +38,16 @@
       <p>
         <i class="item_price" style="font-weight:900"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></i>
       </p>
-      <p><%= product.quantity %> Units in Stock</p>
+      <% if product.discount_status %>
+          <p>
+            <i class="item_price" style="font-weight:900;color: red;"><s><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></i>
+          </p>
+      <% else %>
+          <p>
+            <br>
+          </p>
+      <% end %>
+      <!--<p><%= product.quantity %> Units in Stock</p>-->
       <%= form_for order_item, remote: true do |f| %>
           <%= f.hidden_field :quantity, value: 1, class: "item_quantity", min: 1 %>
           <%= f.hidden_field :product_id, value: product.id %>
@@ -31,7 +58,7 @@
               <% end %>
           <% end %>
           <% if product.quantity < 1 %>
-              <%= f.button type: 'submit', :class => "w3ls-cart",disabled:'disabled' do %>
+              <%= f.button type: 'submit', :class => "w3ls-cart", disabled: 'disabled' do %>
                   Out of Stock!
               <% end %>
           <% else %>

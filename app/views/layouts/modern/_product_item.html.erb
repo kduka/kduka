@@ -40,12 +40,21 @@
                   <span>☆</span>
                 </div>
                 <div class="ofr">
+                  <% if product.discount_status %>
+                      <p>
+                        <span class="item_price" style="font-weight:900;color: red"><s><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span>
+                      </p>
+                  <% else %>
+                      <p>
+                        <br>
+                      </p>
+                  <% end %>
                   <p>
                     <span class="item_price" style="font-weight:900"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
                   </p>
                 </div>
                 <div class="ofr">
-                  <p><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>
+                  <!--<p><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>-->
                 </div>
               </div>
               </div>
