@@ -9,8 +9,17 @@
         <!-- Product heading will goes here -->
         <h3><%= product.name %></h3>
         <!-- Product price will goes here ... for mention previous price just write inside of <del> tag -->
+      <% if product.discount_status %>
+          <p>
+          <h4 class="item_price" style="color: red"><s><%= number_to_currency(product.discount_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></h4>
+          </p>
+      <% else %>
+          <p>
+            <br>
+          </p>
+      <% end %>
         <h4 class="item_price"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4>
-        <p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>
+        <!--<p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>-->
     </div>
     <div class="ftp_item_content_btn">
       <!---->
