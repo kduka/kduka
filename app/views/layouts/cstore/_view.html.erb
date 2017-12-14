@@ -45,6 +45,9 @@
 
             <div class="col-sm-6 product_content">
                 <h3><%= @product.name %></h3>
+              <% if @product.discount_status %>
+                  <span style="color: red !important;"><s><%= number_to_currency(@product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span>
+              <% end %>
                 <span><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
 
                 <div class="pt_desc">
