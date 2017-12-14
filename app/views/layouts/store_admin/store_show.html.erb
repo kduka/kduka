@@ -87,7 +87,7 @@
 								<div class="head-t">
 									<div class="logo">
 										<h1><a style="color:#06B216 !important; " href="<%=stores_path %>"><%= @store.name %></a> </h1>
-                     <h4><i class="fa fa-external-link"></i> <%= link_to "http://"+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank' %></h4><% if !@store.active  %><a href="<%= stores_active_path %>" data-toggle="tooltip" data-placement="right" title="Your store is not active"><span style="background-color: red;color:#fff;padding: 2px;font-size: 11px;">Store not Active</span></a><% else %><a data-toggle="tooltip" data-placement="right" title="Your store is active"><span href="<%= stores_active_path %>" style="background-color: #06B216;color:#fff;padding: 2px;font-size: 11px;">Store is active</span></a><% end %>
+                     <h4><i class="fa fa-external-link"></i> <%= link_to "http://"+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank' %></h4><% if !@store.active  %><a href="<%= stores_active_path %>" data-toggle="tooltip" data-placement="right" title="Your store is not active"><span class="label label-danger">Store not Active</span></a><% else %><a data-toggle="tooltip" data-placement="right" title="Your store is active"><span href="<%= stores_active_path %>" class="label label-success">Store is active</span></a><% end %>
 									</div>
 										<!-- start header_right -->
 									<div class="header_right">
