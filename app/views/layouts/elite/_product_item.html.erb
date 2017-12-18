@@ -24,7 +24,7 @@
 
     </div>
     <div class="item-info-product ">
-      <h4><a href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h4>
+      <h4><a href="<%= product_view_path(product.sku) %>" style="color:<%= @store.store_color%> !important"><%= product.name %></a></h4>
       <div class="info-product-price">
         <% if product.discount_status %>
             <p><span class="item_price" style="font-weight:900;color:red"><s><%= number_to_currency(product.discount_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span></p>
