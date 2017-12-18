@@ -81,6 +81,7 @@
                         <% end %>
                   <% end %>
                   <div class="fb-share-button" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= @product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= @product.sku %>%2F&amp;src=sdkpreparse">Share</a></div>
+                  <div class="sharethis-inline-share-buttons"></div>
                   <div id="fb-<%= @product.sku %>"></div>
                   <script>(function(d, s, id) {
                       var js, fjs = d.getElementsByTagName(s)[0];
@@ -89,6 +90,7 @@
                       js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=153790178720044';
                       fjs.parentNode.insertBefore(js, fjs);
                   }(document, 'script', 'facebook-jssdk'));</script>
+                  <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a373c73c95b880011a3b2ba&product=inline-share-buttons"></script>
                 </div>
             </div>
         </div>
