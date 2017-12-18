@@ -37,9 +37,14 @@
       <div class="w3_hs_bottom w3_hs_bottom_sub">
         <ul>
           <li>
-            <a href="<%= product_view_path(product.sku) %>"><span class="glyphicon glyphicon-eye-open"></span></a>
+            <a href="<%= product_view_path(product.sku) %>"><i class="fa fa-eye"></i> View Product</a>
           </li>
         </ul>
+        <div class="col-md-12 col-xs-12" style="margin-top:1em">
+          <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a></div>
+          <div style="margin-top:3px" class="col-md-6 col-xs-12"> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a></div>
+          <div id="fb-<%= product.sku %>"></div>
+        </div>
       </div>
     </div>
     <h5><a style="color:#000" class="myclass" href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h5>
@@ -57,11 +62,7 @@
             <br>
           </p>
       <% end %>
-      <div class="col-md-8 col-md-offset-2 col-xs-12" style="margin-top:-3em">
-        <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a></div>
-        <div style="margin-top:3px" class="col-md-6 col-xs-12"> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a></div>
-        <div id="fb-<%= product.sku %>"></div>
-      </div>
+
       <br>
       <!--<p><%= product.quantity %> Units in Stock</p>-->
       <%= form_for order_item, remote: true do |f| %>

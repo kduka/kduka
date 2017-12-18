@@ -13,7 +13,12 @@
       <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
         <div class="men-cart-pro">
           <div class="inner-men-cart-pro">
-            <a href="<%= product_view_path(product.sku) %>" class="link-product-add-cart">Quick View</a>
+            <div class="col-md-8 col-md-offset-2 col-xs-12" style="margin-top:2em">
+              <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a></div>
+              <div style="margin-top:3px" class="col-md-6 col-xs-12"> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a></div>
+              <div id="fb-<%= product.sku %>"></div>
+            </div>
+            <a href="<%= product_view_path(product.sku) %>" class="link-product-add-cart"><i class="fa fa-eye"></i> Quick View</a>
           </div>
         </div>
 
@@ -31,11 +36,6 @@
         <span class="item_price" style="font-weight:900"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
 
         <!--<p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>-->
-      </div>
-      <div class="col-md-8 col-md-offset-2 col-xs-12" style="margin-top:2em">
-        <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a></div>
-        <div style="margin-top:3px" class="col-md-6 col-xs-12"> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a></div>
-        <div id="fb-<%= product.sku %>"></div>
       </div>
             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
               <%= form_for order_item, remote: true do |f| %>

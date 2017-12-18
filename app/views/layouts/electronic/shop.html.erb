@@ -102,7 +102,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       border: 1px solid <%= @store.store_color %> !important;
     }
     .w3_hs_bottom ul li a, .flex_ecommerce a {
+      border: 1px solid <%= @store.store_color %> !important;
       background: <%= @store.store_color %> !important;
+      border-radius: 4px;
+      color: #fff !important;
+
+    }
+    .w3_hs_bottom ul li a:hover {
+      border: 1px solid <%= @store.store_color %> !important;
+      background: #fff !important;
+      color: <%= @store.store_color %> !important;
+      border-radius: 4px;
     }
     .navigation {
     background: #000;
