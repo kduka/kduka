@@ -1,11 +1,4 @@
 <title><%= @product.name %></title>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=153790178720044';
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a373c73c95b880011a3b2ba&product=inline-share-buttons"></script>
 <section id="banner_parallax" data-parallax="scroll" data-image-src="<%= @store.banner_url.to_s %>">
     <h2>Product</h2>

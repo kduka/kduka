@@ -7,7 +7,7 @@
 }(document, 'script', 'facebook-jssdk'));
 </script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<div class="col-md-4 col-sm-12">
+<div class="col-md-4 col-xs-12">
 <div class="ftp_item text-center">
     <%= image_tag(product.image_url(:thumb).to_s, class: 'img_responsive',style:'min-height:20em;max-height:20em;margin-top:3em;margin-bottom:3em;max-width:100%') %>
     <div class="hover_quick_view">
@@ -28,7 +28,12 @@
           </p>
       <% end %>
         <h4 class="item_price"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4>
-        <!--<p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>-->
+        <!--<p ><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>--><br>
+    </div>
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+      <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a></div>
+      <div style="margin-top:3px" class="col-md-6 col-xs-12"> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a></div>
+      <div id="fb-<%= product.sku %>"></div>
     </div>
     <div class="ftp_item_content_btn">
       <!---->
@@ -61,12 +66,11 @@
           <% end %>
       <% end %>
       <!---->
+
     </div>
+
 </div>
-  <div class="col-md-12">
-    <div class="fb-share-button col-md-3" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a></div>
-    <div class="col-md-3"> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a></div>
-  </div>
-  <div id="fb-<%= product.sku %>"></div>
+
+
 
 </div>

@@ -1,3 +1,5 @@
+<title><%= @product.name %></title>
+<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a373c73c95b880011a3b2ba&product=inline-share-buttons"></script>
 <div class="container-fluid">
 <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom:4em;margin-top:4em">
   <div class="banner-bootom-w3-agileits">
@@ -75,8 +77,9 @@
                                 </div>
 
                               </div>
-                              <% end %>
-
+                              <% end %><br>
+                              <div class="sharethis-inline-share-buttons"></div>
+                              <div id="fb-<%= @product.sku %>"></div>
 
 
   					</div>

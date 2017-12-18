@@ -4,6 +4,9 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+#st-1.st-has-labels .st-btn.st-remove-label > span {
+    display: inline-block !important;
+}
 html, body{
 	margin:0;
 	font-size: 100%;

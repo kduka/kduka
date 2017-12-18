@@ -1,3 +1,12 @@
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=153790178720044';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <div class="col-md-4 col-xs-12">
   <div style="width:100% !important" class="product-grids simpleCart_shelfItem wow fadeInUp animated" data-wow-delay=".5s">
     <div class="new-top text-center">
@@ -30,16 +39,16 @@
               </ul>
               </div>
               </div>
-              <div class="new-bottom">
-                <h5><a class="name" href=""><%= product.name %></a></h5>
-                <div class="rating">
+              <div class="new-bottom" style="text-align:center !important">
+                <h5 style="text-align:center !important"><a class="name" href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h5>
+                <!-- <div class="rating">
                   <span class="on">☆</span>
                   <span class="on">☆</span>
                   <span class="on">☆</span>
                   <span class="on">☆</span>
                   <span>☆</span>
-                </div>
-                <div class="ofr">
+                </div> -->
+                <div class="ofr" style="text-align:center !important">
                   <% if product.discount_status %>
                       <p>
                         <span class="item_price" style="font-weight:900;color: red"><s><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span>
@@ -57,5 +66,11 @@
                   <!--<p><span class="item_price text-center"><%= product.quantity %> Units in Stock</span></p>-->
                 </div>
               </div>
+              <div class="col-md-8 col-md-offset-2 col-xs-12" style="margin-bottom:3em">
+                <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a></div>
+                <div style="margin-top:3px" class="col-md-6 col-xs-12"> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a></div>
+                <div id="fb-<%= product.sku %>"></div>
               </div>
+              </div>
+
               </div>

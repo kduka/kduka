@@ -608,7 +608,7 @@ nav.shrink {
     margin: 15px;
     margin-left: auto;
     margin-right: :auto;
-    height:38em;
+    height:41em;
 }
 
 #ft_products .ftp_item_tag {
@@ -4711,7 +4711,7 @@ footer .card_sign {
         color: #5d5d5d;
     }
     nav.navbar-default.shrink {
-        background: #fff;
+        background: #000;
         border-bottom: 1px solid #ccc;
     }
     .navbar-default.shrink ul li a i {
