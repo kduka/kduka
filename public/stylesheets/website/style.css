@@ -1144,12 +1144,12 @@ button.close {
 }
 @media screen and (max-width: 720px){
 	.top-nav {
-	  margin-left: 20em;
+	  margin-left: 25em;
 	}
 }
 @media screen and (max-width: 736px){
 	.top-nav {
-	  margin-left: 20em;
+	  margin-left: 25em;
 	}
 	.banner-w3lsinfo {
 	  padding: 9em 0 0;
@@ -1198,7 +1198,7 @@ button.close {
 }
 @media screen and (max-width: 667px){
 	.top-nav {
-	  margin-left: 23.8em;
+	  margin-left: 28.8em;
 	}
 	.about-grids {
 		width: 90%;
@@ -1219,7 +1219,7 @@ button.close {
 }
 @media screen and (max-width: 640px){
 	.top-nav {
-	  margin-left: 22em;
+	  margin-left: 27em;
 	}
 	.banner-w3lsinfo h2 {
 		font-size: 2.8em;
@@ -1314,7 +1314,7 @@ button.close {
 }
 @media screen and (max-width: 600px){
 	.top-nav {
-	  margin-left: 19em;
+	  margin-left: 24em;
 	}
 	.b-from-left p {
 		padding: 2.1em 0;
@@ -1337,7 +1337,7 @@ button.close {
 }
 @media screen and (max-width: 568px){
 	.top-nav {
-	  margin-left: 16.9em;
+	  margin-left: 21.9em;
 	}
 	.top-nav img {
 	  width: 75%;
@@ -1364,12 +1364,12 @@ button.close {
 }
 @media screen and (max-width:540px){
 	.top-nav {
-	  margin-left: 5.5em !important;
+	  margin-left: 16.5em;
 	}
 }
 @media screen and (max-width:480px){
 	.top-nav {
-	  margin-left: 7.5em;
+	  margin-left: 12.5em;
 	}
 	.banner-w3lsinfo h2 {
 		font-size: 2.6em;
@@ -1474,7 +1474,7 @@ button.close {
 }
 @media screen and (max-width: 414px){
 	.top-nav {
-	  margin-left: 6em;
+	  margin-left: 11em;
 	}
 	.header-left h1 {
 		font-size: 4.8em;
@@ -1533,7 +1533,7 @@ button.close {
 }
 @media screen and (max-width: 384px){
 	.top-nav {
-	  margin-left: 8em;
+	  margin-left: 13em;
 	}
 	.banner-w3lsinfo h2 {
 	  font-size: 1.8em;
@@ -1575,7 +1575,7 @@ button.close {
 		padding:5.8em 0;
 	}
 	.top-nav {
-		margin-left: 9em;
+		margin-left: 14em;
 	}
 	.cap {
 		width: 217px;
