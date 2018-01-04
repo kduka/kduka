@@ -79,6 +79,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = {:host => 'www.kduka.co.ke'}
   config.action_mailer.delivery_method = :smtp
+=begin
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
       :address              => "mail.kduka.co.ke",
@@ -90,6 +91,7 @@ Rails.application.configure do
       :tls                  => true,
       :openssl_verify_mode => 'none'
   }
+=end
 
   config.action_mailer.smtp_settings = {
       :user_name => ENV['SENDGRID_USERNAME'],
