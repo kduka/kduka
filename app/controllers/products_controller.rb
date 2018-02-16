@@ -161,7 +161,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to(store_path(params[:store_id]))
+    redirect_to(request.referer)
   end
 
   def view
