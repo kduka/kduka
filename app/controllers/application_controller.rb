@@ -78,10 +78,7 @@ protect_from_forgery with: :exception
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
     if @store.nil?
-      @store = Store.where(domain:request.domain,own_domain:true).first
-    end
-    if @store.nil?
-      @store = Store.where(c_subdomain:request.subdomain, domain:request.domain, own_domain:true).first
+      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
     end
     if @store.nil?
       redirect_to("http://www.kduka.co.ke/users/home") and return
