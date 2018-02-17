@@ -109,7 +109,7 @@ protect_from_forgery with: :exception
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain, active: true).first
     if @store.nil?
-      @store = Store.where(domain:request.domain,own_domain:true).first
+      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
     end
   end
 
