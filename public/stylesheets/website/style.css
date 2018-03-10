@@ -64,14 +64,24 @@ body a:hover{
 	float: left;
 	margin-left:65em;
 }
-button#showRightPush {
+.menu-button1{
+	border: none;
+	padding: 1.5em;
+	outline: none;
+	position: fixed;
+	right:0;
+	top:0em;
+	z-index: 1;
+	background: none;
+}
+/*button#showRightPush {
 	border: none;
 	padding: 3px 0 0;
 	outline: none;
 	position: fixed;
 	z-index: 1;
 	background: none;
-}
+}*/
 nav#cbp-spmenu-s2 {
 	background: #FFF;
 	text-align: left;
@@ -1012,9 +1022,9 @@ button.close {
 	.top-nav {
 		margin-left: 40.5em;
 	}
-	button#showRightPush img {
+	/*button#showRightPush img {
 		width: 90%;
-	}
+	}*/
 	.banner-w3lsinfo p {
 		width: 60%;
 	}
@@ -1234,9 +1244,9 @@ button.close {
 	.agileits-intro p {
 		font-size: 15px;
 	}
-	button#showRightPush img {
+/*	button#showRightPush img {
 		width: 87%;
-	}
+	}*/
 	.agileits-intro {
 	  padding: 9em 0 0;
 	}
@@ -1339,9 +1349,9 @@ button.close {
 	.top-nav {
 	  margin-left: 21.9em;
 	}
-	.top-nav img {
+	/*.top-nav img {
 	  width: 75%;
-	}
+	}*/
 	.banner-w3lsinfo {
 	  padding: 6em 0 0;
 	}
@@ -1530,9 +1540,9 @@ button.close {
 		font-size: 4.8em;
 		padding-left: 0;
 	}
-	button#showRightPush img {
+/*	button#showRightPush img {
 		width: 77%;
-	}
+	}*/
 	.top-nav {
 		margin-left: 15em;
 	}
@@ -1594,9 +1604,9 @@ button.close {
 	.cap {
 		width: 150px;
 	}
-	button#showRightPush img {
+	/*button#showRightPush img {
 		width: 73%;
-	}
+	}*/
 	.contact-grid {
 		float: none;
 		width: 100%;
