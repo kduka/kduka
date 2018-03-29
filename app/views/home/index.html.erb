@@ -86,9 +86,8 @@ next if item == '.' or item == '..' %>
 							<li><a href="#introduction" class="scroll"><i class="fa fa-info-circle"></i> About Us</a></li>
 							<li><a href="#features" class="scroll"><i class="fa fa-check"></i> Features</a></li>
 							<li><a href="#contact" class="scroll"><i class="fa fa-envelope"></i> Contact</a></li>
-              <li><a href="<%= new_user_registration_path %>"><i class="fa fa-edit"></i> User Sign Up</a></li>
-              <li><a href="<%= new_user_session_path %>"><i class="fa fa-user"></i> User Login</a></li>
-              <li><a href="<%= new_store_session_path %>"><i class="fa fa-sign-in"></i> Store Login</a></li>
+              <li><a href="<%= new_store_registration_path %>"><i class="fa fa-edit"></i>Sign Up</a></li>
+              <li><a href="<%= new_store_session_path %>"><i class="fa fa-sign-in"></i>Login</a></li>
               <li><a target="_blank" href="http://www.kduka.co.ke/help"><i class="fa fa-question-circle"></i> Help</a></li>
 						</ul>
 					</nav>
@@ -141,7 +140,7 @@ next if item == '.' or item == '..' %>
 	<!-- introduction -->
 	<div class="introduction" id="introduction">
 		<div class="container">
-			<h3 class="agileits-title">About Us TEST</h3>
+			<h3 class="agileits-title">About Us</h3>
 			<p>Kduka is a Kenyan based E-Commerce platform that enables its users
         to easily create and manage online stores for the purpose of selling and delivering products to their
         clients</p>
@@ -168,16 +167,12 @@ next if item == '.' or item == '..' %>
 				}
 			</style>
 			<p>You can Log in if you already have an account or you can log in to your stores. If you don't have an account you can Sign Up. If you need help please <a style="padding: 0em 0em !important;border: 0px;color:#06B216;font-size: 20px !important;text-decoration:underline" target="_blank" href="http://www.kduka.co.ke/help">click here</a></p>
-      <div class="col-md-4" style="margin-bottom:2em">
-        <p>New Users</p>
-        <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
+      <div class="col-md-6" style="margin-bottom:2em">
+        <p>Sign Up!</p>
+        <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
       </div>
-      <div class="col-md-4" style="margin-bottom:2em">
-        <p>Login as a User</p>
-			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_user_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-user"></i> User Login</span></a>
-      </div>
-      <div class="col-md-4" style="margin-bottom:2em">
-        <p>Login into a Store</p>
+      <div class="col-md-6" style="margin-bottom:2em">
+        <p>Login</p>
 			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
       </div>
 

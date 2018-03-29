@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except:[:checkmail_user]
+  before_action :authenticate_user!, except:[:checkmail_user,:remote_santize,:checkmail]
   def home
     @stores = Store.where(user_id:current_user.id)
     @user = User.find(current_user.id)

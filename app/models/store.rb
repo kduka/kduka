@@ -2,7 +2,7 @@ class Store < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :product, :dependent => :destroy
   has_many :category, :dependent => :destroy
   has_many :coupon, :dependent => :destroy

@@ -1,33 +1,36 @@
 class StoreRegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:cancel]
   prepend_before_action :kick_out, only: [:new, :create]
-  before_action :authenticate_user!, except: [:edit]
-
+  # before_action :authenticate_user!, except: [:edit]
 
   def new
+=begin
     @stores = Store.where(user_id: current_user.id).count
 
     if @stores > 2
       flash[:alert] = "You have reached the maximum number of stores allowed. Contact us to get more"
       redirect_to(users_home_path) and return
     end
+=end
 
     @store = Store.new
-    set_admin
+    store_login
   end
 
   # POST /resource
   def create
-    @user = User.find(current_user.id)
-    @store = @user.store.create(store_params.merge(subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#fc711b', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
+    # @user = User.find(current_user.id)
+    # @store = @user.store.create(store_params.merge(subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#fc711b', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
+    @store = Store.create(store_params.merge(subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#fc711b', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
 
     if @store.save
-      flash[:notice] = "Your Store has been created! You can Login and add your products"
-      redirect_to(users_home_path)
-      store = Store.where(user_id:@user.id).first
-      if store.nil?
-      PromoteMailer.store_not_active(@user).deliver
-      end
+      flash[:notice] = "Your Store has been created! Please check your email for the activation message"
+      #redirect_to(users_home_path)
+      redirect_to(request.referer)
+      # store = Store.where(user_id:@user.id).first
+      # if store.nil?
+      # PromoteMailer.store_not_active(@user).deliver
+      # end
     else
       flash[:notice] = "Sorry, we couldnt create the store. Please contact admin"
       redirect_to(users_home_path)
