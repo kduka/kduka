@@ -165,15 +165,16 @@ h3.agileits-title {
     color: #222222;
     font-size: 3em;
     margin: 0 0 1em;
-    text-transform: uppercase;
+    text-transform: capitalize;
 	text-align:center;
 }
 .introduction p {
     font-size: 16px;
     color: #999;
     margin: 0 auto;
-    width: 52%;
-    line-height: 2em;
+    width: 100%;
+    line-height: 1.8em;
+		text-align: justify;
 }
 /*-- //introduction --*/
 /*-- download --*/
