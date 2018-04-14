@@ -103,8 +103,8 @@ h2 {
 }
 
 input[type="text"], input[type="password"], input[type="email"] {
-	padding: 15px 0 10px 0;
-	width: 90%;
+	padding: 2px 0 10px 0;
+	width: 100%;
 	border: none;
 	/*-- w3layouts --*/
 	/*-- agileits --*/
