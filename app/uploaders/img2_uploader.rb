@@ -11,7 +11,7 @@ class Img2Uploader < CarrierWave::Uploader::Base
   else
     storage :file
   end
-  process optimize:[{ quality: 50 }]
+  process optimize:[{ quality: 90 }]
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

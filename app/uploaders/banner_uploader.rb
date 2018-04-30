@@ -13,7 +13,7 @@ class BannerUploader < CarrierWave::Uploader::Base
   else
     storage :file
   end
-  process optimize:[{ quality: 50 }]
+  process optimize:[{ quality: 75 }]
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
