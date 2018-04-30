@@ -85,6 +85,7 @@ Rails.application.routes.draw do
   get 'admins/store_not_active' => 'admins#store_not_active'
   get 'products/allproducts' => 'products#allproducts'
   get 'stores/myorders' => 'stores#myorders'
+  post '/carts/sendy_call'
 
 
 

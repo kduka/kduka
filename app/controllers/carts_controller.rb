@@ -120,6 +120,39 @@ class CartsController < ApplicationController
     no_layout
   end
 
+  def sendy_call
+
+
+
+    require 'uri'
+    require 'net/http'
+
+    par = request.body.read()
+
+    print par
+
+    if Rails.env.production?
+      url = URI("https://api.sendyit.com/v1/")
+    else
+      url = URI("https://apitest.sendyit.com/v1/")
+    end
+
+
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Post.new(url)
+    request["Content-Type"] = 'application/json'
+    request["Cache-Control"] = 'no-cache'
+    request["Postman-Token"] = 'cc060863-2567-6702-91b8-405910c6968c'
+    request.body = par
+
+    response = http.request(request)
+    render :json => response.read_body
+  end
+
   def update_shipping
     get_store
     amount = params[:amount]
