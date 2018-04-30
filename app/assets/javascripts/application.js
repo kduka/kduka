@@ -710,7 +710,7 @@ function val_ship() {
     phone = $("#ship_phone_number").val();
     email = $("#ship_email").val();
 
-    if (full_name != "" && phonenumbers(phone) && validateEmail(email)) {
+    if (full_name != "" && phonenumbers(phone) && valmail(email)) {
         if ($("#auto").is(':checked')) {
             $(".warn_fill_fields").html("<p style='color: green'>Type below to search for your nearest location</p>");
         } else {

@@ -22,7 +22,7 @@
       </div>
       <div class="form-group">
         <%= label_tag(:address, "Address") %>
-        <%= text_field_tag(:address, nil, :class => 'ship_form form-control', onchange:'val_ship();collect();') %>
+        <%= text_field_tag(:address, nil,id:'ship_address', :class => 'ship_form form-control', onchange:'val_ship();collect();') %>
       </div>
       <div class="form-group">
         <%= label_tag(:coupon, "Coupon") %>

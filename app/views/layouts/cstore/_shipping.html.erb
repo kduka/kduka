@@ -16,7 +16,7 @@
       <div class="form-group">
         <%= label_tag(:email, "Email") %><span class="red">*</span>
         <%= text_field_tag(:email, nil, :class => 'ship_form form-control',id:'ship_email', onchange:'val_ship();val_email();collect();manual_()') %>
-        <div id="email_prev"></div>
+        <div id="email_prev2"></div>
       </div>
       <div class="form-group">
         <%= label_tag(:phone_number, "Phone (07xx xxx xxx)") %><span class="red">*</span>
@@ -25,7 +25,7 @@
       </div>
       <div class="form-group">
         <%= label_tag(:address, "Address") %>
-        <%= text_field_tag(:address, nil, :class => 'ship_form form-control', onchange:'val_ship();collect();') %>
+        <%= text_field_tag(:address, nil,id:'ship_address', :class => 'ship_form form-control', onchange:'val_ship();collect();') %>
       </div>
       <div class="form-group">
         <%= label_tag(:coupon, "Coupon") %>
