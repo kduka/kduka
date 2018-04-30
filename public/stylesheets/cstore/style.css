@@ -4220,7 +4220,7 @@ footer .card_sign {
         background: rgba(0, 0, 0, 0.7);
     }
     #ft_products .ftp_item {
-        margin-left: 43px;
+        /*margin-left: 43px;*/
     }
     #ft_products .owl-prev {
         visibility: hidden;
@@ -4376,7 +4376,7 @@ footer .card_sign {
         padding: 8px 20px;
     }
     #ft_products .ftp_item {
-        margin-left: 65px;
+        /*margin-left: 65px;*/
     }
     #new_products h2 {
         font-size: 38px;
@@ -4742,7 +4742,7 @@ footer .card_sign {
         font-size: 32px;
     }
     #ft_products .ftp_item {
-        width: 280px;
+        /*width: 280px;*/
     }
     #ft_products .hover_quick_view {
         margin-left: 73px;
@@ -5218,7 +5218,7 @@ footer .card_sign {
 
 @media screen and (max-width: 375px) {
     #ft_products .ftp_item {
-        margin-left: 45px;
+        /*margin-left: 45px;*/
     }
     #listing .shop_item {
         margin-left: 8px;
@@ -5269,8 +5269,8 @@ footer .card_sign {
         font-size: 26px;
     }
     #ft_products .ftp_item {
-        width: 280px;
-        right: 5px;
+        /*width: 280px;
+        right: 5px;*/
     }
     #new_products h2 {
         font-size: 28px;
