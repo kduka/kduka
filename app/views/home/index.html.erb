@@ -93,7 +93,6 @@ next if item == '.' or item == '..' %>
 					</nav>
 					<div class="main buttonset">
 					<!-- Class "cbp-spmenu-open" gets applied to menu and "cbp-spmenu-push-toleft" or "cbp-spmenu-push-toright" to the body -->
-					<% image_tag("website/menu.png",'class'=>'menu-button1','id'=>'showRightPush') %>
             <i class="fa fa-reorder fa-5x menu-button1" id="showRightPush" style="color: #06b216;"></i>
 					<!-- <span class="menu"></span> -->
 					</div>
@@ -129,14 +128,14 @@ next if item == '.' or item == '..' %>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="banner-w3lsinfo" >
-				<h2 style="margin-top:-1.3em;letter-spacing:5px;font-size:3.5em;font-weight: 600;text-transform:capitalize;;color: #fff">Do you sell stuff? Let's do it <span style="color: #06B216">Online</span>!</h2>
+				<h2 style="margin-top:-1.3em;letter-spacing:5px;font-size:3em;font-weight: 600;text-transform:capitalize;;color: #fff">Do you sell stuff? Let's do it <span style="color: #06B216">Online</span>!</h2>
 				<p style="font-size:1.6em;font-weight: 600;color: #fff;">Millions of people are Online. Let's create your Online Shop in Minutes!</p>
-        <br>
+        <br><br>
         <div class="col-md-3 col-md-offset-3 col-xs-12" style="margin-bottom:2em">
-          <a style="width:95%;margin-left:auto;margin-right:auto;padding: .3em .5em;border: 2px solid #06B216;color: #06B216;font-size: 2em;text-decoration: none;background:#06B216" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
+          <a style="width:90%;margin-left:auto;margin-right:auto;padding: .2em .3em;border: 2px solid #06B216;color: #06B216;font-size: 1.5em;text-decoration: none;background:#06B216" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
         </div>
         <div class="col-md-3 col-xs-12" style="margin-bottom:2em">
-  			     <a style="width:95%;margin-left:auto;margin-right:auto;padding: .3em .5em;border: 2px solid #06B216;color: #06B216;font-size: 2em;text-decoration: none;" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
+  			     <a style="width:90%;margin-left:auto;margin-right:auto;padding: .2em .3em;border: 2px solid #06B216;color: #06B216;font-size: 1.5em;text-decoration: none;" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
         </div>
 			</div>
 			<div class="agileits-intro">
@@ -149,15 +148,15 @@ next if item == '.' or item == '..' %>
 	<div class="introduction" id="introduction">
 		<div class="container">
       <div class="col-md-6 col-xs-12">
-			<h3 class="agileits-title">About <span style="color:#06B216">KDuka</span></h3>
+			<h3 class="agileits-title" style="text-align:left">About <span style="color:#06B216">KDuka</span></h3>
 			<p>Kduka is a Kenyan based E-Commerce platform that enables its users
-        to easily create and manage online stores for the purpose of selling and delivering products to their
+        to easily create and manage e-commerce websites for the purpose of selling and delivering products to their
         clients</p>
       <br>
 
-      <p>We enable our users to create multiple stores(e-commerce website), add their products and customize the look and feel of their website in minutes.</p>
+      <p>We enable our users to create multiple e-commerce websites, add their products and customize the look and feel of their websites a matter of minutes.</p>
 <br>
-      <p>No coding expertise is required</p>
+      <p style="color: #06B216">No coding experience is required</p>
     </div>
 
        <div class="col-md-6 col-sm-12"><iframe width="100%" height="315" src="https://www.youtube.com/embed/OUp7k_rp6t0" frameborder="0" gesture="media" allowfullscreen style="margin-top: 1em;"></iframe></div>
@@ -176,7 +175,7 @@ next if item == '.' or item == '..' %>
 					transition: all 0.5s;
 				}
 			</style>
-			<p>You can Log in if you already have an account or you can log in to your stores. If you don't have an account you can Sign Up. If you need help please <a style="padding: 0em 0em !important;border: 0px;color:#06B216;font-size: 20px !important;text-decoration:underline" target="_blank" href="http://www.kduka.co.ke/help">click here</a></p>
+			<p>You can log in to your store(website). If you don't have a store(website) you can create one by signing up. If you need help please <a style="padding: 0em 0em !important;border: 0px;color:#06B216;font-size: 20px !important;text-decoration:underline" target="_blank" href="http://www.kduka.co.ke/help">click here</a></p>
       <div class="col-md-6" style="margin-bottom:2em">
         <!-- <p>Sign Up!</p> -->
         <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Sign Up !</span></a>
@@ -197,14 +196,12 @@ next if item == '.' or item == '..' %>
 			<h3 class="agileits-title" style="color:#000;font-size:1.6em">Lots of Features to be excited about</h3><br>
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:35px;text-align:left;color:#06B216">Responsive Layouts</p>
+					<p style="font-size:30px;text-align:left;color:#06B216">Works on all devices</p>
 				</div>
 				<div class="clearfix"> </div>
 					 <ul style="list-style:none;color:#6e6e6e;font-size:17px">
-						 <li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Excellent User Experience</li><br>
-						 <li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Super Flexible</li><br>
-						 <li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Faster loading in Webpages</li><br>
-						 <li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Very Easy to manage</li><br>
+						 <li><i style="color:#06B216;margin-right:1em" class="fa fa-check-circle fa-2x"></i> Faster loading in Webpages</li><br>
+						 <li><i style="color:#06B216;margin-right:1em" class="fa fa-check-circle fa-2x"></i> Very Easy to manage</li><br>
 					 </ul>
 			</div>
 			<div class="col-md-6 col-xs-12">
@@ -219,13 +216,13 @@ next if item == '.' or item == '..' %>
 			</div>
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:35px;text-align:left;color:#06B216">Easy to Customize</p>
+					<p style="font-size:30px;text-align:left;color:#06B216">Easy to Customize</p>
 				</div>
 				<div class="clearfix"> </div>
 					<ul style="list-style:none;color:#6e6e6e;font-size:17px">
-	 					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Choose among our different user friendly layouts</li><br>
-	 					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Customize layout color accents for uniqueness</li><br>
-	 					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Have your Store up and running in minutes</li><br>
+	 					<li><i style="color:#06B216;margin-right:1em" class="fa fa-check-circle fa-2x"></i> Choose among our different layouts</li><br>
+	 					<li><i style="color:#06B216;margin-right:1em" class="fa fa-check-circle fa-2x"></i> Customize layout color accents to your liking</li><br>
+	 					<li><i style="color:#06B216;margin-right:1em" class="fa fa-check-circle fa-2x"></i> Have your e-commerce website working in minutes</li><br>
 	 				</ul>
 			</div>
 		</div>
@@ -234,14 +231,14 @@ next if item == '.' or item == '..' %>
 		<div class="container">
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:35px;text-align:left;color:#06B216">Powerful Analytics</p>
+					<p style="font-size:30px;text-align:left;color:#06B216">Be informed about your store</p>
 				</div>
 				<div class="clearfix"> </div>
 				<ul style="list-style:none;color:#6e6e6e;font-size:17px">
-					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Know your visitors</li><br>
-					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Know what your customers are looking for</li><br>
-					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Find out how to optimise your store</li><br>
-					<li><i style="color:#06B216;font-size:35px;margin-right:1em" class="fa fa-check-circle"></i> Track where traffic is coming from</li><br>
+					<li><i style="color:#06B216;margin-right:1em" class="fa fa-check-circle fa-2x"></i> Know your visitors</li><br>
+					<li><i style="color:#06B216;margin-right:1em" class="fa fa-check-circle fa-2x"></i> Know what your customers are looking for</li><br>
+					<li><i style="color:#06B216;margin-right:1em" class="fa fa-check-circle fa-2x"></i> Find out how to optimise your store</li><br>
+					<li><i style="color:#06B216;margin-right:1em" class="fa fa-check-circle fa-2x"></i> Track where traffic is coming from</li><br>
 				</ul>
 			</div>
 			<div class="col-md-6 col-xs-12">
@@ -253,11 +250,9 @@ next if item == '.' or item == '..' %>
 	<!-- contact -->
 	<div class="contact" id="contact">
 		<div class="container">
-			<p style="font-weight: bold;">Kduka is a Kenyan based E-Commerce platform that enables its users
-        to easily create and manage online stores for the purpose of selling
-				 and delivering products to their clients</p>
+			<h1 style="font-weight: bold;margin-bottom:2em;color:#fff">Get in Touch With Us</h1>
 			<div class="con">
-				<a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr">Contact Us</a>
+				<a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr">Click Me !</a>
 			</div>
 			<a data-toggle="modal" data-target=".bs-example-modal-md" href="#"> </a>
 			<div class="modal fade bs-example-modal-md light-box" tabindex="-1" role="dialog" aria-hidden="true">
