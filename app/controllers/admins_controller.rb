@@ -82,4 +82,15 @@ order = Order.all
       end
     end
   end
+
+  def store_delete
+    @store = Store.find(params[:id])
+    if @store.destroy
+      flash[:notice] = "Store Destroyed"
+      redirect_to(request.referer)
+    else
+      flash[:alert] = "Something went wrong"
+      redirect_to(request.referer)
+    end
+    end
 end

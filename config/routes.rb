@@ -86,6 +86,7 @@ Rails.application.routes.draw do
   get 'products/allproducts' => 'products#allproducts'
   get 'stores/myorders' => 'stores#myorders'
   post '/carts/sendy_call'
+  delete '/store/delete/:id' => 'admins#store_delete', as: 'store_delete'
 
 
 
