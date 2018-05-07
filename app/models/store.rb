@@ -6,7 +6,8 @@ class Store < ApplicationRecord
   has_many :product, :dependent => :destroy
   has_many :category, :dependent => :destroy
   has_many :coupon, :dependent => :destroy
-  has_many :orders, :dependent => :destroy
+  has_many :order, :dependent => :destroy
+  has_many :store_delivery, :dependent => :destroy
   has_one :store_amount, :dependent => :destroy
 
   mount_uploader :banner, BannerUploader
