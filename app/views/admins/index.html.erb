@@ -7,11 +7,13 @@
     <th>Name</th>
     <th>subdomain</th>
     <th>Created at</th>
+    <th>Confirmed at</th>
     <th>Email</th>
     <th>Active</th>
     <th>Categories</th>
     <th>Products</th>
     <th>Updated at</th>
+    <th>Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -20,6 +22,7 @@
     <td><%= p.name %></td>
     <td><%=link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke" %></td>
     <td><%= p.created_at %></td>
+    <td><%= p.confirmed_at %></td>
     <td><%= p.email %></td>
     <td><%= p.active %></td>
     <td><%= Category.where(store_id:p.id).count rescue 0 %></td>
