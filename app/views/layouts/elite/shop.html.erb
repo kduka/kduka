@@ -143,13 +143,11 @@ button.w3view-cart {
 		<!-- header-bot -->
 			<div class="col-md-4 logo_agile">
 				<h1><a href="<%= root_path %>">
-				<style>
 
-				</style>
 				<% if @store.logo_status %>
 						<%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
 				<% else %>
-						<%= @store.name %>
+						<span style="font-size:18px;"><%= @store.name %></span>
 
 				<% end %>
 				</a></h1>

@@ -200,27 +200,27 @@
               <a href="#"><i class="fa fa-dot-circle-o"></i> <span> Categories</span></a>
               <ul id="menu-academico-sub">
                 <li id="menu-academico-avaliacoes">
-                  <a href="<%= categories_path %>">View Categories</a>
+                  <a href="<%= categories_path %>"><i class="fa fa-eye"></i> View Categories</a>
                 </li>
 
                 <li id="menu-academico-avaliacoes">
 
-                  <a href="<%= new_category_path %>">Add Category</a>
+                  <a href="<%= new_category_path %>"><i class="fa fa-plus"></i> Add Category</a>
 
                 </li>
 
               </ul>
             </li>
             <li id="menu-academico">
-              <a href="#"><i class="fa fa-product-hunt"></i> <span> Products</span></a>
+              <a href="#"><i class="fa fa-gift"></i> <span> Products</span></a>
               <ul id="menu-academico-sub">
                 <li id="menu-academico-avaliacoes">
-                  <a href="<%= products_manage_path %>">Manage Products</a>
+                  <a href="<%= products_manage_path %>"><i class="fa fa-search"></i> Manage Products</a>
                 </li>
 
                 <li id="menu-academico-avaliacoes">
                   <% if !Category.where(store_id: current_store.id).blank? %>
-                      <a href="<%= new_store_product_path(@store) %>">Add Product</a>
+                      <a href="<%= new_store_product_path(@store) %>"><i class="fa fa-plus"></i> Add Product</a>
                   <% end %>
                 </li>
               </ul>
@@ -232,49 +232,51 @@
               <a href="<%= store_orders_url %>"><i class="fa fa-shopping-bag"></i> <span>Orders  <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %> </span> </a>
             </li>
             <li>
-              <a href="<%= stores_theme_path %>"><i class="fa fa-desktop"></i> <span>Layouts</span></a>
+              <a href="<%= stores_theme_path %>"><i class="fa fa-desktop"></i> <span>Themes</span></a>
             </li>
-            <li>
-              <a href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> <span>Pages</span></a>
+
+            <li id="menu-academico">
+              <a href="#"><i class="fa fa-gears"></i> <span> Store Settings </span></a>
+              <ul id="menu-academico-sub">
+                <li id="menu-academico-avaliacoes">
+                  <a href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> <span>Pages</span></a>
+                </li>
+                <li id="menu-academico-avaliacoes">
+                  <a href="<%= edit_store_path(@store) %>"><i class="fa fa-edit"></i> Edit Store Settings</a>
+                </li>
+                <li id="menu-academico-avaliacoes">
+                  <a href="<%= stores_social_path %>"><i class="fa fa-users"></i> Social Media Settings</a>
+                </li>
+                <li id="menu-academico-avaliacoes">
+                  <a href="<%= stores_deliver_path %>"><i class="fa fa-truck"></i> Delivery Settings</a>
+                </li>
+                <li id="menu-academico-avaliacoes">
+                  <a href="<%= stores_active_path %>"><i class="fa fa-check"></i> Activation Settings</a>
+                </li>
+                <li id="menu-academico-avaliacoes">
+                  <a href="<%= edit_store_registration_path %>"><i class="fa fa-lock"></i> Password Settings</a>
+                </li>
+
+              </ul>
             </li>
             <li id="menu-academico">
               <a href="<%= coupons_path %>"><i class="fa fa-ticket"></i> <span>Coupons</span></a>
               <ul id="menu-academico-sub">
                 <li id="menu-academico-avaliacoes">
-                  <a href="<%= coupons_path %>">Manage Coupons</a>
+                  <a href="<%= coupons_path %>"><i class="fa fa-search"></i> Manage Coupons</a>
                 </li>
                 <li id="menu-academico-avaliacoes">
-                  <a href="<%= new_coupon_path %>">Create Coupon</a>
+                  <a href="<%= new_coupon_path %>"><i class="fa fa-plus"></i> Create Coupon</a>
                 </li>
                 <li id="menu-academico-avaliacoes">
-                  <a href="<%= coupons_generate_path %>">Generate Multiple Coupons</a>
+                  <a href="<%= coupons_generate_path %>"><i class="fa fa-plus"></i> Generate Multiple Coupons</a>
                 </li>0
               </ul>
             </li>
             <li id="menu-academico">
               <a href="<%= stores_funds_path %>"><i class="fa fa-money"></i> <span> Funds </span></a>
             </li>
-            <li id="menu-academico">
-              <a href="#"><i class="fa fa-gears"></i> <span> Store Settings </span></a>
-              <ul id="menu-academico-sub">
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= edit_store_path(@store) %>">Edit Store Settings</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= stores_social_path %>">Social Media Settings</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= stores_deliver_path %>">Delivery Settings</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= stores_active_path %>">Activation Settings</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= edit_store_registration_path %>">Password Settings</a>
-                </li>
 
-              </ul>
-            </li>
             <li>
               <a href="<%= root_path %>"><i class="fa fa-globe"></i> <span>Back to Website</span></a>
             </li>
