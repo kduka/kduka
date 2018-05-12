@@ -90,9 +90,9 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: '', path_names: { sign_in: 'stores/login', sign_out: 'stores/logout', sign_up: 'stores/signup'}
-  devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'},path: '', path_names: { sign_in: 'users/login', sign_out: 'users/logout', sign_up: 'users/signup'}
-  devise_for :admins, :controllers => {registrations: 'admins_registrations', sessions: 'admins_sessions'},path: '', path_names: { sign_in: 'admins/login', sign_out: 'admins/logout'}
+  devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}
+  devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'},path: 'users', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}
+  devise_for :admins, :controllers => {registrations: 'admins_registrations', sessions: 'admins_sessions'},path: 'admins', path_names: { sign_in: 'login', sign_out: 'logout'}
 
   resources :stores do
     resources :products
