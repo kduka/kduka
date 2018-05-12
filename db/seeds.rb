@@ -1,4 +1,3 @@
-=begin
 Order.create!([
 
               ])
@@ -20,7 +19,7 @@ User.create!([
 
 Store.create!([
                   #{email: "ndeto@gmail.com", encrypted_password: "$2a$11$JkLJW7uoiBpHfxunSe2s/OoC9Vu4lPREZbGCINaz0RInz0SDkuvgS", reset_password_token: "b407668ce6bafed9ef34e19057f9214d2f70f58620a0e4a69d997d08c9398f5d", reset_password_sent_at: "2017-08-27 10:36:49", remember_created_at: nil, sign_in_count: 17, current_sign_in_at: "2017-09-17 18:12:55", last_sign_in_at: "2017-09-14 06:16:10", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", user_id: 1, active: true, username: "mndeto", name: "Ndeto", subdomain: "mndeto", phone: nil, display_email: nil, facebook: "fb.me", instagram: "insta.gram", linkedin: "", twitter: "", pinterest: "", vimeo: "", youtube: "", slogan: "We Deliver!", layout_id: 1, location: "Eastleigh, Nairobi, Kenya", lat: "-1.2731795", lng: "36.8600088"},
-                  {:email => 'test@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig', user_id: 1, active: true, username: "mndeto", name: "Test Store", subdomain: "test", phone: "+254725458978", display_email: "test@gmail.com", facebook: "fb.me", instagram: "insta.gram", linkedin: "", twitter: "", pinterest: "", vimeo: "", youtube: "", slogan: "We Deliver!", location: "Eastleigh, Nairobi, Kenya", lat: "-1.2731795", lng: "36.8600088"}
+                  {:email => 'test@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig', user_id: 1, active: true, username: "mndeto", name: "Test Store", subdomain: "test", phone: "+254725458978", display_email: "test@gmail.com", facebook: "fb.me", instagram: "insta.gram", linkedin: "", twitter: "", pinterest: "", vimeo: "", youtube: "", slogan: "We Deliver!", auto_delivery_location: "Eastleigh, Nairobi, Kenya", lat: "-1.2731795", lng: "36.8600088"}
               ])
 Category.create!([
                      {name: "Fruits", active: true, store_id: 1, description: nil},
@@ -48,7 +47,7 @@ Layout.create!([
                    {name: "modern", description: "Modern Theme", d_name: "Modern"},
                    {name: "electronic", description: "Electronic Theme", d_name: "Electronic Store"},
                    {name: "elite", description: "Elite Store", d_name: "Elite Store"},
- {name: "cstore", description: "CStore Theme", d_name: "Cstore"}
+                   {name: "cstore", description: "CStore Theme", d_name: "Cstore"}
                ])
 
 Store.find(1).update({
@@ -79,7 +78,7 @@ Font.create!([
                  {:status => 'Success'},
                  {:status => 'Failed'}
                                        ])
-=end
+
 
 OrderStatus.create!([
                         {name: "Complete"},

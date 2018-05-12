@@ -90,9 +90,9 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'}
-  devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'}
-  devise_for :admins, :controllers => {registrations: 'admins_registrations', sessions: 'admins_sessions'}
+  devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: '', path_names: { sign_in: 'stores/login', sign_out: 'stores/logout', sign_up: 'stores/signup'}
+  devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'},path: '', path_names: { sign_in: 'users/login', sign_out: 'users/logout', sign_up: 'users/signup'}
+  devise_for :admins, :controllers => {registrations: 'admins_registrations', sessions: 'admins_sessions'},path: '', path_names: { sign_in: 'admins/login', sign_out: 'admins/logout'}
 
   resources :stores do
     resources :products
@@ -102,13 +102,7 @@ Rails.application.routes.draw do
     resources :sub_categories
   end
 
-  devise_scope :store do
-    post 'store_registrations_update_password' => 'store_registrations#update_password'
-  end
 
-  devise_scope :user do
-    post 'user_registrations_update_password' => 'user_registrations#update_password'
-  end
   resources :users
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]

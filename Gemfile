@@ -3,7 +3,6 @@ gem 'rest-client'
 gem 'rack-cors'
 gem 'pesapal'
 gem 'devise'
-gem 'bootstrap-sass'
 gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'seed_dump'
 gem 'tabs_on_rails'
@@ -21,7 +20,6 @@ gem 'will_paginate'
 gem 'rails_autolink'
 gem 'figaro'
 gem 'sendgrid-ruby'
-
 
 ruby "2.4.0"
 gem 'sqlite3', group: :development

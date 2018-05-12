@@ -290,11 +290,11 @@ ActiveRecord::Schema.define(version: 20180328134039) do
     t.text     "manual_delivery_instructions", limit: 65535
     t.boolean  "collection_point_status"
     t.string   "auto_delivery_location"
+    t.string   "lat"
+    t.string   "lng"
     t.boolean  "init"
     t.boolean  "important"
     t.string   "store_font"
-    t.string   "lat"
-    t.string   "lng"
     t.string   "domain"
     t.boolean  "own_domain",                                 default: false
     t.string   "c_subdomain"
