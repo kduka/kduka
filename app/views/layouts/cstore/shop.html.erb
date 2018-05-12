@@ -28,6 +28,7 @@
     <% if !@store.store_font.nil? %>
     body{
       font-family: <%= @store.store_font %> !important;
+      overflow-x: hidden;
     }
     h1{
       font-family: <%= @store.store_font %> !important;
@@ -975,7 +976,7 @@
                 </ul>
                 <h4><%= @store.name %></h4>
                 <div class="clearfix"></div>
-                <p style="color:#fff">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a href="http://www.zerone.co.ke" target="_blank" style="color:<%= @store.store_color %>">Zerone I.T. Solutions</a> </p>
+                <p style="color:#fff">Copyright &copy; <%= Time.current.year %> <%= @store.name %>. All rights reserved | Powered by <a href="http://www.kduka.co.ke" target="_blank" style="color:<%= @store.store_color %>">KDuka</a> </p>
             </div>
         </div>
         <!-- /.container -->

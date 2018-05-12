@@ -14,9 +14,9 @@
                 <div style="min-width:346px;min-height:113px">
                 <a href="<%= root_path %>">
                   <% if @store.logo_status %>
-                  <%= image_tag(@store.logo_url.to_s,style:"max-width:346px;max-height:113px") %>
+                  <%= image_tag(@store.logo_url.to_s,style:"width:auto;max-height:75px") %>
                   <% else %>
-                      <h2 style="color:<%= @store.store_color %> !important;padding-top:1.2em"><%= @store.name %></h2>
+                      <h2 style="font-size: 18px;color:<%= @store.store_color %> !important;padding-top:2.3em"><%= @store.name %></h2>
                   <% end %>
                 </a>
                 </div>

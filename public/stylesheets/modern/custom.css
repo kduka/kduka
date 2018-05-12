@@ -891,6 +891,7 @@ h3.title span {
 .new-bottom {
     padding: 1em;
     background:#fff;
+		height: 13em;
 }
 .new-grid {
     width: 23.4%;
