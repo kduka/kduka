@@ -52,18 +52,14 @@ var body = {
 console.log(body);
 
 $.ajax({
-    <% if Rails.env.production? %>
-    url: 'https://api.sendyit.com/v1/',
-    <% else %>
-    url: 'https://apitest.sendyit.com/v1/',
-    <% end %>
+    url: '/stores/sendy_call',
     method: 'post',
     data: JSON.stringify(body),
     beforeSend: function (xhr) {
-        xhr.setRequestHeader('Content-Type', 'text/plain')
+        xhr.setRequestHeader('Content-Type', 'application/json')
     },
     success: function (res) {
-        res = JSON.parse(res);
+        //res = JSON.parse(res);
         console.log(res);
 
         if (res['status'] == true || res['description'].includes('funds')) {
