@@ -59,7 +59,8 @@ $(function () {
         passw = $("#sendykey").val();
         lat = $("#store_lat").val();
         lng = $("#store_lng").val();
-        //alert(loc + user + passw);
+
+        $(".status").removeAttr('hidden').html('<i class="icon-spinner icon-spin"></i> Please wait as we verify your credentials');
 
         $.ajax({
             url: '/stores/sendy',
