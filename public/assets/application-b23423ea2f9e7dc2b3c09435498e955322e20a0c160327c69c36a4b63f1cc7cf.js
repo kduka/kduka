@@ -29783,7 +29783,8 @@ $(function () {
         passw = $("#sendykey").val();
         lat = $("#store_lat").val();
         lng = $("#store_lng").val();
-        //alert(loc + user + passw);
+
+        $(".status").removeAttr('hidden').html('<i class="icon-spinner icon-spin"></i> Please wait as we verify your credentials');
 
         $.ajax({
             url: '/stores/sendy',
@@ -29915,8 +29916,8 @@ $(function () {
         $.ajax({
             url: '/carts/confirm',
             method: 'post',
-            data:{
-                ref:ref
+            data: {
+                ref: ref
             },
             success: function (e) {
                 if (e == "complete") {
@@ -30213,6 +30214,8 @@ $(function () {
     });
 
     $("#complete_delivery").click(function () {
+        $("#complete_delivery").html('Requesting Delivery ..');
+        $(".del_err").html('<p style="color: green">Please Wait .... </p>');
         order_no = $("#del_order").val();
         //alert(order_no);
 
@@ -30223,7 +30226,7 @@ $(function () {
             },
             method: 'post',
             success: function (e) {
-                //alert(e)
+
             }
         })
     });
@@ -30233,14 +30236,14 @@ $(function () {
         code = $("#delivery_code").val();
         ref = $("#order_ref").val();
         $.ajax({
-            url:'/stores/close_order',
-            method:'post',
-            data:{
-                code:code,
-                ref:ref
+            url: '/stores/close_order',
+            method: 'post',
+            data: {
+                code: code,
+                ref: ref
             },
-            success:function (e) {
-               // alert(e);
+            success: function (e) {
+                // alert(e);
             }
         })
     });
@@ -30248,16 +30251,59 @@ $(function () {
     $("#change_shipping_status").click(function () {
         ref = $("#order_ref").val();
         $.ajax({
-            url:'/stores/update_order2',
-            method:'post',
-            data:{
-                status:3,
-                ref:ref
+            url: '/stores/update_order2',
+            method: 'post',
+            data: {
+                status: 3,
+                ref: ref
             },
-            success:function (e) {
+            success: function (e) {
                 // alert(e);
             }
         })
+    });
+
+    $("#changepass").change(function (e) {
+        password = $("#changepass").val();
+        if (!pass(password)) {
+            $(".store_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
+            $("#changepass").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        } else {
+            $(".store_password_prev").html("");
+            $("#changepass").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+
+        }
+        store_change_reg();
+    });
+
+    $("#changepassconf").keyup(function (e) {
+        password = $("#changepass").val();
+        passwordc = $("#changepassconf").val();
+        if (password != passwordc) {
+            $(".store_password_conf_prev").html("<p style='color:red;font-size: 15px;'>Passwords don't match</p>");
+            $("#changepassconf").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        } else {
+            $(".store_password_conf_prev").html("");
+            $("#changepassconf").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+
+        }
+        store_change_reg();
+    });
+
+    $("#changemail").change(function () {
+        email = $("#changemail").val();
+        if (valmail(email)) {
+            $(".display_email_prev").html("");
+            $("#changemail").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+        } else {
+            $(".display_email_prev").html("<p style='color:red;font-size: 15px;'>Please enter a valid email</p>");
+            $("#changemail").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+        }
+        store_change_reg();
+    });
+
+    $("#currentpass").keyup(function () {
+        store_change_reg();
     });
 });
 
@@ -30282,16 +30328,16 @@ function geocodeAddress(geocoder, resultsMap) {
     }, function (results, status) {
         if (status === 'OK') {
 
-            var string = "";
-            console.log(results);
+            var string = "<br> <p>Click on a location below</p> <br>";
+            //console.log(results);
             results.forEach(function (entry) {
-                string = string + '<p onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
+                string = string + '<p style="border-color:black;padding: 1px;border-style: solid" onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
 
 
             });
             $('#suggesstion-box').show();
             $('#suggesstion-box').html(string);
-            console.log(string);
+            //.log(string);
         } else {
             $('#suggesstion-box').html("Not Found, Try different search words");
         }
@@ -30309,7 +30355,7 @@ function selectlocation(val) {
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
         success: function (result) {
             results = result['results'];
-            console.log(result);
+            //console.log(result);
 
             var latitude = results[0]['geometry']['location']['lat'];
             var longitude = results[0]['geometry']['location']['lng'];
@@ -30342,6 +30388,7 @@ function selectlocation(val) {
 }
 
 function locate() {
+    $('#suggesstion-box').html("<br><br><p style='color: blue'>Please Wait. Searching for location ...</p>");
     setTimeout(function () {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 8,
@@ -30388,7 +30435,7 @@ function val_ship() {
     phone = $("#ship_phone_number").val();
     email = $("#ship_email").val();
 
-    if (full_name != "" && phonenumbers(phone) && validateEmail(email)) {
+    if (full_name != "" && phonenumbers(phone) && valmail(email)) {
         if ($("#auto").is(':checked')) {
             $(".warn_fill_fields").html("<p style='color: green'>Type below to search for your nearest location</p>");
         } else {
@@ -30746,6 +30793,19 @@ function store_reg() {
     } else {
         $("#store_sign_up").attr("disabled", "true");
 
+    }
+
+}
+
+function store_change_reg() {
+    password = $("#changepass").val();
+    passwordc = $("#changepassconf").val();
+    email = $("#changemail").val();
+    curr = $("#currentpass").val();
+    if ((password == passwordc && pass(password) && valmail(email)) || (password == "" && passwordc == "" && valmail(email) && curr != "")) {
+        $("#changebtn").removeAttr("disabled");
+    } else {
+        $("#changebtn").attr("disabled", "disabled");
     }
 
 }
