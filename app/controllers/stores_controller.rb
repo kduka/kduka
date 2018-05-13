@@ -3,8 +3,6 @@ class StoresController < ApplicationController
   before_action :authenticate_store!, except: [:contact, :destroy]
   before_action :important, only: [:deliver, :index]
 
-  # GET /stores
-  # GET /stores.json
   def index
 
     @store = Store.find(current_store.id)
@@ -16,7 +14,7 @@ class StoresController < ApplicationController
       end
     end
     @important = important
-    if @store.important == false
+    if @store.important != true
       if @important.empty? && @store.init == true
         flash[:notice] = 'Congratulations! Your Account is all setup! Go to activation settings to activate it'
         @store.update(important: true)
@@ -26,28 +24,22 @@ class StoresController < ApplicationController
     set_shop_show
   end
 
-  # GET /stores/1
-  # GET /stores/1.json
   def show
     @store = Store.find(current_store.id)
     @product = Product.where(store_id: @store.id)
     set_shop_show
   end
 
-  # GET /stores/new
   def new
     @store = Store.new
     set_login
   end
 
-  # GET /stores/1/edit
   def edit
     @store = Store.find(current_store.id)
     set_shop_show
   end
 
-  # POST /stores
-  # POST /stores.json
   def create
     @store = Store.new(store_params.merge(delivery_status: false, layout_id: 1))
 
@@ -62,8 +54,6 @@ class StoresController < ApplicationController
     end
   end
 
-  # PATCH/PUT /stores/1
-  # PATCH/PUT /stores/1.json
   def update
     respond_to do |format|
       if @store.update(store_params)
@@ -76,8 +66,6 @@ class StoresController < ApplicationController
     end
   end
 
-  # DELETE /stores/1
-  # DELETE /stores/1.json
   def destroy
     @store = Store.find(params[:id])
     if @store.destroy
@@ -160,6 +148,7 @@ end
   end
 
   def deliver
+    @important = important
     @store = Store.find(current_store.id)
     set_shop_show
   end
@@ -245,7 +234,7 @@ end
     @i = 1
     cats = @store.category.all.first
     if cats.nil?
-      messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{new_category_path}'>Click here to create a new category </a>"
+      messages[@i] = "<a style='text-decoration:none;' href='#{new_category_path}'>Click here to create a new category </a>"
       @i+=1
     end
 
@@ -254,7 +243,7 @@ end
       if cats.nil?
         messages[@i] = "<span style='color:black'>Create Products</span>"
       else
-        messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{new_store_product_path(current_store.id)}'>Click here to create a new product</a>"
+        messages[@i] = "<a style='text-decoration:none;' href='#{new_store_product_path(current_store.id)}'>Click here to create a new product</a>"
       end
 
       @i+=1
@@ -271,7 +260,7 @@ end
     @find = StoreAmount.where(store_id: current_store.id).first
 
     if @find.nil?
-      StoreAmount.create(amount: 0,actual:0,lifetime_earnings:0, store_id: current_store.id)
+      StoreAmount.create(amount: 0, actual: 0, lifetime_earnings: 0, store_id: current_store.id)
     end
 
     set_shop_show
@@ -350,7 +339,7 @@ end
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
       nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
 
-      @storeamount.update(amount: nu,actual:nua)
+      @storeamount.update(amount: nu, actual: nua)
       Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
       @status = true
     else
@@ -438,7 +427,7 @@ end
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
       nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
 
-      @storeamount.update(amount: nu,actual:nua)
+      @storeamount.update(amount: nu, actual: nua)
       Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
       @status = true
     else
@@ -518,7 +507,7 @@ end
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
       nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
 
-      @storeamount.update(amount: nu,actual:nua)
+      @storeamount.update(amount: nu, actual: nua)
       Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
       @status = true
     else
@@ -575,13 +564,13 @@ end
     @order = Order.where(ref: ref).first
 
     if @order.order_status_id == 6
-        @status = "done"
+      @status = "done"
     else
       if @order.delivery_code == code
-        @order.update(order_status_id: 6, complete_date:Time.now)
-        @store_amount = StoreAmount.where(store_id:current_store.id).first
+        @order.update(order_status_id: 6, complete_date: Time.now)
+        @store_amount = StoreAmount.where(store_id: current_store.id).first
         nu = @store_amount.amount.to_i + @order.amount_received.to_i
-        @store_amount.update(amount:nu)
+        @store_amount.update(amount: nu)
         @status = true
       else
         @status = false
@@ -593,9 +582,9 @@ end
     status = params[:status]
     ref = params[:ref]
 
-    @order = Order.where(ref:ref).first
+    @order = Order.where(ref: ref).first
 
-    @status = @order.update(order_status_id: status,ship_date:Time.now)
+    @status = @order.update(order_status_id: status, ship_date: Time.now)
 
   end
 
@@ -603,18 +592,18 @@ end
     status = params[:status]
     ref = params[:ref]
 
-    @order = Order.where(delivery_order:ref).first
+    @order = Order.where(delivery_order: ref).first
 
-    @status = @order.update(order_status_id: status,ship_date:Time.now)
+    @status = @order.update(order_status_id: status, ship_date: Time.now)
 
   end
 
   def transactions
-  set_shop_show
+    set_shop_show
   end
 
   def myorders
-    @orders = Order.where(store_id:current_store.id,order_status_id:[2,3,5,6])
+    @orders = Order.where(store_id: current_store.id, order_status_id: [2, 3, 5, 6])
     respond_to do |f|
       f.xls
     end
@@ -634,7 +623,6 @@ end
     else
       url = URI("https://apitest.sendyit.com/v1/")
     end
-
 
 
     http = Net::HTTP.new(url.host, url.port)
@@ -681,14 +669,15 @@ end
     @manual = @store.manual_delivery_status
     @collection = @store.collection_point_status
 
-    if @auto == false && @manual == false && @collection == false
-      messages[@i] = "<a style='font-weight:bold;text-decoration:none;' href='#{stores_deliver_path}'>You need to setup a delivery option first! Click here.</a>"
+    if (@auto == false || @auto == nil) && (@manual == false || @manual == nil ) && (@collection == nil || @collection == false)
+      messages[@i] = "<a style='text-decoration:none;' href='#{stores_deliver_path}'>You need to setup a delivery option first! Click here.</a>"
       @i+=1
-      messages[@i] = "<span style='font-weight:bold;text-decoration:none;color:#000'>Activate your Store</span>"
+      messages[@i] = "<span style='text-decoration:none;color:#000'>Activate your Store</span>"
       deactivate_store
+      @store.update(important:false)
+    else
+      @store.update(important:true)
     end
-
-
     return messages
 
   end
