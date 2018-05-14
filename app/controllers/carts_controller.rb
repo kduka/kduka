@@ -121,9 +121,6 @@ class CartsController < ApplicationController
   end
 
   def sendy_call
-
-
-
     require 'uri'
     require 'net/http'
 

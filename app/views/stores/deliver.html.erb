@@ -14,6 +14,24 @@ $(document).ready(function(){
   }
 </style>
 <div class="skil">
+  <div class="col-md-12">
+    <% if !@important.blank? %>
+        <div style="margin-top:1em;font-family:'Roboto', sans-serif;border-radius: 0px !important;" class="alert alert-warning">
+          <h3> You need to setup the following before you can activate your store </h3>
+          <% @important.each do |k, m| %>
+              <p><%= "#{k}. " %><%= m.html_safe %></p>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+  <div class="col-md-12">
+    <% if can_be_active %>
+        <div style="margin-top:1em;border-radius: 0px !important;" class="alert alert-success">
+          <a style='text-decoration:none;' href='<%= stores_active_path %>'>1. Activate your
+            Store!</a>
+        </div>
+    <% end %>
+  </div>
   <br>
   <h1 style="text-align:center">Delivery Settings</h1><br>
   <h3 style="text-align:center;font-weight: bold">Select <span style="color: #06B216;">AT LEAST</span> one option below</h3><br>

@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    @setup = setup
     @categories = Category.where(store_id:current_store.id)
     set_shop_show
   end
@@ -77,7 +78,39 @@ class CategoriesController < ApplicationController
     redirect_to(request.referer)
   end
 
+  def setup
+    @store= Store.find(current_store.id)
+    messages = Hash.[]
+    @i = 1
+    cats = @store.category.all.first
+    if cats.nil?
+      messages[@i] = "<a style='text-decoration:none;' href='#{new_category_path}'>Click here to create a new category </a>"
+      @i+=1
+    end
+
+    product = @store.product.all.first
+    if product.nil?
+      if cats.nil?
+        messages[@i] = "<span style='color:black'>Create Products</span>"
+      else
+        messages[@i] = "<a style='text-decoration:none;' href='#{new_store_product_path(current_store.id)}'>Click here to create a new product</a>"
+      end
+
+      @i+=1
+    end
+    if !messages.empty?
+      remove_init
+    end
+
+    return messages
+
+  end
+
   private
+  def remove_init
+    @store = Store.find(current_store.id)
+    @store.update(init: false)
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])

@@ -1,5 +1,16 @@
 
 <div class="skil">
+  <div class="col-md-12">
+    <% if !@setup.blank? %>
+        <div style="margin-top:1em;border-radius: 0px !important;" class="alert alert-info">
+          <h3> Setup your store! </h3>
+          <br>
+          <% @setup.each do |k, m| %>
+              <p><%= "#{k}. " %><%= m.html_safe %></p>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
 <h1 style="text-align:center">Categories</h1>
   <h3 style="text-align:center">Featured categories are displayed on the homepage</h3>
 

@@ -9,6 +9,7 @@
     <th>Created at</th>
     <th>Confirmed at</th>
     <th>Phone</th>
+    <th>Name</th>
     <th>Email</th>
     <th>Active</th>
     <th>Categories</th>
@@ -25,6 +26,7 @@
     <td><%= p.created_at %></td>
     <td><%= p.confirmed_at %></td>
     <td><%= p.phone %></td>
+    <td><%= p.name %></td>
     <td><%= p.email %></td>
     <td><%= p.active %></td>
     <td><%= Category.where(store_id:p.id).count rescue 0 %></td>

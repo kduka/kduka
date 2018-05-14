@@ -17,7 +17,7 @@ var body = {
 "request_token_id": "request_token_id"
 }
 
-console.log(body);
+//console.log(body);
 
 $.ajax({
     <% if Rails.env.production? %>
@@ -32,7 +32,7 @@ $.ajax({
     },
     success: function (res) {
         res = JSON.parse(res);
-        console.log(res);
+        //console.log(res);
         if (res['status'] == true) {
             $("#complete_delivery").attr('disabled','disabled');
             alert("Delivery request successful")

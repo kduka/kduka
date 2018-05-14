@@ -49,22 +49,18 @@ var body = {
     "request_token_id": "request_token_id"
 };
 
-console.log(body);
+//console.log(body);
 
 $.ajax({
-    <% if Rails.env.production? %>
-    url: 'https://api.sendyit.com/v1/',
-    <% else %>
-    url: 'https://apitest.sendyit.com/v1/',
-    <% end %>
+    url: '/stores/sendy_call',
     method: 'post',
     data: JSON.stringify(body),
     beforeSend: function (xhr) {
-        xhr.setRequestHeader('Content-Type', 'text/plain')
+        xhr.setRequestHeader('Content-Type', 'application/json')
     },
     success: function (res) {
-        res = JSON.parse(res);
-        console.log(res);
+        //res = JSON.parse(res);
+        //console.log(res);
 
         if (res['status'] == true || res['description'].includes('funds')) {
             $(".status").removeAttr('hidden').html('Credentials Saved! Please make sure you top up your account so that clients can use the delivery options');
@@ -81,7 +77,6 @@ $.ajax({
                     lng: lng
                 },
                 success: function () {
-
                 }
             })
 
@@ -90,7 +85,6 @@ $.ajax({
             $(".status").attr('hidden', 'hidden');
             $(".error").removeAttr('hidden');
             $(".error").html('Invalid Credentials or Location')
-            //$('.price').html('<p> Sorry, we cannot be able to do delivery for you at this time, please <a href="<%= contact_path %>">Contact Us</a>.</p>');
         }
 
     }
