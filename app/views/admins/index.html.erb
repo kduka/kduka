@@ -22,7 +22,7 @@
   <% @stores.each do |p| %>
   <tr>
     <td><%= p.name %></td>
-    <td><%=link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke" %></td>
+    <td><%=link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke", :target=>'_blank' %></td>
     <td><%= p.created_at %></td>
     <td><%= p.confirmed_at %></td>
     <td><%= p.phone %></td>
