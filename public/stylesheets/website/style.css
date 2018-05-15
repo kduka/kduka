@@ -32,12 +32,13 @@ body a:hover{
 }
 /*-- banner --*/
 .banner{
-	background:url(/images/website/banner1.jpg) no-repeat center;
+	background:url(/images/website/banner.jpg) no-repeat center;
 	min-height:800px;
 	border-top:10px solid #06B216;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	background-size:cover;
+	background-attachment: fixed; 
 }
 .w3layouts-header{
 	padding:1em 0 0;

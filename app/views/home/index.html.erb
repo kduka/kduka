@@ -75,13 +75,13 @@ next if item == '.' or item == '..' %>
           opacity:0.2;
         }
       </style>
-      <h1><a style="color:#000 !important" href="<%= root_path %>"><%= image_tag("website/logo2.png") %></a></h1>
+      <h1><a style="color:#000 !important" href="<%= root_path %>"><%= image_tag("website/logo2.png",style:"width:80%;") %></a></h1>
     </div>
 		<div class="container">
 			<div class="w3layouts-header">
 				<div class="top-nav">
 					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
-						<h3><i class="fa fa-reorder fa-2x" id="showRightPush2"></i> </h3>
+						<h3 class="text-center"><i class="fa fa-close" id="showRightPush2"></i> </h3>
 						<ul>
 							<li><a href="#home" class="scroll"><i class="fa fa-home"></i> Home</a></li>
 							<li><a href="#introduction" class="scroll"><i class="fa fa-info-circle"></i> About Us</a></li>
@@ -94,7 +94,7 @@ next if item == '.' or item == '..' %>
 					</nav>
 					<div class="main buttonset">
 					<!-- Class "cbp-spmenu-open" gets applied to menu and "cbp-spmenu-push-toleft" or "cbp-spmenu-push-toright" to the body -->
-            <i class="fa fa-reorder fa-5x menu-button1" id="showRightPush" style="color: #06b216;"></i>
+            <i class="fa fa-reorder fa-4x menu-button1" id="showRightPush" style="color: #06b216;"></i>
 					<!-- <span class="menu"></span> -->
 					</div>
 					<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
@@ -128,18 +128,18 @@ next if item == '.' or item == '..' %>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="banner-w3lsinfo" >
-				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2em;font-weight: 600;text-transform:capitalize;;color: #fff">Best E-commerce Platform Made for You, Start Selling <span style="color: #06B216">Now</span>!</h2>
+				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:1.7em;font-weight: 600;text-transform:capitalize;;color: #fff">Best E-commerce Platform Made for You, Start Selling <span style="color: #06B216">Now</span>!</h2>
 				<p style="font-size:1.2em;font-weight: 600;color: #fff;">Selling Online Has Never Been Easier. Let's create your Online Shop in Minutes!</p>
         <br><br>
         <div class="col-md-3 col-md-offset-3 col-xs-12" style="margin-bottom:2em">
-          <a style="width:90%;margin-left:auto;margin-right:auto;padding: .2em .3em;border: 2px solid #06B216;color: #06B216;font-size: 1.5em;text-decoration: none;background:#06B216" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store!</span></a>
+          <a style="width:90%;margin-left:auto;margin-right:auto;padding: .2em .3em;border: 2px solid #06B216;border-radius: 10px;color: #06B216;font-size: 1.3em;text-decoration: none;background:#06B216" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store!</span></a>
         </div>
         <div class="col-md-3 col-xs-12" style="margin-bottom:2em">
-  			     <a style="width:90%;margin-left:auto;margin-right:auto;padding: .2em .3em;border: 2px solid #06B216;color: #06B216;font-size: 1.5em;text-decoration: none;" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
+  			     <a style="width:90%;margin-left:auto;margin-right:auto;padding: .2em .3em;border: 2px solid #06B216;border-radius: 10px;color: #06B216;font-size: 1.3em;text-decoration: none;" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
         </div>
 			</div>
 			<div class="agileits-intro">
-				<p style="font-weight: bold">Learn More...<a href="#introduction" class="scroll"> </a></p>
+				<p style="font-weight: 600">Learn More...<a href="#introduction" class="scroll"> </a></p>
 			</div>
 		</div>
 	</div>
@@ -194,7 +194,7 @@ next if item == '.' or item == '..' %>
 			<h3 class="agileits-title" style="color:#000;font-size:1.6em">Manage and Grow Your Business Online</h3><br>
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:30px;text-align:left;color:#06B216">Fully customizable website, online store and domain</p>
+					<p style="font-weight: 500;font-size:30px;text-align:left;color:#06B216">Fully customizable website, online store and domain</p>
 				</div>
 				<div class="clearfix"> </div>
 					 <ul style="list-style:url(/images/website/check.png);font-size:18px;padding-left:2em">
@@ -216,7 +216,7 @@ next if item == '.' or item == '..' %>
 			</div>
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:30px;text-align:left;color:#06B216">Learn How to Create Your Own Online Store</p>
+					<p style="font-weight: 500;font-size:30px;text-align:left;color:#06B216">Learn How to Create Your Own Online Store</p>
 				</div>
 				<div class="clearfix"> </div>
 					<ol style="font-size:18px">
@@ -233,7 +233,7 @@ next if item == '.' or item == '..' %>
 		<div class="container">
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-size:30px;text-align:left;color:#06B216">Be informed about your store</p>
+					<p style="font-weight: 500;font-size:30px;text-align:left;color:#06B216">Be informed about your store</p>
 				</div>
 				<div class="clearfix"> </div>
 				<ul style="list-style:url(/images/website/check.png);font-size:18px;padding-left:2em">
@@ -260,7 +260,7 @@ next if item == '.' or item == '..' %>
 	<!-- contact -->
 	<div class="contact" id="contact">
 		<div class="container">
-			<h1 style="font-weight: bold;margin-bottom:2em;color:#fff">Get in Touch With Us</h1>
+			<h1 style="font-weight: 500;margin-bottom:2em;color:#fff">Get in Touch With Us</h1>
 			<div class="con">
 				<a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr">Click Me !</a>
 			</div>
