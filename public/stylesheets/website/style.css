@@ -32,7 +32,7 @@ body a:hover{
 }
 /*-- banner --*/
 .banner{
-	background:url(/images/website/banner.jpg) no-repeat center;
+	background:url(/images/website/banner5.jpg) no-repeat center;
 	min-height:800px;
 	border-top:5px solid #06B216;
 	-webkit-background-size:cover;
@@ -180,7 +180,7 @@ h3.agileits-title {
 /*-- //introduction --*/
 /*-- download --*/
 .download-agile {
-    background: url(/images/website/1.jpg) no-repeat center fixed;
+    background: url(/images/website/banner2.jpg) no-repeat center fixed;
     background-size: cover;
     padding: 6em 0;
     text-align: center;
