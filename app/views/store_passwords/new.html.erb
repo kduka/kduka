@@ -1,7 +1,5 @@
+<p style="margin-top: 2em;text-align:center"><a href="<%= root_path %>" > <%= image_tag("website/logo.png") %><BR></a></p>
 <div class="col-md-6 col-md-offset-3 containerw3layouts-agileits">
-
-
-<h1 style="color:#fff !important"><br><br>Recover Password<br><br></h1>
 
   <div class="aitsloginwthree w3layouts agileits">
     <div class="col-md-12">
@@ -17,9 +15,9 @@
       <% end %>
 
     </div>
-    <br><br><br>
+    <br>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <a href="<%= root_path %>" > <%= image_tag("website/logo.png") %><BR><BR><BR><BR></a>
+        <h1 style="color:#fff !important">Recover Password<br><br></h1>
         <%= devise_error_messages! %>
 
         <div class="field">
@@ -39,5 +37,5 @@
   </div>
 </div>
 <div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
-  <p style="text-align:center;color: white">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="color:#fff;text-decoration: underline" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a><p>
+  <p style="font-weight: 900;text-align:center;color: #000 !important;text-shadow: 5px 5px 5px 5px #fff;"><span style="background: rgba(255,255,255,0.0);padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="font-weight: 900;color:#06B216;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span><p>
 </div>

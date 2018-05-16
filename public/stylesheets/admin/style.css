@@ -9,6 +9,9 @@ html, body{
     font-size: 100%;
   	overflow-x: hidden;
 	background:#FFFFFF;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed !important
 }
 body a{
 	transition:0.5s all;
