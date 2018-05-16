@@ -46,7 +46,9 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	text-align: center;
-	background-color: #153038 !important;
+	/*background-color: #153038 !important;*/
+	background-image: url('../images/website/banner3.jpg') !important;
+	background-size: cover;
 }
 
 body a, body a:hover, input[type="button"], input[type="submit"], input[type="submit"]:hover {
@@ -92,8 +94,9 @@ h1 {
 }
 
 .aitsloginwthree {
-	background-color: #FFF;
+	background-color: #000;
 	padding:1em;
+	background: rgba(204, 204, 204, 0.7);
 }
 
 h2 {
@@ -107,14 +110,18 @@ input[type="text"], input[type="password"], input[type="email"] {
 	padding: 2px 0 10px 0;
 	width: 100%;
 	border: none;
-	/*-- w3layouts --*/
-	/*-- agileits --*/
-	border-bottom: 2px solid #777;
+	/* border-bottom: 2px solid #777; */
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
 	color: #333;
 	outline: none;
 	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border-style: solid;
+	border-width: 1px;
+	height:45px !important;
+	border-radius: 0px;
+	border-color: transparent;
 }
 
 ul.tick {

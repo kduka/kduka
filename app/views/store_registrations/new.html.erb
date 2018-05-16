@@ -1,13 +1,13 @@
-<h1 style="color:#fff !important"><br><br>Sign Up!<br><br></h1>
-
+<p style="text-align:center"><a href="<%= root_path %>" > <%= image_tag("website/logo.png") %><BR><BR><BR><BR></a></p>
 
 <div class="col-md-10 col-md-offset-1 containerw3layouts-agileits">
 
-  <!-- <div class="w3imageaits">
-		<%= image_tag("web.jpg") %>
-	</div> -->
+
+
 
   <div class="aitsloginwthree w3layouts agileits">
+    <h1 style="color:#fff !important;font-family: 'Roboto', sans-serif"><br><br>Sign Up!<br><br></h1>
+
     <div class="col-md-12">
       <% if !notice.nil? %>
           <div class="alert alert-success" role="alert">
@@ -23,7 +23,8 @@
 
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <p style="text-align:center"><a href="<%= root_path %>" > <%= image_tag("website/logo.png") %><BR><BR><BR><BR></a></p>
+
+
         <%= devise_error_messages! %>
         <div class="col-md-12 col-xs-12">
           <div class="col-md-12 col-xs-12">
@@ -38,9 +39,9 @@
             <div class="field">
               <br />
               <%= f.label "Url" %>
-              If you enter 'john', your store will be john.kduka.co.ke<br/>
+
               <%= f.text_field :subdomain, autofocus: true, class:'form-control text-center', placeholder:'Your url will be storename.myduka.com', id:'url', onchange:'store_reg()'%>
-              <p style="color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
+              <p>If you enter 'john', your store will be john.kduka.co.ke<br/></p><p style="color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
 
               <div class="url_prev"></div>
               <a data-toggle="tooltip" data-placement="right" title='This is the link you will give your clients to access your store. If you enter "john" we will automatically create john.kduka.co.ke for you'><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
@@ -114,5 +115,5 @@
 
 </div>
 <div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
-  <p style="text-align:center;color: white">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="color:#fff;text-decoration: underline" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a><p>
+  <p style="text-align:center;color: #000">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="color:#000;text-decoration: underline" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a><p>
 </div>
