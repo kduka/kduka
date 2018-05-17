@@ -11,7 +11,7 @@
 		<title>KDuka User Login</title>
 
 		<!-- Meta-Tags -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="keywords" content="KDuka user login form">
 		<script type="application/x-javascript">
@@ -42,12 +42,16 @@
 		<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" %>
 	<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Montserrat:400,700" %>
 		<!-- //Fonts -->
-
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+    var hgt = $(window).height();
+    $("#main").css("height", hgt)
+</script>
 	</head>
 	<!-- //Head -->
 
 	<!-- Body -->
-	<body  style="background-image: url('../images/website/banner3.jpg');">
+	<body id="main" style="background-image: url('../images/website/banner3.jpg');">
 
 
 		<div class="container">

@@ -10,11 +10,11 @@ html, body{
   	overflow-x: hidden;
 
 	background-repeat: no-repeat !important;
-	background-size: cover;
+	background-size: cover !important;
 	background-attachment: fixed !important
-	webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
+	webkit-background-size: cover !important;
+	-moz-background-size: cover !important;
+	-o-background-size: cover !important;
 }
 body a{
 	transition:0.5s all;
