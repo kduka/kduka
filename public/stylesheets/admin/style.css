@@ -12,6 +12,9 @@ html, body{
 	background-repeat: no-repeat !important;
 	background-size: cover;
 	background-attachment: fixed !important
+	webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 }
 body a{
 	transition:0.5s all;

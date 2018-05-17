@@ -49,6 +49,9 @@ body {
 	/*background-color: #153038 !important;*/
 	background-image: url('../images/website/banner3.jpg') !important;
 	background-size: cover;
+	webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 	background-attachment: fixed !important;
 }
 
