@@ -49,6 +49,7 @@ body {
 	/*background-color: #153038 !important;*/
 	background-image: url('../images/website/banner3.jpg') !important;
 	background-size: cover;
+	background-attachment: fixed !important;
 }
 
 body a, body a:hover, input[type="button"], input[type="submit"], input[type="submit"]:hover {
