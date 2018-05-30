@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def remote_santize
     name = params[:url]
     lower = name.downcase
-    nospace = lower.gsub(/[^0-9a-z]/i, "")
+    nospace = lower.gsub(/[^0-9a-z]|(kduka\.co\.ke)|(kduka)/i, "")
     @domain = Store.where(subdomain:nospace).first
 
     if !@domain.nil?
