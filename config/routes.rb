@@ -88,6 +88,7 @@ Rails.application.routes.draw do
   post '/carts/sendy_call'
   delete '/store/delete/:id' => 'admins#store_delete', as: 'store_delete'
   post '/stores/sendy_call'
+  get 'admins/view/(:subdomain)' => 'admins#view', as: 'admin_view'
 
 
 

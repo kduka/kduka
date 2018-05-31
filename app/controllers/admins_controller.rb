@@ -41,19 +41,19 @@ class AdminsController < ApplicationController
   end
 
   def confirm_without_store
-    users = User.where(confirm_without_store:nil)
+    users = User.where(confirm_without_store: nil)
     if !users.nil?
       users.each do |u|
         store = Store.where(user_id: u.id)
         if !store.nil?
           PromoteMailer.confirmed_without_store(u).deliver
-          u.update(confirm_without_store:Time.now)
+          u.update(confirm_without_store: Time.now)
           puts u.name
         end
       end
     else
       puts "NOTHING"
-      end
+    end
     redirect_to(admins_path)
   end
 
@@ -72,13 +72,13 @@ class AdminsController < ApplicationController
     end
     redirect_to(admins_path)
 =end
-order = Order.all
+    order = Order.all
     order.each do |o|
       if o.date_placed.nil?
-        order.update(date_placed2:o.created_at.strftime("%Y-%m-%-d"))
+        order.update(date_placed2: o.created_at.strftime("%Y-%m-%-d"))
       else
-        order.update(date_placed:o.created_at)
-      order.update(date_placed2:o.date_placed.strftime("%Y-%m-%-d"))
+        order.update(date_placed: o.created_at)
+        order.update(date_placed2: o.date_placed.strftime("%Y-%m-%-d"))
       end
     end
   end
@@ -92,5 +92,15 @@ order = Order.all
       flash[:alert] = "Something went wrong"
       redirect_to(request.referer)
     end
-    end
+  end
+
+  def view
+    @store = Store.where(subdomain:params[:subdomain]).first
+
+    @products = @store.product.all
+
+    @categories = @store.product.all
+
+    super_admin
+  end
 end

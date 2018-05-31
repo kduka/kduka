@@ -19,7 +19,6 @@ class UsersController < ApplicationController
     set_admin
   end
 
-
   def remote_santize
     name = params[:url]
     lower = name.downcase

@@ -4,24 +4,17 @@
 <table id="myTable" class="table">
   <thead>
   <tr>
+    <th>#</th>
     <th>Name</th>
-    <th>subdomain</th>
-    <th>Created at</th>
-    <th>Confirmed at</th>
-    <th>Phone</th>
-    <th>Name</th>
-    <th>Email</th>
     <th>Active</th>
-    <th>Categories</th>
-    <th>Products</th>
-    <th>Updated at</th>
-    <th>Actions</th>
+    <th></th>
+
   </tr>
   </thead>
   <tbody>
   <% @stores.each do |p| %>
   <tr>
-    <td><%= p.name %></td>
+    <td><%= link_to p.name, admin_view_path(p.subdomain) %></td>
     <td><%=link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke", :target=>'_blank' %></td>
     <td><%= p.created_at %></td>
     <td><%= p.confirmed_at %></td>
