@@ -135,7 +135,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
 
   def santize(name)
     lower = name.downcase
-    nospace = lower.gsub(/[^0-9a-z]/i, "")
+    nospace = lower.gsub(/[^0-9a-z]|(kduka\.co\.ke)|(kduka)/i, "")
     return nospace
   end
 
