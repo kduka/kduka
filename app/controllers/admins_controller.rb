@@ -99,7 +99,7 @@ class AdminsController < ApplicationController
 
     @products = @store.product.all
 
-    @categories = @store.product.all
+    @categories = @store.category.all
 
     super_admin
   end
