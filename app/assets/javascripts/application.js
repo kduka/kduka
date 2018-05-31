@@ -82,6 +82,10 @@ $(function () {
         "order": [[1, "desc"]]
     });
 
+    $('#myTable').DataTable({
+        "order": [[2, "desc"]]
+    });
+
     $('#myHistoryTable').DataTable({
         "order": [[6, "desc"]]
     });
