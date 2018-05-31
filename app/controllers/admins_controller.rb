@@ -95,7 +95,7 @@ class AdminsController < ApplicationController
   end
 
   def view
-    @store = Store.where(subdomain:params[:subdomain]).first
+    @store = Store.where(subdomain:params[:id]).first
 
     @products = @store.product.all
 
