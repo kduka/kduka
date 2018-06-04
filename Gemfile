@@ -20,6 +20,7 @@ gem 'will_paginate'
 gem 'rails_autolink'
 gem 'figaro'
 gem 'sendgrid-ruby'
+gem 'wysiwyg-rails'
 
 ruby "2.4.0"
 gem 'sqlite3', group: :development

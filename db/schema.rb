@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328134039) do
+ActiveRecord::Schema.define(version: 20180603090539) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 20180328134039) do
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.decimal  "price",           precision: 12, scale: 3
+    t.decimal  "price",                         precision: 12, scale: 3
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 20180328134039) do
     t.string   "image"
     t.integer  "quantity"
     t.string   "sku"
-    t.string   "description"
+    t.text     "description",     limit: 65535
     t.string   "additional_info"
     t.string   "img1"
     t.integer  "width"
@@ -220,7 +220,7 @@ ActiveRecord::Schema.define(version: 20180328134039) do
     t.string   "img3"
     t.string   "img4"
     t.integer  "discount_price"
-    t.boolean  "discount_status",                          default: false
+    t.boolean  "discount_status",                                        default: false
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["store_id"], name: "index_products_on_store_id", using: :btree
   end

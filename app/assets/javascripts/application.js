@@ -14,13 +14,21 @@
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require bootstrap-colorpicker
+//= require froala_editor.min.js
+//= require plugins/emoticons.min.js
+//= require plugins/image.min.js
+//= require plugins/image_manager.min.js
 //= require_tree .
+
+
+
 
 /**
  * Created by root on 10/6/17.
  */
 
 $(function () {
+
 
     $("#pass_store").keyup(function () {
         password = $("#pass_store").val();
