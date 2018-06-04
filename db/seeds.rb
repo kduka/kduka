@@ -1,3 +1,4 @@
+=begin
 Order.create!([
 
               ])
@@ -84,8 +85,12 @@ OrderStatus.create!([
                         {name: "Complete"},
                     ])
 
-=begin
+
 Admin.create!([
                   {:email => 'martindeto@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig'}
               ])
 =end
+Admin.create!([
+                  {:email => 'seargent.am@gmail.com', :password => 'dungeonmaster', :password_confirmation => 'dungeonmaster'},
+                  {:email => 'kamundia7@gmail.com', :password => 'papadrunk', :password_confirmation => 'papadrunk'}
+              ])
