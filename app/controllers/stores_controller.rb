@@ -167,6 +167,7 @@ end
 
   def pages
     @store = Store.find(current_store.id)
+    init_froala
     set_shop_show
   end
 
