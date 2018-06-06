@@ -6,15 +6,15 @@ protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
     case resource
-      when User then
-        if resource.sign_in_count == 1
-          PromoteMailer.confirmed_without_store(resource).deliver
-        end
-        users_home_path
-      when Store then
-        stores_path
-      when Admin then
-        admins_path
+    when User then
+      if resource.sign_in_count == 1
+        PromoteMailer.confirmed_without_store(resource).deliver
+      end
+      users_home_path
+    when Store then
+      stores_path
+    when Admin then
+      admins_path
     end
   end
 
@@ -46,9 +46,9 @@ protect_from_forgery with: :exception
       @subdomain = request.subdomain[/(\w+)/]
       @store = Store.where(subdomain: @subdomain).first
       if @store.nil?
-        @store = Store.where(domain:request.domain,own_domain:true).first
+        @store = Store.where(domain: request.domain, own_domain: true).first
       end
-      Order.new(:ref => ref, store_id: @store.id, delivery_code:del_code)
+      Order.new(:ref => ref, store_id: @store.id, delivery_code: del_code)
     end
   end
 
@@ -78,7 +78,7 @@ protect_from_forgery with: :exception
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
     if @store.nil?
-      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
+      @store = Store.where(c_subdomain: request.subdomain, domain: request.domain, own_domain: true).first
     end
     if @store.nil?
       redirect_to("http://www.kduka.co.ke/users/home") and return
@@ -97,19 +97,19 @@ protect_from_forgery with: :exception
   end
 
   def store_login
-      render :layout => 'login/store_login'
+    render :layout => 'login/store_login'
   end
 
 
-    def user_login
-        render :layout => 'login/user_login'
-    end
+  def user_login
+    render :layout => 'login/user_login'
+  end
 
   def get_store
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain, active: true).first
     if @store.nil?
-      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
+      @store = Store.where(c_subdomain: request.subdomain, domain: request.domain, own_domain: true).first
     end
   end
 
@@ -117,7 +117,7 @@ protect_from_forgery with: :exception
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain, active: true).first
     if @store.nil?
-      @store = Store.where(domain:request.domain,own_domain:true).first
+      @store = Store.where(domain: request.domain, own_domain: true).first
     end
 
     if @store.nil?
@@ -139,10 +139,32 @@ protect_from_forgery with: :exception
   def can_be_active
     @store = Store.find(current_store.id)
     if @store.active == false && @store.important == true
-        return true;
+      return true;
     end
   end
 
+  def init_froala
+    options = {
+        # The name of your bucket.
+        bucket: 'kduka2',
+
+        # S3 region. If you are using the default us-east-1, it this can be ignored.
+        region: ENV['aws_region2'],
+
+        # The folder where to upload the images.
+        keyStart: 'froala/',
+
+        # File access.
+        acl: 'public-read',
+
+        # AWS keys.
+        accessKey: ENV['aws_access_key_id'],
+        secretKey: ENV['aws_secret_access_key']
+    }
+
+    # Compute the signature.
+    @aws_data = FroalaEditorSDK::S3.data_hash(options)
+  end
 
 
 end

@@ -6,7 +6,7 @@ gem 'devise'
 gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'seed_dump'
 gem 'tabs_on_rails'
-gem 'mini_magick'
+gem 'mini_magick', '~> 4.5.0'
 gem 'carrierwave'
 #gem "font-awesome-rails"
 gem 'therubyracer'
@@ -20,7 +20,8 @@ gem 'will_paginate'
 gem 'rails_autolink'
 gem 'figaro'
 gem 'sendgrid-ruby'
-gem 'wysiwyg-rails'
+gem 'wysiwyg-rails', '~> 2.6.0'
+gem 'froala-editor-sdk'
 
 ruby "2.4.0"
 gem 'sqlite3', group: :development

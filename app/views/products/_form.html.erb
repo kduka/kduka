@@ -137,4 +137,9 @@
     <div class="actions" style="text-align:center">
       <%= f.submit(class: 'btn btn-primary btn-lg', style: 'font-weight:900') %><br><br>
     </div>
+  <script>
+      $('.wysiwyg').froalaEditor({
+          imageUploadToS3: <%= @aws_data.to_json.html_safe %>,
+      });
+  </script>
 <% end %>

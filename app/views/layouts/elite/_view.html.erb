@@ -1,92 +1,107 @@
 <title><%= @product.name %></title>
 <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a373c73c95b880011a3b2ba&product=inline-share-buttons"></script>
 <div class="container-fluid">
-<div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom:4em;margin-top:4em">
-  <div class="banner-bootom-w3-agileits">
-  	<div class="container">
-  	     <div class="col-md-4 single-right-left ">
-  			<div class="grid images_3_of_2">
-          <div class="flexslider">
-  					<ul class="slides">
-              <% if !@product.image.blank? %>
-  						<li data-thumb="<%= @product.image_url(:thumb).to_s %>">
-  							<div class="thumb-image"> <%=  image_tag(@product.image_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-  						</li>
-  						<% end %>
-  						<% if !@product.img1.blank? %>
-  						<li data-thumb="<%= @product.img1_url(:thumb).to_s %>">
-  							<div class="thumb-image"> <%=  image_tag(@product.img1_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-  						</li>
-  						<% end %>
-              <% if !@product.img2.blank? %>
-  						<li data-thumb="<%= @product.img2_url(:thumb).to_s %>">
-  							<div class="thumb-image"> <%=  image_tag(@product.img2_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-  						</li>
-  						<% end %>
-              <% if !@product.img3.blank? %>
-  						<li data-thumb="<%= @product.img3_url(:thumb).to_s %>">
-  							<div class="thumb-image"> <%=  image_tag(@product.img3_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-  						</li>
-  						<% end %>
-              <% if !@product.img4.blank? %>
-  						<li data-thumb="<%= @product.img4_url(:thumb).to_s %>">
-  							<div class="thumb-image"> <%=  image_tag(@product.img4_url.to_s ,'data-imagezoom':"true", class:"img-responsive", alt:"")%> </div>
-  						</li>
-  						<% end %>
-  					</ul>
-  					<div class="clearfix"></div>
-				  </div>
-  			</div>
-  		</div>
-  		<div class="col-md-8 single-right-left simpleCart_shelfItem">
-  					<h3><%= @product.name %></h3>
-  					<p><%= @product.description %></p>
-        <% if @product.discount_status %>
-            <p><span class="item_price" style="font-weight:900;color:red"><s><%= number_to_currency(@product.discount_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span></p>
-        <% end %>
-  					<p><span class="item_price"><%= number_to_currency(@product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span></p>
-  					<div class="occasion-cart">
+  <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-top:4em">
+    <div class="banner-bootom-w3-agileits">
+      <div class="container">
+        <div class="col-md-4 single-right-left ">
+          <div class="grid images_3_of_2">
+            <div class="flexslider">
+              <ul class="slides">
+                <% if !@product.image.blank? %>
+                  <li data-thumb="<%= @product.image_url(:thumb).to_s %>">
+                    <div class="thumb-image"> <%= image_tag(@product.image_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                  </li>
+                <% end %>
+                <% if !@product.img1.blank? %>
+                  <li data-thumb="<%= @product.img1_url(:thumb).to_s %>">
+                    <div class="thumb-image"> <%= image_tag(@product.img1_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                  </li>
+                <% end %>
+                <% if !@product.img2.blank? %>
+                  <li data-thumb="<%= @product.img2_url(:thumb).to_s %>">
+                    <div class="thumb-image"> <%= image_tag(@product.img2_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                  </li>
+                <% end %>
+                <% if !@product.img3.blank? %>
+                  <li data-thumb="<%= @product.img3_url(:thumb).to_s %>">
+                    <div class="thumb-image"> <%= image_tag(@product.img3_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                  </li>
+                <% end %>
+                <% if !@product.img4.blank? %>
+                  <li data-thumb="<%= @product.img4_url(:thumb).to_s %>">
+                    <div class="thumb-image"> <%= image_tag(@product.img4_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                  </li>
+                <% end %>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 single-right-left simpleCart_shelfItem">
+          <h3><%= @product.name %></h3>
+          <p><%= @product.description.html_safe rescue nil %></p>
+          <% if @product.discount_status %>
+            <p>
+              <span class="item_price" style="font-weight:900;color:red"><s><%= number_to_currency(@product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span>
+            </p>
+          <% end %>
+          <p>
+            <span class="item_price"><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
+          </p>
+          <div class="occasion-cart">
 
-                              <%= form_for :order_item, :url => {controller:'order_items', action:'create'}, remote: true do |f| %>
-                              <div class="">
-                                <p class="">
-                                  Quantity :
-                                </p>
-                                <%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1,max:@product.quantity %><br>
-                              </div>
-                              <div>
-                                <%= f.hidden_field :product_id, value: @product.id %>
+            <%= form_for :order_item, :url => {controller: 'order_items', action: 'create'}, remote: true do |f| %>
+              <div class="">
+                <p class="">
+                  Quantity :
+                </p>
+                <%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1, max: @product.quantity %>
+                <br>
+              </div>
+              <div>
+                <%= f.hidden_field :product_id, value: @product.id %>
 
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                  <% exist=false %>
-                                  <% current_order.order_items.each do |oi| %>
-                                      <% if oi.product_id == @product.id %>
-                                          <% exist = true %>
-                                      <% end %>
-                                  <% end %>
-                                  <% if @product.quantity < 1 %>
-                                      <%= f.submit  "Out of Stock", :class => "button", disabled:'disabled' %>
-                                  <% else %>
-                                      <% if !exist %>
-                                          <%= f.submit 'Add to Cart', :class => 'button' %>
-                                      <% else %>
+                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                  <% exist = false %>
+                  <% current_order.order_items.each do |oi| %>
+                    <% if oi.product_id == @product.id %>
+                      <% exist = true %>
+                    <% end %>
+                  <% end %>
+                  <% if @product.quantity < 1 %>
+                    <%= f.submit "Out of Stock", :class => "button", disabled: 'disabled' %>
+                  <% else %>
+                    <% if !exist %>
+                      <%= f.submit 'Add to Cart', :class => 'button' %>
+                    <% else %>
 
-                                          <%= f.submit 'Added', disabled: true, :class => 'button' %>
-                                      <% end %>
-                                  <% end %>
-                                </div>
+                      <%= f.submit 'Added', disabled: true, :class => 'button' %>
+                    <% end %>
+                  <% end %>
+                </div>
 
-                              </div>
-                              <% end %><br>
-                              <div class="sharethis-inline-share-buttons"></div>
-                              <div id="fb-<%= @product.sku %>"></div>
+              </div>
+            <% end %><br>
+            <div class="sharethis-inline-share-buttons"></div>
+            <div id="fb-<%= @product.sku %>"></div>
 
 
-  					</div>
-  		      </div>
-  	 			<div class="clearfix"> </div>
-  	  	<!--/slider_owl-->
-  	        </div>
-</div>
-</div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--/slider_owl-->
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom:4em;margin-top:2em">
+    <h3>Specifications</h3>
+    <br>
+    <div class="banner-bootom-w3-agileits">
+      <div class="container">
+
+        <%= @product.long_description.html_safe rescue nil %>
+      </div>
+    </div>
+  </div>
 </div>
