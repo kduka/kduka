@@ -47,6 +47,8 @@
                     </li>
 
                     <li><a href="<%= contact_path %>">Contact</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#mysearch"><i class="fa fa-search"></i></a></li>
+
                 </ul>
 
                 <ul class="nav navbar-nav hidden-xs navbar-right">
@@ -56,3 +58,24 @@
         </div>
     </nav>
 </header>
+<!-- Modal -->
+<div id="mysearch" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form action="#">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Enter Your Search Below</h4>
+      </div>
+      <div class="modal-body">
+        <input class="form-control text-center" type="text" name="search" placeholder="Enter Keywords...." required=""><br>
+        <input style="width:100%;background:<%= @store.store_color %>" type="submit" value="Search" class="btn btn-primary">
+      </div>
+    </form>
+    </div>
+
+  </div>
+</div>
+<!-- /Modal -->

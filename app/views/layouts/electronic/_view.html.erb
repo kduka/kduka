@@ -36,8 +36,8 @@
         </div>
       </div>
       <div class="col-md-7 modal_body_right">
-        <h4><%= @product.name %></h4>
-        <p><%= @product.description %></p>
+        <h4 style="color:<%= @store.store_color %> !important"><%= @product.name %></h4>
+        <p><%= @product.description.html_safe rescue nil %></p>
 
         <div class="modal_body_right_cart simpleCart_shelfItem">
           <% if @product.discount_status %>
@@ -95,6 +95,14 @@
         <!---->
       </div>
       <div class="clearfix"></div>
+    </div>
+  </div>
+  <div clas="row"></div>
+  <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom:4em;margin-top:2em;padding:3em;border:1px solid #ccc">
+    <h3>Specifications</h3>
+    <br>
+    <div class="banner-bootom-w3-agileits">
+      <%= @product.long_description.html_safe rescue nil %>
     </div>
   </div>
 </div>

@@ -53,7 +53,7 @@
                 <span><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
 
                 <div class="pt_desc">
-                    <p><%= @product.description %></p>
+                    <p><%= @product.description.html_safe rescue nil %></p>
                 </div><br><br>
                 <div class="pt_add_cart">
                   <%= form_for :order_item, :url => {controller: 'order_items', action: 'create'}, remote: true do |f| %>
@@ -88,5 +88,13 @@
         </div>
     </div>
     <!-- /.container -->
+    <div clas="row"></div>
+    <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom:4em;margin-top:2em;padding:3em;border:1px solid #ccc">
+      <h3>Specifications</h3>
+      <br>
+      <div class="banner-bootom-w3-agileits">
+        <%= @product.long_description.html_safe rescue nil %>
+      </div>
+    </div>
 </div>
 <!-- /#product -->
