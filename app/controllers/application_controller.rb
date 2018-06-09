@@ -147,6 +147,29 @@ protect_from_forgery with: :exception
     end
   end
 
+  def init_froala
+    options = {
+        # The name of your bucket.
+        bucket: 'kduka2',
+
+        # S3 region. If you are using the default us-east-1, it this can be ignored.
+        region: ENV['aws_region2'],
+
+        # The folder where to upload the images.
+        keyStart: 'froala/',
+
+        # File access.
+        acl: 'public-read',
+
+        # AWS keys.
+        accessKey: ENV['aws_access_key_id'],
+        secretKey: ENV['aws_secret_access_key']
+    }
+
+    # Compute the signature.
+    @aws_data = FroalaEditorSDK::S3.data_hash(options)
+  end
+
 
 
 end
