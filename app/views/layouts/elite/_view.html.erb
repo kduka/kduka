@@ -40,7 +40,7 @@
         </div>
         <div class="col-md-8 single-right-left simpleCart_shelfItem">
           <h3><%= @product.name %></h3>
-          <p><%= @product.description.html_safe rescue nil %></p>
+          <p style="font-size:14px"><%= @product.description.html_safe rescue nil %></p>
           <% if @product.discount_status %>
             <p>
               <span class="item_price" style="font-weight:900;color:red"><s><%= number_to_currency(@product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span>
@@ -94,14 +94,11 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom:4em;margin-top:2em">
+  <div clas="row"></div>
+  <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom:4em;margin-top:2em;padding:3em;border:1px solid #ccc">
     <h3>Specifications</h3>
-    <br>
     <div class="banner-bootom-w3-agileits">
-      <div class="container">
-
-        <%= @product.long_description.html_safe rescue nil %>
-      </div>
+      <%= @product.long_description.html_safe rescue nil %>
     </div>
   </div>
 </div>

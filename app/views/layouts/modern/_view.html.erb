@@ -59,7 +59,7 @@
         <br>
         <h6 class="item_price"><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h6>
         <p>
-          <%= @product.description.html_safe %>
+          <%= @product.description.html_safe rescue nil %>
         </p>
 
         <div class="clearfix"></div>
@@ -101,6 +101,13 @@
         <% end %>
       </div>
       <div class="clearfix"></div>
+    </div>
+  </div>
+  <div clas="row"></div>
+  <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom:4em;margin-top:2em;padding:3em;border:1px solid #ccc">
+    <h3>Specifications</h3>
+    <div class="banner-bootom-w3-agileits">
+      <%= @product.long_description.html_safe rescue nil %>
     </div>
   </div>
 </div>

@@ -75,7 +75,11 @@ a{
 <% end %>
 
 <% if !@store.store_color.nil? %>
-  a:hover{
+  .my-dropdown:focus{
+    color: #fff !important;
+  }
+
+  a:hover,a:focus{
     color: <%= @store.store_color %> !important;
   }
   .active{

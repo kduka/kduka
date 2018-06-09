@@ -79,10 +79,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <% end %>
 
   <% if !@store.store_color.nil? %>
+    .navbar-default .navbar-nav > li > a:focus{
+      color: <%= @store.store_color %> !important;
+    }
     .myclass:hover{
       color: <%= @store.store_color %> !important;
     }
-    .agileits_social_button ul li a:hover {
+    .agileits_social_button ul li a:hover,
+    .agileits_social_button ul li a:focus {
       background-color: <%= @store.store_color %> !important;
     }
     .w3view-cart {
