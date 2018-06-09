@@ -48,14 +48,15 @@ class ProductsController < ApplicationController
 
   def home
     get_store
+    puts @store.name
+    puts @store.id
     if @store.blank?
       redirect_to(home_404_path) and return
     else
       @products = Product.where(store_id: @store.id, active: true).limit(3).order('id desc')
       @order_item = current_order.order_items.new
       @categories = @store.category.all
-      @featured = Category.where(store_id:@store.id,featured: true)
-      #@featured = nil
+      @featured = @store.category.where(featured: true)
       set_shop
     end
   end
