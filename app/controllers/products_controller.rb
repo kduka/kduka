@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
       @products = Product.where(store_id: @store.id, active: true).limit(3).order('id desc')
       @order_item = current_order.order_items.new
       @categories = @store.category.all
-      @featured = @store.category.where(featured: true)
+      @featured = Category.where(store_id:@store.id,featured: true)
       set_shop
     end
   end
