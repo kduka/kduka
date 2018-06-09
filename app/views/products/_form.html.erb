@@ -1,3 +1,10 @@
+<style>
+  a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
+    display: none !important;
+    position: absolute;
+    top: -99999999px;
+  }
+</style>
 <%= form_for @product, :url => {:controller => 'products', :action => 'create'} do |f| %>
 
     <% @product.errors.full_messages.each do |message| %>
