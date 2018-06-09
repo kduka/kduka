@@ -47,9 +47,15 @@ class ProductsController < ApplicationController
   end
 
   def home
-    get_store
-    puts @store.name
-    puts @store.id
+    puts request.subdomain
+    puts request.domain
+    @subdomain = request.subdomain[/(\w+)/]
+    @store = Store.where(subdomain: @subdomain, active: true).first
+
+    if @store.nil?
+      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
+    end
+
     if @store.blank?
       redirect_to(home_404_path) and return
     else
