@@ -43,10 +43,11 @@ protect_from_forgery with: :exception
     else
       ref = [*'A'..'Z', *"0".."9"].sample(8).join
       del_code = [*'A'..'Z', *"0".."9"].sample(5).join
-      @subdomain = request.subdomain[/(\w+)/]
-      @store = Store.where(subdomain: @subdomain).first
+      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
+
       if @store.nil?
-        @store = Store.where(domain:request.domain,own_domain:true).first
+        @subdomain = request.subdomain[/(\w+)/]
+        @store = Store.where(subdomain: @subdomain).first
       end
       Order.new(:ref => ref, store_id: @store.id, delivery_code:del_code)
     end
