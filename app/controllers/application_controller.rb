@@ -109,10 +109,10 @@ protect_from_forgery with: :exception
     puts request.subdomain
     puts request.domain
     @subdomain = request.subdomain[/(\w+)/]
-    @store = Store.where(subdomain: @subdomain, active: true).first
+    @store = Store.where(subdomain: @subdomain,active:true).first
 
     if @store.nil?
-      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
+      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true,active: true).first
     end
   end
 
@@ -120,17 +120,17 @@ protect_from_forgery with: :exception
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain, active: true).first
     if @store.nil?
-      @store = Store.where(domain:request.domain,own_domain:true).first
+      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true,active: true).first
     end
 
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke/users/home") and return
+      redirect_to("http://www.kduka.co.ke/") and return
     elsif @store.active == !true
-      redirect_to("http://www.kduka.co.ke/users/home") and return
+      redirect_to("http://www.kduka.co.ke/") and return
     else
       @products = Product.where(store_id: @store.id, active: true)
       @order_item = current_order.order_items.new
-      @categories = @store.category.all
+      @categories = @store.category.where(active:true)
       set_shop
     end
   end

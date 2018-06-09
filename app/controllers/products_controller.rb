@@ -7,20 +7,12 @@ class ProductsController < ApplicationController
     get_store
     if @store.nil?
       redirect_to(home_404_path) and return
-    elsif @store.active == !true
-      flash[:alert] = "Store is not active, please contact owner"
-      redirect_to("http://www.kduka.co.ke/") and return
     else
-
       if @store.homepage_status == true
-        @products = Product.where(store_id: @store.id, active: true)
-        @order_item = current_order.order_items.new
-        @categories = @store.category.all
         redirect_to(home_path) and return
       else
         redirect_to(about_path) and return
       end
-
     end
     set_shop
   end
@@ -47,21 +39,15 @@ class ProductsController < ApplicationController
   end
 
   def home
-    puts request.subdomain
-    puts request.domain
-    @subdomain = request.subdomain[/(\w+)/]
-    @store = Store.where(subdomain: @subdomain, active: true).first
-
-    if @store.nil?
-      @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
-    end
-
+    get_store
+    puts @store.name
+    puts @store.id
     if @store.blank?
       redirect_to(home_404_path) and return
     else
       @products = Product.where(store_id: @store.id, active: true).limit(3).order('id desc')
       @order_item = current_order.order_items.new
-      @categories = @store.category.all
+      @categories = @store.category.where(active:true)
       @featured = @store.category.where(featured: true)
       set_shop
     end
