@@ -108,6 +108,7 @@ protect_from_forgery with: :exception
   def get_store
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain, active: true).first
+
     if @store.nil?
       @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
     end
