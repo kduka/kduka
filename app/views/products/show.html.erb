@@ -1,64 +1,75 @@
 <div class="skil">
-<table class="table">
-  <thead>
-  <tr>
-    <th></th>
-    <th></th>
+  <br><br>
+  <%= link_to 'Edit', edit_store_product_path(params[:store_id], params[:id]), class: 'btn btn-info', style: 'background-color:#06b216 !important;border-color:#06b216' %>
+  <%= link_to 'Back', products_manage_path, class: 'btn btn-primary' %>
+  <br><br>
+  <table class="table">
+    <thead>
+    <tr>
+      <th></th>
+      <th></th>
 
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Name</td>
-    <td><%= @product.name %></td>
-  </tr>
-  <tr>
-    <td>Price</td>
-    <td><%= @product.price %></td>
-  </tr>
-  <tr>
-    <td>Active</td>
-    <td><%= @product.active %></td>
-  </tr>
-  <tr>
-    <td>Quantity</td>
-    <td><%= @product.quantity %></td>
-  </tr>
-  <tr>
-    <td>Description</td>
-    <td><%= @product.description %></td>
-  </tr>
-  <tr>
-    <td>Category</td>
-    <td><%= Category.find(@product.category_id).name rescue nil %></td>
-  </tr>
-  <tr>
-    <td>Details</td>
-    <td><%= "Dimensions: #{@product.length} x #{@product.width} x #{@product.height}  , Weight: #{@product.weight} Grams" %></td>
-  </tr>
-  <tr>
-    <td>Main Image</td>
-    <td><%= image_tag(@product.image_url(:thumb).to_s) %></td>
     </tr>
-     <tr>
-    <td>Image 1</td>
-    <td><%= image_tag(@product.img1_url(:thumb).to_s) %></td>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Name</td>
+      <td><%= @product.name %></td>
     </tr>
-  <tr>
-    <td>Image 2</td>
-    <td><%= image_tag(@product.img2_url(:thumb).to_s) %></td>
-  </tr>
-  <tr>
-    <td>Image 3</td>
-    <td><%= image_tag(@product.img3_url(:thumb).to_s) %></td>
-  </tr>
-  <tr>
-    <td>Image 4</td>
-    <td><%= image_tag(@product.img4_url(:thumb).to_s) %></td>
-  </tr>
-  </tbody>
-</table>
+    <tr>
+      <td>Price</td>
+      <td><%= @product.price %></td>
+    </tr>
+    <tr>
+      <td>Active</td>
+      <td><%= @product.active %></td>
+    </tr>
+    <tr>
+      <td>Quantity</td>
+      <td><%= @product.quantity %></td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td><%= @product.description.html_safe rescue nil %></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td><%= Category.find(@product.category_id).name rescue nil %></td>
+    </tr>
+    <tr>
+      <td>Details</td>
+      <td><%= "Dimensions: #{@product.length} x #{@product.width} x #{@product.height}  , Weight: #{@product.weight} Grams" %></td>
+    </tr>
+    <tr>
+      <td>Main Image</td>
+      <td><%= image_tag(@product.image_url(:thumb).to_s) %></td>
+    </tr>
+    <tr>
+      <td>Image 1</td>
+      <td><%= image_tag(@product.img1_url(:thumb).to_s) %></td>
+    </tr>
+    <tr>
+      <td>Image 2</td>
+      <td><%= image_tag(@product.img2_url(:thumb).to_s) %></td>
+    </tr>
+    <tr>
+      <td>Image 3</td>
+      <td><%= image_tag(@product.img3_url(:thumb).to_s) %></td>
+    </tr>
+    <tr>
+      <td>Image 4</td>
+      <td><%= image_tag(@product.img4_url(:thumb).to_s) %></td>
+    </tr>
+    <tr>
+      <td>Long Description/Specifications</td>
+      <td><%= @product.long_description.html_safe rescue nil %></td>
+    </tr>
+    </tbody>
+  </table>
 
-<%= link_to 'Edit', edit_store_product_path(params[:store_id],params[:id]),class:'btn btn-info',style:'background-color:#06b216 !important;border-color:#06b216' %>
-<%= link_to 'Back', products_manage_path, class:'btn btn-primary'%>
+  <br><br>
+  <%= link_to 'Edit', edit_store_product_path(params[:store_id], params[:id]), class: 'btn btn-info', style: 'background-color:#06b216 !important;border-color:#06b216' %>
+  <%= link_to 'Back', products_manage_path, class: 'btn btn-primary' %>
+  <br><br>
+
 </div>

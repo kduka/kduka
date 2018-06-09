@@ -60,6 +60,9 @@
     .breadcrumb>li>a:hover {
         color: <%= @store.store_color %> !important
     }
+    .breadcrumb>li>a:active {
+        color: <%= @store.store_color %> !important
+    }
 
     .breadcrumb .active {
         color: <%= @store.store_color %> !important;
@@ -74,6 +77,9 @@
     }
 
     .qv_review a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+    .qv_review a:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -93,6 +99,9 @@
     .qv_product_content button:hover {
         color: <%= @store.store_color %> !important;
     }
+    .qv_product_content button:active {
+        color: <%= @store.store_color %> !important;
+    }
 
     .qv_product_content .qv_add_to_wish i {
         color: <%= @store.store_color %> !important
@@ -109,15 +118,19 @@
 
     .navbar-default .navbar-nav>.open>a,
     .navbar-default .navbar-nav>.open>a:focus,
-    .navbar-default .navbar-nav>.open>a:hover {
+    .navbar-default .navbar-nav>.open>a:hover,
+    .navbar-default .navbar-nav>.open>a:active {
         color: <%= @store.store_color %> !important;
         transition: all 0.5s !important;
     }
 
-    .navbar-default ul li a:hover {
+    .navbar-default ul li a:hover,
+    .navbar-default ul li a:active,
+    .navbar-default ul li a:focus {
         color: <%= @store.store_color %> !important;
         transition: all 0.5s !important;
     }
+
 
     .navbar-right .badge {
         background: <%= @store.store_color %> !important;
@@ -128,7 +141,8 @@
         border: 2px solid <%= @store.store_color %> !important;
     }
 
-    .shop_now_btn:hover {
+    .shop_now_btn:hover,
+    .shop_now_btn:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -173,6 +187,12 @@
         color: #fff !important;
         transition: all 0.5s !important;
     }
+    #ft_products .ftp_item_content_btn button:active {
+        background: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+        color: #fff !important;
+        transition: all 0.5s !important;
+    }
 
     /*----------------------------------------
                 06. NEW PRODUCT
@@ -193,7 +213,8 @@
         transition: all 0.5s !important;
     }
 
-    .new_product_add_cart button:hover {
+    .new_product_add_cart button:hover,
+    .new_product_add_cart button:active {
         color: <%= @store.store_color %> !important;
         border: 2px solid <%= @store.store_color %> !important;
         background: #fff !important;
@@ -216,7 +237,8 @@
         transition: all 0.5s !important;
     }
 
-    .onsell_product_add_cart button:hover {
+    .onsell_product_add_cart button:hover,
+    .onsell_product_add_cart button:active {
         color: <%= @store.store_color %> !important;
         background: #fff !important;
         border: 2px solid <%= @store.store_color %> !important;
@@ -235,6 +257,9 @@
     #recent_blog .rec-blog-text span>a:hover {
         background: <%= @store.store_color %> !important;
     }
+    #recent_blog .rec-blog-text span>a:active {
+        background: <%= @store.store_color %> !important;
+    }
 
     #recent_blog .rec-blog-text>a {
         background: <%= @store.store_color %> !important;
@@ -242,6 +267,9 @@
     }
 
     #recent_blog .rec-blog-text a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+    #recent_blog .rec-blog-text a:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -254,6 +282,9 @@
     }
 
     #feedback .item_feedback:hover h3 {
+        color: <%= @store.store_color %> !important;
+    }
+    #feedback .item_feedback:active h3 {
         color: <%= @store.store_color %> !important;
     }
 
@@ -298,7 +329,8 @@
     }
 
     .ui-button:hover,
-    .ui-button:focus {
+    .ui-button:focus,
+    .ui-button:active {
         background: <%= @store.store_color %> !important;
     }
 
@@ -307,6 +339,9 @@
     }
 
     #listing .price-field button:hover {
+        color: <%= @store.store_color %> !important;
+    }
+    #listing .price-field button:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -322,11 +357,18 @@
         color: <%= @store.store_color %> !important;
         border: 1px solid <%= @store.store_color %> !important;
     }
+    #listing .sidebar_item_4 ul li a:active {
+        color: <%= @store.store_color %> !important;
+        border: 1px solid <%= @store.store_color %> !important;
+    }
 
     /*----------------------------------------
             18. LISTING SIDEBAR ITEM 6
     ------------------------------------------*/
     #listing .sidebar_item_6 ul li a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+    #listing .sidebar_item_6 ul li a:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -338,6 +380,9 @@
     #listing .sidebar_item_7 ul li a:hover {
         color: <%= @store.store_color %> !important;
     }
+    #listing .sidebar_item_7 ul li a:active {
+        color: <%= @store.store_color %> !important;
+    }
 
 
     /*----------------------------------------
@@ -345,6 +390,9 @@
     ------------------------------------------*/
 
     #listing .sidebar_item_10 .ft-item:hover h5 {
+        color: <%= @store.store_color %> !important;
+    }
+    #listing .sidebar_item_10 .ft-item:active h5 {
         color: <%= @store.store_color %> !important;
     }
 
@@ -372,6 +420,9 @@
     #listing .sidebar_item_11 li a:hover {
         color: <%= @store.store_color %> !important;
     }
+    #listing .sidebar_item_11 li a:active {
+        color: <%= @store.store_color %> !important;
+    }
 
 
     /*----------------------------------------
@@ -394,6 +445,9 @@
     }
 
     #listing .shop_filtering_list li:hover {
+        background: <%= @store.store_color %> !important;
+    }
+    #listing .shop_filtering_list li:active {
         background: <%= @store.store_color %> !important;
     }
 
@@ -421,6 +475,9 @@
     #listing .shop_hover_out_of_stock button:hover {
         background: <%= @store.store_color %> !important;
     }
+    #listing .shop_hover_out_of_stock button:active {
+        background: <%= @store.store_color %> !important;
+    }
 
     #listing .shop_hover_quick_view a {
         background: <%= @store.store_color %> !important;
@@ -436,6 +493,9 @@
     }
 
     #listing .shop_item_content_btn button:hover {
+        background: <%= @store.store_color %> !important;
+    }
+    #listing .shop_item_content_btn button:active {
         background: <%= @store.store_color %> !important;
     }
 
@@ -454,6 +514,9 @@
     .pt_review a:hover {
         color: <%= @store.store_color %> !important;
     }
+    .pt_review a:active {
+        color: <%= @store.store_color %> !important;
+    }
 
     .pt_review_add a {
         color: <%= @store.store_color %> !important;
@@ -467,13 +530,15 @@
         background: <%= @store.store_color %> !important;
         border: 2px solid <%= @store.store_color %> !important;
     }
-    .pt_add_cart button:hover {
+    .pt_add_cart button:hover,
+    .pt_add_cart button:active {
         color: <%= @store.store_color %> !important;
         background: #FFF !important;
         border: 2px solid <%= @store.store_color %> !important;
     }
 
-    .product_content button:hover {
+    .product_content button:hover,
+    .product_content button:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -488,7 +553,8 @@
         background: <%= @store.store_color %> !important;
     }
 
-    .pt_tab_menu ul li a:hover {
+    .pt_tab_menu ul li a:hover,
+    .pt_tab_menu ul li a:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -520,7 +586,8 @@
         background: <%= @store.store_color %> !important;
     }
 
-    .pt_reviewer_form form button:hover {
+    .pt_reviewer_form form button:hover,
+    .pt_reviewer_form form button:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -545,11 +612,15 @@
         color: <%= @store.store_color %> !important;
     }
 
-    .related-products .rltd_item_content_btn button:hover {
+    .related-products .rltd_item_content_btn button:hover,
+    .related-products .rltd_item_content_btn button:active {
         background: <%= @store.store_color %> !important;
     }
 
     #blog_main_post_area .breadcrumb>li>a:hover {
+        color: <%= @store.store_color %> !important
+    }
+    #blog_main_post_area .breadcrumb>li>a:active {
         color: <%= @store.store_color %> !important
     }
 
@@ -598,16 +669,28 @@
     #blog_sidebar .recent-posts>ul>li>a:hover {
         color: <%= @store.store_color %> !important;
     }
+    #blog_sidebar .recent-posts>ul>li>a:active {
+        color: <%= @store.store_color %> !important;
+    }
 
     #blog_sidebar .recent-comments>ul>li>a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+    #blog_sidebar .recent-comments>ul>li>a:active {
         color: <%= @store.store_color %> !important;
     }
 
     #blog_sidebar .categories ul>li>a:hover {
         color: <%= @store.store_color %> !important;
     }
+    #blog_sidebar .categories ul>li>a:active {
+        color: <%= @store.store_color %> !important;
+    }
 
     #blog_sidebar .archives ul>li>a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+    #blog_sidebar .archives ul>li>a:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -620,6 +703,9 @@
     }
 
     #blog_sidebar .meta ul>li>a:hover {
+        color: <%= @store.store_color %> !important;
+    }
+    #blog_sidebar .meta ul>li>a:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -653,7 +739,8 @@
         background: <%= @store.store_color %> !important;
     }
 
-    .post_comment form button:hover {
+    .post_comment form button:hover,
+    .post_comment form button:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -662,7 +749,8 @@
         border: 1px solid <%= @store.store_color %> !important;
     }
 
-    .portfolio_menu ul li:hover {
+    .portfolio_menu ul li:hover,
+    .portfolio_menu ul li:active {
         background: <%= @store.store_color %> !important;
         border: 1px solid <%= @store.store_color %> !important;
     }
@@ -680,7 +768,8 @@
         background: <%= @store.store_color %> !important;
     }
 
-    .portfolio_item .portfolio_content a:hover {
+    .portfolio_item .portfolio_content a:hover,
+    .portfolio_item .portfolio_content a:active  {
         border: 1px solid <%= @store.store_color %> !important;
     }
     .about_sec_1 a {
@@ -688,7 +777,8 @@
         color: <%= @store.store_color %> !important;
     }
 
-    .about_sec_1 a:hover {
+    .about_sec_1 a:hover,
+    .about_sec_1 a:active {
         background: <%= @store.store_color %> !important;
     }
 
@@ -707,11 +797,15 @@
     .about_sec_6 .adout_item_feedback:hover h4 {
         color: <%= @store.store_color %> !important;
     }
+    .about_sec_6 .adout_item_feedback:active h4 {
+        color: <%= @store.store_color %> !important;
+    }
 
     .sevices_sec_1 .col-sm-6:first-child {
         background: <%= @store.store_color %> !important;
     }
-    .sevices_sec_1 a:hover {
+    .sevices_sec_1 a:hover,
+    .sevices_sec_1 a:active {
         background: <%= @store.store_color %> !important;
     }
 
@@ -732,7 +826,8 @@
         border: 2px solid <%= @store.store_color %> !important;
     }
 
-    .contact_sec_2 button[type=submit]:hover {
+    .contact_sec_2 button[type=submit]:hover,
+    .contact_sec_2 button[type=submit]:active {
         background: <%= @store.store_color %> !important;
         border: 2px solid <%= @store.store_color %> !important;
     }
@@ -749,7 +844,8 @@
       transition: all linear 0.3s;
       margin-top: 30px;
     }
-    .my_buttons:hover{
+    .my_buttons:hover,
+    .my_buttons:active{
       max-width: 100%;
       font-size: 16px;
       font-weight: 700;
@@ -784,7 +880,8 @@
         color: <%= @store.store_color %> !important;
     }
 
-    .cart_item h5 a:hover {
+    .cart_item h5 a:hover,
+    .cart_item h5 a:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -811,7 +908,8 @@
         color: <%= @store.store_color %> !important;
     }
 
-    .login_form form .cr_btn:hover {
+    .login_form form .cr_btn:hover,
+    .login_form form .cr_btn:active {
         background: <%= @store.store_color %> !important;
     }
 
@@ -819,7 +917,8 @@
         background: <%= @store.store_color %> !important;
     }
 
-    .wishlist_item button:hover {
+    .wishlist_item button:hover,
+    .wishlist_item button:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -839,7 +938,8 @@
         background: <%= @store.store_color %> !important;
     }
 
-    .coming_soon ul li a:hover {
+    .coming_soon ul li a:hover,
+    .coming_soon ul li a:active {
         color: <%= @store.store_color %> !important;
     }
 
@@ -855,6 +955,10 @@
         color: #fff !important;
         border: 2px solid <%= @store.store_color %> !important;
     }
+    #backtotop i:active {
+        color: #fff !important;
+        border: 2px solid <%= @store.store_color %> !important;
+    }
 
     footer ul li a {
         color: <%= @store.store_color %> !important;
@@ -866,6 +970,11 @@
     }
 
     footer ul li a:hover {
+        color: #fff !important;
+        border: 2px solid #fff !important;
+        transition: all 0.5s !important;
+    }
+    footer ul li a:active {
         color: #fff !important;
         border: 2px solid #fff !important;
         transition: all 0.5s !important;

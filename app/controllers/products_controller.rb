@@ -102,6 +102,7 @@ class ProductsController < ApplicationController
   def new
     @store = Store.find(current_store.id)
     @product = @store.product.new
+    init_froala
     set_shop_show
   end
 
@@ -126,6 +127,7 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @store = Store.find(current_store.id)
+    init_froala
     set_shop_show
   end
 
@@ -232,7 +234,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :active, :image, :category_id, :quantity, :img1, :length, :width, :height, :weight, :img2, :img3, :img4, :description, :discount_price, :discount_status)
+    params.require(:product).permit(:name, :price, :active, :image, :category_id, :quantity, :img1, :length, :width, :height, :weight, :img2, :img3, :img4, :description, :discount_price, :discount_status, :long_description)
   end
 
 end

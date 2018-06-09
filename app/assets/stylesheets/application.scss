@@ -17,11 +17,12 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-
-
+@import "froala_editor.min.css";
+@import "froala_style.min.css";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import 'datatables.css';
 
-.red{
-  color:red;
+.red {
+  color: red;
 }
