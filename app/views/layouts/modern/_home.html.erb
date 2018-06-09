@@ -17,7 +17,6 @@
                 <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
             <% end %>
         <% end %>
-        <%= @store.id %>
       </div>
 
       <div class="clearfix"></div>
@@ -31,7 +30,7 @@
     <% @featured.each do |category| %>
         <br><br><br><br>
         <h3 style="text-align:center" class="title">
-          <span style="color:<%= @store.store_color %> !important"> <%= category.name %> <%= category.store_id %></span></h3><br><br>
+          <span style="color:<%= @store.store_color %> !important"> <%= category.name %> </span></h3><br><br>
         <div class="container">
           <div class="products">
             <div class="container">
