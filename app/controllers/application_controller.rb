@@ -81,7 +81,7 @@ protect_from_forgery with: :exception
       @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
     end
     if @store.nil?
-      redirect_to("http://www.kduka.co.ke/users/home") and return
+      redirect_to("http://www.kduka.co.ke/") and return
     end
     render :layout => "#{Layout.find(@store.layout_id).name}/shop"
 
@@ -106,6 +106,8 @@ protect_from_forgery with: :exception
     end
 
   def get_store
+    puts request.subdomain
+    puts request.domain
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain, active: true).first
 
