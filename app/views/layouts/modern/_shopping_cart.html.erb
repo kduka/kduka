@@ -24,7 +24,7 @@
     There are no items in your shopping cart.  Please <%= link_to "go back", all_path %> and add some items to your cart.
   </h1>
 <% else %>
-  <h3 style="text-align:center;font-size:45px;font-weight:700" class="wow fadeInUp animated" data-wow-delay=".5s">Your Shopping Cart</h3>
+  <h3 style="text-align:center;font-size:40px;font-weight:700" class="wow fadeInUp animated" data-wow-delay=".5s">Your Shopping Cart</h3>
   <% @order_items.each do |order_item| %>
         <%= render 'layouts/modern/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
   <% end %>
