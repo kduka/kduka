@@ -33,10 +33,10 @@
         <%= f.label "About Page Text" %>
 
         <% if (@store.aboutpage_status == false) %>
-            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea wysiwyg', id: 'aboutpage_text', disabled: 'disabled' %>
+            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea', id: 'aboutpage_text', disabled: 'disabled' %>
         <% else %>
         <a data-toggle="tooltip" data-placement="right" title="This is the text that will appear in your about page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea wysiwyg', id: 'aboutpage_text'  %>
+            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea', id: 'aboutpage_text'  %>
         <% end %>
       </div>
     <script>
