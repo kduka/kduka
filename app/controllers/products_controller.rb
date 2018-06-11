@@ -77,11 +77,6 @@ class ProductsController < ApplicationController
 
   def category
     @order_item = current_order.order_items.new
-    @subdomain = request.subdomain[/(\w+)/]
-    @store = Store.where(subdomain: @subdomain).first
-    if @store.nil?
-      @store = Store.where(domain:request.domain,own_domain:true).first
-    end
     @products = @store.product.where(category_id: params[:id], active: true).paginate(:page => params[:page], :per_page => 20).order('id desc')
     @categories = @store.category.all
     set_shop
