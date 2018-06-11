@@ -69,7 +69,7 @@ class ProductsController < ApplicationController
   end
 
   def manage
-    @categories = Category.where(store_id: current_store.id)
+    @categories = Category.where(store_id: current_store.id,active:true)
     @store = Store.find(current_store.id)
     @product = @store.product.all.order('id desc')
     set_shop_show
