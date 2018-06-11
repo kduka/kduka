@@ -69,7 +69,7 @@ class ProductsController < ApplicationController
   end
 
   def manage
-    @categories = Category.where(store_id: current_store.id,active:true)
+    @categories = Category.where(store_id: current_store.id)
     @store = Store.find(current_store.id)
     @product = @store.product.all.order('id desc')
     set_shop_show
@@ -78,7 +78,7 @@ class ProductsController < ApplicationController
   def category
     @order_item = current_order.order_items.new
     @products = @store.product.where(category_id: params[:id], active: true).paginate(:page => params[:page], :per_page => 20).order('id desc')
-    @categories = @store.category.all
+    @categories = @store.category.where(active:true)
     set_shop
   end
 
