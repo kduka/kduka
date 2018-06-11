@@ -79,6 +79,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <% end %>
 
   <% if !@store.store_color.nil? %>
+    .electronic-button{
+      font-size: 13px;
+      color: #fff;
+      background: <%= @store.store_color %>;
+      text-decoration: none;
+      position: relative;
+      border: 3px solid <%= @store.store_color %>;
+      border-radius: 0;
+      width: 100%;
+      text-transform: uppercase;
+      padding: 1em 2em;
+      outline: none;
+      letter-spacing: 1px;
+      font-weight: 600;
+      transition: all 0.5s;
+    }
+    .electronic-button:hover,.electronic-button:focus,.electronic-button:active{
+      font-size: 13px;
+      color: <%= @store.store_color %>;
+      background: #fff;
+      text-decoration: none;
+      position: relative;
+      border: 3px solid <%= @store.store_color %>;
+      border-radius: 0;
+      width: 100%;
+      text-transform: uppercase;
+      padding: 1em 2em;
+      outline: none;
+      letter-spacing: 1px;
+      font-weight: 600;
+      transition: all 0.5s;
+    }
     .navbar-default .navbar-nav > li > a:focus{
       color: <%= @store.store_color %> !important;
     }
