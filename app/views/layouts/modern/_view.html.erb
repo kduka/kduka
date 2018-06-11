@@ -51,13 +51,13 @@
         </div>
       </div>
       <div class="col-md-6 single-top-left simpleCart_shelfItem wow fadeInRight animated" data-wow-delay=".5s">
-        <h3 style="font-size:55px;text-transform:capitalize;text-align:left;color:<%= @store.store_color %> !important"><%= @product.name %></h3>
+        <h3 style="font-size:28px;text-transform:capitalize;text-align:left;color:<%= @store.store_color %> !important"><%= @product.name %></h3>
         <br><br>
         <% if @product.discount_status %>
-            <h6 class="item_price" style="color: red"><s><%= number_to_currency(@product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></h6>
+            <h6 style="font-size:25px" class="item_price" style="color: red"><s><%= number_to_currency(@product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></h6>
         <% end %>
         <br>
-        <h6 class="item_price"><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h6>
+        <h6 style="font-size:25px" class="item_price"><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h6>
         <p>
           <%= @product.description.html_safe rescue nil %>
         </p>
