@@ -618,7 +618,7 @@ ul#example li p {
     margin-bottom: 5em;
 }
 h3.title{
-    font-size: 3.5em;
+    font-size: 2.8em;
     font-weight: 900;
     color: #FF590F;
 }
@@ -906,7 +906,7 @@ h3.title span {
     margin-right:1.5em;
 }
 .new-bottom h5 {
-    font-size: 1.8em;
+    font-size: 1.2em;
     font-weight: 900;
     display: inline-block;
 }
@@ -1750,7 +1750,7 @@ h4.panel-title a {
 .cart-item-info h4 span {
     display: block;
     font-weight: 400;
-    font-size: 1em;
+    font-size: 0.6em;
     margin: 0.5em 0 0;
     color: #FF590F;
 }
