@@ -5,6 +5,9 @@ class ProductsController < ApplicationController
 
   def index
     get_store
+    if !store.active
+      redirect_to(home_404_path) and return
+    end
     if @store.nil?
       redirect_to(home_404_path) and return
     else
