@@ -11,7 +11,7 @@
   <div style="width:100% !important" class="product-grids simpleCart_shelfItem wow fadeInUp animated" data-wow-delay=".5s">
     <div class="new-top text-center">
       <!--<img src="images/g1.jpg" class="img-responsive" alt=""/></a>-->
-      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center') %>
+      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
       <div class="new-text">
         <ul>
           <li><a href="<%= product_view_path(product.sku) %>" class="mylink"><i class="fa fa-eye"></i> Quick View </a></li>
