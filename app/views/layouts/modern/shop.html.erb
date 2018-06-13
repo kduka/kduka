@@ -75,6 +75,38 @@ a{
 <% end %>
 
 <% if !@store.store_color.nil? %>
+  .modern-button{
+    font-size: 13px;
+    color: #fff;
+    background: <%= @store.store_color %>;
+    text-decoration: none;
+    position: relative;
+    border: 3px solid <%= @store.store_color %>;
+    border-radius: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 1em 2em;
+    outline: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+    transition: all 0.5s;
+  }
+  .modern-button:hover,.modern-button:focus,.modern-button:active{
+    font-size: 13px;
+    color: <%= @store.store_color %>;
+    background: #fff;
+    text-decoration: none;
+    position: relative;
+    border: 3px solid <%= @store.store_color %>;
+    border-radius: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 1em 2em;
+    outline: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+    transition: all 0.5s;
+  }
   .my-dropdown:focus{
     color: #fff !important;
   }
