@@ -91,6 +91,5 @@ Admin.create!([
               ])
 =end
 Admin.create!([
-                  {:email => 'seargent.am@gmail.com', :password => 'dungeonmaster', :password_confirmation => 'dungeonmaster'},
-                  {:email => 'kamundia7@gmail.com', :password => 'papadrunk', :password_confirmation => 'papadrunk'}
+                  {:email => 'mkinoti69@gmail.com', :password => 'mercy@zerone', :password_confirmation => 'mercy@zerone'}
               ])
