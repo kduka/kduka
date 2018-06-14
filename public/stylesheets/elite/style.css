@@ -1603,6 +1603,8 @@ button.w3view-cart {
 .men-thumb-item img {
     transition: all 0.5s ease-out 0s;
     padding: 52px 50px 20px;
+    max-height:24em;
+    width:auto;
 }
 .men-thumb-item:hover .men-cart-pro {
     opacity: 1;
