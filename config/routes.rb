@@ -89,6 +89,7 @@ Rails.application.routes.draw do
   delete '/store/delete/:id' => 'admins#store_delete', as: 'store_delete'
   post '/stores/sendy_call'
   get 'admins/view/(:id)' => 'admins#view', as: 'admin_view'
+  post 'store_registrations/update_password' => 'store_registrations#update_password'
 
 
 
