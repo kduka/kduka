@@ -174,7 +174,7 @@ ul.tick li input[type="checkbox"]+label span:first-child {
 	top: -1px;
 	left: 0;
 	bottom: 4px;
-	background-color: #06B216;
+	background-color: #7AAE42;
 }
 
 ul.tick li input[type="checkbox"]:checked+label span:first-child:before {
@@ -202,19 +202,47 @@ input[type="submit"] {
 	padding: 10px 30px;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 15px;
-	border: none;
+	border: 1px solid #7AAE42;
 	outline: none;
 	border-radius: 30px;
 	/*-- wthree --*/
 	/*-- agileits --*/
-	background-color: #06B216;
+	background-color: #7AAE42;
 	color: #FFF;
 	cursor: pointer;
 	margin-bottom:2em;
 }
 
 input[type="submit"]:hover {
-	background-color: #009688;
+	border: 1px solid #7AAE42;
+	background-color: #fff;
+	color: #7AAE42;
+}
+
+.signup_button {
+	padding: 10px 30px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	border: 1px solid #7AAE42;
+	outline: none;
+	border-radius: 30px;
+	/*-- wthree --*/
+	/*-- agileits --*/
+	background-color: #7AAE42;
+	color: #FFF;
+	cursor: pointer;
+	margin-bottom:2em;
+}
+
+.signup_button:hover{
+	border: 1px solid #7AAE42;
+	background-color: #fff;
+	color: #7AAE42;
+}
+.signup_button:disabled{
+	border: 1px solid #7AAE42;
+	background-color: grey;
+	color: #fff;
 }
 
 /*-- Footer --*/

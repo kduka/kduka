@@ -34,7 +34,7 @@ $(document).ready(function(){
   </div>
   <br>
   <h1 style="text-align:center">Delivery Settings</h1><br>
-  <h3 style="text-align:center;font-weight: bold">Select <span style="color: #06B216;">AT LEAST</span> one option below</h3><br>
+  <h3 style="text-align:center;font-weight: bold">Select <span style="color: #7AAE42;">AT LEAST</span> one option below</h3><br>
   <div id="fixed-div"></div>
   <%= form_for :store, :url => {controller: 'stores', action: 'update_delivery'}, method: 'put' do |f| %>
 
@@ -126,7 +126,7 @@ $(document).ready(function(){
 
       <div class="form-group">
         <%= f.label "Selected pick up Location (Business or Warehouse location)" %>
-        <%= f.text_field :auto_delivery_location, class: 'form-control locate', id:'sel_loc', disabled: 'disabled',style:"background-color:white;border-style: none !important;color:#06B216 !important;font-weight: bold;" %>
+        <%= f.text_field :auto_delivery_location, class: 'form-control locate', id:'sel_loc', disabled: 'disabled',style:"background-color:white;border-style: none !important;color:#7AAE42 !important;font-weight: bold;" %>
       </div>
 
       <div class="form-group">
@@ -205,7 +205,7 @@ $(document).ready(function(){
                     if (String(entry['formatted_address']) == 'Kenya') {
                         string = "<p>No Location Found. Try different Search Words</p>"
                     } else {
-                        string = string + '<p style="background-color: whitesmoke;border-style: solid;border-color: #06B216;font-weight: bold;" onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
+                        string = string + '<p style="background-color: whitesmoke;border-style: solid;border-color: #7AAE42;font-weight: bold;" onclick=\'selectlocation("' + String(entry['formatted_address']) + '");\'>' + String(entry['formatted_address']) + '</p>';
                     }
 
 

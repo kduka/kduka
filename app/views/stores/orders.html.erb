@@ -45,7 +45,7 @@
                   <% elsif p.order_status_id == 3 %>
                       <tr style="color: darkblue">
                   <% elsif p.order_status_id == 6 %>
-                      <tr style="color: #06b216">
+                      <tr style="color: #7AAE42">
                   <% end %>
                   <td><%= link_to p.ref, store_order_path(p.ref) %></td>
                   <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>
@@ -66,7 +66,7 @@
                   <% elsif p.order_status_id == 3 %>
                       <tr style="color: darkblue;font-weight: bold">
                   <% elsif p.order_status_id == 6 %>
-                      <tr style="color: #06b216;font-weight: bold">
+                      <tr style="color: #7AAE42;font-weight: bold">
                   <% end %>
                   <td><%= link_to p.ref, store_order_path(p.ref) %></td>
                   <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>

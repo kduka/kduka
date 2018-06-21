@@ -31,7 +31,7 @@
 <h3>Instructions: <%= @order.order_instructions %></h3>
 <h3>Order Number: <%= @order.ref %></h3>
 <h3>Placed on: <%= @order.date_placed.strftime("%Y-%m-%d %H:%M") %></h3>
-<h3>Completed on: <%= "<span style='color:#06b216'>#{@order.complete_date.strftime("%Y-%m-%d %H:%M")}".html_safe rescue '<span style="color:orange">Not Complete</span>'.html_safe %></h3>
+<h3>Completed on: <%= "<span style='color:#7AAE42'>#{@order.complete_date.strftime("%Y-%m-%d %H:%M")}".html_safe rescue '<span style="color:orange">Not Complete</span>'.html_safe %></h3>
 </div><br><br>
 </div>
 <% @oi.each do |oi|
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-8 col-sm-12" style="text-align:center !important">
-                  <h4 style="color:#06B216"><%= product.name %></h4><br/>
+                  <h4 style="color:#7AAE42"><%= product.name %></h4><br/>
                   <h4>Unit Price : <%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4><br>
                   <div class="qty">
                     Quantity: <%= oi.quantity %>
