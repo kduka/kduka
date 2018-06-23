@@ -22,6 +22,7 @@ gem 'figaro'
 gem 'sendgrid-ruby'
 gem 'wysiwyg-rails', '~> 2.6.0'
 gem 'froala-editor-sdk'
+gem 'ahoy_matey'
 
 ruby "2.4.0"
 gem 'sqlite3', group: :development

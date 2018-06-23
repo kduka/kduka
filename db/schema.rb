@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180606105752) do
+ActiveRecord::Schema.define(version: 20180623111947) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +31,42 @@ ActiveRecord::Schema.define(version: 20180606105752) do
     t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "visit_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.json     "properties"
+    t.datetime "time"
+    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time", using: :btree
+    t.index ["user_id"], name: "index_ahoy_events_on_user_id", using: :btree
+    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id", using: :btree
+  end
+
+  create_table "ahoy_visits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "visit_token"
+    t.string   "visitor_token"
+    t.integer  "user_id"
+    t.string   "ip"
+    t.text     "user_agent",       limit: 65535
+    t.text     "referrer",         limit: 65535
+    t.string   "referring_domain"
+    t.text     "landing_page",     limit: 65535
+    t.string   "browser"
+    t.string   "os"
+    t.string   "device_type"
+    t.string   "country"
+    t.string   "region"
+    t.string   "city"
+    t.string   "utm_source"
+    t.string   "utm_medium"
+    t.string   "utm_term"
+    t.string   "utm_content"
+    t.string   "utm_campaign"
+    t.datetime "started_at"
+    t.index ["user_id"], name: "index_ahoy_visits_on_user_id", using: :btree
+    t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true, using: :btree
   end
 
   create_table "business_to_consumers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
