@@ -114,10 +114,6 @@ protect_from_forgery with: :exception
       @subdomain = request.subdomain[/(\w+)/]
       @store = Store.where(subdomain: @subdomain).first
     end
-
-    if @store.nil?
-      redirect_to(home_404_path) and return
-    end
   end
 
   def get_data
