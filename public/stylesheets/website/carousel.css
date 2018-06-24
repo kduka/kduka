@@ -1,0 +1,16 @@
+.jR3DCarouselGalleryCustomeTemplate .captions{
+	position: relative;
+	padding: 4px 0;
+	bottom: 27px;
+	background: #7AAE42;
+	display:block;
+  color: #fff !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+.jR3DCarouselGalleryCustomeTemplate a{
+	text-decoration: none;
+}
+.jR3DCarouselGallery,.jR3DCarouselGalleryCustomeTemplate {
+	margin: 0 auto; /* optional - if want to center align */
+}

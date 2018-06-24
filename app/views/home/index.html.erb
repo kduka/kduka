@@ -24,7 +24,50 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
+
 <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var slideImages = [ {src: '../jRCarousel/images/01.jpg'},
+	              		{src: '../jRCarousel/images/02.jpg'},
+	              		{src: '../jRCarousel/images/03.jpg'},
+	              		{src: '../jRCarousel/images/04.jpg'},
+	              		{src: '../jRCarousel/images/05.jpg'} ]
+	//var jR3DCarousel;
+
+	jR3DCarousel = $('.jR3DCarouselGallery').jR3DCarousel({
+		width: 470, 		/* largest allowed width */
+		height: 272, 		/* largest allowed height */
+		slides: slideImages /* array of images source */
+	});
+
+	var carouselCustomeTemplateProps =  {
+	 		  width: 470, 				/* largest allowed width */
+			  height: 272, 				/* largest allowed height */
+			  slideLayout : 'fill',     /* "contain" (fit according to aspect ratio), "fill" (stretches object to fill) and "cover" (overflows box but maintains ratio) */
+			  animation: 'slide3D', 	/* slide | scroll | fade | zoomInSlide | zoomInScroll */
+			  animationCurve: 'ease',
+			  animationDuration: 1900,
+			  animationInterval: 2000,
+			  slideClass: 'jR3DCarouselCustomSlide',
+			  autoplay: false,
+			  controls: true,			/* control buttons */
+			  navigation: ''			/* circles | squares | '' */,
+			  perspective: 2200,
+			  rotationDirection: 'ltr',
+			  onSlideShow: slideShownCallback
+
+		}
+	function slideShownCallback($slide){
+		console.log("Slide shown: ", $slide.find('img').attr('src'))
+	}
+
+	jR3DCarouselCustomeTemplate = $('.jR3DCarouselGalleryCustomeTemplate').jR3DCarousel(carouselCustomeTemplateProps);
+
+  })
+</script>
+
   <% if Rails.env.production?  %>
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
@@ -38,6 +81,7 @@
           s0.parentNode.insertBefore(s1,s0);
       })();
   </script>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109847469-1"></script>
   <script>
@@ -85,7 +129,7 @@ next if item == '.' or item == '..' %>
 						<h3 class="text-center"><i class="fa fa-close" id="showRightPush2"></i> </h3>
 						<ul>
 							<li><a href="#home" class="scroll"><i class="fa fa-home"></i> Home</a></li>
-							<li><a href="#introduction" class="scroll"><i class="fa fa-info-circle"></i> About Us</a></li>
+							<li><a href="#introduction" class="scroll"><i class="fa fa-desktop"></i> Featured</a></li>
 							<li><a href="#features" class="scroll"><i class="fa fa-check"></i> Features</a></li>
 							<li><a href="#contact" class="scroll"><i class="fa fa-envelope"></i> Contact</a></li>
               <li><a href="<%= new_store_registration_path %>"><i class="fa fa-edit"></i> Sign Up</a></li>
@@ -170,17 +214,70 @@ next if item == '.' or item == '..' %>
 	<!-- introduction -->
 	<div class="introduction" id="introduction">
 		<div class="container">
-      <div class="col-md-6 col-xs-12">
-			<h3 class="agileits-title" style="text-align:center">About <span style="color:#7AAE42">KDuka</span></h3>
-			<p>We help you to take your business online!</p>
+      <div class="col-md-12 col-xs-12">
+			<h3 class="agileits-title" style="text-align:center">Featured <span style="color:#7AAE42">Websites</span></h3>
+      <br><br>
+
+      <div class="jR3DCarouselGalleryCustomeTemplate">
+  			<div class="jR3DCarouselCustomSlide">
+          <a href="http://shop.jacarandamusichub.co.ke" target="_blank">
+  				<%= image_tag("website/featured1.png", :style=>"width:100%;height:auto;") %>
+  				<div class="captions">Jacaranda Music Hub Shop</div>
+          </a>
+  			</div>
+  			<div class="jR3DCarouselCustomSlide">
+  				<a href="http://www.temya.co.ke" target="_blank">
+  					<%= image_tag("website/featured2.png", :style=>"width:100%;height:auto;") %>
+  					<span class="captions">Temya Enterprises Ltd.</span>
+  				</a>
+  			</div>
+  			<div class="jR3DCarouselCustomSlide">
+          <a href="http://lilemporium.kduka.co.ke" target="_blank">
+  				<%= image_tag("website/featured3.png", :style=>"width:100%;height:auto;") %>
+  				<div class="captions">Lil Emporium</div>
+          </a>
+  			</div>
+  			<div class="jR3DCarouselCustomSlide">
+          <a href="http://nyarnam.kduka.co.ke" target="_blank">
+  				<%= image_tag("website/featured4.png", :style=>"width:100%;height:auto;") %>
+  				<div class="captions">Nyarnam Shop</div>
+          </a>
+  			</div>
+  			<div class="jR3DCarouselCustomSlide">
+          <a href="http://xwatches.kduka.co.ke" target="_blank">
+  				<%= image_tag("website/featured5.png", :style=>"width:100%;height:auto;") %>
+  				<div class="captions">X Watches Shop</div>
+          </a>
+  			</div>
+  		</div>
+
+      <!-- <div class="col-md-8 col-md-offset-2 col-xs-12">
+        <section id="slider">
+        <input type="radio" name="slider" id="s1">
+        <input type="radio" name="slider" id="s2">
+        <input type="radio" name="slider" id="s3" checked>
+        <input type="radio" name="slider" id="s4">
+        <input type="radio" name="slider" id="s5">
+        <label style="width:100%" for="s1" id="slide1"><%= image_tag("website/featured1.png", :style=>"width:100%;height:auto;border: 1px solid #efefef;") %></label>
+        <label style="width:100%" for="s2" id="slide2"><%= image_tag("website/featured2.png", :style=>"width:100%;height:auto;border: 1px solid #efefef;") %></label>
+        <label style="width:100%" for="s3" id="slide3"><%= image_tag("website/featured3.png", :style=>"width:100%;height:auto;border: 1px solid #efefef;") %></label>
+        <label style="width:100%" for="s4" id="slide4"><%= image_tag("website/featured4.png", :style=>"width:100%;height:auto;border: 1px solid #efefef;") %></label>
+        <label style="width:100%" for="s5" id="slide5"><%= image_tag("website/featured5.png", :style=>"width:100%;height:auto;border: 1px solid #efefef;") %></label>
+        </section>
+      </div>
+      <div class="row" style="height:30em"></div> -->
+
+
+
+			<!-- <p>We help you to take your business online!</p>
       <br>
 
       <p>KDuka provides everything you need to sell online and get straight to growing your business.</p>
 <br>
-      <p style="color: #7AAE42">No programming experience is required</p>
+      <p style="color: #7AAE42">No programming experience is required</p> -->
     </div>
 
-       <div class="col-md-6 col-sm-12"><iframe width="100%" height="315" src="https://www.youtube.com/embed/OUp7k_rp6t0" frameborder="0" gesture="media" allowfullscreen style="margin-top: 1em;"></iframe></div>
+       <!-- <div class="col-md-6 col-sm-12"><iframe width="100%" height="315" src="https://www.youtube.com/embed/OUp7k_rp6t0" frameborder="0" gesture="media" allowfullscreen style="margin-top: 1em;"></iframe></div> -->
 		</div>
 	</div>
 	<!-- //introduction -->
