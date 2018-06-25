@@ -12,7 +12,7 @@
         factory(jQuery);
     }
 })(function($){
-	
+
 	$.fn.jR3DCarousel = function(options){
 		var _defaults = {
 				width : innerWidth,				/* largest allowed width */
@@ -28,10 +28,10 @@
 				controls: true,					/* control buttons */
 				slideClass: 'jR3DCarouselSlide',/* name of the css class of slides in custom template */
 				navigation: 'circles',			/* circles | squares | '' */
-				rotationDirection: 'rtl',		/* rtl - right to left | ltr - left to right */
+				rotationDirection: 'ltr',		/* rtl - right to left | ltr - left to right */
 				onSlideShow: function(){}		/* callback when Slide show event occurs */
 		}
-		
+
 		var _settings = $.extend( true, {}, _defaults, options );
 		var _container = this;
 		var _width = _settings.width;
@@ -52,37 +52,37 @@
 		var _perspective;
 		var _transform;
 		var _noOfSlides = _settings.slides.length || _container.find('.'+_settings.slideClass).length;
-		
+
 		(function setup(){
-			
+
 			/* create jR3DCarousel */
 			createjR3DCarousel();
-			
+
 			/* create control buttons */
 			if(_settings.controls){
 				_createControls();
 			}
-			
+
 			/* create navigation bar */
 			if(_settings.navigation){
 				_createNavigation();
 			}
-			
+
 			/* adjust size according to device */
 			addEventListener('resize', _maintainResposive);
-			
+
 			_maintainResposive();
-			
+
 			/* start jR3DCarousel if autoplay */
 			if(_settings.autoplay){
-				
+
 				/* event handlers */
 				document.addEventListener('visibilitychange', handleVisibilityChange);
-				
+
 				addEventListener("beforeunload", function () {
 					  document.removeEventListener('visibilitychange', handleVisibilityChange);
 				});
-				
+
 				function handleVisibilityChange() {
 				    if (document.hidden) {
 				        //console.log("hidden.. stop running expensive task")
@@ -92,21 +92,21 @@
 						_playjR3DCarousel();
 				    }
 				}
-				
+
 				_container.hover(function(){
 					clearTimeout($(this).data('timeout'));
-					_pausejR3DCarousel();					
-				},function(){					
+					_pausejR3DCarousel();
+				},function(){
 					$(this).data('timeout', setTimeout(function(){
 												_playjR3DCarousel();
 					}, _settings.animationInterval+_settings.animationDuration));
 				});
-				
+
 				/* start jR3DCarousel if autoplay */
 				_playjR3DCarousel();
-					
+
 			}
-			
+
 			function createjR3DCarousel(){
 				/* compute translate and perspective */
 				if(_settings.animation.indexOf('slide')!=-1){
@@ -119,12 +119,12 @@
 					_translateZ = (_width/2) / Math.tan(Math.PI/_noOfSlides);
 					_perspective = (_width/2) * Math.tan(2*Math.PI/_noOfSlides)+'px';
 				}
-				
+
 				/* compute base angle */
 				_baseAngle = 360 / _noOfSlides;
 
 				/* create jR3DCarousel slide stack */
-				if(_settings.slides.length){					
+				if(_settings.slides.length){
 					for(var i = 0;  i < _settings.slides.length; i++){
 						var slide = $( "<div class='jR3DCarouselSlide' data-index="+i+" />" )
 									.append( "<img src='"+_settings.slides[i].src+"' alt='"+_settings.slides[i].alt+"' />" );
@@ -157,7 +157,7 @@
 				_perspective = _settings.perspective || _perspective;
 				_container.css({ perspective: _perspective, width: _width+'px', height: _height+'px', position: "relative", overflow: 'visible'});
 			}
-			
+
 			function _createControls(){
 				if(_settings.rotationDirection == 'rtl'){
 					_previousButton = $( "<div class='previous controls' style='left: 0.1em;'>&lang;</div>");
@@ -166,12 +166,12 @@
 					_previousButton = $( "<div class='previous controls' style='right: 0.1em;'>&rang;</div>");
 					_nextButton = $( "<div class='next controls' style='left: 0.1em;'>&lang;</div>");
 				}
-				
+
 				_previousButton.add(_nextButton)
 							   .css({position: 'absolute', top:'50%', zIndex:1, transform: 'translateY(-50%)', fontSize: '4em', color: 'rgba(255, 255, 255, 0.97)', cursor:'pointer', userSelect: 'none'})
 							   .appendTo(_container)
 							   .hide();
-				
+
 				 /* event handlers */
 				_previousButton.on('click', function(){
 					_playPreviousSlide();
@@ -179,7 +179,7 @@
 				_nextButton.on('click', function(){
 					_playNextSlide();
 				});
-				
+
 				/* event handlers */
 				_container.on('mouseenter touchstart',function(){
 					_previousButton.add(_nextButton).show();
@@ -187,7 +187,7 @@
 				.on('mouseleave touchcancel',function(){
 					_previousButton.add(_nextButton).hide();
 				})
-				
+
 				_previousButton.hover(function(){
 					_previousButton.css({color: 'rgba(201, 201, 201, 0.97)'});
 				},function(){
@@ -198,14 +198,14 @@
 				},function(){
 					_nextButton.css({color: 'rgba(255, 255, 255, 0.97)'});
 				});
-				
+
 				/* keyboard navigation keys support */
 				$(document).on('keydown', function(e){
 					var rect = _container[0].getBoundingClientRect();
 				    var inView = rect.bottom > 0 &&  rect.right > 0 &&
 				        rect.left < (innerWidth || document.documentElement.clientWidth) &&
 				        rect.top < (innerHeight || document.documentElement.clientHeight);
-					
+
 					if(inView && e.which == 37){
 						_pausejR3DCarousel();
 						if(_settings.rotationDirection == 'rtl'){
@@ -222,7 +222,7 @@
 						}
 					}
 				});
-				
+
 				/* touch navigation support */
 				_swipedetect(_container, function(swipedir){
 					_pausejR3DCarousel();
@@ -240,7 +240,7 @@
 					}
 				});
 			}
-				
+
 			function _createNavigation(){
 				var _navigation = $('<div class=navigation />').css({ position: 'absolute', bottom: 0, right: 0 });
 				for(var i = 0;  i < _noOfSlides; i++){
@@ -252,15 +252,15 @@
 				_navigation.find('.nav').css({ display: 'inline-block', margin: '5px', cursor: 'pointer', backgroundColor: 'rgba(255, 255, 255, 0.77)', width: '12px', height: '12px', transition: 'all '+_settings.animationDuration+'ms ease' })
 										.first().css({ backgroundColor: 'rgba(0, 0, 0, 1)' });
 				_jR3DCarouselDiv.after(_navigation);
-				
+
 				 /* event handler */
 				_container.on('click', '.nav', function(){
 					_playSlideByIndex($(this).index());
 				});
 			}
-			
+
 		})();
-		
+
 		function _playjR3DCarousel(){
 			_pausejR3DCarousel();
 			_timer = setInterval(_playNextSlide, _settings.animationInterval+_settings.animationDuration);
@@ -272,26 +272,26 @@
 				clearInterval(_timer);
 			}
 		}
-		
+
 		function _playNextSlide(){
 			_targetSlideIndex = _currentSlideIndex + 1;
 			_animations.run(_settings.animation, _targetSlideIndex);
 			_slideCarouseld();
 		}
-		
+
 		function _playPreviousSlide(){
 			_targetSlideIndex = _currentSlideIndex - 1;
 			_animations.run(_settings.animation, _targetSlideIndex);
 			_slideCarouseld();
 		}
-		
+
 		function _playSlideByIndex(relativeSlideIndex){
 			var _currentRoundNo = Math.floor(_currentSlideIndex / _noOfSlides);
 			_targetSlideIndex =  _currentRoundNo *_noOfSlides + relativeSlideIndex;
 			_animations.run(_settings.animation, _targetSlideIndex);
 			_slideCarouseld();
 		}
-		
+
 		function _getPreviousSlide(){
 			return _jR3DCarouselDiv.find('.'+_settings.slideClass).eq((_currentSlideIndex-1) % _noOfSlides);
 		}
@@ -304,7 +304,7 @@
 		function _getSlideByIndex(idx){
 			return _jR3DCarouselDiv.find('.'+_settings.slideClass+'[data-index='+idx+']');
 		}
-		
+
 		function Animations(){
 			this.animations = {
 					slide : _slide,
@@ -317,54 +317,54 @@
 		Animations.prototype.run = function run(animation, targetSlideIndex){
 				this.animations[animation](targetSlideIndex);
 		}
-		
+
 		function _slide(targetSlideIndex){
 			_container.css({ perspective: '', overflow: 'hidden' });
 			_rotationAngle = _baseAngle * targetSlideIndex;
 			_jR3DCarouselDiv.css({ transform: 'translateZ('+-_translateZ+'px) rotateY('+-_rotationAngle+'deg)' });
 		}
-		
+
 		function _slide3D(targetSlideIndex){
 			_container.css({ perspective: _perspective, overflow: 'visible' });
 			_rotationAngle = _baseAngle * targetSlideIndex;
 			_jR3DCarouselDiv.css({ transform: 'translateZ('+-_translateZ+'px) rotateY('+-_rotationAngle+'deg)' });
 		}
-		
+
 		function _scroll(targetSlideIndex){
 			_container.css({ perspective: '', overflow: 'hidden' });
 			_rotationAngle=_baseAngle * targetSlideIndex;
 			_jR3DCarouselDiv.css({ transform: 'translateZ('+-_translateZ+'px) rotateX('+-_rotationAngle+'deg)' });
 		}
-		
+
 		function _scroll3D(targetSlideIndex){
 			_container.css({ perspective: _perspective, overflow: 'visible' });
 			_rotationAngle=_baseAngle * targetSlideIndex;
 			_jR3DCarouselDiv.css({ transform: 'translateZ('+-_translateZ+'px) rotateX('+-_rotationAngle+'deg)' });
 		}
-		
+
 		function _fade(targetSlideIndex){
 			_jR3DCarouselDiv.css({ transition: 'opacity '+ _settings.animationDuration+'ms '+_settings.animationCurve, opacity: 0});
-			_rotationAngle = _baseAngle * targetSlideIndex;			
+			_rotationAngle = _baseAngle * targetSlideIndex;
 			_jR3DCarouselDiv.css({ transform: 'translateZ('+-_translateZ+'px) rotateY('+-_rotationAngle+'deg)'});
 			_jR3DCarouselDiv.css({ opacity: 1 });
 		}
-		
+
 		function _slideCarouseld(){
 			_container.find('.nav').css({  backgroundColor: 'rgba(255, 255, 255, 0.77)' })
 			   .eq(_targetSlideIndex % _noOfSlides).css({ backgroundColor: 'rgba(0, 0, 0, 0.77)' });
-			
+
 			_currentSlideIndex = Math.round(_rotationAngle/_baseAngle);
 			//console.log("_currentSlideIndex " +_currentSlideIndex)
 			_settings.onSlideShow.call(this, _getCurrentSlide());
 		}
-		
+
 		function _maintainResposive(){
 			_container.width('100%');
 			_jR3DCarouselDiv.hide();
 			_width = _container.width() < _settings.width ? _container.width() : _settings.width;
 			_height = _width/_aspectRatio;
 			_container.css({width: _width+'px', height: _height+'px' });
-			
+
 			if(_settings.animation.indexOf('slide')!=-1){
 				_translateZ = (_width/2) / Math.tan(Math.PI/_noOfSlides);
 				_perspective = (_width/2) * Math.tan(2*Math.PI/_noOfSlides)+'px';
@@ -390,8 +390,8 @@
 			_jR3DCarouselDiv.css({ transform: 'translateZ('+-_translateZ+'px) rotateY('+-_rotationAngle+'deg)' });
 			_jR3DCarouselDiv.show();
 			_container.css({ perspective: _perspective });
-		}	
-		
+		}
+
 		function _swipedetect(el, handleswipe){
 			var touchsurface = el, swipedir, startX, startY, distX,	distY,
 			threshold = 20, //required min distance traveled to be considered swipe
@@ -427,8 +427,8 @@
 				//e.preventDefault()
 			})
 		}
-		
-		/* public API */		
+
+		/* public API */
 		this.showSlide = function(index){
 			var relativeSlideIndex = index % _noOfSlides;
 			_playSlideByIndex(relativeSlideIndex);
@@ -454,5 +454,5 @@
 
 		return this;
 	}
-	
+
 });
