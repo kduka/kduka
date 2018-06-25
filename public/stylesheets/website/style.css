@@ -8,6 +8,8 @@ body{
 	margin:0;
 	font-family: 'Open Sans', sans-serif;
 	background: #fff;
+	max-width: 100% !important;
+	overflow-x: hidden !important;
 }
 body a{
 	-webkit-transition: 0.5s all;
@@ -70,7 +72,7 @@ body a:hover{
 	padding: 0.3em;
 	outline: none;
 	position: fixed;
-	right:0;
+	right:0 !important;
 	top:0em;
 	z-index: 1;
 	background: none;
@@ -161,7 +163,7 @@ nav#cbp-spmenu-s2 h3 {
 .introduction{
 	padding:6em 0;
 	text-align:center;
-	background: #f5f5f5;
+	background: #ececec;
 }
 h3.agileits-title {
     color: #222222;
