@@ -170,6 +170,8 @@ protect_from_forgery with: :exception
     @aws_data = FroalaEditorSDK::S3.data_hash(options)
   end
 
-
+  def beforeFilter
+    $request = request
+  end
 
 end

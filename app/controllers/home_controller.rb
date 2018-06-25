@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :beforeFilter, only: :index
+
   def index
     ahoy.track "My first event", {language: "Ruby"}
     no_layout

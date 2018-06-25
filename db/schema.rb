@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180623111947) do
+ActiveRecord::Schema.define(version: 20180625063621) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -39,7 +39,9 @@ ActiveRecord::Schema.define(version: 20180623111947) do
     t.string   "name"
     t.json     "properties"
     t.datetime "time"
+    t.integer  "store_id"
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time", using: :btree
+    t.index ["store_id"], name: "index_ahoy_events_on_store_id", using: :btree
     t.index ["user_id"], name: "index_ahoy_events_on_user_id", using: :btree
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id", using: :btree
   end
@@ -338,6 +340,7 @@ ActiveRecord::Schema.define(version: 20180623111947) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.text     "gtag",                         limit: 65535
     t.index ["confirmation_token"], name: "index_stores_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
     t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
@@ -414,6 +417,7 @@ ActiveRecord::Schema.define(version: 20180623111947) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "ahoy_events", "stores"
   add_foreign_key "categories", "stores"
   add_foreign_key "coupons", "stores"
   add_foreign_key "earnings", "stores"

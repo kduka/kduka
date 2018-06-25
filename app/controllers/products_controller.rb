@@ -1,9 +1,10 @@
 class ProductsController < ApplicationController
   before_action :authenticate_store!, only: [:manage, :new, :create, :show, :edit, :update, :destroy]
-
+  before_action :beforeFilter, only: :index
   set_tab :home
 
   def index
+
     get_store
     if @store.nil?
       redirect_to(home_404_path) and return
@@ -47,6 +48,7 @@ class ProductsController < ApplicationController
     if @store.blank?
       redirect_to(home_404_path) and return
     else
+      ahoy.track "home", {store: @store.id}
       @products = Product.where(store_id: @store.id, active: true).limit(3).order('id desc')
       @order_item = current_order.order_items.new
       @categories = @store.category.where(active:true)
@@ -62,11 +64,13 @@ class ProductsController < ApplicationController
     elsif @store.aboutpage_status == false
       redirect_to(all_path) and return
     else
+      ahoy.track "about", {store: @store.id}
       get_data
     end
   end
 
   def contact
+    ahoy.track "contact", {store: @store.id}
     get_data
   end
 
