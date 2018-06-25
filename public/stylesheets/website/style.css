@@ -8,7 +8,7 @@ body{
 	margin:0;
 	font-family: 'Open Sans', sans-serif;
 	background: #fff;
-	max-width: 100%;
+	max-width: 100% !important;
 }
 body a{
 	-webkit-transition: 0.5s all;
