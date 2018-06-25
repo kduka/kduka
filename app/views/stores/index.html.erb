@@ -183,7 +183,7 @@
     <div class=" col-md-4">
       <div class="col-md-6 top-content" style="text-align:center">
         <h5>Website Visitors</h5>
-        <label style="color: #7AAE42"><%= @visitors.count %></label><br>
+        <label style="color: #7AAE42"><%= @visitors.count rescue nil %></label><br>
       </div>
 
     </div>
