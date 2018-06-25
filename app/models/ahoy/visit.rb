@@ -15,7 +15,7 @@ class Ahoy::Visit < ApplicationRecord
       @store = Store.where(subdomain: @subdomain).first
     end
 
-  self[:utm_campaign] = @store.id
+  self[:store_id] = @store.id
 
   end
 

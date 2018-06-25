@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def full_site
-    @store = Store.where(subdomain:'test', active: true).first
+    @store = Store.where(subdomain: 'test', active: true).first
     if @store.nil?
       redirect_to(home_404_path) and return
     elsif @store.active == !true
@@ -43,15 +43,15 @@ class ProductsController < ApplicationController
 
   def home
     get_store
-    puts @store.name
-    puts @store.id
-    if @store.blank?
+    if @store.nil?
+      redirect_to(home_404_path) and return
+    elsif @store.active == false
       redirect_to(home_404_path) and return
     else
       ahoy.track "home", {store: @store.id}
       @products = Product.where(store_id: @store.id, active: true).limit(3).order('id desc')
       @order_item = current_order.order_items.new
-      @categories = @store.category.where(active:true)
+      @categories = @store.category.where(active: true)
       @featured = @store.category.where(featured: true)
       set_shop
     end
@@ -61,17 +61,29 @@ class ProductsController < ApplicationController
     get_store
     if @store.nil?
       redirect_to(home_404_path) and return
-    elsif @store.aboutpage_status == false
-      redirect_to(all_path) and return
+    elsif @store.active == !true
+      redirect_to(home_404_path) and return
     else
-      ahoy.track "about", {store: @store.id}
-      get_data
+      if @store.aboutpage_status == false
+        redirect_to(all_path)
+      else
+        get_store
+        ahoy.track "about", {store: @store.id}
+        set_shop
+      end
     end
   end
 
   def contact
-    ahoy.track "contact", {store: @store.id}
-    get_data
+    get_store
+    if @store.nil?
+      redirect_to(home_404_path) and return
+    elsif @store.active == !true
+      redirect_to(home_404_path) and return
+    else
+        ahoy.track "contact", {store: @store.id}
+      set_shop
+    end
   end
 
   def manage
@@ -83,10 +95,17 @@ class ProductsController < ApplicationController
 
   def category
     get_store
-    @order_item = current_order.order_items.new
-    @products = @store.product.where(category_id: params[:id], active: true).paginate(:page => params[:page], :per_page => 20).order('id desc')
-    @categories = @store.category.where(active:true)
-    set_shop
+    if @store.nil?
+      redirect_to(home_404_path) and return
+    elsif @store.active == false
+      redirect_to(home_404_path) and return
+    else
+      ahoy.track "category", {store: @store.id, category: params[:id].to_i}
+      @order_item = current_order.order_items.new
+      @products = @store.product.where(category_id: params[:id], active: true).paginate(:page => params[:page], :per_page => 20).order('id desc')
+      @categories = @store.category.where(active: true)
+      set_shop
+    end
   end
 
   def subcategory
@@ -94,7 +113,7 @@ class ProductsController < ApplicationController
     @subdomain = request.subdomain[/(\w+)/]
     @store = Store.where(subdomain: @subdomain).first
     if @store.nil?
-      @store = Store.where(domain:request.domain,own_domain:true).first
+      @store = Store.where(domain: request.domain, own_domain: true).first
     end
     @products = @store.product.where(category_id: params[:id], active: true).order('id desc')
     @categories = @store.category.all
@@ -137,17 +156,20 @@ class ProductsController < ApplicationController
     get_store
     if @store.nil?
       redirect_to(home_404_path) and return
+    elsif @store.active == false
+      redirect_to(home_404_path) and return
+    else
+      ahoy.track "all", {store: @store.id}
+      @products = Product.where(store_id: @store.id, active: true).paginate(:page => params[:page], :per_page => 15).order('id desc')
+      @order_item = current_order.order_items.new
+      @categories = @store.category.where(active: true)
+      set_shop
     end
-
-    @products = Product.where(store_id: @store.id, active: true).paginate(:page => params[:page], :per_page => 15).order('id desc')
-    @order_item = current_order.order_items.new
-    @categories = @store.category.where(active:true)
-    set_shop
   end
 
   def update
     @product = Product.find(params[:id])
-    @update =@product.update(product_params)
+    @update = @product.update(product_params)
     if @update
       flash[:notice] = "Product Successfully updated!"
     else
@@ -226,7 +248,7 @@ class ProductsController < ApplicationController
   end
 
   def allproducts
-    @products = Product.where(store_id:current_store.id)
+    @products = Product.where(store_id: current_store.id)
     respond_to do |f|
       f.csv {send_data @products.to_csv}
       f.xls

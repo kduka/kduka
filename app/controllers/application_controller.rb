@@ -117,17 +117,11 @@ protect_from_forgery with: :exception
   end
 
   def get_data
-    @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
-
+    get_store
     if @store.nil?
-      @subdomain = request.subdomain[/(\w+)/]
-      @store = Store.where(subdomain: @subdomain).first
-    end
-
-    if @store.nil?
-      redirect_to("http://www.kduka.co.ke/") and return
+      redirect_to(home_404_path) and return
     elsif @store.active == !true
-      redirect_to("http://www.kduka.co.ke/") and return
+      redirect_to(home_404_path) and return
     else
       @products = Product.where(store_id: @store.id, active: true)
       @order_item = current_order.order_items.new

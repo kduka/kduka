@@ -180,14 +180,21 @@
   <% if !@products.blank? %>
   <div class="row">
     <div id="chart_div"></div>
-  <div class=" col-md-6">
+    <div class=" col-md-4">
+      <div class="col-md-6 top-content" style="text-align:center">
+        <h5>Website Visitors</h5>
+        <label style="color: #7AAE42"><%= @visitors.count %></label><br>
+      </div>
+
+    </div>
+  <div class=" col-md-4">
     <div class="col-md-6 top-content" style="text-align:center">
       <h5>Available Balance</h5>
       <label style="color: #7AAE42">Ksh: <%= StoreAmount.where(store_id: current_store.id).first.amount rescue 0 %></label><br>
     </div>
 
   </div>
-  <div class=" col-md-6">
+  <div class=" col-md-4">
     <a href="<%= products_manage_path %>">
       <div class="col-md-12 top-content">
         <h5>Total Earnings</h5>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180625063621) do
+ActiveRecord::Schema.define(version: 20180625123944) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20180625063621) do
     t.string   "utm_content"
     t.string   "utm_campaign"
     t.datetime "started_at"
+    t.integer  "store_id"
+    t.index ["store_id"], name: "index_ahoy_visits_on_store_id", using: :btree
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id", using: :btree
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true, using: :btree
   end
@@ -418,6 +420,7 @@ ActiveRecord::Schema.define(version: 20180625063621) do
   end
 
   add_foreign_key "ahoy_events", "stores"
+  add_foreign_key "ahoy_visits", "stores"
   add_foreign_key "categories", "stores"
   add_foreign_key "coupons", "stores"
   add_foreign_key "earnings", "stores"

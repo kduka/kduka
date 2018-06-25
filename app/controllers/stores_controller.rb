@@ -21,7 +21,7 @@ class StoresController < ApplicationController
       end
     end
     @products = Product.where(store_id: current_store.id)
-    @visitors = Visit.where(store_id:@store.id)
+    @visitors = Ahoy::Visit.where(store_id:@store.id)
     set_shop_show
   end
 
