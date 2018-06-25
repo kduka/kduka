@@ -15,14 +15,14 @@
 	margin: 0 auto; /* optional - if want to center align */
 }
 .jR3DCarouselGalleryCustomeTemplate{
-	max-width: 100% !important;
+	/* max-width: 100% !important; */
 	height: auto;
 }
 .jR3DCarouselGallery{
-	/* max-width: 100% !important;
-	height: auto; */
+	/* max-width: 100% !important; */
+	height: auto;
 }
 .jR3DCarouselCustomSlide{
-	/* max-width: 100% !important;
-	height: auto; */
+	/* max-width: 100% !important; */
+	height: auto;
 }
