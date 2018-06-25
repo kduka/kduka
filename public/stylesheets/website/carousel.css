@@ -14,3 +14,7 @@
 .jR3DCarouselGallery,.jR3DCarouselGalleryCustomeTemplate {
 	margin: 0 auto; /* optional - if want to center align */
 }
+.jR3DCarouselGalleryCustomeTemplate{
+	max-width: 100%;
+	height: auto;
+}
