@@ -18,7 +18,7 @@
                     products = Product.where(store_id:current_store.id).order("viewed DESC").limit(6)
 
                     products.each do |p| %>
-                    <%= "['#{p.name}',#{p.viewed}],".html_safe %>
+                    <%= "[\"#{p.name}\",#{p.viewed}],".html_safe %>
                    <% end %>
               ]);
 
