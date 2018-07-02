@@ -42,6 +42,9 @@
   <!-- //end-smooth-scrolling -->
   <!--Custom Colors-->
   <style>
+  body{
+    overflow-x: hidden !important;
+  }
   <% if !@store.store_font.nil? %>
   body{
     font-family: <%= @store.store_font %> !important;
