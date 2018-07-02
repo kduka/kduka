@@ -59,7 +59,7 @@
                   <% if product.discount_status %>
                       <p>
                         <span class="item_price" style="font-weight:900;color: red"><s><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span>
-                      </p>
+                      </p><br>
                   <% else %>
                       <p>
                         <br>
