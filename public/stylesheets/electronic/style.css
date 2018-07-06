@@ -656,7 +656,7 @@ li.w3pages .dropdown-menu > li > a:hover{
 .agile_ecommerce_tab_left {
     padding-left: 0;
 	text-align: center;
-  height: 42em;
+  height: 37em;
 }
 .agile_ecommerce_tabs {
     padding: 2em 0 0;
@@ -697,6 +697,7 @@ li.w3pages .dropdown-menu > li > a:hover{
     font-size: 14px;
     color: #000;
     margin: 0;
+    margin-top: -2em !important;
     text-decoration: none;
     text-transform: capitalize;
     padding: .5em 1.5em;

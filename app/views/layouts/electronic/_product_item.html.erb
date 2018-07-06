@@ -8,7 +8,7 @@
 </script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <div class="col-md-4 agileinfo_new_products_grid" style="margin-bottom:3em">
-  <div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
+  <div class="agile_ecommerce_tab_left agileinfo_new_products_grid1" style="box-shadow: 0px 0px 15px 0px #D6D6D6;;">
     <div class="hs-wrapper hs-wrapper1 text-center">
       <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
       <% if product.img1_url.nil? %>
@@ -33,7 +33,7 @@
       <% else %>
           <%= image_tag(product.img4_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
       <% end %>
-      
+
       <div class="w3_hs_bottom w3_hs_bottom_sub">
         <ul>
           <li>
@@ -47,18 +47,18 @@
         </div>
       </div>
     </div>
-    <h5><a style="color:#000" class="myclass" href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h5>
+    <h5><a style="color:<%= @store.store_color %>" class="myclass" href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h5>
     <div class="simpleCart_shelfItem">
 
       <p>
-        <i class="item_price" style="font-weight:900"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></i>
+        <i class="item_price" style="font-size: 14px;font-weight:900"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></i>
       </p>
       <% if product.discount_status %>
-          <p>
-            <i class="item_price" style="font-weight:900;color: red;"><s><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></i>
+          <p style="margin-top:-1em">
+            <i class="item_price" style="font-size: 13px;font-weight:900;color: red;"><s><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></i>
           </p>
       <% else %>
-          <p>
+          <p style="margin-top:-1em">
             <br>
           </p>
       <% end %>
