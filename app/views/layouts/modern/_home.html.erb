@@ -8,7 +8,6 @@
 
 <div class="container">
   <div class="products">
-    <div class="container">
       <div class="col-md-12 product-model-sec">
         <% if @products.nil? %>
             <p class="text-center">This store does not have any active Products</p>
@@ -20,7 +19,6 @@
       </div>
 
       <div class="clearfix"></div>
-    </div>
   </div>
   <div class="row text-center">
   <a href="<%= all_path %>" class="modern-button">View More Products</a>
@@ -34,7 +32,6 @@
           <span style="color:<%= @store.store_color %> !important"> <%= category.name %> </span></h3><br><br>
         <div class="container">
           <div class="products">
-            <div class="container">
               <div class="col-md-12 product-model-sec">
                 <% @cat_products = Product.where(active:true,category_id:category.id).limit(3).order('id desc') %>
                 <% if !@cat_products.nil? %>
@@ -45,7 +42,6 @@
               </div>
 
               <div class="clearfix"></div>
-            </div>
           </div>
           <div class="row text-center">
           <a href="<%= product_category_path(category.id) %>" class="modern-button">View More from <%= category.name %></a>
