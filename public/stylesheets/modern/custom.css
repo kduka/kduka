@@ -265,7 +265,7 @@ b.caret {
 }
 .menu-grids.menulist1 ul {
     display: inline-block;
-    width: 44%;
+    /* width: 44%; */
 }
 ul.multi-column-dropdown:nth-child(3) {
 /*-- agileits --*/

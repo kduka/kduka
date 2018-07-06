@@ -358,7 +358,7 @@ i.fa.fa-shopping-bag.top_logo_agile_bag {
     padding: 0px 0;
 }
 .dropdown-menu.columns-3 {
-    min-width: auto;
+    min-width: 30em;
     padding: 30px 30px;
 }
 .multi-gd-img img{
@@ -1765,6 +1765,7 @@ a.single-item{
 ul.multi-column-dropdown li {
     list-style-type: none;
     line-height: 2.5em;
+    margin-bottom: 10px !important;
 }
 ul.multi-column-dropdown li a {
     text-decoration:none;
