@@ -1,9 +1,3 @@
-/*--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
 #st-1.st-has-labels .st-btn.st-remove-label > span {
     display: inline-block !important;
 }
@@ -12,6 +6,8 @@ html, body{
 	font-size: 100%;
 	background: #fff;
 	font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
 }
 body a {
 	text-decoration:none;
@@ -358,7 +354,7 @@ i.fa.fa-shopping-bag.top_logo_agile_bag {
     padding: 0px 0;
 }
 .dropdown-menu.columns-3 {
-    min-width: 30em;
+    min-width: auto;
     padding: 30px 30px;
 }
 .multi-gd-img img{
