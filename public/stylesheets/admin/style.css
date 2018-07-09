@@ -994,7 +994,9 @@ h2.inner,h3.inner {
 }
 .content {
     padding: 0em 2em 1em;
-		overflow-x: scroll;
+}
+.dataTables_wrapper{
+	overflow-x: scroll;
 }
 .demo-container {
     box-sizing: border-box;
