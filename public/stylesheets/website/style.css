@@ -296,7 +296,7 @@ h3.agileits-title {
 }
 .pricing_shadow{
   box-shadow: 0px 0px 15px 0px #D6D6D6;
-  min-height: 37em;
+  min-height: 40em;
   background: rgba(204,204,204,0.7);
   margin-bottom: 2em;
   transition: all 0.5s;
