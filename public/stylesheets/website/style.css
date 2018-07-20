@@ -45,7 +45,7 @@ body a:hover {
 /* Hide all steps by default: */
 .tab {
   display: none;
-  min-height: 15em;
+  min-height: 18em;
   transition: all 0.5s;
 }
 
@@ -81,7 +81,7 @@ body a:hover {
 /* Make circles that indicate the steps of the form: */
 .step {
   height: 10px;
-  width: 25%;
+  width: 50%;
   margin: -2px;
   background-color: #bbbbbb;
   border: none;
