@@ -75,6 +75,7 @@ body a:hover {
   background-color: #bbbbbb !important;
   border: 2px solid #bbbbbb !important;
   color:#fff !important;
+  display: none;
 }
 
 /* Make circles that indicate the steps of the form: */
