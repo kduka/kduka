@@ -111,6 +111,124 @@ next if item == '.' or item == '..' %>
 <!-- web fonts -->
 </head>
 <body class="cbp-spmenu-push">
+  <!--Signup Modal-->
+  <div id="signup_modal" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content light-box-info">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+        <div class="pop">
+          <h3> Store Signup Form</h3>
+          <div class="contact-grids">
+            <div class="inp agileits-inp">
+              <div id="success"></div>
+              <form id="regForm" action="#">
+                <!-- Circles which indicates the steps of the form: -->
+                <div style="margin-top:20px;margin-bottom:30px;">
+                 <h5 style="text-align:center !important;margin-bottom:-0.1em !important">Your Progress Bar</h5>
+                 <span class="step"></span>
+                 <span class="step"></span>
+                 <span class="step"></span>
+                 <span class="step"></span>
+                </div>
+                <div class="tab" style="display:block">
+                 <input required id="name" type="text" placeholder="Your name..." oninput="this.className = ''">
+                 <input required id="email" type="email" placeholder="Your Email..." oninput="this.className = ''">
+                 <input required id="phone" type="number" placeholder="Your Phone Number (e.g. 254712345678 )..." min="254700000000" max="254799999999" minlenth="12" oninput="this.className = ''">
+                </div>
+
+                <div class="tab">
+                 <input required id="store_name" type="text" placeholder="Your Store Name..." oninput="this.className = ''">
+                 <input required id="url" type="text" placeholder="Your Store Url" oninput="this.className = ''">
+                 <p class="text-center" style="font-size:10px">If you enter 'john', your store url will be john.kduka.co.ke</p>
+                </div>
+
+                <div class="tab">
+                 <p><input required type="password" placeholder="Password..." oninput="this.className = ''"></p>
+                 <p><input required type="password" placeholder="Password Confirmation..." oninput="this.className = ''"></p>
+                </div>
+                <div class="tab">
+                  <h3 style="color:#7aae42;text-transform:capitalize;padding-top:2em;text-align:center">You're all set Up.<br>Submit Your Details Now !</h3>
+                </div>
+
+                <div style="overflow:auto; margin-top:3em">
+                 <div style="text-align: center;">
+                   <button class="our_btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                   <button class="our_btn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                 </div>
+                </div>
+
+              </form>
+              <!-- <form action="#" method="post">
+                <input id="name" type="text" name="name" placeholder="Your store name" required="">
+                <input id="email" type="email" name="email" placeholder="Your Email" required="">
+                <input id="url" type="text" name="url" placeholder="Your Store Url" required="">
+                <input id="url" type="text" name="url" placeholder="Type the domain you want" required="">
+                <input id="url" type="text" name="url" placeholder="Type your domain" required="">
+                <input id="domain" type="text" name="domain" placeholder="Your Domain" required=""><br><br>
+
+                <input style="width:100% !important;" id="pay" type="submit" value="SIGN UP!">
+              </form> -->
+            </div>
+            <div class="clearfix"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--//Signup Modal-->
+  <!--Login Modal-->
+  <div id="login_modal" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content light-box-info">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+        <div class="pop">
+          <h3>Store Login Form</h3>
+          <div class="contact-grids">
+            <div class="inp agileits-inp">
+              <div id="success"></div>
+              <form action="#" method="post">
+                <input id="email" type="email" name="email" placeholder="Your Email" required="">
+                <input id="password" type="password" name="domain" placeholder="Your Password" required=""><br><br>
+
+                <input style="width:100% !important;" id="pay" type="submit" value="Login">
+              </form>
+            </div>
+            <div class="clearfix"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--//Login Modal-->
+  <!--Buy Modal-->
+  <div id="buy_modal" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content light-box-info">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+        <div class="pop">
+          <h3>Purchase Premium Package</h3>
+          <div class="contact-grids">
+            <div class="inp agileits-inp">
+              <div id="success"></div>
+              <form action="#" method="post">
+                <input id="name" type="text" name="name" placeholder="Your store name" required="">
+                <input id="email" type="email" name="email" placeholder="Your Email" required="">
+                <input id="url" type="text" name="url" placeholder="Your Store Url" required="">
+                <input id="url" type="text" name="url" placeholder="Type the domain you want" required="">
+                <input id="url" type="text" name="url" placeholder="Type your domain" required="">
+                <input id="domain" type="text" name="domain" placeholder="Your Domain" required=""><br><br>
+
+                <input style="width:100% !important;" id="pay" type="submit" value="CHECKOUT">
+              </form>
+            </div>
+            <div class="clearfix"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--//Buy Modal-->
+
 	<!-- banner -->
 	<div class="banner" id="home">
     <div class="header-left" style="margin-left:1em">
@@ -134,8 +252,10 @@ next if item == '.' or item == '..' %>
 							<li><a href="#features" class="scroll"><i class="fa fa-check"></i> Features</a></li>
               <li><a href="#pricing" class="scroll"><i class="fa fa-money"></i> Pricing</a></li>
 							<li><a href="#contact" class="scroll"><i class="fa fa-envelope"></i> Contact</a></li>
-              <li><a href="<%= new_store_registration_path %>"><i class="fa fa-edit"></i> Sign Up</a></li>
-              <li><a href="<%= new_store_session_path %>"><i class="fa fa-sign-in"></i> Login</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#signup_modal"><i class="fa fa-edit"></i> Sign Up</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#login_modal"><i class="fa fa-sign-in"></i> Login</a></li>
+              <!-- <li><a href="<%= new_store_registration_path %>"><i class="fa fa-edit"></i> Sign Up</a></li> -->
+              <!-- <li><a href="<%= new_store_session_path %>"><i class="fa fa-sign-in"></i> Login</a></li> -->
               <li><a target="_blank" href="http://www.kduka.co.ke/help"><i class="fa fa-question-circle"></i> Help</a></li>
 						</ul>
 					</nav>
@@ -192,7 +312,7 @@ next if item == '.' or item == '..' %>
             font-size: 1.5em;
             text-decoration: none;
           }
-          .my_new_button:hover{
+          .my_new_button:hover,.my_new_button:focus{
             background:#fff;
             color:#7AAE42 !important;
           }
@@ -201,7 +321,8 @@ next if item == '.' or item == '..' %>
             color:#7AAE42 !important;
           }
           </style>
-          <a href="<%= new_store_registration_path %>" class="my_new_button"><i class="fa fa-edit"></i> Let's Start</a>
+          <!-- <a href="<%= new_store_registration_path %>" class="my_new_button"><i class="fa fa-edit"></i> Let's Start</a> -->
+          <a href="#" data-toggle="modal" data-target="#signup_modal" class="my_new_button"><i class="fa fa-edit"></i> Let's Start</a>
           <BR>
           <a style="font-weight: 600;color: #7AAE42;" target="_blank" href="http://www.kduka.co.ke/help"> NEED SOME HELP?</a>
         </div>
@@ -357,11 +478,13 @@ next if item == '.' or item == '..' %>
 			<p>You can log in to your store(website). If you don't have a store(website) you can create one below. If you need help please <a style="padding: 0em 0em !important;border: 0px;color:#7AAE42;font-size: 20px !important;text-decoration:underline" target="_blank" href="http://www.kduka.co.ke/help">click here</a></p>
       <div class="col-md-6" style="margin-bottom:2em">
         <!-- <p>Sign Up!</p> -->
-        <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a>
+        <!-- <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a> -->
+        <a style="width:95%;margin-left:auto;margin-right:auto" href="#" data-toggle="modal" data-target="#signup_modal" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a>
       </div>
       <div class="col-md-6" style="margin-bottom:2em">
         <!-- <p>Login</p> -->
-			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
+			     <!-- <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a> -->
+           <a style="width:95%;margin-left:auto;margin-right:auto" href="#" data-toggle="modal" data-target="#login_modal" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
       </div>
 
 		</div>
@@ -473,34 +596,8 @@ next if item == '.' or item == '..' %>
 <!--          <a href="#" data-toggle="modal" data-target="#buy_modal" class="buy_btn"><i class="fa fa-shopping-cart"></i> Buy Now</a>-->
         </div>
       </div>
-      <!--Buy Modal-->
-      <div id="buy_modal" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
-				<div class="modal-dialog modal-md">
-					<div class="modal-content light-box-info">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-						<div class="pop">
-							<h3>Purchase Premium Package</h3>
-              <div class="contact-grids">
-								<div class="inp agileits-inp">
-                  <div id="success"></div>
-									<form action="#" method="post">
-                    <input id="name" type="text" name="name" placeholder="Your store name" required="">
-                    <input id="email" type="email" name="email" placeholder="Your Email" required="">
-										<input id="url" type="text" name="url" placeholder="Your Store Url" required="">
-										<input id="url" type="text" name="url" placeholder="Type the domain you want" required="">
-										<input id="url" type="text" name="url" placeholder="Type your domain" required="">
-										<input id="domain" type="text" name="domain" placeholder="Your Domain" required=""><br><br>
 
-										<input style="width:100% !important;" id="pay" type="submit" value="CHECKOUT">
-									</form>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-      <!--//Buy Modal-->
+
     </div>
   </div>
   <!--//Pricing End-->

@@ -31,6 +31,78 @@ ul, label {
 body a:hover {
     text-decoration: none;
 }
+
+/*--Signup Form Start--*/
+#regForm {
+
+}
+
+/* Mark input boxes that gets an error on validation: */
+.invalid{
+  background-color: #ffdddd !important;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+  min-height: 15em;
+  transition: all 0.5s;
+}
+
+.our_btn {
+  background-color: #7aae42;
+  color: #ffffff;
+  border: 2px solid #7aae42;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.5s;
+  min-width: 6em;
+  border-radius: 10px;
+}
+
+.our_btn:hover {
+  background-color: #fff;
+  color: #7aae42;
+  border: 2px solid #7aae42;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+#prevBtn {
+  background-color: #bbbbbb !important;
+  border: 2px solid #bbbbbb !important;
+  color:#fff !important;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 10px;
+  width: 25%;
+  margin: -2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 0%;
+  display: inline-block;
+  opacity: 0.4;
+  transition: all 0.5s;
+}
+
+.step.active {
+  opacity: 0.4;
+  background-color: #bbbbbb;
+  transition: all 0.5s;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #7aae42;
+  opacity: 1;
+}
+/*--//Signup Form End--*/
+
 .buy_btn{
   bottom: 0;
   font-weight: 600;
@@ -887,7 +959,7 @@ button.close {
     text-align: left;
 }
 
-.inp input[type="text"], .inp input[type="email"], .inp textarea {
+.inp input[type="text"], .inp input[type="email"], .inp input[type="password"], .inp input[type="number"], .inp textarea {
     outline: none;
     padding: 13px 10px;
     border: 1px solid #dadada;
@@ -902,6 +974,7 @@ button.close {
     -moz-border-radius: 5px;
     -o-border-radius: 5px;
     -ms-border-radius: 5px;
+    text-align: center;
 }
 
 .inp input[type="email"] {
