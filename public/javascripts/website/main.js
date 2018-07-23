@@ -2,9 +2,7 @@
  * Created by root on 11/2/17.
  */
 
-/*--Start Signup JS--*/
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the crurrent tab
+
 
 function showTab(n) {
   // This function will display the specified tab of the form...
@@ -77,13 +75,32 @@ function fixStepIndicator(n) {
 }
 /*--//End Signup JS--*/
 
+
+
 $(function () {
+
+    $("#sign").click(function () {
+       $.ajax({
+           url:'/stores/signup',
+           method:'get',
+           success:function (e) {
+               $("#signup_modal").html(e);
+           }
+       })
+    });
+
+    /*--Start Signup JS--*/
+    var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the crurrent tab
+
+    //alert('script');
 
     $("#sendmail").click(function (e) {
 
 
         e.preventDefault();
-        name = $("#name").val();
+
+        thename = $("#name").val();
         email = $("#email").val();
         subject = $("#subject").val();
         message = $("#message").val();
@@ -92,7 +109,7 @@ $(function () {
             url: '/home/web_mail',
             method: 'post',
             data: {
-                name: name,
+                name: thename,
                 email: email,
                 subject: subject,
                 message: message
