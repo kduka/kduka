@@ -1,58 +1,98 @@
-<div class="skil"><br>
   <script>
   $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
   });
   </script>
-<h1 style="text-align:center">Social Media Settings</h1><br>
-<%= form_for :store, :url => {controller:'stores', action:'update_social'}, method:'put' do |f|%>
+<div class="content_bottom" style="margin-top:2em">
 
-<div class="form-group">
-      <%= f.label "Facebook Link" %>
-      <%= f.text_field :facebook, class:'form-control'%>
-      <a data-toggle="tooltip" data-placement="right" title="This is the link to your facebook page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+<h3 style="color:#7aae42"><i class="fa fa-users"></i> Edit Social Media Settings</h3>
+<div class="xs">
+      <div class="tab-content">
+     <div class="tab-pane active" id="horizontal-form">
+       <%= form_for :store, :url => {controller:'stores', action:'update_social'}, method:'put' do |f|%>
+         <div class="form-group">
+           <label for="facebook" class="col-sm-2 control-label">Facebook Link</label>
+           <div class="col-sm-8">
+             <%= f.text_field :facebook, class:'form-control1', id:'facebook',placeholder:'Facebook Link' %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the link to your Facebook page">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="instagram" class="col-sm-2 control-label">Instagram Link</label>
+           <div class="col-sm-8">
+             <%= f.text_field :instagram, class:'form-control1', id:'instagram',placeholder:'Instagram Link' %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the link to your Insagram page">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="twitter" class="col-sm-2 control-label">Twitter Link</label>
+           <div class="col-sm-8">
+             <%= f.text_field :twitter, class:'form-control1', id:'ywitter',placeholder:'Twitter Link' %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the link to your Twitter page">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="linkedin" class="col-sm-2 control-label">Linkedin Link</label>
+           <div class="col-sm-8">
+             <%= f.text_field :linkedin, class:'form-control1', id:'linkedin',placeholder:'Linkedin Link' %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the link to your Linkedin page">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="youtube" class="col-sm-2 control-label">Youtube Link</label>
+           <div class="col-sm-8">
+             <%= f.text_field :youtube, class:'form-control1', id:'youtube',placeholder:'Youtube Link' %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the link to your Youtube channel">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="pinterest" class="col-sm-2 control-label">Pinterest Link</label>
+           <div class="col-sm-8">
+             <%= f.text_field :pinterest, class:'form-control1', id:'pinterest',placeholder:'Pinterest Link' %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the link to your Pinterest page">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="vimeo" class="col-sm-2 control-label">Vimeo Link</label>
+           <div class="col-sm-8">
+             <%= f.text_field :vimeo, class:'form-control1', id:'vimeo',placeholder:'Vimeo Link' %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the link to your Vimeo channel">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+
+         <div class="form-group">
+           <label for="checkbox" class="col-sm-2 control-label"></label>
+           <div class="col-sm-8">
+             <button type="sumbit" class="kd_buttons"><i class="fa fa-save"></i> Save Social Media Settings</button>
+             <button type="reset" class="kd_reset"><i class="fa fa-refresh"></i> Load Prefilled</button>
+           </div>
+         </div>
+       <%end%>
+     </div>
+   </div>
+
 </div>
 
-
-<div class="form-group">
-      <%= f.label "Instagram Link" %>
-      <%= f.text_field :instagram, class:'form-control'%>
-      <a data-toggle="tooltip" data-placement="right" title="This is the link to your instagram page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-</div>
-
-
-<div class="form-group">
-      <%= f.label "Twitter Link" %>
-      <%= f.text_field :twitter, class:'form-control'%>
-      <a data-toggle="tooltip" data-placement="right" title="This is the link to your twitter page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-</div>
-
-<div class="form-group">
-      <%= f.label "LinkedIn Link" %>
-      <%= f.text_field :linkedin, class:'form-control'%>
-      <a data-toggle="tooltip" data-placement="right" title="This is the link to your linkedin page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-</div>
-
-<div class="form-group">
-      <%= f.label "Youtube Link" %>
-      <%= f.text_field :youtube, class:'form-control'%>
-      <a data-toggle="tooltip" data-placement="right" title="This is the link to your Youtube channel"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-</div>
-
-<div class="form-group">
-      <%= f.label "Pinterest Link" %>
-      <%= f.text_field :pinterest, class:'form-control'%>
-      <a data-toggle="tooltip" data-placement="right" title="This is the link to your pinterest page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-</div>
-
-
-<div class="form-group">
-      <%= f.label "Vimeo Link" %>
-      <%= f.text_field :vimeo, class:'form-control'%>
-      <a data-toggle="tooltip" data-placement="right" title="This is the link to your viemo channel"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-</div>
-<p></p>
-
-<p style="text-align:center"><%= f.submit 'Save Social Media Settings', class:'btn btn-success btn-lg' %>
-<% end %>
-</div>
+<div class="clearfix"> </div>
+  </div>

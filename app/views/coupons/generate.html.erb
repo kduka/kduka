@@ -1,104 +1,142 @@
-
-<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Percentage Discount</a></li>
-  <li><a data-toggle="tab" href="#menu1">Fixed Amount discount</a></li>
-</ul>
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
-<div class="tab-content">
-  <div id="home" class="tab-pane fade in active">
-    <h3>Percentage Discount</h3>
-    <div class="skil" style="margin-bottom: 2em;">
-      <h1 style="text-align:center">Generate Coupons (Mass Create)</h1>
 
-      <%= form_for :coupon, url:{controller:'coupons',action:'create_coupons'} do |f| %>
+<div class="content_bottom" style="margin-top:2em">
 
-          <div class="form-group">
-            <label>Number of Codes</label>
-            <input name="number" type="number" value="1" class="form-control" required="required"/>
-            <a data-toggle="tooltip" data-placement="right" title="This is the number of coupon codes that will be generated"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+<h3 style="color:#7aae42"><i class="fa fa-plus"></i> Generate Multiple Coupons</h3>
+ <div class="col-md-12 span_3"><br>
+   <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#percentage" style="color:#7aae42">Percentage Discount</a></li>
+      <li><a data-toggle="tab" href="#fixed" style="color:#7aae42">Fixed Amount Discount</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="percentage" class="tab-pane fade in active">
+        <h3>Percentage Discount</h3>
+        <%= form_for :coupon, url:{controller:'coupons',action:'create_coupons'} do |f| %>
+        <div class="form-group">
+          <label for="code" class="col-sm-2 control-label">Number of Codes</label>
+          <div class="col-sm-8">
+            <input class="form-control1" id="code" placeholder="Number of Codes" name="number" type="number" value="1" min="1" required="required">
           </div>
-
-          <div class="form-group">
-            <%= f.label "Number of Use for each" %>
-            <%= f.number_field :number_of_use, class:'form-control',required:'required' %>
-            <a data-toggle="tooltip" data-placement="right" title="This is the number of times each coupon will be put to use, after which they expire"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the number of coupon codes that will be generated">Help?</span></a>
           </div>
-
-          <div class="form-group">
-            <%= f.label :percentage %>
-            <%= f.number_field :percentage, class:'form-control',required:'required' %>
-            <a data-toggle="tooltip" data-placement="right" title="This is the percentage of the total amount that will be given as a discount"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="number_use" class="col-sm-2 control-label">Number of Use for Each</label>
+          <div class="col-sm-8">
+            <%= f.number_field :number_of_use, class:'form-control1',required:'required',id:'number_use',placeholder:'Number of Use for Each' %>
           </div>
-
-          <div class="form-group">
-            <%= f.label :expiry %>
-            <%= f.date_select :expiry, class:'form-control',required:'required' %>
-            <a data-toggle="tooltip" data-placement="right" title="This is the date at which the coupons will expire"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the number of use for each">Help?</span></a>
           </div>
-
-          <div class="form-group">
-            <%= f.label :active %>
-            <%= f.check_box :active %>
-            <a data-toggle="tooltip" data-placement="right" title="If you check this the coupon will be active"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="percentage1" class="col-sm-2 control-label">Percentage</label>
+          <div class="col-sm-8">
+            <%= f.number_field :percentage, class:'form-control1',required:'required',id:'percentage1',placeholder:'Percentage' %>
           </div>
-          <input type="hidden" name="type" value="percent">
-
-          <div class="actions" style="text-align:center">
-            <%= f.submit "Generate Coupons", class:'btn btn-primary btn-lg' %>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the percentage of the total amount that will be given as a discount">Help?</span></a>
           </div>
-      <% end %><br>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="expiry" class="col-sm-2 control-label">Expiry Date</label>
+          <div class="col-sm-8">
+            <%= f.date_select :expiry, class:'form-control1',required:'required',id:'expiry' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the date at which the coupon expires">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="percent_active" class="col-sm-2 control-label">Active</label>
+          <div class="col-sm-8">
+            <div class="checkbox-inline"><%= f.check_box :active,id:'percent_active' %> <label for="percent_active">Check this to Activate Coupon</label></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this the coupon will be active">Help?</span></a>
+          </div><br>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <button type="sumbit" class="kd_buttons"><i class="fa fa-save"></i> Save Coupon</button>
+          </div>
+        </div>
+        <%end%>
+      </div>
+
+
+      <div id="fixed" class="tab-pane fade">
+        <%= form_for :coupon, url:{controller:'coupons',action:'create_coupons'} do |f| %>
+        <h3>Fixed Amount Discount</h3>
+        <div class="form-group">
+          <label for="code_2" class="col-sm-2 control-label">Number of Codes</label>
+          <div class="col-sm-8">
+            <input name="number" type="number" value="1" min="1" class="form-control1" required="required" id="code_2" placeholder="Number of Codes"/>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the number of coupon codes that will be generated">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="number_use_2" class="col-sm-2 control-label">Number of Use for Each</label>
+          <div class="col-sm-8">
+            <%= f.number_field :number_of_use, class:'form-control1',required:'required',placeholder:'Number of Use for Each',id:'number_use_2' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the number of use for each">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="amount" class="col-sm-2 control-label">Amount(Kes)</label>
+          <div class="col-sm-8">
+            <%= f.number_field :amount, class:'form-control1',required:'required',id:'amount',placeholder:'Amount(Kes)' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount of money (Kenya Shillings) that will be given as a discount">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="expiry2" class="col-sm-2 control-label">Expiry Date</label>
+          <div class="col-sm-8">
+            <%= f.date_select :expiry, class:'form-control1',required:'required',id:'expiry2' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the date at which the coupon expires">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="amount_active" class="col-sm-2 control-label">Active</label>
+          <div class="col-sm-8">
+            <div class="checkbox-inline"><%= f.check_box :active, id:'amount_active' %> <label for="amount_active">Check this to Activate Coupon</label></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this the coupon will be active">Help?</span></a>
+          </div><br>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <button type="sumbit" class="kd_buttons"><i class="fa fa-save"></i> Save Coupon</button>
+          </div>
+        </div>
+        <%end%>
+      </div>
     </div>
 
+ </div>
+
+<div class="clearfix"> </div>
   </div>
-  <div id="menu1" class="tab-pane fade">
-    <h3>Fixed Amount Discount</h3>
-    <div class="skil" style="margin-bottom: 2em;">
-      <h1 style="text-align:center">Generate Coupons (Mass Create)</h1>
-
-      <%= form_for :coupon, url:{controller:'coupons',action:'create_coupons'} do |f| %>
-
-          <div class="form-group">
-            <label>Number of Codes</label>
-            <input name="number" type="number" value="1" class="form-control" required="required"/>
-            <a data-toggle="tooltip" data-placement="right" title="This is the number of coupon codes that will be generated"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-          </div>
-
-          <div class="form-group">
-            <%= f.label "Number of Use for each" %>
-            <%= f.number_field :number_of_use, class:'form-control',required:'required' %>
-            <a data-toggle="tooltip" data-placement="right" title="This is the number of times each coupon will be put to use, after which they expire"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :amount %>
-            <%= f.number_field :amount, class:'form-control',required:'required' %>
-            <a data-toggle="tooltip" data-placement="right" title="This is the amount of money (Kenya Shillings) that will be given as a discount"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :expiry %>
-            <%= f.date_select :expiry, class:'form-control',required:'required' %>
-            <a data-toggle="tooltip" data-placement="right" title="This is the date at which the coupons will expire"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :active %>
-            <%= f.check_box :active %>
-            <a data-toggle="tooltip" data-placement="right" title="If you check this the coupon will be active"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-          </div>
-
-          <input type="hidden" name="type" value="fixed">
-
-          <div class="actions" style="text-align:center">
-            <%= f.submit "Generate Coupons", class:'btn btn-primary btn-lg' %>
-          </div>
-      <% end %><br>
-    </div>
-
-  </div>
-
-</div>

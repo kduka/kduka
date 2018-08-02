@@ -1,45 +1,56 @@
+<div class="content_bottom" style="margin-top:2em">
 
-<div class="skil">
-  <div class="col-md-12">
-    <% if !@setup.blank? %>
-        <div style="margin-top:1em;border-radius: 0px !important;" class="alert alert-info">
-          <h3> Setup your store! </h3>
-          <br>
-          <% @setup.each do |k, m| %>
-              <p><%= "#{k}. " %><%= m.html_safe %></p>
-          <% end %>
-        </div>
-    <% end %>
+
+<h3 style="color:#7aae42"><i class="fa fa-list"></i> Your Categories</h3>
+ <div class="col-md-12 span_3">
+   <%= link_to new_category_path do %>
+     <button class="kd_buttons"><i class="fa fa-plus"></i> Add Category</button>
+   <% end %>
+   <p>Note: Featured categories are displayed on the homepage</p><br>
+  <div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
+    <table id="myTable" class="table datatables no-footer">
+      <thead>
+        <tr>
+        	<th>#</th>
+          <th>Name</th>
+          <th>Active</th>
+          <th>Options</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      	<% num = 1 %>
+        <% @categories.each do |category| %>
+          <tr>
+          	<td><%= num %>
+          	<td><%= category.name %></td>
+          	<td><%= category.active %></td>
+            <td>
+              <% if category.featured == true %>
+                <%= link_to category_unfeature_path(category),style:'color:orange' do %>
+                <i class="fa fa-close"></i> Remove From Featured
+                <%end%>
+              <% else %>
+                <%= link_to category_feature_path(category),style:'color:#06B216' do %>
+                <i class="fa fa-check"></i> Make Featured
+                <%end%>
+              <% end %> |
+              <%= link_to edit_category_path(category) do %>
+              <i class="fa fa-edit"></i> Edit
+              <%end%>
+            </td>
+            <td><%= link_to category_url(category.id), method: :delete, data: { confirm: 'Are you sure? This will delete all products in this category!' },style:'color:red' do %>
+              <i class="fa fa-trash"></i> Delete
+              <%end%>
+            </td>
+          </tr>
+          <% num = num+1 %>
+        <% end %>
+      </tbody>
+    </table>
+   </div>
+ </div>
+
+<div class="clearfix"> </div>
   </div>
-<h1 style="text-align:center">Categories</h1>
-  <h3 style="text-align:center">Featured categories are displayed on the homepage</h3>
-
-<table id="myTable" class="table datatables no-footer">
-  <thead>
-    <tr>
-    	<th>#</th>
-      <th>Name</th>
-      <th>Active</th>
-      <th></th>
-
-    </tr>
-  </thead>
-
-  <tbody>
-  	<% num = 1 %>
-    <% @categories.each do |category| %>
-      <tr>
-      	<td><%= num %>
-      	<td><%= category.name %></td>
-      	<td><%= category.active %></td>
-        <td> <% if category.featured == true %> <%= link_to 'Remove From Featured', category_unfeature_path(category),style:'color:orange' %> <% else %> <%= link_to 'Make Featured', category_feature_path(category),style:'color:#06B216' %> <% end %> | <%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Delete', category_url(category.id), method: :delete, data: { confirm: 'Are you sure? This will delete all products in this category!' },style:'color:red' %></td>
-      </tr>
-      <% num = num+1 %>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<p style="text-align:center"><%= link_to 'Add New Category', new_category_path, class:'btn btn-primary btn-lg' %></p>
-</div>

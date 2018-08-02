@@ -1,93 +1,99 @@
-<div class="skil">
-  <%= link_to "Download", stores_myorders_path(format: "xls"), class: 'btn btn-primary' %>
-  <hr>
-  <p id="notice">
-    <%= notice %>
-  </p>
+<div class="content_bottom" style="margin-top:2em">
 
-  <%
-    @store_amount = StoreAmount.where(store_id: current_store.id).first
-    if @store_amount.nil?
-      StoreAmount.create(amount: 0, actual:0, store_id: current_store.id)
-      @store_amount = StoreAmount.where(store_id: current_store.id).first
-    end
-  %>
-  <h4><span class="label label-success">Earnings: Ksh <%= @store_amount.amount %></span></h4> <h4><span class="label label-info">Total Orders : <%= @order.count %></span> </h4>
-  <br>
-  <br>
+<h3 style="color:#7aae42"><i class="fa fa-shopping-cart"></i> Your Orders</h3>
+ <div class="col-md-12 span_3">
+   <br>
+   <%= link_to stores_myorders_path(format: "xls") do %>
+    <button class="kd_buttons"><i class="fa fa-download"></i> Download</button>
+    <%end%>
+   <hr>
+   <p id="notice">
+     <%= notice %>
+   </p>
 
-  <% if !@order.blank? %>
-      <div style="overflow-x:scroll;">
-        <table id="myOrderTable" class="table">
-          <thead>
-          <tr>
-            <th>Reference</th>
-            <th>Order Date</th>
-            <th>Order Status</th>
-            <th>Subtotal</th>
-            <th>Tax</th>
-            <th>Shipping</th>
-            <th>Total</th>
-            <th>Number of Transactions</th>
-            <th>Amount Received</th>
+   <%
+     @store_amount = StoreAmount.where(store_id: current_store.id).first
+     if @store_amount.nil?
+       StoreAmount.create(amount: 0, actual:0, store_id: current_store.id)
+       @store_amount = StoreAmount.where(store_id: current_store.id).first
+     end
+   %>
+   <span class="label label-success">Earnings: Kes. <%= @store_amount.amount %></span>&nbsp;<span class="label label-info">Total Orders: <%= @order.count %></span><br><br>
+  <div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
+    <% if !@order.blank? %>
+          <table id="myOrderTable" class="table">
+            <thead>
+            <tr>
+              <th>Reference</th>
+              <th>Order Date</th>
+              <th>Order Status</th>
+              <th>Subtotal</th>
+              <th>Tax</th>
+              <th>Shipping</th>
+              <th>Total</th>
+              <th>Number of Transactions</th>
+              <th>Amount Received</th>
 
-          </tr>
-          </thead>
-          <tbody>
-          <% @order.each do |p|
+            </tr>
+            </thead>
+            <tbody>
+            <% @order.each do |p|
 
-            if p.read
+              if p.read
 
-              if p.order_status_id == 2 %>
-                      <tr style="color: orange">
-                  <% elsif p.order_status_id == 5 %>
-                      <tr style="color: red">
-                  <% elsif p.order_status_id == 3 %>
-                      <tr style="color: darkblue">
-                  <% elsif p.order_status_id == 6 %>
-                      <tr style="color: #7AAE42">
-                  <% end %>
-                  <td><%= link_to p.ref, store_order_path(p.ref) %></td>
-                  <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>
-                  <td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
-                  <td><%= p.subtotal %></td>
-                  <td><%= p.tax %></td>
-                  <td><%= p.shipping %></td>
-                  <td><%= p.total %></td>
-                  <td><%= p.number_of_transactions %></td>
-                  <td><%= p.amount_received %></td>
-                  </tr>
-              <% else
+                if p.order_status_id == 2 %>
+                        <tr style="color: orange">
+                    <% elsif p.order_status_id == 5 %>
+                        <tr style="color: red">
+                    <% elsif p.order_status_id == 3 %>
+                        <tr style="color: darkblue">
+                    <% elsif p.order_status_id == 6 %>
+                        <tr style="color: #7AAE42">
+                    <% end %>
+                    <td><%= link_to p.ref, store_order_path(p.ref) %></td>
+                    <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>
+                    <td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
+                    <td><%= p.subtotal %></td>
+                    <td><%= p.tax %></td>
+                    <td><%= p.shipping %></td>
+                    <td><%= p.total %></td>
+                    <td><%= p.number_of_transactions %></td>
+                    <td><%= p.amount_received %></td>
+                    </tr>
+                <% else
 
-                   if p.order_status_id == 2 %>
-                      <tr style="color: orange;font-weight: bold">
-                  <% elsif p.order_status_id == 5 %>
-                      <tr style="color: red;font-weight: bold">
-                  <% elsif p.order_status_id == 3 %>
-                      <tr style="color: darkblue;font-weight: bold">
-                  <% elsif p.order_status_id == 6 %>
-                      <tr style="color: #7AAE42;font-weight: bold">
-                  <% end %>
-                  <td><%= link_to p.ref, store_order_path(p.ref) %></td>
-                  <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>
-                  <td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
-                  <td><%= p.subtotal %></td>
-                  <td><%= p.tax %></td>
-                  <td><%= p.shipping %></td>
-                  <td><%= p.total %></td>
-                  <td><%= p.number_of_transactions %></td>
-                  <td><%= p.amount_received %></td>
-                  </tr>
-              <% end %>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
-  <% else %>
+                     if p.order_status_id == 2 %>
+                        <tr style="color: orange;font-weight: bold">
+                    <% elsif p.order_status_id == 5 %>
+                        <tr style="color: red;font-weight: bold">
+                    <% elsif p.order_status_id == 3 %>
+                        <tr style="color: darkblue;font-weight: bold">
+                    <% elsif p.order_status_id == 6 %>
+                        <tr style="color: #7AAE42;font-weight: bold">
+                    <% end %>
+                    <td><%= link_to p.ref, store_order_path(p.ref) %></td>
+                    <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>
+                    <td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
+                    <td><%= p.subtotal %></td>
+                    <td><%= p.tax %></td>
+                    <td><%= p.shipping %></td>
+                    <td><%= p.total %></td>
+                    <td><%= p.number_of_transactions %></td>
+                    <td><%= p.amount_received %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+            </tbody>
+          </table>
+    <% else %>
 
-      <p>
-        You dont have any Orders yet.
-      </p>
+        <p>
+          You dont have any Orders yet.
+        </p>
 
-  <% end %>
-</div>
+    <% end %>
+   </div>
+ </div>
+
+<div class="clearfix"> </div>
+  </div>

@@ -1,2 +1,23 @@
-<p>Actual Balance : Ksh <%= StoreAmount.where(store_id:current_store.id).first.actual %></p>
-<p>Available Balance : Ksh <%= StoreAmount.where(store_id:current_store.id).first.amount %></p>
+<div class="col-md-12 span_3" style="margin-top:1em">
+ <div class="col_2">
+  <div class="box_1">
+   <div class="col-md-6 col_1_of_2 span_1_of_2">
+          <a class="tiles_info">
+      <div class="tiles-head red1">
+          <div class="text-center">Actual Balance</div>
+      </div>
+      <div class="tiles-body red"><span style="color:white">Ksh <%= StoreAmount.where(store_id:current_store.id).first.actual %></span></div>
+   </a>
+   </div>
+   <div class="col-md-6 col_1_of_2 span_1_of_2">
+           <a class="tiles_info tiles_blue">
+      <div class="tiles-head tiles_kd">
+          <div class="text-center">Available Balance</div>
+      </div>
+      <div class="tiles-body kd_color">Ksh <%= StoreAmount.where(store_id:current_store.id).first.amount %></div>
+    </a>
+   </div>
+   <div class="clearfix"> </div>
+ </div>
+  </div>
+</div>

@@ -1,262 +1,245 @@
-<div class="skil">
-  <div class="row">
-    <div class="col-md-12">
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script>
-          google.charts.load('current', {'packages': ['line']});
-          google.charts.load('current', {'packages':['corechart']});
-          google.charts.setOnLoadCallback(drawChart);
-          google.charts.setOnLoadCallback(topseller);
-          google.charts.setOnLoadCallback(mostviewed);
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    google.charts.load('current', {'packages': ['line']});
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(topseller);
+    google.charts.setOnLoadCallback(mostviewed);
 
-          function mostviewed() {
+    function mostviewed() {
 
-              var data = google.visualization.arrayToDataTable([
-                  ['Product', 'Views'],
+        var data = google.visualization.arrayToDataTable([
+            ['Product', 'Views'],
 
-                  <%
-                    products = Product.where(store_id:current_store.id).order("viewed DESC").limit(6)
-                    products.each do |p| %>
-                    <%= "[\"#{p.name}\",#{p.viewed}],".html_safe %>
-                   <% end %>
-              ]);
-              var options = {
-                  title: 'Most Viewed Products',
-                  sliceVisibilityThreshold: 0,
-                  is3D:true,
-                  legend: {
-                      labeledValueText: 'both',
-                      textStyle: {
-                          fontSize: 12
-                      }
-                  },
-                  pieSliceText: 'value'
-              };
+            <%
+              products = Product.where(store_id:current_store.id).order("viewed DESC").limit(6)
+              products.each do |p| %>
+              <%= "[\"#{p.name}\",#{p.viewed}],".html_safe %>
+             <% end %>
+        ]);
+        var options = {
+            title: 'Most Viewed Products',
+            sliceVisibilityThreshold: 0,
+            is3D:true,
+            legend: {
+                labeledValueText: 'both',
+                textStyle: {
+                    fontSize: 12
+                }
+            },
+            pieSliceText: 'value'
+        };
 
-              var chart = new google.visualization.PieChart(document.getElementById('mostviewed'));
+        var chart = new google.visualization.PieChart(document.getElementById('mostviewed'));
 
-              chart.draw(data, options);
-          }
-          function topseller() {
+        chart.draw(data, options);
+    }
+    function topseller() {
 
-              var data = google.visualization.arrayToDataTable([
+        var data = google.visualization.arrayToDataTable([
 
-                  <%
-                  @o = Order.where(store_id:current_store.id,order_status_id:6).where(:complete_date => Time.now.beginning_of_month..Time.now.end_of_month)
-                  puts "ORDERS FOUND = #{@o.count}"
+            <%
+            @o = Order.where(store_id:current_store.id,order_status_id:6).where(:complete_date => Time.now.beginning_of_month..Time.now.end_of_month)
+            puts "ORDERS FOUND = #{@o.count}"
 
-                  orders = Hash.[]
+            orders = Hash.[]
 
 
-                  @o.each do |o|
-                  oi = o.order_items.all
-                  oi.each do |oi|
-                  if orders[oi.product_id].nil?
-                  orders[oi.product_id] = oi.quantity
-                  else
-                  new_quantity = orders[oi.product_id].to_i + oi.quantity
-                  orders[oi.product_id] = new_quantity
-                  end
-                  end
-                  end
+            @o.each do |o|
+            oi = o.order_items.all
+            oi.each do |oi|
+            if orders[oi.product_id].nil?
+            orders[oi.product_id] = oi.quantity
+            else
+            new_quantity = orders[oi.product_id].to_i + oi.quantity
+            orders[oi.product_id] = new_quantity
+            end
+            end
+            end
 
-                  %>
-                      ['Product','Number sold'],
-                 <% orders.each do |(p,n)| %>
-                 <%= "['#{Product.find(p).name}',#{n}],".html_safe %>
-                 <% end %>
+            %>
+                ['Product','Number sold'],
+           <% orders.each do |(p,n)| %>
+           <%= "['#{Product.find(p).name}',#{n}],".html_safe %>
+           <% end %>
 
-              ]);
+        ]);
 
-              var options = {
-                  title: 'Top sellers this month',
-                  sliceVisibilityThreshold: 0,
-                  is3D:true,
-                  legend: {
-                      labeledValueText: 'both',
-                      textStyle: {
-                          fontSize: 12
-                      }
-                  },
-                  pieSliceText: 'value'
-              };
+        var options = {
+            title: 'Top sellers this month',
+            sliceVisibilityThreshold: 0,
+            is3D:true,
+            legend: {
+                labeledValueText: 'both',
+                textStyle: {
+                    fontSize: 12
+                }
+            },
+            pieSliceText: 'value'
+        };
 
-              var chart = new google.visualization.PieChart(document.getElementById('topseller'));
+        var chart = new google.visualization.PieChart(document.getElementById('topseller'));
 
-              chart.draw(data, options);
-          }
+        chart.draw(data, options);
+    }
 
-          function drawChart() {
+    function drawChart() {
 
-              var data = new google.visualization.DataTable();
-              data.addColumn('date', 'Day');
-              data.addColumn('number', 'Ksh');
-
-
-              data.addRows([
-                  <%
-                  #order = Order.where('created_at >= ?',1.week.ago).where(store_id:current_store.id).distinct(:date_placed)
-                  order = Order.where('date_placed >= ?',1.week.ago).where(store_id:current_store.id,order_status_id: [5, 2, 3, 6]).distinct.pluck(:date_placed)
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Day');
+        data.addColumn('number', 'Ksh');
 
 
-                  if !order.nil?
-                  order.each do |c|%>
-                  [new Date(<%= c.strftime("%Y") %>, <%= c.strftime("%m").to_i - 1 %>, <%= c.strftime("%-d") %>), <% sale = Order.where(date_placed2:c.strftime("%Y-%m-%d"),store_id:current_store.id,order_status_id: [5, 2, 3, 6]); amount = 0; sale.each do |s| amount = amount + s.amount_received end %> <%= amount %>],
-                  <%
-                  end
-                  end
-                   %>
-              ]);
+        data.addRows([
+            <%
+            #order = Order.where('created_at >= ?',1.week.ago).where(store_id:current_store.id).distinct(:date_placed)
+            order = Order.where('date_placed >= ?',1.week.ago).where(store_id:current_store.id,order_status_id: [5, 2, 3, 6]).distinct.pluck(:date_placed)
 
-              if (data.getNumberOfRows() == 0) { // if you have no data, add a data point and make the series transparent
-                  data.addRow([new Date(), 0])
-                  var options = {
-                      0: {
-                          color: 'transparent'
-                      },
-                      hAxis: {
-                          title: 'Date'
-                      },
-                      vAxis: {
-                          title: 'Sales'
-                      }
-                  }
-              }else {
-                  var options = {
-                      hAxis: {
-                          title: 'Date'
-                      },
-                      vAxis: {
-                          title: 'Sales'
-                      }
-                  };
-              }
 
-              var chart = new google.charts.Line(document.getElementById('chart_div'));
+            if !order.nil?
+            order.each do |c|%>
+            [new Date(<%= c.strftime("%Y") %>, <%= c.strftime("%m").to_i - 1 %>, <%= c.strftime("%-d") %>), <% sale = Order.where(date_placed2:c.strftime("%Y-%m-%d"),store_id:current_store.id,order_status_id: [5, 2, 3, 6]); amount = 0; sale.each do |s| amount = amount + s.amount_received end %> <%= amount %>],
+            <%
+            end
+            end
+             %>
+        ]);
 
-              chart.draw(data, google.charts.Line.convertOptions(options));
-          }
-      </script>
-    </div>
+        if (data.getNumberOfRows() == 0) { // if you have no data, add a data point and make the series transparent
+            data.addRow([new Date(), 0])
+            var options = {
+                0: {
+                    color: 'transparent'
+                },
+                hAxis: {
+                    title: 'Date'
+                },
+                vAxis: {
+                    title: 'Sales'
+                }
+            }
+        }else {
+            var options = {
+                hAxis: {
+                    title: 'Date'
+                },
+                vAxis: {
+                    title: 'Sales'
+                }
+            };
+        }
 
-    <div class="col-md-12">
-      <% if can_be_active %>
-          <div style="margin-top:1em;border-radius: 0px !important;" class="alert alert-success">
-            <a style='text-decoration:none;' href='<%= stores_active_path %>'>1. Activate your
-              Store!</a>
+        var chart = new google.charts.Line(document.getElementById('chart_div'));
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+</script>
+
+<% if !@products.blank? %>
+<div class="col_3">
+
+    <div class="col-md-4 widget widget1">
+      <div class="r3_counter_box">
+              <i class="pull-left fa fa-users icon-rounded"></i>
+              <div class="stats">
+                <h5><strong><%= @visitors.count rescue nil %></strong></h5>
+                <span>Website Visitors</span>
+              </div>
           </div>
-      <% end %>
     </div>
-
-    <div class="col-md-12">
-      <% if !@important.blank? %>
-          <div style="margin-top:1em;font-family:'Roboto', sans-serif;border-radius: 0px !important;" class="alert alert-warning">
-            <h3> You need to setup the following before you can activate your store </h3>
-            <% @important.each do |k, m| %>
-                <p><%= "#{k}. " %><%= m.html_safe %></p>
-            <% end %>
+    <div class="col-md-4 widget widget1">
+      <div class="r3_counter_box">
+              <i class="pull-left fa fa-money user2 icon-rounded"></i>
+              <div class="stats">
+                <h5><strong>Kes. <%= StoreAmount.where(store_id: current_store.id).first.amount rescue 0 %></strong></h5>
+                <span>Available Balance</span>
+              </div>
           </div>
-      <% end %>
     </div>
-
-    <div class="col-md-12">
-      <% if !@setup.blank? %>
-          <div style="margin-top:1em;border-radius: 0px !important;" class="alert alert-info">
-            <h3> Setup your store! </h3>
-            <br>
-              <% @setup.each do |k, m| %>
-                  <p><%= "#{k}. " %><%= m.html_safe %></p>
-              <% end %>
+    <div class="col-md-4 widget">
+      <div class="r3_counter_box">
+          <a href="<%= products_manage_path %>" style="text-decoration:none !important">
+              <i class="pull-left fa fa-money dollar1 icon-rounded"></i>
+              <div class="stats">
+                <h5><strong>Kes. <%= StoreAmount.where(store_id: current_store.id).first.lifetime_earnings rescue 0 %></strong></h5>
+                <span>Total Earnings</span>
+              </div>
+              </a>
           </div>
-      <% end %>
-    </div>
+     </div>
+    <div class="clearfix"> </div>
+</div>
 
+<% else %>
 
-  </div>
+    <h3 style="color:#7aae42">You dont have any Products in this store yet</h3>
 
-  <br>
-  <% if !@products.blank? %>
-  <div class="row">
+<% end %>
+
+<div class="col-md-12 span_3">
+  <div class="col_2">
     <div id="chart_div"></div>
-    <div class=" col-md-4">
-      <div class="col-md-6 top-content" style="text-align:center">
-        <h5>Website Visitors</h5>
-        <label style="color: #7AAE42"><%= @visitors.count rescue nil %></label><br>
-      </div>
-
-    </div>
-  <div class=" col-md-4">
-    <div class="col-md-6 top-content" style="text-align:center">
-      <h5>Available Balance</h5>
-      <label style="color: #7AAE42">Ksh: <%= StoreAmount.where(store_id: current_store.id).first.amount rescue 0 %></label><br>
-    </div>
-
   </div>
-  <div class=" col-md-4">
-    <a href="<%= products_manage_path %>">
-      <div class="col-md-12 top-content">
-        <h5>Total Earnings</h5>
+</div>
+<div class="col-md-12 span_3">
+<div class="col_2" style="min-height:18em">
+  <div id="topseller" style="min-height:17em" class="content-top-1 col-md-6"></div>
+  <div id="mostviewed" style="min-height:17em" class="content-top-1 col-md-6"></div>
+</div>
+</div>
+<div class="col-md-12 span_3" style="margin-top:1em">
 
-        <label style="color: #7AAE42">Ksh: <%= StoreAmount.where(store_id: current_store.id).first.lifetime_earnings rescue 0 %></label>
-      </div>
-
-      <div class="clearfix"></div>
-    </a>
-  </div>
-  </div>
-  <div class="row">
-  <div id="topseller" class="content-top-1 col-md-6"></div>
-  <div id="mostviewed" class="content-top-1 col-md-6"></div>
-  </div>
-  <div class="container-fluid" style="margin-bottom:3em"></div>
-
-
-
-      <div style="overflow-x:scroll;">
-        <h4 style="color: #7AAE42;font-weight: bold"> Your Stock </h4>
-        <br>
-        <table id="myProductTable" class="table">
-          <thead>
-          <tr>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Active</th>
-            <th>Category</th>
-
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @products.each do |p| %>
-              <tr>
-                <% if p.quantity < 1 %>
-                    <td><%= p.name %>
-                      <a data-toggle="tooltip" data-placement="right" title="You have run out of stock for this item"><span class="label label-danger">Out of Stock</span></a>
-                    </td>
-                <% elsif p.quantity < 10 %>
-                    <td><%= p.name %>
-                      <a data-toggle="tooltip" data-placement="right" title="Your current stock is running low"><span class="label label-warning">Low</span></a>
-                    </td>
-                <% else %>
-                    <td><%= p.name %></td>
-                <% end %>
-                <td><%= p.quantity %></td>
-                <td><%= p.price %></td>
-                <td><%= p.active %></td>
-                <td><%= Category.find(p.category_id).name rescue nil %></td>
-                <td><%= link_to "Show", store_product_path(p.store_id, p), style: "color:#7AAE42;text-decoration: none;" %>
-                  |
-                  <span><%= link_to "Delete", store_product_path(p.store_id, p), method: 'delete', confirm: "Are you Sure you want to delete this product?", style: "color: red;text-decoration: none;" %></span>
-                </td>
-              </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
-  <% else %>
-
-      <h3 style="font-family: 'Roboto', sans-serif;">You dont have any Products in this store yet</h3>
-
+</div>
+<div class="content_bottom" style="margin-top:2em">
+<h3 style="color:#7aae42">Your Stock</h3>
+<div class="col-md-12 span_3">
+<div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
+<table id="myProductTable" class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Active</th>
+    <th>Category</th>
+    <th>Show</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @products.each do |p| %>
+      <tr>
+        <% if p.quantity < 1 %>
+            <td><%= p.name %>
+              <a data-toggle="tooltip" data-placement="right" title="You have run out of stock for this item"><span class="label label-danger">Out of Stock</span></a>
+            </td>
+        <% elsif p.quantity < 10 %>
+            <td><%= p.name %>
+              <a data-toggle="tooltip" data-placement="right" title="Your current stock is running low"><span class="label label-warning">Low</span></a>
+            </td>
+        <% else %>
+            <td><%= p.name %></td>
+        <% end %>
+        <td><%= p.quantity %></td>
+        <td><%= p.price %></td>
+        <td><%= p.active %></td>
+        <td><%= Category.find(p.category_id).name rescue nil %></td>
+        <td>
+          <%= link_to store_product_path(p.store_id, p), style: "color:#7AAE42;" do %>
+          <i class="fa fa-search"></i> Show
+          <%end%>
+        </td>
+        <td>
+          <%= link_to store_product_path(p.store_id, p), method: 'delete', confirm: "Are you Sure you want to delete this product?", style: "color: red;" do %>
+          <i class="fa fa-trash"></i> Delete
+          <%end%>
+        </td>
+      </tr>
   <% end %>
+  </tbody>
+</table>
+ </div>
+</div>
+
+<div class="clearfix"> </div>
 </div>

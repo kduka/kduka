@@ -1,93 +1,95 @@
-<div class="skil">
-<div class="catalog">
-  <div id="tabs" class="tabs">
-    <div class="graph">
-  <nav>
-    <script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    </script>
-			<ul>
-				<li class="tab-current"><a href="#section-1"><span>Choose Theme</span></a></li>
-				<li><a href="#section-2"><span>Choose Theme Color</span></a></li>
-        <li><a href="#section-3"><span>Choose Store Font</span></a></li>
-			</ul>
-	</nav>
-  <div class="content tab">
-<section id="section-1" class="content-current">
-<div class="row">
-  <%= form_for :store, :url => {controller: 'stores', action: 'update_layout'}, method: 'put' do |f| %>
-      <% @layouts.each do |l| %>
-          <div id="<%= l.name %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" style="width:90% !important;margin-left:auto;margin-right:auto">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title" style="text-align:center"><%= l.name%></h4>
-                </div>
-                <div class="modal-body">
-                  <%= image_tag(l.preview_url.to_s,style:'width:100% !important') %>
-                </div>
-                <div class="modal-footer" style="text-align:center">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<div class="content_bottom" style="margin-top:2em">
+
+<h3 style="color:#7aae42"><i class="fa fa-desktop"></i> Themes</h3>
+ <div class="col-md-12 span_3"><br>
+   <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#theme_tab" style="color:#7aae42">Choose Theme</a></li>
+      <li><a data-toggle="tab" href="#color_tab" style="color:#7aae42">Choose Theme Color</a></li>
+      <li><a data-toggle="tab" href="#font_tab" style="color:#7aae42">Choose Store Font</a></li>
+    </ul>
+    <%= form_for :store, :url => {controller: 'stores', action: 'update_layout'}, method: 'put' do |f| %>
+    <div class="tab-content">
+      <div id="theme_tab" class="tab-pane fade in active">
+        <h3>Store Theme</h3>
+        <% @layouts.each do |l| %>
+            <div id="<%= l.name %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" style="width:90% !important;margin-left:auto;margin-right:auto">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align:center"><%= l.name%></h4>
+                  </div>
+                  <div class="modal-body">
+                    <%= image_tag(l.preview_url.to_s,style:'width:100% !important') %>
+                  </div>
+                  <div class="modal-footer" style="text-align:center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
+            <div style="margin-top:1em" class="col-md-4 text-center">
+              <a data-toggle="modal" href="#<%= l.name %>">
+              <div style="min-height: 200px;border-style: solid;border-color:#7AAE42;margin:3px;background:url('<%= l.preview_url(:thumb).to_s %>');background-size: contain;background-repeat: no-repeat;"></div>
+              </a>
+              <label>
+                <% if l.id == @store.layout_id %>
+                    <input name="layout" type="radio" value="<%= l.id %>" checked> <span style="font-weight:500"><%= l.d_name %></span>
+                <% else %>
+                    <input name="layout" type="radio" value="<%= l.id %>"> <span style="font-weight:500"><%= l.d_name %></span>
+                <% end %>
+              </label>
+            </div>
+        <% end %>
+        <br><br>
+      </div>
+      <div id="color_tab" class="tab-pane fade">
+        <h3>Theme Color</h3>
+        <div class="form-group">
+          <label for="color" class="col-sm-2 control-label">Color</label>
+          <div class="col-sm-8">
+            <%= f.text_field :store_color, :class => 'form-control1 colorpicker',placeholder:'Theme Color',id:'color' %>
           </div>
-          <div style="margin-top:1em" class="col-md-4 text-center">
-            <a data-toggle="modal" href="#<%= l.name %>">
-            <div style="min-height: 200px;border-style: solid;border-color:#7AAE42;margin:3px;background:url('<%= l.preview_url(:thumb).to_s %>');background-size: contain;background-repeat: no-repeat;"></div>
-            </a>
-            <label>
-              <% if l.id == @store.layout_id %>
-                  <input name="layout" type="radio" value="<%= l.id %>" checked> <%= l.d_name %>
-              <% else %>
-                  <input name="layout" type="radio" value="<%= l.id %>"> <%= l.d_name %>
-              <% end %>
-            </label>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This color will appear in your store">Help?</span></a>
           </div>
-      <% end %>
-      <br><br>
-    </div>
-    </section>
-    <section id="section-2">
-      <div class="row">
-          <p></p>
-          <div class="form-group">
-            Store Color
-            <%= f.text_field :store_color, :class => 'form-control colorpicker' %>
-            <a data-toggle="tooltip" data-placement="right" title="This color will appear in your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-          </div>
+          <div class="clearfix"></div>
           <br>
-          <div id="clrbx" style="height:250px;width:250px;padding:1em;border-style:solid;border-color:<%= @store.store_color %>;background-color:<%= @store.store_color %>" class="backcolor"></div>
-          <br><br>
-        </div>
-        </section>
-      <section id="section-3">
-        <div class="row">
-
-          <div class="col-md-6  form-group">
-            Store Font
-            <%= f.select :store_font, options_from_collection_for_select(Font.all, 'name','name',@store.store_font),{:include_blank => 'Default'} ,{:class=>'form-control'} %>
-            <a data-toggle="tooltip" data-placement="right" title="This will appear as your store's main font"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
+          <label for="focusedinput" class="col-sm-2 control-label">Color View</label>
+          <div class="col-sm-10">
+            <div id="clrbx" style="height:250px;width:250px;padding:1em;border-style:solid;border-color:<%= @store.store_color %>;background-color:<%= @store.store_color %>" class="backcolor"></div><br><br><br>
           </div>
-          <div class="col-md-6" id="fntbx">
-            <b>Preview</b>
-            <br>
+        </div>
+      </div>
+      <div id="font_tab" class="tab-pane fade">
+        <h3>Store Font</h3>
+        <div class="form-group">
+          <label for="store_store_font" class="col-sm-2 control-label">Store Font</label>
+          <div class="col-sm-4">
+            <%= f.select :store_font, options_from_collection_for_select(Font.all, 'name','name',@store.store_font),{:include_blank => 'Default'} ,{:class=>'form-control1'} %>
+          </div>
+          <div class="col-sm-4" id="fntbx">
+            <b>Preview</b><br>
             <span style="font-family: <%= @store.store_font %>" class="change_font">The quick brown fox jumps over the lazy dog</span>
           </div>
-          <br><br>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will appear as your store's main font">Help?</span></a>
+          </div>
         </div>
-      </section>
       </div>
+    </div><br><br>
+    <div class="form-group">
+      <div class="col-sm-12" style="margin-top:2em">
+        <button type="sumbit" class="kd_buttons"><i class="fa fa-save"></i> Save Theme Details</button>
+      </div>
+    </div>
+    <% end %>
+ </div>
 
-          <p style="text-align:center"><%= f.submit 'Save Layout Details', class: 'btn btn-primary btn-lg' %></p>
-  <% end %>
-</div>
-</div>
-</div>
-<script>
-			new CBPFWTabs( document.getElementById( 'tabs' ) );
-</script>
-</div>
+<div class="clearfix"> </div>
+  </div>

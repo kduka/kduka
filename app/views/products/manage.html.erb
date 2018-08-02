@@ -1,49 +1,72 @@
-<div class="skil">
-  <%= link_to "Add Product", new_store_product_path(@store.id), class:'btn btn-primary' %>
-  <%= link_to "Download", products_allproducts_path(format: "xls"), class: 'btn btn-primary' %>
-<hr>
-<% if !@categories.blank? %>
-<h3><strong>Total Products : <%= @product.count rescue nil %></strong></h3>
-<% if !@product.blank? %>
-<table id="data-tables" class="table datatables no-footer">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Active</th>
-    <th>Category</th>
-    <th>Stock</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @product.each do |p| %>
-  <tr>
-    <td><%= p.name %></td>
-    <td><%= p.price %></td>
-    <td><%= p.active %></td>
-    <td><%= Category.find(p.category_id).name rescue nil %></td>
-    <td><%= p.quantity %></td>
-    <td><%= link_to "Show", store_product_path(p.store_id,p),style:'color:#06b216'%> | <%= link_to "Edit", edit_store_product_path(p.store_id,p)%> | <span style="color: red;text-decoration: none;"><%= link_to "Delete", store_product_path(p.store_id,p), method:'delete', confirm:"Are you Sure you want to delete this product?", style:'color:red;'%></span></td>
-  </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="content_bottom" style="margin-top:2em">
 
-    <% else %>
-          <div class="text-center">
-          <br><br>
+<h3 style="color:#7aae42"><i class="fa fa-gift"></i> Your Products</h3>
+ <div class="col-md-12 span_3">
+   <%= link_to new_store_product_path(@store.id), style:'text-decoration:none' do %>
+   <button class="kd_buttons"><i class="fa fa-plus"></i> Add Product</button>
+   <%end%>
+   <%= link_to  products_allproducts_path(format: "xls"), style:'text-decoration:none' do %>
+   <button class="kd_buttons"><i class="fa fa-download"></i> Download</button>
+   <%end%><br>
 
-    <p style="color: orange;font-size: 25px;">You dont have any Products in this store yet</p>
-          <br><br>
+  <div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
+    <% if !@categories.blank? %>
+    <h3><strong>Total Products : <%= @product.count rescue nil %></strong></h3>
+    <% if !@product.blank? %>
+    <table id="myTable" class="table datatables no-footer">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Active</th>
+        <th>Category</th>
+        <th>Stock</th>
+        <th>Options</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @product.each do |p| %>
+      <tr>
+        <td><%= p.name %></td>
+        <td><%= p.price %></td>
+        <td><%= p.active %></td>
+        <td><%= Category.find(p.category_id).name rescue nil %></td>
+        <td><%= p.quantity %></td>
+        <td><%= link_to store_product_path(p.store_id,p),style:'color:#06b216' do%>
+          <i class="fa fa-search"></i> Show
+          <%end%> |
+          <%= link_to  edit_store_product_path(p.store_id,p) do %>
+          <i class="fa fa-edit"></i> Edit
+          <%end%>
+        </td>
+        <td><span style="color: red;text-decoration: none;"><%= link_to store_product_path(p.store_id,p), method:'delete', confirm:"Are you Sure you want to delete this product?", style:'color:red;' do %>
+          <i class="fa fa-trash"></i> Delete
+        <%end%></span></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
 
-          <%= link_to "Add Product", new_store_product_path(current_store.id), class:'btn btn-primary',style:'background-color:#06B216 !important;border-color:#06B216 !important' %>
+        <% else %>
+              <div class="text-center">
+              <br><br>
 
-    <% end %>
+        <p style="color: orange;font-size: 25px;">You dont have any Products in this store yet</p>
+              <br><br>
 
-      </div>
+              <%= link_to "Add Product", new_store_product_path(current_store.id), class:'btn btn-primary',style:'background-color:#06B216 !important;border-color:#06B216 !important' %>
 
-<%else%>
-    <a href="<%= new_category_path(@store) %>">Create a Category</a> First!
-    <%end%>
-</div>
+
+
+          </div>
+          <% end %>
+
+    <%else%>
+        <a href="<%= new_category_path(@store) %>">Create a Category</a> First!
+        <%end%>
+   </div>
+ </div>
+
+<div class="clearfix"> </div>
+  </div>

@@ -200,7 +200,7 @@
 				});
 
 				/* keyboard navigation keys support */
-				$(document).on('keydown', function(e){
+				/*$(document).on('keydown', function(e){
 					var rect = _container[0].getBoundingClientRect();
 				    var inView = rect.bottom > 0 &&  rect.right > 0 &&
 				        rect.left < (innerWidth || document.documentElement.clientWidth) &&
@@ -221,7 +221,7 @@
 							_previousButton.click();
 						}
 					}
-				});
+				});*/
 
 				/* touch navigation support */
 				_swipedetect(_container, function(swipedir){

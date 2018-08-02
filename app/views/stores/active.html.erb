@@ -1,43 +1,24 @@
-<div class="skil">
-<div class="row">
-  <div class="container-fluid">
-    <% if !@important.blank? %>
-        <div style="margin-top:1em" class="alert alert-danger">
-          <h2> Hello, you need to setup the following before you can activate your store </h2>
-          <% @important.each do |k, m| %>
-              <p><%= "#{k}. " %><%= m.html_safe %></p>
-          <% end %>
-        </div>
-    <% end %>
-  </div>
-</div>
+<div class="content_bottom" style="margin-top:2em">
 
-<div class="row">
-  <div class="container-fluid">
-    <% if can_be_active %>
-        <div style="margin-top:1em" class="alert alert-danger">
-          <a style='font-weight:bold;text-decoration:none;' href='<%= stores_active_path %>'>1. Activate your Store!</a>
-        </div>
-    <% end %>
-  </div>
-</div>
+<h3 style="color:#7aae42"><i class="fa fa-check"></i> Activation Settings</h3>
+<div class="xs"><br>
 
-
-<div class="container-fluid">
   <% if @store.active == false %>
-      <h3 style="text-align:center"> Click the Button Below to Activate your store </h3>
+      <h4 style="text-align:left"> Click the Button Below to De-Activate your store </h4>
       <%= form_for :store, :url => {controller: 'stores', action: 'activate'} do |f| %>
           <% if @store.important == false  %>
-              <p style="text-align:center"><%= f.submit 'Activate Store', class: 'btn btn-lg btn-success', disabled: 'disabled' %></p>
+                <button type="submit" class="kd_buttons" disabled="disabled"><i class="fa fa-check"></i> Activate Store Now</button>
           <% else %>
-              <p style="text-align:center"><%= f.submit 'Activate Store', class: 'btn btn-lg btn-success' %></p>
+                <button type="submit" class="kd_buttons"><i class="fa fa-check"></i> Activate Store Now</button>
           <% end %>
       <% end %>
   <% else %>
-      <h3 style="text-align:center"> Click the Button Below to De-Activate your store </h3>
+      <h4 style="text-align:left"> Click the Button Below to De-Activate your store </h4>
       <%= form_for :store, :url => {controller: 'stores', action: 'deactivate'} do |f| %>
-          <p style="text-align:center"><%= f.submit 'Deactivate Store', class: 'btn btn-lg btn-danger', style:'background-color:red !important;border-color:red !important' %>
+            <button type="submit" class="kd_buttons" style="background:#d9534f !important;color:#fff" ><i class="fa fa-close"></i> Deactivate Store Now</button>
       <% end %>
   <% end %>
-</div>
-</div>
+     </div>
+   </div>
+<br><br><br><br><br><br><br><br><br>
+<div class="clearfix"> </div>

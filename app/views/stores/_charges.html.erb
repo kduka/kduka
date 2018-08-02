@@ -18,6 +18,10 @@
   end
 
 %>
-
-<p> Minimum Withdrawal Amount: Ksh <%= @max %> </p>
-<p> <b>Charges:</b><span class="charge" data-full="<%= @storeamount.amount %>" data="<%= @max %>">0</span>    <b>Balance:</b><span class="bal"><%= "  Ksh : #{@max}" %></span></p>
+<div class="col-md-10 col-md-offset-2">
+<span class="trans_messages"></span>
+<br>
+<p><b>Minimum Withdrawal Amount:</b> Ksh <%= @max %> </p>
+<p><b>Charges:</b> <span class="charge" data-full="<%= @storeamount.amount %>" data="<%= @max %>">0</span></p>
+<p><b>Balance:</b> <span class="bal"><%= "  Ksh : #{@max}" %></span></p>
+</div>

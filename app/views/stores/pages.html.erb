@@ -1,53 +1,76 @@
-<div class="skil">
-  <script>
-  $(document).ready(function(){
-      $('[data-toggle="tooltip"]').tooltip();
-  });
-  </script>
-  <%= form_for :store, :url => {controller: 'stores', action: 'update_pages'}, method: 'put' do |f| %>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<div class="content_bottom" style="margin-top:2em">
 
-      <div class="form-group">
-        <%= f.label "Enable Home Page" %>
-        <%= f.check_box :homepage_status, id: 'homepageswitch' %>
-        <a data-toggle="tooltip" data-placement="right" title="If you check this your home page will be visible to your clients"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-      </div>
+<h3 style="color:#7aae42"><i class="fa fa-file-text"></i> Pages</h3>
+<div class="xs">
+      <div class="tab-content">
+     <div class="tab-pane active" id="horizontal-form">
+       <%= form_for :store, :url => {controller: 'stores', action: 'update_pages'}, method: 'put' do |f| %>
+         <div class="form-group">
+           <label for="homepageswitch" class="col-sm-2 control-label">Enable Home Page</label>
+           <div class="col-sm-8">
+             <div class="checkbox-inline"><%= f.check_box :homepage_status, id: 'homepageswitch' %> <label for="homepageswitch">Check this to activate your Home Page</label></div>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this your home page will be visible to your clients">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="banner" class="col-sm-2 control-label">Banner Image</label>
+           <div class="col-sm-8">
+             <%= f.file_field :banner, class:'form-control1',id:'banner' %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will be the banner image client will see when they visit your store's home page">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="col-md-10 col-md-offset-2"><br>
+           <%= image_tag(@store.banner_url(:thumb).to_s) %>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="aboutpageswitch" class="col-sm-2 control-label">Enable About Page</label>
+           <div class="col-sm-8">
+             <div class="checkbox-inline"><%= f.check_box :aboutpage_status, id: 'aboutpageswitch' %> <label for="aboutpageswitch">Check this to activate your About Page</label></div>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this your about page will be visible to your clients">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="aboutpage_text" class="col-sm-2 control-label">About Page Text</label>
+           <div class="col-sm-8">
+             <% if (@store.aboutpage_status == false) %>
+                 <%= f.text_area :aboutpage_text, class: 'form-control1 aboutswitch textarea',placeholder:'About Page Text', id: 'aboutpage_text', disabled: 'disabled' %>
+             <% else %>
+                 <%= f.text_area :aboutpage_text, class: 'form-control1 aboutswitch textarea',placeholder:'About Page Text', id: 'aboutpage_text'  %>
+             <% end %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the text that will appear in your about page">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
 
-      <div class="form-group">
-        Banner Image
-        <%= f.file_field :banner, class:'form-control' %>
-        <a data-toggle="tooltip" data-placement="right" title="This will be the banner image client will see when they visit your store's home page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-      </div>
 
-      <div class="form-group">
-        <%= image_tag(@store.banner_url(:thumb).to_s) %>
-      </div>
+         <div class="form-group">
+           <label for="checkbox" class="col-sm-2 control-label"></label>
+           <div class="col-sm-8">
+             <button type="sumbit" class="kd_buttons"><i class="fa fa-save"></i> Save Pages</button>
+           </div>
+         </div>
+       <%end%>
+     </div>
+   </div>
 
-
-      <div class="form-group">
-        <%= f.label "Enable About Page" %>
-        <%= f.check_box :aboutpage_status, id: 'aboutpageswitch' %>
-        <a data-toggle="tooltip" data-placement="right" title="If you check this your about page will be visible to your clients"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "About Page Text" %>
-
-        <% if (@store.aboutpage_status == false) %>
-            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea', id: 'aboutpage_text', disabled: 'disabled' %>
-        <% else %>
-        <a data-toggle="tooltip" data-placement="right" title="This is the text that will appear in your about page"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            <%= f.text_area :aboutpage_text, class: 'form-control aboutswitch textarea', id: 'aboutpage_text'  %>
-        <% end %>
-      </div>
-    <script>
-        $('.wysiwyg').froalaEditor({
-            imageUploadToS3: <%= @aws_data.to_json.html_safe %>,
-        });
-    </script>
-
-
-
-
-      <p style="text-align:center"><%= f.submit 'Save Pages', class: 'btn btn-success btn-lg' %>
-  <% end %>
 </div>
+
+<div class="clearfix"> </div>
+  </div>

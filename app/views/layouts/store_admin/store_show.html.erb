@@ -1,114 +1,204 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>KDuka Store Dashboard</title>
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="KDuka, Online shopping made easy" />
-<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-  <% if Rails.env.production?  %>
-  <!--Start of Tawk.to Script-->
-  <script type="text/javascript">
-      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-      (function(){
-          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-          s1.async=true;
-          s1.src='https://embed.tawk.to/59fc3b9abb0c3f433d4c6d5e/default';
-          s1.charset='UTF-8';
-          s1.setAttribute('crossorigin','*');
-          s0.parentNode.insertBefore(s1,s0);
-      })();
-  </script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109847469-1"></script>
-  <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <title>KDuka Store Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="KDuka, Online shopping made easy" />
 
-      gtag('config', 'UA-109847469-1');
-  </script>
-  <!--End of Tawk.to Script-->
-      <% end %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-<% Dir.foreach("public/stylesheets/admin") do |item|
-  next if item == '.' or item == '..' %>
-    <%= stylesheet_link_tag "admin/#{item}" %>
-<% end %>
-<% Dir.foreach("public/javascripts/admin") do |item|
-  next if item == '.' or item == '..' %>
-    <%= javascript_include_tag "admin/#{item}" %>
-<% end %>
-  <%= favicon_link_tag 'favicon/apple-icon-57x57.png' %>
-  <%= favicon_link_tag 'favicon/apple-icon-60x60.png' %>
-  <%= favicon_link_tag 'favicon/apple-icon-72x72.png' %>
-  <%= favicon_link_tag 'favicon/apple-icon-76x76.png' %>
-  <%= favicon_link_tag 'favicon/apple-icon-114x114.png' %>
-  <%= favicon_link_tag 'favicon/apple-icon-120x120.png' %>
-  <%= favicon_link_tag 'favicon/apple-icon-144x144.png' %>
-  <%= favicon_link_tag 'favicon/apple-icon-152x152.png' %>
-  <%= favicon_link_tag 'favicon/apple-icon-180x180.png' %>
-  <%= favicon_link_tag 'favicon/android-icon-192x192.png' %>
-  <%= favicon_link_tag 'favicon/favicon-32x32.png' %>
-  <%= favicon_link_tag 'favicon/favicon-96x96.png' %>
-  <%= favicon_link_tag 'favicon/favicon-16x16.png' %>
+  <!----webfonts--->
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+  <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <% if Rails.env.production?  %>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/59fc3b9abb0c3f433d4c6d5e/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109847469-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109847469-1');
+    </script>
+    <!--End of Tawk.to Script-->
+        <% end %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <% Dir.foreach("public/stylesheets/admin") do |item|
+    next if item == '.' or item == '..' %>
+      <%= stylesheet_link_tag "admin/#{item}" %>
+  <% end %>
+  <% Dir.foreach("public/javascripts/admin") do |item|
+    next if item == '.' or item == '..' %>
+      <%= javascript_include_tag "admin/#{item}" %>
+  <% end %>
+    <%= favicon_link_tag 'favicon/apple-icon-57x57.png' %>
+    <%= favicon_link_tag 'favicon/apple-icon-60x60.png' %>
+    <%= favicon_link_tag 'favicon/apple-icon-72x72.png' %>
+    <%= favicon_link_tag 'favicon/apple-icon-76x76.png' %>
+    <%= favicon_link_tag 'favicon/apple-icon-114x114.png' %>
+    <%= favicon_link_tag 'favicon/apple-icon-120x120.png' %>
+    <%= favicon_link_tag 'favicon/apple-icon-144x144.png' %>
+    <%= favicon_link_tag 'favicon/apple-icon-152x152.png' %>
+    <%= favicon_link_tag 'favicon/apple-icon-180x180.png' %>
+    <%= favicon_link_tag 'favicon/android-icon-192x192.png' %>
+    <%= favicon_link_tag 'favicon/favicon-32x32.png' %>
+    <%= favicon_link_tag 'favicon/favicon-96x96.png' %>
+    <%= favicon_link_tag 'favicon/favicon-16x16.png' %>
+<script>
+$(document).ready( function () {
+    $('#dataTable').DataTable();
+} );
+</script>
+
 </head>
 <body>
-   <div class="page-container">
-   <!--/content-inner-->
-	<div class="left-content">
-	   <div class="inner-content">
-		<!-- header-starts -->
-			<div class="header-section">
-			<!-- top_bg -->
-						<div class="top_bg">
+<div id="wrapper">
+     <!-- Navigation -->
+        <nav class="top1 navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a style="background:#fff" class="navbar-brand" href="<%= stores_path %>"><span><%= image_tag("admin/logo.png",style:"width:auto;height:34px") %></span> <span style="color:#7aae42;">Dashboard</span></a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-nav navbar-right">
 
-								<div class="header_top">
-									<div class="top_right">
-										<ul>
-											<li><%= link_to "Visit "+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank' %></li>
-										</ul>
-									</div>
-									<div class="top_left">
-										<p style="text-transform:lowercase"><span style="color:#fff"><i class="fa fa-user" ></i> <%= current_store.email %></span></p>
-									</div>
-										<div class="clearfix"> </div>
-								</div>
+			    <li class="dropdown">
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><span style="color:#fff"><%= @store.name %> </span> <%= image_tag("admin/1.png") %></a>
+	        		<ul class="dropdown-menu">
+    						<li class="dropdown-menu-header text-center">
+    							<strong>Account</strong>
+    						</li>
+    						<li class="m_2"><a href="<%= edit_store_path(@store) %>"><i class="fa fa-wrench"></i> Settings</a></li>
 
-						</div>
-					<div class="clearfix"></div>
-				<!-- /top_bg -->
-				</div>
-				<div class="header_bg">
+    						<li class="divider"></li>
+    						<li class="m_2">
+                  <%= link_to destroy_store_session_path , method:'delete' do %>
+                    <i class="fa fa-sign-out"></i> Logout
+                  <% end %>
+                </li>
+	        		</ul>
+	      		</li>
+			</ul>
 
-							<div class="header">
-								<div class="head-t">
-									<div class="logo">
-										<h1><a style="color:#06B216 !important; " href="<%=stores_path %>"><%= @store.name %></a> </h1>
-                     <h4><i class="fa fa-external-link"></i> <%= link_to "http://"+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank' %></h4><% if !@store.active  %><a href="<%= stores_active_path %>" data-toggle="tooltip" data-placement="right" title="Your store is not active"><span class="label label-danger">Store not Active</span></a><% else %><a data-toggle="tooltip" data-placement="right" title="Your store is active"><span href="<%= stores_active_path %>" class="label label-success">Store is active</span></a><% end %>
-									</div>
-										<!-- start header_right -->
-									<div class="header_right">
-                    <div class="rgt-bottom">
-										<div class="create_btn" style="float:right">
-											<%= link_to "Logout", destroy_store_session_path ,style:'float:right', method:'delete' %>
-										</div>
-										<div class="clearfix"> </div>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-
-				</div>
-					<!-- //header-ends -->
-				<!--content-->
-			<div class="content">
-        <div class="row">
-          <div class="col-md-12">
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="<%= stores_path %>"><i class="fa fa-home fa-fw nav_icon"></i>Overview</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-list nav_icon"></i>Categories<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<%= categories_path %>"><i class="fa fa-eye"></i> View Categories</a>
+                                </li>
+                                <li>
+                                    <a href="<%= new_category_path %>"><i class="fa fa-plus"></i> Add Category</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gift nav_icon"></i>Products<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<%= products_manage_path %>"><i class="fa fa-eye"></i> View Products</a>
+                                </li>
+                                <li>
+                                  <% if !Category.where(store_id: current_store.id).blank? %>
+                                      <a href="<%= new_store_product_path(@store) %>"><i class="fa fa-plus"></i> Add Product</a>
+                                  <% end %>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                          <%
+                          @o = Order.where(store_id:current_store.id,read:false,order_status_id: [5, 2]).count
+                          %>
+                            <a href="<%= store_orders_url %>"><i class="fa fa-shopping-cart fa-fw nav_icon"></i>Orders <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %> </span></a>
+                        </li>
+                        <li>
+                            <a href="<%= stores_theme_path %>"><i class="fa fa-desktop fa-fw nav_icon"></i>Themes</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cogs nav_icon"></i>Store Settings<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> Pages</a>
+                                </li>
+                                <li>
+                                    <a href="<%= edit_store_path(@store) %>"><i class="fa fa-edit"></i> Edit Store Settings</a>
+                                </li>
+                                <li>
+                                    <a href="<%= stores_social_path %>"><i class="fa fa-users"></i> Social Media Settings</a>
+                                </li>
+                                <li>
+                                    <a href="<%= stores_deliver_path %>"><i class="fa fa-truck"></i> Delivery Settings</a>
+                                </li>
+                                <li>
+                                    <a href="<%= stores_active_path %>"><i class="fa fa-check"></i> Activation Settings</a>
+                                </li>
+                                <li>
+                                    <a href="<%= edit_store_registration_path %>"><i class="fa fa-lock"></i> Password Settings</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-ticket nav_icon"></i>Coupons<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<%= coupons_path %>"><i class="fa fa-search"></i> Manage Coupons</a>
+                                </li>
+                                <li>
+                                    <a href="<%= new_coupon_path %>"><i class="fa fa-plus"></i> Create Coupon</a>
+                                </li>
+                                <li>
+                                    <a href="<%= coupons_generate_path %>"><i class="fa fa-plus"></i> Generate Multiple Coupons</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="<%= stores_funds_path %>"><i class="fa fa-money fa-fw nav_icon"></i>Funds</a>
+                        </li>
+                        <li>
+                            <a href="<%= root_path %>"><i class="fa fa-globe fa-fw nav_icon"></i>Back to Website</a>
+                        </li>
+                        <li>
+                          <%= link_to destroy_store_session_path , method:'delete' do %>
+                            <i class="fa fa-sign-out fa-fw nav_icon"></i> Logout
+                          <% end %>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div style="width:100%;height:4em;background:#f2f4f8"></div>
+        <div id="page-wrapper">
+        <div class="graphs">
+          <div class="col-md-12 span_3">
             <% if !notice.nil? %>
             <div class="alert alert-success" role="alert">
               <strong><%= notice %></strong>
@@ -119,192 +209,57 @@
               <strong><%= alert %></strong>
             </div>
             <% end %>
-
           </div>
-        </div>
-        <div style="height:auto !important">
-        <%= yield %>
-        </div>
 
 
-            <!--//area-->
-		<div class="fo-top-di">
-			<div class="footer">
-					<div class="col-md-4 cust">
-						<h4>CUSTOMER CARE</h4>
-							<li><a href="http://www.kduka.co.ke/help">Help Center</a></li>
-							<li><a href="http://www.kduka.co.ke/help">FAQ</a></li>
-							<!--<li><a href="#">Store Setup</a></li>-->
-					</div>
-					<div class="col-md-4 our-st">
-						<div class="our-left">
-							<h4>OUR CONTACTS</h4>
-						</div>
-							<li><i class="fa fa-phone"></i> +254-765-608060</li>
-              <li><i class="fa fa-phone"></i> +254-773-054785</li>
-              <li><i class="fa fa-phone"></i> +254-714-764162</li>
-							<li><a href="mailto:contact@kduka.co.ke"><i class="fa fa-envelope"></i> contact@kduka.co.ke</a></li>
-					</div>
-          <div class="col-md-4 our-st">
-						<div class="our-left">
-							<h4>FOLLOW US ON</h4>
-						</div>
+          <h1 style="color:#7aae42"><a style="color:#7aae42" href="<%=stores_path %>"><%= @store.name %></a></h1>
+          <p><span style="color:#787878"><%= link_to "http://"+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank', style:'color:#787878' %></span> <% if !@store.active  %><a href="<%= stores_active_path %>" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none" title="Your store is not active"><span class="label label-danger">Store not Active</span></a><% else %><a style="text-decoration:none" data-toggle="tooltip" data-placement="bottom" title="Your store is active"><span href="<%= stores_active_path %>" class="label label-success">Store is active</span></a><% end %></p><br>
 
-              <style>
-              .my_ul {
-                  list-style-type: none;
-                  margin: 0;
-                  padding: 0;
-                  overflow: hidden;
-              }
+          <div class="col-md-12 span_3">
+              <div class="col_3">
+                <% if can_be_active %>
+                    <div style="margin-top:1em;border-radius: 0px !important;" class="alert alert-success">
+                      <a style='text-decoration:none;' href='<%= stores_active_path %>'>1. Activate your
+                        Store!</a>
+                    </div>
+                <% end %>
+              </div>
 
-              .my_li {
-                  float: left;
-              }
 
-              .my_li a {
-                  display: block;
-                  text-align: center;
-                  padding: 16px;
-                  text-decoration: none;
-              }
-              </style>
-              <ul class="my_ul">
-                <li class="my_li"><a href="https://twitter.com/kdukaofficial" target="_blank"><i class="fa fa-twitter"> </i></a></li>
-                <li class="my_li"><a href="https://www.facebook.com/kdukaofficial/" target="_blank"><i class="fa fa-facebook"> </i></a></li>
-                <li class="my_li"><a href="https://www.linkedin.com/company/kdukaofficial/" target="_blank"><i class="fa fa-linkedin"> </i></a></li>
-            </ul>
-					</div>
-					<div class="clearfix"> </div>
-						<p>Copyright © <%= Time.current.year %> KDuka. All Rights Reserved | Developed by <a href="http://www.zerone.co.ke/">Zerone I.T. Solutions</a></p>
-			</div>
+              <div class="col_3">
+                <% if !@important.blank? %>
+                    <div style="margin-top:1em;font-family:'Roboto', sans-serif;border-radius: 0px !important;" class="alert alert-warning">
+                      <h3> You need to setup the following before you can activate your store </h3>
+                      <% @important.each do |k, m| %>
+                          <p><%= "#{k}. " %><%= m.html_safe %></p>
+                      <% end %>
+                    </div>
+                <% end %>
+              </div>
+
+              <div class="col_3">
+                <% if !@setup.blank? %>
+                    <div style="margin-top:1em;border-radius: 0px !important;" class="alert alert-info">
+                      <h3> Setup your store! </h3>
+                      <br>
+                        <% @setup.each do |k, m| %>
+                            <p><%= "#{k}. " %><%= m.html_safe %></p>
+                        <% end %>
+                    </div>
+                <% end %>
+              </div>
+          </div>
+
+
+          <%= yield %>
+
+		<div class="copy">
+            <p>Copyright &copy; <%= Time.current.year %> KDuka. All Rights Reserved | Developed by <a href="http://www.zerone.co.ke" target="_blank">Zerone I.T. Solutions</a></p>
+	    </div>
 		</div>
-			</div>
-			<!--content-->
-		</div>
-</div>
-				<!--//content-inner-->
-			<!--/sidebar-menu-->
-      <div class="sidebar-menu">
-        <header class="logo1">
-          <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>
-        </header>
-        <div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
-        <div class="menu">
-          <ul id="menu">
-
-            <li>
-              <a href="<%= stores_path %>"><i class="fa fa-tachometer"></i> <span>Overview</span></a>
-            </li>
-            <li id="menu-academico">
-              <a href="#"><i class="fa fa-dot-circle-o"></i> <span> Categories</span></a>
-              <ul id="menu-academico-sub">
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= categories_path %>"><i class="fa fa-eye"></i> View Categories</a>
-                </li>
-
-                <li id="menu-academico-avaliacoes">
-
-                  <a href="<%= new_category_path %>"><i class="fa fa-plus"></i> Add Category</a>
-
-                </li>
-
-              </ul>
-            </li>
-            <li id="menu-academico">
-              <a href="#"><i class="fa fa-gift"></i> <span> Products</span></a>
-              <ul id="menu-academico-sub">
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= products_manage_path %>"><i class="fa fa-search"></i> Manage Products</a>
-                </li>
-
-                <li id="menu-academico-avaliacoes">
-                  <% if !Category.where(store_id: current_store.id).blank? %>
-                      <a href="<%= new_store_product_path(@store) %>"><i class="fa fa-plus"></i> Add Product</a>
-                  <% end %>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <%
-              @o = Order.where(store_id:current_store.id,read:false,order_status_id: [5, 2]).count
-              %>
-              <a href="<%= store_orders_url %>"><i class="fa fa-shopping-bag"></i> <span>Orders  <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %> </span> </a>
-            </li>
-            <li>
-              <a href="<%= stores_theme_path %>"><i class="fa fa-desktop"></i> <span>Themes</span></a>
-            </li>
-
-            <li id="menu-academico">
-              <a href="#"><i class="fa fa-gears"></i> <span> Store Settings </span></a>
-              <ul id="menu-academico-sub">
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> <span>Pages</span></a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= edit_store_path(@store) %>"><i class="fa fa-edit"></i> Edit Store Settings</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= stores_social_path %>"><i class="fa fa-users"></i> Social Media Settings</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= stores_deliver_path %>"><i class="fa fa-truck"></i> Delivery Settings</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= stores_active_path %>"><i class="fa fa-check"></i> Activation Settings</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= edit_store_registration_path %>"><i class="fa fa-lock"></i> Password Settings</a>
-                </li>
-
-              </ul>
-            </li>
-            <li id="menu-academico">
-              <a href="<%= coupons_path %>"><i class="fa fa-ticket"></i> <span>Coupons</span></a>
-              <ul id="menu-academico-sub">
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= coupons_path %>"><i class="fa fa-search"></i> Manage Coupons</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= new_coupon_path %>"><i class="fa fa-plus"></i> Create Coupon</a>
-                </li>
-                <li id="menu-academico-avaliacoes">
-                  <a href="<%= coupons_generate_path %>"><i class="fa fa-plus"></i> Generate Multiple Coupons</a>
-                </li>0
-              </ul>
-            </li>
-            <li id="menu-academico">
-              <a href="<%= stores_funds_path %>"><i class="fa fa-money"></i> <span> Funds </span></a>
-            </li>
-
-            <li>
-              <a href="<%= root_path %>"><i class="fa fa-globe"></i> <span>Back to Website</span></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-							  <div class="clearfix"></div>
-							</div>
-							<script>
-							var toggle = true;
-
-							$(".sidebar-icon").click(function() {
-							  if (toggle)
-							  {
-								$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-								$("#menu span").css({"position":"absolute"});
-							  }
-							  else
-							  {
-								$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-								setTimeout(function() {
-								  $("#menu span").css({"position":"relative"});
-								}, 400);
-							  }
-
-											toggle = !toggle;
-										});
-							</script>
-
+       </div>
+      <!-- /#page-wrapper -->
+   </div>
+    <!-- /#wrapper -->
 </body>
 </html>

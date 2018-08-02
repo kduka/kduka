@@ -1,72 +1,71 @@
-<div class="skil">
-<div class="col-md-6 col-md-offset-3 col-xs-12">
-  <br><br><br>
-  <div style="text-align:center !important">
-  <%= link_to "Back to Orders", store_orders_path, class:'btn-lg btn btn-primary' %>
+<div class="content_bottom" style="margin-top:2em">
+  <h3 style="color:#7aae42"><i class="fa fa-search"></i> View Order</h3>
+  <div class="col-md-12 span_3">
+    <div class="col_2">
+        <%= link_to store_orders_path,style:'text-decoration:none' do %>
+        <button class="kd_buttons"><i class="fa fa-arrow-left"></i> Back to Orders</button>
+        <%end%>
 
-  <% if @order.order_status_id == 3 %>
-     <button class="btn-lg btn btn-info" > Already Shipped </button>
-      <p><%= form_tag("") do %> <br><input class="form-control" type="text" id="delivery_code" placeholder="Delivery Code" /><br>  <button id="complete" class="btn-lg btn btn-success" > Complete Order </button><% end %></p>
-      <div class="comp_err"></div>
-      <% elsif @order.order_status_id == 6 %>
-      <button class="btn btn-info btn-lg" > Order is Complete </button>
-      <% else %>
-      <% if @order.delivery_type == "auto" %>
-      <button class="btn-lg btn btn-success" id="complete_delivery" >Deliver</button>
-          <div class="del_err"></div>
-      <% else %>
-          <button type="submit" class="btn-lg btn btn-success" id="change_shipping_status" >Change Status to Shipping</button>
-          <div class="ship_err"></div>
-      <% end %>
-  <% end %>
-    </div>
-  <br>
-<div style="text-align:center !important">
-<h3>Name: <%= @order.name %></h3>
-<h3>Phone: <%= @order.phone %></h3>
-<h3>Email: <%= @order.email %></h3>
-<h3>Location: <%= @order.del_location %></h3>
-  <input type="hidden" value="<%= @order.delivery_order %>" id="del_order">
-  <input type="hidden" value="<%= @order.ref %>" id="order_ref">
-<h3>Instructions: <%= @order.order_instructions %></h3>
-<h3>Order Number: <%= @order.ref %></h3>
-<h3>Placed on: <%= @order.date_placed.strftime("%Y-%m-%d %H:%M") %></h3>
-<h3>Completed on: <%= "<span style='color:#7AAE42'>#{@order.complete_date.strftime("%Y-%m-%d %H:%M")}".html_safe rescue '<span style="color:orange">Not Complete</span>'.html_safe %></h3>
-</div><br><br>
-</div>
-<% @oi.each do |oi|
-    product = Product.find(oi.product_id)
-%>
-
-
-    <!--cart-items-->
-    <div class="cart-items">
-      <div class="container-fluid">
-        <div class="cart-header2 wow fadeInUp animated" data-wow-delay=".9s">
-          <div class="alert-close2"> </div>
-          <%= form_tag("/") do |f| %>
-              <div class="cart-sec simpleCart_shelfItem">
-                <div class="col-md-8 col-md-offset-2">
-                <div class="col-md-1 col-sm-12" style="text-align:center !important">
-                  <%= image_tag(product.image_url(:thumb).to_s, class:'text-center',style:'max-height:10em')  %>
-                </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-8 col-sm-12" style="text-align:center !important">
-                  <h4 style="color:#7AAE42"><%= product.name %></h4><br/>
-                  <h4>Unit Price : <%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4><br>
-                  <div class="qty">
-                    Quantity: <%= oi.quantity %>
-                  </div>
-                </div>
-              </div>
-              </div><br>
-          <% end %>
-        </div>
+        <% if @order.order_status_id == 3 %>
+           <button class="kd_shipped" > Already Shipped </button>
+            <p><%= form_tag("") do %> <br><input class="form-control" type="text" id="delivery_code" placeholder="Delivery Code" /><br>  <button id="complete" class="btn-lg btn btn-success" > Complete Order </button><% end %></p>
+            <div class="comp_err"></div>
+            <% elsif @order.order_status_id == 6 %>
+            <button class="kd_shipped" > Order Complete </button>
+            <% else %>
+            <% if @order.delivery_type == "auto" %>
+            <button class="kd_success" id="complete_delivery"><i class="fa fa-truck"></i> Deliver</button>
+                <div class="del_err"></div>
+            <% else %>
+                <button type="submit" class="kd_change" id="change_shipping_status" >Change Status to Shipping</button>
+                <div class="ship_err"></div>
+            <% end %>
+        <% end %>
+        <br><br>
+      <div class="row">
+      <div class="col-md-6">
+      <label style="font-weight:900;" class="col-md-3" >Name:</label><span class="col-md-9"><%= @order.name %></span>
+      <div class="col-md-12" style="height:.8em"></div>
+      <label style="font-weight:900;" class="col-md-3" >Phone:</label><span class="col-md-9"><%= @order.phone %></span>
+      <div class="col-md-12" style="height:.8em"></div>
+      <label style="font-weight:900;" class="col-md-3" >Email:</label><span class="col-md-9"><%= @order.email %></span>
+      <div class="col-md-12" style="height:.8em"></div>
+      <label style="font-weight:900;" class="col-md-3" >Location:</label><span class="col-md-9"><%= @order.del_location %></span>
+      <div class="col-md-12" style="height:.8em"></div>
+        <input type="hidden" value="<%= @order.delivery_order %>" id="del_order">
+        <input type="hidden" value="<%= @order.ref %>" id="order_ref">
+      <label style="font-weight:900;" class="col-md-3" >Instructions:</label><span class="col-md-9"><%= @order.order_instructions %></span>
+      <div class="col-md-12" style="height:.8em"></div>
+      <label style="font-weight:900;" class="col-md-3" >Order Number:</label><span class="col-md-9"><%= @order.ref %></span>
+      <div class="col-md-12" style="height:.8em"></div>
+      <label style="font-weight:900;" class="col-md-3" >Placed on:</label><span class="col-md-9"><%= @order.date_placed.strftime("%Y-%m-%d %H:%M") %></span>
+      <div class="col-md-12" style="height:.8em"></div>
+      <label style="font-weight:900;" class="col-md-3" >Completed on:</label><span class="col-md-9"><%= "<span style='color:#7AAE42'>#{@order.complete_date.strftime("%Y-%m-%d %H:%M")}".html_safe rescue '<span style="color:orange">Not Complete</span>'.html_safe %></span>
+      <div class="col-md-12" style="height:.8em"></div>
+      </div>
+      <div class="col-md-6">
+        <% @oi.each do |oi|
+            product = Product.find(oi.product_id)
+        %>
+            <!--cart-items-->
+                  <div class="alert-close2"> </div>
+                  <%= form_tag("/") do |f| %>
+                        <div class="col-md-3 col-sm-12">
+                          <%= image_tag(product.image_url(:thumb).to_s, class:'text-center',style:'max-height:5em;max-width:100%')  %>
+                        </div>
+                        <div class="col-md-9 col-sm-12">
+                          <h5 class="col-md-12" style="color:#7AAE42"><%= product.name %></h5>
+                          <label class="col-md-4" style="font-weight:900">Unit Price:</label><span class="col-md-8"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
+                          <div class="col-md-12" style="height:.8em"></div>
+                          <label class="col-md-3" style="font-weight:900">Quantity:</label><span class="col-md-9"><%= oi.quantity %></span>
+                          <div class="col-md-12" style="height:.8em"></div>
+                          <div class="col-md-12" style="height:1em"></div>
+                        </div>
+                  <% end %>
+        <% end %>
+      </div>
       </div>
     </div>
-    <!--//cart-items-->
-
-
-
-<% end %>
+  </div>
+<div class="clearfix"></div>
 </div>

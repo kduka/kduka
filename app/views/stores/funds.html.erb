@@ -1,155 +1,224 @@
-<div class="skil">
-<div class="row">
-<div class="col-md-6 col-md-offset-3">
-  <h1><span class="balance"><%= render 'balance' %></span></h1>
-</div>
-</div>
-<br><br>
-<div class="row">
-<ul class="nav nav-tabs">
-  <li><a data-toggle="tab" href="#mobile" active>Mobile Number</a></li>
-  <li ><a data-toggle="tab" href="#paybill">Paybill</a></li>
-  <li><a data-toggle="tab" href="#till">Till Number</a></li>
-  <li><a data-toggle="tab" href="#bank">Bank Account</a></li>
-</ul>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
-<div class="tab-content">
+<div class="content_bottom" style="margin-top:2em">
 
-  <div style="margin-bottom: 3em;padding-top: 2em"  id="mobile" class="col-md-offset-3 col-md-6 tab-pane fade in active">
-    <h3>Mobile Number</h3>
-    <p>Enter the following details</p>
-    <br><br>
-    <%= form_tag('') do%>
+<h3 style="color:#7aae42"><i class="fa fa-money"></i> Funds</h3>
+<%= render 'balance' %>
+ <div class="col-md-12 span_3"><br>
+   <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#mobile" style="color:#7aae42">Mobile Number</a></li>
+      <li><a data-toggle="tab" href="#paybill" style="color:#7aae42">Paybill</a></li>
+      <li><a data-toggle="tab" href="#till" style="color:#7aae42">Till Number</a></li>
+      <li><a data-toggle="tab" href="#bank" style="color:#7aae42">Bank</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="mobile" class="tab-pane fade in active">
+        <h3>Mobile Number</h3>
+        <%= form_tag('') do%>
         <div class="form-group">
-          <label>Recepient's Name</label>
-          <input type="text" id="client_name_b2c" onchange="b2c_val();" class="form-control"/>
+          <label for="client_name_b2c" class="col-sm-2 control-label">Recepient's Name</label>
+          <div class="col-sm-8">
+            <input type="text" id="client_name_b2c" onchange="b2c_val();" class="form-control1" placeholder="Recepient's Name"/>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the name of the person/company receiving the money">Help?</span></a>
+          </div>
         </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
         <div class="form-group">
-          <label>Recepient's Phone Number</label>
-          <input type="text" id="client_account_b2c" onchange="b2c_val();val_phone2()" class="form-control" placeholder="254xxxxxxxxx"/>
-          <div id="phone_prev"></div>
+          <label for="client_account_b2c" class="col-sm-2 control-label">Recepient's Phone Number</label>
+          <div class="col-sm-8">
+            <input type="text" id="client_account_b2c" onchange="b2c_val();val_phone2()" class="form-control1" placeholder="254xxxxxxxxx"/>
+            <div id="phone_prev"></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the phone number of the person/company receiving the money">Help?</span></a>
+          </div>
         </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="amount_b2c" class="col-sm-2 control-label">Amount</label>
+          <div class="col-sm-8">
+            <input type="text" id="amount_b2c" onchange="b2c_val();set_bal('b2c');" onkeyup="set_max('b2c');check_num('b2c')" class="form-control1" placeholder="Amount" />
+            <div id="amount_prev_b2c"></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount (kenya shillings) that will be transferred">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
 
         <div class="form-group">
-          <label>Amount</label>
-          <input type="text" id="amount_b2c" onchange="b2c_val();set_bal('b2c');" onkeyup="set_max('b2c');check_num('b2c')" class="form-control" />
-          <div id="amount_prev_b2c"></div>
+          <div class="col-sm-10 col-sm-offset-2">
+            <button id="b2c" disabled type="sumbit" class="kd_buttons"><span class="b2c_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
+          </div>
         </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <%end%>
+      </div>
 
-        <button id="b2c" disabled class="btn btn-success"><span class="b2c_text">Transfer Funds</span></button>
 
-    <% end %>
-    <br>
-    <span class="trans_messages"></span>
-    <br>
-    <div class="conditions_b2c">
-      <%= render 'charges' %>
+      <div id="paybill" class="tab-pane fade">
+        <h3>Paybill</h3>
+        <%= form_tag('') do%>
+        <div class="form-group">
+          <label for="client_name_pay" class="col-sm-2 control-label">Recepient's Name</label>
+          <div class="col-sm-8">
+            <input id="client_name_pay" onchange="b2bpay_val()" type="text" name="client_name" class="form-control1" placeholder="Recepient's Name"/>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the name of the person/company receiving the money">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="client_account_pay" class="col-sm-2 control-label">Paybill Number</label>
+          <div class="col-sm-8">
+            <input id="client_account_pay" type="text" onchange="b2bpay_val();val_b2bpay()"  name="client_account"  class="form-control1" placeholder="Paybill Number"/>
+            <div class="pay_acc_prev"></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the Paybill Number of the person/company receiving the money">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="amount_pay" class="col-sm-2 control-label">Amount</label>
+          <div class="col-sm-8">
+            <input  type="number" id="amount_pay" onchange="b2bpay_val();set_bal('pay')" onkeyup="set_max('pay');check_num('pay')" class="form-control1" placeholder="Amount" />
+            <div id="amount_prev_pay"></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount (kenya shillings) that will be transferred">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <button id="b2bpay" disabled type="sumbit" class="kd_buttons"><span class="b2bpay_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <%end%>
+      </div>
+
+
+      <div id="till" class="tab-pane fade">
+        <h3>Till Number</h3>
+        <%= form_tag('') do%>
+        <div class="form-group">
+          <label for="client_name_till" class="col-sm-2 control-label">Recepient's Name</label>
+          <div class="col-sm-8">
+            <input id="client_name_till" type="text" onchange="b2btill_val()" name="client_name" class="form-control1" placeholder="Recepient's Name"/>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the name of the person/company receiving the money">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="client_account_till" class="col-sm-2 control-label">Till Number</label>
+          <div class="col-sm-8">
+            <input id="client_account_till" type="text" onchange="b2btill_val();val_b2btill()" name="client_account" class="form-control1" placeholder="Till Number"/>
+            <div class="till_acc_prev"></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the Till Number of the person/company receiving the money">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="amount_till" class="col-sm-2 control-label">Amount</label>
+          <div class="col-sm-8">
+            <input  type="text" onchange="b2btill_val();set_bal('till')" onkeyup="set_max('till');check_num('till')" id="amount_till" class="form-control1" placeholder="Amount" />
+            <div id="amount_prev_till"></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount (kenya shillings) that will be transferred">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <button id="b2btill" disabled type="sumbit" class="kd_buttons"><span class="b2btill_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <%end%>
+      </div>
+
+
+      <div id="bank" class="tab-pane fade">
+        <h3>Bank Account</h3>
+        <%= form_tag('') do%>
+        <div class="form-group">
+          <label for="client_name_eft" class="col-sm-2 control-label">Recepient's Name</label>
+          <div class="col-sm-8">
+            <input type="text" id="client_name_eft" onchange="eft_val()" class="form-control1" placeholder="Recepient's Name"/>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the name of the person/company receiving the money">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="bank_code" class="col-sm-2 control-label">Bank Code</label>
+          <div class="col-sm-8">
+            <input type="text" id="bank_code" onchange="eft_val();val_eft2()"  class="form-control1" placeholder="Bank Code"/>
+            <div class="code_acc_prev"></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the bank code of the person/company receiving the money">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="client_account_eft" class="col-sm-2 control-label">Account Number</label>
+          <div class="col-sm-8">
+            <input type="text" id="client_account_eft" onchange="eft_val();val_eft()" class="form-control1" placeholder="Account Number" />
+            <div class="eft_acc_prev"></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the Account Number of the person/company receiving the money">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <div class="form-group">
+          <label for="amount_eft" class="col-sm-2 control-label">Amount</label>
+          <div class="col-sm-8">
+            <input type="text" id="amount_eft" onchange="eft_val();set_bal('eft')" onkeyup="set_max('eft');check_num('eft')" class="form-control1" placeholder="Amount" />
+            <div id="amount_prev_eft"></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount (kenya shillings) that will be transferred">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <button id="eft" disabled type="sumbit" class="kd_buttons"><span class="eft_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin-top:1em"></div>
+        <%end%>
+      </div>
     </div>
-  </div>
-  <div style="margin-bottom: 3em;padding-top: 2em"  id="paybill" class="col-md-offset-3 col-md-6 tab-pane fade">
-    <h3>Paybill</h3>
-    <p>Enter the following details</p>
-    <br><br>
-    <%= form_tag('') do%>
-        <div class="form-group">
-          <label>Recepients Name</label>
-          <input id="client_name_pay" onchange="b2bpay_val()" type="text" name="client_name" class="form-control"/>
-        </div>
-
-        <div class="form-group">
-          <label>Paybill Number</label>
-          <input id="client_account_pay" type="text" onchange="b2bpay_val();val_b2bpay()"  name="client_account"  class="form-control"/>
-          <div class="pay_acc_prev"></div>
-        </div>
-
-        <div class="form-group">
-          <label>Amount</label>
-          <input  type="number" id="amount_pay" onchange="b2bpay_val();set_bal('pay')" onkeyup="set_max('pay');check_num('pay')" class="form-control" />
-          <div id="amount_prev_pay"></div>
-        </div>
-
-        <button id="b2bpay" disabled class="btn btn-success"><span class="b2bpay_text">Transfer Funds</span></button>
-    <% end %>
-    <br>
-    <span class="trans_messages_pay"></span>
-    <br>
-    <div class="conditions_pay">
-      <%= render 'charges' %>
-    </div>
-  </div>
-  <div style="margin-bottom: 3em;padding-top: 2em"  id="till" class="col-md-offset-3 col-md-6 tab-pane fade">
-    <h3>Till Number</h3>
-    <p>Enter the following details</p>
-    <br><br>
-    <%= form_tag('') do%>
-        <div class="form-group">
-          <label>Recepients Name</label>
-          <input id="client_name_till" type="text" onchange="b2btill_val()" name="client_name" class="form-control"/>
-        </div>
-
-        <div class="form-group">
-          <label>Till Number</label>
-          <input id="client_account_till" type="text" onchange="b2btill_val();val_b2btill()" name="client_account" class="form-control"/>
-          <div class="till_acc_prev"></div>
-        </div>
-
-        <div class="form-group">
-          <label>Amount</label>
-          <input  type="text" onchange="b2btill_val();set_bal('till')" onkeyup="set_max('till');check_num('till')" id="amount_till" class="form-control" />
-          <div id="amount_prev_till"></div>
-        </div>
-
-        <button id="b2btill" disabled class="btn btn-success"><span class="b2btill_text">Transfer Funds</span></button>
-    <% end %>
-    <br>
-    <span class="trans_messages_till"></span>
-    <br>
-    <div class="conditions_till">
-      <%= render 'charges' %>
-    </div>
-  </div>
-  <div style="margin-bottom: 3em;padding-top: 2em"  id="bank" class="col-md-offset-3 col-md-6 tab-pane fade">
-    <h3>Bank Account</h3>
-    <p>Enter the following details</p>
-    <br><br>
-    <%= form_tag('') do%>
-        <div class="form-group">
-          <label>Recepients Name</label>
-          <input type="text" id="client_name_eft" onchange="eft_val()" class="form-control"/>
-        </div>
-
-        <div class="form-group">
-          <label>Bank Code</label>
-          <input type="text" id="bank_code" onchange="eft_val();val_eft2()"  class="form-control"/>
-          <div class="code_acc_prev"></div>
-        </div>
-
-        <div class="form-group">
-          <label>Account Number</label>
-          <input type="text" id="client_account_eft" onchange="eft_val();val_eft()" class="form-control" />
-          <div class="eft_acc_prev"></div>
-        </div>
-
-        <div class="form-group">
-          <label>Amount</label>
-          <input type="text" id="amount_eft" onchange="eft_val();set_bal('eft')" onkeyup="set_max('eft');check_num('eft')" class="form-control" />
-          <div id="amount_prev_eft"></div>
-        </div>
-
-        <button id="eft" disabled class="btn btn-success"><span class="eft_text">Transfer Funds</span></button>
-    <% end %>
-    <br>
-    <span class="trans_messages_eft"></span>
-    <br>
     <div class="conditions_eft">
       <%= render 'charges' %>
     </div>
+    <div class="clearfix"></div><br><br>
+    <%= render 'history' %>
+
+
+ </div>
+
+<div class="clearfix"> </div>
   </div>
-</div>
-</div>
-<div class="row">
-  <div class="history col-md-12">
-<%= render 'history' %>
-  </div>
-</div>
-</div>

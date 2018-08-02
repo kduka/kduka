@@ -1,7 +1,6 @@
-<div class="skil">
 <% @transactions = Transaction.where(store_id: current_store.id).order('created_at desc') %>
-<h1 style="text-align:center">Transaction History</h1>
-<div style="overflow-x:scroll;">
+<h3 style="color:#7aae42;">Transaction History</h3><br>
+<div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
   <table id="myHistoryTable" class="table">
     <thead>
     <tr>
@@ -48,9 +47,8 @@
               <td><%= p.created_at.strftime("%Y-%m-%d %H:%M") %></td>
             </tr>
         <% end %>
-    <% end %>
-    </tbody>
-  </table>
-</div>
-<br>
-</div>
+        <% end %>
+        </tbody>
+        </table>
+ </div><br>
+ <div class="clearfix"></div>

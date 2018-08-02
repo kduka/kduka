@@ -1,46 +1,78 @@
-<div class="skil">
-  <script>
-      $(document).ready(function(){
-          $('[data-toggle="tooltip"]').tooltip();
-      });
-  </script>
-  <br><h1 style="text-align:center">Email and Password</h1><br>
-  <%= form_for(:store, url:{:controller => 'store_registrations', :action => 'update_password'}) do |f| %>
-      <%= devise_error_messages! %>
-      <div class="form-group">
-        <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, class: 'form-control', id:'changemail' %>
-        <div class="display_email_prev"></div>
-        <a data-toggle="tooltip" data-placement="right" title="This is the email you will use to login and recover your password"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-      </div>
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
+<div class="content_bottom" style="margin-top:2em">
 
-      <div class="form-group">
-        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password, autocomplete: "off" , class: 'form-control', id:'currentpass'%>
-      </div>
+<h3 style="color:#7aae42"><i class="fa fa-lock"></i> Email and Password Settings</h3>
+<div class="xs">
+      <div class="tab-content">
+     <div class="tab-pane active" id="horizontal-form">
+       <%= form_for(:store, url:{:controller => 'store_registrations', :action => 'update_password'}) do |f| %>
+         <div class="form-group">
+           <label for="changemail" class="col-sm-2 control-label">Email</label>
+           <div class="col-sm-8">
+             <%= f.email_field :email, autofocus: true, class: 'form-control1', id:'changemail' %>
+             <div class="display_email_prev"></div>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the email you will use to login and recover your password">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <div class="col-ms-10 col-sm-offset-2">
+             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                 <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+             <% end %>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="currentpass" class="col-sm-2 control-label">Current Password<i>(we need your current password to confirm your changes)</i></label>
+           <div class="col-sm-8">
+             <%= f.password_field :current_password, autocomplete: "off" , class: 'form-control1', id:'currentpass',placeholder:'Current Password'%>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the Current Password">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="changepass" class="col-sm-2 control-label">New Password<% if @minimum_password_length %><em>(<%= @minimum_password_length %> characters minimum)</em><% end %><br/></label>
+           <div class="col-sm-8">
+             <%= f.password_field :password, autocomplete: "off", class: 'form-control1', id:'changepass',placeholder:'New Password'%>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is your New Password">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="changepassconf" class="col-sm-2 control-label">Repeat New Password</label>
+           <div class="col-sm-8">
+             <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control1', id:'changepassconf',placeholder:'Repeat New Password' %>
+           </div>
+           <div class="col-sm-2">
+             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Repeat New Password">Help?</span></a>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+         <div class="form-group">
+           <label for="checkbox" class="col-sm-2 control-label"></label>
+           <div class="col-sm-8">
+             <button id="changebtn" type="sumbit" class="kd_buttons" disabled="disabled"><i class="fa fa-save"></i> Save Settings</button>
+             <button type="reset" class="kd_reset"><i class="fa fa-refresh"></i> Load Prefilled</button>
+           </div>
+         </div>
+         <div class="col-md-12" style="height:1em"></div>
+       <%end%>
+     </div>
+   </div>
 
-      <div class="form-group">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br/>
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control', id:'changepass'%>
-        <div class="store_password_prev"></div>
-        <a data-toggle="tooltip" data-placement="right" title="New Password"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-      </div>
+</div>
 
-      <div class="form-group">
-        <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', id:'changepassconf' %>
-        <div class="store_password_conf_prev"></div>
-        <a data-toggle="tooltip" data-placement="right" title="Repeat New Password"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-      </div>
-    </div>
+<div class="clearfix"> </div>
   </div>
-<br><br>
-      <p style="text-align:center"><%= f.submit 'Save', class: 'btn btn-success btn-lg', id:'changebtn', disabled:'disabled' %>
-  <% end %>
