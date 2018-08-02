@@ -25,7 +25,7 @@
       <div class="col-md-12" style="height:1em"></div>
       <label class="col-md-3" style="font-weight:900">Category:</label><span class="col-md-9"><%= Category.find(@product.category_id).name rescue nil %></span>
       <div class="col-md-12" style="height:1em"></div>
-      <label class="col-md-3" style="font-weight:900">Details:</label><span class="col-md-9"><%= "Dimensions: #{@product.length} x #{@product.width} x #{@product.height}  , Weight: #{@product.weight} Grams" %></span>
+      <label class="col-md-3" style="font-weight:900">Details:</label><span class="col-md-9"><%= "Dimensions: #{@product.length} x #{@product.width} x #{@product.height}  , Weight: #{@product.weight} Kilograms" %></span>
       <div class="col-md-12" style="height:1em"></div>
     </div>
     <div class="col-md-6">
@@ -39,7 +39,7 @@
       <div class="col-md-12" style="height:1em"></div>
       <label class="col-md-3" style="font-weight:900">Image 4:</label><span class="col-md-9"><%= image_tag(@product.img4_url(:thumb).to_s) %></span>
       <div class="col-md-12" style="height:1em"></div>
-      <label class="col-md-3" style="font-weight:900">Long Description/Specifications</label><span class="col-md-9"><%= @product.long_description.html_safe rescue nil %></span>
+      <label class="col-md-3" style="font-weight:900">Long Description / Specifications</label><span class="col-md-9"><%= @product.long_description.html_safe rescue nil %></span>
       <div class="col-md-12" style="height:1em"></div>
     </div>
   </div>
