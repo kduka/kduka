@@ -1,33 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div class="content_bottom" style="margin-top:2em">
 
-<h1>Layouts</h1>
 
-<table id="data-tables" class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Display name</th>
-      <th>Description</th>
-      <th>Preview</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<h3 style="color:#7aae42"><i class="fa fa-desktop"></i> Layouts</h3>
+ <div class="col-md-12 span_3">
+   <div class="col_2">
+      <p id="notice"><%= notice %></p>
+      <div style="overflow-x:scroll">
+        <table id="data-tables" class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Display name</th>
+              <th>Description</th>
+              <th>Preview</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
 
-  <tbody>
-    <% @layouts.each do |layout| %>
-      <tr>
-        <td><%= layout.name %></td>
-        <td><%= layout.d_name %></td>
-        <td><%= layout.description %></td>
-        <td><%= image_tag(layout.preview_url(:thumb).to_s) %></td>
-        <td><%= link_to 'Show', layout %></td>
-        <td><%= link_to 'Edit', edit_layout_path(layout) %></td>
-        <td><%= link_to 'Destroy', layout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <tbody>
+            <% @layouts.each do |layout| %>
+              <tr>
+                <td><%= layout.name %></td>
+                <td><%= layout.d_name %></td>
+                <td><%= layout.description %></td>
+                <td><%= image_tag(layout.preview_url(:thumb).to_s) %></td>
+                <td><%= link_to 'Show', layout %></td>
+                <td><%= link_to 'Edit', edit_layout_path(layout) %></td>
+                <td><%= link_to 'Destroy', layout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
-<br>
+      <br>
 
-<%= link_to 'New Layout', new_layout_path %>
+      <%= link_to new_layout_path do %>
+        <button class="kd_buttons"><i class="fa fa-plus"></i> New Layout</button>
+      <%end%>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>

@@ -1,81 +1,101 @@
-<h1>STORES</h1>
+<div class="content_bottom" style="margin-top:2em">
 
-<% if !@stores.blank? %>
-<table id="myTable" class="table">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>subdomain</th>
-    <th>Created at</th>
-    <th>Confirmed at</th>
-    <th>Phone</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Active</th>
-    <th>Categories</th>
-    <th>Products</th>
-    <th>Updated at</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @stores.each do |p| %>
-  <tr>
-    <td><%= link_to p.name, admin_view_path(p.subdomain) %></td>
-    <td><%=link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke", :target=>'_blank' %></td>
-    <td><%= p.created_at %></td>
-    <td><%= p.confirmed_at %></td>
-    <td><%= p.phone %></td>
-    <td><%= p.name %></td>
-    <td><%= p.email %></td>
-    <td><%= p.active %></td>
-    <td><%= Category.where(store_id:p.id).count rescue 0 %></td>
-    <td><%= Product.where(store_id:p.id).count rescue 0 %></td>
-    <td><%= p.updated_at %></td>
-    <td><%= link_to 'Delete', store_delete_path(p.id), data:{:confirm=>'Are you sure?'}, method:'delete' %></td>
-  </tr>
-  <% end %>
-  </tbody>
-</table>
 
-    <% else %>
+<h3 style="color:#7aae42"><i class="fa fa-shopping-cart"></i> Stores</h3>
+ <div class="col-md-12 span_3">
+   <div class="col_2">
+    <% if !@stores.blank? %>
+    <div style="overflow-x:scroll">
+    <table id="myTable" class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>subdomain</th>
+        <th>Created at</th>
+        <th>Confirmed at</th>
+        <th>Phone</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Active</th>
+        <th>Categories</th>
+        <th>Products</th>
+        <th>Updated at</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @stores.each do |p| %>
+      <tr>
+        <td><%= link_to p.name, admin_view_path(p.subdomain) %></td>
+        <td><%=link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke", :target=>'_blank' %></td>
+        <td><%= p.created_at %></td>
+        <td><%= p.confirmed_at %></td>
+        <td><%= p.phone %></td>
+        <td><%= p.name %></td>
+        <td><%= p.email %></td>
+        <td><%= p.active %></td>
+        <td><%= Category.where(store_id:p.id).count rescue 0 %></td>
+        <td><%= Product.where(store_id:p.id).count rescue 0 %></td>
+        <td><%= p.updated_at %></td>
+        <td><%= link_to 'Delete', store_delete_path(p.id), data:{:confirm=>'Are you sure?'}, method:'delete' %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+    </div>
 
-    <p>You dont have any Stores</p>
+      <% else %>
 
-    <% end %>
-    
-    <br/>
-    <br />
-<HR>
+      <p>You dont have any Stores</p>
 
-<H1>USERS</H1>
-    
-<% if !@users.blank? %>
-<table id="myTable2" class="table">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>UserName</th>
-    <th>Email</th>
-    <th>Confirmed at</th>
-    <th>Confirmation Sent</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @users.each do |p| %>
-  <tr>
-    <td><%= p.name %></td>
-    <td><%= p.username %></td>
-    <td><%= p.email %></td>
-    <td><%= p.confirmed_at %></td>
-    <td><%= p.confirmation_sent_at %></td>
-  </tr>
-  <% end %>
-  </tbody>
-</table>
+      <% end %>
 
-    <% else %>
+      <br/>
+      <br />
+  </div>
+  </div>
+  </div>
 
-    <p>You dont have any Users</p>
 
-    <% end %>
+  <div class="content_bottom" style="margin-top:2em">
+
+  <h3 style="color:#7aae42"><i class="fa fa-users"></i> Users</h3>
+   <div class="col-md-12 span_3">
+     <div class="col_2">
+
+
+        <% if !@users.blank? %>
+        <div style="overflow-x:scroll">
+        <table id="myTable2" class="table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Confirmed at</th>
+            <th>Confirmation Sent</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @users.each do |p| %>
+          <tr>
+            <td><%= p.name %></td>
+            <td><%= p.username %></td>
+            <td><%= p.email %></td>
+            <td><%= p.confirmed_at %></td>
+            <td><%= p.confirmation_sent_at %></td>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+        </div>
+
+            <% else %>
+
+            <p>You dont have any Users</p>
+
+            <% end %>
+  </div>
+  </div>
+</div>
+<div class="clearfix"></div>

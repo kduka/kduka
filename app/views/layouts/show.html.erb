@@ -1,29 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="content_bottom" style="margin-top:2em">
 
-<p>
-  <strong>Name:</strong>
-  <%= @layout.name %>
-</p>
 
-<p>
-  <strong>D name:</strong>
-  <%= @layout.d_name %>
-</p>
+<h3 style="color:#7aae42"><i class="fa fa-desktop"></i> Layout Details</h3>
+ <div class="col-md-12 span_3">
+   <div class="col_2">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @layout.description %>
-</p>
-
-<p>
-  <strong>D name:</strong>
-  <%= @layout.d_name %>
-</p>
-
-<p>
-  <strong>Preview:</strong>
-  <%= @layout.preview %>
-</p>
-
-<%= link_to 'Edit', edit_layout_path(@layout) %> |
-<%= link_to 'Back', layouts_path %>
+      <p>
+        <strong class="col-md-3">Name:</strong>
+        <span class="col-md-9"><%= @layout.name %></span>
+      </p>
+      <div class="col-md-12" style="height:1em"></div>
+      <p>
+        <strong class="col-md-3">D name:</strong>
+        <span class="col-md-9"><%= @layout.d_name %></span>
+      </p>
+      <div class="col-md-12" style="height:1em"></div>
+      <p>
+        <strong class="col-md-3">Description:</strong>
+        <span class="col-md-9"><%= @layout.description %></span>
+      </p>
+      <div class="col-md-12" style="height:1em"></div>
+      <p>
+        <strong class="col-md-3">D name:</strong>
+        <span class="col-md-9"><%= @layout.d_name %></span>
+      </p>
+      <div class="col-md-12" style="height:1em"></div>
+      <p>
+        <strong class="col-md-3">Preview:</strong>
+        <span class="col-md-9"><img src="<%= @layout.preview %>" style="max-width:100%"></span>
+      </p>
+      <div class="col-md-12" style="height:1em"></div>
+      <br><br>
+      <p>
+        <%= link_to edit_layout_path(@layout),style:'text-decoration:none' do %>
+        <button class="kd_buttons"><i class="fa fa-edit"></i> Edit Layout</button>
+        <%end%>
+        <%= link_to layouts_path,style:'text-decoration:none' do  %>
+        <button class="kd_reset"><i class="fa fa-arrow-left"></i> Back</button>
+        <%end%>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>

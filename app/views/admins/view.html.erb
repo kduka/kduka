@@ -1,76 +1,92 @@
-<h1>CATEGORIES</h1>
-
-<% if !@categories.blank? %>
-  <table id="myTable" class="table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Price</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% num = 1 %>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= num %>
-        <td><%= category.name %></td>
-        <td><%= category.active %></td>
-
-      </tr>
-      <% num = num+1 %>
-    <% end %>
-    </tbody>
-  </table>
-
-<% else %>
-
-  <p>You dont have any Stores</p>
-
-<% end %>
+<div class="content_bottom" style="margin-top:2em">
 
 
+<h3 style="color:#7aae42"><i class="fa fa-list"></i> Categories</h3>
+ <div class="col-md-12 span_3">
+   <div class="col_2">
 
-<h1>PRODUCTS</h1>
+      <% if !@categories.blank? %>
+        <table id="myTable" class="table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% num = 1 %>
+          <% @categories.each do |category| %>
+            <tr>
+              <td><%= num %>
+              <td><%= category.name %></td>
+              <td><%= category.active %></td>
 
-<% if !@products.blank? %>
-  <table id="myTable" class="table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Active</th>
-      <th>Category</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @products.each do |p| %>
-      <tr>
-        <% if p.quantity < 1 %>
-          <td><%= p.name %>
-            <a data-toggle="tooltip" data-placement="right" title="You have run out of stock for this item"><span class="label label-danger">Out of Stock</span></a>
-          </td>
-        <% elsif p.quantity < 10 %>
-          <td><%= p.name %>
-            <a data-toggle="tooltip" data-placement="right" title="Your current stock is running low"><span class="label label-warning">Low</span></a>
-          </td>
-        <% else %>
-          <td><%= p.name %></td>
-        <% end %>
-        <td><%= p.quantity %></td>
-        <td><%= p.price %></td>
-        <td><%= p.active %></td>
-        <td><%= Category.find(p.category_id).name rescue nil %></td>
-        <td><%= link_to "Show", store_product_path(p.store_id, p), style: "color:#06B216;text-decoration: none;" %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+            </tr>
+            <% num = num+1 %>
+          <% end %>
+          </tbody>
+        </table>
 
-<% else %>
+      <% else %>
 
-  <p>You dont have any Stores</p>
+        <p>This Store Has No Categories</p>
 
-<% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<div class="content_bottom" style="margin-top:2em">
+
+
+<h3 style="color:#7aae42"><i class="fa fa-gift"></i> Products</h3>
+ <div class="col-md-12 span_3">
+   <div class="col_2">
+
+      <% if !@products.blank? %>
+        <table id="data-tables" class="table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Active</th>
+            <th>Category</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @products.each do |p| %>
+            <tr>
+              <% if p.quantity < 1 %>
+                <td><%= p.name %>
+                  <a data-toggle="tooltip" data-placement="right" title="You have run out of stock for this item"><span class="label label-danger">Out of Stock</span></a>
+                </td>
+              <% elsif p.quantity < 10 %>
+                <td><%= p.name %>
+                  <a data-toggle="tooltip" data-placement="right" title="Your current stock is running low"><span class="label label-warning">Low</span></a>
+                </td>
+              <% else %>
+                <td><%= p.name %></td>
+              <% end %>
+              <td><%= p.quantity %></td>
+              <td><%= p.price %></td>
+              <td><%= p.active %></td>
+              <td><%= Category.find(p.category_id).name rescue nil %></td>
+              <td><%= link_to "Show", store_product_path(p.store_id, p), style: "color:#06B216;text-decoration: none;" %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+      <% else %>
+
+        <p>This Store has no Products</p>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>

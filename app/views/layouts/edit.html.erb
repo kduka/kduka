@@ -1,6 +1,18 @@
-<h1>Editing Layout</h1>
-
-<%= render 'form', layout: @layout %>
-
-<%= link_to 'Show', @layout %> |
-<%= link_to 'Back', layouts_path %>
+<div class="content_bottom" style="margin-top:2em">
+<h3 style="color:#7aae42"><i class="fa fa-edit"></i> Edit Layout</h3>
+ <div class="col-md-12 span_3">
+   <div class="col_2">
+      <%= render 'form', layout: @layout %>
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label"></label>
+        <div class="col-sm-10">
+          <%= link_to  @layout, style:'text-decoration:none' do %>
+          <button class="kd_change"><i class="fa fa-search"></i> Show Layout</button>
+          <%end%>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+   </div>
+  </div>
+</div>
+<div class="clearfix"></div>
