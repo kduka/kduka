@@ -5,16 +5,24 @@
 	<head>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= stylesheet_link_tag    'login.css', media: 'all', 'data-turbolinks-track' => true %>
+    <% Dir.foreach("public/stylesheets/admin") do |item|
+      next if item == '.' or item == '..' %>
+        <%= stylesheet_link_tag "admin/#{item}" %>
+    <% end %>
+    <% Dir.foreach("public/javascripts/admin") do |item|
+      next if item == '.' or item == '..' %>
+        <%= javascript_include_tag "admin/#{item}" %>
+    <% end %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+		<script src="https://use.fontawesome.com/61725da21d.js"></script>
 		<%= csrf_meta_tags %>
 
-		<title>KDuka Login</title>
+		<title>KDuka Admin Login</title>
 
 		<!-- Meta-Tags -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="keywords" content="Techno Login Form Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+		<meta name="keywords" content="KDuka Store Login Form">
 		<script type="application/x-javascript">
 			addEventListener("load", function() {
 				setTimeout(hideURLbar, 0);
@@ -43,21 +51,31 @@
 		<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" %>
 	<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Montserrat:400,700" %>
 		<!-- //Fonts -->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script>
-    var hgt = $(window).height();
-    $("#main").css("height", hgt)
-</script>
+
 	</head>
 	<!-- //Head -->
 
 	<!-- Body -->
-	<body id="main" style="background-image: url('../images/website/banne3.jpg') !important;background-repeat: no-repeat;background-size: cover;background-attachment:fixed !important">
+	<body>
 
 
 		<div class="container">
 
 			<div class="row">
+			<style>
+			.my_buttons{
+				padding: 10px 30px;
+				font-family: 'Montserrat', sans-serif;
+				font-size: 15px;
+				border: none;
+				outline: none;
+				border-radius: 30px;
+				background-color: #05c2f9;
+				color: #FFF;
+				cursor: pointer;
+				margin-bottom: 2em;
+			}
+			</style>
 				<%= yield %>
 			</div>
 		</div>

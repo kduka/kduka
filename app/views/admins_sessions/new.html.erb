@@ -1,5 +1,5 @@
 
-<h1 style="color:#fff"><br><br>LOGIN<br><br></h1>
+<h1 style="color:#fff"><br><br>ADMIN LOGIN<br><br></h1>
 
 <div class="col-md-6 col-md-offset-3 containerw3layouts-agileits">
 
@@ -8,6 +8,7 @@
 	</div> -->
 
   <div class="aitsloginwthree w3layouts agileits">
+    <p style="margin-top: 2em;text-align:center"><a href="<%= root_path %>" > <%= image_tag("website/logo.png",style:"width:160px;height:auto") %><br></a></p>
     <div class="col-md-12">
       <% if !notice.nil? %>
           <div class="alert alert-success" role="alert">
@@ -22,8 +23,8 @@
     </div></br>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <%= f.email_field :email, autofocus: true, placeholder:"Email Address" %>
-        <%= f.password_field :password, autocomplete: "off", placeholder:"Password" %>
+        <%= f.email_field :email, autofocus: true, placeholder:"Email Address",style:'text-align:center' %>
+        <%= f.password_field :password, autocomplete: "off", placeholder:"Password",style:'text-align:center' %>
         <ul class="tick w3layouts agileinfo">
           <li>
             <%= f.check_box :remember_me %>
@@ -44,4 +45,7 @@
 
   <div class="clear"></div>
 
+</div>
+<div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
+  <p style="font-weight: 900;text-align:center;color: #000 !important;text-shadow: 5px 5px 5px 5px #fff;"><span style="background: rgba(255,255,255,0.0);padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="font-weight: 900;color:#7AAE42;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span><p>
 </div>
