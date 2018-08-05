@@ -29,6 +29,24 @@
 
 $(function () {
 
+    $("#url").keyup(function () {
+        url = $("#url").val();
+
+        $.ajax({
+            url:'/users/remote_santize',
+            data:{
+                url:url
+            },
+            method:'post',
+            success:function (res) {
+                $("#url_prev").html("<span style='color:green'>http://"+ res +".kduka.co.ke</span>");
+                var str = res;
+                var url = str.replace('.kduka.co.ke', '');
+                $("#url").val(url);
+            }
+        });
+    });
+
 
     $("#pass_store").keyup(function () {
         password = $("#pass_store").val();
@@ -593,6 +611,10 @@ $(function () {
     $("#currentpass").keyup(function () {
         store_change_reg();
     });
+
+    $("#store_email").keyup(function () {
+        validateEmail($("#store_email").val());
+    });
 });
 
 
@@ -1060,7 +1082,6 @@ function user_reg() {
 
 function valmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     if (email.match(re)) {
         return true;
     } else {
@@ -1068,19 +1089,36 @@ function valmail(email) {
     }
 }
 
-function store_reg() {
-    store_name = $("#store_name").val();
-    store_phone = $("#store_phone").val();
-    url = $("#url").val();
-    store_password = $("#store_password").val();
-    email = $("#store_email").val();
-    store_password_confirmation = $("#store_password_confirmation").val();
-    store_display_email = $("#store_display_email").val();
-    if (store_name.length > 3 && $.isNumeric(store_phone) && url.length > 2 && pass(store_password) && pass(store_password_confirmation) && valmail(email) && valmail(store_display_email) && $("#store_email").attr('data-valid') == 'true' && $("#store_password_confirmation").attr('data-valid') == 'true') {
-        $("#store_sign_up").removeAttr("disabled");
-    } else {
-        $("#store_sign_up").attr("disabled", "true");
 
+
+function store_reg() {
+
+    store_name = $("#store_name").val();
+    url = $("#url").val();
+    email = $("#store_email").val();
+
+    //setTimeout(console.log('timeout'),1000);
+
+    if (store_name.length > 3 && url.length > 2 && $("#store_email").attr('data-valid') == 'true'){
+        $('#nxtBtn').prop("disabled", false);
+        $('#nxtBtn').removeAttr("style");
+    } else {
+        //alert(false);
+        $("#nxtBtn").attr("disabled", "true");
+        $("#nxtBtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
+
+    }
+}
+
+function store_reg2() {
+    store_phone = $("#store_phone").val();
+    store_password = $("#store_password").val();
+    store_password_confirmation = $("#store_password_confirmation").val();
+    if ( $.isNumeric(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true') {
+        $("#submitter").removeAttr("disabled");
+    } else {
+        $("#submitter").attr("disabled", "true");
+        $('#submitter').removeAttr("style");
     }
 
 }
@@ -1099,9 +1137,10 @@ function store_change_reg() {
 }
 
 function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-    if (email.match(re)) {
+    if (regex.test(email)) {
+
         $.ajax({
             url: '/users/checkmail',
             data: {
@@ -1109,7 +1148,6 @@ function validateEmail(email) {
             },
             method: 'post',
             success: function (res) {
-                //alert(res);
                 $("#email_prev").html(res);
                 if (res == "<span style='color:green'>Available</span>") {
                     $("#store_email").attr('data-valid', 'true');
@@ -1122,6 +1160,7 @@ function validateEmail(email) {
         $("#email_prev").html("<span style='color:red' >This is not a valid email</span>");
         $("#store_sign_up").attr("disabled", "true");
     }
+
 }
 
 function validateEmail2(email) {
@@ -1163,3 +1202,4 @@ function res_check() {
         $("#reseter").attr('style', 'background-color:grey');
     }
 }
+

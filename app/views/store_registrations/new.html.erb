@@ -1,115 +1,75 @@
-<div class="col-md-10 col-md-offset-1 containerw3layouts-agileits">
-
-  <div class="aitsloginwthree w3layouts agileits" style="margin-top:2em">
-    <p style="margin-top: 2em;text-align:center"><a href="<%= root_path %>" > <%= image_tag("website/logo.png",style:"width:160px;height:auto") %><BR></a></p>
-    <h1 style="color:#fff !important;font-family: 'Roboto', sans-serif">Sign Up!<br><br></h1>
-
-    <div class="col-md-12">
-      <% if !notice.nil? %>
-          <div class="alert alert-success" role="alert">
-            <strong><%= notice %></strong>
-          </div>
-      <% end %>
-      <% if !alert.nil? %>
-          <div class="alert alert-info" role="alert">
-            <strong><%= alert %></strong>
-          </div>
-      <% end %>
-    </div></br>
 
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="inp contact-grids">
 
-
-        <%= devise_error_messages! %>
-        <div class="col-md-12 col-xs-12">
-          <div class="col-md-12 col-xs-12">
-            <div class="field">
-              <br />
-              <%= f.label "Store Name" %>
-              <%= f.text_field :name, autofocus: true, class:'form-control text-center', placeholder:'The name of your store users will see i.e Johns Store', onchange:'store_reg()' %>
-              <div class="store_name_prev"></div>
-              <a data-toggle="tooltip" data-placement="right" title="The store name that users will see when they visit your store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            </div>
-
-            <div class="field">
-              <br />
-              <%= f.label "Url" %>
-
-              <%= f.text_field :subdomain, autofocus: true, class:'form-control text-center', placeholder:'Your url will be storename.myduka.com', id:'url', onchange:'store_reg()'%>
-              <p>If you enter 'john', your store will be john.kduka.co.ke<br/></p><p style="color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
-
-              <div class="url_prev"></div>
-              <a data-toggle="tooltip" data-placement="right" title='This is the link you will give your clients to access your store. If you enter "john" we will automatically create john.kduka.co.ke for you'><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            </div>
-
-            <div class="field">
-              <br />
-              <%= f.label :email %>
-              <%= f.email_field :email, autofocus: true,class:'form-control text-center',placeholder:'Email to be used to login into the store account',onchange:'store_reg()',data:'false' %>
-              <p style="color: green;font-weight:bold" id="email_prev"></p>
-              <a data-toggle="tooltip" data-placement="right" title="This is the email that you will use to log in to the store that you are now creating"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            </div>
-
-            <div class="field">
-              <br />
-              <%= f.label :display_email %>
-              <%= f.text_field :display_email, 'data-valid':'false', autofocus: true, class:'form-control text-center' ,placeholder:'Email you want your clients to see',onchange:'store_reg()' %>
-              <div class="display_email_prev"></div>
-              <a data-toggle="tooltip" data-placement="right" title="This is the email that will be seen by your clients when they visit your online store. Messages from your store's contact page will be sent to this email"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            </div>
-          </div>
-          <div class="col-md-12 col-xs-12">
-
-            <div class="field">
-              <br />
-              <%= f.label "Full Name" %>
-              <%= f.text_field :username, autofocus: true, class:'form-control text-center',placeholder:'Full Name' %>
-              <a data-toggle="tooltip" data-placement="right" title=""><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            </div>
-
-            <div class="field">
-              <br />
-              <%= f.label :phone %>
-              <%= f.text_field :phone, autofocus: true, class:'form-control text-center',placeholder:'Phone Number you want your clients to see',onchange:'store_reg()' %>
-              <div class="phone_prev"></div>
-              <a data-toggle="tooltip" data-placement="right" title="This is the phone number that will be seen by your clients when they visit your online store"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            </div>
-
-            <div class="field" style="margin-top:2.12em;">
-              <br />
-              <%= f.label :password %>
-              <% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %><br />
-              <%= f.password_field :password, autocomplete: "off", class:'form-control text-center' ,placeholder:'Password',onchange:'store_reg()', 'data-valid':'false'%>
-              <span class="store_password_prev"></span>
-              <a data-toggle="tooltip" data-placement="right" title="Your store's password should be at least six(6) characters long, contain at least one upper case letter and one number"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            </div>
-
-            <div class="field">
-              <br />
-              <%= f.label "Repeat Password" %>
-              <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control text-center',placeholder:'Repeat Password' ,onchange:'store_reg()'%>
-              <span class="store_password_confirmation_prev"></span>
-              <a data-toggle="tooltip" data-placement="right" title="This should match the password you inserted above"><span><i style="color: #b52e31" class="fa fa-question-circle"></i> <span style="color: #b52e31">Help?</span></span></a>
-            </div>
-
-          </div>
-        </div>
-
-
-
-        <div class="actions" style="text-align:center">
-          <%= f.submit "Create Store", class:'signup_button',style:'margin-top:3em;padding-top:.5em;padding-bottom:.5em;font-size:20px;font-weight:400', disabled:'disabled', id:'store_sign_up' %>
-        </div>
-        <br><p></p><br>
+  <div class="col-md-12">
+    <% if !notice.nil? %>
+      <div class="alert alert-success" role="alert">
+        <strong><%= notice %></strong>
+      </div>
+    <% end %>
+    <% if !alert.nil? %>
+      <div class="alert alert-info" role="alert">
+        <strong><%= alert %></strong>
+      </div>
     <% end %>
   </div>
+  </br>
 
-  <div class="clear"></div>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'regForm',style:"background-color: #fff;padding: 40px;}"}) do |f| %>
+    <h3> Store Signup</h3>
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="margin-top:20px;margin-bottom:30px;">
+      <!-- <h5 style="text-align:center !important;margin-bottom:-0.1em !important">Your Progress Bar</h5> -->
+      <span class="step"></span>
+      <span class="step"></span>
+    </div>
+
+    <div class="tab" style="display:block">
+      <%= f.text_field :name, autofocus: true, id: 'store_name', placeholder: 'Your Stores Name', onchange: 'store_reg()', oninput: "this.className = ''" %>
+      <div class="text-center store_name_prev"></div>
+      <!--    <input style="width: 75%;border-radius: 0px !important;border-right-style: none;" required id="url_modalsign" type="text" placeholder="Your Store Url" oninput="this.className = ''"><label style="border-left-style: none !important;padding: 13px 10px;border: 1px solid #dadada;background: none;font-size: 13px;color: #222222;width: 25%;margin-top: 1em;margin-bottom:1em;-moz-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;text-align: center;color: #7aae42;text-align: left;">.kduka.co.ke</label>-->
+      <%= f.text_field :subdomain, autofocus: true, placeholder: 'Your store website', onchange: 'store_reg()', oninput: "this.className = ''", id:'url' %>
+
+      <p class="text-center" style="font-size:10px;color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
+
+      <%= f.email_field :email, autofocus: true, id:'store_email', class: 'form-control text-center', placeholder: 'Email to be used to login into the store account', onchange: 'store_reg()', oninput: "this.className = ''" %>
+      <p class="text-center" style="font-size:10px;color:green;font-weight:bold" id="email_prev"></p>
+    </div>
+
+    <div class="tab">
+      <%#= f.text_field :username, autofocus: true, placeholder: 'Full Name', oninput: "this.className = ''" %>
+      <!--    <input required id="phone" type="number" placeholder="Your Phone Number (e.g. 254712345678 )..." min="254700000000" max="254799999999" minlenth="12" oninput="this.className = ''">-->
+      <%= f.text_field :phone, autofocus: true, placeholder: 'Phone Number you want your clients to see', onchange: 'store_reg2()', oninput: "this.className = ''" %>
+      <div  style="font-size:10px" class="phone_prev text-center"></div>
+      <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', onchange: 'store_reg2()', 'data-valid': 'false' %>
+      <span style="font-size:10px;" class="store_password_prev text-center"></span>
+      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Repeat Password', onchange: 'store_reg2()' %>
+      <span style="font-size:10px;" class="text-center store_password_confirmation_prev"></span>
+    </div>
+    <!-- <div class="tab">
+      <h3 style="color:#7aae42;text-transform:capitalize;padding-top:2em;text-align:center">You're all set Up.<br>Submit Your Details Now !</h3>
+    </div> -->
+
+    <div style="overflow:auto; margin-top:3em">
+      <div style="text-align: center;">
+        <button class="our_btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+        <button style="background-color:grey;color:#000;border-color: grey;" class="our_btn" type="button" id="nxtBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<div class="clear"></div>
 
 </div>
 <div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
-  <p style="font-weight: 900;text-align:center;color: #000 !important;text-shadow: 5px 5px 5px 5px #fff;"><span style="background: rgba(255,255,255,0.0);padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="font-weight: 900;color:#7AAE42;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span><p>
+  <p style="font-weight: 900;text-align:center;color: #000 !important;text-shadow: 5px 5px 5px 5px #fff;">
+    <span style="background: rgba(255,255,255,0.0);padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %>
+      KDuka. All rights reserved | Developed by <a style="font-weight: 900;color:#7AAE42;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span>
+  <p>
 </div>
+
+

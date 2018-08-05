@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     if !@domain.nil?
       @nospace = "<span style='color:red'>The domain http://#{nospace}.kduka.co.ke is already taken</span>"
     else
-      @nospace = "<span style='color:green'>http://#{nospace}.kduka.co.ke</span>"
+      @nospace = nospace
     end
 
     no_layout

@@ -6,45 +6,28 @@
 
 $(function () {
 
+    $('#nxtBtn').prop('disabled', true);
+
     $("#regForm").submit(function (e) {
         e.preventDefault();
     });
 
-    $("#subb").click(function (event) {
-        event.preventDefault();
-       $.ajax({
-           url:'/stores/',
-           method:'post',
-           headers: {
-               "content-type": "application/json",
-               "cache-control": "no-cache",
-               "postman-token": "56538595-6b9a-a68d-bbcb-8c402a3c5744"
-           },
-           processData: false,
-           data:{
-             store:{
-                 email:'martindeto@gmiail.com'
-             }
-           },
-           success:function (e) {
-               $(".signup_err").html(e);
-           },
-       })
-    });
+
+    $("#submitter").click(function (event) {
+            event.preventDefault();
+            alert("processing...");
+        });
+
 
     $("#sign").click(function (e) {
-       $.ajax({
-           url:'/stores/signup',
-           method:'get',
-           success:function (d) {
-               $("#signup_modal").html(d);
-           }
-       }) ;
+        $.ajax({
+            url: '/stores/signup',
+            method: 'get',
+            success: function (d) {
+                $("#signup_modal").html(d);
+            }
+        });
     });
-
-
-
-    //alert('script');
 
     $("#sendmail").click(function (e) {
 
@@ -84,78 +67,54 @@ $(function () {
 
 });
 
-/*--Start Signup JS--*/
-
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
 
 function showTab(n) {
-    console.log(n);
-    // This function will display the specified tab of the form...
+    // This function will display the specified tab of the form ...
     var x = document.getElementsByClassName("tab");
-    alert("n is "+n);
-
+    console.log(x);
     x[n].style.display = "block";
-    //... and fix the Previous/Next buttons:
+    // ... and fix the Previous/Next buttons:
     if (n == 0) {
-        document.getElementById("nextBtn").style.display = "inline";
         document.getElementById("prevBtn").style.display = "none";
-    }
-
-    if(n==1){
-        document.getElementById("nextBtn").innerHTML = "Submit";
-        $("#nextBtn").attr('id','submitter');
-        $("#nextBtn").removeAttr('onclick');
+    } else {
         document.getElementById("prevBtn").style.display = "inline";
-        $("#prevBtn").attr('onclick','nextPrev(3)');
     }
+    if (n == (x.length - 1)) {
+        document.getElementById("nxtBtn").innerHTML = "Submit";
+        $("#nxtBtn").attr('id','submitter');
+        $("#submitter").attr('disabled','true');
+        $("#submitter").attr("style", "background-color:grey;color:#000;border-color: grey;");
+    } else {
 
-    //... and run a function that will display the correct step indicator:
+        if($("#nxtBtn")){
+            $("#submitter").attr('id','nxtBtn');
+            document.getElementById("nxtBtn").innerHTML = "Next";
 
-        fixStepIndicator(n)
+        }
+    }
+    // ... and run a function that displays the correct step indicator:
+    fixStepIndicator(n)
 }
 
 function nextPrev(n) {
-    if(n==3){
-        alert("1");
-        document.getElementById("submitter").innerHTML = "Next";
-        $("#submitter").attr('id','nextBtn');
-        $("#nextBtn").attr('onclick','nextPrev(1)');
-
-        var n = 0;
-        // This function will figure out which tab to display
-        var x = document.getElementsByClassName("tab");
-        // Exit the function if any field in the current tab is invalid:
-        if (n == 1 && !validateForm()) return false;
-        // Hide the current tab:
-        x[currentTab].style.display = "none";
-        // Increase or decrease the current tab by 1:
-        currentTab = currentTab + n;
-        // if you have reached the end of the form...
-        if (currentTab >= x.length) {
-            // ... the form gets submitted:
-            document.getElementById("regForm").submit();
-            return false;
-        }
-        // Otherwise, display the correct tab:
-        showTab(currentTab);
-
-    }else {
-        // This function will figure out which tab to display
-        var x = document.getElementsByClassName("tab");
-        // Exit the function if any field in the current tab is invalid:
-        if (n == 1 && !validateForm()) return false;
-        // Hide the current tab:
-        x[currentTab].style.display = "none";
-        // Increase or decrease the current tab by 1:
-        currentTab = currentTab + n;
-        // if you have reached the end of the form...
-        if (currentTab >= x.length) {
-            // ... the form gets submitted:
-            document.getElementById("regForm").submit();
-            return false;
-        }
-        // Otherwise, display the correct tab:
-        showTab(currentTab);
+    // This function will figure out which tab to display
+    var x = document.getElementsByClassName("tab");
+    // Exit the function if any field in the current tab is invalid:
+    if (n == 1 && !validateForm()) return false;
+    // Hide the current tab:
+    x[currentTab].style.display = "none";
+    // Increase or decrease the current tab by 1:
+    currentTab = currentTab + n;
+    // if you have reached the end of the form... :
+    if (currentTab >= x.length) {
+        //...the form gets submitted:
+        document.getElementById("regForm").submit();
+        return false;
     }
+    // Otherwise, display the correct tab:
+    showTab(currentTab);
 }
 
 function validateForm() {
@@ -166,10 +125,10 @@ function validateForm() {
     // A loop that checks every input field in the current tab:
     for (i = 0; i < y.length; i++) {
         // If a field is empty...
-        if (y[i].value < 254700000000 || y[i].value > 254799999999 ) {
+        if (y[i].value == "") {
             // add an "invalid" class to the field:
             y[i].className += " invalid";
-            // and set the current valid status to false
+            // and set the current valid status to false:
             valid = false;
         }
     }
@@ -186,8 +145,6 @@ function fixStepIndicator(n) {
     for (i = 0; i < x.length; i++) {
         x[i].className = x[i].className.replace(" active", "");
     }
-    //... and adds the "active" class on the current step:
+    //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
-/*--//End Signup JS--*/
-
