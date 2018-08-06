@@ -15,6 +15,10 @@
     <% end %>
   </div>
   </br>
+  <script>
+      var currentTab = 0; // Current tab is set to be the first tab (0)
+      showTab(currentTab); // Display the current tab
+  </script>
 
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'regForm',style:"background-color: #fff;padding: 40px;}"}) do |f| %>
