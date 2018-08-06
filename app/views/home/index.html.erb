@@ -109,10 +109,16 @@ next if item == '.' or item == '..' %>
 <% end %>
 
 <!-- web fonts -->
+<style>
+body{
+  font-family:'Open Sans', sans-serif !important;
+  padding-right: 0px !important;
+}
+</style>
 </head>
 <body>
 <!--Signup Modal-->
-  <div id="signup_modal" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
+  <div id="signup_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
 
   </div>
   <!--//Signup Modal-->
@@ -192,7 +198,7 @@ next if item == '.' or item == '..' %>
 							<li><a href="#features" class="scroll"><i class="fa fa-check"></i> Features</a></li>
               <li><a href="#pricing" class="scroll"><i class="fa fa-money"></i> Pricing</a></li>
 							<li><a href="#contact" class="scroll"><i class="fa fa-envelope"></i> Contact</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#signup_modal"><i class="fa fa-edit"></i> Sign Up</a></li>
+              <li><a href="#" data-toggle="modal" class="signup" data-target="#signup_modal"><i class="fa fa-edit"></i> Sign Up</a></li>
               <!-- <li><a href="#" data-toggle="modal" data-target="#login_modal"><i class="fa fa-sign-in"></i> Login</a></li> -->
               <!-- <li><a href="<%= new_store_registration_path %>"><i class="fa fa-edit"></i> Sign Up</a></li> -->
               <li><a href="<%= new_store_session_path %>"><i class="fa fa-sign-in"></i> Login</a></li>
@@ -235,7 +241,7 @@ next if item == '.' or item == '..' %>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="banner-w3lsinfo" >
-				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2.5em;font-weight: 200;text-transform:capitalize;;color: #fff">Create a stunning online shop with <span style="color: #7AAE42">KDuka!</span></h2>
+				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2.5em;font-weight: 200 !important;text-transform:capitalize;color: #fff;">Create a stunning online shop with <span style="color: #7AAE42">KDuka!</span></h2>
 				<p style="font-size:1.2em;font-weight: 200;color: #fff;">Let's create your Online Shop in Minutes!</p>
         <br><br>
         <div class="col-md-4 col-md-offset-4 col-xs-12" style="margin-bottom:2em">
@@ -263,7 +269,7 @@ next if item == '.' or item == '..' %>
           }
           </style>
           <!-- <a href="<%= new_store_registration_path %>" class="my_new_button"><i class="fa fa-edit"></i> Let's Start</a> -->
-          <a href="#" data-toggle="modal" data-target="#signup_modal" class="my_new_button" id="sign"><i class="fa fa-edit"></i> Let's Start</a>
+          <a href="#" data-toggle="modal" data-target="#signup_modal" class="my_new_button signup" id="sign"><i class="fa fa-edit"></i> Let's Start</a>
           <BR>
           <a style="font-weight: 600;color: #7AAE42;" target="_blank" href="http://www.kduka.co.ke/help"> NEED SOME HELP?</a>
         </div>
@@ -420,7 +426,7 @@ next if item == '.' or item == '..' %>
       <div class="col-md-6" style="margin-bottom:2em">
         <!-- <p>Sign Up!</p> -->
         <!-- <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a> -->
-        <a style="width:95%;margin-left:auto;margin-right:auto" href="#" data-toggle="modal" data-target="#signup_modal" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a>
+        <a style="width:95%;margin-left:auto;margin-right:auto" href="#" data-toggle="modal" data-target="#signup_modal" class="wthree-hvr signup"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a>
       </div>
       <div class="col-md-6" style="margin-bottom:2em">
         <!-- <p>Login</p> -->
