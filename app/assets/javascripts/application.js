@@ -49,10 +49,16 @@ $(function () {
             },
             method:'post',
             success:function (res) {
-                $("#url_prev").html("<span style='color:green'>http://"+ res +".kduka.co.ke</span>");
-                var str = res;
-                var url = str.replace('.kduka.co.ke', '');
-                $("#url").val(url);
+                if(res == 'false'){
+                    vall = $("#url").val();
+                    $("#url_prev").html("<span style='color:red'>http://"+ vall +".kduka.co.ke is already taken!</span>");
+
+                }else{
+                    $("#url_prev").html("<span style='color:green'>http://"+ res +".kduka.co.ke</span>");
+                    var str = res;
+                    var url = str.replace('.kduka.co.ke', '');
+                    $("#url").val(url);
+                }
             }
         });
     });
