@@ -34,6 +34,7 @@
 			<li style="text-align:center !important">
 				 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
 				Forgot your Password? <%= link_to "Click Here", new_password_path(resource_name),class:"devise_buttons" %>
+          <a href="#" data-toggle="modal" data-target="#signup_modal" class="my_new_button" id="sign"><i class="fa fa-edit"></i> Let's Start</a>
 				<br />
 				<% end -%>
 			</li>
@@ -49,4 +50,8 @@
 </div>
 <div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
   <p style="font-weight: 900;text-align:center;color: #000 !important;text-shadow: 5px 5px 5px 5px #fff;"><span style="background: rgba(255,255,255,0.0);padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="font-weight: 900;color:#7AAE42;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span><p>
+</div>
+
+<div id="signup_modal" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
+
 </div>

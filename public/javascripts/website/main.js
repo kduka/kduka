@@ -6,6 +6,36 @@
 
 $(function () {
 
+    $("#submitter").click(function (e) {
+
+        e.preventDefault();
+
+        store_name = $("#store_name").val();
+        url = $("#url").val();
+        email = $("#store_email").val();
+        store_phone = $("#store_phone").val();
+        store_password = $("#store_password").val();
+        store_password_confirmation = $("#store_password_confirmation").val();
+
+        $.ajax
+        ({
+            url:'stores',
+            method:'post',
+            data:{
+                email:email,
+                name:store_name,
+                subdomain:url,
+                phone:store_phone,
+                password:store_password,
+                password_confirmation:store_password_confirmation
+            },
+            success:function (e2) {
+                alert(e2);
+            }
+
+        });
+    });
+
     $('#nxtBtn').prop('disabled', true);
 
     $("#regForm").submit(function (e) {
@@ -13,21 +43,7 @@ $(function () {
     });
 
 
-    $("#submitter").click(function (event) {
-            event.preventDefault();
-            alert("processing...");
-        });
 
-
-    $("#sign").click(function (e) {
-        $.ajax({
-            url: '/stores/signup',
-            method: 'get',
-            success: function (d) {
-                $("#signup_modal").html(d);
-            }
-        });
-    });
 
     $("#sendmail").click(function (e) {
 
@@ -83,14 +99,19 @@ function showTab(n) {
     }
     if (n == (x.length - 1)) {
         document.getElementById("nxtBtn").innerHTML = "Submit";
-        $("#nxtBtn").attr('id','submitter');
-        $("#submitter").attr('disabled','true');
+        $("#nxtBtn").attr('id', 'submitter');
+        $("#submitter").attr('disabled', 'true');
+        $("#submitter").attr('type', 'submit');
         $("#submitter").attr("style", "background-color:grey;color:#000;border-color: grey;");
+        $("#submitter").removeAttr("onclick");
+        store_reg2();
     } else {
 
-        if($("#nxtBtn")){
-            $("#submitter").attr('id','nxtBtn');
+        if ($("#nxtBtn")) {
+            $("#submitter").attr('id', 'nxtBtn');
+            $("#nxtBtn").attr('onclick', 'nextPrev(1)');
             document.getElementById("nxtBtn").innerHTML = "Next";
+            store_reg();
 
         }
     }

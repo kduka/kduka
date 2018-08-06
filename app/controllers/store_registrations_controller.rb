@@ -25,14 +25,14 @@ class StoreRegistrationsController < Devise::RegistrationsController
     if @store.save
       flash[:notice] = "Your Store has been created! Please check your email for the activation message"
       #redirect_to(users_home_path)
-      redirect_to(request.referer)
+      redirect_to(new_store_session_path)
       # store = Store.where(user_id:@user.id).first
       # if store.nil?
       # PromoteMailer.store_not_active(@user).deliver
       # end
     else
       flash[:notice] = "Sorry, we couldn't create the store. Please contact admin"
-      redirect_to(users_home_path)
+      redirect_to(new_store_session_path)
     end
   end
 

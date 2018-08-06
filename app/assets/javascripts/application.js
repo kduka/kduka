@@ -29,6 +29,16 @@
 
 $(function () {
 
+    $("#sign").click(function (e) {
+        $.ajax({
+            url: '/stores/signup',
+            method: 'get',
+            success: function (d) {
+                $("#signup_modal").html(d);
+            }
+        });
+    });
+
     $("#url").keyup(function () {
         url = $("#url").val();
 
@@ -399,9 +409,11 @@ $(function () {
         if ($.isNumeric(phone) && phonecheck(phone)) {
             $(".phone_prev").html("");
             $("#store_phone").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+            store_reg2();
         } else {
             $(".phone_prev").html("<p style='color:red;font-size: 15px;'>Please enter a valid phone number in format 2547xxxxxxxx</p>");
             $("#store_phone").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+            store_reg2();
         }
     });
 
@@ -614,6 +626,7 @@ $(function () {
 
     $("#store_email").keyup(function () {
         validateEmail($("#store_email").val());
+        store_reg();
     });
 });
 
@@ -1114,11 +1127,12 @@ function store_reg2() {
     store_phone = $("#store_phone").val();
     store_password = $("#store_password").val();
     store_password_confirmation = $("#store_password_confirmation").val();
-    if ( $.isNumeric(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true') {
+    if ( phonecheck(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true') {
         $("#submitter").removeAttr("disabled");
+        $("#submitter").removeAttr("style");
     } else {
         $("#submitter").attr("disabled", "true");
-        $('#submitter').removeAttr("style");
+        $("#submitter").attr("style", "background-color:grey;color:#000;border-color: grey;");
     }
 
 }
