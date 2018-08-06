@@ -1,5 +1,4 @@
 
-
 <div class="inp contact-grids">
 
   <div class="col-md-12">
@@ -18,6 +17,7 @@
 
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'regForm',style:"background-color: #fff;padding: 40px;}"}) do |f| %>
+  <a class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></a>
     <h3> Store Signup</h3>
     <!-- Circles which indicates the steps of the form: -->
     <div style="margin-top:20px;margin-bottom:30px;">
@@ -34,7 +34,7 @@
 
       <p class="text-center" style="font-size:10px;color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
 
-      <%= f.email_field :email, autofocus: true, id:'store_email', class: 'form-control text-center', placeholder: 'Email to be used to login into the store account', onchange: 'store_reg()', oninput: "this.className = ''" %>
+      <%= f.email_field :email, autofocus: true, id:'store_email', placeholder: 'Email to be used to login into the store account', onchange: 'store_reg()', oninput: "this.className = ''" %>
       <p class="text-center" style="font-size:10px;color:green;font-weight:bold" id="email_prev"></p>
     </div>
 
@@ -65,11 +65,3 @@
 <div class="clear"></div>
 
 </div>
-<div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
-  <p style="font-weight: 900;text-align:center;color: #000 !important;text-shadow: 5px 5px 5px 5px #fff;">
-    <span style="background: rgba(255,255,255,0.0);padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %>
-      KDuka. All rights reserved | Developed by <a style="font-weight: 900;color:#7AAE42;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span>
-  <p>
-</div>
-
-

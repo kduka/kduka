@@ -33,8 +33,8 @@
 			</li>
 			<li style="text-align:center !important">
 				 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-				Forgot your Password? <%= link_to "Click Here", new_password_path(resource_name),class:"devise_buttons" %>
-          <a href="#" data-toggle="modal" data-target="#signup_modal" class="my_new_button" id="sign"><i class="fa fa-edit"></i> Let's Start</a>
+				Forgot your Password? <%= link_to "Click Here", new_password_path(resource_name),class:"devise_buttons" %><br>
+        Want to Sign Up? <a class="devise_buttons" href="#" data-toggle="modal" data-target="#signup_modal" id="sign"><i class="fa fa-edit"></i> Let's Start</a>
 				<br />
 				<% end -%>
 			</li>
@@ -53,5 +53,5 @@
 </div>
 
 <div id="signup_modal" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
-
+	<a class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span>X</a>
 </div>
