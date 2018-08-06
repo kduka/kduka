@@ -43,6 +43,10 @@ class ProductsController < ApplicationController
 
   def home
     get_store
+
+    if !@store.homepage_status
+      redirect_to(about_path) and return
+    end
     if @store.nil?
       redirect_to(home_404_path) and return
     elsif @store.active == false
