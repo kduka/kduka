@@ -29,7 +29,7 @@ class CouponsController < ApplicationController
   # POST /coupons
   # POST /coupons.json
   def create
-    @coupon = Coupon.new(coupon_params.merge(coupon_type:params[:type]))
+    @coupon = Coupon.new(coupon_params.merge(coupon_type:params[:type],store_id:current_store.id))
 
     respond_to do |format|
       if @coupon.save
