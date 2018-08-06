@@ -1171,6 +1171,7 @@ function validateEmail(email) {
                 $("#email_prev").html(res);
                 if (res == "<span style='color:green'>Available</span>") {
                     $("#store_email").attr('data-valid', 'true');
+                    $("#store_email").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
                 } else {
                     $("#store_email").attr('data-valid', 'false');
                 }
