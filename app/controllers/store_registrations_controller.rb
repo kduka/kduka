@@ -79,49 +79,10 @@ class StoreRegistrationsController < Devise::RegistrationsController
     sign_out :store
   end
 
+
   private
 
-  def update_resource2(resource, params, current)
 
-    store = Store.find_for_authentication(id: current_store.id)
-
-
-    if params[:password] == params[:password_confirmation] && params[:password] != ""
-      if store.valid_password?(current)
-        if resource.update(params)
-          flash[:success] = "Success"
-        else
-          flash[:alert] = "Couldnt update password, try again later"
-        end
-      else
-        flash[:alert] = "The current password you entered is wrong"
-      end
-    elsif params[:password] != params[:password_confirmation]
-      flash[:alert] = "Passwords do not match"
-    end
-
-    if params[:password] == "" && params[:password_confirmation] == ""
-
-      if store.valid_password?(current)
-        if params[:email] != ""
-          store2 = Store.where(email:params[:email]).first
-          if store2.nil?
-            if resource.update(email:params[:email])
-              flash[:notice] = "Email successfully changed"
-            else
-              flash[:alert] = "Couldn't change email"
-            end
-          else
-            flash[:alert] = "Email already exists"
-          end
-        end
-
-      else
-        flash[:alert] = "The current password you entered is wrong"
-      end
-    end
-
-  end
 
   def store_params
     params.require(:store).permit(:email, :username, :password, :password_confirmation, :active, :name, :display_email, :phone)
