@@ -14,7 +14,8 @@
         	<th>#</th>
           <th>Name</th>
           <th>Active</th>
-          <th>Options</th>
+          <th>Toggle Featured</th>
+          <th>Edit</th>
           <th>Delete</th>
         </tr>
       </thead>
@@ -35,7 +36,9 @@
                 <%= link_to category_feature_path(category),style:'color:#06B216' do %>
                 <i class="fa fa-check"></i> Make Featured
                 <%end%>
-              <% end %> |
+              <% end %>
+            </td>
+            <td>
               <%= link_to edit_category_path(category) do %>
               <i class="fa fa-edit"></i> Edit
               <%end%>

@@ -21,7 +21,8 @@
         <th>Active</th>
         <th>Category</th>
         <th>Stock</th>
-        <th>Options</th>
+        <th>Show</th>
+        <th>Edit</th>
         <th>Delete</th>
       </tr>
       </thead>
@@ -35,7 +36,9 @@
         <td><%= p.quantity %></td>
         <td><%= link_to store_product_path(p.store_id,p),style:'color:#06b216' do%>
           <i class="fa fa-search"></i> Show
-          <%end%> |
+          <%end%>
+        </td>
+        <td>
           <%= link_to  edit_store_product_path(p.store_id,p) do %>
           <i class="fa fa-edit"></i> Edit
           <%end%>
