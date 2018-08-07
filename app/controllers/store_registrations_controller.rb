@@ -3,6 +3,11 @@ class StoreRegistrationsController < Devise::RegistrationsController
   prepend_before_action :kick_out, only: [:new, :create]
 
   def new
+    url = URI.parse(request.referer).host.match(/\w*.com$/)[0]
+    puts url
+    if request.referer.nil?
+      redirect_to(root_path)
+    end
 =begin
     @stores = Store.where(user_id: current_user.id).count
 
