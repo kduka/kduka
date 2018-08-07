@@ -1,4 +1,8 @@
-a.active.btn1{
+a.btn1.active{
+  color: #fff !important;
+  background: #7aae42 !important;
+}
+li a ul li .active{
   color: #fff !important;
   background: #7aae42 !important;
 }
