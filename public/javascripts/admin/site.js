@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
 
+
     $('.colorpicker').colorpicker();
 
     $('.colorpicker').on('changeColor', function(ev) {
