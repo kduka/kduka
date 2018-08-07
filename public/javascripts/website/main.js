@@ -9,12 +9,6 @@ $(function () {
 
     $('#nxtBtn').prop('disabled', true);
 
-    $("#regForm").submit(function (e) {
-        e.preventDefault();
-    });
-
-
-
 
     $("#sendmail").click(function (e) {
 

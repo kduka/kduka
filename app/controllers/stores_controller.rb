@@ -638,6 +638,10 @@ end
     request.body = par
 
     response = http.request(request)
+    if response
+      puts response
+    else
+      end
     render :json => response.read_body
   end
 

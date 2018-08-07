@@ -280,7 +280,9 @@ $(document).ready(function(){
            </div>
            <div class="col-sm-10 col-sm-offset-2"><br>
              <a style="border:1px solid #7aae42 !important;" id="verify" class="btn btn-primary">Verify Sendy Credentials</a>
-             <div class="form-group">
+             <div class="form-group"><br><br>
+               <div class="status alert alert-success col-md-10" hidden></div>
+               <div class="error alert alert-danger col-md-10" hidden></div>
                <%= f.hidden_field :lat, class: 'form-control1' %>
              </div>
 

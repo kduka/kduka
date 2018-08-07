@@ -29,6 +29,8 @@
 
 $(function () {
 
+
+
     $("#nxtBtn").click(function (e) {
         e.preventDefault();
     });
@@ -1140,6 +1142,7 @@ function store_reg2() {
     if ( phonecheck(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true') {
         $("#submitter").removeAttr("disabled");
         $("#submitter").removeAttr("style");
+        $("#submitter").off("click");
     } else {
         $("#submitter").attr("disabled", "true");
         $("#submitter").attr("style", "background-color:grey;color:#000;border-color: grey;");

@@ -65,7 +65,6 @@ $(document).ready( function () {
 
     $('#side-menu').find('.btn1').each(function() {
         $(this).toggleClass('active', $(this).attr('href') == loc);
-        console.log(loc);
     });
 } );
 </script>
@@ -158,7 +157,7 @@ $(document).ready( function () {
                           <%
                           @o = Order.where(store_id:current_store.id,read:false,order_status_id: [5, 2]).count
                           %>
-                            <a class="btn1" href="<%= store_orders_url %>"><i class="fa fa-shopping-cart fa-fw nav_icon"></i>Orders <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %></a>
+                            <a class="btn1" href="<%= store_orders_url %>"><i class="fa fa-shopping-cart fa-fw nav_icon"></i>Orders <% if @o > 0 %>  <% end %></a>
                         </li>
                         <li>
                             <a class="btn1" href="<%= stores_theme_path %>"><i class="fa fa-desktop fa-fw nav_icon"></i>Themes</a>

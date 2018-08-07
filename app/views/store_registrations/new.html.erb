@@ -17,6 +17,7 @@
   <script>
       var currentTab = 0; // Current tab is set to be the first tab (0)
       showTab(currentTab); // Display the current tab
+
   </script>
 
 
@@ -58,8 +59,8 @@
 
     <div style="overflow:auto; margin-top:3em">
       <div style="text-align: center;">
-        <button class="our_btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-        <button style="background-color:grey;color:#000;border-color: grey;" class="our_btn" type="button" id="nxtBtn" onclick="nextPrev(1)">Next</button>
+        <button class="our_btn" type="button" id="prevBtn" onclick="nextPrev(-1);return false;">Previous</button>
+        <button style="background-color:grey;color:#000;border-color: grey;" class="our_btn" id="nxtBtn" type="button" onclick="nextPrev(1)">Next</button>
       </div>
     </div>
 
