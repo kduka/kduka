@@ -32,7 +32,7 @@ $(function () {
         e.preventDefault();
     });
 
-    $("#sign").click(function (e) {
+    $(".signup").click(function (e) {
         $.ajax({
             url: '/stores/signup',
             method: 'get',
