@@ -5,13 +5,10 @@ class StoreRegistrationsController < Devise::RegistrationsController
   def new
   puts request.referer
 
-    if request.referer.nil?
-      redirect_to(root_path) and return
+  if Rails.env.development?
+    if request.referer == 'http://www.kduka.co.ke/' || request.referer == 'http://www.kduka.co.ke/stores/login'
     else
-      if request.domain(1) == 'google.com'
-        redirect_to(root_path) and return
-      else
-
+      redirect_to(root_path) and return
       end
     end
 =begin
