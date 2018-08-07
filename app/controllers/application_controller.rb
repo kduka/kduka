@@ -148,6 +148,62 @@ protect_from_forgery with: :exception
     end
   end
 
+  def important
+    @store = Store.find(current_store.id)
+    messages = Hash.[]
+    @i = 1
+
+    @auto = @store.auto_delivery_status
+    @manual = @store.manual_delivery_status
+    @collection = @store.collection_point_status
+
+    if (@auto == false || @auto == nil) && (@manual == false || @manual == nil ) && (@collection == nil || @collection == false)
+      messages[@i] = "<a style='text-decoration:none;' href='#{stores_deliver_path}'>You need to setup a delivery option first! Click here.</a>"
+      @i+=1
+      messages[@i] = "<span style='text-decoration:none;color:#000'>Activate your Store</span>"
+      deactivate_store
+      @store.update(important:false)
+    else
+      @store.update(important:true)
+    end
+    return messages
+
+  end
+
+  def deactivate_store
+    @store = Store.find(current_store.id)
+    @store.update(active: false, important: false)
+  end
+
+  def setup
+    @store= Store.find(current_store.id)
+    messages = Hash.[]
+    @i = 1
+    cats = @store.category.all.first
+    if cats.nil?
+      messages[@i] = "<a style='text-decoration:none;' href='#{new_category_path}'>Click here to create a new category </a>"
+      @i+=1
+    end
+
+    product = @store.product.all.first
+    if product.nil?
+      if cats.nil?
+        messages[@i] = "<span style='color:black'>Create Products</span>"
+      else
+        messages[@i] = "<a style='text-decoration:none;' href='#{new_store_product_path(current_store.id)}'>Click here to create a new product</a>"
+      end
+
+      @i+=1
+    end
+    if !messages.empty?
+      remove_init
+    end
+
+    return messages
+
+  end
+
+
   def init_froala
     options = {
         # The name of your bucket.
@@ -217,4 +273,8 @@ protect_from_forgery with: :exception
 
   end
 
+  def remove_init
+    @store = Store.find(current_store.id)
+    @store.update(init: false)
+  end
 end

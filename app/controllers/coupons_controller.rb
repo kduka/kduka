@@ -6,6 +6,8 @@ class CouponsController < ApplicationController
   # GET /coupons.json
   def index
     @coupons = Coupon.where(store_id:current_store.id)
+    @setup = setup
+    @important = important
     set_shop_show
   end
 
@@ -18,6 +20,8 @@ class CouponsController < ApplicationController
   # GET /coupons/new
   def new
     @coupon = Coupon.new
+    @setup = setup
+    @important = important
     set_shop_show
   end
 
@@ -67,6 +71,8 @@ class CouponsController < ApplicationController
   end
 
   def generate
+    @setup = setup
+    @important = important
     set_shop_show
   end
 

@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @setup = setup
+    @important = important
     @categories = Category.where(store_id:current_store.id)
     set_shop_show
   end
@@ -107,10 +108,6 @@ class CategoriesController < ApplicationController
   end
 
   private
-  def remove_init
-    @store = Store.find(current_store.id)
-    @store.update(init: false)
-  end
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])

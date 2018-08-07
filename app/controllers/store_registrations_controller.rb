@@ -38,6 +38,8 @@ class StoreRegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    @setup = setup
+    @important = important
     set_shop_show
   end
 

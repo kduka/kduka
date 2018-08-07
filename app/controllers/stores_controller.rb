@@ -91,7 +91,8 @@ end
 
   def orders
     @order = Order.where(store_id: current_store.id, order_status_id: [5, 2, 3, 6])
-    puts @order
+    @setup = setup
+    @important = important
     set_shop_show
   end
 
@@ -101,6 +102,8 @@ end
 
   def social
     @store = Store.find(current_store.id)
+    @setup = setup
+    @important = important
     set_shop_show
   end
 
@@ -131,6 +134,8 @@ end
   def layouts
     @store= Store.find(current_store.id)
     @layouts = Layout.all
+    @setup = setup
+    @important = important
     set_shop_show
   end
 
@@ -150,6 +155,8 @@ end
   def deliver
     @important = important
     @store = Store.find(current_store.id)
+    @setup = setup
+    @important = important
     set_shop_show
   end
 
@@ -167,6 +174,8 @@ end
 
   def pages
     @store = Store.find(current_store.id)
+    @setup = setup
+    @important = important
     init_froala
     set_shop_show
   end
@@ -196,6 +205,7 @@ end
     @store = Store.find(current_store.id)
     if @store.important == false
       @important = important
+      @setup = setup
       if @important.empty?
         @store.update(important: true)
       end
@@ -229,37 +239,11 @@ end
     end
   end
 
-  def setup
-    @store= Store.find(current_store.id)
-    messages = Hash.[]
-    @i = 1
-    cats = @store.category.all.first
-    if cats.nil?
-      messages[@i] = "<a style='text-decoration:none;' href='#{new_category_path}'>Click here to create a new category </a>"
-      @i+=1
-    end
-
-    product = @store.product.all.first
-    if product.nil?
-      if cats.nil?
-        messages[@i] = "<span style='color:black'>Create Products</span>"
-      else
-        messages[@i] = "<a style='text-decoration:none;' href='#{new_store_product_path(current_store.id)}'>Click here to create a new product</a>"
-      end
-
-      @i+=1
-    end
-    if !messages.empty?
-      remove_init
-    end
-
-    return messages
-
-  end
 
   def funds
     @find = StoreAmount.where(store_id: current_store.id).first
-
+    @setup = setup
+    @important = important
     if @find.nil?
       StoreAmount.create(amount: 0, actual: 0, lifetime_earnings: 0, store_id: current_store.id)
     end
@@ -677,37 +661,7 @@ end
     params.require(:store).permit(:homepage_status, :homepage_text, :aboutpage_status, :aboutpage_text, :contactpage_status, :phone, :display_email, :banner)
   end
 
-  def important
-    @store = Store.find(current_store.id)
-    messages = Hash.[]
-    @i = 1
 
-    @auto = @store.auto_delivery_status
-    @manual = @store.manual_delivery_status
-    @collection = @store.collection_point_status
-
-    if (@auto == false || @auto == nil) && (@manual == false || @manual == nil ) && (@collection == nil || @collection == false)
-      messages[@i] = "<a style='text-decoration:none;' href='#{stores_deliver_path}'>You need to setup a delivery option first! Click here.</a>"
-      @i+=1
-      messages[@i] = "<span style='text-decoration:none;color:#000'>Activate your Store</span>"
-      deactivate_store
-      @store.update(important:false)
-    else
-      @store.update(important:true)
-    end
-    return messages
-
-  end
-
-  def deactivate_store
-    @store = Store.find(current_store.id)
-    @store.update(active: false, important: false)
-  end
-
-  def remove_init
-    @store = Store.find(current_store.id)
-    @store.update(init: false)
-  end
 end
 
 def pass_params
