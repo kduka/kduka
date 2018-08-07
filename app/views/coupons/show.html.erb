@@ -1,33 +1,41 @@
-<div class="skil">
+<div class="content_bottom" style="margin-top:2em">
+
+<h3 style="color:#7aae42"><i class="fa fa-info"></i> Coupon Details</h3>
+ <div class="col-md-12 span_3">
   <p id="notice"><%= notice %></p>
 
-  <p>
-    <strong>Code:</strong>
-    <%= @coupon.code %>
-  </p>
-
-  <p>
-    <strong>Number of use:</strong>
-    <%= @coupon.number_of_use %>
-  </p>
-
+  <div class="form-group">
+    <strong class="col-md-4">Code:</strong>
+    <span class="col-md-8"><%= @coupon.code %></span>
+  </div>
+  <div class="col-md-12" style="height:1em"></div>
+  <div class="form-group">
+    <strong class="col-md-4">Number of use:</strong>
+    <span class="col-md-8"><%= @coupon.number_of_use %></span>
+  </div>
+  <div class="col-md-12" style="height:1em"></div>
   <% if !@coupon.percentage.nil? %>
-      <p>
-        <strong>Percentage:</strong>
-        <%= @coupon.percentage %> %
-      </p>
+      <div class="form-group">
+        <strong class="col-md-4">Percentage:</strong>
+        <span class="col-md-8"><%= @coupon.percentage %> %</span>
+      </div>
+      <div class="col-md-12" style="height:1em"></div>
   <% end %>
 
   <% if !@coupon.amount.nil? %>
-      <p>
-        <strong>Amount:</strong>
-        <%= @coupon.amount %>
-      </p>
+      <div class="form-group">
+        <strong class="col-md-4">Amount:</strong>
+        <span class="col-md-8"><%= @coupon.amount %></span>
+      </div>
+      <div class="col-md-12" style="height:1em"></div>
   <% end %>
 
-  <p>
-    <strong>Expiry:</strong>
-    <%= @coupon.expiry %>
-  </p>
+  <div class="form-group">
+    <strong class="col-md-4">Expiry:</strong>
+    <span class="col-md-8"><%= @coupon.expiry %></span>
+  </div>
+  <div class="col-md-12" style="height:1em"></div>
+  </div>
 
 </div>
+<div class="clearfix"></div>

@@ -18,7 +18,7 @@
        @store_amount = StoreAmount.where(store_id: current_store.id).first
      end
    %>
-   <span class="label label-success">Earnings: Kes. <%= @store_amount.amount %></span>&nbsp;<span class="label label-info">Total Orders: <%= @order.count %></span><br><br>
+   <span class="label label-success" style="font-weight:bold !important">Earnings: Kes. <%= @store_amount.amount %></span>&nbsp;<span class="label label-info" style="font-weight:bold !important">Total Orders: <%= @order.count %></span><br><br>
   <div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
     <% if !@order.blank? %>
           <table id="myOrderTable" class="table">
