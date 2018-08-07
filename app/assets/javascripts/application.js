@@ -29,6 +29,10 @@
 
 $(function () {
 
+    $("#nxtBtn").click(function (e) {
+        e.preventDefault();
+    });
+
     $(".signup").click(function (e) {
         $.ajax({
             url: '/stores/signup',
