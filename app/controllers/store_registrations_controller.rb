@@ -7,7 +7,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
     if request.referer.nil?
       redirect_to(root_path) and return
     else
-      if request.domain == 'google.com'
+      if request.domain(1) == 'google.com'
         redirect_to(root_path) and return
       else
 
