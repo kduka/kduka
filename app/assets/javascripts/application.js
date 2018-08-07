@@ -21,14 +21,11 @@
 //= require_tree .
 
 
-
-
 /**
  * Created by root on 10/6/17.
  */
 
 $(function () {
-
 
 
     $("#nxtBtn").click(function (e) {
@@ -49,21 +46,24 @@ $(function () {
         url = $("#url").val();
 
         $.ajax({
-            url:'/users/remote_santize',
-            data:{
-                url:url
+            url: '/users/remote_santize',
+            data: {
+                url: url
             },
-            method:'post',
-            success:function (res) {
-                if(res == 'false'){
+            method: 'post',
+            success: function (res) {
+                if (res == 'false') {
                     vall = $("#url").val();
-                    $("#url_prev").html("<span style='color:red'>http://"+ vall +".kduka.co.ke is already taken!</span>");
-
-                }else{
-                    $("#url_prev").html("<span style='color:green'>http://"+ res +".kduka.co.ke</span>");
+                    $("#url_prev").html("<span style='color:red'>http://" + vall + ".kduka.co.ke is already taken!</span>");
+                    $("#url").attr('data-valid', 'false');
+                    store_reg();
+                } else {
+                    $("#url").attr('data-valid', 'true');
+                    $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
                     var str = res;
                     var url = str.replace('.kduka.co.ke', '');
                     $("#url").val(url);
+                    store_reg();
                 }
             }
         });
@@ -463,10 +463,11 @@ $(function () {
         if (!pass(password)) {
             $(".store_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
             $("#store_password").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+            store_reg2();
         } else {
             $(".store_password_prev").html("");
             $("#store_password").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-
+            store_reg2();
         }
         store_reg();
     });
@@ -493,10 +494,12 @@ $(function () {
             $(".store_password_confirmation_prev").html("");
             $("#store_password_confirmation").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
             $("#store_password_confirmation").attr('data-valid', 'true');
+            store_reg2();
         } else {
             $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
             $("#store_password_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
             $("#store_password_confirmation").attr('data-valid', 'false');
+            store_reg2();
 
         }
         store_reg();
@@ -753,6 +756,7 @@ function phonecheck(phonenumber) {
         return false;
     }
 }
+
 /*
  function validate_ship(){
  email = $("#ship_email").val();
@@ -1115,7 +1119,6 @@ function valmail(email) {
 }
 
 
-
 function store_reg() {
 
     store_name = $("#store_name").val();
@@ -1124,7 +1127,7 @@ function store_reg() {
 
     //setTimeout(console.log('timeout'),1000);
 
-    if (store_name.length > 3 && url.length > 2 && $("#store_email").attr('data-valid') == 'true'){
+    if (store_name.length > 3 && url.length > 2 && $("#store_email").attr('data-valid') == 'true' && $("#url").attr('data-valid') == 'true') {
         $('#nxtBtn').prop("disabled", false);
         $('#nxtBtn').removeAttr("style");
     } else {
@@ -1139,7 +1142,7 @@ function store_reg2() {
     store_phone = $("#store_phone").val();
     store_password = $("#store_password").val();
     store_password_confirmation = $("#store_password_confirmation").val();
-    if ( phonecheck(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true') {
+    if (phonecheck(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true') {
         $("#submitter").removeAttr("disabled");
         $("#submitter").removeAttr("style");
         $("#submitter").off("click");

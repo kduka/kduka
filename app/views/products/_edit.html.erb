@@ -75,7 +75,7 @@
   <div class="form-group">
     <label for="category" class="col-sm-2 control-label">Category</label>
     <div class="col-sm-8">
-      <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id', 'name'), {}, {:class => 'form-control1', required:'required',id:'category'} %>
+      <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name',@product.category_id), {}, {:class => 'form-control1', required:'required',id:'category'} %>
     </div>
     <div class="col-sm-2">
       <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the category in which your product will belong. You are responsible for creating your store categories">Help?</span></a>

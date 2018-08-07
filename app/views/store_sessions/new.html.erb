@@ -1,55 +1,59 @@
-
-
-
 <div class="col-md-6 col-md-offset-3 containerw3layouts-agileits">
-	<!-- <div class="w3imageaits">
+  <!-- <div class="w3imageaits">
 		<%= image_tag("web.jpg") %>
 	</div> -->
 
-	<div class="aitsloginwthree w3layouts agileits" style="margin-top: 2em;">
-		<p style="margin-top: 2em;text-align:center"><a href="<%= root_path %>" > <%= image_tag("website/logo.png",style:"width:160px;height:auto") %><br></a></p>
+  <div class="aitsloginwthree w3layouts agileits" style="margin-top: 2em;padding-left: 1em;padding-right: 1em;">
+    <p style="margin-top: 2em;text-align:center">
+      <a href="<%= root_path %>"> <%= image_tag("website/logo.png", style: "width:160px;height:auto") %><br></a></p>
     <h1 style="color:#fff !important">Store Login<br><br></h1>
-		<div style="width:100%">
-							<% if !notice.nil? %>
-							<div class="alert alert-success" role="alert">
-								<strong><%= notice %></strong>
-							</div>
-							<% end %>
-							<% if !alert.nil? %>
-							<div class="alert alert-info" role="alert">
-								<strong><%= alert %></strong>
-							</div>
-							<% end %>
-					</div></br>
+    <div style="width:100%">
+      <% if !notice.nil? %>
+        <div class="alert alert-success" role="alert">
+          <strong><%= notice %></strong>
+        </div>
+      <% end %>
+      <% if !alert.nil? %>
+        <div class="alert alert-info" role="alert">
+          <strong><%= alert %></strong>
+        </div>
+      <% end %>
+    </div>
+    </br>
 
-		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
 
-		<%= f.email_field :email, id:'email_store',autofocus: true,style:'text-align:center',placeholder:"Email Address" %>
-		<%= f.password_field :password,id:'password_store', autocomplete: "off",style:'text-align:center', placeholder:"Password" %>
-		<ul class="tick w3layouts agileinfo">
-			<li>
-				<%= f.check_box :remember_me %>
-			</li>
-			<li style="text-align:center !important">
-				 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-				Forgot your Password? <%= link_to "Click Here", new_password_path(resource_name),class:"devise_buttons" %><br>
-        Want to Sign Up? <a class="devise_buttons signup" href="#" data-toggle="modal" data-target="#signup_modal"> Let's Start</a>
-				<br />
-				<% end -%>
-			</li>
-		</ul>
-		<div class="send-button wthree agileits">
-			<%= f.submit "Log in" %>
-		</div>
-		<% end %>
-	</div>
+      <%= f.email_field :email, id: 'email_store', autofocus: true, style: 'text-align:center', placeholder: "Email Address" %>
+      <%= f.password_field :password, id: 'password_store', autocomplete: "off", style: 'text-align:center', placeholder: "Password" %>
+      <ul class="tick w3layouts agileinfo">
+        <li>
+          <%= f.check_box :remember_me %>
+        </li>
+        <li style="text-align:center !important">
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            Forgot your Password? <%= link_to "Click Here", new_password_path(resource_name), class: "devise_buttons" %>
+            <br>
+            Want to Sign Up?
+            <a class="devise_buttons signup" href="#" data-toggle="modal" data-target="#signup_modal"> Let's Start</a>
+            <br/>
+          <% end -%>
+        </li>
+      </ul>
+      <div class="send-button wthree agileits">
+        <%= f.submit "Log in" %>
+      </div>
+    <% end %>
+  </div>
 
-	<div class="clear"></div>
+  <div class="clear"></div>
 
 </div>
 <div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
-  <p style="font-weight: 900;text-align:center;color: #000 !important;text-shadow: 5px 5px 5px 5px #fff;"><span style="background: rgba(255,255,255,0.0);padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="font-weight: 900;color:#7AAE42;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span><p>
+  <p style="font-weight: 900;text-align:center;color: #000 !important;text-shadow: 5px 5px 5px 5px #fff;">
+    <span style="background: rgba(255,255,255,0.0);padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %>
+      KDuka. All rights reserved | Developed by <a style="font-weight: 900;color:#7AAE42;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span>
+  <p>
 </div>
 
 <div id="signup_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
