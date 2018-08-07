@@ -6,7 +6,7 @@
   </thead>
 <% StoreDelivery.where(store_id:current_store.id).each do |d| %>
       <tr>
-        <td><%= "Location : #{d.delivery_areas}" %></td><td>Price: <%= "#{d.price}" %></td> <td> <%= link_to store_delivery_path(d.id), method:'delete',remote:true, style:'color:red !important' do %><i style="color: red" class="fa fa-times"></i> Delete<% end %> </td>
+        <td><%= "Location : #{d.delivery_areas}" %></td><td>Price: <%= "#{d.price}" %></td> <td> <%= link_to store_delivery_path(d.id), method:'delete',remote:true, data:{confirm: "Are you sure you want to delete this delivery option?"},style:'color:red !important' do %><i style="color: red" class="fa fa-times"></i> Delete<% end %> </td>
       </tr>
 <% end %>
 </table>

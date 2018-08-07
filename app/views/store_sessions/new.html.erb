@@ -34,7 +34,7 @@
 			<li style="text-align:center !important">
 				 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
 				Forgot your Password? <%= link_to "Click Here", new_password_path(resource_name),class:"devise_buttons" %><br>
-        Want to Sign Up? <a class="devise_buttons signup" href="#" data-toggle="modal" data-target="#signup_modal"><i class="fa fa-edit"></i> Let's Start</a>
+        Want to Sign Up? <a class="devise_buttons signup" href="#" data-toggle="modal" data-target="#signup_modal"> Let's Start</a>
 				<br />
 				<% end -%>
 			</li>
