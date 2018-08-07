@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'carts/success', to: 'carts#success', as: 'cart_success'
   get '/order/clear' => 'order_items#clear', as: 'order_items_clear'
   get '/products/manage/(:store_id)', to: 'products#manage', as: 'products_manage'
-  get '/stores/orders', to: 'stores#orders'
+  get '/stores/orders', to: 'stores#orders', as: 'store_orders'
   get 'store/account' => 'stores#account'
   get 'users/home' => 'users#home'
   get 'users/stores' => 'users#stores'
