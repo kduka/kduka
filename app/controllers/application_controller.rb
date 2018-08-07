@@ -18,6 +18,13 @@ protect_from_forgery with: :exception
     end
   end
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def configure_permitted_parameters
+    update_attrs = [:password, :password_confirmation, :current_password]
+    devise_parameter_sanitizer.permit :account_update, keys: update_attrs
+  end
+
   def after_sign_out_path_for(resource_or_scope)
     if resource_or_scope == :user
       users_home_path
@@ -166,6 +173,48 @@ protect_from_forgery with: :exception
 
   def beforeFilter
     $request = request
+  end
+
+  def update_resource2(resource, params, current)
+
+    store = Store.find_for_authentication(id: current_store.id)
+
+
+    if params[:password] == params[:password_confirmation] && params[:password] != ""
+      if store.valid_password?(current)
+        if resource.update(params)
+          flash[:success] = "Success"
+        else
+          flash[:alert] = "Couldnt update password, try again later"
+        end
+      else
+        flash[:alert] = "The current password you entered is wrong"
+      end
+    elsif params[:password] != params[:password_confirmation]
+      flash[:alert] = "Passwords do not match"
+    end
+
+    if params[:password] == "" && params[:password_confirmation] == ""
+
+      if store.valid_password?(current)
+        if params[:email] != ""
+          store2 = Store.where(email:params[:email]).first
+          if store2.nil?
+            if resource.update(email:params[:email])
+              flash[:notice] = "Email successfully changed"
+            else
+              flash[:alert] = "Couldn't change email"
+            end
+          else
+            flash[:alert] = "Email already exists"
+          end
+        end
+
+      else
+        flash[:alert] = "The current password you entered is wrong"
+      end
+    end
+
   end
 
 end

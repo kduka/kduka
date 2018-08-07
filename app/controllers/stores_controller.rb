@@ -641,6 +641,18 @@ end
     render :json => response.read_body
   end
 
+  def update_password
+    @store = current_store
+    if update_resource2(@store, pass_params, params[:store][:current_password])
+      #flash[:notice] = "Well done"
+      redirect_to(request.referer) and return
+    else
+      #flash[:alert] ="bULL SPIT"
+      redirect_to(request.referer) and return
+    end
+  end
+
+
 
   private
 
@@ -694,3 +706,9 @@ end
     @store.update(init: false)
   end
 end
+
+def pass_params
+  # NOTE: Using `strong_parameters` gem
+  params.require(:store).permit(:password, :password_confirmation, :email)
+end
+

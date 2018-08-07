@@ -89,15 +89,13 @@ Rails.application.routes.draw do
   delete '/store/delete/:id' => 'admins#store_delete', as: 'store_delete'
   post '/stores/sendy_call'
   get 'admins/view/(:id)' => 'admins#view', as: 'admin_view'
-  post 'store_registrations/update_password' => 'store_registrations#update_password'
+  post 'stores/update_password' => 'stores#update_password'
 
 
 
-  devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup','store_registrations/update_password':'update_password'}
+  devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}
   devise_for :users, :controllers => {registrations: 'user_registrations', sessions: 'user_sessions', confirmations:'user_confirmations',passwords:'user_passwords'},path: 'users', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}
   devise_for :admins, :controllers => {registrations: 'admins_registrations', sessions: 'admins_sessions'},path: 'admins', path_names: { sign_in: 'login', sign_out: 'logout'}
-
-
 
   resources :stores do
     resources :products
