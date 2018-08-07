@@ -26,9 +26,9 @@ class UsersController < ApplicationController
     @domain = Store.where(subdomain:nospace).first
 
     if !@domain.nil?
-      @nospace = "<span style='color:red'>The domain http://#{nospace}.kduka.co.ke is already taken</span>"
+      @nospace = 'false'
     else
-      @nospace = "<span style='color:green'>http://#{nospace}.kduka.co.ke</span>"
+      @nospace = nospace
     end
 
     no_layout

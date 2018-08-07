@@ -109,67 +109,17 @@ next if item == '.' or item == '..' %>
 <% end %>
 
 <!-- web fonts -->
+<style>
+body{
+  font-family:'Open Sans', sans-serif !important;
+  padding-right: 0px !important;
+}
+</style>
 </head>
-<body class="cbp-spmenu-push">
-  <!--Signup Modal-->
-  <div id="signup_modal" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content light-box-info">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-        <div class="pop">
-          <h3> Store Signup</h3>
-          <div class="contact-grids">
-            <div class="inp agileits-inp">
-              <div id="success"></div>
-              <form id="regForm">
-                <!-- Circles which indicates the steps of the form: -->
-                <div style="margin-top:20px;margin-bottom:30px;">
-                 <!-- <h5 style="text-align:center !important;margin-bottom:-0.1em !important">Your Progress Bar</h5> -->
-                 <span class="step"></span>
-                 <span class="step"></span>
-                </div>
+<body>
+<!--Signup Modal-->
+  <div id="signup_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
 
-                <div class="tab" style="display:block">
-                 <input required id="store_name" type="text" placeholder="Your Store Name..." oninput="this.className = ''">
-                 <input required id="url" type="text" placeholder="Your Store Url" oninput="this.className = ''">
-                 <p class="text-center" style="font-size:10px">If you enter 'john', your store url will be john.kduka.co.ke</p>
-                 <input required id="email" type="email" placeholder="Your Email..." oninput="this.className = ''">
-                </div>
-
-                <div class="tab">
-                 <input required id="name" type="text" placeholder="Your name..." oninput="this.className = ''">
-                 <input required id="phone" type="number" placeholder="Your Phone Number (e.g. 254712345678 )..." min="254700000000" max="254799999999" minlenth="12" oninput="this.className = ''">
-                 <p><input required type="password" placeholder="Password..." oninput="this.className = ''"></p>
-                 <p><input required type="password" placeholder="Password Confirmation..." oninput="this.className = ''"></p>
-                </div>
-                <!-- <div class="tab">
-                  <h3 style="color:#7aae42;text-transform:capitalize;padding-top:2em;text-align:center">You're all set Up.<br>Submit Your Details Now !</h3>
-                </div> -->
-
-                <div style="overflow:auto; margin-top:3em">
-                 <div style="text-align: center;">
-                   <button class="our_btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                   <button class="our_btn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                 </div>
-                </div>
-
-              </form>
-              <!-- <form action="#" method="post">
-                <input id="name" type="text" name="name" placeholder="Your store name" required="">
-                <input id="email" type="email" name="email" placeholder="Your Email" required="">
-                <input id="url" type="text" name="url" placeholder="Your Store Url" required="">
-                <input id="url" type="text" name="url" placeholder="Type the domain you want" required="">
-                <input id="url" type="text" name="url" placeholder="Type your domain" required="">
-                <input id="domain" type="text" name="domain" placeholder="Your Domain" required=""><br><br>
-
-                <input style="width:100% !important;" id="pay" type="submit" value="SIGN UP!">
-              </form> -->
-            </div>
-            <div class="clearfix"> </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
   <!--//Signup Modal-->
   <!--Login Modal-->
@@ -183,7 +133,7 @@ next if item == '.' or item == '..' %>
             <div class="inp agileits-inp">
               <div id="success"></div>
               <form action="#" method="post">
-                <input id="email" type="email" name="email" placeholder="Your Email" required="">
+                <input id="email_2" type="email" name="email" placeholder="Your Email" required="">
                 <input id="password" type="password" name="domain" placeholder="Your Password" required=""><br><br>
 
                 <input style="width:100% !important;" id="pay" type="submit" value="Login">
@@ -206,7 +156,7 @@ next if item == '.' or item == '..' %>
           <div class="contact-grids">
             <div class="inp agileits-inp">
               <div id="success"></div>
-              <form action="#" method="post">
+<!--              <form action="#" method="post">
                 <input id="name" type="text" name="name" placeholder="Your store name" required="">
                 <input id="email" type="email" name="email" placeholder="Your Email" required="">
                 <input id="url" type="text" name="url" placeholder="Your Store Url" required="">
@@ -215,7 +165,7 @@ next if item == '.' or item == '..' %>
                 <input id="domain" type="text" name="domain" placeholder="Your Domain" required=""><br><br>
 
                 <input style="width:100% !important;" id="pay" type="submit" value="CHECKOUT">
-              </form>
+              </form>-->
             </div>
             <div class="clearfix"> </div>
           </div>
@@ -248,7 +198,7 @@ next if item == '.' or item == '..' %>
 							<li><a href="#features" class="scroll"><i class="fa fa-check"></i> Features</a></li>
               <li><a href="#pricing" class="scroll"><i class="fa fa-money"></i> Pricing</a></li>
 							<li><a href="#contact" class="scroll"><i class="fa fa-envelope"></i> Contact</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#signup_modal"><i class="fa fa-edit"></i> Sign Up</a></li>
+              <li><a href="#" data-toggle="modal" class="signup" data-target="#signup_modal"><i class="fa fa-edit"></i> Sign Up</a></li>
               <!-- <li><a href="#" data-toggle="modal" data-target="#login_modal"><i class="fa fa-sign-in"></i> Login</a></li> -->
               <!-- <li><a href="<%= new_store_registration_path %>"><i class="fa fa-edit"></i> Sign Up</a></li> -->
               <li><a href="<%= new_store_session_path %>"><i class="fa fa-sign-in"></i> Login</a></li>
@@ -291,7 +241,7 @@ next if item == '.' or item == '..' %>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="banner-w3lsinfo" >
-				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2.5em;font-weight: 200;text-transform:capitalize;;color: #fff">Create a stunning online shop with <span style="color: #7AAE42">KDuka!</span></h2>
+				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2.5em;font-weight: 200 !important;text-transform:capitalize;color: #fff;">Create a stunning online shop with <span style="color: #7AAE42">KDuka!</span></h2>
 				<p style="font-size:1.2em;font-weight: 200;color: #fff;">Let's create your Online Shop in Minutes!</p>
         <br><br>
         <div class="col-md-4 col-md-offset-4 col-xs-12" style="margin-bottom:2em">
@@ -319,7 +269,7 @@ next if item == '.' or item == '..' %>
           }
           </style>
           <!-- <a href="<%= new_store_registration_path %>" class="my_new_button"><i class="fa fa-edit"></i> Let's Start</a> -->
-          <a href="#" data-toggle="modal" data-target="#signup_modal" class="my_new_button"><i class="fa fa-edit"></i> Let's Start</a>
+          <a href="#" data-toggle="modal" data-target="#signup_modal" class="my_new_button signup" id="sign"><i class="fa fa-edit"></i> Let's Start</a>
           <BR>
           <a style="font-weight: 600;color: #7AAE42;" target="_blank" href="http://www.kduka.co.ke/help"> NEED SOME HELP?</a>
         </div>
@@ -476,7 +426,7 @@ next if item == '.' or item == '..' %>
       <div class="col-md-6" style="margin-bottom:2em">
         <!-- <p>Sign Up!</p> -->
         <!-- <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a> -->
-        <a style="width:95%;margin-left:auto;margin-right:auto" href="#" data-toggle="modal" data-target="#signup_modal" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a>
+        <a style="width:95%;margin-left:auto;margin-right:auto" href="#" data-toggle="modal" data-target="#signup_modal" class="wthree-hvr signup"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a>
       </div>
       <div class="col-md-6" style="margin-bottom:2em">
         <!-- <p>Login</p> -->
@@ -587,6 +537,7 @@ next if item == '.' or item == '..' %>
             <li>Unlimited Products</li><br>
             <li>Unlimited Storage Space</li><br>
             <li>No Ads</li><br>
+            <li>Custom Payment Integration</li><br>
             <li>SEO (Search Engine Optimization)</li><br>
 
           </ul><br>

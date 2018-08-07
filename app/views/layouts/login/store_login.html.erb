@@ -13,6 +13,17 @@
       next if item == '.' or item == '..' %>
         <%= javascript_include_tag "admin/#{item}" %>
     <% end %>
+
+		<% Dir.foreach("public/stylesheets/website") do |item|
+		  next if item == '.' or item == '..' %>
+		    <%= stylesheet_link_tag "website/#{item}" %>
+		<% end %>
+		<% Dir.foreach("public/javascripts/website") do |item|
+		  next if item == '.' or item == '..' %>
+		    <%= javascript_include_tag "website/#{item}" %>
+		<% end %>
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://use.fontawesome.com/61725da21d.js"></script>
 		<%= csrf_meta_tags %>

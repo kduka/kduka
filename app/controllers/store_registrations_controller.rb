@@ -1,7 +1,6 @@
 class StoreRegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:cancel]
   prepend_before_action :kick_out, only: [:new, :create]
-  # before_action :authenticate_user!, except: [:edit]
 
   def new
 =begin
@@ -14,26 +13,26 @@ class StoreRegistrationsController < Devise::RegistrationsController
 =end
 
     @store = Store.new
-    store_login
+    #store_login
   end
 
   # POST /resource
   def create
     # @user = User.find(current_user.id)
     # @store = @user.store.create(store_params.merge(subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#fc711b', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
-    @store = Store.create(store_params.merge(subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#fc711b', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
+    @store = Store.create(store_params.merge(display_email:params[:store][:email],subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#7aae42', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
 
     if @store.save
       flash[:notice] = "Your Store has been created! Please check your email for the activation message"
       #redirect_to(users_home_path)
-      redirect_to(request.referer)
+      redirect_to(new_store_session_path)
       # store = Store.where(user_id:@user.id).first
       # if store.nil?
       # PromoteMailer.store_not_active(@user).deliver
       # end
     else
-      flash[:notice] = "Sorry, we couldnt create the store. Please contact admin"
-      redirect_to(users_home_path)
+      flash[:notice] = "Sorry, we couldn't create the store. Please contact admin"
+      redirect_to(new_store_session_path)
     end
   end
 
@@ -124,7 +123,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
   end
 
   def store_params
-    params.require(:store).permit(:email, :username, :password, :password_confirmation, :active, :name, :display_email, :phone)
+    params.require(:store).permit(:email, :username, :password, :password_confirmation, :active, :name, :display_email, :phone, :subdomain)
   end
 
   def pass_params
