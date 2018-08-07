@@ -3,10 +3,14 @@ class StoreRegistrationsController < Devise::RegistrationsController
   prepend_before_action :kick_out, only: [:new, :create]
 
   def new
-    url = URI.parse(request.referer).host.match(/\w*.com$/)[0]
-    puts url
+
     if request.referer.nil?
-      redirect_to(root_path)
+      redirect_to(root_path) and return
+    else
+      url = URI.parse(request.referer).host.match(/\w*.com$/)[0]
+      if url == 'google.com'
+        redirect_to(root_path) and return
+      end
     end
 =begin
     @stores = Store.where(user_id: current_user.id).count
@@ -25,7 +29,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
   def create
     # @user = User.find(current_user.id)
     # @store = @user.store.create(store_params.merge(subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#fc711b', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
-    @store = Store.create(store_params.merge(display_email:params[:store][:email],subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#7aae42', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
+    @store = Store.create(store_params.merge(display_email: params[:store][:email], subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#7aae42', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
 
     if @store.save
       flash[:notice] = "Your Store has been created! Please check your email for the activation message"
@@ -87,7 +91,6 @@ class StoreRegistrationsController < Devise::RegistrationsController
 
 
   private
-
 
 
   def store_params
