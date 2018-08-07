@@ -60,9 +60,9 @@ $(function () {
                 } else {
                     $("#url").attr('data-valid', 'true');
                     $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
-                    var str = res;
-                    var url = str.replace('.kduka.co.ke', '');
-                    $("#url").val(url);
+                    //var str = res;
+                    //var url = str.replace('.kduka.co.ke', '');
+                    //$("#url").val(url);
                     store_reg();
                 }
             }
