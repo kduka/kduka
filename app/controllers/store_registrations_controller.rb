@@ -3,6 +3,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
   prepend_before_action :kick_out, only: [:new, :create]
 
   def new
+  puts request.referer
 
     if request.referer.nil?
       redirect_to(root_path) and return
