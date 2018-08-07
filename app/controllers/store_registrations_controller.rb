@@ -7,6 +7,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
     if request.referer.nil?
       redirect_to(root_path) and return
     else
+      puts request.referer
       url = URI.parse(request.referer).host.match(/\w*.com$/)[0]
       if url == 'google.com'
         redirect_to(root_path) and return
