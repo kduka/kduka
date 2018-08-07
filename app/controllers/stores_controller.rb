@@ -91,7 +91,6 @@ end
 
   def orders
     @order = Order.where(store_id: current_store.id, order_status_id: [5, 2, 3, 6])
-
     puts @order
     set_shop_show
   end
