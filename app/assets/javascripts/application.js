@@ -69,6 +69,47 @@ $(function () {
         });
     });
 
+    $("#url_edit").keyup(function () {
+
+
+        url = $("#url_edit").val();
+
+        $.ajax({
+            url: '/users/remote_santize',
+            data: {
+                url: url
+            },
+            method: 'post',
+            success: function (res) {
+                if (res == 'false') {
+                    vall = $("#url_edit").val();
+                    $("#url_prev").html("<span style='color:red'>http://" + vall + ".kduka.co.ke is already taken!</span>");
+                    $("#url_edit").attr('data-valid', 'false');
+                } else {
+                    $("#url_edit").attr('data-valid', 'true');
+                    $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
+                }
+                if ($("#url_edit").val() == $("#url_edit").attr('val')) {
+                    $("#url_edit").attr('data-valid', 'true');
+                    $("#url_prev").html("<span style='color:green'>No Changes</span>");
+                }
+                if (url.length > 2 && $("#url_edit").attr("data-valid") == "true") {
+                    //$("#url_prev").html("");
+                    $("#url_edit").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+                    $("#changebtn").removeAttr('disabled');
+                    $("#changebtn").removeAttr("style");
+                } else {
+                    $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+                    $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
+                    $("#changebtn").attr('disabled','true');
+                    $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
+                }
+
+            }
+
+        });
+    });
+
 
     $("#pass_store").keyup(function () {
         password = $("#pass_store").val();
@@ -392,7 +433,7 @@ $(function () {
         user_reg();
     });
 
-    $("#store_name").change(function (e) {
+    $("#store_name").keyup(function (e) {
         store = $("#store_name").val()
         if (store.length < 4) {
             $(".store_name_prev").html("<p style='color:red;font-size: 15px;'>Store name has a minimum 5 characters</p>");
@@ -416,17 +457,17 @@ $(function () {
         store_reg();
     });
 
-    $("#store_phone").change(function () {
+
+    $("#store_phone").keyup(function () {
         phone = $("#store_phone").val();
         if ($.isNumeric(phone) && phonecheck(phone)) {
             $(".phone_prev").html("");
             $("#store_phone").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-            store_reg2();
         } else {
             $(".phone_prev").html("<p style='color:red;font-size: 15px;'>Please enter a valid phone number in format 2547xxxxxxxx</p>");
             $("#store_phone").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
-            store_reg2();
         }
+        store_reg2();
     });
 
     $("#store_display_email").change(function () {
@@ -458,18 +499,16 @@ $(function () {
         user_reg();
     });
 
-    $("#store_password").change(function (e) {
+    $("#store_password").keyup(function (e) {
         password = $("#store_password").val();
         if (!pass(password)) {
             $(".store_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
             $("#store_password").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
-            store_reg2();
         } else {
             $(".store_password_prev").html("");
             $("#store_password").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-            store_reg2();
         }
-        store_reg();
+        store_reg2();
     });
 
     $("#user_password_confirmation").keyup(function (e) {
@@ -494,15 +533,12 @@ $(function () {
             $(".store_password_confirmation_prev").html("");
             $("#store_password_confirmation").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
             $("#store_password_confirmation").attr('data-valid', 'true');
-            store_reg2();
         } else {
             $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
             $("#store_password_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
             $("#store_password_confirmation").attr('data-valid', 'false');
-            store_reg2();
-
         }
-        store_reg();
+        store_reg2();
     });
 
     $("#sort_product").click(function () {
@@ -1317,3 +1353,4 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
+

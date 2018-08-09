@@ -24,7 +24,8 @@
            <label for="store_url" class="col-sm-2 control-label">Store Url</label>
            <div class="col-sm-8">
              <p style="font-size:12px">If you enter "john" we will automatically create john.kduka.co.ke for you.</p>
-             <%= f.text_field :subdomain, class: 'form-control1', placeholder: 'Url',required:'required',id:'store_url' %>
+             <%= f.text_field :subdomain, class: 'form-control1', placeholder: 'Url',required:'required',id:'url_edit', val:@store.subdomain, minlength:3 %>
+             <p class="text-center" style="font-size:10px;color: green;font-weight:bold" id="url_prev"><%= "http://#{@store.subdomain}.kduka.co.ke" %></p>
            </div>
            <div class="col-sm-2">
              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title='This is the link you will give your clients to access your store. If you enter "john" we will automatically create john.kduka.co.ke for you'>Help?</span></a>
@@ -102,7 +103,7 @@
          <div class="form-group">
            <label for="checkbox" class="col-sm-2 control-label"></label>
            <div class="col-sm-8">
-             <button type="sumbit" class="kd_buttons"><i class="fa fa-save"></i> Save Store Settings</button>
+             <button id="changebtn" disabled style="background-color:grey;color:#000;border-color: grey;" type="submit" class="kd_buttons"><i class="fa fa-save"></i> Save Store Settings</button>
              <button type="reset" class="kd_reset"><i class="fa fa-refresh"></i> Load Prefilled</button>
            </div>
          </div>
