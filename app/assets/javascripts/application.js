@@ -679,6 +679,33 @@ $(function () {
         validateEmail($("#store_email").val());
         store_reg();
     });
+
+    $("#add-variant").click(function (e) {
+        e.preventDefault();
+        variant_name = $("#variant_name").val();
+        variant_value = $("#variant_value").val();
+
+
+        if (variant_name == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please fill the delivery option, It cant be empty</span>");
+        } else if (variant_value == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please specify the price, It cant be empty</span>");
+        } else {
+            $.ajax({
+                url: '/store_deliveries',
+                method: 'post',
+                data: {
+                    del_opt: del_opt,
+                    del_price: del_price
+                },
+                success: function (e) {
+                    $(".del_opt_err").html("");
+                    $("#del_opt").val("");
+                    $("#del_price").val("");
+                }
+            })
+        }
+    });
 });
 
 

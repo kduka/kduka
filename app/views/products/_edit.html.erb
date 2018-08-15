@@ -103,6 +103,32 @@
   </div>
   <div class="col-md-12" style="height:1em"></div>
   <div class="form-group">
+    <label for="del_opt" class="col-sm-2 control-label">Specify a Variant (E.g Color, Length)</label>
+    <div class="col-sm-8">
+      <%= text_area_tag(:variant_name, nil, id: 'variant_name', class: 'form-control1', placeholder:'Eg. Color, Length') %>
+    </div>
+    <div class="col-sm-2">
+      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you want to add descriptions of your product eg. Color, Length, create the variant here, you can add options afterwards eg. Black, WHite ">Help?</span></a>
+    </div>
+  </div>
+  <div class="col-md-12" style="height:1em"></div>
+  <div class="form-group">
+    <label for="price" class="col-sm-2 control-label">Variant Value (e.g Black, Blue) </label>
+    <div class="col-sm-8">
+      <%= text_field_tag(:variant_value, nil, id: 'variant_value', type: 'text', class: 'form-control1',placeholder:'E.g Black, White') %>
+    </div>
+    <div class="col-sm-2">
+      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the cost of delivery to your specified location">Help?</span></a>
+    </div>
+    <div class="col-sm-10 col-sm-offset-2"><br>
+      <a style="border:1px solid #7aae42 !important;" id="add-variant" class="btn btn-primary">Add Variant</a>
+    </div>
+    <div class="col-sm-10 col-sm-offset-2">
+      <div style="margin-top: 2em; margin-bottom: 1em;" class="manual del_opts"><%= render "store_deliveries/locations" %></div>
+    </div>
+  </div>
+  <div class="col-md-12" style="height:1em"></div>
+  <div class="form-group">
     <label for="active" class="col-sm-2 control-label">Active</label>
     <div class="col-sm-8">
       <div class="checkbox-inline"><%= f.check_box :active, id:'active' %> <label for="active">Check this to Show Product in your Store</label></div>
