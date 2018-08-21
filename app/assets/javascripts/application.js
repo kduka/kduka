@@ -684,19 +684,21 @@ $(function () {
         e.preventDefault();
         variant_name = $("#variant_name").val();
         variant_value = $("#variant_value").val();
+        id = $("#num").attr('data');
 
 
         if (variant_name == "") {
-            $(".var_opt_err").html("<span style='color:red;'>Please fill the delivery option, It cant be empty</span>");
+            $(".var_opt_err").html("<span style='color:red;'>Please fill the variant name, It cant be empty</span>");
         } else if (variant_value == "") {
-            $(".var_opt_err").html("<span style='color:red;'>Please specify the price, It cant be empty</span>");
+            $(".var_opt_err").html("<span style='color:red;'>Please specify the variant value, It cant be empty</span>");
         } else {
             $.ajax({
-                url: '/store_deliveries',
+                url: '/products/add_variant',
                 method: 'post',
                 data: {
-                    del_opt: del_opt,
-                    del_price: del_price
+                    variant_name: variant_name,
+                    variant_value: variant_value,
+                    id:id
                 },
                 success: function (e) {
                     $(".del_opt_err").html("");
@@ -706,6 +708,39 @@ $(function () {
             })
         }
     });
+
+    $(".delete_var").click(function (e) {
+       //alert($(this).attr('data') + " " + $(this).attr('data-attr'));
+        id = $("#num").attr('data');
+        //$(".delete_var").off("click");
+        $.ajax({
+            url:'/products/delete_variant',
+            method:'post',
+            data:{
+                name:$(this).attr('data'),
+                index:$(this).attr('data-attr'),
+                product_id:id,
+            },
+            success:function () {
+
+            }
+
+        })
+    });
+
+    $(".add_var").click(function () {
+       $('.var_rev').html("<input type='text' id='new_var' /> <span type='button' value='Add Value' class='add_val' style='cursor: pointer' >Add Variant</span>");
+       $(this).attr("class","add_var_temp label");
+       $("#new_var").focus();
+       //$("#update_product").attr('disabled','true');
+       //$("#var_msg").html('<span style="color: red"> Please finish adding the variant or cancel it. </span>')
+       //$(this).attr('style','display:none');
+    });
+
+    $(".var_rev .add_val").click(function () {
+        console.log("boi");
+        alert("boiii");
+    })
 });
 
 

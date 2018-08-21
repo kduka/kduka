@@ -85,7 +85,7 @@ class ProductsController < ApplicationController
     elsif @store.active == !true
       redirect_to(home_404_path) and return
     else
-        ahoy.track "contact", {store: @store.id}
+      ahoy.track "contact", {store: @store.id}
       set_shop
     end
   end
@@ -259,6 +259,66 @@ class ProductsController < ApplicationController
       f.csv {send_data @products.to_csv}
       f.xls
     end
+  end
+
+  def add_variant
+    value = "{\"0\":\"#{params[:variant_value]}\"}"
+
+    @id = params[:id]
+    @name = params[:variant_name].downcase
+
+    exist = Variant.where(name: @name, product_id: @id)
+
+    if exist.blank?
+      puts 'true'
+      @var = Variant.create(name: @name, value: value, product_id: @id)
+    else
+      puts 'false'
+      @var = 'exist'
+    end
+  end
+
+  def delete_variant
+    require 'json'
+    @name = params[:name]
+    @index = params[:index]
+    @id = params[:product_id]
+
+    var = Variant.where(name: @name, product_id: @id).first
+
+    @str = JSON.parse(var.value)
+    @str.delete(@index)
+
+    if @str.blank?
+      var.destroy
+    else
+      res = var.update(value: @str.to_json)
+      if res
+        @var = true
+      else
+        @var = 'error'
+      end
+    end
+
+  end
+
+  def append_variant
+
+    @id = params[:id]
+    @name = params[:variant_name].downcase
+    @variant_value = params[:variant_value].downcase
+    vars = Variant.where(name:@name,product_id:@id).first
+    @vals = JSON.parse(vars.value)
+
+    key = @vals.length + 1
+
+    @vals[key]= @variant_value
+
+    vars.update(value:@vals.to_json)
+
+    #@TODO Check if color already exists before adding
+    #
+
   end
 
   private

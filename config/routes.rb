@@ -90,6 +90,9 @@ Rails.application.routes.draw do
   post '/stores/sendy_call'
   get 'admins/view/(:id)' => 'admins#view', as: 'admin_view'
   post 'stores/update_password' => 'stores#update_password'
+  post 'products/add_variant' => 'products#add_variant'
+  post 'products/delete_variant' => 'products#delete_variant'
+  post 'products/append_variant' => 'products#append_variant'
 
 
 

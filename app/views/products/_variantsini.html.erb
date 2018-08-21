@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+  <th></th>
+  <th></th>
+  </thead>
+  <tbody>
+  <% Variant.where(product_id: @product.id).each do |d| %>
+    <tr>
+      <td><%= "Variant : #{d.name.humanize}" %></td>
+
+      <%
+        require 'json'
+        vals = JSON.parse(d.value)
+        %>
+      <td>Values: <% vals.each do |k,v| %>
+          <%=  v %> <span data="<%= d.name %>" data-attr="<%= k %>" class="delete_var" style="color: red;cursor: pointer"><i class="fa fa-times-rectangle"></i> </span>,
+          <% end %>
+        <span class="label add_var" style="color:green;font-weight: bold;cursor: pointer" >Add</span>
+        <div class="var_rev"></div>
+          </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
