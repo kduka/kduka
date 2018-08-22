@@ -1,7 +1,7 @@
 class IpnController < ApplicationController
   def index
 
-    data =  request.body.read
+    data = request.body.read
 
     puts data
 
@@ -19,43 +19,11 @@ class IpnController < ApplicationController
     trans_time = r["TransTime"]
     bill_ref_no = r["BillRefNumber"]
 
-    @ipn = Ipn.create(MSISDN: msisdn, BusinessShortCode: business_short_code, InvoiceNumber: invoice_number, TransID: trans_id, TransAmount: trans_amount, ThirdPartyTransID: third_party_trans_id, TransTime: trans_time, bill_ref_no:bill_ref_no)
+    @ipn = Ipn.create(MSISDN: msisdn, BusinessShortCode: business_short_code, InvoiceNumber: invoice_number, TransID: trans_id, TransAmount: trans_amount, ThirdPartyTransID: third_party_trans_id, TransTime: trans_time, bill_ref_no: bill_ref_no)
     if @ipn
       render :json => {'status': 'ok'}
       check_order(bill_ref_no, trans_amount, trans_id)
     end
-
-
-
-=begin
-
- <InstantPaymentNotification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="Pi4_94bebd26-9393-c287-0651-08d5254a589a">
- 	<MSISDN>254724040839</MSISDN>
- 	<BusinessShortCode>766645</BusinessShortCode>
- 	<InvoiceNumber></InvoiceNumber>
- 	<TransID>LK612QR655</TransID>
- 	<TransAmount>3.00</TransAmount>
- 	<ThirdPartyTransID></ThirdPartyTransID>
- 	<TransTime>20171106221246</TransTime>
- 	<BillRefNumber>mart</BillRefNumber>
- 	<OrgAccountBalance>18.00</OrgAccountBalance>
- 	<KYCInfoList>
- 		<KYCInfo>
- 			<KYCName>[Personal Details][First Name]</KYCName>
- 			<KYCValue>MARTIN</KYCValue>
- 		</KYCInfo>
- 		<KYCInfo>
- 			<KYCName>[Personal Details][Middle Name]</KYCName>
- 			<KYCValue>NGUI</KYCValue>
- 		</KYCInfo>
- 		<KYCInfo>
- 			<KYCName>[Personal Details][Last Name]</KYCName>
- 			<KYCValue>NDETO</KYCValue>
- 		</KYCInfo>
- 	</KYCInfoList>
- </InstantPaymentNotification>
-
-=end
   end
 
 
@@ -66,29 +34,37 @@ class IpnController < ApplicationController
     @order = Order.where(ref: ref).first
 
     if @order.nil?
-      Unresolved.create(transid: transid)
+      @order = Subscription.where(ref: ref, order_status_id: 5).first
+      if @order.nil?
+        Unresolved.create(transid: transid)
+      else
+        newamount = @order.received.to_i + amount.to_i
+        transactions = @order.number_of_transactions + 1
+        @order.update(number_of_transactions: transactions, received: newamount)
+        complete_sub(@order, amount)
+      end
     elsif @order.order_status_id == 5
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
       @order.update(number_of_transactions: transactions, amount_received: newamount)
-      complete(@order,amount)
+      complete(@order, amount)
     elsif @order.order_status_id == 2
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
       @order.update(number_of_transactions: transactions, amount_received: newamount)
-      complete(@order,amount)
+      complete(@order, amount)
     elsif @order.order_status_id == 1
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
-      @order.update(number_of_transactions: transactions, amount_received: newamount,date_placed:Time.now,date_placed2:Time.now.strftime("%Y-%m-%-d"))
-      complete(@order,amount)
+      @order.update(number_of_transactions: transactions, amount_received: newamount, date_placed: Time.now, date_placed2: Time.now.strftime("%Y-%m-%-d"))
+      complete(@order, amount)
     end
 
   end
 
-  def complete(ref,amount)
+  def complete(ref, amount)
     @order = ref
-    store_amount(ref,amount)
+    store_amount(ref, amount)
     if @order.total.to_i <= @order.amount_received.to_i
       @order.update(order_status_id: 2)
       update_inventory(@order)
@@ -100,6 +76,45 @@ class IpnController < ApplicationController
       PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
     end
   end
+
+  def complete_sub(ref, amount)
+    require 'active_support'
+    @order = ref
+    if amount.to_i >= @order.amount.to_i
+
+      @order.update(order_status_id: 6)
+      @store = Store.find(ref.store_id)
+
+      now = Time.now
+
+      if @order.description == 'year'
+        expire = now + 1.year
+        description = '1 year renewal'
+      elsif @order.description == 'bi'
+        expire = now + 6.month
+        description = '6 month renewal'
+      elsif @order.description == 'month'
+        description = '1 month renewal'
+        expire = now + 1.month
+      end
+      r = SubscriptionRecord.create(store_id:@order.store_id, start:now, expire:expire, subscription_id:@order.id, description:description)
+      @store.update(premium: true,premiumexpiry:expire)
+      PaymentsMailer.full_subscription_payment_recieved(@order,r).deliver
+      #@TODO Email complete Subscription and take records of payment and expiry date
+      # @TODO
+=begin
+      PaymentsMailer.full_payment_recieved(@order).deliver
+      PaymentsMailer.merchant_payment_recieved(@order).deliver
+=end
+    else
+      @order.update(order_status_id: 5)
+=begin
+      PaymentsMailer.partial_payment_recieved(@order).deliver
+      PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
+=end
+    end
+  end
+
 
   def update_inventory(o)
     o.order_items.all.each do |oi|
@@ -135,17 +150,17 @@ class IpnController < ApplicationController
       end
     end
     BusinessToConsumer.create(@params)
-    @transaction = Transaction.where(ref:@ref)
-    @transaction.update(transaction_status_id:2)
+    @transaction = Transaction.where(ref: @ref)
+    @transaction.update(transaction_status_id: 2)
     render :json => @params
 
   end
 
-  def store_amount(order,amount)
+  def store_amount(order, amount)
     @store_amount = StoreAmount.where(store_id: order.store_id).first
     if @store_amount.nil?
-      StoreAmount.create(amount:0,actual:0,store_id:order.store_id)
-      @store_amount = StoreAmount.where(store_id:order.store_id).first
+      StoreAmount.create(amount: 0, actual: 0, store_id: order.store_id)
+      @store_amount = StoreAmount.where(store_id: order.store_id).first
     end
     if @store_amount.actual.nil?
       @store_amount.update(actual: 0)
@@ -155,7 +170,7 @@ class IpnController < ApplicationController
       @store_amount.update(lifetime_earnings: 0)
     end
     le = @store_amount.lifetime_earnings.to_i + amount.to_i
-    @store_amount.update(actual: nu,lifetime_earnings:le)
+    @store_amount.update(actual: nu, lifetime_earnings: le)
   end
 
 end
@@ -203,6 +218,35 @@ end
 
 
 
+
+=end
+=begin
+
+ <InstantPaymentNotification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="Pi4_94bebd26-9393-c287-0651-08d5254a589a">
+ 	<MSISDN>254724040839</MSISDN>
+ 	<BusinessShortCode>766645</BusinessShortCode>
+ 	<InvoiceNumber></InvoiceNumber>
+ 	<TransID>LK612QR655</TransID>
+ 	<TransAmount>3.00</TransAmount>
+ 	<ThirdPartyTransID></ThirdPartyTransID>
+ 	<TransTime>20171106221246</TransTime>
+ 	<BillRefNumber>mart</BillRefNumber>
+ 	<OrgAccountBalance>18.00</OrgAccountBalance>
+ 	<KYCInfoList>
+ 		<KYCInfo>
+ 			<KYCName>[Personal Details][First Name]</KYCName>
+ 			<KYCValue>MARTIN</KYCValue>
+ 		</KYCInfo>
+ 		<KYCInfo>
+ 			<KYCName>[Personal Details][Middle Name]</KYCName>
+ 			<KYCValue>NGUI</KYCValue>
+ 		</KYCInfo>
+ 		<KYCInfo>
+ 			<KYCName>[Personal Details][Last Name]</KYCName>
+ 			<KYCValue>NDETO</KYCValue>
+ 		</KYCInfo>
+ 	</KYCInfoList>
+ </InstantPaymentNotification>
 
 =end
 

@@ -183,6 +183,9 @@ $(document).ready( function () {
                                 <li>
                                     <a class="btn1" href="<%= stores_deliver_path %>"><i class="fa fa-truck"></i> Delivery Settings</a>
                                 </li>
+                              <li>
+                                <a class="btn1" href="<%= stores_analytics_path %>"><i class="fa fa-bar-chart-o"></i>Google Analytics</a>
+                              </li>
                                 <li>
                                     <a class="btn1" href="<%= stores_active_path %>"><i class="fa fa-check"></i> Activation Settings</a>
                                 </li>
@@ -210,6 +213,9 @@ $(document).ready( function () {
                         <li>
                             <a class="btn1" href="<%= stores_funds_path %>"><i class="fa fa-money fa-fw nav_icon"></i>Funds</a>
                         </li>
+                      <li>
+                        <a class="btn1" href="<%= stores_premium_path %>"><i class="fa fa-credit-card fa-fw nav_icon"></i>Upgrade</a>
+                      </li>
                         <li>
                             <a href="<%= root_path %>"><i class="fa fa-globe fa-fw nav_icon"></i>Back to Website</a>
                         </li>
@@ -242,7 +248,7 @@ $(document).ready( function () {
 
 
           <h1 style="color:#7aae42"><a style="color:#7aae42" href="<%=stores_path %>"><%= @store.name %></a></h1>
-          <p><span style="color:#787878"><%= link_to "http://"+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank', style:'color:#787878' %></span> <% if !@store.active  %><a href="<%= stores_active_path %>" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none" title="Your store is not active"><span class="label label-danger">Store not Active</span></a><% else %><a style="text-decoration:none" data-toggle="tooltip" data-placement="bottom" title="Your store is active"><span href="<%= stores_active_path %>" class="label label-success">Store is active</span></a><% end %></p><br>
+          <p><span style="color:#787878"><% if @store.own_domain %><%= link_to "#{@store.c_subdomain}.#{@store.domain}", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank', style:'color:#787878' %><% else %><%= link_to "http://"+@store.subdomain+".kduka.co.ke", "http://"+@store.subdomain+".kduka.co.ke", target: '_blank', style:'color:#787878' %><% end %></span> <% if !@store.active  %><a href="<%= stores_active_path %>" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none" title="Your store is not active"><span class="label label-danger">Store not Active</span></a><% else %><a style="text-decoration:none" data-toggle="tooltip" data-placement="bottom" title="Your store is active"><span href="<%= stores_active_path %>" class="label label-success">Store is active</span></a><% end %></p><br>
 
           <div class="col-md-12 span_3">
               <div class="col_3">

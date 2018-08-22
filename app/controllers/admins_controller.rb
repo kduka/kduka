@@ -103,4 +103,48 @@ class AdminsController < ApplicationController
 
     super_admin
   end
+
+  def upgrade
+    #@TODO Send email to upgraded stores
+    @store = Store.where(id:params[:id])
+    up = @store.update(premium:true)
+    if up
+      flash[:notice] = "Store upgraded to premium"
+      redirect_to(request.referer)
+    else
+      flash[:alert] = "Something went wrong"
+      redirect_to(request.referer)
+    end
+  end
+
+  def downgrade
+    #@TODO Send email to downgraded stores
+    @store = Store.where(id:params[:id])
+    down = @store.update(premium:false,own_domain:false)
+    if down
+      flash[:notice] = "Store downgraded from premium"
+      redirect_to(request.referer)
+    else
+      flash[:alert] = "Something went wrong"
+      redirect_to(request.referer)
+    end
+  end
+
+  def own_domain
+    @store = Store.where(subdomain: params[:id])
+    if @store.update(store_params)
+      flash[:notice] = "Settings saved successfully"
+      redirect_to(request.referer)
+    else
+      flash[:alert] = "An error occurred"
+      redirect_to(request.referer)
+    end
+  end
+
+  private
+
+  def store_params
+    params.require(:store).permit(:own_domain,:domain, :c_subdomain)
+  end
+
 end

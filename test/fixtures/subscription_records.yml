@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store: one
+  start: 2018-08-22
+  expire: 2018-08-22
+  subscription: one
+  description: MyString
+
+two:
+  store: two
+  start: 2018-08-22
+  expire: 2018-08-22
+  subscription: two
+  description: MyString

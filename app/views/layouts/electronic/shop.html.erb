@@ -199,6 +199,12 @@
 
   </style>
   <!--Custom Colors-->
+
+  <% if @store.premium %>
+    <!--Google Tag -->
+    <%= @store.gtag.html_safe %>
+    <!--End Google Tag-->
+  <% end %>
 </head>
 <body>
 <!-- header -->

@@ -101,7 +101,7 @@ $(function () {
                 } else {
                     $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
                     $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
-                    $("#changebtn").attr('disabled','true');
+                    $("#changebtn").attr('disabled', 'true');
                     $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
                 }
 
@@ -679,6 +679,79 @@ $(function () {
         validateEmail($("#store_email").val());
         store_reg();
     });
+
+    $("#up1").click(function () {
+        $.ajax({
+            url: '/stores/create_year',
+            method: 'post',
+            data: {
+                type: 'year'
+            },
+            success: function (e) {
+                $("#yearly_modal").html("");
+                $("#yearly_modal").html(e);
+            }
+        })
+    });
+
+    $("#up2").click(function () {
+        $.ajax({
+            url: '/stores/create_bi',
+            method: 'post',
+            data: {
+                type: 'bi'
+            },
+            success: function (e) {
+                $("#bi_modal").html("");
+                $("#bi_modal").html(e);
+            }
+        })
+    });
+
+    $("#up3").click(function () {
+        $.ajax({
+            url: '/stores/create_month',
+            method: 'post',
+            data: {
+                type: 'month'
+            },
+            success: function (e) {
+                $("#monthly_modal").html("");
+                $("#monthly_modal").html(e);
+            }
+        })
+    });
+
+    $("#pay_confirm").click(function (e) {
+        $(".conf_text").html("Confirming Order ...");
+        ref = $("#ref").val();
+        $.ajax({
+            url: '/store/confirm_sub',
+            method: 'post',
+            data: {
+                ref: ref
+            },
+            success: function (e) {
+                if (e == "complete") {
+                    $(".conf_text").html("Success!");
+                    $(".conf_message").html("<span style='color: green'>Payment Complete.Your order has been placed. Check the provided email for further details! </span>");
+                    window.location = "/stores/premium"
+                } else if (e == 'none') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                } else if (e == 'shipped') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: #06b216'>Order Complete and Shipped</span>");
+                    window.location = "/stores/premium"
+                } else {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>" + e + "</span>");
+                }
+            }
+        });
+    });
+
+
 });
 
 

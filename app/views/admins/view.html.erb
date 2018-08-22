@@ -1,5 +1,66 @@
 <div class="content_bottom" style="margin-top:2em">
 
+  <h3 style="color:#7aae42"><i class="fa fa-bar-chart"></i> Domain Settings</h3>
+  <div class="xs">
+    <div class="tab-content">
+      <div class="tab-pane active" id="horizontal-form">
+        <%= form_for :store, :url => {controller:'admins', action:'own_domain'}, method:'put' do |f|%>
+          <div class="form-group">
+            <label for="facebook" class="col-sm-2 control-label">Current Domain</label>
+            <div class="col-sm-8">
+              <pre> <%= @store.c_subdomain %>.<%= @store.domain %></pre>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Your current domain">Help?</span></a>
+            </div>
+          </div><div class="col-md-12" style="height:1em"></div>
+
+          <div class="form-group">
+            <label for="facebook" class="col-sm-2 control-label">Use Own Domain</label>
+            <div class="col-sm-8">
+              <%= f.check_box :own_domain, id:'own_domain' %>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Tick if user will use custom domain">Help?</span></a>
+            </div>
+          </div>
+          <div class="col-md-12" style="height:1em"></div>
+
+          <div class="form-group">
+            <label for="facebook" class="col-sm-2 control-label">Subdomain</label>
+            <div class="col-sm-8">
+              <%= f.text_area :c_subdomain, class:'form-control1', id:'domain',placeholder:'Your custom subdomain' %>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Your custom subdomain">Help?</span></a>
+            </div>
+          </div>
+          <div class="col-md-12" style="height:1em"></div>
+
+          <div class="form-group">
+            <label for="facebook" class="col-sm-2 control-label">Domain</label>
+            <div class="col-sm-8">
+              <%= f.text_area :domain, class:'form-control1', id:'subdomain',placeholder:'Your Top Level Domain name' %>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Your Top Level Domain name">Help?</span></a>
+            </div>
+          </div>
+          <div class="col-md-12" style="height:1em"></div>
+
+          <div class="form-group">
+            <label for="checkbox" class="col-sm-2 control-label"></label>
+            <div class="col-sm-8">
+              <button type="sumbit" class="kd_buttons"><i class="fa fa-save"></i> Save Domain Details</button>
+            </div>
+          </div>
+        <%end%>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="clearfix"> </div>
 
 <h3 style="color:#7aae42"><i class="fa fa-list"></i> Categories</h3>
  <div class="col-md-12 span_3">

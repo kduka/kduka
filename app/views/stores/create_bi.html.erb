@@ -1,0 +1,52 @@
+
+<div class="col-md-6 col-md-offset-3 col-xs-12" style="margin-bottom:3em;margin-top:4em;padding: 2em;background-color: #fff">
+  <h1 style="text-align:center;font-size:35px;font-weight:700">Pay for Order</h1><br><br>
+  <h3>1. Go to your MPESA MENU</h3><br>
+  <h3>2. Select Lipa na M-PESA</h3><br>
+  <h3>3. Select Pay Bill</h3><br>
+  <h3>4. Enter Business Number: 766645</h3><br>
+  <h3>5. Enter Account No: <%= @order.ref %></h3><br>
+  <h3>6. Enter Amount : <%= @order.amount %></h3><br>
+  <h3>7. Enter your PIN</h3><br>
+  <h3>8. After you get your confirmation message click the button below</h3><br><br>
+  <input type="hidden" value="<%= @order.ref %>" id="ref_bi"/>
+
+  <div class="col-md-12 col-xs-12"><p style="text-align:center"><span class="conf_message"></span></p></div><br><br>
+  <button class='btn btn-success btn-lg col-sm-12 col-md-6 col-md-offset-3' id="pay_bi"  style="display:block;margin-top: 1em" ><span class="conf_text">Confirm</span></button>
+  <br><br>
+
+</div>
+
+<script>
+    $(function () {
+        $("#pay_bi").click(function (e) {
+            $(".conf_text").html("Confirming Order ...");
+            ref = $("#ref_bi").val();
+            $.ajax({
+                url: '/stores/confirm_sub',
+                method: 'post',
+                data: {
+                    ref: ref
+                },
+                success: function (e) {
+                    if (e == "complete") {
+                        $(".conf_text").html("Success!");
+                        $(".conf_message").html("<span style='color: green'>Payment Complete.Your order has been placed. Check the provided email for further details! </span>");
+                        window.location = "/stores/premium"
+                    } else if (e == 'none') {
+                        $(".conf_text").html("Confirm");
+                        $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                    } else if (e == 'shipped') {
+                        $(".conf_text").html("Confirm");
+                        $(".conf_message").html("<span style='color: #06b216'>Order Complete and Shipped</span>");
+                        window.location = "/stores/premium"
+                    } else {
+                        $(".conf_text").html("Confirm");
+                        $(".conf_message").html("<span style='color: red'>" + e + "</span>");
+                    }
+                }
+            });
+        });
+
+    });
+</script>

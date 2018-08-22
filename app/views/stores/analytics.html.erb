@@ -1,0 +1,52 @@
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<div class="content_bottom" style="margin-top:2em">
+<% if @store.premium %>
+  <h3 style="color:#7aae42"><i class="fa fa-bar-chart"></i> Edit Google Analytics Settings</h3>
+  <div class="xs">
+    <div class="tab-content">
+      <div class="tab-pane active" id="horizontal-form">
+        <%= form_for :store, :url => {controller:'stores', action:'update_tag'}, method:'put' do |f|%>
+          <div class="form-group">
+            <label for="facebook" class="col-sm-2 control-label">Your current tag</label>
+            <div class="col-sm-8">
+              <pre> <%= @store.gtag %> %></pre>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Your current code">Help?</span></a>
+            </div>
+          </div><div class="col-md-12" style="height:1em"></div>
+
+          <div class="form-group">
+            <label for="facebook" class="col-sm-2 control-label">Google Tag</label>
+            <div class="col-sm-8">
+              <%= f.text_area :gtag, class:'form-control1', id:'gtag',placeholder:'Paste your gtag code here' %>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Paste the code provided by google here">Help?</span></a>
+            </div>
+          </div>
+          <div class="col-md-12" style="height:1em"></div>
+
+          <div class="form-group">
+            <label for="checkbox" class="col-sm-2 control-label"></label>
+            <div class="col-sm-8">
+              <button type="submit" class="kd_buttons"><i class="fa fa-save"></i> Save Google Tag</button>
+            </div>
+          </div>
+        <%end%>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="clearfix"> </div>
+    <% else %>
+
+    <h3 class="text-center" style="color:#7aae42"></i> Upgrade your account to be able to use Google analytics </h3>
+
+    <% end %>
+</div>

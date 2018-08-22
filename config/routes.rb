@@ -90,6 +90,16 @@ Rails.application.routes.draw do
   post '/stores/sendy_call'
   get 'admins/view/(:id)' => 'admins#view', as: 'admin_view'
   post 'stores/update_password' => 'stores#update_password'
+  get 'stores/analytics' => 'stores#analytics'
+  post 'stores/update_tag' => 'stores#update_tag'
+  get 'admins/upgrade/:id' => 'admins#upgrade', as: 'admins_upgrade'
+  get 'admins/downgrade/:id' => 'admins#downgrade', as: 'admins_downgrade'
+  put 'admins/own_domain/:id' => 'admins#own_domain', as: 'admins_own_domain'
+  get 'stores/premium' => 'stores#premium', as: 'stores_premium'
+  post 'stores/create_year' => 'stores#create_year'
+  post 'stores/create_bi' => 'stores#create_bi'
+  post 'stores/create_month' => 'stores#create_month'
+  post 'stores/confirm_sub' => 'stores#confirm_sub'
 
 
 

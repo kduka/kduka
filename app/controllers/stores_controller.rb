@@ -21,7 +21,7 @@ class StoresController < ApplicationController
       end
     end
     @products = Product.where(store_id: current_store.id)
-    @visitors = Ahoy::Visit.where(store_id:@store.id)
+    @visitors = Ahoy::Visit.where(store_id: @store.id)
     set_shop_show
   end
 
@@ -132,7 +132,7 @@ end
   end
 
   def layouts
-    @store= Store.find(current_store.id)
+    @store = Store.find(current_store.id)
     @layouts = Layout.all
     @setup = setup
     @important = important
@@ -261,10 +261,10 @@ end
     @charges
     if @storeamount.amount > 500
       @temp = @storeamount.amount.to_i - 45
-      @max = @temp - (@temp.to_d*0.01).to_i
+      @max = @temp - (@temp.to_d * 0.01).to_i
     else
       @temp = @storeamount.amount.to_i - 52
-      @max = @temp - (@temp.to_d*0.01).to_i
+      @max = @temp - (@temp.to_d * 0.01).to_i
     end
 
     if amount.to_i > @max
@@ -345,10 +345,10 @@ end
     @charges
     if @storeamount.amount > 500
       @temp = @storeamount.amount.to_i - 45
-      @max = @temp - (@temp.to_d*0.01).to_i
+      @max = @temp - (@temp.to_d * 0.01).to_i
     else
       @temp = @storeamount.amount.to_i - 52
-      @max = @temp - (@temp.to_d*0.01).to_i
+      @max = @temp - (@temp.to_d * 0.01).to_i
     end
 
     if amount.to_i > @max
@@ -432,10 +432,10 @@ end
     @charges
     if @storeamount.amount > 500
       @temp = @storeamount.amount.to_i - 45
-      @max = @temp - (@temp.to_d*0.01).to_i
+      @max = @temp - (@temp.to_d * 0.01).to_i
     else
       @temp = @storeamount.amount.to_i - 52
-      @max = @temp - (@temp.to_d*0.01).to_i
+      @max = @temp - (@temp.to_d * 0.01).to_i
     end
 
     if amount.to_i > @max
@@ -624,7 +624,7 @@ end
     if response
       puts response
     else
-      end
+    end
     render :json => response.read_body
   end
 
@@ -639,6 +639,76 @@ end
     end
   end
 
+  def analytics
+    #@TODO Find a secure way of inclusing these damn tags
+    set_shop_show
+  end
+
+  def update_tag
+    @store = current_store
+    up = @store.update(gtag: params[:store][:gtag])
+
+    if up
+      flash[:notice] = "Google tag successfully updated"
+      redirect_to(request.referer)
+    else
+      flash[:alert] = "Something went wrong"
+      redirect_to(request.referer)
+    end
+
+  end
+
+  def premium
+    set_shop_show
+  end
+
+  def create_year
+    exist = Subscription.where(order_status_id: 5, description: 'year', amount: 4500).first
+    if exist.nil?
+      @order = Subscription.create(amount: 4500, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'year', order_status_id: 5, store_id: current_store.id)
+    else
+      @order = exist
+    end
+    no_layout
+  end
+
+  def create_bi
+    exist = Subscription.where(order_status_id: 5, description: 'bi', amount: 2395).first
+
+    if exist.nil?
+      @order = Subscription.create(amount: 2395, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'bi', order_status_id: 5, store_id: current_store.id)
+    else
+      @order = exist
+    end
+    no_layout
+  end
+
+  def create_month
+    exist = Subscription.where(order_status_id: 5, description: 'month', amount: 420).first
+
+    if exist.nil?
+      @order = Subscription.create(amount: 420, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'month', order_status_id: 5, store_id: current_store.id)
+    else
+      @order = exist
+    end
+    no_layout
+  end
+
+  def confirm_sub
+    ref = params[:ref]
+    @order = Subscription.where(ref: ref).first
+    if @order.order_status_id == 6
+      @status = "complete"
+    elsif @order.order_status_id == 5
+      #bal = @order.amount - @order.amount_received
+      @status = "Incomplete Payment. Please Contact us"
+    elsif @order.order_status_id == 3
+      @status = "shipped"
+    elsif @order.order_status_id == 1
+      @status = "none"
+    end
+    no_layout
+  end
 
 
   private
@@ -650,7 +720,7 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def store_params
-    params.require(:store).permit(:facebook, :linkedin, :twitter, :instagram, :pinterest, :vimeo, :youtube, :slogan, :subdomain, :layout_id, :name, :phone, :display_email, :logo, :logo_status, :business_location, :active, :store_color, :store_font)
+    params.require(:store).permit(:facebook, :linkedin, :twitter, :instagram, :pinterest, :vimeo, :youtube, :slogan, :subdomain, :layout_id, :name, :phone, :display_email, :logo, :logo_status, :business_location, :active, :store_color, :store_font, :gtag)
   end
 
   def delivery_params

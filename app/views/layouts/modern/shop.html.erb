@@ -186,6 +186,14 @@ a{
 </style>
 <!--Custom Colors-->
 </head>
+
+<% if @store.premium %>
+  <!--Google Tag -->
+  <%= @store.gtag.html_safe %>
+  <!--End Google Tag-->
+<% end %>
+
+
 <body>
 	<!--header-->
 	<div class="header">

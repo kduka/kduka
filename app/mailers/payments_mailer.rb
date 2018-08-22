@@ -6,6 +6,13 @@ class PaymentsMailer < ApplicationMailer
     mail(to: o.email, subject: "Payment Recieved [##{o.ref}]", from: "#{@store.name} <no-reply@kduka.co.ke>", reply_to:@store.display_email)
   end
 
+  def full_subscription_payment_recieved(o,r)
+    @order = o
+    @sub = SubscriptionRecord.find(r.id)
+    @store = Store.find(o.store_id)
+    mail(to: @store.email, subject: "Subscription Confirmed [##{o.ref}]", from: "#{@store.name} <no-reply@kduka.co.ke>", reply_to:@store.display_email)
+  end
+
 
   def merchant_payment_recieved(o)
     @order = o
