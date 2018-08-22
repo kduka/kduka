@@ -100,6 +100,7 @@ Rails.application.routes.draw do
   post 'stores/create_bi' => 'stores#create_bi'
   post 'stores/create_month' => 'stores#create_month'
   post 'stores/confirm_sub' => 'stores#confirm_sub'
+  get 'admins/allemails' => 'admins#allemails'
 
 
 

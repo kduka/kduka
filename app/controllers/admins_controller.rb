@@ -141,6 +141,14 @@ class AdminsController < ApplicationController
     end
   end
 
+  def allemails
+    @stores = Store.all
+    respond_to do |f|
+      f.csv {send_data @products.to_csv}
+      f.xls
+    end
+  end
+
   private
 
   def store_params

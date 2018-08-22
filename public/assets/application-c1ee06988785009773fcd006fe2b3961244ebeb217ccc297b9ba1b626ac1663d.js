@@ -29782,14 +29782,95 @@ za.removeClass("fr-fir fr-fil"),!b.opts.htmlUntouched&&b.opts.useClasses?"left"=
 
 
 
-
-
 /**
  * Created by root on 10/6/17.
  */
 
 
 $(function () {
+
+
+    $("#nxtBtn").click(function (e) {
+        e.preventDefault();
+    });
+
+    $(".signup").click(function (e) {
+        $.ajax({
+            url: '/stores/signup',
+            method: 'get',
+            success: function (d) {
+                $("#signup_modal").html(d);
+            }
+        });
+    });
+
+    $("#url").keyup(function () {
+        url = $("#url").val();
+
+        $.ajax({
+            url: '/users/remote_santize',
+            data: {
+                url: url
+            },
+            method: 'post',
+            success: function (res) {
+                if (res == 'false') {
+                    vall = $("#url").val();
+                    $("#url_prev").html("<span style='color:red'>http://" + vall + ".kduka.co.ke is already taken!</span>");
+                    $("#url").attr('data-valid', 'false');
+                    store_reg();
+                } else {
+                    $("#url").attr('data-valid', 'true');
+                    $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
+                    //var str = res;
+                    //var url = str.replace('.kduka.co.ke', '');
+                    //$("#url").val(url);
+                    store_reg();
+                }
+            }
+        });
+    });
+
+    $("#url_edit").keyup(function () {
+
+
+        url = $("#url_edit").val();
+
+        $.ajax({
+            url: '/users/remote_santize',
+            data: {
+                url: url
+            },
+            method: 'post',
+            success: function (res) {
+                if (res == 'false') {
+                    vall = $("#url_edit").val();
+                    $("#url_prev").html("<span style='color:red'>http://" + vall + ".kduka.co.ke is already taken!</span>");
+                    $("#url_edit").attr('data-valid', 'false');
+                } else {
+                    $("#url_edit").attr('data-valid', 'true');
+                    $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
+                }
+                if ($("#url_edit").val() == $("#url_edit").attr('val')) {
+                    $("#url_edit").attr('data-valid', 'true');
+                    $("#url_prev").html("<span style='color:green'>No Changes</span>");
+                }
+                if (url.length > 2 && $("#url_edit").attr("data-valid") == "true") {
+                    //$("#url_prev").html("");
+                    $("#url_edit").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+                    $("#changebtn").removeAttr('disabled');
+                    $("#changebtn").removeAttr("style");
+                } else {
+                    $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+                    $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
+                    $("#changebtn").attr('disabled', 'true');
+                    $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
+                }
+
+            }
+
+        });
+    });
 
 
     $("#pass_store").keyup(function () {
@@ -30114,7 +30195,7 @@ $(function () {
         user_reg();
     });
 
-    $("#store_name").change(function (e) {
+    $("#store_name").keyup(function (e) {
         store = $("#store_name").val()
         if (store.length < 4) {
             $(".store_name_prev").html("<p style='color:red;font-size: 15px;'>Store name has a minimum 5 characters</p>");
@@ -30138,7 +30219,8 @@ $(function () {
         store_reg();
     });
 
-    $("#store_phone").change(function () {
+
+    $("#store_phone").keyup(function () {
         phone = $("#store_phone").val();
         if ($.isNumeric(phone) && phonecheck(phone)) {
             $(".phone_prev").html("");
@@ -30147,6 +30229,7 @@ $(function () {
             $(".phone_prev").html("<p style='color:red;font-size: 15px;'>Please enter a valid phone number in format 2547xxxxxxxx</p>");
             $("#store_phone").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
         }
+        store_reg2();
     });
 
     $("#store_display_email").change(function () {
@@ -30178,7 +30261,7 @@ $(function () {
         user_reg();
     });
 
-    $("#store_password").change(function (e) {
+    $("#store_password").keyup(function (e) {
         password = $("#store_password").val();
         if (!pass(password)) {
             $(".store_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
@@ -30186,9 +30269,8 @@ $(function () {
         } else {
             $(".store_password_prev").html("");
             $("#store_password").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-
         }
-        store_reg();
+        store_reg2();
     });
 
     $("#user_password_confirmation").keyup(function (e) {
@@ -30217,9 +30299,8 @@ $(function () {
             $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
             $("#store_password_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
             $("#store_password_confirmation").attr('data-valid', 'false');
-
         }
-        store_reg();
+        store_reg2();
     });
 
     $("#sort_product").click(function () {
@@ -30355,6 +30436,84 @@ $(function () {
     $("#currentpass").keyup(function () {
         store_change_reg();
     });
+
+    $("#store_email").keyup(function () {
+        validateEmail($("#store_email").val());
+        store_reg();
+    });
+
+    $("#up1").click(function () {
+        $.ajax({
+            url: '/stores/create_year',
+            method: 'post',
+            data: {
+                type: 'year'
+            },
+            success: function (e) {
+                $("#yearly_modal").html("");
+                $("#yearly_modal").html(e);
+            }
+        })
+    });
+
+    $("#up2").click(function () {
+        $.ajax({
+            url: '/stores/create_bi',
+            method: 'post',
+            data: {
+                type: 'bi'
+            },
+            success: function (e) {
+                $("#bi_modal").html("");
+                $("#bi_modal").html(e);
+            }
+        })
+    });
+
+    $("#up3").click(function () {
+        $.ajax({
+            url: '/stores/create_month',
+            method: 'post',
+            data: {
+                type: 'month'
+            },
+            success: function (e) {
+                $("#monthly_modal").html("");
+                $("#monthly_modal").html(e);
+            }
+        })
+    });
+
+    $("#pay_confirm").click(function (e) {
+        $(".conf_text").html("Confirming Order ...");
+        ref = $("#ref").val();
+        $.ajax({
+            url: '/store/confirm_sub',
+            method: 'post',
+            data: {
+                ref: ref
+            },
+            success: function (e) {
+                if (e == "complete") {
+                    $(".conf_text").html("Success!");
+                    $(".conf_message").html("<span style='color: green'>Payment Complete.Your order has been placed. Check the provided email for further details! </span>");
+                    window.location = "/stores/premium"
+                } else if (e == 'none') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                } else if (e == 'shipped') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: #06b216'>Order Complete and Shipped</span>");
+                    window.location = "/stores/premium"
+                } else {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>" + e + "</span>");
+                }
+            }
+        });
+    });
+
+
 });
 
 
@@ -30468,6 +30627,7 @@ function phonecheck(phonenumber) {
         return false;
     }
 }
+
 /*
  function validate_ship(){
  email = $("#ship_email").val();
@@ -30822,7 +30982,6 @@ function user_reg() {
 
 function valmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     if (email.match(re)) {
         return true;
     } else {
@@ -30830,19 +30989,37 @@ function valmail(email) {
     }
 }
 
-function store_reg() {
-    store_name = $("#store_name").val();
-    store_phone = $("#store_phone").val();
-    url = $("#url").val();
-    store_password = $("#store_password").val();
-    email = $("#store_email").val();
-    store_password_confirmation = $("#store_password_confirmation").val();
-    store_display_email = $("#store_display_email").val();
-    if (store_name.length > 3 && $.isNumeric(store_phone) && url.length > 2 && pass(store_password) && pass(store_password_confirmation) && valmail(email) && valmail(store_display_email) && $("#store_email").attr('data-valid') == 'true' && $("#store_password_confirmation").attr('data-valid') == 'true') {
-        $("#store_sign_up").removeAttr("disabled");
-    } else {
-        $("#store_sign_up").attr("disabled", "true");
 
+function store_reg() {
+
+    store_name = $("#store_name").val();
+    url = $("#url").val();
+    email = $("#store_email").val();
+
+    //setTimeout(console.log('timeout'),1000);
+
+    if (store_name.length > 3 && url.length > 2 && $("#store_email").attr('data-valid') == 'true' && $("#url").attr('data-valid') == 'true') {
+        $('#nxtBtn').prop("disabled", false);
+        $('#nxtBtn').removeAttr("style");
+    } else {
+        //alert(false);
+        $("#nxtBtn").attr("disabled", "true");
+        $("#nxtBtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
+
+    }
+}
+
+function store_reg2() {
+    store_phone = $("#store_phone").val();
+    store_password = $("#store_password").val();
+    store_password_confirmation = $("#store_password_confirmation").val();
+    if (phonecheck(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true') {
+        $("#submitter").removeAttr("disabled");
+        $("#submitter").removeAttr("style");
+        $("#submitter").off("click");
+    } else {
+        $("#submitter").attr("disabled", "true");
+        $("#submitter").attr("style", "background-color:grey;color:#000;border-color: grey;");
     }
 
 }
@@ -30861,9 +31038,10 @@ function store_change_reg() {
 }
 
 function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-    if (email.match(re)) {
+    if (regex.test(email)) {
+
         $.ajax({
             url: '/users/checkmail',
             data: {
@@ -30871,10 +31049,10 @@ function validateEmail(email) {
             },
             method: 'post',
             success: function (res) {
-                //alert(res);
                 $("#email_prev").html(res);
                 if (res == "<span style='color:green'>Available</span>") {
                     $("#store_email").attr('data-valid', 'true');
+                    $("#store_email").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
                 } else {
                     $("#store_email").attr('data-valid', 'false');
                 }
@@ -30884,6 +31062,7 @@ function validateEmail(email) {
         $("#email_prev").html("<span style='color:red' >This is not a valid email</span>");
         $("#store_sign_up").attr("disabled", "true");
     }
+
 }
 
 function validateEmail2(email) {
@@ -30925,4 +31104,89 @@ function res_check() {
         $("#reseter").attr('style', 'background-color:grey');
     }
 }
+
+function showTab(n) {
+    // This function will display the specified tab of the form ...
+    var x = document.getElementsByClassName("tab");
+    console.log(x);
+    x[n].style.display = "block";
+    // ... and fix the Previous/Next buttons:
+    if (n == 0) {
+        document.getElementById("prevBtn").style.display = "none";
+    } else {
+        document.getElementById("prevBtn").style.display = "inline";
+    }
+    if (n == (x.length - 1)) {
+        document.getElementById("nxtBtn").innerHTML = "Submit";
+        $("#nxtBtn").attr('id', 'submitter');
+        $("#submitter").attr('disabled', 'true');
+        $("#submitter").attr('type', 'submit');
+        $("#submitter").attr("style", "background-color:grey;color:#000;border-color: grey;");
+        $("#submitter").removeAttr("onclick");
+        store_reg2();
+    } else {
+
+        if ($("#nxtBtn")) {
+            $("#submitter").attr('id', 'nxtBtn');
+            $("#nxtBtn").attr('onclick', 'nextPrev(1)');
+            document.getElementById("nxtBtn").innerHTML = "Next";
+            store_reg();
+
+        }
+    }
+    // ... and run a function that displays the correct step indicator:
+    fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+    // This function will figure out which tab to display
+    var x = document.getElementsByClassName("tab");
+    // Exit the function if any field in the current tab is invalid:
+    if (n == 1 && !validateForm()) return false;
+    // Hide the current tab:
+    x[currentTab].style.display = "none";
+    // Increase or decrease the current tab by 1:
+    currentTab = currentTab + n;
+    // if you have reached the end of the form... :
+    if (currentTab >= x.length) {
+        //...the form gets submitted:
+        document.getElementById("regForm").submit();
+        return false;
+    }
+    // Otherwise, display the correct tab:
+    showTab(currentTab);
+}
+
+function validateForm() {
+    // This function deals with validation of the form fields
+    var x, y, i, valid = true;
+    x = document.getElementsByClassName("tab");
+    y = x[currentTab].getElementsByTagName("input");
+    // A loop that checks every input field in the current tab:
+    for (i = 0; i < y.length; i++) {
+        // If a field is empty...
+        if (y[i].value == "") {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false:
+            valid = false;
+        }
+    }
+    // If the valid status is true, mark the step as finished and valid:
+    if (valid) {
+        document.getElementsByClassName("step")[currentTab].className += " finish";
+    }
+    return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+    // This function removes the "active" class of all steps...
+    var i, x = document.getElementsByClassName("step");
+    for (i = 0; i < x.length; i++) {
+        x[i].className = x[i].className.replace(" active", "");
+    }
+    //... and adds the "active" class to the current step:
+    x[n].className += " active";
+}
+
 ;

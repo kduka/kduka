@@ -3,6 +3,9 @@
 
   <h3 style="color:#7aae42"><i class="fa fa-shopping-cart"></i> Stores</h3>
   <div class="col-md-12 span_3">
+    <%= link_to  admins_allemails_path(format: "xls"), style:'text-decoration:none' do %>
+      <button class="kd_buttons"><i class="fa fa-download"></i> Download Emails</button>
+    <%end%><br>
     <div class="col_2">
       <% if !@stores.blank? %>
         <div style="overflow-x:scroll">
