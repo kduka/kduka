@@ -121,14 +121,12 @@ end
 
   def update_store
     @store = Store.find(current_store.id)
-    if @store.update(store_params)
+    if @store.update(store_params.merge(subdomain:santize(params[:store][:subdomain])))
       flash[:notice] = 'Settings Saved'
     else
       flash[:alert] = 'Something went wrong, please try again'
     end
-
     redirect_to(request.referer)
-
   end
 
   def layouts
@@ -737,5 +735,11 @@ end
 def pass_params
   # NOTE: Using `strong_parameters` gem
   params.require(:store).permit(:password, :password_confirmation, :email)
+end
+
+def santize(name)
+  lower = name.downcase
+  nospace = lower.gsub(/[^0-9a-z]|(kduka\.co\.ke)|(kduka)/i, "")
+  return nospace
 end
 
