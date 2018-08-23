@@ -260,10 +260,10 @@ end
     @storeamount = StoreAmount.where(store_id: current_store.id).first
     @charges
     if @storeamount.amount > 500
-      @temp = @storeamount.amount.to_i - 45
+      @temp = @storeamount.amount.to_i - 58
       @max = @temp - (@temp.to_d * 0.01).to_i
     else
-      @temp = @storeamount.amount.to_i - 52
+      @temp = @storeamount.amount.to_i - 58
       @max = @temp - (@temp.to_d * 0.01).to_i
     end
 
@@ -316,9 +316,9 @@ end
       @storeamount = StoreAmount.where(store_id: current_store.id).first
 
       if amount.to_i > 500
-        @trans_charges = 45.to_d + (amount.to_d * 0.01)
+        @trans_charges = 58.to_d + (amount.to_d * 0.01)
       else
-        @trans_charges = 52.to_d + (amount.to_d * 0.01)
+        @trans_charges = 58.to_d + (amount.to_d * 0.01)
       end
 
       nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)

@@ -185,24 +185,33 @@ $(function () {
 
     $("#b2c").click(function (e) {
         e.preventDefault();
-        $(".b2c_text").html("Processing");
-        $("#b2c").attr("disabled", "true");
-        $(".trans_messages").html("<p style=''> Please wait ...</p>");
-        name = $("#client_name_b2c").val();
-        phone = $("#client_account_b2c").val();
-        amount = $("#amount_b2c").val();
-        $.ajax({
-            url: '/stores/b2c',
-            method: 'post',
-            data: {
-                name: name,
-                phone: phone,
-                amount: amount
-            },
-            success: function (f) {
+        if($("#client_name_b2c").val() == "") {
+            $(".amount_prev_b2c").html("<span style='color:red;'>The recepient name can't be empty</span>");
+        } else if ($("#client_account_b2c").val() == ""){
+            $(".amount_prev_b2c").html("<span style='color:red;'>The phone number can't be empty</span>");
+        } else if ($("#amount_b2c").val() == ""){
+            $("#amount_prev_b2c").html("<span style='color:red;'>Amount can't be empty</span>");
+        } else {
+            $(".b2c_text").html("Processing");
+            $("#b2c").attr("disabled", "true");
+            $(".trans_messages").html("<p style=''> Please wait ...</p>");
+            thename = $("#client_name_b2c").val();
+            phone = $("#client_account_b2c").val();
+            amount = $("#amount_b2c").val();
+            $.ajax({
+                url: '/stores/b2c',
+                method: 'post',
+                data: {
+                    name: thename,
+                    phone: phone,
+                    amount: amount
+                },
+                success: function (f) {
 
-            }
-        });
+                }
+            });
+        }
+
     });
 
     $("#b2bpay").click(function (e) {
@@ -1081,10 +1090,12 @@ function b2c_val() {
     client_account = $("#client_account_b2c").val();
     amount = $("#amount_b2c").val();
 
-    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
+    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) >= 0)) {
         $("#b2c").removeAttr("disabled");
+        $("#b2c").removeAttr("style");
     } else {
         $("#b2c").attr("disabled", "true");
+        $("#b2c").attr("style", "background-color: grey;color: white");
     }
 }
 
@@ -1159,7 +1170,7 @@ function set_bal(post) {
 function check_num(post) {
     amt = $("#amount_" + post).val();
 
-    if ($.isNumeric(amt) || amt == "") {
+    if ($.isNumeric(amt) && amt >= 0) {
         $("#amount_prev_" + post).html("");
     } else {
         $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number</p>");

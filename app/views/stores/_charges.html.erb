@@ -4,11 +4,11 @@
 
   @charges
   if @storeamount.amount > 500
-    @temp = @storeamount.amount.to_i - 45
+    @temp = @storeamount.amount.to_i - 58
     @max = @temp - (@temp.to_d*0.01).to_i
     #@charges = 45 + (@storeamount.amount.to_d * 0.01)
   else
-    @temp = @storeamount.amount.to_i - 52
+    @temp = @storeamount.amount.to_i - 58
     @max = @temp - (@temp.to_d*0.01).to_i
 
     if @max <= 0
@@ -21,7 +21,7 @@
 <div class="col-md-10 col-md-offset-2">
 <span class="trans_messages"></span>
 <br>
-<p><b>Minimum Withdrawal Amount:</b> Ksh <%= @max %> </p>
+<p><b>Maximum Withdrawal Amount:</b> Ksh <%= @max %> </p>
 <p><b>Charges:</b> <span class="charge" data-full="<%= @storeamount.amount %>" data="<%= @max %>">0</span></p>
 <p><b>Balance:</b> <span class="bal"><%= "  Ksh : #{@max}" %></span></p>
 </div>
