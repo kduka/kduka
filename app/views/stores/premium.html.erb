@@ -31,17 +31,19 @@
     });
 </script>
 <div class="content_bottom" style="margin-top:2em">
+
+<h3 style="color:#7aae42"><i class="fa fa-money"></i> Our Pricing</h3>
+ <div class="col-md-12 span_3">
+   <br><br>
   <% if @store.premium %>
-    <h3 class="text-center" style="color:#7aae42"></i>You are currently on our premium plan until <%= @store.premiumexpiry %></h3>
+    <h3 style="color:#7aae42"></i>You are currently on our premium plan until <%= @store.premiumexpiry %></h3>
 
     <div class="clearfix"> </div>
   <% else %>
 
-    <h3 class="text-center" style="color:#7aae42"></i> You are currently on the free plan.</h3>
-      <p></p><br>
+    <h3 style="color:#7aae42"></i> You are currently on the free plan.</h3>
+      <p></p><br><br>
     <div class="our_pricing" id="pricing">
-      <h3><span style="color:#7aae42">Our Pricing</span></h3>
-      <div class="container">
         <div class="col-md-4">
           <div class="pricing_shadow">
             <h4>Yearly</h4>
@@ -53,7 +55,7 @@
         </div>
         <div class="col-md-4">
           <div class="pricing_shadow">
-            <h4>Bi-Annual</h4>
+            <h4>6 Months</h4>
             <h3>KSH 2395</h3>
             <h3>Save 5%</h3>
             <br>
@@ -69,13 +71,12 @@
             <button id="up3" data-toggle="modal" data-target="#monthly_modal" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button></h3>
           </div>
         </div>
-
-
-      </div>
     </div>
 
   <% end %>
 </div>
+</div>
+<div class="clearfix"></div>
 <div id="yearly_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="bi_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="monthly_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true"></div>
