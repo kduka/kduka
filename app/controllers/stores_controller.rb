@@ -650,10 +650,10 @@ end
 
     if up
       flash[:notice] = "Google tag successfully updated"
-      redirect_to(request.referer)
+      redirect_to(stores_analytics_path)
     else
       flash[:alert] = "Something went wrong"
-      redirect_to(request.referer)
+      redirect_to(stores_analytics_path)
     end
 
   end
