@@ -18,6 +18,7 @@
               <th>Visitors</th>
               <th>Created at</th>
               <th>Confirmed at</th>
+              <th>Last Login</th>
               <th>Phone</th>
               <th>Email</th>
               <th>Active</th>
@@ -37,6 +38,7 @@
                 <td><%= Ahoy::Visit.where(store_id: p.id).count %></td>
                 <td><%= p.created_at %></td>
                 <td><%= p.confirmed_at %></td>
+                <td><%= p.last_sign_in_at %></td>
                 <td><%= p.phone %></td>
                 <td><%= p.email %></td>
                 <td><%= p.active %></td>
