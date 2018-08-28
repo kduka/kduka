@@ -729,18 +729,12 @@ $(function () {
     });
 
     $(".add_var").click(function () {
-       $('.var_rev').html("<input type='text' id='new_var' /> <span type='button' value='Add Value' class='add_val' style='cursor: pointer' >Add Variant</span>");
-       $(this).attr("class","add_var_temp label");
+       $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
+       //$(this).attr("class","add_var_temp label");
        $("#new_var").focus();
-       //$("#update_product").attr('disabled','true');
-       //$("#var_msg").html('<span style="color: red"> Please finish adding the variant or cancel it. </span>')
-       //$(this).attr('style','display:none');
     });
 
-    $(".var_rev .add_val").click(function () {
-        console.log("boi");
-        alert("boiii");
-    })
+
 });
 
 

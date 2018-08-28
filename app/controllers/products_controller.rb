@@ -316,6 +316,8 @@ class ProductsController < ApplicationController
 
     vars.update(value:@vals.to_json)
 
+    puts 'done'
+
     #@TODO Check if color already exists before adding
     #
 
