@@ -23,10 +23,10 @@ class CartsController < ApplicationController
         description: 'DESCRIPTION',
         type: 'MERCHANT',
         reference: session[:ref],
-        first_name: params[:first_name],
+        first_name: current_order.name,
         last_name: params[:second_name],
-        email: params[:email],
-        phonenumber: params[:phone_number],
+        email: current_order.email,
+        phonenumber: current_order.phone,
         currency: 'KES'
     }
 
