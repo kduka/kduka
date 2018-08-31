@@ -1,3 +1,14 @@
+/*Begin Variant Styles*/
+
+.var_dis{
+    border-style: dashed;
+    border-width: 1px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+/*End Variant Styles*/
+
 #st-1.st-has-labels .st-btn.st-remove-label > span {
     display: inline-block !important;
 }

@@ -734,6 +734,13 @@ $(function () {
        $("#new_var").focus();
     });
 
+    $(".var_sel").click(function () {
+
+        var_class = $(this).attr('data-name');
+        $("."+var_class).attr('style','border-style: dashed;border-width: 1px;padding: 4px;')
+        $(this).attr('style','border-style:solid;border-width:3px;');
+    })
+
 
 });
 

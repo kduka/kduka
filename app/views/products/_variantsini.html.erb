@@ -14,22 +14,29 @@
       %>
       <td>Values:
         <% vals.each do |k, v| %>
-          <%= v %>
+          <%= v.humanize %>
           <span data="<%= d.name %>" data-attr="<%= k %>" class="delete_var" style="color: red;cursor: pointer"><i class="fa fa-times-rectangle"></i> </span>
         <% end %>
         <div id='new_var_<%= d.name %>' style="display: none">
           <input type='text' id='new_text_<%= d.name %>' style="font-size: 75%"/>
-            <span onclick="add_var_val('<%= d.name %>,<%= d.id %>')" class='label' style='cursor: pointer;color: green'> Add Value </span>
+            <span onclick="add_var_val('<%= d.name %>','<%= d.product_id %>')" class='label' style='cursor: pointer;color: green'> Add Value </span>
         </div>
-        <span id="add_btn_<%= d.name %>" onclick="ini_var('<%= d.name %>')" class='label' style='cursor: pointer;color: green'> Add Value </span>
+        <span class="add_btn" data-name="<%= d.name %>" class='label' style='cursor: pointer;color: green'> Add Value </span>
       </td>
     </tr>
   <% end %>
   </tbody>
 </table>
 <script>
+$(function () {
+    $(".add_btn").click(function () {
+      e = $(this).attr('data-name');
+      $("#new_var_"+ e).attr('style','display:inline');
+      $(this).attr('style','cursor: pointer;color: red')
+        $(this).html('Cancel');
+    })
 
-    function ini_var(e) {
+    /*function ini_var(e) {
         $("#new_var_" + e).attr('style', 'display:inline');
         $("#new_text" + e).focus();
         $('#add_btn_' + e).attr('onclick', 'end_var("' + e + '")');
@@ -37,24 +44,7 @@
         $('#add_btn_' + e).html('Cancel');
     }
 
-    function add_var_val(e, d) {
-        val = $("#new_text" + e).val();
-        alert(val);
-        id = d;
 
-        $.ajax({
-            url: '/products/append_variant',
-            method: 'post',
-            data: {
-                id: d,
-                variant_name: e,
-                variant_value: val
-            },
-            success: function (e) {
-                alert(e)
-            }
-        })
-    }
 
     function end_var(e) {
         $("#new_var_" + e).attr('style', 'display:none');
@@ -63,4 +53,26 @@
         $('#add_btn_' + e).attr('style', 'cursor: pointer;color: green');
         $('#add_btn_' + e).html('Add Value');
     }
+    */
+});
+
+function add_var_val(e, d) {
+    val = $("#new_text_" + e).val();
+    //alert(val);
+    id = d;
+
+    $.ajax({
+        url: '/products/append_variant',
+        method: 'post',
+        data: {
+            id: d,
+            variant_name: e,
+            variant_value: val
+        },
+        success: function (e) {
+
+        }
+    })
+}
+
 </script>

@@ -310,13 +310,23 @@ class ProductsController < ApplicationController
     vars = Variant.where(name:@name,product_id:@id).first
     @vals = JSON.parse(vars.value)
 
-    key = @vals.length + 1
+    key = 0
+
+    @vals.each do |k,v|
+      if v == @variant_value
+        @res = false
+      else
+        if k.to_i > key.to_i
+          key = k
+        end
+      end
+    end
+
+    key = key.to_i + 1
 
     @vals[key]= @variant_value
 
     vars.update(value:@vals.to_json)
-
-    puts 'done'
 
     #@TODO Check if color already exists before adding
     #

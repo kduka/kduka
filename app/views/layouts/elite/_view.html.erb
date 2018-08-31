@@ -58,6 +58,19 @@
                 </p>
                 <%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1, max: @product.quantity %>
                 <br>
+
+                <% Variant.where(product_id: @product.id).each do |d| %>
+                  <b><%= "#{d.name.humanize} :" %></b>
+
+                  <%
+                    require 'json'
+                    vals = JSON.parse(d.value)
+
+                    vals.each do |k, v| %>
+                    <span class="var_dis var_sel var_<%= d.name %>" data-name="var_<%= d.name %>"> <%= v.humanize %></span>
+                  <% end %>
+                  <br>
+                <% end %>
               </div>
               <div>
                 <%= f.hidden_field :product_id, value: @product.id %>
