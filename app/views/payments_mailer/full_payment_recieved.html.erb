@@ -316,7 +316,7 @@
                             product = Product.find(oi.product_id)
                         %>
                         <tr>
-                          <td><%= " #{@count}: #{product.name} (#{oi.quantity})  Unit Price: #{product.price} " %></td><td><%= image_tag(product.image_url(:thumb).to_s), :style=>"max-height:7em" %>
+                          <td><%= " #{@count}: #{product.name} (#{oi.quantity})  Unit Price: #{product.price} " %></td><td><%= image_tag(product.image_url(:thumb).to_s) %>
                             </td>
                         </tr>
                         <% @count = @count+1 %>
