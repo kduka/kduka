@@ -280,29 +280,29 @@
                 <table class="one-column" border="0" cellpadding="40" cellspacing="0" width="100%" style="border-spacing:0;" bgcolor="#FFFFFF">
                   <tr>
                     <td align="center">
-                      <p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;">Hello <%= @order.name %></p>
+                      <p style="color:#5b5f65;font-size:18px;text-align:left;font-family:Verdana, Geneva, sans-serif;">Hello <%= @order.name %></p>
 
-                      <p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;">
+                      <p style="color:#5b5f65;font-size:18px;text-align:left;font-family:Verdana, Geneva, sans-serif;">
                         Your payment of Ksh: <%= @order.amount_received %> to <b><%= @store.name %></b> has been received for the order <%= @order.ref %>
                       </p>
-                      <p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;">YOUR DELIVERY CODE IS "<span style="font-weight:900 !important"><%= @order.delivery_code %></span>". Please keep it a secret and provide this when you recieve your goods</p>
+                      <p style="color:#5b5f65;font-size:18px;text-align:left;font-family:Verdana, Geneva, sans-serif;">YOUR DELIVERY CODE IS "<span style="font-weight:900 !important"><%= @order.delivery_code %></span>". Please keep it a secret and provide this when you recieve your goods</p>
                       <br><br>
                       <h2 style="color:#7aae42;font-size:25px;font-weight:700;">Order Details</h2><br><br>
                       <table>
                         <tr>
-                          <td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><b>Name:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.name %></p></td>
+                          <td><p style="color:#5b5f65;font-size:18px;text-align:left;font-family:Verdana, Geneva, sans-serif;"><b>Name:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.name %></p></td>
                         </tr>
                         <tr>
-                          <td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><b>Phone:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.phone %></p></td>
+                          <td><p style="color:#5b5f65;font-size:18px;text-align:left;font-family:Verdana, Geneva, sans-serif;"><b>Phone:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.phone %></p></td>
                         </tr>
                         <tr>
-                          <td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><b>Email:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.email %></p></td>
+                          <td><p style="color:#5b5f65;font-size:18px;text-align:left;font-family:Verdana, Geneva, sans-serif;"><b>Email:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.email %></p></td>
                         </tr>
                         <tr>
-                          <td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><b>Delivery Type:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.delivery_type.to_s.humanize %></p></td>
+                          <td><p style="color:#5b5f65;font-size:18px;text-align:left;font-family:Verdana, Geneva, sans-serif;"><b>Delivery Type:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.delivery_type.to_s.humanize %></p></td>
                         </tr>
                         <tr>
-                          <td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><b>Delivery Location:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.del_location %></p></td>
+                          <td><p style="color:#5b5f65;font-size:18px;text-align:left;font-family:Verdana, Geneva, sans-serif;"><b>Delivery Location:</b></p></td><td><p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;"><%= @order.del_location %></p></td>
                         </tr>
                       </table>
                       <br><br>
