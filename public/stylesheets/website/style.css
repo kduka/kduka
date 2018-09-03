@@ -1108,6 +1108,20 @@ button.close {
 .social-button.twitter .fa {
     color: #3CF;
 }
+.social-button.linkedin:before {
+    background-color: #007bb6;
+}
+
+.social-button.linkedin .fa {
+    color: #007bb6;
+}
+.social-button.instagram:before {
+    background-color: #dc307c;
+}
+
+.social-button.instagram .fa {
+    color: #dc307c;
+}
 
 .social-button.google:before {
     background-color: #DC4A38;
