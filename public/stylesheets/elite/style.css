@@ -82,7 +82,7 @@ label{
     padding: 0;
     list-style: none;
     display: inline-block;
-    margin: 1em 0 0;
+    margin: 1.6em 0 0;
     float: right;
 }
 .social-nav li {
@@ -260,7 +260,8 @@ i.fa.fa-shopping-bag.top_logo_agile_bag {
     width: 73%;
 }
 .header-bot {
-    padding: 25px 0;
+    padding: 8px 0;
+    min-height: 6em;
 }
 .header-middle form input[type="search"] {
     outline: none;
