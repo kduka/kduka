@@ -4,8 +4,16 @@ class PaymentsMailerPreview < ActionMailer::Preview
     PaymentsMailer.full_payment_recieved(Order.find(19))
   end
 
+  def partial_payment_recieved()
+    PaymentsMailer.partial_payment_recieved(Order.find(19))
+  end
+
   def merchant_payment_recieved()
-    PaymentsMailer.merchant_payment_recieved(Order.find(15))
+    PaymentsMailer.merchant_payment_recieved(Order.find(19))
+  end
+
+  def partial_merchant_payment_recieved()
+    PaymentsMailer.partial_merchant_payment_recieved(Order.find(19))
   end
 
   def full_subscription_payment_recieved

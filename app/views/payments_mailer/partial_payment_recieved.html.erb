@@ -285,7 +285,7 @@
                       <p style="color:#5b5f65;font-size:18px;text-align:left;font-family:Verdana, Geneva, sans-serif;">
                         Your payment of Ksh: <%= @order.amount_received %> to <b><%= @store.name %></b> has been received for the order <%= @order.ref %>.  Please pay Ksh: <%= @order.total - @order.amount_received %> to complete your order.
                       </p>
-                      <p style='text-align:left;margin:0;font-family:Georgia,Time,sans-serif;font-size:20px;color:#DC2828;'>Complete your order</p><br><br>
+                      <h2 style="color:#7aae42;font-size:25px;font-weight:700;">Complete your order</h2><br><br>
                       <P style="color:#5b5f65;font-size:15px;text-align:left;font-family:Verdana, Geneva, sans-serif;">1. Go to your MPESA MENU</P>
                       <p style="color:#5b5f65;font-size:15px;text-align:left;font-family:Verdana, Geneva, sans-serif;">2. Select Lipa na M-PESA</p>
                       <p style="color:#5b5f65;font-size:15px;text-align:left;font-family:Verdana, Geneva, sans-serif;">3. Select Pay Bill</p>
@@ -326,6 +326,15 @@
                           <td><%= " #{@count}: #{product.name} (#{oi.quantity})  Unit Price: #{product.price} " %></td><td><%= image_tag(product.image_url(:thumb).to_s) %>
                             </td>
                         </tr>
+                          <tr>
+                            <td>
+                              <% vars = oi.variants
+                                 require 'json'
+                                 var = JSON.parse(vars) rescue nil
+                              %>
+                              <label class="col-md-4" style="font-weight:900">Specifics:</label><span class="col-md-8"><% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize} ".html_safe %><% end end%></span>
+                            </td>
+                          </tr>
                         <% @count = @count+1 %>
                         <% end %>
                       </table>
