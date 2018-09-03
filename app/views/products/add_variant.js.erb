@@ -1,0 +1,10 @@
+<% if @var == 'exist' %>
+$(".var_opt_err").html("<span style='color:red;'>The variant already exists, add values to it below.</span>");
+<% elsif @var.errors.any? || @var.errors.any? %>
+$(".var_opt_err").html("");
+alert("Something Went Wrong! Please Contact Admin")
+<% else %>
+$(".var_opt_err").html("<span style='color:green;'><%= @name.humanize %> added!</span>");
+$(".del_opts").html("<%= escape_javascript(render "variants") %>")
+
+<% end %>

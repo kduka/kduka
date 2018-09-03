@@ -85,7 +85,7 @@ class ProductsController < ApplicationController
     elsif @store.active == !true
       redirect_to(home_404_path) and return
     else
-        ahoy.track "contact", {store: @store.id}
+      ahoy.track "contact", {store: @store.id}
       set_shop
     end
   end
@@ -258,6 +258,110 @@ class ProductsController < ApplicationController
     respond_to do |f|
       f.csv {send_data @products.to_csv}
       f.xls
+    end
+  end
+
+  def add_variant
+    value = "{\"0\":\"#{params[:variant_value]}\"}"
+
+    @id = params[:id]
+    @name = params[:variant_name].downcase
+
+    exist = Variant.where(name: @name, product_id: @id)
+
+    if exist.blank?
+      puts 'true'
+      @var = Variant.create(name: @name, value: value, product_id: @id)
+    else
+      puts 'false'
+      @var = 'exist'
+    end
+  end
+
+  def delete_variant
+    require 'json'
+    @name = params[:name]
+    @index = params[:index]
+    @id = params[:product_id]
+
+    var = Variant.where(name: @name, product_id: @id).first
+
+    @str = JSON.parse(var.value)
+    @str.delete(@index)
+
+    if @str.blank?
+      var.destroy
+    else
+      res = var.update(value: @str.to_json)
+      if res
+        @var = true
+      else
+        @var = 'error'
+      end
+    end
+
+  end
+
+  def append_variant
+
+    @id = params[:id]
+    @name = params[:variant_name].downcase
+    @variant_value = params[:variant_value].downcase
+    vars = Variant.where(name: @name, product_id: @id).first
+    @vals = JSON.parse(vars.value)
+
+    key = 0
+
+    @vals.each do |k, v|
+      if v == @variant_value
+        @res = false
+      else
+        if k.to_i > key.to_i
+          key = k
+        end
+      end
+    end
+
+    key = key.to_i + 1
+
+    @vals[key] = @variant_value
+
+    vars.update(value: @vals.to_json)
+
+    #@TODO Check if color already exists before adding
+    #
+
+  end
+
+  def collect_vars
+    require 'json'
+    @vars = Variant.where(product_id: params[:product_id])
+    @hash = Hash.[]
+    i = 0
+    @vars.each do |v|
+      @hash["#{i}"] = v.name
+      i += 1
+    end
+    respond_to do |format|
+      format.json {render :json => @hash}
+    end
+  end
+
+  def final_variants
+    Thread.new do
+      ActiveRecord::Base.connection_pool.with_connection do
+        oi = current_order.order_items.where(product_id: params[:product_id]).first
+        while oi.nil? do
+          oi = current_order.order_items.where(product_id: params[:product_id]).first
+        end
+        if oi.update(variants: params[:vars])
+          @res = 'true'
+        else
+          @res = 'false'
+        end
+        no_layout
+      end
+
     end
   end
 
