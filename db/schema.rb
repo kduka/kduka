@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815155006) do
+ActiveRecord::Schema.define(version: 20180903114935) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -205,11 +205,12 @@ ActiveRecord::Schema.define(version: 20180815155006) do
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "product_id"
     t.integer  "order_id"
-    t.decimal  "unit_price",  precision: 12, scale: 3
+    t.decimal  "unit_price",                precision: 12, scale: 3
     t.integer  "quantity"
-    t.decimal  "total_price", precision: 12, scale: 3
+    t.decimal  "total_price",               precision: 12, scale: 3
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "variants",    limit: 65535
     t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
     t.index ["product_id"], name: "index_order_items_on_product_id", using: :btree
   end
@@ -362,6 +363,8 @@ ActiveRecord::Schema.define(version: 20180815155006) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.text     "gtag",                         limit: 65535
+    t.boolean  "premium"
+    t.date     "premiumexpiry"
     t.index ["confirmation_token"], name: "index_stores_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
     t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
@@ -378,6 +381,32 @@ ActiveRecord::Schema.define(version: 20180815155006) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
+  end
+
+  create_table "subscription_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "store_id"
+    t.date     "start"
+    t.date     "expire"
+    t.integer  "subscription_id"
+    t.string   "description"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["store_id"], name: "index_subscription_records_on_store_id", using: :btree
+    t.index ["subscription_id"], name: "index_subscription_records_on_subscription_id", using: :btree
+  end
+
+  create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "store_id"
+    t.integer  "amount"
+    t.string   "ref"
+    t.integer  "order_status_id"
+    t.string   "description"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "received",               default: 0
+    t.integer  "number_of_transactions", default: 0
+    t.index ["order_status_id"], name: "index_subscriptions_on_order_status_id", using: :btree
+    t.index ["store_id"], name: "index_subscriptions_on_store_id", using: :btree
   end
 
   create_table "transaction_statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -460,6 +489,10 @@ ActiveRecord::Schema.define(version: 20180815155006) do
   add_foreign_key "store_deliveries", "stores"
   add_foreign_key "stores", "layouts"
   add_foreign_key "sub_categories", "categories"
+  add_foreign_key "subscription_records", "stores"
+  add_foreign_key "subscription_records", "subscriptions"
+  add_foreign_key "subscriptions", "order_statuses"
+  add_foreign_key "subscriptions", "stores"
   add_foreign_key "transactions", "stores"
   add_foreign_key "transactions", "transaction_statuses"
   add_foreign_key "variants", "products"

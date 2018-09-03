@@ -307,12 +307,12 @@ class ProductsController < ApplicationController
     @id = params[:id]
     @name = params[:variant_name].downcase
     @variant_value = params[:variant_value].downcase
-    vars = Variant.where(name:@name,product_id:@id).first
+    vars = Variant.where(name: @name, product_id: @id).first
     @vals = JSON.parse(vars.value)
 
     key = 0
 
-    @vals.each do |k,v|
+    @vals.each do |k, v|
       if v == @variant_value
         @res = false
       else
@@ -324,13 +324,45 @@ class ProductsController < ApplicationController
 
     key = key.to_i + 1
 
-    @vals[key]= @variant_value
+    @vals[key] = @variant_value
 
-    vars.update(value:@vals.to_json)
+    vars.update(value: @vals.to_json)
 
     #@TODO Check if color already exists before adding
     #
 
+  end
+
+  def collect_vars
+    require 'json'
+    @vars = Variant.where(product_id: params[:product_id])
+    @hash = Hash.[]
+    i = 0
+    @vars.each do |v|
+      @hash["#{i}"] = v.name
+      i += 1
+    end
+    respond_to do |format|
+      format.json {render :json => @hash}
+    end
+  end
+
+  def final_variants
+    Thread.new do
+      ActiveRecord::Base.connection_pool.with_connection do
+        oi = current_order.order_items.where(product_id: params[:product_id]).first
+        while oi.nil? do
+          oi = current_order.order_items.where(product_id: params[:product_id]).first
+        end
+        if oi.update(variants: params[:vars])
+          @res = 'true'
+        else
+          @res = 'false'
+        end
+        no_layout
+      end
+
+    end
   end
 
   private

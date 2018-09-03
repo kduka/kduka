@@ -67,7 +67,7 @@
                     vals = JSON.parse(d.value)
 
                     vals.each do |k, v| %>
-                    <span class="var_dis var_sel var_<%= d.name %>" data-name="var_<%= d.name %>"> <%= v.humanize %></span>
+                    <span class="var_dis var_sel var_<%= d.name %>" data-sel='false' data-var="<%= d.name %>" data-value="<%= v %>" data-name="var_<%= d.name %>"> <%= v.humanize %></span>
                   <% end %>
                   <br>
                 <% end %>
@@ -86,14 +86,13 @@
                     <%= f.submit "Out of Stock", :class => "button", disabled: 'disabled' %>
                   <% else %>
                     <% if !exist %>
-                      <%= f.submit 'Add to Cart', :class => 'button' %>
+                      <%= f.submit 'Add to Cart', :class => 'button add_cart', 'data-id':@product.id%>
                     <% else %>
 
-                      <%= f.submit 'Added', disabled: true, :class => 'button' %>
+                      <%= f.submit 'Added', disabled: true, :class => 'button add_cart', 'data-id':@product.id %>
                     <% end %>
                   <% end %>
                 </div>
-
               </div>
             <% end %><br>
             <div class="sharethis-inline-share-buttons"></div>

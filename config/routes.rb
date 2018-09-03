@@ -93,6 +93,8 @@ Rails.application.routes.draw do
   post 'products/add_variant' => 'products#add_variant'
   post 'products/delete_variant' => 'products#delete_variant'
   post 'products/append_variant' => 'products#append_variant'
+  post '/products/collect_vars/(:id)' => 'products#collect_vars'
+  post '/products/final_variants' => 'products#final_variants'
 
 
 

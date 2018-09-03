@@ -3,10 +3,10 @@ class OrderItemsController < ApplicationController
   def create
     @order = current_order
 
-
+    @product_id = params['order_item']['product_id']
     @order.order_items.each do |oi|
 
-      if oi.product_id.to_s == params['order_item']['product_id']
+      if oi.product_id.to_s == @product_id
         puts "FOUND"
       updater(oi.id,params['order_item']['quantity']) and return
       end
@@ -14,6 +14,9 @@ class OrderItemsController < ApplicationController
 
     @order_item = @order.order_items.new(order_item_params)
     @order.save
+    @vars = Variant.where(product_id:@product_id)
+
+    puts "THIS IS PROCT ID #{@product_id}"
     session[:order_id] = @order.id
     session[:ref] = @order.ref
   end

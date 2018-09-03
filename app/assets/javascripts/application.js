@@ -101,7 +101,7 @@ $(function () {
                 } else {
                     $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
                     $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
-                    $("#changebtn").attr('disabled','true');
+                    $("#changebtn").attr('disabled', 'true');
                     $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
                 }
 
@@ -698,7 +698,7 @@ $(function () {
                 data: {
                     variant_name: variant_name,
                     variant_value: variant_value,
-                    id:id
+                    id: id
                 },
                 success: function (e) {
                     $(".del_opt_err").html("");
@@ -710,18 +710,18 @@ $(function () {
     });
 
     $(".delete_var").click(function (e) {
-       //alert($(this).attr('data') + " " + $(this).attr('data-attr'));
+        //alert($(this).attr('data') + " " + $(this).attr('data-attr'));
         id = $("#num").attr('data');
         //$(".delete_var").off("click");
         $.ajax({
-            url:'/products/delete_variant',
-            method:'post',
-            data:{
-                name:$(this).attr('data'),
-                index:$(this).attr('data-attr'),
-                product_id:id,
+            url: '/products/delete_variant',
+            method: 'post',
+            data: {
+                name: $(this).attr('data'),
+                index: $(this).attr('data-attr'),
+                product_id: id,
             },
-            success:function () {
+            success: function () {
 
             }
 
@@ -729,21 +729,68 @@ $(function () {
     });
 
     $(".add_var").click(function () {
-       $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
-       //$(this).attr("class","add_var_temp label");
-       $("#new_var").focus();
+        $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
+        //$(this).attr("class","add_var_temp label");
+        $("#new_var").focus();
     });
 
     $(".var_sel").click(function () {
 
         var_class = $(this).attr('data-name');
-        $("."+var_class).attr('style','border-style: dashed;border-width: 1px;padding: 4px;')
-        $(this).attr('style','border-style:solid;border-width:3px;');
+        $("." + var_class).attr('style', 'border-style: dashed;border-width: 1px;padding: 4px;');
+        $("." + var_class).attr('data-sel', 'false');
+        $(this).attr('style', 'border-style:solid;border-width:3px;');
+        $(this).attr('data-sel', 'true');
+    });
+
+    $(".add_cart").click(function () {
+        product_id = $(this).attr('data-id');
+        jsonString = "{";
+        $.ajax({
+            url: '/products/collect_vars',
+            method: 'post',
+            data: {
+                product_id: product_id
+            },
+            success: function (e) {
+
+                lengthy = Object.keys(e).length; //Get length of the returned array
+                for (i = 0; i < lengthy; i++) {
+                    v = e[i]
+                    x = document.getElementsByClassName("var_" + v);
+                    for (el = 0; el < x.length; el++) {
+                        if (x[el].getAttribute('data-sel') == 'true') {
+                            // @TODO Find a better way to create JSON Strings
+                            jsonString = jsonString + '"' + x[el].getAttribute('data-var') + '":"' + x[el].getAttribute('data-value') + '",';
+                        }
+                    }
+                }
+                jsonString = jsonString.substring(0, jsonString.length - 1); //Remove the last coma
+                jsonString = jsonString + "}";
+
+                save_vars(jsonString, product_id);
+            }
+
+        });
     })
 
 
 });
 
+function save_vars(e, p) {
+
+    $.ajax({
+        url: '/products/final_variants',
+        method: 'post',
+        data: {
+            vars: e,
+            product_id: p
+        },
+        success: function (res) {
+            //console.log(res);
+        }
+    })
+}
 
 function pass(pass) {
     var re = /^(?=.*[A-Z])(?=)(?=.*[0-9])(?=.).{6,}$/;
