@@ -26,7 +26,6 @@ class IpnController < ApplicationController
     end
   end
 
-
   def check_order(ref, amount, transid)
 
     # BROKEN DOWN INCASE I NEED TO ADD MORE STUFF DEPENDING ON THE ORDER STATUS
@@ -114,7 +113,6 @@ class IpnController < ApplicationController
 =end
     end
   end
-
 
   def update_inventory(o)
     o.order_items.all.each do |oi|
