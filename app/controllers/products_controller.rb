@@ -348,21 +348,15 @@ class ProductsController < ApplicationController
   end
 
   def final_variants
-    Thread.new do
-      ActiveRecord::Base.connection_pool.with_connection do
-        oi = current_order.order_items.where(product_id: params[:product_id]).first
-        while oi.nil? do
-          oi = current_order.order_items.where(product_id: params[:product_id]).first
-        end
-        if oi.update(variants: params[:vars])
-          @res = 'true'
-        else
-          @res = 'false'
-        end
-        no_layout
-      end
+    ois = current_order.order_items.where(product_id: params[:product_id])
 
+    if ois.update(variants: params[:vars])
+      @res = 'true'
+    else
+      @res = 'false'
     end
+    no_layout
+
   end
 
   private
