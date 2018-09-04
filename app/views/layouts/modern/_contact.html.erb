@@ -13,17 +13,17 @@
   <div class="col-md-12 col-sm-12">
   <h1 style="text-align:center">Our Contacts</h1><br><br><br>
   <% if !@store.display_email.blank?%>
-  <div class="col-md-4">
+  <div class="col-md-4" style="margin-bottom:1.5em">
     <h5 style="text-align:center"><strong><i style="color:<%= @store.store_color %>" class="fa fa-envelope fa-5x"></i></strong><br><br><%= @store.display_email %></h5>
   </div>
   <% end %>
   <% if !@store.phone.blank?%>
-  <div class="col-md-4">
+  <div class="col-md-4" style="margin-bottom:1.5em">
     <h5 style="text-align:center"><strong><i style="color:<%= @store.store_color %>" class="fa fa-phone fa-5x"></i></strong><br><br><%= @store.phone %></h5>
     </div>
   <% end %>
     <% if !@store.business_location.blank?%>
-    <div class="col-md-4">
+    <div class="col-md-4" style="margin-bottom:1.5em">
         <h5 style="text-align:center"><strong><i style="color:<%= @store.store_color %>" class="fa fa-map-marker fa-5x"></i></strong><br><br><%= @store.business_location %></h5>
         </div>
     <% end %>
