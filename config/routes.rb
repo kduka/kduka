@@ -106,6 +106,7 @@ Rails.application.routes.draw do
   post 'stores/create_month' => 'stores#create_month'
   post 'stores/confirm_sub' => 'stores#confirm_sub'
   get 'admins/allemails' => 'admins#allemails'
+  get 'products/duplicate/(:id)' => 'products#duplicate', as: 'products_duplicate'
 
 
 
