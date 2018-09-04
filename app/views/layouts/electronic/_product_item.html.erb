@@ -10,28 +10,28 @@
 <div class="col-md-4 agileinfo_new_products_grid" style="margin-bottom:3em">
   <div class="agile_ecommerce_tab_left agileinfo_new_products_grid1" style="box-shadow: 0px 0px 15px 0px #D6D6D6;;">
     <div class="hs-wrapper hs-wrapper1 text-center">
-      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
+      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% if product.img1_url.nil? %>
-          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
+          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% else %>
-          <%= image_tag(product.img1_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
+          <%= image_tag(product.img1_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% end %>
 
       <% if product.img2_url.nil? %>
-          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
+          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% else %>
-          <%= image_tag(product.img2_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
+          <%= image_tag(product.img2_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% end %>
 
       <% if product.img3_url.nil? %>
-          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
+          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% else %>
-          <%= image_tag(product.img3_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
+          <%= image_tag(product.img3_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% end %>
       <% if product.img4_url.nil? %>
-          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
+          <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% else %>
-          <%= image_tag(product.img4_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto') %>
+          <%= image_tag(product.img4_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% end %>
 
       <div class="w3_hs_bottom w3_hs_bottom_sub">
