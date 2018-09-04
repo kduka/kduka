@@ -29831,6 +29831,47 @@ $(function () {
         });
     });
 
+    $("#url_edit").keyup(function () {
+
+
+        url = $("#url_edit").val();
+
+        $.ajax({
+            url: '/users/remote_santize',
+            data: {
+                url: url
+            },
+            method: 'post',
+            success: function (res) {
+                if (res == 'false') {
+                    vall = $("#url_edit").val();
+                    $("#url_prev").html("<span style='color:red'>http://" + vall + ".kduka.co.ke is already taken!</span>");
+                    $("#url_edit").attr('data-valid', 'false');
+                } else {
+                    $("#url_edit").attr('data-valid', 'true');
+                    $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
+                }
+                if ($("#url_edit").val() == $("#url_edit").attr('val')) {
+                    $("#url_edit").attr('data-valid', 'true');
+                    $("#url_prev").html("<span style='color:green'>No Changes</span>");
+                }
+                if (url.length > 2 && $("#url_edit").attr("data-valid") == "true") {
+                    //$("#url_prev").html("");
+                    $("#url_edit").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
+                    $("#changebtn").removeAttr('disabled');
+                    $("#changebtn").removeAttr("style");
+                } else {
+                    $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
+                    $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
+                    $("#changebtn").attr('disabled','true');
+                    $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
+                }
+
+            }
+
+        });
+    });
+
 
     $("#pass_store").keyup(function () {
         password = $("#pass_store").val();
@@ -29906,24 +29947,33 @@ $(function () {
 
     $("#b2c").click(function (e) {
         e.preventDefault();
-        $(".b2c_text").html("Processing");
-        $("#b2c").attr("disabled", "true");
-        $(".trans_messages").html("<p style=''> Please wait ...</p>");
-        name = $("#client_name_b2c").val();
-        phone = $("#client_account_b2c").val();
-        amount = $("#amount_b2c").val();
-        $.ajax({
-            url: '/stores/b2c',
-            method: 'post',
-            data: {
-                name: name,
-                phone: phone,
-                amount: amount
-            },
-            success: function (f) {
+        if($("#client_name_b2c").val() == "") {
+            $(".amount_prev_b2c").html("<span style='color:red;'>The recepient name can't be empty</span>");
+        } else if ($("#client_account_b2c").val() == ""){
+            $(".amount_prev_b2c").html("<span style='color:red;'>The phone number can't be empty</span>");
+        } else if ($("#amount_b2c").val() == ""){
+            $("#amount_prev_b2c").html("<span style='color:red;'>Amount can't be empty</span>");
+        } else {
+            $(".b2c_text").html("Processing");
+            $("#b2c").attr("disabled", "true");
+            $(".trans_messages").html("<p style=''> Please wait ...</p>");
+            thename = $("#client_name_b2c").val();
+            phone = $("#client_account_b2c").val();
+            amount = $("#amount_b2c").val();
+            $.ajax({
+                url: '/stores/b2c',
+                method: 'post',
+                data: {
+                    name: thename,
+                    phone: phone,
+                    amount: amount
+                },
+                success: function (f) {
 
-            }
-        });
+                }
+            });
+        }
+
     });
 
     $("#b2bpay").click(function (e) {
@@ -30154,7 +30204,7 @@ $(function () {
         user_reg();
     });
 
-    $("#store_name").change(function (e) {
+    $("#store_name").keyup(function (e) {
         store = $("#store_name").val()
         if (store.length < 4) {
             $(".store_name_prev").html("<p style='color:red;font-size: 15px;'>Store name has a minimum 5 characters</p>");
@@ -30178,17 +30228,17 @@ $(function () {
         store_reg();
     });
 
-    $("#store_phone").change(function () {
+
+    $("#store_phone").keyup(function () {
         phone = $("#store_phone").val();
         if ($.isNumeric(phone) && phonecheck(phone)) {
             $(".phone_prev").html("");
             $("#store_phone").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-            store_reg2();
         } else {
             $(".phone_prev").html("<p style='color:red;font-size: 15px;'>Please enter a valid phone number in format 2547xxxxxxxx</p>");
             $("#store_phone").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
-            store_reg2();
         }
+        store_reg2();
     });
 
     $("#store_display_email").change(function () {
@@ -30220,18 +30270,16 @@ $(function () {
         user_reg();
     });
 
-    $("#store_password").change(function (e) {
+    $("#store_password").keyup(function (e) {
         password = $("#store_password").val();
         if (!pass(password)) {
             $(".store_password_prev").html("<p style='color:red;font-size: 15px;'>Password must be at least 6 characters long, with at least one capital letter and number</p>");
             $("#store_password").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
-            store_reg2();
         } else {
             $(".store_password_prev").html("");
             $("#store_password").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
-            store_reg2();
         }
-        store_reg();
+        store_reg2();
     });
 
     $("#user_password_confirmation").keyup(function (e) {
@@ -30256,15 +30304,12 @@ $(function () {
             $(".store_password_confirmation_prev").html("");
             $("#store_password_confirmation").attr('style', 'text-align:center;border-bottom-color: green;box-shadow: 0 2px 2px -2px #008000;');
             $("#store_password_confirmation").attr('data-valid', 'true');
-            store_reg2();
         } else {
             $(".store_password_confirmation_prev").html("<p style='color:red;font-size: 15px;'>Password don't match!</p>");
             $("#store_password_confirmation").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
             $("#store_password_confirmation").attr('data-valid', 'false');
-            store_reg2();
-
         }
-        store_reg();
+        store_reg2();
     });
 
     $("#sort_product").click(function () {
@@ -30405,7 +30450,144 @@ $(function () {
         validateEmail($("#store_email").val());
         store_reg();
     });
+
+    $("#add-variant").click(function (e) {
+        e.preventDefault();
+        variant_name = $("#variant_name").val();
+        variant_value = $("#variant_value").val();
+        id = $("#num").attr('data');
+
+
+        if (variant_name == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please fill the variant name, It cant be empty</span>");
+        } else if (variant_value == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please specify the variant value, It cant be empty</span>");
+        } else {
+            $.ajax({
+                url: '/products/add_variant',
+                method: 'post',
+                data: {
+                    variant_name: variant_name,
+                    variant_value: variant_value,
+                    id: id
+                },
+                success: function (e) {
+                    $(".del_opt_err").html("");
+                    $("#del_opt").val("");
+                    $("#del_price").val("");
+                }
+            })
+        }
+    });
+
+    $("#up1").click(function () {
+        $.ajax({
+            url: '/stores/create_year',
+            method: 'post',
+            data: {
+                type: 'year'
+            },
+            success: function (e) {
+                $("#yearly_modal").html("");
+                $("#yearly_modal").html(e);
+            }
+        })
+    });
+
+    $("#up2").click(function () {
+        $.ajax({
+            url: '/stores/create_bi',
+            method: 'post',
+            data: {
+                type: 'bi'
+            },
+            success: function (e) {
+                $("#bi_modal").html("");
+                $("#bi_modal").html(e);
+            }
+        })
+    });
+
+    $("#up3").click(function () {
+        $.ajax({
+            url: '/stores/create_month',
+            method: 'post',
+            data: {
+                type: 'month'
+            },
+            success: function (e) {
+                $("#monthly_modal").html("");
+                $("#monthly_modal").html(e);
+            }
+        })
+    });
+
+    $("#pay_confirm").click(function (e) {
+        $(".conf_text").html("Confirming Order ...");
+        ref = $("#ref").val();
+        $.ajax({
+            url: '/store/confirm_sub',
+            method: 'post',
+            data: {
+                ref: ref
+            },
+            success: function (e) {
+                if (e == "complete") {
+                    $(".conf_text").html("Success!");
+                    $(".conf_message").html("<span style='color: green'>Payment Complete.Your order has been placed. Check the provided email for further details! </span>");
+                    window.location = "/stores/premium"
+                } else if (e == 'none') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                } else if (e == 'shipped') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: #06b216'>Order Complete and Shipped</span>");
+                    window.location = "/stores/premium"
+                } else {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>" + e + "</span>");
+                }
+            }
+        });
+    });
+
+    $(".delete_var").click(function (e) {
+        //alert($(this).attr('data') + " " + $(this).attr('data-attr'));
+        id = $("#num").attr('data');
+        //$(".delete_var").off("click");
+        $.ajax({
+            url: '/products/delete_variant',
+            method: 'post',
+            data: {
+                name: $(this).attr('data'),
+                index: $(this).attr('data-attr'),
+                product_id: id,
+            },
+            success: function () {
+
+            }
+
+        })
+    });
+
+    $(".add_var").click(function () {
+        $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
+        //$(this).attr("class","add_var_temp label");
+        $("#new_var").focus();
+    });
+
+    $(".var_sel").click(function () {
+
+        var_class = $(this).attr('data-name');
+        $("." + var_class).attr('style', 'border-style: dashed;border-width: 1px;padding: 5px 10px;');
+        $("." + var_class).attr('data-sel', 'false');
+        $(this).attr('style', 'border-style:solid;border-width:2px;');
+        $(this).attr('data-sel', 'true');
+    });
+
+
 });
+
 
 
 function pass(pass) {
@@ -30734,10 +30916,12 @@ function b2c_val() {
     client_account = $("#client_account_b2c").val();
     amount = $("#amount_b2c").val();
 
-    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
+    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) >= 0)) {
         $("#b2c").removeAttr("disabled");
+        $("#b2c").removeAttr("style");
     } else {
         $("#b2c").attr("disabled", "true");
+        $("#b2c").attr("style", "background-color: grey;color: white");
     }
 }
 
@@ -30812,7 +30996,7 @@ function set_bal(post) {
 function check_num(post) {
     amt = $("#amount_" + post).val();
 
-    if ($.isNumeric(amt) || amt == "") {
+    if ($.isNumeric(amt) && amt >= 0) {
         $("#amount_prev_" + post).html("");
     } else {
         $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number</p>");
