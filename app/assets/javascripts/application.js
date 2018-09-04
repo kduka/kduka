@@ -101,7 +101,7 @@ $(function () {
                 } else {
                     $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
                     $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
-                    $("#changebtn").attr('disabled', 'true');
+                    $("#changebtn").attr('disabled','true');
                     $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
                 }
 
@@ -689,6 +689,35 @@ $(function () {
         store_reg();
     });
 
+    $("#add-variant").click(function (e) {
+        e.preventDefault();
+        variant_name = $("#variant_name").val();
+        variant_value = $("#variant_value").val();
+        id = $("#num").attr('data');
+
+
+        if (variant_name == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please fill the variant name, It cant be empty</span>");
+        } else if (variant_value == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please specify the variant value, It cant be empty</span>");
+        } else {
+            $.ajax({
+                url: '/products/add_variant',
+                method: 'post',
+                data: {
+                    variant_name: variant_name,
+                    variant_value: variant_value,
+                    id: id
+                },
+                success: function (e) {
+                    $(".del_opt_err").html("");
+                    $("#del_opt").val("");
+                    $("#del_price").val("");
+                }
+            })
+        }
+    });
+
     $("#up1").click(function () {
         $.ajax({
             url: '/stores/create_year',
@@ -760,8 +789,43 @@ $(function () {
         });
     });
 
+    $(".delete_var").click(function (e) {
+        //alert($(this).attr('data') + " " + $(this).attr('data-attr'));
+        id = $("#num").attr('data');
+        //$(".delete_var").off("click");
+        $.ajax({
+            url: '/products/delete_variant',
+            method: 'post',
+            data: {
+                name: $(this).attr('data'),
+                index: $(this).attr('data-attr'),
+                product_id: id,
+            },
+            success: function () {
+
+            }
+
+        })
+    });
+
+    $(".add_var").click(function () {
+        $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
+        //$(this).attr("class","add_var_temp label");
+        $("#new_var").focus();
+    });
+
+    $(".var_sel").click(function () {
+
+        var_class = $(this).attr('data-name');
+        $("." + var_class).attr('style', 'border-style: dashed;border-width: 1px;padding: 4px;');
+        $("." + var_class).attr('data-sel', 'false');
+        $(this).attr('style', 'border-style:solid;border-width:3px;');
+        $(this).attr('data-sel', 'true');
+    });
+
 
 });
+
 
 
 function pass(pass) {

@@ -1,0 +1,6 @@
+<% if @res == false %>
+alert("Error! The value already exists.")
+<% else %>
+$(".del_opts").html("<%= escape_javascript(render "products/variants") %>");
+<% end %>
+

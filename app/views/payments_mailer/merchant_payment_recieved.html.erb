@@ -319,6 +319,15 @@
                           <td><%= " #{@count}: #{product.name} (#{oi.quantity})  Unit Price: #{product.price} " %></td><td><%= image_tag(product.image_url(:thumb).to_s) %>
                             </td>
                         </tr>
+                          <tr>
+                            <td>
+                              <% vars = oi.variants
+                                 require 'json'
+                                 var = JSON.parse(vars) rescue nil
+                              %>
+                              <label class="col-md-4" style="font-weight:900">Specifics:</label><span class="col-md-8"><% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize} ".html_safe %><% end end%></span>
+                            </td>
+                          </tr>
                         <% @count = @count+1 %>
                         <% end %>
                       </table>

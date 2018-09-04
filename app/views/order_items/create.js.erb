@@ -1,5 +1,51 @@
 <% if @order.errors.any? || @order_item.errors.any? %>
 alert("not valid.")
 <% else %>
-  $(".cart-text").html("<%= escape_javascript(render "layouts/#{Layout.find(@store.layout_id).name}/cart_text") %>")
+$(".cart-text").html("<%= escape_javascript(render "layouts/#{Layout.find(@store.layout_id).name}/cart_text") %>")
+
+
+product_id = $(".add_cart").attr('data-id');
+jsonString = "{";
+$.ajax({
+    url: '/products/collect_vars',
+    method: 'post',
+    data: {
+        product_id: product_id
+    },
+    success: function (e) {
+
+        lengthy = Object.keys(e).length; //Get length of the returned array
+        for (i = 0; i < lengthy; i++) {
+            v = e[i]
+            x = document.getElementsByClassName("var_" + v);
+            for (el = 0; el < x.length; el++) {
+                if (x[el].getAttribute('data-sel') == 'true') {
+                    // @TODO Find a better way to create JSON Strings
+                    jsonString = jsonString + '"' + x[el].getAttribute('data-var') + '":"' + x[el].getAttribute('data-value') + '",';
+                }
+            }
+        }
+        jsonString = jsonString.substring(0, jsonString.length - 1); //Remove the last coma
+        jsonString = jsonString + "}";
+
+        save_vars(jsonString, product_id);
+    }
+
+});
+
+function save_vars(e, p) {
+
+    $.ajax({
+        url: '/products/final_variants',
+        method: 'post',
+        data: {
+            vars: e,
+            product_id: p
+        },
+        success: function (res) {
+            //console.log(res);
+        }
+    })
+}
+
 <% end %>
