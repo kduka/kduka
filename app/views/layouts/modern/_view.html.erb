@@ -64,12 +64,29 @@
 
         <div class="clearfix"></div>
         <%= form_for :order_item, :url => {controller: 'order_items', action: 'create'}, remote: true do |f| %>
-            <div class="quantity">
-              <p class="qty">
-                Quantity :
-              </p>
-              <%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1,max:@product.quantity %>
-            </div>
+        <div class="quantity">
+          <p style="padding-bottom:1em" class="qty">
+            Quantity :<%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1, max: @product.quantity %>
+          </p>
+
+          <br>
+          <br>
+          <% Variant.where(product_id: @product.id).each do |d| %>
+            <b><%= "#{d.name.humanize} :" %></b>
+
+            <%
+              require 'json'
+              vals = JSON.parse(d.value)
+
+              vals.each do |k, v| %>
+
+              <span class="var_dis var_sel var_<%= d.name %>" data-sel='false' data-var="<%= d.name %>" data-value="<%= v %>" data-name="var_<%= d.name %>"> <%= v.humanize %></span>
+
+            <% end %>
+            <br>
+            <br>
+          <% end %>
+        </div>
             <div class="btn_form">
               <%= f.hidden_field :product_id, value: @product.id %>
 
@@ -86,7 +103,7 @@
                   <% end %>
               <% else %>
                   <% if !exist %>
-                      <%= f.button type: 'submit', class: 'add-cart item_add' do %>
+                      <%= f.button type: 'submit', class: 'add-cart add_cart item_add' do %>
                           Add to Cart
                       <% end %>
                   <% else %>

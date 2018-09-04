@@ -13,6 +13,12 @@
           <h2 style="color:<%= @store.store_color %>"><%= product.name %></h2><br/>
           <h4>Unit Price : <%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4><br>
           <h4><span>Total Price : <%= number_to_currency(order_item.total_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span></h4><br>
+          <%
+            vars = order_item.variants
+             require 'json'
+             var = JSON.parse(vars) rescue nil
+          %>
+          <h4><span>Specifics: <% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize}, ".html_safe %><% end end%></span></h4><br>
           <div class="qty">
             <%= f.number_field :quantity, value: order_item.quantity.to_i, class: "form-control", min: 1,max:product.quantity %>
             <%= f.hidden_field :product_id, value: product.id %>

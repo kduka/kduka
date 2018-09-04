@@ -1384,7 +1384,8 @@ position:relative;
 .snipcart-details {
     text-align: center;
 	margin:0.5em auto 1em;
-    width:77%;
+    width:auto;
+    padding: 0em 1em;
 }
 .btn-danger.my-cart-btn:focus {
     outline: none;
@@ -1669,7 +1670,7 @@ a.single-item{
 	text-decoration:none;
 }
 .occasion-cart {
-    width: 30%;
+    width: 100%;
 }
 /*-- /sale --*/
    .sale-w3ls {
@@ -4842,7 +4843,7 @@ p.w3ls_para {
 		left: 3.5%;
 	}
 	.occasion-cart {
-		width: 37%;
+		width: 100%;
 	}
 	.add-review input[type="submit"] {
 		width: 32%;
@@ -5160,7 +5161,7 @@ p.w3ls_para {
 		padding: 10px 20px 40px !important;
 	}
 	.occasion-cart {
-		width: 50%;
+		width: 100%;
 	}
 	.single_page_agile_its_w3ls h6 {
       font-size: 0.9em;

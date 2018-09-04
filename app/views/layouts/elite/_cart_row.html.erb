@@ -17,7 +17,7 @@
              require 'json'
              var = JSON.parse(vars) rescue nil
           %>
-          <h4><span>Specifics: <% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize} ".html_safe %><% end end%></span></h4><br>
+          <h4><span>Specifics: <% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize}, ".html_safe %><% end end%></span></h4><br>
           <h4><span>Total Price : <%= number_to_currency(order_item.total_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span></h4><br>
 
           <div class="qty">

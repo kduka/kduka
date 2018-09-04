@@ -53,12 +53,12 @@
 
             <%= form_for :order_item, :url => {controller: 'order_items', action: 'create'}, remote: true do |f| %>
               <div class="">
-                <p class="">
-                  Quantity :
+                <p style="padding-bottom:1em">
+                  <span class="col-md-2 col-xs-5" style="padding:0">Quantity :</span><span class="col-md-10 col-xs-7" style="text-align:left;padding:0"><%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1, max: @product.quantity, style:'width:30%' %></span>
                 </p>
-                <%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1, max: @product.quantity %>
-                <br>
 
+                <br>
+                <br>
                 <% Variant.where(product_id: @product.id).each do |d| %>
                   <b><%= "#{d.name.humanize} :" %></b>
 
@@ -67,8 +67,11 @@
                     vals = JSON.parse(d.value)
 
                     vals.each do |k, v| %>
+
                     <span class="var_dis var_sel var_<%= d.name %>" data-sel='false' data-var="<%= d.name %>" data-value="<%= v %>" data-name="var_<%= d.name %>"> <%= v.humanize %></span>
+
                   <% end %>
+                  <br>
                   <br>
                 <% end %>
               </div>

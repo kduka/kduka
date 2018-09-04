@@ -817,9 +817,9 @@ $(function () {
     $(".var_sel").click(function () {
 
         var_class = $(this).attr('data-name');
-        $("." + var_class).attr('style', 'border-style: dashed;border-width: 1px;padding: 4px;');
+        $("." + var_class).attr('style', 'border-style: dashed;border-width: 1px;padding: 5px 10px;');
         $("." + var_class).attr('data-sel', 'false');
-        $(this).attr('style', 'border-style:solid;border-width:3px;');
+        $(this).attr('style', 'border-style:solid;border-width:2px;');
         $(this).attr('data-sel', 'true');
     });
 
@@ -1501,4 +1501,3 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
-

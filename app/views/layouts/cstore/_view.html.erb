@@ -57,6 +57,23 @@
                 </div><br><br>
                 <div class="pt_add_cart">
                   <%= form_for :order_item, :url => {controller: 'order_items', action: 'create'}, remote: true do |f| %>
+                  <br>
+                  <br>
+                  <% Variant.where(product_id: @product.id).each do |d| %>
+                    <b><%= "#{d.name.humanize} :" %></b>
+
+                    <%
+                      require 'json'
+                      vals = JSON.parse(d.value)
+
+                      vals.each do |k, v| %>
+
+                      <span class="var_dis var_sel var_<%= d.name %>" data-sel='false' data-var="<%= d.name %>" data-value="<%= v %>" data-name="var_<%= d.name %>"> <%= v.humanize %></span>
+
+                    <% end %>
+                    <br>
+                    <br>
+                  <% end %>
                         <%= f.number_field :quantity, value: 1, class: "item_quantity", min: 1,max:@product.quantity %>
                         <%= f.hidden_field :product_id, value: @product.id %>
                         <% exist=false %>
@@ -71,7 +88,7 @@
                             <% end %>
                         <% else %>
                             <% if !exist %>
-                                <%= f.button type: 'submit' do %>
+                                <%= f.button type: 'submit', class:'add_cart' do %>
                                     <i class="fa fa-lg fa-cart-plus"></i> Add to Cart
                                 <% end %>
                             <% else %>
