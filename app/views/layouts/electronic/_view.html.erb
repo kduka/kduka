@@ -95,7 +95,7 @@
                     <% end %>
                 <% else %>
                     <% if !exist %>
-                        <%= f.button type: 'submit', :class => "w3ls-cart add_cart" do %>
+                        <%= f.button type: 'submit', :class => "w3ls-cart add_cart", 'data-id':@product.id do %>
                             Add to Cart
                         <% end %>
                     <% else %>

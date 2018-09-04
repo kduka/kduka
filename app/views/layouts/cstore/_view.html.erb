@@ -88,7 +88,7 @@
                             <% end %>
                         <% else %>
                             <% if !exist %>
-                                <%= f.button type: 'submit', class:'add_cart' do %>
+                                <%= f.button type: 'submit', class:'add_cart', 'data-id':@product.id do %>
                                     <i class="fa fa-lg fa-cart-plus"></i> Add to Cart
                                 <% end %>
                             <% else %>
