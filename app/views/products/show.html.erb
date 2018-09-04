@@ -6,6 +6,9 @@
   <%= link_to edit_store_product_path(params[:store_id], params[:id]),style:'text-decoration:none' do %>
     <button class="kd_buttons"><i class="fa fa-edit"></i> Edit</button>
   <%end%>
+    <%= link_to products_duplicate_path(@product.id),style:'text-decoration:none', data: {confirm: "Are you sure you want to create a copy of this product?"} do %>
+      <button class="kd_buttons"><i class="fa fa-copy"></i> Copy</button>
+    <%end%>
   <%= link_to products_manage_path,style:'text-decoration:none' do %>
     <button class="kd_reset"><i class="fa fa-arrow-left"></i> Back</button>
   <%end%>
