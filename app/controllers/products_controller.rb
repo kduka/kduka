@@ -368,7 +368,7 @@ class ProductsController < ApplicationController
       sku = [*'A'..'Z', *"0".."9"].sample(8).join
       new = @product.dup
 
-      if new.update(sku: sku, created_at: nil, updated_at: nil, viewed: 0, number_sold: 0, image: "", img1: "", img2: nil, img3: nil, img4: nil)
+      if new.update(sku: sku, created_at: nil, updated_at: nil, viewed: 0, number_sold: 0, image: nil, img1: nil, img2: nil, img3: nil, img4: nil)
         flash[:notice] = "Product Successfully Duplicated!"
         redirect_to(edit_store_product_path(current_store.id, new.id))
       else

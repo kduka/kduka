@@ -325,7 +325,7 @@
                                require 'json'
                                var = JSON.parse(vars) rescue nil
                             %>
-                            <label class="col-md-4" style="font-weight:900">Specifics:</label><span class="col-md-8"><% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize} ".html_safe %><% end end%></span>
+                            <label class="col-md-4" style="font-weight:900">Specifics:  </label><span class="col-md-8"><% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize} ".html_safe %><% end end%></span>
                             </td>
                           </tr>
                         </tr>
