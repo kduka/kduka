@@ -31,7 +31,7 @@
       <% if product.img4_url.nil? %>
           <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
       <% else %>
-          <%= image_tag(product.img4_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100%') %>
+          <%= image_tag(product.img4_url(:thumb).to_s, class: 'text-center',style:'max-height:20em;width:auto;max-width:100% ') %>
       <% end %>
 
       <div class="w3_hs_bottom w3_hs_bottom_sub">
