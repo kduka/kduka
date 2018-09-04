@@ -86,7 +86,7 @@
                     <%= f.submit "Out of Stock", :class => "button", disabled: 'disabled' %>
                   <% else %>
                     <% if !exist %>
-                      <%= f.submit 'Add to Cart', :class => 'button add_cart', 'data-id':@product.id%>
+                      <%= f.submit 'Add to Cart', :class => 'button add_cart', 'data-id':@product.id %>
                     <% else %>
 
                       <%= f.submit 'Added', disabled: true, :class => 'button add_cart', 'data-id':@product.id %>

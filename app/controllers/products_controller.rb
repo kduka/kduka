@@ -356,7 +356,27 @@ class ProductsController < ApplicationController
       @res = 'false'
     end
     no_layout
+  end
 
+  def duplicate
+    @product = Product.where(store_id: current_store.id, id: params[:id]).first
+
+    if @product.nil?
+      flash[:alert] = "Error: Product does not exist"
+      redirect_to(request.referer)
+    else
+      sku = [*'A'..'Z', *"0".."9"].sample(8).join
+      new = @product.dup
+
+      if new.update(sku: sku, created_at: nil, updated_at: nil, viewed: 0, number_sold: 0, image: "", img1: "", img2: nil, img3: nil, img4: nil)
+        flash[:notice] = "Product Successfully Duplicated!"
+        redirect_to(edit_store_product_path(current_store.id, new.id))
+      else
+        flash[:alert] = "Error: Something went wrong"
+        redirect_to(request.referer)
+      end
+
+    end
   end
 
   private
