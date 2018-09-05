@@ -5124,7 +5124,7 @@ footer .card_sign {
         padding: 35px 0;
     }
     .cart_item img {
-        width: 200px;
+        /* width: 200px; */
         margin: 0 auto;
     }
     .cart_item h3 {
