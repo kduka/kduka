@@ -150,7 +150,7 @@
     </div>
     <div class="col-md-4 widget widget1">
       <div class="r3_counter_box">
-        <a href="<%= store_funds_path %>" style="text-decoration:none !important">
+        <a href="<%= stores_funds_path %>" style="text-decoration:none !important">
           <i class="pull-left fa fa-money user2 icon-rounded"></i>
           <div class="stats">
             <h5><strong>Kes. <%= StoreAmount.where(store_id: current_store.id).first.amount rescue 0 %></strong></h5>
@@ -161,7 +161,7 @@
     </div>
     <div class="col-md-4 widget">
       <div class="r3_counter_box">
-        <a href="<%= store_funds_path %>" style="text-decoration:none !important">
+        <a href="<%= stores_funds_path %>" style="text-decoration:none !important">
           <i class="pull-left fa fa-money dollar1 icon-rounded"></i>
           <div class="stats">
             <h5>
