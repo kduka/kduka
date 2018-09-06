@@ -68,6 +68,7 @@ a{
 	outline: none;
 	letter-spacing: 1px;
 	font-weight: 600;
+	transition: all 0.5s;
 }
 .elite-button:hover,.elite-button:focus,.elite-button:active{
 	font-size: 13px;
@@ -83,6 +84,7 @@ a{
 	outline: none;
 	letter-spacing: 1px;
 	font-weight: 600;
+	transition: all 0.5s;
 }
 ul.multi-column-dropdown li a:hover {
     color: <%= @store.store_color %> !important;
@@ -308,7 +310,7 @@ button.w3view-cart {
 							</div>
 							<div class="w3-address-right">
 								<h6>Email Address</h6>
-								<p>Email :<a class="myclass" href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></p>
+								<p><a class="myclass" href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>

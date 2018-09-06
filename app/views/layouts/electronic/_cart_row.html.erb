@@ -1,40 +1,36 @@
 <!--cart-items-->
-<div style="padding:2em !important" class="cart-items">
-  <div class="container-fluid">
-    <div class="cart-header2 wow fadeInUp animated" data-wow-delay=".9s">
-      <div class="alert-close2"> </div>
-      <%= form_for order_item, remote: true do |f| %>
-      <div class="cart-sec simpleCart_shelfItem">
-        <div class="col-md-4 col-sm-12">
-            <!-- <img src="images/g9.jpg" class="img-responsive" alt=""> -->
-            <%= image_tag(product.image_url(:thumb).to_s, class:'text-center')  %>
-        </div>
-        <div class="col-md-8 col-sm-12">
-          <h2 style="color:<%= @store.store_color %>"><%= product.name %></h2><br/>
-          <h4>Unit Price : <%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4><br>
-          <h4><span>Total Price : <%= number_to_currency(order_item.total_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span></h4><br>
-          <%
-            vars = order_item.variants
-             require 'json'
-             var = JSON.parse(vars) rescue nil
-          %>
-          <h4><span>Specifics: <% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize}, ".html_safe %><% end end%></span></h4><br>
-          <div class="qty">
-            <%= f.number_field :quantity, value: order_item.quantity.to_i, class: "form-control", min: 1,max:product.quantity %>
-            <%= f.hidden_field :product_id, value: product.id %>
-          </div>
-          <div class="delivery">
-            <br>
-              <%= f.submit "Update Quantity", class: "btn btn-default col-md-3 col-sm-12", style: "margin-right:1em;margin-bottom:1em" %>
-              <%= link_to "Remove Item", order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger col-md-3 col-sm-12" } %>
-
-            <div class="clearfix"></div>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div><br>
+<div style="padding-top:1em !important;padding-bottom:1em !important;border-bottom: 1px solid #ccc;text-align:center !important" class="cart-items">
+  <div class="row cart_item">
+    <%= form_for order_item, remote: true do |f| %>
+      <div class="col-sm-2" style="text-align:center !important">
+          <p><%= image_tag(product.image_url(:thumb).to_s, class:'', style:'max-height:6em;max-width:100%')  %></p>
+      </div>
+      <div class="col-sm-2 row" style="text-align:center">
+          <h3 style="color:<%= @store.store_color %> !important;font-size:14px;padding-top:1em"><%= product.name %></h3>
+      </div>
+      <div class="col-sm-2">
+          <h4 style="font-size:14px;padding-top:1em"><%= number_to_currency(product.price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4>
+      </div>
+      <div class="col-sm-2" style="padding:0 !important">
+        <%
+          vars = order_item.variants
+           require 'json'
+           var = JSON.parse(vars) rescue nil
+        %>
+        <h4 style="font-size:14px;padding-top:1em !important"><span>Specifics: <% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize}, ".html_safe %><% end end%></span></h4>
+      </div>
+      <div class="col-sm-1">
+              <%= f.number_field :quantity, value: order_item.quantity.to_i, min: 1, max:product.quantity, style:'max-width:53px' %>
+              <%= f.hidden_field :product_id, value: product.id %>
+              <%= f.submit "Update",class:'btn btn-primary', style: "font-size:14px !important;text-align:center !important;padding: 0px !important;height:30px !important" %>
+      </div>
+      <div class="col-sm-2">
+          <h4 style="font-size:14px;padding-top:1em"><%= number_to_currency(order_item.total_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></h4>
+      </div>
+      <div class="col-sm-1">
+          <h5 style="text-align:right;padding-top:1em"><%= link_to "x", order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.name}' from your cart?" }, method: :delete, remote: true} %></h5>
+      </div>
       <% end %>
-    </div>
   </div>
 </div>
 <!--//cart-items-->
