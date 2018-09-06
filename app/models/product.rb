@@ -2,6 +2,7 @@ require 'csv'
 class Product < ActiveRecord::Base
   belongs_to :store
   has_many :order_items, :dependent => :destroy
+  has_many :variant, :dependent => :destroy
   validates :name, :price, :category_id,:quantity, presence: true
   after_initialize :init
 
