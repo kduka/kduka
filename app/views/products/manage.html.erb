@@ -1,79 +1,79 @@
 <div class="content_bottom" style="margin-top:2em">
 
-<h3 style="color:#7aae42"><i class="fa fa-gift"></i> Your Products</h3>
- <div class="col-md-12 span_3">
-   <%= link_to new_store_product_path(@store.id), style:'text-decoration:none' do %>
-   <button class="kd_buttons"><i class="fa fa-plus"></i> Add Product</button>
-   <%end%>
-   <%= link_to  products_allproducts_path(format: "xls"), style:'text-decoration:none' do %>
-   <button class="kd_buttons"><i class="fa fa-download"></i> Download</button>
-   <%end%><br>
+  <h3 style="color:#7aae42"><i class="fa fa-gift"></i> Your Products</h3>
+  <div class="col-md-12 span_3">
+    <%= link_to new_store_product_path(@store.id), style: 'text-decoration:none' do %>
+      <button class="kd_buttons"><i class="fa fa-plus"></i> Add Product</button>
+    <% end %>
+    <%= link_to products_allproducts_path(format: "xls"), style: 'text-decoration:none' do %>
+      <button class="kd_buttons"><i class="fa fa-download"></i> Download</button>
+    <% end %><br>
 
-  <div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
-    <% if !@categories.blank? %>
-    <h3><strong>Total Products : <%= @product.count rescue nil %></strong></h3>
-    <% if !@product.blank? %>
-    <table id="myTable" class="table datatables no-footer">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Active</th>
-        <th>Category</th>
-        <th>Stock</th>
-        <th>Show</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Duplicate</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @product.each do |p| %>
-      <tr>
-        <td><%= p.name %></td>
-        <td><%= p.price %></td>
-        <td><%= p.active %></td>
-        <td><%= Category.find(p.category_id).name rescue nil %></td>
-        <td><%= p.quantity %></td>
-        <td><%= link_to store_product_path(p.store_id,p),style:'color:#06b216' do%>
-          <i class="fa fa-search"></i> Show
-          <%end%>
-        </td>
-        <td>
-          <%= link_to  edit_store_product_path(p.store_id,p) do %>
-          <i class="fa fa-edit"></i> Edit
-          <%end%>
-        </td>
-        <td><span style="color: red;text-decoration: none;"><%= link_to store_product_path(p.store_id,p), method:'delete', data: {confirm: "Are you sure?"}, style:'color:red;' do %>
-          <i class="fa fa-trash"></i> Delete
-        <%end%></span></td>
-        <td><span style="color: blue;text-decoration: none;"><%= link_to products_duplicate_path(p), data: {confirm: "Are you sure you want to create a copy of this product?"}, style:'color:blue;' do %>
+    <div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
+      <% if !@categories.blank? %>
+        <h3><strong>Total Products : <%= @product.count rescue nil %></strong></h3>
+        <% if !@product.blank? %>
+          <table id="myTable" class="table datatables no-footer">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Active</th>
+              <th>Category</th>
+              <th>Stock</th>
+              <th>Show</th>
+              <th>Edit</th>
+              <th>Duplicate</th>
+              <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @product.each do |p| %>
+              <tr>
+                <td><%= p.name %></td>
+                <td><%= p.price %></td>
+                <td><%= p.active %></td>
+                <td><%= Category.find(p.category_id).name rescue nil %></td>
+                <td><%= p.quantity %></td>
+                <td><%= link_to store_product_path(p.store_id, p), style: 'color:#06b216' do %>
+                    <i class="fa fa-search"></i> Show
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to edit_store_product_path(p.store_id, p) do %>
+                    <i class="fa fa-edit"></i> Edit
+                  <% end %>
+                </td>
+                <td><span style="color: blue;text-decoration: none;"><%= link_to products_duplicate_path(p), data: {confirm: "Are you sure you want to create a copy of this product?"}, style: 'color:blue;' do %>
           <i class="fa fa-copy"></i> Duplicate
-        <%end%></span></td>
-      </tr>
-      <% end %>
-      </tbody>
-    </table>
+        <% end %></span></td>
+                <td><span style="color: red;text-decoration: none;"><%= link_to store_product_path(p.store_id, p), method: 'delete', data: {confirm: "Are you sure?"}, style: 'color:red;' do %>
+          <i class="fa fa-trash"></i> Delete
+        <% end %></span></td>
+
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
 
         <% else %>
-              <div class="text-center">
-              <br><br>
+          <div class="text-center">
+            <br><br>
 
-        <p style="color: orange;font-size: 25px;">You dont have any Products in this store yet</p>
-              <br><br>
+            <p style="color: orange;font-size: 25px;">You dont have any Products in this store yet</p>
+            <br><br>
 
-              <%= link_to "Add Product", new_store_product_path(current_store.id), class:'btn btn-primary',style:'background-color:#06B216 !important;border-color:#06B216 !important' %>
-
+            <%= link_to "Add Product", new_store_product_path(current_store.id), class: 'btn btn-primary', style: 'background-color:#06B216 !important;border-color:#06B216 !important' %>
 
 
           </div>
-          <% end %>
+        <% end %>
 
-    <%else%>
+      <% else %>
         <a href="<%= new_category_path(@store) %>">Create a Category</a> First!
-        <%end%>
-   </div>
- </div>
-
-<div class="clearfix"> </div>
+      <% end %>
+    </div>
   </div>
+
+  <div class="clearfix"></div>
+</div>
