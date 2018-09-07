@@ -225,6 +225,7 @@
         <% if @store.logo_status %>
             <span style="text-align:left"><%= image_tag(@store.logo_url.to_s,class:"our_logo") %></span>
         <% else %>
+        <span style="width:100%;margin-top:1.5em"></span>
             <%= @store.name %>
 
         <% end %>
