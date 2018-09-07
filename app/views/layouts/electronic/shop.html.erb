@@ -223,7 +223,7 @@
       <h1><a href="<%= root_path %>">
 
         <% if @store.logo_status %>
-            <span style="text-align:center"><%= image_tag(@store.logo_url.to_s,class:"our_logo") %></span>
+            <span style="text-align:left"><%= image_tag(@store.logo_url.to_s,class:"our_logo") %></span>
         <% else %>
             <%= @store.name %>
 
