@@ -130,11 +130,11 @@ label{
     position: absolute;
     top: 0;
     left: 0;
-    -webkit-transform: translateZ(18px);
-    -moz-transform: translateZ(18px);
-    -ms-transform: translateZ(18px);
-    -o-transform: translateZ(18px);
-    transform: translateZ(18px);
+    -webkit-transform: translateZ(0px);
+    -moz-transform: translateZ(0px);
+    -ms-transform: translateZ(0px);
+    -o-transform: translateZ(0px);
+    transform: translateZ(0px);
     -webkit-backface-visibility: visible;
     -moz-backface-visibility: visible;
     -ms-backface-visibility: visible;
@@ -144,11 +144,11 @@ label{
 	font-size:12px;
 }
 .model-3d-0 .back {
-    -webkit-transform: rotateX(90deg) translateZ(18px);
-    -moz-transform: rotateX(90deg) translateZ(18px);
-    -ms-transform: rotateX(90deg) translateZ(18px);
-    -o-transform: rotateX(90deg) translateZ(18px);
-    transform: rotateX(90deg) translateZ(18px);
+    -webkit-transform: rotateX(90deg) translateZ(0px);
+    -moz-transform: rotateX(90deg) translateZ(0px);
+    -ms-transform: rotateX(90deg) translateZ(0px);
+    -o-transform: rotateX(90deg) translateZ(0px);
+    transform: rotateX(90deg) translateZ(0px);
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -180,11 +180,11 @@ a.linkedin .front {
     background:#fff;
 }
 .model-3d-0 a:hover {
-    -webkit-transform: rotateX(-90deg);
-    -moz-transform: rotateX(-90deg);
-    -ms-transform: rotateX(-90deg);
-    -o-transform: rotateX(-90deg);
-    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(360deg);
+    -moz-transform: rotateX(360deg);
+    -ms-transform: rotateX(360deg);
+    -o-transform: rotateX(360deg);
+    transform: rotateX(360deg);
 }
 .model-3d-0 a:hover .back {
     -webkit-backface-visibility: visible;
