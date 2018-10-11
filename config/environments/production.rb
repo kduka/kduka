@@ -103,7 +103,5 @@ Rails.application.configure do
       :enable_starttls_auto => true
   }
 
-  # force HTTPS on production
-  config.force_ssl = true
 
 end
