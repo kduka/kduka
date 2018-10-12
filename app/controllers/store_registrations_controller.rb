@@ -6,7 +6,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
   puts request.referer
 
   if Rails.env.production?
-    if request.referer == 'http://www.kduka.co.ke/' || request.referer == 'http://www.kduka.co.ke/stores/login'
+    if request.referer == 'http://www.kduka.co.ke/' || request.referer == 'http://www.kduka.co.ke/stores/login' || request.referer == 'https://www.kduka.co.ke/'
     else
       redirect_to(root_path) and return
       end
