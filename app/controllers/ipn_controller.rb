@@ -96,9 +96,9 @@ class IpnController < ApplicationController
         description = '1 month renewal'
         expire = now + 1.month
       end
-      r = SubscriptionRecord.create(store_id:@order.store_id, start:now, expire:expire, subscription_id:@order.id, description:description)
-      @store.update(premium: true,premiumexpiry:expire)
-      PaymentsMailer.full_subscription_payment_recieved(@order,r).deliver
+      r = SubscriptionRecord.create(store_id: @order.store_id, start: now, expire: expire, subscription_id: @order.id, description: description)
+      @store.update(premium: true, premiumexpiry: expire)
+      PaymentsMailer.full_subscription_payment_recieved(@order, r).deliver
       #@TODO Email complete Subscription and take records of payment and expiry date
       # @TODO
 =begin
@@ -214,6 +214,70 @@ end
   "IPNResponse":null}]
 }
 
+
+{"Id":"Pi1_73a20fa6-8593-c21b-09e4-08d635ae86ba",
+"Type":1,
+"TypeDesc":"Account-To-Mobile",
+"CompanyId":"1997e1cc-bce7-ccbc-3073-08d5149a5027",
+"CompanyDesc":"ZERONE I.T SOLUTIONS ",
+"Remarks":"Transaction send 41 to 254724040839 at 2018-10-19 13:43:02 +0300",
+"IPNEnabled":true,
+"CallbackURL":"http://www.kduka.co.ke/ipn/b2c",
+"IPNDataFormat":1,
+"IPNDataFormatDesc":"JSON",
+"IsDelivered":true,
+"OrderLines":[{
+"Type":1,
+"TypeDesc":"Business Payment",
+"Payee":"martin",
+"PrimaryAccountNumber":"254724040839",
+"Amount":41.0000,
+"BankCode":null,
+"MCCMNC":63902,
+"MCCMNCDesc":"Kenya - Safaricom",
+"Reference":"OH6ZQ7AFJW",
+"Remark":null,
+"SystemTraceAuditNumber":"Pi1_OH6ZQ7AFJW",
+"RemitterName":null,
+"RemitterAddress":null,
+"RemitterPhoneNumber":null,
+"RemitterIDType":null,
+"RemitterIDNumber":null,
+"RemitterCountry":null,
+"RemitterCCY":null,
+"RemitterFinancialInstitution":null,
+"RemitterSourceOfFunds":null,
+"RecipientName":null,
+"RecipientAddress":null,
+"RecipientPhoneNumber":null,
+"RecipientIDType":null,
+"RecipientIDNumber":null,
+"PaymentPurpose":null,
+"RemitterPrincipalActivity":null,
+"PayeeAddress":null,
+"PayeeIDNumber":null,
+"Status":3,
+"StatusDesc":"Completed",
+"B2MResponseCode":"0",
+"B2MResponseDesc":"Accept the service request successfully.",
+"B2MResultCode":"0",
+"B2MResultDesc":"The service request is processed successfully.",
+"B2MTransactionID":"MJJ1C6ZBW5",
+"ResponseCode":"0",
+"ResponseDesc":"Accept the service request successfully.",
+"ResultCode":"0",
+"ResultDesc":"The service request is processed successfully.",
+"TransactionID":"MJJ1C6ZBW5",
+"TransactionReceipt":null,
+"TransactionDateTime":"19.10.2018 13:44:21",
+"WorkingAccountAvailableFunds":99554208.76,
+"UtilityAccountAvailableFunds":14350404.15,
+"ChargePaidAccountAvailableFunds":0.00,
+"WalletAccountAvailableFunds":0.00,
+"TransactionCreditParty":"254724040839 - MARTIN NDETO",
+"IPNStatus":0,
+"IPNStatusDesc":"Pending",
+"IPNResponse":null}]}
 
 
 

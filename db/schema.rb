@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181019091157) do
+ActiveRecord::Schema.define(version: 20181019110935) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -114,6 +114,30 @@ ActiveRecord::Schema.define(version: 20181019091157) do
     t.string   "o_Type"
     t.string   "o_TypeDesc"
     t.string   "Remark"
+    t.string   "RemitterName"
+    t.string   "RemitterAddress"
+    t.string   "RemitterPhoneNumber"
+    t.string   "RemitterIDType"
+    t.string   "RemitterIDNumber"
+    t.string   "RemitterCountry"
+    t.string   "RemitterCCY"
+    t.string   "RemitterFinancialInstitution"
+    t.string   "RemitterSourceOfFunds"
+    t.string   "RecipientName"
+    t.string   "RecipientAddress"
+    t.string   "RecipientPhoneNumber"
+    t.string   "RecipientIDType"
+    t.string   "RecipientIDNumber"
+    t.string   "PaymentPurpose"
+    t.string   "RemitterPrincipalActivity"
+    t.string   "PayeeAddress"
+    t.string   "PayeeIDNumber"
+    t.string   "ResponseCode"
+    t.string   "ResponseDesc"
+    t.string   "ResultCode"
+    t.string   "ResultDesc"
+    t.string   "TransactionID"
+    t.string   "TransactionReceipt"
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
