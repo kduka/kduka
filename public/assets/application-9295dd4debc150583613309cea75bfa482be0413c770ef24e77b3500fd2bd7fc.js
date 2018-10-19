@@ -29821,7 +29821,7 @@ $(function () {
                     store_reg();
                 } else {
                     $("#url").attr('data-valid', 'true');
-                    $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
+                    $("#url_prev").html("<span style='color:green'>We'll create http://" + res + ".kduka.co.ke for you!</span>");
                     //var str = res;
                     //var url = str.replace('.kduka.co.ke', '');
                     //$("#url").val(url);
@@ -29947,24 +29947,33 @@ $(function () {
 
     $("#b2c").click(function (e) {
         e.preventDefault();
-        $(".b2c_text").html("Processing");
-        $("#b2c").attr("disabled", "true");
-        $(".trans_messages").html("<p style=''> Please wait ...</p>");
-        name = $("#client_name_b2c").val();
-        phone = $("#client_account_b2c").val();
-        amount = $("#amount_b2c").val();
-        $.ajax({
-            url: '/stores/b2c',
-            method: 'post',
-            data: {
-                name: name,
-                phone: phone,
-                amount: amount
-            },
-            success: function (f) {
+        if($("#client_name_b2c").val() == "") {
+            $(".amount_prev_b2c").html("<span style='color:red;'>The recepient name can't be empty</span>");
+        } else if ($("#client_account_b2c").val() == ""){
+            $(".amount_prev_b2c").html("<span style='color:red;'>The phone number can't be empty</span>");
+        } else if ($("#amount_b2c").val() == ""){
+            $("#amount_prev_b2c").html("<span style='color:red;'>Amount can't be empty</span>");
+        } else {
+            $(".b2c_text").html("Processing");
+            $("#b2c").attr("disabled", "true");
+            $(".trans_messages").html("<p style=''> Please wait ...</p>");
+            thename = $("#client_name_b2c").val();
+            phone = $("#client_account_b2c").val();
+            amount = $("#amount_b2c").val();
+            $.ajax({
+                url: '/stores/b2c',
+                method: 'post',
+                data: {
+                    name: thename,
+                    phone: phone,
+                    amount: amount
+                },
+                success: function (f) {
 
-            }
-        });
+                }
+            });
+        }
+
     });
 
     $("#b2bpay").click(function (e) {
@@ -30441,7 +30450,144 @@ $(function () {
         validateEmail($("#store_email").val());
         store_reg();
     });
+
+    $("#add-variant").click(function (e) {
+        e.preventDefault();
+        variant_name = $("#variant_name").val();
+        variant_value = $("#variant_value").val();
+        id = $("#num").attr('data');
+
+
+        if (variant_name == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please fill the variant name, It cant be empty</span>");
+        } else if (variant_value == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please specify the variant value, It cant be empty</span>");
+        } else {
+            $.ajax({
+                url: '/products/add_variant',
+                method: 'post',
+                data: {
+                    variant_name: variant_name,
+                    variant_value: variant_value,
+                    id: id
+                },
+                success: function (e) {
+                    $(".del_opt_err").html("");
+                    $("#del_opt").val("");
+                    $("#del_price").val("");
+                }
+            })
+        }
+    });
+
+    $("#up1").click(function () {
+        $.ajax({
+            url: '/stores/create_year',
+            method: 'post',
+            data: {
+                type: 'year'
+            },
+            success: function (e) {
+                $("#yearly_modal").html("");
+                $("#yearly_modal").html(e);
+            }
+        })
+    });
+
+    $("#up2").click(function () {
+        $.ajax({
+            url: '/stores/create_bi',
+            method: 'post',
+            data: {
+                type: 'bi'
+            },
+            success: function (e) {
+                $("#bi_modal").html("");
+                $("#bi_modal").html(e);
+            }
+        })
+    });
+
+    $("#up3").click(function () {
+        $.ajax({
+            url: '/stores/create_month',
+            method: 'post',
+            data: {
+                type: 'month'
+            },
+            success: function (e) {
+                $("#monthly_modal").html("");
+                $("#monthly_modal").html(e);
+            }
+        })
+    });
+
+    $("#pay_confirm").click(function (e) {
+        $(".conf_text").html("Confirming Order ...");
+        ref = $("#ref").val();
+        $.ajax({
+            url: '/store/confirm_sub',
+            method: 'post',
+            data: {
+                ref: ref
+            },
+            success: function (e) {
+                if (e == "complete") {
+                    $(".conf_text").html("Success!");
+                    $(".conf_message").html("<span style='color: green'>Payment Complete.Your order has been placed. Check the provided email for further details! </span>");
+                    window.location = "/stores/premium"
+                } else if (e == 'none') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                } else if (e == 'shipped') {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: #06b216'>Order Complete and Shipped</span>");
+                    window.location = "/stores/premium"
+                } else {
+                    $(".conf_text").html("Confirm");
+                    $(".conf_message").html("<span style='color: red'>" + e + "</span>");
+                }
+            }
+        });
+    });
+
+    $(".delete_var").click(function (e) {
+        //alert($(this).attr('data') + " " + $(this).attr('data-attr'));
+        id = $("#num").attr('data');
+        //$(".delete_var").off("click");
+        $.ajax({
+            url: '/products/delete_variant',
+            method: 'post',
+            data: {
+                name: $(this).attr('data'),
+                index: $(this).attr('data-attr'),
+                product_id: id,
+            },
+            success: function () {
+
+            }
+
+        })
+    });
+
+    $(".add_var").click(function () {
+        $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
+        //$(this).attr("class","add_var_temp label");
+        $("#new_var").focus();
+    });
+
+    $(".var_sel").click(function () {
+
+        var_class = $(this).attr('data-name');
+        $("." + var_class).attr('style', 'border-style: dashed;border-width: 1px;padding: 5px 10px;');
+        $("." + var_class).attr('data-sel', 'false');
+        $(this).attr('style', 'border-style:solid;border-width:2px;');
+        $(this).attr('data-sel', 'true');
+    });
+
+
 });
+
 
 
 function pass(pass) {
@@ -30770,10 +30916,12 @@ function b2c_val() {
     client_account = $("#client_account_b2c").val();
     amount = $("#amount_b2c").val();
 
-    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
+    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) >= 0)) {
         $("#b2c").removeAttr("disabled");
+        $("#b2c").removeAttr("style");
     } else {
         $("#b2c").attr("disabled", "true");
+        $("#b2c").attr("style", "background-color: grey;color: white");
     }
 }
 
@@ -30848,7 +30996,7 @@ function set_bal(post) {
 function check_num(post) {
     amt = $("#amount_" + post).val();
 
-    if ($.isNumeric(amt) || amt == "") {
+    if ($.isNumeric(amt) && amt >= 0) {
         $("#amount_prev_" + post).html("");
     } else {
         $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number</p>");
@@ -31115,5 +31263,4 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
-
 ;
