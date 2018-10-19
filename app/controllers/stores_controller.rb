@@ -708,6 +708,19 @@ end
     no_layout
   end
 
+  def feedback
+    @feedback = Feedback.new
+    set_shop_show
+  end
+
+  def send_feed
+    feedback =  params[:feedback][:feedback]
+    @feedback = Feedback.create(feedback:feedback, store_id:current_store.id)
+    @feedback.save
+    flash[:notice] = "Feedback sent!"
+    redirect_to(stores_path)
+  end
+
 
   private
 
@@ -722,7 +735,7 @@ end
   end
 
   def delivery_params
-    params.require(:store).permit(:collection_point, :collection_point_status, :detailed_location, :manual_delivery_status, :manual_delivery_instructions, :auto_delivery_location)
+    params.require(:store).permit(:collection_point, :collection_point_status, :detailed_location, :manual_delivery_status, :manual_delivery_instructions, :auto_delivery_location, :auto_delivery_status)
   end
 
   def pages_params

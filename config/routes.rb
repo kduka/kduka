@@ -107,6 +107,8 @@ Rails.application.routes.draw do
   post 'stores/confirm_sub' => 'stores#confirm_sub'
   get 'admins/allemails' => 'admins#allemails'
   get 'products/duplicate/(:id)' => 'products#duplicate', as: 'products_duplicate'
+  get 'stores/feedback' => 'stores#feedback'
+  put 'stores#send_feed' => 'stores#send_feed'
 
 
 
