@@ -59,7 +59,7 @@ $(function () {
                     store_reg();
                 } else {
                     $("#url").attr('data-valid', 'true');
-                    $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
+                    $("#url_prev").html("<span style='color:green'>We'll create http://" + res + ".kduka.co.ke for you!</span>");
                     //var str = res;
                     //var url = str.replace('.kduka.co.ke', '');
                     //$("#url").val(url);
