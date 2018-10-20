@@ -39,7 +39,7 @@
 
       <p class="text-center" style="font-size:10px;color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
 
-      <%= f.email_field :email, autofocus: true, id:'store_email', placeholder: 'Email to be used to login into the store account', onchange: 'store_reg()', oninput: "this.className = ''" %>
+      <%= f.email_field :email, autofocus: true, id:'store_email', placeholder: 'Email to be used to login into the store account', onkeyup: 'store_reg()', oninput: "this.className = ''" %>
       <p class="text-center" style="font-size:10px;color:green;font-weight:bold" id="email_prev"></p>
     </div>
 
