@@ -108,7 +108,8 @@ Rails.application.routes.draw do
   get 'admins/allemails' => 'admins#allemails'
   get 'products/duplicate/(:id)' => 'products#duplicate', as: 'products_duplicate'
   get 'stores/feedback' => 'stores#feedback'
-  put 'stores#send_feed' => 'stores#send_feed'
+  put 'stores/send_feed' => 'stores#send_feed'
+  get 'admins/feedback' => 'admins#feedback'
 
 
 

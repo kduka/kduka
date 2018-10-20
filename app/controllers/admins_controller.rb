@@ -149,6 +149,11 @@ class AdminsController < ApplicationController
     end
   end
 
+  def feedback
+    @feed = Feedback.all
+    super_admin
+  end
+
   private
 
   def store_params
