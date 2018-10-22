@@ -1234,10 +1234,10 @@ function set_bal(post) {
 function check_num(post) {
     amt = $("#amount_" + post).val();
 
-    if ($.isNumeric(amt) && amt >= 0) {
+    if ($.isNumeric(amt) && amt > 0) {
         $("#amount_prev_" + post).html("");
     } else {
-        $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number</p>");
+        $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number and greater than zero</p>");
     }
 }
 

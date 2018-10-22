@@ -29821,7 +29821,7 @@ $(function () {
                     store_reg();
                 } else {
                     $("#url").attr('data-valid', 'true');
-                    $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
+                    $("#url_prev").html("<span style='color:green'>We'll create http://" + res + ".kduka.co.ke for you!</span>");
                     //var str = res;
                     //var url = str.replace('.kduka.co.ke', '');
                     //$("#url").val(url);
@@ -29863,7 +29863,7 @@ $(function () {
                 } else {
                     $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
                     $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
-                    $("#changebtn").attr('disabled', 'true');
+                    $("#changebtn").attr('disabled','true');
                     $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
                 }
 
@@ -30451,6 +30451,35 @@ $(function () {
         store_reg();
     });
 
+    $("#add-variant").click(function (e) {
+        e.preventDefault();
+        variant_name = $("#variant_name").val();
+        variant_value = $("#variant_value").val();
+        id = $("#num").attr('data');
+
+
+        if (variant_name == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please fill the variant name, It cant be empty</span>");
+        } else if (variant_value == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please specify the variant value, It cant be empty</span>");
+        } else {
+            $.ajax({
+                url: '/products/add_variant',
+                method: 'post',
+                data: {
+                    variant_name: variant_name,
+                    variant_value: variant_value,
+                    id: id
+                },
+                success: function (e) {
+                    $(".del_opt_err").html("");
+                    $("#del_opt").val("");
+                    $("#del_price").val("");
+                }
+            })
+        }
+    });
+
     $("#up1").click(function () {
         $.ajax({
             url: '/stores/create_year',
@@ -30522,8 +30551,43 @@ $(function () {
         });
     });
 
+    $(".delete_var").click(function (e) {
+        //alert($(this).attr('data') + " " + $(this).attr('data-attr'));
+        id = $("#num").attr('data');
+        //$(".delete_var").off("click");
+        $.ajax({
+            url: '/products/delete_variant',
+            method: 'post',
+            data: {
+                name: $(this).attr('data'),
+                index: $(this).attr('data-attr'),
+                product_id: id,
+            },
+            success: function () {
+
+            }
+
+        })
+    });
+
+    $(".add_var").click(function () {
+        $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
+        //$(this).attr("class","add_var_temp label");
+        $("#new_var").focus();
+    });
+
+    $(".var_sel").click(function () {
+
+        var_class = $(this).attr('data-name');
+        $("." + var_class).attr('style', 'border-style: dashed;border-width: 1px;padding: 5px 10px;');
+        $("." + var_class).attr('data-sel', 'false');
+        $(this).attr('style', 'border-style:solid;border-width:2px;');
+        $(this).attr('data-sel', 'true');
+    });
+
 
 });
+
 
 
 function pass(pass) {
@@ -30852,7 +30916,7 @@ function b2c_val() {
     client_account = $("#client_account_b2c").val();
     amount = $("#amount_b2c").val();
 
-    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) >= 0)) {
+    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) > 0)) {
         $("#b2c").removeAttr("disabled");
         $("#b2c").removeAttr("style");
     } else {
@@ -30932,10 +30996,10 @@ function set_bal(post) {
 function check_num(post) {
     amt = $("#amount_" + post).val();
 
-    if ($.isNumeric(amt) && amt >= 0) {
+    if ($.isNumeric(amt) && amt > 0) {
         $("#amount_prev_" + post).html("");
     } else {
-        $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number</p>");
+        $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number and greater than zero</p>");
     }
 }
 
@@ -31199,5 +31263,4 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
-
 ;
