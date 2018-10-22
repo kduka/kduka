@@ -1154,7 +1154,7 @@ function b2c_val() {
     client_account = $("#client_account_b2c").val();
     amount = $("#amount_b2c").val();
 
-    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) >= 0)) {
+    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) > 0)) {
         $("#b2c").removeAttr("disabled");
         $("#b2c").removeAttr("style");
     } else {
