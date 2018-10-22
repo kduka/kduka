@@ -197,7 +197,7 @@ border-width: 1px;
 
 <% if @store.premium %>
   <!--Google Tag -->
-  <%= @store.gtag.html_safe %>
+  <%= @store.gtag.html_safe rescue nil  %>
   <!--End Google Tag-->
 <% end %>
 
