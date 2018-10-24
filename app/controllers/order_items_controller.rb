@@ -7,7 +7,6 @@ class OrderItemsController < ApplicationController
     @order.order_items.each do |oi|
 
       if oi.product_id.to_s == @product_id
-        puts "FOUND"
       updater(oi.id,params['order_item']['quantity']) and return
       end
     end
@@ -16,7 +15,6 @@ class OrderItemsController < ApplicationController
     @order.save
     @vars = Variant.where(product_id:@product_id)
 
-    puts "THIS IS PROCT ID #{@product_id}"
     session[:order_id] = @order.id
     session[:ref] = @order.ref
   end
