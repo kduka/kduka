@@ -99,200 +99,216 @@ $(document).ready(function(){
 <div class="content_bottom" style="margin-top:2em">
 
 <h3 style="color:#7aae42"><i class="fa fa-truck"></i> Delivery Settings</h3><br>
-<label for="checkbox" class="col-sm-2 control-label"></label>
-<div class="col-sm-10">
-  <h5>Select <span style="color:#7aae42">AT LEAST</span> one Option</h5>
+<!-- <label for="checkbox" class="col-sm-2 control-label"></label> -->
+<div class="row2">
+  <h4>Select <span style="color:#7aae42">AT LEAST</span> one Option by checking the availed checkboxes in each of the three options available below</h4><br>
   <div id="fixed-div"></div>
 </div>
 <div class="xs">
-      <div class="tab-content">
-     <div class="tab-pane active" id="horizontal-form">
+     <div id="horizontal-form">
        <%= form_for :store, :url => {controller: 'stores', action: 'update_delivery'}, method: 'put' do |f| %>
-         <div class="form-group">
-           <label for="checkbox" class="col-sm-2 control-label"></label>
-           <div class="col-sm-8">
-             <br>
-             <p style="color:#7aae42;font-style:italic;font-weight:bold">1. Option for having your client collect their goods from a certain collection point</p>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="collectswitch" class="col-sm-2 control-label">Collection Point</label>
-           <div class="col-sm-8">
-             <div class="checkbox-inline"><%= f.check_box :collection_point_status, id: 'collectswitch' %> <label for="collectswitch">Check this to Enable collection Point</label></div>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this clients will be able to collect their goods from a certain collection point that you will specify">Help?</span></a>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="thedrop" class="col-sm-2 control-label">Drop Location for Goods</label>
-           <div class="col-sm-8">
-             <% if (@store.collection_point_status == false) %>
-                 <%= f.text_area :collection_point, class: 'form-control1 collect', id: 'thedrop', disabled: "disabled",placeholder:'Drop Location for Goods' %>
-
-             <% else %>
-                 <%= f.text_area :collection_point, class: 'form-control1 collect', id: 'thedrop',placeholder:'Drop Location for Goods' %>
-             <% end %>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will be your drop point">Help?</span></a>
-           </div>
-         </div><br><br><br>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="checkbox" class="col-sm-2 control-label"></label>
-           <div class="col-sm-8"><br>
-             <p style="color:#7aae42;font-style:italic;font-weight:bold">2. You can set your own locations and their shipping prices for your clients</p>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="manualswitch" class="col-sm-2 control-label">Manual Delivery</label>
-           <div class="col-sm-8">
-             <div class="checkbox-inline"><%= f.check_box :manual_delivery_status, id: 'manualswitch' %> <label for="manualswitch">Check this to Enable Manual Delivery</label></div>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this clients will be able to collect their goods from a certain collection points that you will specify. You can add a collection point and its corresponding shipping price">Help?</span></a>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="thedrop1" class="col-sm-2 control-label">Instructions for your Clients</label>
-           <div class="col-sm-8">
-             <% if (@store.manual_delivery_status == false) %>
-                 <%= f.text_area :manual_delivery_instructions, class: 'form-control1 manual', id: 'thedrop1', disabled: "disabled",placeholder:'Instructions for your Clients' %>
-
-             <% else %>
-                 <%= f.text_area :manual_delivery_instructions, class: 'form-control1 manual', id: 'thedrop1',placeholder:'Instructions for your Clients' %>
-             <% end %>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Type any instructions you want to give to the client">Help?</span></a>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-
-         <div class="form-group">
-           <label for="del_opt" class="col-sm-2 control-label">Add a Delivery Location</label>
-           <div class="col-sm-8">
-             <%= text_area_tag(:delivery_option, nil, id: 'del_opt', class: 'manual form-control1', placeholder:'Add a Delivery Location') %>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is your specified location">Help?</span></a>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="price" class="col-sm-2 control-label">Price</label>
-           <div class="col-sm-8">
-             <%= text_field_tag(:delivery_price, nil, id: 'del_price', type: 'number', class: 'manual form-control1',placeholder:'Add a Price') %>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the cost of delivery to your specified location">Help?</span></a>
-           </div>
-           <div class="col-sm-10 col-sm-offset-2"><br>
-             <div class="del_opt_err"></div><br>
-             <a style="border:1px solid #7aae42 !important;" id="add-delivery" class="btn btn-primary">Add Option</a>
-           </div>
-           <div class="col-sm-10 col-sm-offset-2">
-             <div style="margin-top: 2em; margin-bottom: 1em;" class="manual del_opts"><%= render "store_deliveries/locations" %></div>
-           </div>
-         </div><br><br><br>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="checkbox" class="col-sm-2 control-label"></label>
-           <div class="col-sm-8"><br>
-             <p style="color:#7aae42;font-style:italic;font-weight:bold">3. Automated Home Delivery</p>
-             <span style="font-size:12px">
-              <p>To use this option, <a style="color:#7aae42" href="https://sendyit.com/" target="_blank"> Create an account at  SendyIt</a> to get a Username and Password. This option enables third party delivery.</p>
-              <p>Your Users will be able to search for locations and we'll pace the delivery for you. Always ensure you have a good standing balance in order for your clients to place orders.</p>
-              <p>Client will pay for the given quotation when completing an Order.</p>
-            </span>
-
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="deliveryswitch" class="col-sm-2 control-label">Automated Delivery</label>
-           <div class="col-sm-8">
-             <div class="checkbox-inline"><%= f.check_box :auto_delivery_status, id: 'deliveryswitch' %> <label for="deliveryswitch">Check this to Enable Automated Home Delivery</label></div>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this you will be able to use third party delivery services to deliver products to your clients">Help?</span></a>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="pick_location" class="col-sm-2 control-label">Add Pickup Location</label>
-           <div class="col-sm-8">
-             <% if (@store.auto_delivery_status == false) %>
-                 <input class="form-control1 locate" type="text" disabled id="locate" onkeyup="locate();" placeholder="Pickup Location" >
-                 <p>
-                 <div id="suggesstion-box"></div>
-                 </p>
-             <% else %>
-                 <input class="form-control1 locate" type="text" id="locate" onkeyup="locate();" placeholder="Pickup Location" >
-                 <p>
-                 <div id="suggesstion-box"></div>
-                 </p>
-             <% end %>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Location from which the goods will be picked from for them to be delivered to your clients">Help?</span></a>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-
-           <label for="pick_location" class="col-sm-2 control-label">Selected pick up Location (Business or Warehouse location)</label>
-           <div class="col-sm-10">
-           <%= f.label "Selected pick up Location (Business or Warehouse location)" %>
-           <%= f.text_field :auto_delivery_location, class: 'form-control locate', id:'sel_loc', disabled: 'disabled',style:"background-color:white;border-style: none !important;color:#7AAE42 !important;font-weight: bold;" %>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="sendyuser" class="col-sm-2 control-label">Sendy Username</label>
-           <div class="col-sm-8">
-             <% if (@store.auto_delivery_status == false) %>
-                 <%= f.text_field :sendy_username, id:'sendyuser', disabled: 'disabled', class: 'locate form-control1',placeholder:'Sendy Username' %>
-             <% else %>
-                 <%= f.text_field :sendy_username, id:'sendyuser', class: 'locate form-control1',placeholder:'Sendy Username' %>
-             <% end %>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Your Sendy username after registering at www.sendyit.com">Help?</span></a>
-           </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
-         <div class="form-group">
-           <label for="password" class="col-sm-2 control-label">Sendy Key</label>
-           <div class="col-sm-8">
-             <% if (@store.auto_delivery_status == false) %>
-                 <%= f.text_field :sendy_key, id:'sendykey', disabled: 'disabled', class: 'locate form-control1',placeholder:'Sendy Key' %>
-             <% else %>
-                 <%= f.text_field :sendy_key, id:'sendykey', class: 'locate form-control1',placeholder:'Sendy Key' %>
-             <% end %>
-           </div>
-           <div class="col-sm-2">
-             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Your Sendy key given to you after registering at www.sendyit.com">Help?</span></a>
-           </div>
-           <div class="col-sm-10 col-sm-offset-2"><br>
-             <a style="border:1px solid #7aae42 !important;" id="verify" class="btn btn-primary">Verify Sendy Credentials</a>
-             <div class="form-group"><br><br>
-               <div class="status alert alert-success col-md-10" hidden></div>
-               <div class="error alert alert-danger col-md-10" hidden></div>
-               <%= f.hidden_field :lat, class: 'form-control1' %>
+       <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#tab_1" style="color:#7aae42">Collection Point</a></li>
+          <li><a data-toggle="tab" href="#tab_2" style="color:#7aae42">Manual Delivery</a></li>
+          <li><a data-toggle="tab" href="#tab_3" style="color:#7aae42">Automated Home Delivery</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="tab_1" class="tab-pane fade in active">
+            <h3>Collection Point</h3>
+             <div class="form-group">
+               <!-- <label for="checkbox" class="col-sm-2 control-label"></label> -->
+               <div class="col-sm-12">
+                 <br>
+                 <p style="color:#7aae42;font-style:italic;font-weight:bold">1. Option for having your client collect their goods from a certain collection point</p>
+               </div>
              </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+               <label for="collectswitch" class="col-sm-2 control-label">Collection Point</label>
+               <div class="col-sm-8">
+                 <div class="checkbox-inline"><%= f.check_box :collection_point_status, id: 'collectswitch' %> <label for="collectswitch"><b>Check this to Enable collection Point</b></label></div>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this clients will be able to collect their goods from a certain collection point that you will specify">Help?</span></a>
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+               <label for="thedrop" class="col-sm-2 control-label">Drop Location for Goods</label>
+               <div class="col-sm-8">
+                 <% if (@store.collection_point_status == false) %>
+                     <%= f.text_area :collection_point, class: 'form-control1 collect', id: 'thedrop', disabled: "disabled",placeholder:'Drop Location for Goods' %>
+
+                 <% else %>
+                     <%= f.text_area :collection_point, class: 'form-control1 collect', id: 'thedrop',placeholder:'Drop Location for Goods' %>
+                 <% end %>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will be your drop point">Help?</span></a>
+               </div>
+             </div><br><br><br>
+
+             <div class="col-md-12" style="height:1em"></div>
+          </div>
+          <div id="tab_2" class="tab-pane fade">
+            <h3>Manual Delivery</h3>
+             <div class="form-group">
+               <!-- <label for="checkbox" class="col-sm-2 control-label"></label> -->
+               <div class="col-sm-12"><br>
+                 <p style="color:#7aae42;font-style:italic;font-weight:bold">2. You can set your own locations and their shipping prices for your clients</p>
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+               <label for="manualswitch" class="col-sm-2 control-label">Manual Delivery</label>
+               <div class="col-sm-8">
+                 <div class="checkbox-inline"><%= f.check_box :manual_delivery_status, id: 'manualswitch' %> <label for="manualswitch"><b>Check this to Enable Manual Delivery</b></label></div>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this clients will be able to collect their goods from a certain collection points that you will specify. You can add a collection point and its corresponding shipping price">Help?</span></a>
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+               <label for="thedrop1" class="col-sm-2 control-label">Instructions for your Clients</label>
+               <div class="col-sm-8">
+                 <% if (@store.manual_delivery_status == false) %>
+                     <%= f.text_area :manual_delivery_instructions, class: 'form-control1 manual', id: 'thedrop1', disabled: "disabled",placeholder:'Instructions for your Clients',style:'min-height:40px !important' %>
+
+                 <% else %>
+                     <%= f.text_area :manual_delivery_instructions, class: 'form-control1 manual', id: 'thedrop1',placeholder:'Instructions for your Clients',style:'min-height:40px !important' %>
+                 <% end %>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Type any instructions you want to give to the client">Help?</span></a>
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
 
              <div class="form-group">
-               <%= f.hidden_field :lng, class: 'form-control1' %>
+               <label for="del_opt" class="col-sm-2 control-label">Add a Delivery Location</label>
+               <div class="col-sm-8">
+                 <%= text_area_tag(:delivery_option, nil, id: 'del_opt', class: 'manual form-control1', placeholder:'Add a Delivery Location',style:'min-height:40px !important') %>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is your specified location">Help?</span></a>
+               </div>
              </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+               <label for="price" class="col-sm-2 control-label">Price</label>
+               <div class="col-sm-8">
+                 <%= text_field_tag(:delivery_price, nil, id: 'del_price', type: 'number', class: 'manual form-control1',placeholder:'Add a Price') %>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the cost of delivery to your specified location">Help?</span></a>
+               </div>
+               <div class="col-sm-10 col-sm-offset-2"><br>
+                 <div class="del_opt_err"></div><br>
+                 <a style="border:1px solid #7aae42 !important;" id="add-delivery" class="btn btn-primary">Add Option</a>
+               </div>
+               <div class="col-sm-10 col-sm-offset-2">
+                 <div style="margin-top: 2em; margin-bottom: 1em;" class="manual del_opts"><%= render "store_deliveries/locations" %></div>
+               </div>
+             </div><br><br><br>
+             <div class="col-md-12" style="height:1em"></div>
+          </div>
+          <div id="tab_3" class="tab-pane fade">
+            <h3>Automated Home Delivery</h3>
+             <div class="form-group">
+               <!-- <label for="checkbox" class="col-sm-2 control-label"></label> -->
+               <div class="col-sm-12"><br>
+                 <p style="color:#7aae42;font-style:italic;font-weight:bold">3. Automated Home Delivery</p>
+                 <span style="font-size:12px">
+                  <p>To use this option, <a style="color:#7aae42" href="https://sendyit.com/" target="_blank"> Create an account at  SendyIt</a> to get a Username and Password. This option enables third party delivery.</p>
+                  <p>Your Users will be able to search for locations and we'll pace the delivery for you. Always ensure you have a good standing balance in order for your clients to place orders.</p>
+                  <p>Client will pay for the given quotation when completing an Order.</p>
+                </span>
+
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+               <label for="deliveryswitch" class="col-sm-2 control-label">Automated Delivery</label>
+               <div class="col-sm-8">
+                 <div class="checkbox-inline"><%= f.check_box :auto_delivery_status, id: 'deliveryswitch' %> <label for="deliveryswitch"><b>Check this to Enable Automated Home Delivery</b></label></div>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this you will be able to use third party delivery services to deliver products to your clients">Help?</span></a>
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+               <label for="pick_location" class="col-sm-2 control-label">Add Pickup Location</label>
+               <div class="col-sm-8">
+                 <% if (@store.auto_delivery_status == false) %>
+                     <input class="form-control1 locate" type="text" disabled id="locate" onkeyup="locate();" placeholder="Pickup Location" >
+                     <p>
+                     <div id="suggesstion-box"></div>
+                     </p>
+                 <% else %>
+                     <input class="form-control1 locate" type="text" id="locate" onkeyup="locate();" placeholder="Pickup Location" >
+                     <p>
+                     <div id="suggesstion-box"></div>
+                     </p>
+                 <% end %>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Location from which the goods will be picked from for them to be delivered to your clients">Help?</span></a>
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+
+               <label for="pick_location" class="col-sm-2 control-label">Selected pick up Location (Business or Warehouse location)</label>
+               <div class="col-sm-10">
+               <%= f.label "Selected pick up Location (Business or Warehouse location)" %>
+               <%= f.text_field :auto_delivery_location, class: 'form-control locate', id:'sel_loc', disabled: 'disabled',style:"background-color:white;border-style: none !important;color:#7AAE42 !important;font-weight: bold;" %>
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+               <label for="sendyuser" class="col-sm-2 control-label">Sendy Username</label>
+               <div class="col-sm-8">
+                 <% if (@store.auto_delivery_status == false) %>
+                     <%= f.text_field :sendy_username, id:'sendyuser', disabled: 'disabled', class: 'locate form-control1',placeholder:'Sendy Username' %>
+                 <% else %>
+                     <%= f.text_field :sendy_username, id:'sendyuser', class: 'locate form-control1',placeholder:'Sendy Username' %>
+                 <% end %>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Your Sendy username after registering at www.sendyit.com">Help?</span></a>
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
+             <div class="form-group">
+               <label for="password" class="col-sm-2 control-label">Sendy Key</label>
+               <div class="col-sm-8">
+                 <% if (@store.auto_delivery_status == false) %>
+                     <%= f.text_field :sendy_key, id:'sendykey', disabled: 'disabled', class: 'locate form-control1',placeholder:'Sendy Key' %>
+                 <% else %>
+                     <%= f.text_field :sendy_key, id:'sendykey', class: 'locate form-control1',placeholder:'Sendy Key' %>
+                 <% end %>
+               </div>
+               <div class="col-sm-2">
+                 <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Your Sendy key given to you after registering at www.sendyit.com">Help?</span></a>
+               </div>
+               <div class="col-sm-10 col-sm-offset-2"><br>
+                 <a style="border:1px solid #7aae42 !important;" id="verify" class="btn btn-primary">Verify Sendy Credentials</a>
+                 <div class="form-group"><br><br>
+                   <div class="status alert alert-success col-md-10" hidden></div>
+                   <div class="error alert alert-danger col-md-10" hidden></div>
+                   <%= f.hidden_field :lat, class: 'form-control1' %>
+                 </div>
+
+                 <div class="form-group">
+                   <%= f.hidden_field :lng, class: 'form-control1' %>
+                 </div>
+               </div>
+             </div>
+             <div class="col-md-12" style="height:1em"></div>
            </div>
-         </div>
-         <div class="col-md-12" style="height:1em"></div>
+         </div><!--Check here-->
          <div class="form-group">
            <label for="checkbox" class="col-sm-2 control-label"></label>
            <div class="col-sm-8">
@@ -303,7 +319,6 @@ $(document).ready(function(){
        <%end%>
        <div id="map"></div>
      </div>
-   </div>
 
 </div>
 
