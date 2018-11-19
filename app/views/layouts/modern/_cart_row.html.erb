@@ -20,7 +20,7 @@
         <h3 style="font-size:14px;padding-top:1em !important"><span>Specifics: <% if var.nil? %><%=  %> <%else var.each do |k,v| %><%= "<b>#{k.humanize}:</b> #{v.humanize}, ".html_safe %><% end end%></span></h3>
       </div>
       <div class="col-sm-1">
-              <%= f.number_field :quantity, value: order_item.quantity.to_i, min: 1, max:product.quantity, style:'max-width:53px;margin-bottom:3px' %>
+              <%= f.number_field :quantity, value: order_item.quantity.to_i, min: 1, max:@product.quantity, style:'max-width:53px;margin-bottom:3px' %>
               <%= f.hidden_field :product_id, value: product.id %>
               <%= f.submit "Update",class:'btn btn-default', style: "font-size:14px !important;text-align:center !important;padding: 0px !important;height:30px !important" %>
       </div>
