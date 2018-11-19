@@ -33,245 +33,259 @@
     });
     </script>
   <div id="num" data="<%= @product.id %>"></div>
-  <div class="form-group">
-    <label for="name" class="col-sm-2 control-label">Name</label>
-    <div class="col-sm-8">
-      <%= f.text_field :name, class: 'form-control1', id:'name', required:'required',placeholder:'Name' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will be the name of your product that will appear in your store">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="price" class="col-sm-2 control-label">Price</label>
-    <div class="col-sm-8">
-      <%= f.number_field :price, class: 'form-control1' , required:'required',id:'price',placeholder:'Price', min:0%>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will be the price of your product in Kenyan Shillings">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="bef_disc" class="col-sm-2 control-label">Show Price Before Discount</label>
-    <div class="col-sm-8">
-      <div class="checkbox-inline"><%= f.check_box :discount_status, id:'bef_disc' %><label for="bef_disc">Check this to Show Price Before Discount</label></div>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Check this if you need to show the original price of the item you are selling">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="price_bef_disc" class="col-sm-2 control-label">Price Before Discount</label>
-    <div class="col-sm-8">
-      <%= f.number_field :discount_price, class: 'form-control1',placeholder:'Price Before Discount',id:'price_bef_disc', min:0%>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will be the value of the initial price of your product before the discount">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="category" class="col-sm-2 control-label">Category</label>
-    <div class="col-sm-8">
-      <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name',@product.category_id), {}, {:class => 'form-control1', required:'required',id:'category'} %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the category in which your product will belong. You are responsible for creating your store categories">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="stock" class="col-sm-2 control-label">Number of Products in Stock</label>
-    <div class="col-sm-8">
-      <%= f.number_field :quantity, class: 'form-control1', required:'required',id:'stock',placeholder:'Number of Products in Stock', min:0 %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount of this product that will be in stock (available for sale)">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="description" class="col-sm-2 control-label">Description</label>
-    <div class="col-sm-8">
-      <%= f.text_area :description, class: 'form-control1',id:'description',placeholder:'Description',style:'height:15em' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is your product's description that will appear when someone views this specific product in your store">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="del_opt" class="col-sm-2 control-label">Specify a Variant (E.g Color, Length)</label>
-    <div class="col-sm-8">
-      <%= text_area_tag(:variant_name, nil, id: 'variant_name', class: 'form-control1', placeholder:'Eg. Color, Length') %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you want to add descriptions of your product eg. Color, Length, create the variant here, you can add options afterwards eg. Black, WHite ">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="price" class="col-sm-2 control-label">Variant Value (e.g Black, Blue) </label>
-    <div class="col-sm-8">
-      <%= text_field_tag(:variant_value, nil, id: 'variant_value', type: 'text', class: 'form-control1',placeholder:'E.g Black, White') %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the variant value E.g Black, White">Help?</span></a>
-    </div>
-    <div class="col-sm-10 col-sm-offset-2"><br>
-      <div class="var_opt_err"></div><br>
-      <a style="border:1px solid #7aae42 !important;" id="add-variant" class="btn btn-primary">Add Variant</a>
-    </div>
-    <div class="col-sm-10 col-sm-offset-2">
-      <div style="margin-top: 2em; margin-bottom: 1em;" class="manual del_opts"><%= render "products/variantsini" %></div>
-      <div class="vals_opt_err"></div><br>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="active" class="col-sm-2 control-label">Active</label>
-    <div class="col-sm-8">
-      <div class="checkbox-inline"><%= f.check_box :active, id:'active' %> <label for="active">Check this to Show Product in your Store</label></div>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this, your product will be visible to your clients when they visit your store">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="checkbox" class="col-sm-2 control-label"></label>
-    <div class="col-sm-8">
-      <p style="color:#7aae42;font-style:italic">Weight and Size of the Product(Optional, recommended if you want to use automated delivery)</p>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="length" class="col-sm-2 control-label">Length(cm)</label>
-    <div class="col-sm-8">
-      <%= f.number_field :length, class:'form-control1',id:'length',placeholder:'Length' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the length of your product in centimeters">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="width" class="col-sm-2 control-label">Width(cm)</label>
-    <div class="col-sm-8">
-      <%= f.number_field :width, class:'form-control1',id:'width',placeholder:'Width' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the width of your product in centimeters">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="height" class="col-sm-2 control-label">Height(cm)</label>
-    <div class="col-sm-8">
-      <%= f.number_field :height, class: 'form-control1',id:'height',placeholder:'Height' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the height of your product in centimeters">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="weight" class="col-sm-2 control-label">Weight(Kgs)</label>
-    <div class="col-sm-8">
-      <%= f.number_field :weight, class: 'form-control1',id:'weight',placeholder:'Weight' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the weight of your product in kilograms(Kgs)">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="checkbox" class="col-sm-2 control-label"></label>
-    <div class="col-sm-8">
-      <p style="color:#7aae42;font-style:italic">Upload images of the products</p>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="main_img" class="col-sm-2 control-label">Main Image</label>
-    <div class="col-sm-8">
-      <%= f.file_field :image, class: 'form-control1',id:'main_img' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the main image for your product. It will be the first image people see for your product">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="col-md-10 col-md-offset-2">
-    <%= image_tag(@product.image_url(:thumb).to_s) %>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="img1" class="col-sm-2 control-label">Image 1</label>
-    <div class="col-sm-8">
-      <%= f.file_field :img1, class: 'form-control1',id:'img1' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="col-md-10 col-md-offset-2">
-    <%= image_tag(@product.img1_url(:thumb).to_s) %>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="img2" class="col-sm-2 control-label">Image 2</label>
-    <div class="col-sm-8">
-      <%= f.file_field :img2, class: 'form-control1',id:'img2' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="col-md-10 col-md-offset-2">
-    <%= image_tag(@product.img2_url(:thumb).to_s) %>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="img3" class="col-sm-2 control-label">Image 3</label>
-    <div class="col-sm-8">
-      <%= f.file_field :img3, class: 'form-control1',id:'img3' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="col-md-10 col-md-offset-2">
-    <%= image_tag(@product.img3_url(:thumb).to_s) %>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="form-group">
-    <label for="img4" class="col-sm-2 control-label">Image 4</label>
-    <div class="col-sm-8">
-      <%= f.file_field :img4, class: 'form-control1',id:'img4' %>
-    </div>
-    <div class="col-sm-2">
-      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store">Help?</span></a>
-    </div>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
-  <div class="col-md-10 col-md-offset-2">
-    <%= image_tag(@product.img4_url(:thumb).to_s) %>
-  </div>
-  <div class="col-md-12" style="height:1em"></div>
 
-  <div class="form-group">
-    <label for="checkbox" class="col-sm-2 control-label"></label>
-    <div class="col-sm-8">
-      <button type="sumbit" id="update_product" class="kd_buttons"><i class="fa fa-save"></i> Update Product</button>
-      <button type="reset" class="kd_reset"><i class="fa fa-refresh"></i> Load Prefilled</button>
-      <div id="var_msg"></div>
+  <ul class="nav nav-tabs">
+     <li class="active"><a data-toggle="tab" href="#tab_1" style="color:#7aae42">Product Details</a></li>
+     <li><a data-toggle="tab" href="#tab_2" style="color:#7aae42">Product Dimensions</a></li>
+   </ul>
+   <div class="tab-content">
+     <div id="tab_1" class="tab-pane fade in active">
+       <h3>Product Details</h3>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-8">
+            <%= f.text_field :name, class: 'form-control1', id:'name', required:'required',placeholder:'Name' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will be the name of your product that will appear in your store">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="price" class="col-sm-2 control-label">Price</label>
+          <div class="col-sm-8">
+            <%= f.number_field :price, class: 'form-control1' , required:'required',id:'price',placeholder:'Price', min:0%>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will be the price of your product in Kenyan Shillings">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="bef_disc" class="col-sm-2 control-label">Show Price Before Discount</label>
+          <div class="col-sm-8">
+            <div class="checkbox-inline"><%= f.check_box :discount_status, id:'bef_disc' %><label for="bef_disc">Check this to Show Price Before Discount</label></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="Check this if you need to show the original price of the item you are selling">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="price_bef_disc" class="col-sm-2 control-label">Price Before Discount</label>
+          <div class="col-sm-8">
+            <%= f.number_field :discount_price, class: 'form-control1',placeholder:'Price Before Discount',id:'price_bef_disc', min:0%>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This will be the value of the initial price of your product before the discount">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="category" class="col-sm-2 control-label">Category</label>
+          <div class="col-sm-8">
+            <%= f.select :category_id, options_from_collection_for_select(@store.category.all, 'id','name',@product.category_id), {}, {:class => 'form-control1', required:'required',id:'category'} %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the category in which your product will belong. You are responsible for creating your store categories">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="stock" class="col-sm-2 control-label">Number of Products in Stock</label>
+          <div class="col-sm-8">
+            <%= f.number_field :quantity, class: 'form-control1', required:'required',id:'stock',placeholder:'Number of Products in Stock', min:0 %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount of this product that will be in stock (available for sale)">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="description" class="col-sm-2 control-label">Description</label>
+          <div class="col-sm-8">
+            <%= f.text_area :description, class: 'form-control1',id:'description',placeholder:'Description',style:'height:15em' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is your product's description that will appear when someone views this specific product in your store">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="del_opt" class="col-sm-2 control-label">Specify a Variant (E.g Color, Length)</label>
+          <div class="col-sm-8">
+            <%= text_area_tag(:variant_name, nil, id: 'variant_name', class: 'form-control1', placeholder:'Eg. Color, Length') %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you want to add descriptions of your product eg. Color, Length, create the variant here, you can add options afterwards eg. Black, WHite ">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="price" class="col-sm-2 control-label">Variant Value (e.g Black, Blue) </label>
+          <div class="col-sm-8">
+            <%= text_field_tag(:variant_value, nil, id: 'variant_value', type: 'text', class: 'form-control1',placeholder:'E.g Black, White') %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the variant value E.g Black, White">Help?</span></a>
+          </div>
+          <div class="col-sm-10 col-sm-offset-2"><br>
+            <div class="var_opt_err"></div><br>
+            <a style="border:1px solid #7aae42 !important;" id="add-variant" class="btn btn-primary">Add Variant</a>
+          </div>
+          <div class="col-sm-10 col-sm-offset-2">
+            <div style="margin-top: 2em; margin-bottom: 1em;" class="manual del_opts"><%= render "products/variantsini" %></div>
+            <div class="vals_opt_err"></div><br>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="active" class="col-sm-2 control-label">Active</label>
+          <div class="col-sm-8">
+            <div class="checkbox-inline"><%= f.check_box :active, id:'active' %> <label for="active">Check this to Show Product in your Store</label></div>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="If you check this, your product will be visible to your clients when they visit your store">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="checkbox" class="col-sm-2 control-label"></label>
+          <div class="col-sm-8">
+            <p style="color:#7aae42;font-style:italic;font-weight:bold">Upload images of the products</p>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="main_img" class="col-sm-2 control-label">Main Image</label>
+          <div class="col-sm-8">
+            <%= f.file_field :image, class: 'form-control1',id:'main_img' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the main image for your product. It will be the first image people see for your product">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="col-md-10 col-md-offset-2">
+          <%= image_tag(@product.image_url(:thumb).to_s) %>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="img1" class="col-sm-2 control-label">Image 1</label>
+          <div class="col-sm-8">
+            <%= f.file_field :img1, class: 'form-control1',id:'img1' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="col-md-10 col-md-offset-2">
+          <%= image_tag(@product.img1_url(:thumb).to_s) %>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="img2" class="col-sm-2 control-label">Image 2</label>
+          <div class="col-sm-8">
+            <%= f.file_field :img2, class: 'form-control1',id:'img2' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="col-md-10 col-md-offset-2">
+          <%= image_tag(@product.img2_url(:thumb).to_s) %>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="img3" class="col-sm-2 control-label">Image 3</label>
+          <div class="col-sm-8">
+            <%= f.file_field :img3, class: 'form-control1',id:'img3' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="col-md-10 col-md-offset-2">
+          <%= image_tag(@product.img3_url(:thumb).to_s) %>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="img4" class="col-sm-2 control-label">Image 4</label>
+          <div class="col-sm-8">
+            <%= f.file_field :img4, class: 'form-control1',id:'img4' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is an alternative image for your product. It will be seen when clients view this specific product in your store">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="col-md-10 col-md-offset-2">
+          <%= image_tag(@product.img4_url(:thumb).to_s) %>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+      </div>
+      <div id="tab_2" class="tab-pane fade">
+        <h3>Product Dimensions</h3>
+        <div class="form-group">
+          <!-- <label for="checkbox" class="col-sm-2 control-label"></label> -->
+          <div class="col-sm-12">
+            <p style="color:#7aae42;font-style:italic;font-weight:bold">Weight and Size of the Product(Optional, recommended if you want to use automated delivery)</p>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+
+        <div class="form-group">
+          <label for="length" class="col-sm-2 control-label">Length(cm)</label>
+          <div class="col-sm-8">
+            <%= f.number_field :length, class:'form-control1',id:'length',placeholder:'Length' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the length of your product in centimeters">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="width" class="col-sm-2 control-label">Width(cm)</label>
+          <div class="col-sm-8">
+            <%= f.number_field :width, class:'form-control1',id:'width',placeholder:'Width' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the width of your product in centimeters">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="height" class="col-sm-2 control-label">Height(cm)</label>
+          <div class="col-sm-8">
+            <%= f.number_field :height, class: 'form-control1',id:'height',placeholder:'Height' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the height of your product in centimeters">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+        <div class="form-group">
+          <label for="weight" class="col-sm-2 control-label">Weight(Kgs)</label>
+          <div class="col-sm-8">
+            <%= f.number_field :weight, class: 'form-control1',id:'weight',placeholder:'Weight' %>
+          </div>
+          <div class="col-sm-2">
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the weight of your product in kilograms(Kgs)">Help?</span></a>
+          </div>
+        </div>
+        <div class="col-md-12" style="height:1em"></div>
+      </div>
     </div>
-  </div>
+
+        <div class="form-group">
+          <label for="checkbox" class="col-sm-2 control-label"></label>
+          <div class="col-sm-8">
+            <button type="sumbit" id="update_product" class="kd_buttons"><i class="fa fa-save"></i> Update Product</button>
+            <button type="reset" class="kd_reset"><i class="fa fa-refresh"></i> Load Prefilled</button>
+            <div id="var_msg"></div>
+          </div>
+        </div>
 <%end%>
