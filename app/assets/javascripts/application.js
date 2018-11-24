@@ -875,7 +875,7 @@ function selectlocation(val) {
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyAymkYR_w0NJSr-bn_N5BQ4vzdseuCMmsM',
         success: function (result) {
             results = result['results'];
-            //console.log(result);
+            console.log(result);
 
             var latitude = results[0]['geometry']['location']['lat'];
             var longitude = results[0]['geometry']['location']['lng'];
@@ -889,8 +889,8 @@ function selectlocation(val) {
 
             $.ajax({
                 url: '/carts/location',
-                success: function () {
-
+                success: function (e) {
+                    console.log(e);
                 },
                 method: 'post',
                 data: {
