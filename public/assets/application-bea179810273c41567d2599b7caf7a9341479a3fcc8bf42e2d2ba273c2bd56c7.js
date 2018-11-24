@@ -29821,7 +29821,7 @@ $(function () {
                     store_reg();
                 } else {
                     $("#url").attr('data-valid', 'true');
-                    $("#url_prev").html("<span style='color:green'>http://" + res + ".kduka.co.ke</span>");
+                    $("#url_prev").html("<span style='color:green'>We'll create http://" + res + ".kduka.co.ke for you!</span>");
                     //var str = res;
                     //var url = str.replace('.kduka.co.ke', '');
                     //$("#url").val(url);
@@ -30634,10 +30634,10 @@ function selectlocation(val) {
     $("#process").attr("value", "Processing ... ");
     $.ajax({
         type: 'POST',
-        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyAymkYR_w0NJSr-bn_N5BQ4vzdseuCMmsM',
         success: function (result) {
             results = result['results'];
-            //console.log(result);
+            console.log(result);
 
             var latitude = results[0]['geometry']['location']['lat'];
             var longitude = results[0]['geometry']['location']['lng'];
@@ -30651,8 +30651,8 @@ function selectlocation(val) {
 
             $.ajax({
                 url: '/carts/location',
-                success: function () {
-
+                success: function (e) {
+                    console.log(e);
                 },
                 method: 'post',
                 data: {
@@ -30916,7 +30916,7 @@ function b2c_val() {
     client_account = $("#client_account_b2c").val();
     amount = $("#amount_b2c").val();
 
-    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) >= 0)) {
+    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) > 0)) {
         $("#b2c").removeAttr("disabled");
         $("#b2c").removeAttr("style");
     } else {
@@ -30996,10 +30996,10 @@ function set_bal(post) {
 function check_num(post) {
     amt = $("#amount_" + post).val();
 
-    if ($.isNumeric(amt) && amt >= 0) {
+    if ($.isNumeric(amt) && amt > 0) {
         $("#amount_prev_" + post).html("");
     } else {
-        $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number</p>");
+        $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number and greater than zero</p>");
     }
 }
 
