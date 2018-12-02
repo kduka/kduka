@@ -4,7 +4,8 @@ html, body{
 	font-family:'Open Sans', sans-serif;
 }
 p{
-	margin:0;
+  margin:0;
+	margin-bottom:15px;
 	font-size:14px;
 }
 h1,h2,h3,h4,h5,h6{
