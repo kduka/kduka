@@ -17,7 +17,9 @@
   <% end %>
 
   <%= csrf_meta_tags %>
-
+  <% if Date.current.strftime("%B") == "December" %>
+  <script src="/javascripts/snow/snowstorm.js"></script>
+  <%end%>
 <!--<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>-->
 
