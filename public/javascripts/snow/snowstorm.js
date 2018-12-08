@@ -1,16 +1,3 @@
-/** @license
- * DHTML Snowstorm! JavaScript-based snow for web pages
- * Making it snow on the internets since 2003. You're welcome.
- * -----------------------------------------------------------
- * Version 1.44.20131208 (Previous rev: 1.44.20131125)
- * Copyright (c) 2007, Scott Schiller. All rights reserved.
- * Code provided under the BSD License
- * http://schillmania.com/projects/snowstorm/license.txt
- */
-
-/*jslint nomen: true, plusplus: true, sloppy: true, vars: true, white: true */
-/*global window, document, navigator, clearInterval, setInterval */
-
 var snowStorm = (function(window, document) {
 
   // --- common properties ---
