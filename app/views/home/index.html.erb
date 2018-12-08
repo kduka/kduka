@@ -114,7 +114,9 @@ next if item == '.' or item == '..' %>
 next if item == '.' or item == '..' %>
 <%= javascript_include_tag    "website/#{item}" %>
 <% end %>
-
+<% if Date.current.strftime("%B") == "December" %>
+<script src="/javascripts/snow/snowstorm.js"></script>
+<%end%>
 <!-- web fonts -->
 <style>
 body{
