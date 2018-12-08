@@ -48,9 +48,9 @@ $(document).ready(function(){
            <label for="aboutpage_text" class="col-sm-2 control-label">About Page Text</label>
            <div class="col-sm-8">
              <% if (@store.aboutpage_status == false) %>
-                 <%= f.text_area :aboutpage_text, class: 'form-control1 aboutswitch textarea',placeholder:'About Page Text', id: 'aboutpage_text', disabled: 'disabled' %>
+                 <%= f.text_area :aboutpage_text, class: 'form-control1 aboutswitch textarea',placeholder:'About Page Text', id: 'aboutpage_text' %>
              <% else %>
-                 <%= f.text_area :aboutpage_text, class: 'form-control1 aboutswitch textarea',placeholder:'About Page Text', id: 'aboutpage_text'  %>
+                 <%= f.text_area :aboutpage_text, class: 'form-control1 aboutswitch textarea',placeholder:'About Page Text', id: 'aboutpage_text' %>
              <% end %>
            </div>
            <div class="col-sm-2">
