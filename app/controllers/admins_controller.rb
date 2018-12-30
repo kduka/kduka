@@ -160,7 +160,7 @@ class AdminsController < ApplicationController
   end
 
   def transactions
-    @transactions = Transaction.all
+    @transactions = Transaction.where(:transaction_status_id => [2,3,5,6])
     super_admin
   end
 
