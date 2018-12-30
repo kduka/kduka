@@ -17,6 +17,7 @@
               <th>Custom Domain</th>
               <th>Actual Amount</th>
               <th>Available Amount</th>
+              <th>Life Earnings</th>
               <th>Visitors</th>
               <th>Created at</th>
               <th>Confirmed at</th>
@@ -39,6 +40,7 @@
                 <td><%= "#{p.c_subdomain}.#{p.domain}" %></td>
                 <td><%= StoreAmount.where(:store_id => p.id).first.actual rescue nil%></td>
                 <td><%= StoreAmount.where(:store_id => p.id).first.amount rescue nil%></td>
+                <td><%= StoreAmount.where(:store_id => p.id).first.lifetime_earnings rescue nil%></td>
                 <td><%= Ahoy::Visit.where(store_id: p.id).count %></td>
                 <td><%= p.created_at %></td>
                 <td><%= p.confirmed_at %></td>
