@@ -2,7 +2,7 @@
 
 <h1>Total Earnings <%= @earnings.sum(:amount) %></h1>
 <% columns = @earnings.column_names %>
-<table id="myTable" class="table">
+<table id="earningsTable" class="table">
   <thead>
   <tr>
     <th>Store Name</th>

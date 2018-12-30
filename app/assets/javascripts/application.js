@@ -175,6 +175,22 @@ $(function () {
         "order": [[2, "desc"]]
     });
 
+    $('#ipnTable').DataTable({
+        "order": [[10, "desc"]]
+    });
+
+    $('#transactionsTable').DataTable({
+        "order": [[10, "desc"]]
+    });
+
+    $('#subscriptionsTable').DataTable({
+        "order": [[8, "desc"]]
+    });
+
+    $('#earningsTable').DataTable({
+        "order": [[8, "desc"]]
+    });
+
     $('#myHistoryTable').DataTable({
         "order": [[6, "desc"]]
     });
