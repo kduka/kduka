@@ -114,7 +114,9 @@ next if item == '.' or item == '..' %>
 next if item == '.' or item == '..' %>
 <%= javascript_include_tag    "website/#{item}" %>
 <% end %>
-
+<% if Date.current.strftime("%B") == "December" %>
+<script src="/javascripts/snow/snowstorm.js"></script>
+<%end%>
 <!-- web fonts -->
 <style>
 body{
@@ -191,8 +193,17 @@ body{
           opacity:0.2;
         }
       </style>
-      <h1><a style="color:#000 !important" href="<%= root_path %>"><%= image_tag("website/logo.png",style:"width:150px;height:auto") %></a></h1>
+      <h1>
+        <a style="color:#000 !important" href="<%= root_path %>">
+          <%if Time.now.strftime("%m/%d")=='12/25' %>
+            <%= image_tag("website/logo-christmas.png",style:"width:150px;height:auto") %>
+          <%else%>
+          <%= image_tag("website/logo.png",style:"width:150px;height:auto") %>
+          <% end %>
+        </a>
+      </h1>
     </div>
+    
 		<div class="container">
 			<div class="w3layouts-header">
 				<div class="top-nav">

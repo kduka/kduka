@@ -12,6 +12,9 @@
       window.scrollTo(0, 1);
   } </script>
   <!-- //for-mobile-apps -->
+  <% if Date.current.strftime("%B") == "December" %>
+  <!-- <script src="/javascripts/snow/snowstorm.js"></script> -->
+  <%end%>
   <!-- Custom Theme files -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script src="https://use.fontawesome.com/0c894d70a3.js"></script>

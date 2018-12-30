@@ -45,6 +45,7 @@ font-family: 'Open Sans', sans-serif;
 }
 p{
 	margin:0;
+  margin-bottom: 20px;
 	letter-spacing:1px;
 	font-size: 0.9em;
 }
@@ -3192,7 +3193,7 @@ font-weight: 300;
 }
 .single-right-left p{
     color: #000;
-    font-size: 20px;
+    font-size: 15px;
     margin: .5em 0 1em;
 }
 .single-right-left del {
