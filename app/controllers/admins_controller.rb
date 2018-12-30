@@ -170,7 +170,7 @@ class AdminsController < ApplicationController
   end
 
   def subscriptions
-    @subscriptions = Subscription.all
+    @subscriptions = Subscription.where(:order_status_id => 6)
     super_admin
   end
 
