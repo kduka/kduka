@@ -29863,7 +29863,7 @@ $(function () {
                 } else {
                     $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
                     $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
-                    $("#changebtn").attr('disabled','true');
+                    $("#changebtn").attr('disabled', 'true');
                     $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
                 }
 
@@ -29937,6 +29937,27 @@ $(function () {
         "order": [[2, "desc"]]
     });
 
+    $('#ipnTable').DataTable({
+        "order": [[10, "desc"]]
+    });
+
+    $('#transactionsTable').DataTable({
+        "order": [[10, "desc"]]
+    });
+
+    $('#subscriptionsTable').DataTable({
+        "order": [[8, "desc"]]
+    });
+
+    $('#transfersTable').DataTable({
+        "order": [[8, "desc"]],
+        "scrollX": true
+    });
+
+    $('#earningsTable').DataTable({
+        "order": [[8, "desc"]]
+    });
+
     $('#myHistoryTable').DataTable({
         "order": [[6, "desc"]]
     });
@@ -29947,11 +29968,11 @@ $(function () {
 
     $("#b2c").click(function (e) {
         e.preventDefault();
-        if($("#client_name_b2c").val() == "") {
+        if ($("#client_name_b2c").val() == "") {
             $(".amount_prev_b2c").html("<span style='color:red;'>The recepient name can't be empty</span>");
-        } else if ($("#client_account_b2c").val() == ""){
+        } else if ($("#client_account_b2c").val() == "") {
             $(".amount_prev_b2c").html("<span style='color:red;'>The phone number can't be empty</span>");
-        } else if ($("#amount_b2c").val() == ""){
+        } else if ($("#amount_b2c").val() == "") {
             $("#amount_prev_b2c").html("<span style='color:red;'>Amount can't be empty</span>");
         } else {
             $(".b2c_text").html("Processing");
@@ -30589,7 +30610,6 @@ $(function () {
 });
 
 
-
 function pass(pass) {
     var re = /^(?=.*[A-Z])(?=)(?=.*[0-9])(?=.).{6,}$/;
     if (pass.match(re)) {
@@ -30634,10 +30654,10 @@ function selectlocation(val) {
     $("#process").attr("value", "Processing ... ");
     $.ajax({
         type: 'POST',
-        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyAymkYR_w0NJSr-bn_N5BQ4vzdseuCMmsM',
         success: function (result) {
             results = result['results'];
-            //console.log(result);
+            console.log(result);
 
             var latitude = results[0]['geometry']['location']['lat'];
             var longitude = results[0]['geometry']['location']['lng'];
@@ -30651,8 +30671,8 @@ function selectlocation(val) {
 
             $.ajax({
                 url: '/carts/location',
-                success: function () {
-
+                success: function (e) {
+                    console.log(e);
                 },
                 method: 'post',
                 data: {
@@ -30996,10 +31016,10 @@ function set_bal(post) {
 function check_num(post) {
     amt = $("#amount_" + post).val();
 
-    if ($.isNumeric(amt) && amt >= 0) {
+    if ($.isNumeric(amt) && amt > 0) {
         $("#amount_prev_" + post).html("");
     } else {
-        $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number</p>");
+        $("#amount_prev_" + post).html("<p style='color: red'>Amount must be a number and greater than zero</p>");
     }
 }
 

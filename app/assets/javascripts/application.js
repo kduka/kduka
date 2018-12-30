@@ -101,7 +101,7 @@ $(function () {
                 } else {
                     $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
                     $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
-                    $("#changebtn").attr('disabled','true');
+                    $("#changebtn").attr('disabled', 'true');
                     $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
                 }
 
@@ -187,6 +187,11 @@ $(function () {
         "order": [[8, "desc"]]
     });
 
+    $('#transfersTable').DataTable({
+        "order": [[8, "desc"]],
+        "scrollX": true
+    });
+
     $('#earningsTable').DataTable({
         "order": [[8, "desc"]]
     });
@@ -201,11 +206,11 @@ $(function () {
 
     $("#b2c").click(function (e) {
         e.preventDefault();
-        if($("#client_name_b2c").val() == "") {
+        if ($("#client_name_b2c").val() == "") {
             $(".amount_prev_b2c").html("<span style='color:red;'>The recepient name can't be empty</span>");
-        } else if ($("#client_account_b2c").val() == ""){
+        } else if ($("#client_account_b2c").val() == "") {
             $(".amount_prev_b2c").html("<span style='color:red;'>The phone number can't be empty</span>");
-        } else if ($("#amount_b2c").val() == ""){
+        } else if ($("#amount_b2c").val() == "") {
             $("#amount_prev_b2c").html("<span style='color:red;'>Amount can't be empty</span>");
         } else {
             $(".b2c_text").html("Processing");
@@ -841,7 +846,6 @@ $(function () {
 
 
 });
-
 
 
 function pass(pass) {
