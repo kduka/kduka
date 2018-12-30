@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Money Out</h1>
+<% columns = @transfers.column_names %>
+<table id="myTable" class="table">
+  <thead>
+  <tr>
+
+    <% columns.each do |c| %>
+      <th><%= c %></th>
+    <% end %>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @transfers.each do |ipn| %>
+    <tr>
+
+      <% columns.each do |c| %>
+        <td><%=  ipn[c] %></td>
+      <% end %>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+

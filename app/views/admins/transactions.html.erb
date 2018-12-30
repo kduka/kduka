@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ipns</h1>
+<% columns = @transactions.column_names %>
+<table id="myTable" class="table">
+  <thead>
+  <tr>
+    <th>Store Name</th>
+    <% columns.each do |c| %>
+      <th><%= c %></th>
+    <% end %>
+    <th>Transaction Status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @transactions.each do |ipn| %>
+    <tr>
+      <td><%= Store.find(ipn.store_id).name.humanize %></td>
+      <% columns.each do |c| %>
+        <td><%=  ipn[c] %></td>
+      <% end %>
+      <th><%= TransactionStatus.find(ipn.transaction_status_id).status.humanize %></th>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+

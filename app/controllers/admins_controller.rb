@@ -154,6 +154,31 @@ class AdminsController < ApplicationController
     super_admin
   end
 
+  def ipns
+    @ipns = Ipn.all
+    super_admin
+  end
+
+  def transactions
+    @transactions = Transaction.all
+    super_admin
+  end
+
+  def transfers
+    @transfers = BusinessToConsumer.all
+    super_admin
+  end
+
+  def subscriptions
+    @subscriptions = Subscription.all
+    super_admin
+  end
+
+  def earnings
+    @earnings = Earning.all
+    super_admin
+  end
+
   private
 
   def store_params

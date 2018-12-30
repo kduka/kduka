@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Subscriptions</h1>
+<% columns = @subscriptions.column_names %>
+<table id="myTable" class="table">
+  <thead>
+  <tr>
+    <th>Store Name</th>
+    <th>Next Subscription</th>
+    <% columns.each do |c| %>
+      <th><%= c %></th>
+    <% end %>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @subscriptions.each do |ipn| %>
+    <tr>
+      <td><%= Store.find(ipn.store_id).name.humanize %></td>
+      <td><%= Store.find(ipn.store_id).premiumexpiry %></td>
+      <% columns.each do |c| %>
+        <td><%= ipn[c] %></td>
+      <% end %>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+

@@ -110,6 +110,11 @@ Rails.application.routes.draw do
   get 'stores/feedback' => 'stores#feedback'
   put 'stores/send_feed' => 'stores#send_feed'
   get 'admins/feedback' => 'admins#feedback'
+  get 'admins/ipns' => 'admins#ipns'
+  get 'admins/transactions' => 'admins#transactions'
+  get 'admins/transfers' => 'admins#transfers'
+  get 'admins/subscriptions' => 'admins#subscriptions'
+  get 'admins/earnings' => 'admins#earnings'
 
 
 
