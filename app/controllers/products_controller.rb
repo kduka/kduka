@@ -7,8 +7,10 @@ class ProductsController < ApplicationController
 
     get_store
     if @store.nil?
+      puts 'Store is not found'
       redirect_to(home_404_path) and return
     elsif @store.active == false
+      puts 'Store is not active'
       redirect_to(home_404_path) and return
     else
       if @store.homepage_status == true
