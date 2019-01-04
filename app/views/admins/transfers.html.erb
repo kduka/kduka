@@ -1,6 +1,9 @@
+<div class="content_bottom" style="margin-top:2em">
 <p id="notice"><%= notice %></p>
 
-<h1>Money Out</h1>
+<h3 style="color:#7aae42"><i class="fa fa-money"></i> Money Out</h3>
+<div class="col_2">
+<div style="overflow-x:scroll">
 <% columns = @transfers.column_names %>
 <table id="transfersTable" class="table">
   <thead>
@@ -25,6 +28,8 @@
   <% end %>
   </tbody>
 </table>
+</div>
+</div>
+</div>
 
 <br>
-

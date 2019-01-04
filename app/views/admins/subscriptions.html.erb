@@ -1,6 +1,9 @@
+<div class="content_bottom" style="margin-top:2em">
 <p id="notice"><%= notice %></p>
 
-<h1>Subscriptions</h1>
+<h3 style="color:#7aae42"><i class="fa fa-plus"></i> Subscriptions</h3>
+<div class="col_2">
+<div style="overflow-x:scroll">
 <% columns = @subscriptions.column_names %>
 <table id="subscriptionsTable" class="table">
   <thead>
@@ -27,6 +30,8 @@
   <% end %>
   </tbody>
 </table>
+</div>
+</div>
+</div>
 
 <br>
-
