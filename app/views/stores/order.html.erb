@@ -8,7 +8,7 @@
 
         <% if @order.order_status_id == 3 %>
            <button class="kd_shipped" > Already Shipped </button>
-            <p><%= form_tag("") do %> <br><input class="form-control" type="text" id="delivery_code" placeholder="Delivery Code" /><br>  <button id="complete" class="btn-lg btn btn-success" > Complete Order </button><% end %></p>
+            <p><%= form_tag("") do %> <br><div class="col-md-4"><input class="form-control" type="text" id="delivery_code" placeholder="Delivery Code" style="border: 1px solid #000 !important;border-radius: 0px !important;" /></div><br>  <button id="complete" class="btn-lg btn btn-success" > Complete Order </button><% end %></p>
             <div class="comp_err"></div>
             <% elsif @order.order_status_id == 6 %>
             <button class="kd_shipped" > Order Complete </button>
