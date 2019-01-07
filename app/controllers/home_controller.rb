@@ -29,4 +29,8 @@ class HomeController < ApplicationController
   def terms
 
   end
+
+  def uap
+
+  end
 end
