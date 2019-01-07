@@ -26,4 +26,7 @@ class HomeController < ApplicationController
     no_layout
   end
 
+  def terms
+
+  end
 end
