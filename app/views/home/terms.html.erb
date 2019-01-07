@@ -1,3 +1,79 @@
+
+  <% if Rails.env.production?  %>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+          s1.async=true;
+          s1.src='https://embed.tawk.to/59fc3b9abb0c3f433d4c6d5e/default';
+          s1.charset='UTF-8';
+          s1.setAttribute('crossorigin','*');
+          s0.parentNode.insertBefore(s1,s0);
+      })();
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109847469-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-109847469-1');
+  </script>
+  <!--End of Tawk.to Script-->
+      <% end %>
+<%= stylesheet_link_tag 'application', '//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i', media: 'all', 'data-turbolinks-track' => true %>
+<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> -->
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<% Dir.foreach("public/stylesheets/website") do |item|
+next if item == '.' or item == '..' %>
+<%= stylesheet_link_tag    "website/#{item}" %>
+<% end %>
+<% Dir.foreach("public/javascripts/website") do |item|
+next if item == '.' or item == '..' %>
+<%= javascript_include_tag    "website/#{item}" %>
+<% end %>
+<% if Date.current.strftime("%B") == "December" %>
+<script src="/javascripts/snow/snowstorm.js"></script>
+<%end%>
+<!-- web fonts -->
+<style>
+body{
+  font-family:'Open Sans', sans-serif !important;
+  padding-right: 0px !important;
+}
+h2{
+  color:#7aae42;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+h1{
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+p{
+  font-size: 17px;
+  line-height: 1.7em;
+  text-align: justify;
+  margin-bottom: 1.5em
+}
+ol li{
+  font-size: 17px;
+  line-height: 1.7em;
+  text-align: justify;
+}
+ul li{
+  font-size: 17px;
+  line-height: 1.7em;
+  text-align: justify;
+}
+</style>
+<h1>Terms & <span style="color:#7aae42">Conditions</span></h1>
 <h2>Welcome to KDuka</h2>
 <p>These terms and conditions outline the rules and regulations for the use of KDuka's Website.</p> <br />
 <p>By accessing this website we assume you accept these terms and conditions in full. Do not continue to use KDuka's website

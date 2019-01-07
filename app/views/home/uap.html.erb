@@ -1,7 +1,89 @@
-KDuka is a commerce platform that provides the tools and technology for merchants to set up an online store and sell products and services on their own website, at physical retail locations, marketplaces and more. While we believe the free and open exchange of ideas and products is a key tenet of commerce, there are some activities that are incompatible with KDuka’s mission to make commerce better for everyone. This Acceptable Use Policy (“AUP”) describes activities that are prohibited in connection with your use of the Services.
+
+  <% if Rails.env.production?  %>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+          s1.async=true;
+          s1.src='https://embed.tawk.to/59fc3b9abb0c3f433d4c6d5e/default';
+          s1.charset='UTF-8';
+          s1.setAttribute('crossorigin','*');
+          s0.parentNode.insertBefore(s1,s0);
+      })();
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109847469-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-109847469-1');
+  </script>
+  <!--End of Tawk.to Script-->
+      <% end %>
+<%= stylesheet_link_tag 'application', '//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i', media: 'all', 'data-turbolinks-track' => true %>
+<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> -->
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<% Dir.foreach("public/stylesheets/website") do |item|
+next if item == '.' or item == '..' %>
+<%= stylesheet_link_tag    "website/#{item}" %>
+<% end %>
+<% Dir.foreach("public/javascripts/website") do |item|
+next if item == '.' or item == '..' %>
+<%= javascript_include_tag    "website/#{item}" %>
+<% end %>
+<% if Date.current.strftime("%B") == "December" %>
+<script src="/javascripts/snow/snowstorm.js"></script>
+<%end%>
+<!-- web fonts -->
+<style>
+body{
+  font-family:'Open Sans', sans-serif !important;
+  padding-right: 0px !important;
+}
+h3{
+  /* color:#7aae42; */
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+h2{
+  color:#7aae42;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+h1{
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+p{
+  font-size: 17px;
+  line-height: 1.7em;
+  text-align: justify;
+  margin-bottom: 1.5em
+}
+ol li{
+  font-size: 17px;
+  line-height: 1.7em;
+  text-align: justify;
+}
+ul li{
+  font-size: 17px;
+  line-height: 1.7em;
+  text-align: justify;
+}
+</style>
+<h1>Acceptable Use Policy <span style="color:#7aae42">(AUP)</span></h1>
+
+<p>KDuka is a commerce platform that provides the tools and technology for merchants to set up an online store and sell products and services on their own website, at physical retail locations, marketplaces and more. While we believe the free and open exchange of ideas and products is a key tenet of commerce, there are some activities that are incompatible with KDuka’s mission to make commerce better for everyone. This Acceptable Use Policy (“AUP”) describes activities that are prohibited in connection with your use of the Services.</p>
 
 
-The following activities are prohibited:
+<h3>The following activities are prohibited:</h3>
 <p><b>Child exploitation:</b> You may not offer goods or services, or post or upload Materials that exploit or abuse children, including but not limited to images or depictions of child abuse or sexual abuse, or that present children in a sexual manner.</p>
 <p><b>Harassment, bullying, defamation and threats:</b> You may not offer goods or services, or post or upload Materials, that harass, bully, defame or threaten a specific individual.</p>
 <p><b>Hateful content:</b> You may not use the Services to promote or condone hate or violence against people based on race, ethnicity, color, national origin, religion, age, gender, sexual orientation, disability, medical condition, veteran status or other forms of discriminatory intolerance. You may not use the Services to promote or support organizations, platforms or people that: (i) promote or condone such hate; or (ii) threaten or condone violence to further a cause.</p>
@@ -16,4 +98,3 @@ The following activities are prohibited:
 <p>KDuka has the right, but not the obligation, to monitor or investigate any Materials and your use of the Services at any time for compliance with this AUP and the KDuka Terms of Service, or any other agreement between you and KDuka governing your use of the Services (collectively, the “Terms”). Our determination of whether a violation of this AUP has occurred will be final and binding, and any action taken with respect to enforcing this AUP, including taking no action at all, will be at our sole discretion.</p>
 <p>KDuka may modify this AUP, including the list of Restricted Items, at any time by posting a revised version at https://www.kduka.co.ke/legal/aup. By continuing to use the Services or access your Account after a revised version of the AUP has been posted, you agree to comply with the latest version of the AUP. In the event of a conflict between the AUP and the Terms, this AUP will take precedence, but only to the extent required to resolve such conflict. Capitalized terms used but not defined in this AUP shall have the meanings set forth in the Terms.</p>
 <!--<p>If you feel that a user of the Services has violated this AUP, please contact us at https://www.kduka.co.ke/legal/report-aup-violation.</p>-->
-
