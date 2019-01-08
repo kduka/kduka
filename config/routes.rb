@@ -116,7 +116,7 @@ Rails.application.routes.draw do
   get 'admins/subscriptions' => 'admins#subscriptions'
   get 'admins/earnings' => 'admins#earnings'
   get '/legal/terms' => 'home#terms'
-  get '/legal/uap' => 'home#uap'
+  get '/legal/aup' => 'home#aup'
 
 
 
