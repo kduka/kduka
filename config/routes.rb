@@ -120,6 +120,7 @@ Rails.application.routes.draw do
   get 'admins/earnings' => 'admins#earnings'
   get '/legal/terms' => 'home#terms'
   get '/legal/aup' => 'home#aup'
+  post 'ipn/ipay' => 'ipn#ipay'
 
 
 

@@ -175,6 +175,8 @@ class IpnController < ApplicationController
     data = request.body.read
 
     puts data
+
+    no_layout
   end
 
 end
