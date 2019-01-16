@@ -171,6 +171,12 @@ class IpnController < ApplicationController
     @store_amount.update(actual: nu, lifetime_earnings: le)
   end
 
+  def ipay
+    data = request.body.read
+
+    puts data
+  end
+
 end
 
 =begin
