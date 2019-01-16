@@ -30,7 +30,7 @@ class HomeController < ApplicationController
 
   end
 
-  def uap
+  def aup
 
   end
 end
