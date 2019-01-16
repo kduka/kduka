@@ -1,0 +1,79 @@
+<script>
+    $(".delete_var").click(function (e) {
+        //alert($(this).attr('data') + " " + $(this).attr('data-attr'));
+        id = $("#num").attr('data');
+        //$(".delete_var").off("click");
+        $.ajax({
+            url:'/products/delete_variant',
+            method:'post',
+            data:{
+                name:$(this).attr('data'),
+                index:$(this).attr('data-attr'),
+                product_id:id,
+            },
+            success:function () {
+
+            }
+
+        })
+    });
+</script>
+<table class="table">
+  <thead>
+  <th></th>
+  <th></th>
+  </thead>
+  <tbody>
+  <% Variant.where(product_id: @id).each do |d| %>
+    <tr>
+      <td><%= "Variant : #{d.name.humanize}" %></td>
+
+      <%
+        require 'json'
+        vals = JSON.parse(d.value)
+      %>
+      <td>Values:
+        <% vals.each do |k, v| %>
+          <%= v.humanize %>
+          <span data="<%= d.name %>" data-attr="<%= k %>" class="delete_var" style="color: red;cursor: pointer"><i class="fa fa-times-rectangle"></i> </span>
+        <% end %>
+        <div id='new_var_<%= d.name %>' style="display: none">
+          <input type='text' id='new_text_<%= d.name %>' style="font-size: 75%"/>
+          <span onclick="add_var_val('<%= d.name %>','<%= d.product_id %>')" class='label' style='cursor: pointer;color: green'> Add Value </span>
+        </div>
+        <span class="add_btn" data-name="<%= d.name %>" class='label' style='cursor: pointer;color: green'> Add Value </span>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+    $(function () {
+        $(".add_btn").click(function () {
+            e = $(this).attr('data-name');
+            $("#new_var_"+ e).attr('style','display:inline');
+            $(this).attr('style','cursor: pointer;color: red')
+            $(this).html('Cancel');
+        })
+    });
+
+    function add_var_val(e, d) {
+        val = $("#new_text_" + e).val();
+        //alert(val);
+        id = d;
+
+        $.ajax({
+            url: '/products/append_variant',
+            method: 'post',
+            data: {
+                id: d,
+                variant_name: e,
+                variant_value: val
+            },
+            success: function (e) {
+
+            }
+        })
+    }
+
+</script>

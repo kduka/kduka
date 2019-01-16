@@ -136,10 +136,17 @@ class ProductsController < ApplicationController
   end
 
   def create
+    puts session[:cookie_id]
     @store = Store.find(current_store.id)
     sku = [*'A'..'Z', *"0".."9"].sample(8).join
     @product = @store.product.create(product_params.merge(sku: sku))
-    if @product.save
+    @product.save!
+    if @product
+      #Save Variant First
+      ref = params[:serial]
+      vars = Variant.where(ref:ref).first
+
+      vars.update(product_id:@product.id)
       flash[:notice] = "New Product Created!"
       redirect_to(products_manage_path)
     else
@@ -281,6 +288,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  def add_variant_temp
+    @name = params[:name]
+    @cookie_id = params[:cookie_id]
+
+    session[:cookie_id] = Array.new
+    session[:cookie_id][:"#{@name}"] = params[:variant_value]
+
+    puts session[:cookie_id]["#{@name}"]
+  end
+
   def delete_variant
     require 'json'
     @name = params[:name]
@@ -302,6 +319,33 @@ class ProductsController < ApplicationController
         @var = 'error'
       end
     end
+
+  end
+
+  def delete_variant_temp
+    require 'json'
+    @name = params[:name]
+    @index = params[:index]
+    var = params[:vars]
+
+    @str = JSON.parse(var)
+    @str.delete(@index)
+
+
+    if @str.blank?
+      #TODO Remember to remove it from the temp table is no var is left
+      #var.destroy
+    else
+
+    end
+
+    @vars = Hash.[]
+
+    @vars[0] = 'holder'
+    @vars[1] = @name
+    @vars[2] = @str.to_json
+
+    puts @vars[2]
 
   end
 
@@ -334,6 +378,46 @@ class ProductsController < ApplicationController
     #@TODO Check if color already exists before adding
     #
 
+  end
+
+  def append_variant_temp
+
+    @name = params[:variant_name]
+    @variant_value = params[:variant_value].downcase
+
+    existing_vals = params[:existing_vals]
+    @vals = JSON.parse(existing_vals)
+
+    key = 0
+    @res = true
+
+    @vals.each do |k, v|
+      if v == @variant_value
+        @res = false
+      else
+        if k.to_i > key.to_i
+          key = k
+        end
+      end
+    end
+
+    key = key.to_i + 1
+
+    @vals[key] = @variant_value
+
+    @new_vals =  @vals.to_json
+
+    puts @new_vals + @name
+
+    @vars = Hash.[]
+
+    @vars[0] = @res
+    @vars[1] = @name
+    @vars[2] = @new_vals
+
+
+    #@TODO Check if color already exists before adding
+    #
   end
 
   def collect_vars

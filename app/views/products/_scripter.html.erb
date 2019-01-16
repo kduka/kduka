@@ -1,0 +1,56 @@
+<script>
+    $(function () {
+        $(".add_btn_temp").click(function () {
+            e = $(this).attr('data-name');
+            $("#new_var_" + e).attr('style', 'display:inline');
+            $(this).attr('style', 'cursor: pointer;color: red');
+            $(this).html('Cancel');
+        });
+
+
+        $(".add_var_val_temp").click(function () {
+            namey = $(this).attr('data-name');
+            val = $("#new_text_" + namey).val();
+            existing_vals = $(".var_"+namey).attr('data');
+            $.ajax({
+                url: '/products/append_variant_temp',
+                method: 'post',
+                data: {
+                    variant_name: namey,
+                    variant_value: val,
+                    existing_vals: existing_vals
+                },
+                success: function (e) {
+                    $("#new_text_" + namey).val("");
+                    $("#new_var_" + namey).attr("style","display:none");
+                    $("#add_btn_"+namey).attr('style', 'cursor: pointer;color: green');
+                    $("#add_btn_"+namey).html('Add Value');
+                }
+            })
+        });
+
+        $(".delete_var_temp").click(function (e) {
+
+            the_var = $(this).attr('data');
+            the_name = $(this).attr('data-var');
+            the_string = $('.var_'+the_name).attr('data');
+
+            $.ajax({
+                url: '/products/delete_variant_temp',
+                method: 'post',
+                data: {
+                    name: the_name,
+                    index: $(this).attr('data-attr'),
+                    vars: the_string
+                },
+                success: function () {
+
+                }
+
+            })
+        });
+
+
+    });
+
+</script>

@@ -29863,7 +29863,7 @@ $(function () {
                 } else {
                     $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
                     $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
-                    $("#changebtn").attr('disabled','true');
+                    $("#changebtn").attr('disabled', 'true');
                     $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
                 }
 
@@ -29937,6 +29937,27 @@ $(function () {
         "order": [[2, "desc"]]
     });
 
+    $('#ipnTable').DataTable({
+        "order": [[10, "desc"]]
+    });
+
+    $('#transactionsTable').DataTable({
+        "order": [[10, "desc"]]
+    });
+
+    $('#subscriptionsTable').DataTable({
+        "order": [[8, "desc"]]
+    });
+
+    $('#transfersTable').DataTable({
+        "order": [[8, "desc"]],
+        "scrollX": true
+    });
+
+    $('#earningsTable').DataTable({
+        "order": [[8, "desc"]]
+    });
+
     $('#myHistoryTable').DataTable({
         "order": [[6, "desc"]]
     });
@@ -29947,11 +29968,11 @@ $(function () {
 
     $("#b2c").click(function (e) {
         e.preventDefault();
-        if($("#client_name_b2c").val() == "") {
+        if ($("#client_name_b2c").val() == "") {
             $(".amount_prev_b2c").html("<span style='color:red;'>The recepient name can't be empty</span>");
-        } else if ($("#client_account_b2c").val() == ""){
+        } else if ($("#client_account_b2c").val() == "") {
             $(".amount_prev_b2c").html("<span style='color:red;'>The phone number can't be empty</span>");
-        } else if ($("#amount_b2c").val() == ""){
+        } else if ($("#amount_b2c").val() == "") {
             $("#amount_prev_b2c").html("<span style='color:red;'>Amount can't be empty</span>");
         } else {
             $(".b2c_text").html("Processing");
@@ -30480,6 +30501,66 @@ $(function () {
         }
     });
 
+    $("#add-variant-temp").click(function (e) {
+        e.preventDefault();
+        variant_name = $("#variant_name").val();
+        variant_value = $("#variant_value").val();
+        id = $("#serial").attr('data');
+        cookie_id = $("#cookie_id").val();
+
+
+        if (variant_name == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please fill the variant name, It cant be empty</span>");
+        } else if (variant_value == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please specify the variant value, It cant be empty</span>");
+        } else {
+            if ( $('#exist').hasClass(variant_name) ){
+                $(".var_opt_err").html("<span style='color:red;'>The variant already exists, add values to it below.</span>");
+            }else{
+                $(".var_table").append("<tr><td>"+variant_name+"</td><td class='td_"+variant_name+"'><span class='item'>"+variant_value +" <span class='delete_var_temp' style='color: red;cursor: pointer'> <i class='fa fa-times-rectangle'></i></span></span> " +
+                    "<div id='new_var_"+variant_name+"'+ style=\"display: none\">\n" +
+                    "          <input type='text' id='new_text_"+variant_name+"' style=\"font-size: 75%\"/>\n" +
+                    "          <span class='add_var_val_temp' data-name='"+variant_name+"' class='label' style='cursor: pointer;color: green'> Add Value </span>\n" +
+                    "        </div><span id='add_btn_"+variant_name+"' class='add_btn_temp' data-name='"+variant_name+"' class='label' style='cursor: pointer;color: green'> Add Value </span></td></tr>");
+                $("#exist").addClass(variant_name);
+                $("#exist").append("<span data-var='"+variant_name+"' data-name='"+variant_name+"' class='var_"+variant_name+"' style='display: none;' data='{\"0\":\""+variant_value+"\"}'></span>")
+                $("#exist").append("<input type='hidden' data-var='"+variant_name+"' data-name='"+variant_name+"' class='var_"+variant_name+"' style='display: none;' data='{\"0\":\""+variant_value+"\"}' value='{\"0\":\""+variant_value+"\"}'></input>")
+                $.ajax({
+                    url: '/products/add_variant_temp',
+                    method: 'post',
+                    data:{
+                      name:variant_name,
+                        cookie_id:cookie_id,
+                        variant_value:variant_value,
+                    },
+                    success: function (e) {
+                        $(".del_opt_err").html("");
+                        $("#del_opt").val("");
+                        $("#del_price").val("");
+                    }
+                })
+            }
+
+            /*$.ajax({
+                url: '/products/add_variant',
+                method: 'post',
+                data: {
+                    variant_name: variant_name,
+                    variant_value: variant_value,
+                    ref: id,
+                    id:id
+                },
+                success: function (e) {
+                    $(".del_opt_err").html("");
+                    $("#del_opt").val("");
+                    $("#del_price").val("");
+                }
+            })*/
+        }
+    });
+
+
+
     $("#up1").click(function () {
         $.ajax({
             url: '/stores/create_year',
@@ -30570,7 +30651,15 @@ $(function () {
         })
     });
 
+
+
     $(".add_var").click(function () {
+        $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
+        //$(this).attr("class","add_var_temp label");
+        $("#new_var").focus();
+    });
+
+    $(".add_var_temp").click(function () {
         $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
         //$(this).attr("class","add_var_temp label");
         $("#new_var").focus();
@@ -30587,7 +30676,6 @@ $(function () {
 
 
 });
-
 
 
 function pass(pass) {
@@ -30634,10 +30722,10 @@ function selectlocation(val) {
     $("#process").attr("value", "Processing ... ");
     $.ajax({
         type: 'POST',
-        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyCxt8jyVF7hpNm2gxCjRMvzFt69pgvVYmk',
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + val + '&key=AIzaSyAymkYR_w0NJSr-bn_N5BQ4vzdseuCMmsM',
         success: function (result) {
             results = result['results'];
-            //console.log(result);
+            console.log(result);
 
             var latitude = results[0]['geometry']['location']['lat'];
             var longitude = results[0]['geometry']['location']['lng'];
@@ -30651,8 +30739,8 @@ function selectlocation(val) {
 
             $.ajax({
                 url: '/carts/location',
-                success: function () {
-
+                success: function (e) {
+                    console.log(e);
                 },
                 method: 'post',
                 data: {
@@ -31263,4 +31351,5 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
+
 ;

@@ -1,0 +1,14 @@
+$(".var_<%= @vars[1] %>").attr('data','<%= @vars[2].html_safe %>');
+<%
+ vals = JSON.parse(@vars[2])
+
+ stringy = ""
+
+ vals.each do |k,v|
+ stringy = stringy + "#{v} <span <span data-var ='#{@vars[1]}' data='#{v}' data-attr='#{k}' class='delete_var_temp' style='color: red;cursor: pointer'><i class='fa fa-times-rectangle'></i> </span>"
+ end
+
+ stringy = stringy + "<div id='new_var_#{@vars[1]}' style='display: none'> <input type='text' id='new_text_#{@vars[1]}' style='font-size: 75%'/><span id='add_var_val_temp' data-name='#{@vars[1]}' class='label' style='cursor: pointer;color: green'> Add Value </span></div><span id='add_btn_#{@vars[1]}' class='add_btn_temp' data-name='#{@vars[1]}' class='label' style='cursor: pointer;color: green'> Add Value </span>"
+%>
+$(".td_<%= @vars[1] %>").html("<%= stringy.html_safe %>")
+$(".scripter").html("<%= escape_javascript(render "scripter") %>")
