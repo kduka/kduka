@@ -183,7 +183,41 @@ class CartsController < ApplicationController
     end
     end
 
-    current_order.update(address: address, shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location: delivery_location, del_lat: lat, del_long: lng, order_instructions: instructions)
+    @update = current_order.update(address: address, shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location: delivery_location, del_lat: lat, del_long: lng, order_instructions: instructions)
+
+    if @update
+      cbk = "#{request.subdomain}.#{request.domain}:#{request.port}"
+      key = ENV['ipay_hash_key']
+      data = ENV['ipay_live']+current_order.ref+current_order.ref+current_order.total.to_s+current_order.phone+current_order.email+ENV['ipay_vid']+"KES" + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      digest = OpenSSL::Digest.new('sha1')
+
+      @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
+      #data = "#{ENV['ipay_live']}#{current_order.ref}#{current_order.ref}#{ENV['ipay_ttl']}#{current_order.phone}##{current_order.email}#{ENV['ipay_vid']}KES#{ENV['ipay_cbk_flag']}#{ENV['ipay_cst_flag']}#{ENV['ipay_crl_flag']}"
+=begin
+      puts data
+      require 'net/http'
+      require 'uri'
+
+      uri = URI.parse('https://ipayafrica.com/hashid/')
+
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request.set_form_data({
+                                "vendor" => "#{ENV['ipay_vid']}",
+                                "data"    => "#{data}",
+                                "key"       => "#{ENV['ipay_hash_key']}",
+                            })
+
+      request.add_field("Accept", "application/json")
+
+      response = http.request(request)
+      @hash = response.read_body
+      puts response.read_body
+=end
+    end
 
   end
 
