@@ -1,0 +1,19 @@
+<% if @status %>
+$("#account_number_b2b_paybill").val("");
+$("#account_name_b2b_paybill").val("");
+$("#amount_b2b_paybill").val("");
+
+$(".conditions_b2b_paybill").html("<%= escape_javascript(render "stores/charges") %>");
+$(".conditions_till").html("<%= escape_javascript(render "stores/charges") %>");
+$(".conditions_pay").html("<%= escape_javascript(render "stores/charges") %>");
+$(".conditions_eft").html("<%= escape_javascript(render "stores/charges") %>");
+$(".history").html("<%= escape_javascript(render "stores/history") %>");
+$(".balance").html("<%= escape_javascript(render "stores/balance") %>");
+$(".trans_messages").html("<p style='color:green'> Transaction Successful! </p>");
+$("#b2b_paybill").removeAttr("disabled");
+$(".b2b_paybill_text").html("Transfer Funds");
+<% else %>
+$(".trans_messages").html("<p style='color:red'> <%= @err %></p>");
+$("#b2b_paybill").removeAttr("disabled");
+$(".b2b_paybill_text").html("Transfer Funds");
+<% end %>

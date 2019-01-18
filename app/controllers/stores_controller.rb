@@ -121,7 +121,7 @@ end
 
   def update_store
     @store = Store.find(current_store.id)
-    if @store.update(store_params.merge(subdomain:santize(params[:store][:subdomain])))
+    if @store.update(store_params.merge(subdomain: santize(params[:store][:subdomain])))
       flash[:notice] = 'Settings Saved'
     else
       flash[:alert] = 'Something went wrong, please try again'
@@ -236,7 +236,6 @@ end
       redirect_to(request.referer)
     end
   end
-
 
   def funds
     @find = StoreAmount.where(store_id: current_store.id).first
@@ -714,11 +713,334 @@ end
   end
 
   def send_feed
-    feedback =  params[:feedback][:feedback]
-    @feedback = Feedback.create(feedback:feedback, store_id:current_store.id)
+    feedback = params[:feedback][:feedback]
+    @feedback = Feedback.create(feedback: feedback, store_id: current_store.id)
     @feedback.save
     flash[:notice] = "Feedback sent!"
     redirect_to(stores_path)
+  end
+
+
+  #iPay B2C Process
+
+  def ib2c_mpesa
+
+    #IMPORT LIBRARIES
+
+    require 'uri'
+    require 'net/http'
+
+    #CAPTURE PARAMS
+    phone = params[:phone]
+    amount = params[:amount]
+
+    #Check if store has sufficient funds
+
+    @storeamount = StoreAmount.where(store_id: current_store.id).first
+    @charges
+
+    @temp = @storeamount.amount.to_i - 50 #DEDUCT STANDARD CHARGE
+    @max = @temp - ((@temp.to_d * 0.01).to_i).floor #DEDUCT OUR COMMISION AND ROUND OFF TO LOWER INTEGER
+
+    if amount.to_i > @max
+      @status = false
+    else
+      @status = true
+      key = "#{ENV['ipay_hash_key']}"
+      ref = [*'A'..'Z', *"0".."9"].sample(10).join
+      vid = "#{ENV['ipay_vid']}"
+      @data = "amount=#{amount}&phone=#{phone}&reference=#{ref}&vid=#{vid}"
+      digest = OpenSSL::Digest.new('sha256')
+
+      hash = OpenSSL::HMAC.hexdigest(digest, key, @data)
+
+      #START THE REQUEST TO IPAY AFRICA
+
+      url = URI("https://apis.ipayafrica.com/b2c/v3/mobile/mpesa")
+
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      request = Net::HTTP::Post.new(url)
+      request["Content-Type"] = 'application/json'
+      request["cache-control"] = 'no-cache'
+      request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+      request.body = "{\"vid\":\"#{vid}\",\"reference\": \"#{ref}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"phone\": \"#{phone}\"}"
+
+      response = http.request(request)
+      @response = response.read_body
+      puts @response
+
+      res = JSON.parse(@response)
+
+      if response.kind_of? Net::HTTPSuccess
+        puts "HTTP WORKED = #{response.read_body}"
+
+        Itransaction.create(res)
+
+        @storeamount = StoreAmount.where(store_id: current_store.id).first
+
+
+        @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil
+
+        nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+        nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+        @storeamount.update(amount: nu, actual: nua)
+
+        Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((@storeamount.amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+        @status = true
+      else
+        @status = false
+        @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+
+        puts "HTTP DIDNT = #{response.read_body}"
+      end
+      no_layout
+
+    end
+  end
+
+  def ib2c_airtel
+
+    #IMPORT LIBRARIES
+
+    require 'uri'
+    require 'net/http'
+
+    #CAPTURE PARAMS
+    phone = params[:phone]
+    amount = params[:amount]
+
+    #Check if store has sufficient funds
+
+    @storeamount = StoreAmount.where(store_id: current_store.id).first
+    @charges
+
+    @temp = @storeamount.amount.to_i - 50 #DEDUCT STANDARD CHARGE
+    @max = @temp - ((@temp.to_d * 0.01).to_i).floor #DEDUCT OUR COMMISION AND ROUND OFF TO LOWER INTEGER
+
+    if amount.to_i > @max
+      @status = false
+    else
+      @status = true
+      key = "#{ENV['ipay_hash_key']}"
+      ref = [*'A'..'Z', *"0".."9"].sample(10).join
+      vid = "#{ENV['ipay_vid']}"
+      @data = "amount=#{amount}&phone=#{phone}&reference=#{ref}&vid=#{vid}"
+      digest = OpenSSL::Digest.new('sha256')
+
+      hash = OpenSSL::HMAC.hexdigest(digest, key, @data)
+
+      #START THE REQUEST TO IPAY AFRICA
+
+      url = URI("https://apis.ipayafrica.com/b2c/v3/mobile/airtel")
+
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      request = Net::HTTP::Post.new(url)
+      request["Content-Type"] = 'application/json'
+      request["cache-control"] = 'no-cache'
+      request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+      request.body = "{\"vid\":\"#{vid}\",\"reference\": \"#{ref}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"phone\": \"#{phone}\"}"
+
+      response = http.request(request)
+      @response = response.read_body
+      puts @response
+
+      res = JSON.parse(@response)
+
+      if response.kind_of? Net::HTTPSuccess
+        puts "HTTP WORKED = #{response.read_body}"
+
+        Itransaction.create(res)
+
+        @storeamount = StoreAmount.where(store_id: current_store.id).first
+
+
+        @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil
+
+        nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+        nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+        @storeamount.update(amount: nu, actual: nua)
+
+        Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((@storeamount.amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+        @status = true
+      else
+        @status = false
+        @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+
+        puts "HTTP DIDNT = #{response.read_body}"
+      end
+      no_layout
+
+    end
+  end
+
+  def ib2b_paybill
+
+    #IMPORT LIBRARIES
+
+    require 'uri'
+    require 'net/http'
+
+    #CAPTURE PARAMS
+    account = params[:account]
+    amount = params[:amount]
+    narration = params[:name]
+
+    #Check if store has sufficient funds
+
+    @storeamount = StoreAmount.where(store_id: current_store.id).first
+    @charges
+
+    @temp = @storeamount.amount.to_i - 50 #DEDUCT STANDARD CHARGE
+    @max = @temp - ((@temp.to_d * 0.01).to_i).floor #DEDUCT OUR COMMISION AND ROUND OFF TO LOWER INTEGER
+
+    if amount.to_i > @max
+      @status = false
+    else
+
+    key = "#{ENV['ipay_hash_key']}"
+    ref = [*'A'..'Z', *"0".."9"].sample(10).join
+    vid = "#{ENV['ipay_vid']}"
+    curr = 'KES'
+    data = "account=#{account}&amount=#{amount}&curr=#{curr}&narration=#{narration}&reference=#{ref}&vid=#{vid}"
+    digest = OpenSSL::Digest.new('sha256')
+
+    hash = OpenSSL::HMAC.hexdigest(digest, key, data)
+
+    #START THE REQUEST TO IPAY AFRICA
+
+    url = URI("https://apis.ipayafrica.com/b2b/v1/external/send/mpesapaybill")
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Post.new(url)
+    request["Content-Type"] = 'application/json'
+    request["cache-control"] = 'no-cache'
+    request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+    request.body = "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"account\":\"#{account}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"narration\": \"#{narration}\",\"curr\":\"#{curr}\"}"
+
+    response = http.request(request)
+    @response = response.read_body
+    puts @response
+
+    res = JSON.parse(@response)
+
+    if response.kind_of? Net::HTTPSuccess
+      puts "HTTP WORKED = #{response.read_body}"
+
+      Itransaction.create(res)
+
+      @storeamount = StoreAmount.where(store_id: current_store.id).first
+
+
+      @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil
+
+      nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+      nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+      @storeamount.update(amount: nu, actual: nua)
+
+      Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((@storeamount.amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+      @status = true
+    else
+      @status = false
+      @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+
+      puts "HTTP DIDNT = #{response.read_body}"
+    end
+    no_layout
+
+    end
+  end
+
+  def ib2b_till
+
+    #IMPORT LIBRARIES
+
+    require 'uri'
+    require 'net/http'
+
+    #CAPTURE PARAMS
+    account = params[:account]
+    amount = params[:amount]
+    narration = params[:name]
+
+    #Check if store has sufficient funds
+
+    @storeamount = StoreAmount.where(store_id: current_store.id).first
+    @charges
+
+    @temp = @storeamount.amount.to_i - 50 #DEDUCT STANDARD CHARGE
+    @max = @temp - ((@temp.to_d * 0.01).to_i).floor #DEDUCT OUR COMMISION AND ROUND OFF TO LOWER INTEGER
+
+    if amount.to_i > @max
+      @status = false
+    else
+
+      key = "#{ENV['ipay_hash_key']}"
+      ref = [*'A'..'Z', *"0".."9"].sample(10).join
+      vid = "#{ENV['ipay_vid']}"
+      curr = 'KES'
+      data = "account=#{account}&amount=#{amount}&curr=#{curr}&narration=#{narration}&reference=#{ref}&vid=#{vid}"
+      digest = OpenSSL::Digest.new('sha256')
+
+      hash = OpenSSL::HMAC.hexdigest(digest, key, data)
+
+      #START THE REQUEST TO IPAY AFRICA
+
+      url = URI("https://apis.ipayafrica.com/b2b/v1/external/send/mpesatill")
+
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      request = Net::HTTP::Post.new(url)
+      request["Content-Type"] = 'application/json'
+      request["cache-control"] = 'no-cache'
+      request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+      request.body = "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"account\":\"#{account}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"narration\": \"#{narration}\",\"curr\":\"#{curr}\"}"
+
+      response = http.request(request)
+      @response = response.read_body
+      puts @response
+
+      res = JSON.parse(@response)
+
+      if response.kind_of? Net::HTTPSuccess
+        puts "HTTP WORKED = #{response.read_body}"
+
+        Itransaction.create(res)
+
+        @storeamount = StoreAmount.where(store_id: current_store.id).first
+
+
+        @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil
+
+        nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+        nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+        @storeamount.update(amount: nu, actual: nua)
+
+        Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((@storeamount.amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+        @status = true
+      else
+        @status = false
+        @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+
+        puts "HTTP DIDNT = #{response.read_body}"
+      end
+      no_layout
+
+    end
   end
 
 
@@ -742,17 +1064,17 @@ end
     params.require(:store).permit(:homepage_status, :homepage_text, :aboutpage_status, :aboutpage_text, :contactpage_status, :phone, :display_email, :banner)
   end
 
+  def pass_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:store).permit(:password, :password_confirmation, :email)
+  end
 
+  def santize(name)
+    lower = name.downcase
+    nospace = lower.gsub(/[^0-9a-z]|(kduka\.co\.ke)|(kduka)/i, "")
+    return nospace
+  end
 end
 
-def pass_params
-  # NOTE: Using `strong_parameters` gem
-  params.require(:store).permit(:password, :password_confirmation, :email)
-end
 
-def santize(name)
-  lower = name.downcase
-  nospace = lower.gsub(/[^0-9a-z]|(kduka\.co\.ke)|(kduka)/i, "")
-  return nospace
-end
 

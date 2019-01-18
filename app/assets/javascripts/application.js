@@ -204,6 +204,7 @@ $(function () {
         "order": [[1, "asc"]]
     });
 
+    // The B2C Process for SBM Bank
     $("#b2c").click(function (e) {
         e.preventDefault();
         if ($("#client_name_b2c").val() == "") {
@@ -235,23 +236,77 @@ $(function () {
 
     });
 
-    $("#b2bpay").click(function (e) {
+    // The B2C Process for iPay
+    $("#ib2c_mpesa").click(function (e) {
         e.preventDefault();
-        $(".b2bpay_text").html("Processing");
-        $("#b2bpay").attr("disabled", "true");
-        $(".trans_messages_pay").html("<p style=''> Please wait ...</p>");
-        name = $("#client_name_pay").val();
-        account = $("#client_account_pay").val();
-        amount = $("#amount_pay").val();
+        if ($("#client_account_b2c_mpesa").val() == "") {
+            $(".amount_prev_b2c_mpesa").html("<span style='color:red;'>The phone number can't be empty</span>");
+        } else if ($("#amount_b2c_mpesa").val() == "") {
+            $("#amount_prev_b2c_mpesa").html("<span style='color:red;'>Amount can't be empty</span>");
+        } else {
+            $(".b2c_mpesa_text").html("Processing");
+            $("#ib2c_mpesa").attr("disabled", "true");
+            $(".trans_messages").html("<p style=''> Please wait ...</p>");
+            phone = $("#client_account_b2c_mpesa").val();
+            amount = $("#amount_b2c_mpesa").val();
+            $.ajax({
+                url: '/stores/ib2c_mpesa',
+                method: 'post',
+                data: {
+                    phone: phone,
+                    amount: amount
+                },
+                success: function (f) {
+
+                }
+            });
+        }
+
+    });
+
+    $("#ib2c_airtel").click(function (e) {
+        e.preventDefault();
+        if ($("#client_account_b2c_airtel").val() == "") {
+            $(".amount_prev_b2c_airtel").html("<span style='color:red;'>The phone number can't be empty</span>");
+        } else if ($("#amount_b2c_airtel").val() == "") {
+            $("#amount_prev_b2c_airtel").html("<span style='color:red;'>Amount can't be empty</span>");
+        } else {
+            $(".b2c_airtel_text").html("Processing");
+            $("#ib2c_airtel").attr("disabled", "true");
+            $(".trans_messages").html("<p style=''> Please wait ...</p>");
+            phone = $("#client_account_b2c_airtel").val();
+            amount = $("#amount_b2c_airtel").val();
+            $.ajax({
+                url: '/stores/ib2c_airtel',
+                method: 'post',
+                data: {
+                    phone: phone,
+                    amount: amount
+                },
+                success: function (f) {
+
+                }
+            });
+        }
+
+    });
+
+    $("#b2b_paybill").click(function (e) {
+        e.preventDefault();
+        $(".b2b_paybill_text").html("Processing");
+        $("#b2b_paybill").attr("disabled", "true");
+        $(".trans_messages").html("<p style=''> Please wait ...</p>");
+        namey = $("#account_name_b2b_paybill").val();
+        account = $("#account_number_b2b_paybill").val();
+        amount = $("#amount_b2b_paybill").val();
 
         $.ajax({
-            url: '/stores/b2b',
+            url: '/stores/ib2b_paybill',
             method: 'post',
             data: {
-                name: name,
+                name: namey,
                 account: account,
                 amount: amount,
-                type: "7"
             },
             success: function (f) {
 
@@ -259,23 +314,22 @@ $(function () {
         });
     });
 
-    $("#b2btill").click(function (e) {
+    $("#b2b_till").click(function (e) {
         e.preventDefault();
-        $(".b2btill_text").html("Processing");
-        $("#b2btill").attr("disabled", "true");
-        $(".trans_messages_till").html("<p style=''> Please wait ...</p>");
-        name = $("#client_name_till").val();
-        account = $("#client_account_till").val();
-        amount = $("#amount_till").val();
+        $(".b2b_till_text").html("Processing");
+        $("#b2b_till").attr("disabled", "true");
+        $(".trans_messages").html("<p style=''> Please wait ...</p>");
+        namey = $("#account_name_b2b_till").val();
+        account = $("#account_number_b2b_till").val();
+        amount = $("#amount_b2b_till").val();
 
         $.ajax({
-            url: '/stores/b2b',
+            url: '/stores/ib2b_till',
             method: 'post',
             data: {
-                name: name,
+                name: namey,
                 account: account,
                 amount: amount,
-                type: "6"
             },
             success: function (f) {
 
@@ -486,7 +540,6 @@ $(function () {
         }
         store_reg();
     });
-
 
     $("#store_phone").keyup(function () {
         phone = $("#store_phone").val();
@@ -1114,7 +1167,7 @@ function val_phone() {
 }
 
 function val_phone2() {
-    phoneno = $("#client_account_b2c").val();
+    phoneno = $("#client_account_b2c_mpesa").val();
     if (!phonecheck(phoneno)) {
         $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 2547XXXXXXXX</p>")
     } else {
@@ -1237,31 +1290,56 @@ function _manual_() {
     }
 }
 
-function b2c_val() {
-    client_name = $("#client_name_b2c").val();
-    client_account = $("#client_account_b2c").val();
-    amount = $("#amount_b2c").val();
+function b2c_mpesa_val() {
+    client_account = $("#client_account_b2c_mpesa").val();
+    amount = $("#amount_b2c_mpesa").val();
 
-    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) > 0)) {
-        $("#b2c").removeAttr("disabled");
-        $("#b2c").removeAttr("style");
+    if (phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) > 0)) {
+        $("#ib2c_mpesa").removeAttr("disabled");
+        $("#ib2c_mpesa").removeAttr("style");
     } else {
-        $("#b2c").attr("disabled", "true");
-        $("#b2c").attr("style", "background-color: grey;color: white");
+        $("#ib2c_mpesa").attr("disabled", "true");
+        $("#ib2c_mpesa").attr("style", "background-color: grey;color: white");
     }
 }
 
-function b2bpay_val() {
-    client_name = $("#client_name_pay").val();
-    client_account = $("#client_account_pay").val();
-    amount = $("#amount_pay").val();
+function b2c_airtel_val() {
+    client_account = $("#client_account_b2c_airtel").val();
+    amount = $("#amount_b2c_airtel").val();
+
+    if (phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) > 0)) {
+        $("#ib2c_airtel").removeAttr("disabled");
+        $("#ib2c_airtel").removeAttr("style");
+    } else {
+        $("#ib2c_airtel").attr("disabled", "true");
+        $("#ib2c_airtel").attr("style", "background-color: grey;color: white");
+    }
+}
+
+function b2b_paybill_val() {
+    client_name = $("#account_name_b2b_paybill").val();
+    client_account = $("#account_number_b2b_paybill").val();
+    amount = $("#amount_b2b_paybill").val();
 
     if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
-        $("#b2bpay").removeAttr("disabled");
+        $("#b2b_paybill").removeAttr("disabled");
     } else {
-        $("#b2bpay").attr("disabled", "true");
+        $("#b2b_paybill").attr("disabled", "true");
     }
 }
+
+function b2b_till_val() {
+    client_name = $("#account_name_b2b_till").val();
+    client_account = $("#account_number_b2b_till").val();
+    amount = $("#amount_b2b_till").val();
+
+    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
+        $("#b2b_till").removeAttr("disabled");
+    } else {
+        $("#b2b_till").attr("disabled", "true");
+    }
+}
+
 
 function b2btill_val() {
     client_name = $("#client_name_till").val();
@@ -1304,18 +1382,22 @@ function set_bal(post) {
 
     if (amt == "") {
         $('.charge', '.conditions_' + post).html("0");
-    } else if (parseInt(amt) > 500) {
-        $('.charge', '.conditions_' + post).html("Ksh: " + (parseInt(45) + parseInt(parseFloat(amt) * 0.01)));
-        $('.bal', '.conditions_' + post).html("Ksh: " + (parseInt(full) - (parseInt(amt) + (45 + parseInt(amt * 0.01)))));
-    } else {
-        bal = (parseInt(full) - (parseInt(amt) + (52 + parseInt(amt * 0.01))));
-        $('.charge', '.conditions_' + post).html("Ksh: " + (52 + parseInt(parseFloat(amt) * 0.01)));
-        if (bal <= 0) {
-            bal = 0;
-            $('.charge', '.conditions_' + post).html("Ksh: 0");
-        }
+    } else  {
+        $('.charge', '.conditions_' + post).html("Ksh: " + Math.floor(parseInt(50) + parseInt(parseFloat(amt) * 0.01)));
+        $('.bal', '.conditions_' + post).html("Ksh: " + Math.ceil(parseInt(full) - (parseInt(amt) + (50 + parseInt(amt * 0.01)))));
+    }
+}
 
-        $('.bal', '.conditions_' + post).html("Ksh: " + bal);
+function set_bal_b2b(post) {
+    max = $('.charge', '.conditions_' + post).attr('data');
+    amt = $("#amount_" + post).val();
+    full = $(".charge", '.conditions_' + post).attr('data-full');
+
+    if (amt == "") {
+        $('.charge', '.conditions_' + post).html("0");
+    } else  {
+        $('.charge', '.conditions_' + post).html("Ksh: " + Math.floor(parseInt(0) + parseInt(parseFloat(amt) * 0.01)));
+        $('.bal', '.conditions_' + post).html("Ksh: " + Math.ceil(parseInt(full) - (parseInt(amt) + (0 + parseInt(amt * 0.01)))));
     }
 }
 
@@ -1329,14 +1411,24 @@ function check_num(post) {
     }
 }
 
-function val_b2bpay() {
-    val = $("#client_account_pay").val();
+function val_b2b_paybill() {
+    val = $("#account_number_b2b_paybill").val();
     if ($.isNumeric(val)) {
-        $(".pay_acc_prev").html("")
+        $(".acc_prev_b2b_paybill").html("")
     } else {
-        $(".pay_acc_prev").html("<p style='color: red'>Paybill is a Number!</p>")
+        $(".acc_prev_b2b_paybill").html("<p style='color: red'>Paybill is a Number!</p>")
     }
 }
+
+function val_b2b_till() {
+    val = $("#account_number_b2b_till").val();
+    if ($.isNumeric(val)) {
+        $(".acc_prev_b2b_till").html("")
+    } else {
+        $(".acc_prev_b2b_till").html("<p style='color: red'>Paybill is a Number!</p>")
+    }
+}
+
 
 function val_b2btill() {
     val = $("#client_account_till").val();

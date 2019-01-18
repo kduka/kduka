@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190107211714) do
+ActiveRecord::Schema.define(version: 20190118114711) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -210,6 +210,33 @@ ActiveRecord::Schema.define(version: 20190107211714) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "iipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "txncd"
+    t.string   "qwh"
+    t.string   "afd"
+    t.string   "poi"
+    t.string   "uyt"
+    t.string   "ifd"
+    t.string   "agt"
+    t.string   "trans_id"
+    t.string   "status"
+    t.string   "ivm"
+    t.string   "mc"
+    t.string   "p1"
+    t.string   "p2"
+    t.string   "p3"
+    t.string   "p4"
+    t.string   "msisdn_id"
+    t.string   "msisdn_idnum"
+    t.string   "msisdn_custnum"
+    t.string   "channel"
+    t.string   "tokenid"
+    t.string   "tokenemail"
+    t.string   "card_mask"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "MSISDN"
     t.string   "BusinessShortCode"
@@ -223,6 +250,15 @@ ActiveRecord::Schema.define(version: 20190107211714) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "bill_ref_no"
+  end
+
+  create_table "itransactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "status"
+    t.string   "text"
+    t.string   "reference"
+    t.string   "timestamp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -120,6 +120,11 @@ Rails.application.routes.draw do
   get 'admins/earnings' => 'admins#earnings'
   get '/legal/terms' => 'home#terms'
   get '/legal/aup' => 'home#aup'
+  post 'ipn/ipay' => 'ipn#ipay'
+  post 'stores/ib2c_mpesa' => 'stores#ib2c_mpesa'
+  post 'stores/ib2c_airtel' => 'stores#ib2c_airtel'
+  post 'stores/ib2b_paybill' => 'stores#ib2b_paybill'
+  post 'stores/ib2b_till' => 'stores#ib2b_till'
 
 
 

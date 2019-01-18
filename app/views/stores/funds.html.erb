@@ -12,42 +12,34 @@ $(document).ready(function(){
   </div>
  <div class="col-md-12 span_3"><br>
    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#mobile" style="color:#7aae42">Mobile Number</a></li>
-<!--      <li><a data-toggle="tab" href="#paybill" style="color:#7aae42">Paybill</a></li>
-      <li><a data-toggle="tab" href="#till" style="color:#7aae42">Till Number</a></li>
-      <li><a data-toggle="tab" href="#bank" style="color:#7aae42">Bank</a></li>-->
+      <li class="active"><a data-toggle="tab" href="#b2c_mpesa" style="color:#7aae42">M-PESA</a></li>
+      <li><a data-toggle="tab" href="#b2c_airtel" style="color:#7aae42">Airtel Money</a></li>
+      <li><a data-toggle="tab" href="#b2b_paybill_tab" style="color:#7aae42">Paybill</a></li>
+      <li><a data-toggle="tab" href="#b2b_till_tab" style="color:#7aae42">Till Number</a></li>
+<!--      <li><a data-toggle="tab" href="#b2b_eft" style="color:#7aae42">Bank</a></li>-->
     </ul>
 
     <div class="tab-content">
-      <div id="mobile" class="tab-pane fade in active">
-        <h3>Mobile Number</h3>
+      <div id="b2c_mpesa" class="tab-pane fade in active">
+        <h3>M-PESA</h3>
         <%= form_tag('') do%>
-        <div class="form-group">
-          <label for="client_name_b2c" class="col-sm-2 control-label">Recepient's Name</label>
-          <div class="col-sm-8">
-            <input type="text" id="client_name_b2c" onchange="b2c_val();" class="form-control1" placeholder="Recepient's Name"/>
-          </div>
-          <div class="col-sm-2">
-            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the name of the person/company receiving the money">Help?</span></a>
-          </div>
-        </div>
-        <div class="col-md-12" style="margin-top:1em"></div>
+
         <div class="form-group">
           <label for="client_account_b2c" class="col-sm-2 control-label">Recepient's Phone Number</label>
           <div class="col-sm-8">
-            <input type="text" id="client_account_b2c" onchange="b2c_val();val_phone2()" class="form-control1" placeholder="254xxxxxxxxx"/>
+            <input type="text" id="client_account_b2c_mpesa" onchange="b2c_mpesa_val();val_phone2()" class="form-control1" placeholder="254xxxxxxxxx"/>
             <div id="phone_prev"></div>
           </div>
           <div class="col-sm-2">
-            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the phone number of the person/company receiving the money">Help?</span></a>
+            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the phone number of the person receiving the money">Help?</span></a>
           </div>
         </div>
         <div class="col-md-12" style="margin-top:1em"></div>
         <div class="form-group">
-          <label for="amount_b2c" class="col-sm-2 control-label">Amount</label>
+          <label for="amount_b2c_mpesa" class="col-sm-2 control-label">Amount</label>
           <div class="col-sm-8">
-            <input type="number" id="amount_b2c" onchange="set_bal('b2c');" onkeyup="set_max('b2c');b2c_val();check_num('b2c')" class="form-control1" placeholder="Amount" min="0" />
-            <div id="amount_prev_b2c"></div>
+            <input type="number" id="amount_b2c_mpesa" onchange="set_bal('b2c_mpesa');" onkeyup="set_max('b2c_mpesa');b2c_mpesa_val();check_num('b2c_mpesa')" class="form-control1" placeholder="Amount" min="0" />
+            <div id="amount_prev_b2c_mpesa"></div>
           </div>
           <div class="col-sm-2">
             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount (kenya shillings) that will be transferred">Help?</span></a>
@@ -57,25 +49,62 @@ $(document).ready(function(){
 
         <div class="form-group">
           <div class="col-sm-10 col-sm-offset-2">
-            <button id="b2c" style="background-color: grey;color: white" disabled type="submit" class="kd_buttons"><span class="b2c_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
+            <button id="ib2c_mpesa" disabled style="background-color: grey;color: white"  type="submit" class="kd_buttons"><span class="b2c_mpesa_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
           </div>
         </div>
         <div class="col-md-12" style="margin-top:1em"></div>
         <%end%>
-        <div class="conditions_b2c">
+        <div class="conditions_b2c_mpesa">
           <%= render 'charges' %>
         </div>
       </div>
 
+      <div id="b2c_airtel" class="tab-pane fade in">
+        <h3>Airtel MOney</h3>
+        <%= form_tag('') do%>
 
+          <div class="form-group">
+            <label for="client_account_b2c" class="col-sm-2 control-label">Recepient's Phone Number</label>
+            <div class="col-sm-8">
+              <input type="text" id="client_account_b2c_airtel" onchange="b2c_airtel_val();val_phone2()" class="form-control1" placeholder="254xxxxxxxxx"/>
+              <div id="phone_prev"></div>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the phone number of the person receiving the money">Help?</span></a>
+            </div>
+          </div>
+          <div class="col-md-12" style="margin-top:1em"></div>
+          <div class="form-group">
+            <label for="amount_b2c_airtel" class="col-sm-2 control-label">Amount</label>
+            <div class="col-sm-8">
+              <input type="number" id="amount_b2c_airtel" onchange="set_bal('b2c_airtel');" onkeyup="set_max('b2c_airtel');b2c_airtel_val();check_num('b2c_airtel')" class="form-control1" placeholder="Amount" min="0" />
+              <div id="amount_prev_b2c_airtel"></div>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount (kenya shillings) that will be transferred">Help?</span></a>
+            </div>
+          </div>
+          <div class="col-md-12" style="margin-top:1em"></div>
 
-<!--      <div id="paybill" class="tab-pane fade">
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+              <button id="ib2c_airtel" disabled style="background-color: grey;color: white"  type="submit" class="kd_buttons"><span class="b2c_airtel_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
+            </div>
+          </div>
+          <div class="col-md-12" style="margin-top:1em"></div>
+        <%end%>
+        <div class="conditions_b2c_airtel">
+          <%= render 'charges' %>
+        </div>
+      </div>
+
+      <div id="b2b_paybill_tab" class="tab-pane fade">
         <h3>Paybill</h3>
-        <%#= form_tag('') do%>
+        <%= form_tag('') do%>
         <div class="form-group">
-          <label for="client_name_pay" class="col-sm-2 control-label">Recepient's Name</label>
+          <label for="account_name_b2b_paybill" class="col-sm-2 control-label">Account Name</label>
           <div class="col-sm-8">
-            <input id="client_name_pay" onchange="b2bpay_val()" type="text" name="client_name" class="form-control1" placeholder="Recepient's Name"/>
+            <input id="account_name_b2b_paybill" onchange="b2b_paybill_val()" type="text" name="client_name" class="form-control1" placeholder="Account Name"/>
           </div>
           <div class="col-sm-2">
             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the name of the person/company receiving the money">Help?</span></a>
@@ -83,10 +112,10 @@ $(document).ready(function(){
         </div>
         <div class="col-md-12" style="margin-top:1em"></div>
         <div class="form-group">
-          <label for="client_account_pay" class="col-sm-2 control-label">Paybill Number</label>
+          <label for="account_number_b2b_paybill" class="col-sm-2 control-label">Paybill Number</label>
           <div class="col-sm-8">
-            <input id="client_account_pay" type="text" onchange="b2bpay_val();val_b2bpay()"  name="client_account"  class="form-control1" placeholder="Paybill Number"/>
-            <div class="pay_acc_prev"></div>
+            <input id="account_number_b2b_paybill" type="text" onchange="b2b_paybill_val();val_b2b_paybill()"  name="client_account"  class="form-control1" placeholder="Paybill Number"/>
+            <div class="acc_prev_b2b_paybill"></div>
           </div>
           <div class="col-sm-2">
             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the Paybill Number of the person/company receiving the money">Help?</span></a>
@@ -94,10 +123,10 @@ $(document).ready(function(){
         </div>
         <div class="col-md-12" style="margin-top:1em"></div>
         <div class="form-group">
-          <label for="amount_pay" class="col-sm-2 control-label">Amount</label>
+          <label for="amount_b2b_paybill" class="col-sm-2 control-label">Amount</label>
           <div class="col-sm-8">
-            <input  type="number" id="amount_pay" onchange="b2bpay_val();set_bal('pay')" onkeyup="set_max('pay');check_num('pay')" class="form-control1" placeholder="Amount" />
-            <div id="amount_prev_pay"></div>
+            <input  type="number" id="amount_b2b_paybill" onchange="b2b_paybill_val();set_bal_b2b('b2b_paybill')" onkeyup="set_max('b2b_paybill');check_num('b2b_paybill')" class="form-control1" placeholder="Amount" />
+            <div id="amount_prev_b2b_paybill"></div>
           </div>
           <div class="col-sm-2">
             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount (kenya shillings) that will be transferred">Help?</span></a>
@@ -107,67 +136,66 @@ $(document).ready(function(){
 
         <div class="form-group">
           <div class="col-sm-10 col-sm-offset-2">
-            <button id="b2bpay" disabled type="sumbit" class="kd_buttons"><span class="b2bpay_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
+            <button id="b2b_paybill" disabled type="sumbit" class="kd_buttons"><span class="b2b_paybill_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
           </div>
         </div>
         <div class="col-md-12" style="margin-top:1em"></div>
-        <%#end%>
-        <div class="conditions_pay">
-          <%#= render 'charges' %>
+        <%end%>
+        <div class="conditions_b2b_paybill">
+          <%= render 'charges' %>
         </div>
       </div>
 
-
-      <div id="till" class="tab-pane fade">
+      <div id="b2b_till_tab" class="tab-pane fade">
         <h3>Till Number</h3>
-        <%#= form_tag('') do%>
-        <div class="form-group">
-          <label for="client_name_till" class="col-sm-2 control-label">Recepient's Name</label>
-          <div class="col-sm-8">
-            <input id="client_name_till" type="text" onchange="b2btill_val()" name="client_name" class="form-control1" placeholder="Recepient's Name"/>
+        <%= form_tag('') do%>
+          <div class="form-group">
+            <label for="account_name_b2b_till" class="col-sm-2 control-label">Account Name</label>
+            <div class="col-sm-8">
+              <input id="account_name_b2b_till" onchange="b2b_till_val()" type="text" name="client_name" class="form-control1" placeholder="Account Name"/>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the name of the person/company receiving the money">Help?</span></a>
+            </div>
           </div>
-          <div class="col-sm-2">
-            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the name of the person/company receiving the money">Help?</span></a>
+          <div class="col-md-12" style="margin-top:1em"></div>
+          <div class="form-group">
+            <label for="account_number_b2b_till" class="col-sm-2 control-label">Till Number</label>
+            <div class="col-sm-8">
+              <input id="account_number_b2b_till" type="text" onchange="b2b_till_val();val_b2b_till()"  name="client_account"  class="form-control1" placeholder="Paybill Number"/>
+              <div class="acc_prev_b2b_till"></div>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the Till Number of the person/company receiving the money">Help?</span></a>
+            </div>
           </div>
-        </div>
-        <div class="col-md-12" style="margin-top:1em"></div>
-        <div class="form-group">
-          <label for="client_account_till" class="col-sm-2 control-label">Till Number</label>
-          <div class="col-sm-8">
-            <input id="client_account_till" type="text" onchange="b2btill_val();val_b2btill()" name="client_account" class="form-control1" placeholder="Till Number"/>
-            <div class="till_acc_prev"></div>
+          <div class="col-md-12" style="margin-top:1em"></div>
+          <div class="form-group">
+            <label for="amount_b2b_till" class="col-sm-2 control-label">Amount</label>
+            <div class="col-sm-8">
+              <input  type="number" id="amount_b2b_till" onchange="b2b_till_val();set_bal_b2b('b2b_till')" onkeyup="set_max('b2b_till');check_num('b2b_till')" class="form-control1" placeholder="Amount" />
+              <div id="amount_prev_b2b_till"></div>
+            </div>
+            <div class="col-sm-2">
+              <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount (kenya shillings) that will be transferred">Help?</span></a>
+            </div>
           </div>
-          <div class="col-sm-2">
-            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the Till Number of the person/company receiving the money">Help?</span></a>
-          </div>
-        </div>
-        <div class="col-md-12" style="margin-top:1em"></div>
-        <div class="form-group">
-          <label for="amount_till" class="col-sm-2 control-label">Amount</label>
-          <div class="col-sm-8">
-            <input  type="text" onchange="b2btill_val();set_bal('till')" onkeyup="set_max('till');check_num('till')" id="amount_till" class="form-control1" placeholder="Amount" />
-            <div id="amount_prev_till"></div>
-          </div>
-          <div class="col-sm-2">
-            <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the amount (kenya shillings) that will be transferred">Help?</span></a>
-          </div>
-        </div>
-        <div class="col-md-12" style="margin-top:1em"></div>
+          <div class="col-md-12" style="margin-top:1em"></div>
 
-        <div class="form-group">
-          <div class="col-sm-10 col-sm-offset-2">
-            <button id="b2btill" disabled type="sumbit" class="kd_buttons"><span class="b2btill_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+              <button id="b2b_till" disabled type="sumbit" class="kd_buttons"><span class="b2b_till_text"><i class="fa fa-arrow-right"></i> Transfer Funds</span></button>
+            </div>
           </div>
-        </div>
-        <div class="col-md-12" style="margin-top:1em"></div>
-        <%#end%>
-        <div class="conditions_till">
-          <%#= render 'charges' %>
+          <div class="col-md-12" style="margin-top:1em"></div>
+        <%end%>
+        <div class="conditions_b2b_till">
+          <%= render 'charges' %>
         </div>
       </div>
 
 
-      <div id="bank" class="tab-pane fade">
+<!--      <div id="b2b_eft" class="tab-pane fade">
         <h3>Bank Account</h3>
         <%#= form_tag('') do%>
         <div class="form-group">

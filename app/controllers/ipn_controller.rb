@@ -171,6 +171,25 @@ class IpnController < ApplicationController
     @store_amount.update(actual: nu, lifetime_earnings: le)
   end
 
+  def ipay
+    puts request.body.read
+    response = JSON.parse(request.body.read)
+    @params = Hash.[]
+    response.each do |(k, a)|
+      if k == "id"
+        @params["trans_#{k}"] = a
+      else
+        @params["#{k}"] = a
+      end
+    end
+    @ipn = Iipn.create(@params)
+
+    if @ipn
+      render :json => {'status': 'ok'}
+      check_order(@params['trans_id'], @params['mc'], @params['txncd'])
+    end
+  end
+
 end
 
 =begin
@@ -310,6 +329,32 @@ end
  	</KYCInfoList>
  </InstantPaymentNotification>
 
+=end
+
+=begin
+{
+"txncd":"664093384",
+"qwh":1501534703,
+"afd":216710862,
+"poi":383319515,
+"uyt":319951150,
+"ifd":1183332828,
+"agt":"",
+"id":"CX7BD2SN",
+"status":"aei7p7yrx4ae34",
+"ivm":"CX7BD2SN",
+"mc":5454,
+"p1":"",
+"p2":"",
+"p3":"",
+"p4":"",
+"msisdn_id":"m n",
+"msisdn_idnum":"0724040839",
+"msisdn_custnum":"0724040839",
+"channel":"Credit_Card",
+"tokenid":"demo",
+"tokenemail":"martindeto@gmail.com",
+"card_mask":"444444xxxxxx4444"}
 =end
 
 
