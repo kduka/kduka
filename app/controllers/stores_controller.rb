@@ -1015,6 +1015,8 @@ end
 
       res = JSON.parse(@response)
 
+      puts res
+
       if response.kind_of? Net::HTTPSuccess
         puts "HTTP WORKED = #{response.read_body}"
 

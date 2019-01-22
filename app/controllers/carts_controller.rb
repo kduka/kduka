@@ -186,7 +186,7 @@ class CartsController < ApplicationController
     @update = current_order.update(address: address, shipping: amount, delivery_order: orderid, delivery_type: type, name: name, email: email, phone: phone, del_location: delivery_location, del_lat: lat, del_long: lng, order_instructions: instructions)
 
     if @update
-      cbk = "#{request.subdomain}.#{request.domain}:#{request.port}"
+      cbk = "www.kduka.co.ke/ipn/process"
       key = ENV['ipay_hash_key']
       data = ENV['ipay_live']+current_order.ref+current_order.ref+current_order.total.to_s+current_order.phone+current_order.email+ENV['ipay_vid']+"KES" + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
       digest = OpenSSL::Digest.new('sha1')
@@ -253,6 +253,10 @@ class CartsController < ApplicationController
 
   def clear
     session[:order_id] = nil
+  end
+
+  def process
+
   end
 
 

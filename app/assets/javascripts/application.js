@@ -850,8 +850,6 @@ $(function () {
         }
     });
 
-
-
     $("#up1").click(function () {
         $.ajax({
             url: '/stores/create_year',

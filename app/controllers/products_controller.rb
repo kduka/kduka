@@ -292,10 +292,6 @@ class ProductsController < ApplicationController
     @name = params[:name]
     @cookie_id = params[:cookie_id]
 
-    session[:cookie_id] = Array.new
-    session[:cookie_id][:"#{@name}"] = params[:variant_value]
-
-    puts session[:cookie_id]["#{@name}"]
   end
 
   def delete_variant
