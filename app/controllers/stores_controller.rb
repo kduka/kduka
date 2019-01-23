@@ -914,6 +914,8 @@ end
 
     hash = OpenSSL::HMAC.hexdigest(digest, key, data)
 
+    puts hash
+
     #START THE REQUEST TO IPAY AFRICA
 
     url = URI("https://apis.ipayafrica.com/b2b/v1/external/send/mpesapaybill")

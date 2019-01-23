@@ -21,11 +21,11 @@
   <input type="hidden" name="eml" value="<%= current_order.email %>">
   <input type="hidden" name="vid" value="<%= ENV['ipay_vid'] %>">
   <input type="hidden" name="curr" value="KES">
-  <input type="hidden" name="p1" value="">
+  <input type="hidden" name="p1" value="<%= "#{request.subdomain}.#{request.domain}" %>">
   <input type="hidden" name="p2" value="">
   <input type="hidden" name="p3" value="">
   <input type="hidden" name="p4" value="">
-  <input type="hidden" name="cbk" value="<%= "www.kduka.co.ke/ipn/process" %>">
+  <input type="hidden" name="cbk" value="<%= "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn" %>">
   <input type="hidden" name="cst" value="<%= ENV['ipay_cst_flag'] %>">
   <input type="hidden" name="crl" value="<%= ENV['ipay_crl_flag'] %>">
   <input type="hidden" name="hsh" value="<%= @hash %>">

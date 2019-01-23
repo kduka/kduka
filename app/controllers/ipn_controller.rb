@@ -190,6 +190,53 @@ class IpnController < ApplicationController
     end
   end
 
+  def process_ipn
+    #puts response.read_body
+    pars = request.GET
+    #Iipn.create(pars)
+
+    @pars = pars
+
+    val = "#{ENV['ipay_vid']}";
+
+    val1 = pars["id"];
+    val2 = pars["ivm"];
+    val3 = pars["qwh"];
+    val4 = pars["afd"];
+    val5 = pars["poi"];
+    val6 = pars["uyt"];
+    val7 = pars["ifd"];
+
+    ipnurl = "https://www.ipayafrica.com/ipn/?vendor=#{val}&id=#{val1}&ivm=#{val2}&qwh=#{val3}&afd=#{val4}&poi=#{val5}&uyt=#{val6}&ifd=#{val7}"
+
+    require 'net/http'
+
+    uri = URI.parse(ipnurl)
+
+    # Shortcut
+    #response = Net::HTTP.post_form(uri, {"user[name]" => "testusername", "user[email]" => "testemail@yahoo.com"})
+
+    # Full control
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(uri.request_uri)
+
+    response = http.request(request)
+    valcode = response.body
+
+    if valcode = 'aei7p7yrx4ae34'
+      #render :json => {'status': 'ok'}
+      check_order(pars['id'], pars['mc'], pars['txncd'])
+    end
+
+    if Rails.env.development?
+      redirect_to("http://#{pars['p1']}:3000/carts/success")
+    else
+      redirect_to("http://#{pars['p1']}/carts/success")
+    end
+  end
+
 end
 
 =begin

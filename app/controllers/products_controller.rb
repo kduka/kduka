@@ -290,7 +290,10 @@ class ProductsController < ApplicationController
 
   def add_variant_temp
     @name = params[:name]
-    @cookie_id = params[:cookie_id]
+
+    session[:cookie_id] = @name[params[:variant_value]]
+
+    puts session[:cookie_id]
 
   end
 
