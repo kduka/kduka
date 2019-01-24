@@ -142,11 +142,7 @@ class ProductsController < ApplicationController
     @product = @store.product.create(product_params.merge(sku: sku))
     @product.save!
     if @product
-      #Save Variant First
-      ref = params[:serial]
-      vars = Variant.where(ref:ref).first
 
-      vars.update(product_id:@product.id)
       flash[:notice] = "New Product Created!"
       redirect_to(products_manage_path)
     else
