@@ -126,6 +126,7 @@ Rails.application.routes.draw do
   post 'stores/ib2b_paybill' => 'stores#ib2b_paybill'
   post 'stores/ib2b_till' => 'stores#ib2b_till'
   get 'ipn/process_ipn' => 'ipn#process_ipn'
+  get 'ipn/process_ipn_sub' => 'ipn#process_ipn_sub'
 
 
 

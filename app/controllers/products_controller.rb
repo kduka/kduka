@@ -142,11 +142,10 @@ class ProductsController < ApplicationController
     @product = @store.product.create(product_params.merge(sku: sku))
     @product.save!
     if @product
-      #Save Variant First
-      ref = params[:serial]
-      vars = Variant.where(ref:ref).first
-
-      vars.update(product_id:@product.id)
+      cookie = params[:cookie_id]
+      session[cookie].each do |k,v|
+        Variant.create(product_id:@product.id,name:k,value:v.to_json)
+      end
       flash[:notice] = "New Product Created!"
       redirect_to(products_manage_path)
     else
@@ -291,9 +290,15 @@ class ProductsController < ApplicationController
   def add_variant_temp
     @name = params[:name]
 
-    session[:cookie_id] = @name[params[:variant_value]]
+    @hash = Hash.new
 
-    puts session[:cookie_id]
+    @hash["#{@name}"] = params[:variant_value]
+
+    session[params[:cookie_id]] = @hash
+
+    puts "IT IS #{session[params[:cookie_id]]} and #{@hash}"
+
+    #session[:cookie_id]["#{@name}"] = "#{params[:variant_value]}"
 
   end
 
@@ -326,9 +331,18 @@ class ProductsController < ApplicationController
     @name = params[:name]
     @index = params[:index]
     var = params[:vars]
+    cookie_id = params[:cookie_id]
 
     @str = JSON.parse(var)
     @str.delete(@index)
+
+    vars = Hash.new
+
+    vars["#{@name}"] = @str
+
+    session[cookie_id] = vars
+
+    puts "NEW VAR STING IS #{session[cookie_id]}"
 
 
     if @str.blank?
@@ -383,6 +397,7 @@ class ProductsController < ApplicationController
 
     @name = params[:variant_name]
     @variant_value = params[:variant_value].downcase
+    cookie_id = params[:cookie_id]
 
     existing_vals = params[:existing_vals]
     @vals = JSON.parse(existing_vals)
@@ -404,9 +419,15 @@ class ProductsController < ApplicationController
 
     @vals[key] = @variant_value
 
-    @new_vals =  @vals.to_json
+    vars = Hash.new
 
-    puts @new_vals + @name
+    vars["#{@name}"] = @vals
+
+    session[cookie_id] = vars
+
+    puts "NEW VAR STRING IS #{session[cookie_id]}"
+
+    @new_vals =  @vals.to_json
 
     @vars = Hash.[]
 

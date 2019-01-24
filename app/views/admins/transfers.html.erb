@@ -1,35 +1,35 @@
 <div class="content_bottom" style="margin-top:2em">
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<h3 style="color:#7aae42"><i class="fa fa-money"></i> Money Out</h3>
-<div class="col_2">
-<div style="overflow-x:scroll">
-<% columns = @transfers.column_names %>
-<table id="transfersTable" class="table">
-  <thead>
-  <tr>
+  <h3 style="color:#7aae42"><i class="fa fa-money"></i> Money In</h3>
+  <div class="col_2">
+    <div style="overflow-x:scroll">
 
-    <% columns.each do |c| %>
-      <th><%= c %></th>
-    <% end %>
+      <% columns = @transfers.column_names %>
+      <table id="transactionsTable" class="table">
+        <thead>
+        <tr>
 
-  </tr>
-  </thead>
+          <% columns.each do |c| %>
+            <th><%= c %></th>
+          <% end %>
 
-  <tbody>
-  <% @transfers.each do |ipn| %>
-    <tr>
+        </tr>
+        </thead>
 
-      <% columns.each do |c| %>
-        <td><%=  ipn[c] %></td>
-      <% end %>
+        <tbody>
+        <% @transfers.each do |ipn| %>
+          <tr>
+            <% columns.each do |c| %>
+              <td><%=  ipn[c] rescue nil %></td>
+            <% end %>
 
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-</div>
-</div>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <br>

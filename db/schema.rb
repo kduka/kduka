@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190118114711) do
+ActiveRecord::Schema.define(version: 20190124082243) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -235,6 +235,7 @@ ActiveRecord::Schema.define(version: 20190118114711) do
     t.string   "card_mask"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "hsh"
   end
 
   create_table "ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -257,8 +258,12 @@ ActiveRecord::Schema.define(version: 20190118114711) do
     t.string   "text"
     t.string   "reference"
     t.string   "timestamp"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "amount"
+    t.string   "balance_as_of_now"
+    t.integer  "store_id"
+    t.index ["store_id"], name: "index_itransactions_on_store_id", using: :btree
   end
 
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -552,6 +557,7 @@ ActiveRecord::Schema.define(version: 20190118114711) do
   add_foreign_key "earnings", "stores"
   add_foreign_key "earnings", "transaction_statuses"
   add_foreign_key "feedbacks", "stores"
+  add_foreign_key "itransactions", "stores"
   add_foreign_key "orders", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"

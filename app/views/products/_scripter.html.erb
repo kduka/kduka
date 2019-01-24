@@ -12,13 +12,15 @@
             namey = $(this).attr('data-name');
             val = $("#new_text_" + namey).val();
             existing_vals = $(".var_"+namey).attr('data');
+            cookie_id = $("#cookie_id").attr('data');
             $.ajax({
                 url: '/products/append_variant_temp',
                 method: 'post',
                 data: {
                     variant_name: namey,
                     variant_value: val,
-                    existing_vals: existing_vals
+                    existing_vals: existing_vals,
+                    cookie_id:cookie_id
                 },
                 success: function (e) {
                     $("#new_text_" + namey).val("");
@@ -34,6 +36,7 @@
             the_var = $(this).attr('data');
             the_name = $(this).attr('data-var');
             the_string = $('.var_'+the_name).attr('data');
+            cookie_id = $("#cookie_id").attr('data');
 
             $.ajax({
                 url: '/products/delete_variant_temp',
@@ -41,7 +44,8 @@
                 data: {
                     name: the_name,
                     index: $(this).attr('data-attr'),
-                    vars: the_string
+                    vars: the_string,
+                    cookie_id:cookie_id
                 },
                 success: function () {
 

@@ -1321,8 +1321,10 @@ function b2b_paybill_val() {
 
     if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
         $("#b2b_paybill").removeAttr("disabled");
+        $("#b2b_paybill").removeAttr("style");
     } else {
         $("#b2b_paybill").attr("disabled", "true");
+        $("#b2b_paybill").attr("style", "background-color: grey;color: white");
     }
 }
 
@@ -1333,8 +1335,10 @@ function b2b_till_val() {
 
     if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
         $("#b2b_till").removeAttr("disabled");
+        $("#b2b_till").removeAttr("style");
     } else {
         $("#b2b_till").attr("disabled", "true");
+        $("#b2b_till").attr("style", "background-color: grey;color: white");
     }
 }
 
@@ -1381,8 +1385,8 @@ function set_bal(post) {
     if (amt == "") {
         $('.charge', '.conditions_' + post).html("0");
     } else  {
-        $('.charge', '.conditions_' + post).html("Ksh: " + Math.floor(parseInt(50) + parseInt(parseFloat(amt) * 0.01)));
-        $('.bal', '.conditions_' + post).html("Ksh: " + Math.ceil(parseInt(full) - (parseInt(amt) + (50 + parseInt(amt * 0.01)))));
+        $('.charge', '.conditions_' + post).html("Ksh: " + Math.floor(parseInt(45) + parseInt(parseFloat(amt) * 0.01)));
+        $('.bal', '.conditions_' + post).html("Ksh: " + Math.ceil(parseInt(full) - (parseInt(amt) + (45 + parseInt(amt * 0.01)))));
     }
 }
 

@@ -155,17 +155,17 @@ class AdminsController < ApplicationController
   end
 
   def ipns
-    @ipns = Ipn.all
+    @ipns = Iipn.all
     super_admin
   end
 
   def transactions
-    @transactions = Transaction.where(:transaction_status_id => [2,3,5,6])
+    @transactions = Order.where(:order_status_id => [2,6])
     super_admin
   end
 
   def transfers
-    @transfers = BusinessToConsumer.all
+    @transfers = Itransaction.all
     super_admin
   end
 

@@ -660,11 +660,26 @@ end
   end
 
   def create_year
-    exist = Subscription.where(order_status_id: 5, description: 'year', amount: 4500).first
+    exist = Subscription.where(order_status_id: 5, description: 'year', amount: 1).first
     if exist.nil?
-      @order = Subscription.create(amount: 4500, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'year', order_status_id: 5, store_id: current_store.id)
+      @order = Subscription.create(amount: 1, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'year', order_status_id: 5, store_id: current_store.id)
+      cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
+      key = ENV['ipay_hash_key']
+      p1 = "#{request.subdomain}.#{request.domain}"
+      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      digest = OpenSSL::Digest.new('sha1')
+
+      @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
     else
       @order = exist
+
+      cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
+      key = ENV['ipay_hash_key']
+      p1 = "#{request.subdomain}.#{request.domain}"
+      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      digest = OpenSSL::Digest.new('sha1')
+
+      @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
     end
     no_layout
   end
@@ -674,8 +689,24 @@ end
 
     if exist.nil?
       @order = Subscription.create(amount: 2395, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'bi', order_status_id: 5, store_id: current_store.id)
+
+      cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
+      key = ENV['ipay_hash_key']
+      p1 = "#{request.subdomain}.#{request.domain}"
+      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      digest = OpenSSL::Digest.new('sha1')
+
+      @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
     else
       @order = exist
+
+      cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
+      key = ENV['ipay_hash_key']
+      p1 = "#{request.subdomain}.#{request.domain}"
+      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      digest = OpenSSL::Digest.new('sha1')
+
+      @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
     end
     no_layout
   end
@@ -685,8 +716,25 @@ end
 
     if exist.nil?
       @order = Subscription.create(amount: 420, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'month', order_status_id: 5, store_id: current_store.id)
+
+      cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
+      key = ENV['ipay_hash_key']
+      p1 = "#{request.subdomain}.#{request.domain}"
+      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      digest = OpenSSL::Digest.new('sha1')
+
+      @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
     else
       @order = exist
+
+
+      cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
+      key = ENV['ipay_hash_key']
+      p1 = "#{request.subdomain}.#{request.domain}"
+      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      digest = OpenSSL::Digest.new('sha1')
+
+      @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
     end
     no_layout
   end
@@ -739,7 +787,7 @@ end
     @storeamount = StoreAmount.where(store_id: current_store.id).first
     @charges
 
-    @temp = @storeamount.amount.to_i - 50 #DEDUCT STANDARD CHARGE
+    @temp = @storeamount.amount.to_i - 45 #DEDUCT STANDARD CHARGE
     @max = @temp - ((@temp.to_d * 0.01).to_i).floor #DEDUCT OUR COMMISION AND ROUND OFF TO LOWER INTEGER
 
     if amount.to_i > @max
@@ -768,34 +816,134 @@ end
       request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
       request.body = "{\"vid\":\"#{vid}\",\"reference\": \"#{ref}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"phone\": \"#{phone}\"}"
 
-      response = http.request(request)
-      @response = response.read_body
-      puts @response
+      begin
 
-      res = JSON.parse(@response)
+        puts "\n\n Begin call to make B2C PAYMENT \n......\n......\n......\n"
 
-      if response.kind_of? Net::HTTPSuccess
-        puts "HTTP WORKED = #{response.read_body}"
+        response = http.request(request)
 
-        Itransaction.create(res)
+        @response = response.read_body
 
-        @storeamount = StoreAmount.where(store_id: current_store.id).first
+        res = JSON.parse(@response)
+
+        if response.kind_of? Net::HTTPSuccess
+
+          puts "Response in JSON is #{res}"
 
 
-        @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil
+          Itransaction.create(res.merge(store_id:current_store.id))
 
-        nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-        nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
 
-        @storeamount.update(amount: nu, actual: nua)
+          if @itrans
+            puts "The Response was successfully saved in the DB"
+          else
+            puts "The Response was not saved in the DB"
+          end
 
-        Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((@storeamount.amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
-        @status = true
-      else
-        @status = false
-        @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+          @storeamount = StoreAmount.where(store_id: current_store.id).first
 
-        puts "HTTP DIDNT = #{response.read_body}"
+
+          @trans_charges = 45.to_d + (amount.to_d * 0.01).ceil
+
+          nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+          nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+          if @storeamount.update(amount: nu, actual: nua)
+            puts "Store Amount Updated to #{nu}"
+          else
+            puts "Store Amount couldn't be updated to #{nu}"
+          end
+
+          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+            puts "Earning from transaction #{res['reference']} updated to #{((amount.to_d * 0.01).to_i).ceil}"
+          end
+          @status = true
+        else
+          @status = false
+          @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+
+          puts "HTTP DIDNT = #{response.read_body}"
+        end
+
+          #IF SERVER TIMES OUT, LETS CHACK IF THE TRANSACTION WENT THROUGH BEFORE WE THROW AN ERROR
+      rescue Net::ReadTimeout => e
+
+        puts "\n\nTransaction check \n...... \n...... \n...... \n"
+        puts "\n\nStarting Hashing First \n...... \n...... \n...... \n"
+
+
+        data = "reference=#{ref}&vid=#{vid}"
+
+        trans_hash = OpenSSL::HMAC.hexdigest(digest, key, data)
+
+        puts "\n\nThe hash for transaction is #{trans_hash}"
+
+        puts "\n\nStarting Transaction Check"
+
+        url = URI("https://apis.ipayafrica.com/b2b/v1/transaction/status")
+
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        request = Net::HTTP::Post.new(url)
+        request["Content-Type"] = 'application/json'
+        request["cache-control"] = 'no-cache'
+        request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+        puts "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"hash\": \"#{trans_hash}\"}"
+        request.body = "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"hash\": \"#{trans_hash}\"}"
+
+        transaction_response = http.request(request)
+
+        begin
+
+          if transaction_response.kind_of? Net::HTTPSuccess
+
+            response2 = transaction_response.read_body
+
+            res2 = JSON.parse(response2)
+
+            puts "Response in JSON is #{res2}"
+
+            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount, store_id:current_store.id)
+
+            if @itrans
+              puts "The Response was successfully saved in the DB"
+            else
+              puts "The Response was not saved in the DB"
+            end
+
+            @storeamount = StoreAmount.where(store_id: current_store.id).first #Find amount of money for the store
+
+
+            @trans_charges = 45.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
+
+            puts "Transaction Charges are #{@trans_charges}"
+
+            nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+            nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+            if @storeamount.update(amount: nu, actual: nua)
+              puts "Store Amount Updated to #{nu}"
+            else
+              puts "Store Amount couldn't be updated to #{nu}"
+            end
+
+            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, transaction_status_id: 1)
+              puts "\n\n Amount is #{((amount.to_d * 0.01).to_i)}"
+              puts "\n \n Amount to ceil is #{((amount.to_d * 0.01).to_i).ceil}"
+              puts "\n\n Earning from transaction #{res2['reference']} updated to #{(amount.to_d * 0.01).ceil}"
+            end
+            @status = true
+          end
+
+        rescue Net::ReadTimeout => f
+          @status = false
+          @err = "Error transferring funds because of the following reason: Connection to server couldn't be established => #{f}"
+
+          puts "HTTP DIDNT = #{response.read_body}"
+        end
+
       end
       no_layout
 
@@ -818,7 +966,7 @@ end
     @storeamount = StoreAmount.where(store_id: current_store.id).first
     @charges
 
-    @temp = @storeamount.amount.to_i - 50 #DEDUCT STANDARD CHARGE
+    @temp = @storeamount.amount.to_i - 45 #DEDUCT STANDARD CHARGE
     @max = @temp - ((@temp.to_d * 0.01).to_i).floor #DEDUCT OUR COMMISION AND ROUND OFF TO LOWER INTEGER
 
     if amount.to_i > @max
@@ -847,37 +995,135 @@ end
       request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
       request.body = "{\"vid\":\"#{vid}\",\"reference\": \"#{ref}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"phone\": \"#{phone}\"}"
 
-      response = http.request(request)
-      @response = response.read_body
-      puts @response
+      begin
 
-      res = JSON.parse(@response)
+        puts "\n\n Begin call to make B2C PAYMENT \n......\n......\n......\n"
 
-      if response.kind_of? Net::HTTPSuccess
-        puts "HTTP WORKED = #{response.read_body}"
+        response = http.request(request)
 
-        Itransaction.create(res)
+        @response = response.read_body
 
-        @storeamount = StoreAmount.where(store_id: current_store.id).first
+        res = JSON.parse(@response)
+
+        puts "Response in JSON is #{res}"
+
+        if response.kind_of? Net::HTTPSuccess
+
+          Itransaction.create(res.merge(store_id:current_store.id))
 
 
-        @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil
+          if @itrans
+            puts "The Response was successfully saved in the DB"
+          else
+            puts "The Response was not saved in the DB"
+          end
 
-        nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-        nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+          @storeamount = StoreAmount.where(store_id: current_store.id).first
 
-        @storeamount.update(amount: nu, actual: nua)
 
-        Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((@storeamount.amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
-        @status = true
-      else
-        @status = false
-        @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+          @trans_charges = 45.to_d + (amount.to_d * 0.01).ceil
 
-        puts "HTTP DIDNT = #{response.read_body}"
+          nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+          nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+          if @storeamount.update(amount: nu, actual: nua)
+            puts "Store Amount Updated to #{nu}"
+          else
+            puts "Store Amount couldn't be updated to #{nu}"
+          end
+
+          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+            puts "Earning from transaction #{res['reference']} updated to #{((amount.to_d * 0.01).to_i).ceil}"
+          end
+          @status = true
+        else
+          @status = false
+          @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+
+          puts "HTTP DIDNT = #{response.read_body}"
+        end
+
+          #IF SERVER TIMES OUT, LETS CHACK IF THE TRANSACTION WENT THROUGH BEFORE WE THROW AN ERROR
+      rescue Net::ReadTimeout => e
+
+        puts "\n\nTransaction check \n...... \n...... \n...... \n"
+        puts "\n\nStarting Hashing First \n...... \n...... \n...... \n"
+
+
+        data = "reference=#{ref}&vid=#{vid}"
+
+        trans_hash = OpenSSL::HMAC.hexdigest(digest, key, data)
+
+        puts "\n\nThe hash for transaction is #{trans_hash}"
+
+        puts "\n\nStarting Transaction Check"
+
+        url = URI("https://apis.ipayafrica.com/b2b/v1/transaction/status")
+
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        request = Net::HTTP::Post.new(url)
+        request["Content-Type"] = 'application/json'
+        request["cache-control"] = 'no-cache'
+        request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+        puts "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"hash\": \"#{trans_hash}\"}"
+        request.body = "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"hash\": \"#{trans_hash}\"}"
+
+        transaction_response = http.request(request)
+
+        begin
+
+          if transaction_response.kind_of? Net::HTTPSuccess
+
+            response2 = transaction_response.read_body
+
+            res2 = JSON.parse(response2)
+
+            puts "Response in JSON is #{res2}"
+
+            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount, store_id:current_store.id)
+
+            if @itrans
+              puts "The Response was successfully saved in the DB"
+            else
+              puts "The Response was not saved in the DB"
+            end
+
+            @storeamount = StoreAmount.where(store_id: current_store.id).first #Find amount of money for the store
+
+
+            @trans_charges = 45.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
+
+            puts "Transaction Charges are #{@trans_charges}"
+
+            nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+            nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+            if @storeamount.update(amount: nu, actual: nua)
+              puts "Store Amount Updated to #{nu}"
+            else
+              puts "Store Amount couldn't be updated to #{nu}"
+            end
+
+            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, transaction_status_id: 1)
+              puts "\n\n Amount is #{((amount.to_d * 0.01).to_i)}"
+              puts "\n \n Amount to ceil is #{((amount.to_d * 0.01).to_i).ceil}"
+              puts "\n\n Earning from transaction #{res2['reference']} updated to #{(amount.to_d * 0.01).ceil}"
+            end
+            @status = true
+          end
+
+        rescue Net::ReadTimeout => f
+          @status = false
+          @err = "Error transferring funds because of the following reason: Connection to server couldn't be established => #{f}"
+
+          puts "HTTP DIDNT = #{response.read_body}"
+        end
+
       end
       no_layout
-
     end
   end
 
@@ -898,73 +1144,178 @@ end
     @storeamount = StoreAmount.where(store_id: current_store.id).first
     @charges
 
-    @temp = @storeamount.amount.to_i - 50 #DEDUCT STANDARD CHARGE
+    @temp = @storeamount.amount.to_i - 0 #DEDUCT STANDARD CHARGE
     @max = @temp - ((@temp.to_d * 0.01).to_i).floor #DEDUCT OUR COMMISION AND ROUND OFF TO LOWER INTEGER
 
     if amount.to_i > @max
       @status = false
     else
 
-    key = "#{ENV['ipay_hash_key']}"
-    ref = [*'A'..'Z', *"0".."9"].sample(10).join
-    vid = "#{ENV['ipay_vid']}"
-    curr = 'KES'
-    data = "account=#{account}&amount=#{amount}&curr=#{curr}&narration=#{narration}&reference=#{ref}&vid=#{vid}"
-    digest = OpenSSL::Digest.new('sha256')
+      #HASH PARAMETERS FOR IPAY REQUEST USING SHA256
 
-    hash = OpenSSL::HMAC.hexdigest(digest, key, data)
+      key = "#{ENV['ipay_hash_key']}"
+      ref = [*'A'..'Z', *"0".."9"].sample(10).join
+      vid = "#{ENV['ipay_vid']}"
+      curr = 'KES'
+      data = "account=#{account}&amount=#{amount}&curr=#{curr}&narration=#{narration}&reference=#{ref}&vid=#{vid}"
+      digest = OpenSSL::Digest.new('sha256')
 
-    puts hash
+      hash = OpenSSL::HMAC.hexdigest(digest, key, data)
 
-    #START THE REQUEST TO IPAY AFRICA
+      puts "\n\n This is the hash for the payment request #{hash} \n\n"
 
-    url = URI("https://apis.ipayafrica.com/b2b/v1/external/send/mpesapaybill")
+      #START THE REQUEST TO IPAY AFRICA
 
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      url = URI("https://apis.ipayafrica.com/b2b/v1/external/send/mpesapaybill")
 
-    request = Net::HTTP::Post.new(url)
-    request["Content-Type"] = 'application/json'
-    request["cache-control"] = 'no-cache'
-    request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
-    request.body = "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"account\":\"#{account}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"narration\": \"#{narration}\",\"curr\":\"#{curr}\"}"
+      http = Net::HTTP.new(url.host, url.port)
+      http.read_timeout = 10
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-    response = http.request(request)
-    @response = response.read_body
-    puts @response
+      request = Net::HTTP::Post.new(url)
+      request["Content-Type"] = 'application/json'
+      request["cache-control"] = 'no-cache'
+      request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+      puts "Body is {\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"account\":\"#{account}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"narration\": \"#{narration}\",\"curr\":\"#{curr}\"}"
+      request.body = "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"account\":\"#{account}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"narration\": \"#{narration}\",\"curr\":\"#{curr}\"}"
 
-    res = JSON.parse(@response)
+      begin
+        puts "\n\n Begin call to make B2B PAYMENT \n......\n......\n......\n"
 
-    if response.kind_of? Net::HTTPSuccess
-      puts "HTTP WORKED = #{response.read_body}"
+        response = http.request(request)
 
-      Itransaction.create(res)
+        @response = response.read_body
 
-      @storeamount = StoreAmount.where(store_id: current_store.id).first
+        res = JSON.parse(@response)
+
+        puts "Response in JSON is #{res}"
+
+        if response.kind_of? Net::HTTPSuccess #If the HTTP is succesful
+
+          @itrans = Itransaction.create(res.merge(store_id:current_store.id))
+
+          if @itrans
+            puts "The Response was successfully saved in the DB"
+          else
+            puts "The Response was not saved in the DB"
+          end
 
 
-      @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil
+          @storeamount = StoreAmount.where(store_id: current_store.id).first #Find amount of money for the store
 
-      nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-      nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
 
-      @storeamount.update(amount: nu, actual: nua)
+          @trans_charges = 0.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
 
-      Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((@storeamount.amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
-      @status = true
-    else
-      @status = false
-      @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+          puts "Transaction Charges are #{@trans_charges}"
 
-      puts "HTTP DIDNT = #{response.read_body}"
-    end
-    no_layout
+          nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+          nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+          if @storeamount.update(amount: nu, actual: nua)
+            puts "Store Amount Updated to #{nu}"
+          else
+            puts "Store Amount couldn't be updated to #{nu}"
+          end
+
+          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+            puts "Earning from transaction #{res['reference']} updated to #{((amount.to_d * 0.01).to_i).ceil}"
+          end
+          @status = true
+        else
+          @status = false
+          @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+
+          puts "HTTP DIDNT = #{response.read_body}"
+        end
+
+          #IF SERVER TIMES OUT, LETS CHACK IF THE TRANSACTION WENT THROUGH BEFORE WE THROW AN ERROR
+      rescue Net::ReadTimeout => e
+
+        puts "\n\nTransaction check \n...... \n...... \n...... \n"
+        puts "\n\nStarting Hashing First \n...... \n...... \n...... \n"
+
+
+        data = "reference=#{ref}&vid=#{vid}"
+
+        trans_hash = OpenSSL::HMAC.hexdigest(digest, key, data)
+
+        puts "\n\nThe hash for transaction is #{trans_hash}"
+
+        puts "\n\nStarting Transaction Check"
+
+        url = URI("https://apis.ipayafrica.com/b2b/v1/transaction/status")
+
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        request = Net::HTTP::Post.new(url)
+        request["Content-Type"] = 'application/json'
+        request["cache-control"] = 'no-cache'
+        request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+        puts "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"hash\": \"#{trans_hash}\"}"
+        request.body = "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"hash\": \"#{trans_hash}\"}"
+
+        transaction_response = http.request(request)
+
+        begin
+
+          if transaction_response.kind_of? Net::HTTPSuccess
+
+            response2 = transaction_response.read_body
+
+            res2 = JSON.parse(response2)
+
+            puts "Response in JSON is #{res2}"
+
+            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount, store_id:current_store.id)
+
+            if @itrans
+              puts "The Response was successfully saved in the DB"
+            else
+              puts "The Response was not saved in the DB"
+            end
+
+            @storeamount = StoreAmount.where(store_id: current_store.id).first #Find amount of money for the store
+
+
+            @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
+
+            puts "Transaction Charges are #{@trans_charges}"
+
+            nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+            nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+            if @storeamount.update(amount: nu, actual: nua)
+              puts "Store Amount Updated to #{nu}"
+            else
+              puts "Store Amount couldn't be updated to #{nu}"
+            end
+
+            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, transaction_status_id: 1)
+              puts "\n\n Amount is #{((amount.to_d * 0.01).to_i)}"
+              puts "\n \n Amount to ceil is #{((amount.to_d * 0.01).to_i).ceil}"
+              puts "\n\n Earning from transaction #{res2['reference']} updated to #{(amount.to_d * 0.01).ceil}"
+            end
+            @status = true
+          end
+
+        rescue Net::ReadTimeout => f
+          @status = false
+          @err = "Error transferring funds because of the following reason: Connection to server couldn't be established => #{f}"
+
+          puts "HTTP DIDNT = #{response.read_body}"
+        end
+
+      end
+      no_layout
 
     end
   end
 
   def ib2b_till
+
 
     #IMPORT LIBRARIES
 
@@ -981,12 +1332,14 @@ end
     @storeamount = StoreAmount.where(store_id: current_store.id).first
     @charges
 
-    @temp = @storeamount.amount.to_i - 50 #DEDUCT STANDARD CHARGE
+    @temp = @storeamount.amount.to_i - 0 #DEDUCT STANDARD CHARGE
     @max = @temp - ((@temp.to_d * 0.01).to_i).floor #DEDUCT OUR COMMISION AND ROUND OFF TO LOWER INTEGER
 
     if amount.to_i > @max
       @status = false
     else
+
+      #HASH PARAMETERS FOR IPAY REQUEST USING SHA256
 
       key = "#{ENV['ipay_hash_key']}"
       ref = [*'A'..'Z', *"0".."9"].sample(10).join
@@ -997,11 +1350,14 @@ end
 
       hash = OpenSSL::HMAC.hexdigest(digest, key, data)
 
+      puts "\n\n This is the hash for the payment request #{hash} \n\n"
+
       #START THE REQUEST TO IPAY AFRICA
 
       url = URI("https://apis.ipayafrica.com/b2b/v1/external/send/mpesatill")
 
       http = Net::HTTP.new(url.host, url.port)
+      http.read_timeout = 10
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
@@ -1009,38 +1365,138 @@ end
       request["Content-Type"] = 'application/json'
       request["cache-control"] = 'no-cache'
       request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+      puts "Body is {\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"account\":\"#{account}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"narration\": \"#{narration}\",\"curr\":\"#{curr}\"}"
       request.body = "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"account\":\"#{account}\",\"hash\": \"#{hash}\",\"amount\": \"#{amount}\",\"narration\": \"#{narration}\",\"curr\":\"#{curr}\"}"
 
-      response = http.request(request)
-      @response = response.read_body
-      puts @response
+      begin
+        puts "\n\n Begin call to make B2B PAYMENT \n......\n......\n......\n"
 
-      res = JSON.parse(@response)
+        response = http.request(request)
 
-      puts res
+        @response = response.read_body
 
-      if response.kind_of? Net::HTTPSuccess
-        puts "HTTP WORKED = #{response.read_body}"
+        res = JSON.parse(@response)
 
-        Itransaction.create(res)
+        puts "Response in JSON is #{res}"
 
-        @storeamount = StoreAmount.where(store_id: current_store.id).first
+        if response.kind_of? Net::HTTPSuccess #If the HTTP is succesful
 
 
-        @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil
+          @itrans = Itransaction.create(res)
 
-        nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
-        nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+          if @itrans
+            puts "The Response was successfully saved in the DB"
+          else
+            puts "The Response was not saved in the DB"
+          end
 
-        @storeamount.update(amount: nu, actual: nua)
 
-        Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((@storeamount.amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
-        @status = true
-      else
-        @status = false
-        @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+          @storeamount = StoreAmount.where(store_id: current_store.id).first #Find amount of money for the store
 
-        puts "HTTP DIDNT = #{response.read_body}"
+
+          @trans_charges = 0.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
+
+          puts "Transaction Charges are #{@trans_charges}"
+
+          nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+          nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+          if @storeamount.update(amount: nu, actual: nua)
+            puts "Store Amount Updated to #{nu}"
+          else
+            puts "Store Amount couldn't be updated to #{nu}"
+          end
+
+          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+            puts "Earning from transaction #{res['reference']} updated to #{((amount.to_d * 0.01).to_i).ceil}"
+          end
+          @status = true
+        else
+          @status = false
+          @err = "Error transferring funds because of the following reason: Status: #{res['status']} Error: #{res['errormessage']}"
+
+          puts "HTTP DIDNT = #{response.read_body}"
+        end
+
+          #IF SERVER TIMES OUT, LETS CHACK IF THE TRANSACTION WENT THROUGH BEFORE WE THROW AN ERROR
+      rescue Net::ReadTimeout => e
+
+        puts "\n\nTransaction check \n...... \n...... \n...... \n"
+        puts "\n\nStarting Hashing First \n...... \n...... \n...... \n"
+
+
+        data = "reference=#{ref}&vid=#{vid}"
+
+        trans_hash = OpenSSL::HMAC.hexdigest(digest, key, data)
+
+        puts "\n\nThe hash for transaction is #{trans_hash}"
+
+        puts "\n\nStarting Transaction Check"
+
+        url = URI("https://apis.ipayafrica.com/b2b/v1/transaction/status")
+
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        request = Net::HTTP::Post.new(url)
+        request["Content-Type"] = 'application/json'
+        request["cache-control"] = 'no-cache'
+        request["Postman-Token"] = '2d039ab5-1319-4f95-bbd7-e275c5ab3f4b'
+        puts "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"hash\": \"#{trans_hash}\"}"
+        request.body = "{\"vid\": \"#{ENV['ipay_vid']}\",\"reference\": \"#{ref}\",\"hash\": \"#{trans_hash}\"}"
+
+        transaction_response = http.request(request)
+
+        begin
+
+          if transaction_response.kind_of? Net::HTTPSuccess
+
+            response2 = transaction_response.read_body
+
+            res2 = JSON.parse(response2)
+
+            puts "Response in JSON is #{res2}"
+
+            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount)
+
+            if @itrans
+              puts "The Response was successfully saved in the DB"
+            else
+              puts "The Response was not saved in the DB"
+            end
+
+            @storeamount = StoreAmount.where(store_id: current_store.id).first #Find amount of money for the store
+
+
+            @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
+
+            puts "Transaction Charges are #{@trans_charges}"
+
+            nu = @storeamount.amount.to_i - (amount.to_i + @trans_charges.to_i)
+            nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
+
+            if @storeamount.update(amount: nu, actual: nua)
+              puts "Store Amount Updated to #{nu}"
+            else
+              puts "Store Amount couldn't be updated to #{nu}"
+            end
+
+            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, transaction_status_id: 1)
+              puts "\n\n Amount is #{((amount.to_d * 0.01).to_i)}"
+              puts "\n \n Amount to ceil is #{((amount.to_d * 0.01).to_i).ceil}"
+              puts "\n\n Earning from transaction #{res2['reference']} updated to #{(amount.to_d * 0.01).ceil}"
+            end
+            @status = true
+          end
+
+        rescue Net::ReadTimeout => f
+          @status = false
+          @err = "Error transferring funds because of the following reason: Connection to server couldn't be established => #{f}"
+
+          puts "HTTP DIDNT = #{response.read_body}"
+        end
+
       end
       no_layout
 
