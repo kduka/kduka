@@ -807,25 +807,25 @@ $(function () {
         } else if (variant_value == "") {
             $(".var_opt_err").html("<span style='color:red;'>Please specify the variant value, It cant be empty</span>");
         } else {
-            if ( $('#exist').hasClass(variant_name) ){
+            if ($('#exist').hasClass(variant_name)) {
                 $(".var_opt_err").html("<span style='color:red;'>The variant already exists, add values to it below.</span>");
-            }else{
-                $(".var_table").append("<tr><td class='td_l_"+variant_name+"' style='color:black;font-weight:bold'>"+variant_name+" <span data-name='"+variant_name+"' class='del_var' style='color: lightcoral;cursor: pointer'> <i class='fa fa-times'></i></span></td><td class='td_"+variant_name+"'><span class='item' style='background-color: lightgreen;padding: 8px;border-radius: 12px;color: black;'>"+variant_value +" <span class='delete_var_temp' style='color: lightcoral;cursor: pointer'> <i class='fa fa-times'></i></span></span> " +
-                    "<div id='new_var_"+variant_name+"'+ style=\"display: none\">\n" +
-                    "          <input type='text' id='new_text_"+variant_name+"' style=\"font-size: 75%\"/>\n" +
-                    "          <span class='add_var_val_temp' data-name='"+variant_name+"' class='label' style='cursor: pointer;color: green'> Add Value </span>\n" +
-                    "          <span class='cancel_var_val_temp' data-name='"+variant_name+"' class='label' style='cursor: pointer;color: red'> Cancel </span>\n" +
-                    "        </div><span id='add_btn_"+variant_name+"' class='add_btn_temp' data-name='"+variant_name+"' class='label' style='cursor: pointer;color: green'> Add Value </span></td></tr>");
+            } else {
+                $(".var_table").append("<tr><td class='td_l_" + variant_name + "' style='color:black;font-weight:bold'>" + variant_name + " <span data-name='" + variant_name + "' class='del_var' style='color: lightcoral;cursor: pointer'> <i class='fa fa-times'></i></span></td><td class='td_" + variant_name + "'><span class='item' style='background-color: lightgreen;padding: 8px;border-radius: 12px;color: black;'>" + variant_value + " <span class='delete_var_temp' style='color: lightcoral;cursor: pointer'> <i class='fa fa-times'></i></span></span> " +
+                    "<div id='new_var_" + variant_name + "'+ style=\"display: none\">\n" +
+                    "          <input type='text' id='new_text_" + variant_name + "' style=\"font-size: 75%\"/>\n" +
+                    "          <span class='add_var_val_temp' data-name='" + variant_name + "' class='label' style='cursor: pointer;color: green'> Add Value </span>\n" +
+                    "          <span class='cancel_var_val_temp' data-name='" + variant_name + "' class='label' style='cursor: pointer;color: red'> Cancel </span>\n" +
+                    "        </div><span id='add_btn_" + variant_name + "' class='add_btn_temp' data-name='" + variant_name + "' class='label' style='cursor: pointer;color: green'> Add Value </span></td></tr>");
                 $("#exist").addClass(variant_name);
-                $("#exist").append("<span data-var='"+variant_name+"' data-name='"+variant_name+"' class='var_"+variant_name+"' style='display: none;' data='{\"0\":\""+variant_value+"\"}'></span>")
-                $("#exist").append("<input type='hidden' data-var='"+variant_name+"' data-name='"+variant_name+"' class='var_"+variant_name+"' style='display: none;' data='{\"0\":\""+variant_value+"\"}' value='{\"0\":\""+variant_value+"\"}'></input>")
+                $("#exist").append("<span data-var='" + variant_name + "' data-name='" + variant_name + "' class='var_" + variant_name + "' style='display: none;' data='{\"0\":\"" + variant_value + "\"}'></span>")
+                $("#exist").append("<input type='hidden' data-var='" + variant_name + "' data-name='" + variant_name + "' class='var_" + variant_name + "' style='display: none;' data='{\"0\":\"" + variant_value + "\"}' value='{\"0\":\"" + variant_value + "\"}'></input>")
                 $.ajax({
                     url: '/products/add_variant_temp',
                     method: 'post',
-                    data:{
-                      name:variant_name,
-                        cookie_id:cookie_id,
-                        variant_value:variant_value,
+                    data: {
+                        name: variant_name,
+                        cookie_id: cookie_id,
+                        variant_value: variant_value,
                     },
                     success: function (e) {
                         $(".del_opt_err").html("");
@@ -944,7 +944,6 @@ $(function () {
 
         })
     });
-
 
 
     $(".add_var").click(function () {
@@ -1389,7 +1388,7 @@ function set_bal(post) {
 
     if (amt == "") {
         $('.charge', '.conditions_' + post).html("0");
-    } else  {
+    } else {
         $('.charge', '.conditions_' + post).html("Ksh: " + Math.floor(parseInt(45) + parseInt(parseFloat(amt) * 0.01)));
         $('.bal', '.conditions_' + post).html("Ksh: " + Math.ceil(parseInt(full) - (parseInt(amt) + (45 + parseInt(amt * 0.01)))));
     }
@@ -1402,7 +1401,7 @@ function set_bal_b2b(post) {
 
     if (amt == "") {
         $('.charge', '.conditions_' + post).html("0");
-    } else  {
+    } else {
         $('.charge', '.conditions_' + post).html("Ksh: " + Math.floor(parseInt(0) + parseInt(parseFloat(amt) * 0.01)));
         $('.bal', '.conditions_' + post).html("Ksh: " + Math.ceil(parseInt(full) - (parseInt(amt) + (0 + parseInt(amt * 0.01)))));
     }
@@ -1499,7 +1498,7 @@ function store_reg() {
     //setTimeout(console.log('timeout'),1000);
 
     if (store_name.length > 3 && url.length > 2 && $("#store_email").attr('data-valid') == 'true' && $("#url").attr('data-valid') == 'true') {
-        $('#nxtBtn').prop("disabled", false);
+        $('#nxtBtn').removeAttr("disabled");
         $('#nxtBtn').removeAttr("style");
     } else {
         //alert(false);
@@ -1513,13 +1512,24 @@ function store_reg2() {
     store_phone = $("#store_phone").val();
     store_password = $("#store_password").val();
     store_password_confirmation = $("#store_password_confirmation").val();
-    if (phonecheck(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true') {
+    if (phonecheck(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true' && confirmtc()) {
         $("#submitter").removeAttr("disabled");
         $("#submitter").removeAttr("style");
         $("#submitter").off("click");
     } else {
         $("#submitter").attr("disabled", "true");
         $("#submitter").attr("style", "background-color:grey;color:#000;border-color: grey;");
+    }
+
+}
+
+function confirmtc() {
+    if ($('#tc').is(":checked") == true) {
+        console.log($('#tc').is(":checked"));
+        return true;
+    }else{
+        console.log($('#tc').is(":checked"));
+        return false;
     }
 
 }

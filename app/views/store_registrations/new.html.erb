@@ -1,4 +1,3 @@
-
 <div class="inp contact-grids">
 
   <div class="row">
@@ -21,8 +20,8 @@
   </script>
 
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'regForm',style:"background-color: #fff;padding: 40px;}"}) do |f| %>
-  <a class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></a>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'regForm', style: "background-color: #fff;padding: 40px;}"}) do |f| %>
+    <a class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></a>
     <h3> Store Signup</h3>
     <!-- Circles which indicates the steps of the form: -->
     <div style="margin-top:20px;margin-bottom:30px;">
@@ -35,11 +34,11 @@
       <%= f.text_field :name, autofocus: true, id: 'store_name', placeholder: 'Your Stores Name', onchange: 'store_reg()', oninput: "this.className = ''" %>
       <div class="text-center store_name_prev"></div>
       <!--    <input style="width: 75%;border-radius: 0px !important;border-right-style: none;" required id="url_modalsign" type="text" placeholder="Your Store Url" oninput="this.className = ''"><label style="border-left-style: none !important;padding: 13px 10px;border: 1px solid #dadada;background: none;font-size: 13px;color: #222222;width: 25%;margin-top: 1em;margin-bottom:1em;-moz-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;text-align: center;color: #7aae42;text-align: left;">.kduka.co.ke</label>-->
-      <%= f.text_field :subdomain, autofocus: true, placeholder: 'What name do you want for your website (See preview below)', onchange: 'store_reg()', oninput: "this.className = ''", id:'url' %>
+      <%= f.text_field :subdomain, autofocus: true, placeholder: 'What name do you want for your website (See preview below)', onchange: 'store_reg()', oninput: "this.className = ''", id: 'url' %>
 
       <p class="text-center" style="font-size:10px;color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
 
-      <%= f.email_field :email, autofocus: true, id:'store_email', placeholder: 'Email to be used to login into the store account', onkeyup: 'store_reg()', oninput: "this.className = ''" %>
+      <%= f.email_field :email, autofocus: true, id: 'store_email', placeholder: 'Email to be used to login into the store account', onkeyup: 'store_reg()', onchange: 'store_reg()', oninput: "this.className = ''" %>
       <p class="text-center" style="font-size:10px;color:green;font-weight:bold" id="email_prev"></p>
     </div>
 
@@ -47,11 +46,15 @@
       <%#= f.text_field :username, autofocus: true, placeholder: 'Full Name', oninput: "this.className = ''" %>
       <!--    <input required id="phone" type="number" placeholder="Your Phone Number (e.g. 254712345678 )..." min="254700000000" max="254799999999" minlenth="12" oninput="this.className = ''">-->
       <%= f.text_field :phone, autofocus: true, placeholder: 'Phone Number you want your clients to see', onchange: 'store_reg2()', oninput: "this.className = ''" %>
-      <div  style="font-size:10px" class="phone_prev text-center"></div>
+      <div style="font-size:10px" class="phone_prev text-center"></div>
       <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', onchange: 'store_reg2()', 'data-valid': 'false' %>
       <span style="font-size:10px;" class="store_password_prev text-center"></span>
       <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Repeat Password', onchange: 'store_reg2()' %>
       <span style="font-size:10px;" class="text-center store_password_confirmation_prev"></span>
+      <br><br>
+      <input type="checkbox" id="tc" onchange="store_reg2()" onclick="store_reg2()" > <label for="tc"> I agree to <a href="<%= legal_terms_path %>" target="_blank"> Terms and Conditions</a></label>
+      <span style="font-size:10px;" class="text-center store_password_confirmation_prev"></span>
+
     </div>
     <!-- <div class="tab">
       <h3 style="color:#7aae42;text-transform:capitalize;padding-top:2em;text-align:center">You're all set Up.<br>Submit Your Details Now !</h3>

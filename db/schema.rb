@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190124082243) do
+ActiveRecord::Schema.define(version: 20190125180239) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -185,6 +185,25 @@ ActiveRecord::Schema.define(version: 20190124082243) do
     t.index ["store_id"], name: "index_feedbacks_on_store_id", using: :btree
   end
 
+  create_table "fin_ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "mobileNumber"
+    t.string   "customer_reference"
+    t.string   "date"
+    t.string   "transaction_reference"
+    t.string   "paymentMode"
+    t.string   "amount"
+    t.string   "till"
+    t.string   "billNumber"
+    t.string   "servedBy"
+    t.string   "additionalInfo"
+    t.string   "bank_reference"
+    t.string   "transactionType"
+    t.string   "account"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "fonts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -250,10 +269,11 @@ ActiveRecord::Schema.define(version: 20190124082243) do
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "d_name"
     t.string   "preview"
+    t.boolean  "premium",     default: false
   end
 
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -405,11 +425,11 @@ ActiveRecord::Schema.define(version: 20190124082243) do
     t.text     "manual_delivery_instructions", limit: 65535
     t.boolean  "collection_point_status"
     t.string   "auto_delivery_location"
+    t.string   "lat"
+    t.string   "lng"
     t.boolean  "init"
     t.boolean  "important"
     t.string   "store_font"
-    t.string   "lat"
-    t.string   "lng"
     t.string   "domain"
     t.boolean  "own_domain",                                 default: false
     t.string   "c_subdomain"
