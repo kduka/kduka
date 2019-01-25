@@ -994,7 +994,7 @@ end
 
       #START THE REQUEST TO IPAY AFRICA
 
-      url = URI("https://apis.ipayafrica.com/b2c/v3/mobile/airtel")
+      url = URI("https://apis.ipayafrica.com/b2c/v3/mobile/airtelmoney")
 
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
