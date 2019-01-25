@@ -1,0 +1,115 @@
+<title><%= @store.name %> | <%= @title %></title>
+<!-- banner -->
+
+<div class="banner_top innerpage" id="home">
+  <div class="wrapper_top_w3layouts">
+
+    <div class="header_agileits">
+      <div class="logo">
+        <h1><a class="navbar-brand" href="<%= root_path %>">
+        <% if @store.logo_status %>
+						<%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
+				<% else %>
+						<span><%= @store.name %></span>
+				<% end %>
+        </a></h1>
+      </div>
+      <!--menu-->
+      <%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop" %>
+      <!--//menu-->
+      <div class="clearfix"></div>
+      </div>
+
+    <!-- /slider -->
+    <div class="slider">
+      <div class="callbacks_container">
+        <ul class="rslides callbacks callbacks1" id="slider4">
+
+          <li>
+            <div class="banner-top2" style="background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<%= @store.banner_url.to_s %>') no-repeat 0px 0px;background-size:cover !important;background-attachment: fixed !important">
+              <div class="banner-info-wthree">
+                <p>Welcome to</p><br>
+                <h3><%= @store.name %></h3>
+                <p><%= @store.slogan %></p>
+
+              </div>
+
+            </div>
+          </li>
+
+        </ul>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+    <!-- //slider -->
+    <br>
+
+  </div>
+</div>
+<!-- //banner -->
+
+<!-- Content -->
+<div class="container" style="padding-top:3em;padding-bottom:3em">
+  <h1 class="text-center" style="padding-top:0em;padding-bottom:2em">Latest <span style="color:<%= @store.store_color %>">Products</span></h1>
+  <div class="product-sec1">
+    <div class="tab1">
+      <% if @products.nil? %>
+          <p class="text-center">This store does not have any active Products</p>
+      <% else %>
+          <% @products.each do |product| %>
+              <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+          <% end %>
+      <% end%>
+
+      <div class="clearfix"></div>
+    </div><br><br><br>
+    <div class="row text-center">
+    <a href="<%= all_path %>" class="stylish-button">View More Products</a>
+    </div>
+    <!-- //mens -->
+    <div class="clearfix"></div>
+
+  </div>
+</div>
+<!-- //Content -->
+<!-- Content -->
+<% if !@featured.nil? %>
+    <% @featured.each do |category| %>
+<div class="container" style="padding-top:3em;padding-bottom:3em">
+  <h1 class="text-center" style="padding-top:0em;padding-bottom:2em"><span style="color:<%= @store.store_color %>"><%= category.name %></span></h1>
+  <div class="product-sec1">
+    <div class="tab1">
+      <% @cat_products = Product.where(active:true,category_id:category.id).limit(3).order('id desc') %>
+      <% if !@cat_products.nil? %>
+          <% @cat_products.each do |product| %>
+              <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+          <% end %>
+      <% end %>
+      <div class="clearfix"></div>
+    </div><br><br><br>
+    <div class="row text-center">
+    <a href="<%= product_category_path(category.id) %>" class="stylish-button">View More Products</a>
+    </div>
+    <!-- //mens -->
+    <div class="clearfix"></div>
+
+  </div>
+</div>
+<% end %>
+<% end %>
+<!-- //Content -->
+<script>
+$(document).ready(function(){
+    $(".logo").removeClass("inner_page_log");
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".my_class2").remove();
+});
+</script>
+<style>
+.my_class2{
+  display:none;
+}
+</style>

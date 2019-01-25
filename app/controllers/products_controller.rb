@@ -59,6 +59,7 @@ class ProductsController < ApplicationController
       @order_item = current_order.order_items.new
       @categories = @store.category.where(active: true)
       @featured = @store.category.where(featured: true)
+      @title="Home"
       set_shop
     end
   end
@@ -75,6 +76,7 @@ class ProductsController < ApplicationController
       else
         get_store
         ahoy.track "about", {store: @store.id}
+        @title = "About Us"
         set_shop
       end
     end
@@ -88,6 +90,7 @@ class ProductsController < ApplicationController
       redirect_to(home_404_path) and return
     else
       ahoy.track "contact", {store: @store.id}
+      @title = "Contact"
       set_shop
     end
   end
@@ -178,6 +181,7 @@ class ProductsController < ApplicationController
       @products = Product.where(store_id: @store.id, active: true).paginate(:page => params[:page], :per_page => 15).order('id desc')
       @order_item = current_order.order_items.new
       @categories = @store.category.where(active: true)
+      @title = "Shop"
       set_shop
     end
   end
@@ -212,6 +216,7 @@ class ProductsController < ApplicationController
       viewed = @product.viewed += 1
       @product.update(viewed: viewed)
     end
+    @title = "View Product"
     set_shop
   end
 

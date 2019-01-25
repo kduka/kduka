@@ -1,0 +1,8 @@
+<% if @store.collection_point_status == true %>
+    <div class="form-group">
+      <label>Collection Point</label>
+      <input style="border-style: none;color: green;background-color: transparent;" id="collection_point" type="textbox" disabled value="<%= @store.collection_point %>" class='form-control' placeholder='Delivery Location'/>
+      <span style="color:green;" class="price"></span>
+    </div>
+    <p></p>
+<% end %>

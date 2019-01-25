@@ -1,0 +1,22 @@
+<div class="my_toggle_div_class overlay overlay-contentpush">
+  <nav>
+    <ul>
+      <li><a href="<%= root_path %>">Home</a></li>
+      <li><a href="<%= about_path %>">About</a></li>
+      <li><a href="<%= all_path %>">Shop</a></li>
+      <li><a href="<%= cart_path %>"><i class="fa fa-shopping-cart"></i> Cart <span  class="cart-text"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a></li>
+      <li><a href="<%= contact_path %>">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+<div class="mobile-nav-button">
+  <button class="my_toggle_button" id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+</div>
+<!-- cart details -->
+<div class="top_nav_right">
+  <div class="shoecart shoecart2 cart cart box_1">
+    <a style="text-decoration:none" href="<%= cart_path %>"><button class="top_shoe_cart"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span class="cart-text"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></button></a>
+  </div>
+
+</div>
+<!-- //cart details -->

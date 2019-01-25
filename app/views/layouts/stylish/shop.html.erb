@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="keywords" content=""/>
+<!--/tags -->
+<% if Date.current.strftime("%B") == "December" %>
+<!-- <script src="/javascripts/snow/snowstorm.js"></script> -->
+<%end%>
+
+<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<% Dir.foreach("public/stylesheets/#{Layout.find(@store.layout_id).name}") do |item|
+next if item == '.' or item == '..' %>
+<%= stylesheet_link_tag    "#{Layout.find(@store.layout_id).name}/#{item}" %>
+<% end %>
+
+<script type="application/x-javascript">
+	addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+	}, false);
+
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+	    rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+<style>
+.shoe-cart {
+    font-size: 1em;
+    color: #fff;
+    margin: 0;
+    text-decoration: none;
+    text-transform: capitalize;
+    border: none;
+    background: #000;
+    outline: none;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    transition: .5s all;
+    padding:5px 7px;
+}
+.shoe-cart:hover,.back a:hover {
+	-webkit-box-shadow: 0 0 9px 2px rgba(224, 224, 224, 0.5);
+	-moz-box-shadow: 0 0 9px 2px rgba(224, 224, 224, 0.5);
+	-o-box-shadow: 0 0 9px 2px rgba(224, 224, 224, 0.5);
+	-ms-box-shadow: 0 0 9px 2px rgba(224, 224, 224, 0.5);
+    box-shadow: 0 0 9px 2px rgba(224, 224, 224, 0.5);
+		background: <%= @store.store_color %>;
+
+}
+ul.short li a {
+    color: <%= @store.store_color %> !important;
+}
+.contact-left span.fa{
+		color: <%= @store.store_color %> !important;
+}
+.contact_grid_right input[type="submit"]:hover, .contact_grid_right input[type="reset"]:hover {
+    background: <%= @store.store_color %> !important;
+}
+.stylish-button {
+	outline: none;
+	padding: 15px 20px;
+	font-size: 14px;
+	color: #fff;
+	background: #000000;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+.stylish-button:hover {
+	outline: none;
+	font-size: 14px;
+	color: #fff;
+	background: <%= @store.store_color %> !important;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+button.shoe-cart:hover {
+	    background: <%= @store.store_color %> !important;
+}
+.address-right p a{
+    color: <%= @store.store_color %> !important;
+}
+p.copy-right-w3ls-agileits a:hover{
+		color: <%= @store.store_color %> !important;
+}
+.link-product-add-cart:hover {
+    background: <%= @store.store_color %> !important;
+}
+.single-right-left h3{
+	color: <%= @store.store_color %> !important;
+}
+input.button.add:hover {
+	background: <%= @store.store_color %> !important;
+}
+.var_dis{
+	border:1px <%= @store.store_color %>;
+	border-style: dashed !important;
+	border-color: <%= @store.store_color %> !important;
+	padding:5px 10px;
+	transition: all 0.5s;
+	margin-bottom: .5em !important;
+}
+.overlay ul li a:hover,
+.overlay ul li a:focus {
+    color: <%= @store.store_color %> !important;
+}
+.contact-text a:hover{
+    color: <%= @store.store_color %> !important;
+}
+<% if !@store.store_font.nil? %>
+body{
+	font-family: <%= @store.store_font %> !important;
+}
+h1{
+	font-family: <%= @store.store_font %> !important;
+}
+h2{
+	font-family: <%= @store.store_font %> !important;
+}
+h3{
+	font-family: <%= @store.store_font %> !important;
+}
+h4{
+	font-family: <%= @store.store_font %> !important;
+}
+h5{
+	font-family: <%= @store.store_font %> !important;
+}
+h6{
+	font-family: <%= @store.store_font %> !important;
+}
+p{
+	font-family: <%= @store.store_font %> !important;
+}
+a{
+	font-family: <%= @store.store_font %> !important;
+}
+<% end %>
+</style>
+<% if @store.premium %>
+	<!--Google Tag -->
+	<%= @store.gtag.html_safe rescue nil %>
+	<!--End Google Tag-->
+<% end %>
+</head>
+
+<body>
+<!-- banner -->
+<div class="banner_top innerpage my_class2" id="home" style="background: url('<%= @store.banner_url.to_s %>') no-repeat 0px 0px;background-size:cover !important;background-attachment: fixed !important">
+  <div class="wrapper_top_w3layouts">
+    <div class="header_agileits">
+      <div class="logo inner_page_log">
+        <h1><a class="navbar-brand" href="<%= root_path %>">
+        <% if @store.logo_status %>
+						<%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
+				<% else %>
+						<span><%= @store.name %></span>
+				<% end %>
+        </a></h1>
+      </div>
+      <!--menu-->
+      <%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop" %>
+      <!--//menu-->
+    </div>
+  </div>
+  <div class="clearfix"></div>
+    <!-- /banner_inner -->
+    <div class="services-breadcrumb_w3ls_agileinfo">
+    <div class="inner_breadcrumb_agileits_w3">
+
+      <ul class="short">
+        <li><a href="<%= root_path %>">Home</a><i>|</i></li>
+        <li><%= @title rescue nil %></li>
+      </ul>
+    </div>
+    </div>
+    <!-- //banner_inner -->
+    </div>
+    <style>
+    .ads-grid_shop {
+    padding: 0em !important;
+    }
+    </style>
+    <!-- //banner -->
+	<%= yield%>
+
+
+
+	<!-- footer -->
+	<div class="footer_agileinfo_w3">
+	  <div class="footer_inner_info_w3ls_agileits">
+	    <div class="col-md-4 footer-left">
+	      <h2><a href="<%= root_path %>"><%= @store.name %></a></h2>
+	      <br>
+	      <p>We are Social</p>
+	      <ul class="social-nav model-3d-0 footer-social social two">
+					<% if !@store.facebook.blank? %>
+		 <li><a target="_blank" href="<%= @store.facebook %>" class="facebook">
+				 <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+				 <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
+				 <% end %>
+				 <% if !@store.twitter.blank? %>
+		 <li><a target="_blank" href="<%= @store.twitter %>" class="twitter">
+				 <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+				 <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
+				 <% end %>
+				 <% if !@store.instagram.blank? %>
+		 <li><a target="_blank" href="<%= @store.instagram %>" class="instagram">
+				 <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+				 <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
+				 <% end %>
+				 <% if !@store.linkedin.blank? %>
+		 <li><a target="_blank" href="<%= @store.linkedin %>" class="linkedin">
+				 <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+				 <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
+				 <% end %>
+				 <% if !@store.youtube.blank? %>
+		 <li><a target="_blank" href="<%= @store.youtube %>" class="youtube">
+				 <div class="front"><i class="fa fa-youtube" aria-hidden="true"></i></div>
+				 <div class="back"><i class="fa fa-youtube" aria-hidden="true"></i></div></a></li>
+				 <% end %>
+				 <% if !@store.pinterest.blank? %>
+		 <li><a target="_blank" href="<%= @store.pinterest %>" class="pinterest">
+				 <div class="front"><i class="fa fa-pinterest" aria-hidden="true"></i></div>
+				 <div class="back"><i class="fa fa-pinterest" aria-hidden="true"></i></div></a></li>
+				 <% end %>
+				 <% if !@store.vimeo.blank? %>
+		 <li><a target="_blank" href="<%= @store.vimeo %>" class="vimeo">
+				 <div class="front"><i class="fa fa-vimeo" aria-hidden="true"></i></div>
+				 <div class="back"><i class="fa fa-vimeo" aria-hidden="true"></i></div></a></li>
+				 <% end %>
+	      </ul>
+				<br><br>
+	    </div>
+	    <div class="col-md-8 footer-right">
+	      <div class="sign-grds">
+	        <div class="col-md-6 sign-gd-two">
+	          <h4>Contact <span>Information</span></h4>
+	          <div class="address">
+	            <div class="address-grid">
+	              <div class="address-left">
+	                <i class="fa fa-phone" aria-hidden="true"></i>
+	              </div>
+	              <div class="address-right">
+	                <h6>Phone Number</h6>
+	                <p><%= @store.phone %></p>
+	              </div>
+	              <div class="clearfix"> </div>
+	            </div>
+	            <div class="address-grid">
+	              <div class="address-left">
+	                <i class="fa fa-envelope" aria-hidden="true"></i>
+	              </div>
+	              <div class="address-right">
+	                <h6>Email Address</h6>
+	                <p><a href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></p>
+	              </div>
+	              <div class="clearfix"> </div>
+	            </div>
+	            <div class="address-grid">
+	              <div class="address-left">
+	                <i class="fa fa-map-marker" aria-hidden="true"></i>
+	              </div>
+	              <div class="address-right">
+	                <h6>Location</h6>
+	                <p><%= @store.business_location %></p>
+	              </div>
+	              <div class="clearfix"> </div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col-md-6 sign-gd">
+	          <h4>Quick <span>Links</span> </h4>
+	          <ul>
+	            <li><a href="<%= root_path %>">Home</a></li>
+	            <li><a href="<%= about_path %>">About</a></li>
+	            <li><a href="<%= all_path %>">Shop</a></li>
+	            <li><a href="<%= contact_path %>">Contact</a></li>
+	          </ul>
+	        </div>
+
+	        <div class="clearfix"></div>
+	      </div>
+	    </div>
+	    <div class="clearfix"></div>
+
+	    <p class="copy-right-w3ls-agileits">Copyright © <%= Time.current.year %> <%= @store.name %>. All rights reserved | Powered by
+				<a target="_blank" class="" href="http://www.kduka.co.ke/">KDuka</a></p>
+	  </div>
+	</div>
+	</div>
+	<!-- //footer -->
+	  <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+		<!-- js -->
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<% Dir.foreach("public/javascripts/#{Layout.find(@store.layout_id).name}") do |item|
+		next if item == '.' or item == '..' %>
+		<%= javascript_include_tag    "#{Layout.find(@store.layout_id).name}/#{item}" %>
+		<% end %>
+	<!-- cart-js -->
+	<script>
+	  shoe.render();
+
+	  shoe.cart.on('shoe_checkout', function (evt) {
+	    var items, len, i;
+
+	    if (this.subtotal() > 0) {
+	      items = this.items();
+
+	      for (i = 0, len = items.length; i < len; i++) {}
+	    }
+	  });
+	</script>
+	<!-- //cart-js -->
+	<!--search-bar-->
+	<!--//search-bar-->
+	<script>
+	  $(function () {
+	    $("#slider4").responsiveSlides({
+	      auto: true,
+	      pager: true,
+	      nav: true,
+	      speed: 1000,
+	      namespace: "callbacks",
+	      before: function () {
+	        $('.events').append("<li>before event fired.</li>");
+	      },
+	      after: function () {
+	        $('.events').append("<li>after event fired.</li>");
+	      }
+	    });
+	  });
+	</script>
+	<!-- js for portfolio lightbox -->
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+	  jQuery(document).ready(function ($) {
+	    $(".scroll").click(function (event) {
+	      event.preventDefault();
+	      $('html,body').animate({
+	        scrollTop: $(this.hash).offset().top
+	      }, 1000);
+	    });
+	  });
+	</script>
+	<!-- //end-smoth-scrolling -->
+
+	<!-- single -->
+		<!-- single -->
+		<!-- script for responsive tabs -->
+		<script>
+			$(document).ready(function () {
+				$('#horizontalTab').easyResponsiveTabs({
+					type: 'default', //Types: default, vertical, accordion
+					width: 'auto', //auto or any width like 600px
+					fit: true, // 100% fit in a container
+					closed: 'accordion', // Start closed if in accordion view
+					activate: function (event) { // Callback function if tab is switched
+						var $tab = $(this);
+						var $info = $('#tabInfo');
+						var $name = $('span', $info);
+						$name.text($tab.text());
+						$info.show();
+					}
+				});
+				$('#verticalTab').easyResponsiveTabs({
+					type: 'vertical',
+					width: 'auto',
+					fit: true
+				});
+			});
+		</script>
+		<!-- FlexSlider -->
+		<script>
+			// Can also be used with $(document).ready()
+			$(window).load(function () {
+				$('.flexslider').flexslider({
+					animation: "slide",
+					controlNav: "thumbnails"
+				});
+			});
+		</script>
+		<!-- //FlexSlider-->
+
+
+	</body>
+
+	</html>
