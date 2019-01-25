@@ -11,5 +11,26 @@
 <p><label>Total: </label> <span style="float:right"><%= current_order.total %></span></p><br>
 <p><label>Instructions: </label> <span style="float:right"><%= current_order.order_instructions %></span></p><br>
 
+<form method="post" action="https://payments.ipayafrica.com/v3/ke">
+  <input type="hidden" name="live" value="<%= ENV['ipay_live'] %>">
+  <% # TODO  Check autopay %>
+  <input type="hidden" name="oid" value="<%= current_order.ref %>">
+  <input type="hidden" name="inv" value="<%= current_order.ref %>">
+  <input type="hidden" name="ttl" value="<%= current_order.total %>">
+  <input type="hidden" name="tel" value="<%= current_order.phone %>">
+  <input type="hidden" name="eml" value="<%= current_order.email %>">
+  <input type="hidden" name="vid" value="<%= ENV['ipay_vid'] %>">
+  <input type="hidden" name="curr" value="KES">
+  <input type="hidden" name="p1" value="<%= "#{request.subdomain}.#{request.domain}" %>">
+  <input type="hidden" name="p2" value="">
+  <input type="hidden" name="p3" value="">
+  <input type="hidden" name="p4" value="">
+  <input type="hidden" name="cbk" value="<%= "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn" %>">
+  <input type="hidden" name="cst" value="<%= ENV['ipay_cst_flag'] %>">
+  <input type="hidden" name="crl" value="<%= ENV['ipay_crl_flag'] %>">
+  <input type="hidden" name="hsh" value="<%= @hash %>">
+  <!--  <input type="submit" value="Pay and Complete">-->
 
-<a href="<%= carts_pay_path %>" id="complete" disabled class='btn btn-success col-sm-12 col-md-6 col-md-offset-3'  style="display:block;margin-top</label>1em" >Pay and Complete</a>
+  <button id="complete" class='btn btn-success col-sm-12 col-md-6 col-md-offset-3' type="submit"  style="display:block;margin-top:1em">Pay and Complete</button>
+
+</form>
