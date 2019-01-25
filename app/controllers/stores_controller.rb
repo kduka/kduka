@@ -140,6 +140,17 @@ end
   def update_layout
     @store = Store.find(current_store.id)
     puts params[:store][:store_color]
+    premium = Layout.find(params[:layout]).premium
+    premium_check = current_store.premium
+
+    if premium
+      if !premium_check
+        @store.update(layout_id: 1, store_color: params[:store][:store_color], store_font: params[:store][:store_font])
+        flash[:alert] = "Premium Theme! Please use any of the available themes. Switched back to default theme!"
+        redirect_to(request.referer) and return
+      end
+    end
+
     if @store.update(layout_id: params[:layout], store_color: params[:store][:store_color], store_font: params[:store][:store_font])
       flash[:notice] = 'Layout Updated'
     else
@@ -666,7 +677,7 @@ end
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
       p1 = "#{request.subdomain}.#{request.domain}"
-      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      data = ENV['ipay_live'] + @order.ref + @order.ref + @order.amount.to_s + current_store.phone + current_store.email + ENV['ipay_vid'] + "KES" + p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
       digest = OpenSSL::Digest.new('sha1')
 
       @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
@@ -676,7 +687,7 @@ end
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
       p1 = "#{request.subdomain}.#{request.domain}"
-      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      data = ENV['ipay_live'] + @order.ref + @order.ref + @order.amount.to_s + current_store.phone + current_store.email + ENV['ipay_vid'] + "KES" + p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
       digest = OpenSSL::Digest.new('sha1')
 
       @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
@@ -693,7 +704,7 @@ end
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
       p1 = "#{request.subdomain}.#{request.domain}"
-      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      data = ENV['ipay_live'] + @order.ref + @order.ref + @order.amount.to_s + current_store.phone + current_store.email + ENV['ipay_vid'] + "KES" + p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
       digest = OpenSSL::Digest.new('sha1')
 
       @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
@@ -703,7 +714,7 @@ end
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
       p1 = "#{request.subdomain}.#{request.domain}"
-      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      data = ENV['ipay_live'] + @order.ref + @order.ref + @order.amount.to_s + current_store.phone + current_store.email + ENV['ipay_vid'] + "KES" + p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
       digest = OpenSSL::Digest.new('sha1')
 
       @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
@@ -720,7 +731,7 @@ end
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
       p1 = "#{request.subdomain}.#{request.domain}"
-      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      data = ENV['ipay_live'] + @order.ref + @order.ref + @order.amount.to_s + current_store.phone + current_store.email + ENV['ipay_vid'] + "KES" + p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
       digest = OpenSSL::Digest.new('sha1')
 
       @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
@@ -731,7 +742,7 @@ end
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
       p1 = "#{request.subdomain}.#{request.domain}"
-      data = ENV['ipay_live']+@order.ref+@order.ref+@order.amount.to_s+current_store.phone+current_store.email+ENV['ipay_vid']+"KES"+ p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+      data = ENV['ipay_live'] + @order.ref + @order.ref + @order.amount.to_s + current_store.phone + current_store.email + ENV['ipay_vid'] + "KES" + p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
       digest = OpenSSL::Digest.new('sha1')
 
       @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
@@ -831,7 +842,7 @@ end
           puts "Response in JSON is #{res}"
 
 
-          Itransaction.create(res.merge(store_id:current_store.id))
+          Itransaction.create(res.merge(store_id: current_store.id))
 
 
           if @itrans
@@ -905,7 +916,7 @@ end
 
             puts "Response in JSON is #{res2}"
 
-            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount, store_id:current_store.id)
+            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount, store_id: current_store.id)
 
             if @itrans
               puts "The Response was successfully saved in the DB"
@@ -1009,7 +1020,7 @@ end
 
         if response.kind_of? Net::HTTPSuccess
 
-          Itransaction.create(res.merge(store_id:current_store.id))
+          Itransaction.create(res.merge(store_id: current_store.id))
 
 
           if @itrans
@@ -1083,7 +1094,7 @@ end
 
             puts "Response in JSON is #{res2}"
 
-            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount, store_id:current_store.id)
+            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount, store_id: current_store.id)
 
             if @itrans
               puts "The Response was successfully saved in the DB"
@@ -1193,7 +1204,7 @@ end
 
         if response.kind_of? Net::HTTPSuccess #If the HTTP is succesful
 
-          @itrans = Itransaction.create(res.merge(store_id:current_store.id))
+          @itrans = Itransaction.create(res.merge(store_id: current_store.id))
 
           if @itrans
             puts "The Response was successfully saved in the DB"
@@ -1269,7 +1280,7 @@ end
 
             puts "Response in JSON is #{res2}"
 
-            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount, store_id:current_store.id)
+            @itrans = Itransaction.create(status: res2['status'], text: res2['text'], reference: ref, amount: amount, store_id: current_store.id)
 
             if @itrans
               puts "The Response was successfully saved in the DB"
@@ -1280,7 +1291,7 @@ end
             @storeamount = StoreAmount.where(store_id: current_store.id).first #Find amount of money for the store
 
 
-            @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
+            @trans_charges = 45.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
 
             puts "Transaction Charges are #{@trans_charges}"
 
@@ -1469,7 +1480,7 @@ end
             @storeamount = StoreAmount.where(store_id: current_store.id).first #Find amount of money for the store
 
 
-            @trans_charges = 50.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
+            @trans_charges = 45.to_d + (amount.to_d * 0.01).ceil #Calculate Transaction CHarges
 
             puts "Transaction Charges are #{@trans_charges}"
 
