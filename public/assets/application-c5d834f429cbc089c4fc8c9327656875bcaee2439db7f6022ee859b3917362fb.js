@@ -29863,7 +29863,7 @@ $(function () {
                 } else {
                     $("#url_edit").attr('style', 'text-align:center;border-bottom-color: red;box-shadow: 0 2px 2px -2px #FF0000;');
                     $("#url_prev").html("<p style='color:red;font-size: 15px;'>Your store address needs to be unique and have a minimum 3 characters</p>");
-                    $("#changebtn").attr('disabled','true');
+                    $("#changebtn").attr('disabled', 'true');
                     $("#changebtn").attr("style", "background-color:grey;color:#000;border-color: grey;");
                 }
 
@@ -29949,6 +29949,11 @@ $(function () {
         "order": [[8, "desc"]]
     });
 
+    $('#transfersTable').DataTable({
+        "order": [[8, "desc"]],
+        "scrollX": true
+    });
+
     $('#earningsTable').DataTable({
         "order": [[8, "desc"]]
     });
@@ -29961,13 +29966,14 @@ $(function () {
         "order": [[1, "asc"]]
     });
 
+    // The B2C Process for SBM Bank
     $("#b2c").click(function (e) {
         e.preventDefault();
-        if($("#client_name_b2c").val() == "") {
+        if ($("#client_name_b2c").val() == "") {
             $(".amount_prev_b2c").html("<span style='color:red;'>The recepient name can't be empty</span>");
-        } else if ($("#client_account_b2c").val() == ""){
+        } else if ($("#client_account_b2c").val() == "") {
             $(".amount_prev_b2c").html("<span style='color:red;'>The phone number can't be empty</span>");
-        } else if ($("#amount_b2c").val() == ""){
+        } else if ($("#amount_b2c").val() == "") {
             $("#amount_prev_b2c").html("<span style='color:red;'>Amount can't be empty</span>");
         } else {
             $(".b2c_text").html("Processing");
@@ -29992,23 +29998,77 @@ $(function () {
 
     });
 
-    $("#b2bpay").click(function (e) {
+    // The B2C Process for iPay
+    $("#ib2c_mpesa").click(function (e) {
         e.preventDefault();
-        $(".b2bpay_text").html("Processing");
-        $("#b2bpay").attr("disabled", "true");
-        $(".trans_messages_pay").html("<p style=''> Please wait ...</p>");
-        name = $("#client_name_pay").val();
-        account = $("#client_account_pay").val();
-        amount = $("#amount_pay").val();
+        if ($("#client_account_b2c_mpesa").val() == "") {
+            $(".amount_prev_b2c_mpesa").html("<span style='color:red;'>The phone number can't be empty</span>");
+        } else if ($("#amount_b2c_mpesa").val() == "") {
+            $("#amount_prev_b2c_mpesa").html("<span style='color:red;'>Amount can't be empty</span>");
+        } else {
+            $(".b2c_mpesa_text").html("Processing");
+            $("#ib2c_mpesa").attr("disabled", "true");
+            $(".trans_messages").html("<p style=''> Please wait ...</p>");
+            phone = $("#client_account_b2c_mpesa").val();
+            amount = $("#amount_b2c_mpesa").val();
+            $.ajax({
+                url: '/stores/ib2c_mpesa',
+                method: 'post',
+                data: {
+                    phone: phone,
+                    amount: amount
+                },
+                success: function (f) {
+
+                }
+            });
+        }
+
+    });
+
+    $("#ib2c_airtel").click(function (e) {
+        e.preventDefault();
+        if ($("#client_account_b2c_airtel").val() == "") {
+            $(".amount_prev_b2c_airtel").html("<span style='color:red;'>The phone number can't be empty</span>");
+        } else if ($("#amount_b2c_airtel").val() == "") {
+            $("#amount_prev_b2c_airtel").html("<span style='color:red;'>Amount can't be empty</span>");
+        } else {
+            $(".b2c_airtel_text").html("Processing");
+            $("#ib2c_airtel").attr("disabled", "true");
+            $(".trans_messages").html("<p style=''> Please wait ...</p>");
+            phone = $("#client_account_b2c_airtel").val();
+            amount = $("#amount_b2c_airtel").val();
+            $.ajax({
+                url: '/stores/ib2c_airtel',
+                method: 'post',
+                data: {
+                    phone: phone,
+                    amount: amount
+                },
+                success: function (f) {
+
+                }
+            });
+        }
+
+    });
+
+    $("#b2b_paybill").click(function (e) {
+        e.preventDefault();
+        $(".b2b_paybill_text").html("Processing");
+        $("#b2b_paybill").attr("disabled", "true");
+        $(".trans_messages").html("<p style=''> Please wait ...</p>");
+        namey = $("#account_name_b2b_paybill").val();
+        account = $("#account_number_b2b_paybill").val();
+        amount = $("#amount_b2b_paybill").val();
 
         $.ajax({
-            url: '/stores/b2b',
+            url: '/stores/ib2b_paybill',
             method: 'post',
             data: {
-                name: name,
+                name: namey,
                 account: account,
                 amount: amount,
-                type: "7"
             },
             success: function (f) {
 
@@ -30016,23 +30076,22 @@ $(function () {
         });
     });
 
-    $("#b2btill").click(function (e) {
+    $("#b2b_till").click(function (e) {
         e.preventDefault();
-        $(".b2btill_text").html("Processing");
-        $("#b2btill").attr("disabled", "true");
-        $(".trans_messages_till").html("<p style=''> Please wait ...</p>");
-        name = $("#client_name_till").val();
-        account = $("#client_account_till").val();
-        amount = $("#amount_till").val();
+        $(".b2b_till_text").html("Processing");
+        $("#b2b_till").attr("disabled", "true");
+        $(".trans_messages").html("<p style=''> Please wait ...</p>");
+        namey = $("#account_name_b2b_till").val();
+        account = $("#account_number_b2b_till").val();
+        amount = $("#amount_b2b_till").val();
 
         $.ajax({
-            url: '/stores/b2b',
+            url: '/stores/ib2b_till',
             method: 'post',
             data: {
-                name: name,
+                name: namey,
                 account: account,
                 amount: amount,
-                type: "6"
             },
             success: function (f) {
 
@@ -30243,7 +30302,6 @@ $(function () {
         }
         store_reg();
     });
-
 
     $("#store_phone").keyup(function () {
         phone = $("#store_phone").val();
@@ -30491,8 +30549,71 @@ $(function () {
                     $(".del_opt_err").html("");
                     $("#del_opt").val("");
                     $("#del_price").val("");
+                    $("#variant_name").val("");
+                    $("#variant_value").val("");
                 }
             })
+        }
+    });
+
+    $("#add-variant-temp").click(function (e) {
+        e.preventDefault();
+        variant_name = $("#variant_name").val();
+        variant_value = $("#variant_value").val();
+        id = $("#serial").attr('data');
+        cookie_id = $("#cookie_id").val();
+
+
+        if (variant_name == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please fill the variant name, It cant be empty</span>");
+        } else if (variant_value == "") {
+            $(".var_opt_err").html("<span style='color:red;'>Please specify the variant value, It cant be empty</span>");
+        } else {
+            if ($('#exist').hasClass(variant_name)) {
+                $(".var_opt_err").html("<span style='color:red;'>The variant already exists, add values to it below.</span>");
+            } else {
+                $(".var_table").append("<tr><td class='td_l_" + variant_name + "' style='color:black;font-weight:bold'>" + variant_name + " <span data-name='" + variant_name + "' class='del_var' style='color: lightcoral;cursor: pointer'> <i class='fa fa-times'></i></span></td><td class='td_" + variant_name + "'><span class='item' style='background-color: lightgreen;padding: 8px;border-radius: 12px;color: black;'>" + variant_value + " <span class='delete_var_temp' style='color: lightcoral;cursor: pointer'> <i class='fa fa-times'></i></span></span> " +
+                    "<div id='new_var_" + variant_name + "'+ style=\"display: none\">\n" +
+                    "          <input type='text' id='new_text_" + variant_name + "' style=\"font-size: 75%\"/>\n" +
+                    "          <span class='add_var_val_temp' data-name='" + variant_name + "' class='label' style='cursor: pointer;color: green'> Add Value </span>\n" +
+                    "          <span class='cancel_var_val_temp' data-name='" + variant_name + "' class='label' style='cursor: pointer;color: red'> Cancel </span>\n" +
+                    "        </div><span id='add_btn_" + variant_name + "' class='add_btn_temp' data-name='" + variant_name + "' class='label' style='cursor: pointer;color: green'> Add Value </span></td></tr>");
+                $("#exist").addClass(variant_name);
+                $("#exist").append("<span data-var='" + variant_name + "' data-name='" + variant_name + "' class='var_" + variant_name + "' style='display: none;' data='{\"0\":\"" + variant_value + "\"}'></span>")
+                $("#exist").append("<input type='hidden' data-var='" + variant_name + "' data-name='" + variant_name + "' class='var_" + variant_name + "' style='display: none;' data='{\"0\":\"" + variant_value + "\"}' value='{\"0\":\"" + variant_value + "\"}'></input>")
+                $.ajax({
+                    url: '/products/add_variant_temp',
+                    method: 'post',
+                    data: {
+                        name: variant_name,
+                        cookie_id: cookie_id,
+                        variant_value: variant_value,
+                    },
+                    success: function (e) {
+                        $(".del_opt_err").html("");
+                        $("#del_opt").val("");
+                        $("#del_price").val("");
+                        $("#variant_name").val("");
+                        $("#variant_value").val("");
+                    }
+                })
+            }
+
+            /*$.ajax({
+                url: '/products/add_variant',
+                method: 'post',
+                data: {
+                    variant_name: variant_name,
+                    variant_value: variant_value,
+                    ref: id,
+                    id:id
+                },
+                success: function (e) {
+                    $(".del_opt_err").html("");
+                    $("#del_opt").val("");
+                    $("#del_price").val("");
+                }
+            })*/
         }
     });
 
@@ -30586,7 +30707,14 @@ $(function () {
         })
     });
 
+
     $(".add_var").click(function () {
+        $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
+        //$(this).attr("class","add_var_temp label");
+        $("#new_var").focus();
+    });
+
+    $(".add_var_temp").click(function () {
         $('.var_rev').html("<input type='text' id='new_var' /> <span class='add_value' style='cursor: pointer'> Add Variant </span>");
         //$(this).attr("class","add_var_temp label");
         $("#new_var").focus();
@@ -30603,7 +30731,6 @@ $(function () {
 
 
 });
-
 
 
 function pass(pass) {
@@ -30804,7 +30931,7 @@ function val_phone() {
 }
 
 function val_phone2() {
-    phoneno = $("#client_account_b2c").val();
+    phoneno = $("#client_account_b2c_mpesa").val();
     if (!phonecheck(phoneno)) {
         $("#phone_prev").html("<p style='color:red;'>This is not a valid phone number, use the format 2547XXXXXXXX</p>")
     } else {
@@ -30927,31 +31054,60 @@ function _manual_() {
     }
 }
 
-function b2c_val() {
-    client_name = $("#client_name_b2c").val();
-    client_account = $("#client_account_b2c").val();
-    amount = $("#amount_b2c").val();
+function b2c_mpesa_val() {
+    client_account = $("#client_account_b2c_mpesa").val();
+    amount = $("#amount_b2c_mpesa").val();
 
-    if (client_name != "" && phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) > 0)) {
-        $("#b2c").removeAttr("disabled");
-        $("#b2c").removeAttr("style");
+    if (phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) > 0)) {
+        $("#ib2c_mpesa").removeAttr("disabled");
+        $("#ib2c_mpesa").removeAttr("style");
     } else {
-        $("#b2c").attr("disabled", "true");
-        $("#b2c").attr("style", "background-color: grey;color: white");
+        $("#ib2c_mpesa").attr("disabled", "true");
+        $("#ib2c_mpesa").attr("style", "background-color: grey;color: white");
     }
 }
 
-function b2bpay_val() {
-    client_name = $("#client_name_pay").val();
-    client_account = $("#client_account_pay").val();
-    amount = $("#amount_pay").val();
+function b2c_airtel_val() {
+    client_account = $("#client_account_b2c_airtel").val();
+    amount = $("#amount_b2c_airtel").val();
+
+    if (phonecheck(client_account) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0 && parseInt(amount) > 0)) {
+        $("#ib2c_airtel").removeAttr("disabled");
+        $("#ib2c_airtel").removeAttr("style");
+    } else {
+        $("#ib2c_airtel").attr("disabled", "true");
+        $("#ib2c_airtel").attr("style", "background-color: grey;color: white");
+    }
+}
+
+function b2b_paybill_val() {
+    client_name = $("#account_name_b2b_paybill").val();
+    client_account = $("#account_number_b2b_paybill").val();
+    amount = $("#amount_b2b_paybill").val();
 
     if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
-        $("#b2bpay").removeAttr("disabled");
+        $("#b2b_paybill").removeAttr("disabled");
+        $("#b2b_paybill").removeAttr("style");
     } else {
-        $("#b2bpay").attr("disabled", "true");
+        $("#b2b_paybill").attr("disabled", "true");
+        $("#b2b_paybill").attr("style", "background-color: grey;color: white");
     }
 }
+
+function b2b_till_val() {
+    client_name = $("#account_name_b2b_till").val();
+    client_account = $("#account_number_b2b_till").val();
+    amount = $("#amount_b2b_till").val();
+
+    if (client_name != "" && (client_account != "" && $.isNumeric(client_account)) && (amount != "" && $.isNumeric(amount) && parseInt(amount) != 0)) {
+        $("#b2b_till").removeAttr("disabled");
+        $("#b2b_till").removeAttr("style");
+    } else {
+        $("#b2b_till").attr("disabled", "true");
+        $("#b2b_till").attr("style", "background-color: grey;color: white");
+    }
+}
+
 
 function b2btill_val() {
     client_name = $("#client_name_till").val();
@@ -30994,18 +31150,22 @@ function set_bal(post) {
 
     if (amt == "") {
         $('.charge', '.conditions_' + post).html("0");
-    } else if (parseInt(amt) > 500) {
-        $('.charge', '.conditions_' + post).html("Ksh: " + (parseInt(45) + parseInt(parseFloat(amt) * 0.01)));
-        $('.bal', '.conditions_' + post).html("Ksh: " + (parseInt(full) - (parseInt(amt) + (45 + parseInt(amt * 0.01)))));
     } else {
-        bal = (parseInt(full) - (parseInt(amt) + (52 + parseInt(amt * 0.01))));
-        $('.charge', '.conditions_' + post).html("Ksh: " + (52 + parseInt(parseFloat(amt) * 0.01)));
-        if (bal <= 0) {
-            bal = 0;
-            $('.charge', '.conditions_' + post).html("Ksh: 0");
-        }
+        $('.charge', '.conditions_' + post).html("Ksh: " + Math.floor(parseInt(45) + parseInt(parseFloat(amt) * 0.01)));
+        $('.bal', '.conditions_' + post).html("Ksh: " + Math.ceil(parseInt(full) - (parseInt(amt) + (45 + parseInt(amt * 0.01)))));
+    }
+}
 
-        $('.bal', '.conditions_' + post).html("Ksh: " + bal);
+function set_bal_b2b(post) {
+    max = $('.charge', '.conditions_' + post).attr('data');
+    amt = $("#amount_" + post).val();
+    full = $(".charge", '.conditions_' + post).attr('data-full');
+
+    if (amt == "") {
+        $('.charge', '.conditions_' + post).html("0");
+    } else {
+        $('.charge', '.conditions_' + post).html("Ksh: " + Math.floor(parseInt(0) + parseInt(parseFloat(amt) * 0.01)));
+        $('.bal', '.conditions_' + post).html("Ksh: " + Math.ceil(parseInt(full) - (parseInt(amt) + (0 + parseInt(amt * 0.01)))));
     }
 }
 
@@ -31019,14 +31179,24 @@ function check_num(post) {
     }
 }
 
-function val_b2bpay() {
-    val = $("#client_account_pay").val();
+function val_b2b_paybill() {
+    val = $("#account_number_b2b_paybill").val();
     if ($.isNumeric(val)) {
-        $(".pay_acc_prev").html("")
+        $(".acc_prev_b2b_paybill").html("")
     } else {
-        $(".pay_acc_prev").html("<p style='color: red'>Paybill is a Number!</p>")
+        $(".acc_prev_b2b_paybill").html("<p style='color: red'>Paybill is a Number!</p>")
     }
 }
+
+function val_b2b_till() {
+    val = $("#account_number_b2b_till").val();
+    if ($.isNumeric(val)) {
+        $(".acc_prev_b2b_till").html("")
+    } else {
+        $(".acc_prev_b2b_till").html("<p style='color: red'>Paybill is a Number!</p>")
+    }
+}
+
 
 function val_b2btill() {
     val = $("#client_account_till").val();
@@ -31090,7 +31260,7 @@ function store_reg() {
     //setTimeout(console.log('timeout'),1000);
 
     if (store_name.length > 3 && url.length > 2 && $("#store_email").attr('data-valid') == 'true' && $("#url").attr('data-valid') == 'true') {
-        $('#nxtBtn').prop("disabled", false);
+        $('#nxtBtn').removeAttr("disabled");
         $('#nxtBtn').removeAttr("style");
     } else {
         //alert(false);
@@ -31104,13 +31274,24 @@ function store_reg2() {
     store_phone = $("#store_phone").val();
     store_password = $("#store_password").val();
     store_password_confirmation = $("#store_password_confirmation").val();
-    if (phonecheck(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true') {
+    if (phonecheck(store_phone) && pass(store_password) && pass(store_password_confirmation) && $("#store_password_confirmation").attr('data-valid') == 'true' && confirmtc()) {
         $("#submitter").removeAttr("disabled");
         $("#submitter").removeAttr("style");
         $("#submitter").off("click");
     } else {
         $("#submitter").attr("disabled", "true");
         $("#submitter").attr("style", "background-color:grey;color:#000;border-color: grey;");
+    }
+
+}
+
+function confirmtc() {
+    if ($('#tc').is(":checked") == true) {
+        console.log($('#tc').is(":checked"));
+        return true;
+    }else{
+        console.log($('#tc').is(":checked"));
+        return false;
     }
 
 }
@@ -31279,4 +31460,5 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
+
 ;
