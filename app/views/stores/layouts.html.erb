@@ -42,10 +42,10 @@
                   <% if l.premium %>
                     <% if l.id == @store.layout_id %>
                       <input name="layout" type="radio" value="<%= l.id %>" checked disabled>
-                      <span style="font-weight:500"><%= l.d_name %></span>
+                      <span style="font-weight:500"><%= l.d_name %><span class="label label-success">  <i class="fa fa-star" style="color: #FFD700"></i> Premium</span></span>
                     <% else %>
                       <input name="layout" type="radio" value="<%= l.id %>" disabled>
-                      <span style="font-weight:500"><%= l.d_name %></span>
+                      <span style="font-weight:500"><%= l.d_name %><span class="label label-success">  <i class="fa fa-star" style="color: #FFD700"></i> Premium<</span></span>
                     <% end %>
                   <% else %>
                     <% if l.id == @store.layout_id %>
@@ -57,12 +57,22 @@
                     <% end %>
                       <% end %>
                 <% else %>
-                  <% if l.id == @store.layout_id %>
-                    <input name="layout" type="radio" value="<%= l.id %>" checked>
-                    <span style="font-weight:500"><%= l.d_name %></span>
+                  <% if l.premium %>
+                    <% if l.id == @store.layout_id %>
+                      <input name="layout" type="radio" value="<%= l.id %>" checked>
+                      <span style="font-weight:500"><%= l.d_name %><span class="label label-success">  <i class="fa fa-star" style="color: #FFD700"></i> Premium</span></span>
+                    <% else %>
+                      <input name="layout" type="radio" value="<%= l.id %>">
+                      <span style="font-weight:500"><%= l.d_name %><span class="label label-success">  <i class="fa fa-star" style="color: #FFD700"></i> Premium<</span></span>
+                    <% end %>
                   <% else %>
-                    <input name="layout" type="radio" value="<%= l.id %>">
-                    <span style="font-weight:500"><%= l.d_name %></span>
+                    <% if l.id == @store.layout_id %>
+                      <input name="layout" type="radio" value="<%= l.id %>" checked>
+                      <span style="font-weight:500"><%= l.d_name %></span>
+                    <% else %>
+                      <input name="layout" type="radio" value="<%= l.id %>">
+                      <span style="font-weight:500"><%= l.d_name %></span>
+                    <% end %>
                   <% end %>
                 <% end %>
               </label>

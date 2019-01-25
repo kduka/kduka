@@ -20,7 +20,7 @@
       <a href="<%= product_view_path(product.sku) %>">
         <h3 style="font-family:'Arial'"><%= product.name %></h3><br>
       </a>
-        <h3 style="color: #000 !important"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %> <% if product.discount_status%><span><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span><% else %><% end %></h3>
+        <h3 style="color: #000 !important"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %> <% if product.discount_status%><span style="color: red"><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span><% else %><% end %></h3>
 
 
       <ul>
