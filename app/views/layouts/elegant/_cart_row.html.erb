@@ -28,7 +28,7 @@
           <p style="font-size:15px;padding-top:1em"><%= number_to_currency(order_item.total_price , :unit => "Ksh ", :separator => ".", :delimiter => ",") %></p>
       </div>
       <div class="col-sm-1">
-          <h5 style="text-align:right;padding-top:1em"><%= link_to "x", order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.name}' from your cart?" }, method: :delete, remote: true} %></h5>
+          <p style="text-align:right;padding-top:1em"><%= link_to "x", order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.name}' from your cart?" }, method: :delete, remote: true} %></p>
       </div>
       <% end %>
   </div>

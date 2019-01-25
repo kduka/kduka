@@ -8,14 +8,17 @@
 }(document, 'script', 'facebook-jssdk'));
 </script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<div class="col-md-4 team-grid" style="padding-bottom:6em;margin-bottom:5em;margin-top:0em;min-height:10em">
+<div class="col-md-4 team-grid" style="padding-top: 2em;padding-bottom:4em;margin-bottom:3em;margin-top:0em;min-height:10em">
   <!-- normal -->
   <div class="ih-item circle effect10 bottom_to_top">
 
       <div class="img vertical-center"><%= image_tag(product.image_url(:thumb).to_s, class: 'text-center', style: 'text-align:center;max-width:100%;max-height:100%;') %></div>
     <div class="info">
+      <a href="<%= product_view_path(product.sku) %>" style="background:rgba(0,0,0,0.5);">
+        <button class="elegant-button prod_name" style="border-radius:16px"><i class="fa fa-search"></i> View</button><br><br>
+      </a>
       <a href="<%= product_view_path(product.sku) %>">
-        <h3 style="margin-top:9em;font-weight:600 !important;font-family:'arial' !important"><%= product.name %></h3><br>
+        <h3 style="font-family:'Arial'"><%= product.name %></h3><br>
       </a>
         <h3 style="color: #000 !important"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %> <% if product.discount_status%><span><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span><% else %><% end %></h3>
 

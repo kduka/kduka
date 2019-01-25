@@ -55,7 +55,7 @@ $(document).ready(function(){
               <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
           <% end %>
       <% end%>
-			<div class="col-md-12 text-center" style="padding-top:1em;padding-bottom:3em">
+			<div class="col-md-12 text-center" style="padding-top:3em;padding-bottom:3em">
 				<a href="<%= all_path %>"><button class="elegant-button">View More Products</button></a>
 			</div>
 
@@ -78,7 +78,7 @@ $(document).ready(function(){
                       <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
                   <% end %>
               <% end %>
-        			<div class="col-md-12 text-center" style="padding-top:1em;padding-bottom:3em">
+        			<div class="col-md-12 text-center" style="padding-top:3em;padding-bottom:3em">
         				<a href="<%= product_category_path(category.id) %>"><button class="elegant-button">View More Products</button></a>
         			</div>
 

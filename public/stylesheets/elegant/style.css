@@ -1,3 +1,13 @@
+.prod_name{
+	margin-top:4em;font-weight:500 !important;font-family:'arial' !important;
+}
+.info{
+	width:100%;
+	background: #fff !important;
+}
+.info:hover{
+	background: #fff !important;
+}
 .our_logo{
 	max-width: 150px !important;
 	max-height: 80px !important;

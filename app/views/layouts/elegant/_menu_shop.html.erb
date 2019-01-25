@@ -2,7 +2,7 @@
       <div class="w3_agileits_logo">
           <h1><a href="<%= root_path %>">
           <% if @store.logo_status %>
-  						<%= image_tag(@store.logo_url.to_s,class:"our_logo",style:'margin-top:-1.2em') %>
+  						<%= image_tag(@store.logo_url.to_s,class:"our_logo",style:'margin-top:-1em;margin-bottom:-1em;') %>
   				<% else %>
   						<%= @store.name %>
   				<% end %>
