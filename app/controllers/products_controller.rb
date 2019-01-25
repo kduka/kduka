@@ -146,6 +146,7 @@ class ProductsController < ApplicationController
       session[cookie].each do |k,v|
         Variant.create(product_id:@product.id,name:k,value:v.to_json)
       end
+      session.delete(cookie)
       flash[:notice] = "New Product Created!"
       redirect_to(products_manage_path)
     else
@@ -290,13 +291,27 @@ class ProductsController < ApplicationController
   def add_variant_temp
     @name = params[:name]
 
-    @hash = Hash.new
+    if session[params[:cookie_id]].nil?
+      @hash = Hash.new
 
-    @hash["#{@name}"] = params[:variant_value]
+      @hash["#{@name}"] = params[:variant_value]
 
-    session[params[:cookie_id]] = @hash
+      session[params[:cookie_id]] = @hash
 
-    puts "IT IS #{session[params[:cookie_id]]} and #{@hash}"
+      puts "IT IS #{session[params[:cookie_id]]} and #{@hash}"
+
+    else
+
+      @hash = session[params[:cookie_id]]
+
+      @hash["#{@name}"] = params[:variant_value]
+
+      session[params[:cookie_id]] = @hash
+
+      puts "SES IS #{session[params[:cookie_id]]}"
+
+      #session[params[:cookie_id]][:@name] = params[:variant_value]
+    end
 
     #session[:cookie_id]["#{@name}"] = "#{params[:variant_value]}"
 
@@ -336,11 +351,13 @@ class ProductsController < ApplicationController
     @str = JSON.parse(var)
     @str.delete(@index)
 
-    vars = Hash.new
+    ses = session[cookie_id]
 
-    vars["#{@name}"] = @str
-
-    session[cookie_id] = vars
+    ses.each do |k,v|
+      if k == @name
+        ses[k] = @str
+      end
+    end
 
     puts "NEW VAR STING IS #{session[cookie_id]}"
 
@@ -360,6 +377,15 @@ class ProductsController < ApplicationController
 
     puts @vars[2]
 
+  end
+
+  def del_var
+    @name = params[:name]
+    session[:cookie_id].each do |k,v|
+      if k == @name
+        session[:cookie_id].delete(k)
+      end
+    end
   end
 
   def append_variant
@@ -397,9 +423,11 @@ class ProductsController < ApplicationController
 
     @name = params[:variant_name]
     @variant_value = params[:variant_value].downcase
+
     cookie_id = params[:cookie_id]
 
     existing_vals = params[:existing_vals]
+
     @vals = JSON.parse(existing_vals)
 
     key = 0
@@ -423,7 +451,15 @@ class ProductsController < ApplicationController
 
     vars["#{@name}"] = @vals
 
-    session[cookie_id] = vars
+    ses = session[cookie_id]
+
+    ses.each do |k,v|
+      if k = @name
+        ses[k] = @vals
+      end
+    end
+
+    session[cookie_id] = ses
 
     puts "NEW VAR STRING IS #{session[cookie_id]}"
 

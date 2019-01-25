@@ -787,6 +787,8 @@ $(function () {
                     $(".del_opt_err").html("");
                     $("#del_opt").val("");
                     $("#del_price").val("");
+                    $("#variant_name").val("");
+                    $("#variant_value").val("");
                 }
             })
         }
@@ -808,10 +810,11 @@ $(function () {
             if ( $('#exist').hasClass(variant_name) ){
                 $(".var_opt_err").html("<span style='color:red;'>The variant already exists, add values to it below.</span>");
             }else{
-                $(".var_table").append("<tr><td>"+variant_name+"</td><td class='td_"+variant_name+"'><span class='item'>"+variant_value +" <span class='delete_var_temp' style='color: red;cursor: pointer'> <i class='fa fa-times-rectangle'></i></span></span> " +
+                $(".var_table").append("<tr><td class='td_l_"+variant_name+"' style='color:black;font-weight:bold'>"+variant_name+" <span data-name='"+variant_name+"' class='del_var' style='color: lightcoral;cursor: pointer'> <i class='fa fa-times'></i></span></td><td class='td_"+variant_name+"'><span class='item' style='background-color: lightgreen;padding: 8px;border-radius: 12px;color: black;'>"+variant_value +" <span class='delete_var_temp' style='color: lightcoral;cursor: pointer'> <i class='fa fa-times'></i></span></span> " +
                     "<div id='new_var_"+variant_name+"'+ style=\"display: none\">\n" +
                     "          <input type='text' id='new_text_"+variant_name+"' style=\"font-size: 75%\"/>\n" +
                     "          <span class='add_var_val_temp' data-name='"+variant_name+"' class='label' style='cursor: pointer;color: green'> Add Value </span>\n" +
+                    "          <span class='cancel_var_val_temp' data-name='"+variant_name+"' class='label' style='cursor: pointer;color: red'> Cancel </span>\n" +
                     "        </div><span id='add_btn_"+variant_name+"' class='add_btn_temp' data-name='"+variant_name+"' class='label' style='cursor: pointer;color: green'> Add Value </span></td></tr>");
                 $("#exist").addClass(variant_name);
                 $("#exist").append("<span data-var='"+variant_name+"' data-name='"+variant_name+"' class='var_"+variant_name+"' style='display: none;' data='{\"0\":\""+variant_value+"\"}'></span>")
@@ -828,6 +831,8 @@ $(function () {
                         $(".del_opt_err").html("");
                         $("#del_opt").val("");
                         $("#del_price").val("");
+                        $("#variant_name").val("");
+                        $("#variant_value").val("");
                     }
                 })
             }
