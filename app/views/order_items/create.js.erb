@@ -4,6 +4,7 @@ alert("not valid.")
 $(".cart-text").html("<%= escape_javascript(render "layouts/#{Layout.find(@store.layout_id).name}/cart_text") %>")
 
 
+//COLLECT THE VARIANTS FOR THE PRODUCT
 product_id = $(".add_cart").attr('data-id');
 jsonString = "{";
 $.ajax({
