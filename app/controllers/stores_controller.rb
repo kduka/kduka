@@ -671,9 +671,9 @@ end
   end
 
   def create_year
-    exist = Subscription.where(order_status_id: 5, description: 'year', amount: 1).first
+    exist = Subscription.where(order_status_id: 5, description: 'year', amount: 4500).first
     if exist.nil?
-      @order = Subscription.create(amount: 1, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'year', order_status_id: 5, store_id: current_store.id)
+      @order = Subscription.create(amount: 4500, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'year', order_status_id: 5, store_id: current_store.id)
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
       p1 = "#{request.subdomain}.#{request.domain}"
