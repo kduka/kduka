@@ -1,0 +1,90 @@
+<title><%= @store.name %> | <%= @title %></title>
+<!-- banner -->
+<style>
+.my_class2{
+	display:none;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".my_class2").remove();
+});
+</script>
+<div class="banner_top" id="home">
+	<div data-vide-bg ="video/gift-packs" style="background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<%= @store.banner_url.to_s %>') no-repeat 0px 0px;background-size:cover !important;background-attachment: fixed !important">
+		<div class="center-container">
+			<%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop" %>
+				<!-- banner-text -->
+				<div class="slider">
+						<div class="callbacks_container">
+							<ul class="rslides callbacks callbacks1" id="slider4">
+								<li>
+									<div class="agileits-banner-info">
+											<h4>Welcome To</h4>
+												<h3><%= @store.name %></h3>
+											</div>
+								</li>
+							</ul>
+						</div>
+				</div>
+
+			<!--banner Slider starts Here-->
+      </div>
+   </div>
+     </div>
+<!-- //banner -->
+
+
+<!-- About -->
+<div class="about" id="about">
+	<div class="container">
+	</div>
+</div>
+<!-- //about -->
+<!--we-offer -->
+<div class="features"  style="padding-top:3em;padding-bottom:3em">
+	<div class="container">
+		<div class="heading-setion-w3ls">
+			<h2 class="title-zerone" style="text-align:center !important"><span style="color:<%= @store.store_color %>">Latest</span> Products <i class="fa fa-bell" aria-hidden="true"></i><i class="fa fa-bell-o" aria-hidden="true"></i></h2>
+		</div>
+		<div class="details-top-w3ls">
+      <% if @products.nil? %>
+          <p class="text-center">This store does not have any active Products</p>
+      <% else %>
+          <% @products.each do |product| %>
+              <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+          <% end %>
+      <% end%>
+			<div class="col-md-12 text-center" style="padding-top:1em;padding-bottom:3em">
+				<a href="<%= all_path %>"><button class="elegant-button">View More Products</button></a>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+<% if !@featured.nil? %>
+    <% @featured.each do |category| %>
+        <!--we-offer -->
+        <div class="features"  style="padding-top:3em;padding-bottom:3em">
+        	<div class="container">
+        		<div class="heading-setion-w3ls">
+        			<h2 class="title-zerone" style="text-align:center !important"><span style="color:<%= @store.store_color %>"><%= category.name %></span><i class="fa fa-bell" aria-hidden="true"></i><i class="fa fa-bell-o" aria-hidden="true"></i></h2>
+        		</div>
+        		<div class="details-top-w3ls">
+              <% @cat_products = Product.where(active:true,category_id:category.id).limit(3).order('id desc') %>
+              <% if !@cat_products.nil? %>
+                  <% @cat_products.each do |product| %>
+                      <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+                  <% end %>
+              <% end %>
+        			<div class="col-md-12 text-center" style="padding-top:1em;padding-bottom:3em">
+        				<a href="<%= product_category_path(category.id) %>"><button class="elegant-button">View More Products</button></a>
+        			</div>
+
+        		</div>
+
+        	</div>
+        </div>
+<%end%>
+<%end%>

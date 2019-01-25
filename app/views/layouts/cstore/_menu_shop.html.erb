@@ -35,7 +35,7 @@
                   <li><a href="<%= about_path %>">About Us</a></li>
                   <% end %>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li><a href="<%= all_path %>"><h4>ALL PRODUCTS</h4></a>
                           <% @store.category.where(active:true).each do |c| %>

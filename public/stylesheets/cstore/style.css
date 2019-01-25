@@ -88,7 +88,12 @@ font-family: 'Raleway', sans-serif;
 /*----------------------------------------
         01. THEME GENEREL CSS
 ------------------------------------------*/
-
+#banner_parallax{
+  background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+.slotholder{
+  background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) !important;
+}
 * {
     padding: 0;
     margin: 0;

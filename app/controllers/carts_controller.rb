@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   def show
     @order_items = current_order.order_items
+    @title = "Cart"
     set_shop
 
   end
@@ -10,6 +11,7 @@ class CartsController < ApplicationController
       redirect_to(all_path) and return
     end
     @items = current_order.order_items.count
+    @title = "Shipping"
     set_shop
   end
 
@@ -67,6 +69,7 @@ class CartsController < ApplicationController
   end
 
   def success
+    @title = "Success"
     set_shop
   end
 
@@ -197,6 +200,7 @@ class CartsController < ApplicationController
 
   def pay
     lock_coupon
+    @title = "Payment"
     set_shop
   end
 

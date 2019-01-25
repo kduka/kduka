@@ -1,0 +1,23 @@
+<title><%= @store.name %> | <%= @title %></title>
+
+<!-- about -->
+	<div class="about" id="about">
+		<div class="agileits_works-top">
+
+				<div class="container agileits_works-grid two">
+
+				    <div class="wthree-text">
+					<div class="heading-setion-w3ls">
+						<h3 class="title-zerone">A few Words About Us <i class="fa fa-bell" aria-hidden="true"></i><i class="fa fa-bell-o" aria-hidden="true"></i></h3>
+					</div>
+					   <p class="para-w3-agile"><%= @store.aboutpage_text.html_safe rescue nil %>
+							</p>
+
+					</div>
+
+				</div>
+
+		    <div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //about -->

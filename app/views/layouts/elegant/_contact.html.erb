@@ -1,0 +1,48 @@
+<title><%= @store.name %> | <%= @title %></title>
+<!--contact-->
+<div class="contact-top-agileinfo">
+	<div class="container">
+		<h3 class="title-zerone contact-head">Get in Touch with Us <i class="fa fa-bell" aria-hidden="true"></i><i class="fa fa-bell-o" aria-hidden="true"></i></h3>
+	<div class="col-md-12 contact-left-wthree">
+	<div class="col-md-4" style="margin-bottom:1.5em">
+  <h5 style="text-align:center"><strong><i style="color:<%= @store.store_color %> !important" class="fa fa-envelope fa-3x"></i></strong><br><br><%= @store.display_email %></h5>
+	</div>
+	<div class="col-md-4" style="margin-bottom:1.5em">
+	  <h5 style="text-align:center"><strong><i style="color:<%= @store.store_color %> !important" class="fa fa-phone fa-3x"></i></strong><br><br><%= @store.phone %></h5>
+	  </div>
+	  <div class="col-md-4" style="margin-bottom:1.5em">
+	    <h5 style="text-align:center"><strong><i style="color:<%= @store.store_color %> !important" class="fa fa-map-marker fa-3x"></i></strong><br><br><%= @store.business_location %></h5>
+	  </div>
+
+	</div>
+	<div class="col-md-12" style="height:1em"></div>
+	</div>
+>
+	</div>
+</div>
+</div>
+<!-- contact-form-->
+<div class="jarallax contact-bottom" id="contact">
+	<div class="col-md-12 contact-right-w3l" style="background:#000 !important">
+		<div class="col-md-8 col-md-offset-2">
+			<h3 class="title-zerone white-agileits">Leave us a Message <i class="fa fa-bell white-agileits" aria-hidden="true"></i><i class="fa fa-bell-o" aria-hidden="true"></i></h3>
+      <%= form_tag('/stores/contact') do %>
+          <div class="col-md-12 col-sm-12 contact_left_grid">
+            <%= text_field_tag(:first_name, nil,:required=>'required',:style=>'width:100%', :placeholder => 'Name') %><br><br>
+          </div>
+          <div class="col-md-12 col-sm-12 contact_left_grid">
+            <%= text_field_tag(:email, nil,:required=>'required',:style=>'width:100%', :placeholder => 'Email') %><br>
+          </div>
+          <div class="col-md-12 col-sm-12 contact_left_grid">
+            <%= text_area_tag(:message, nil,:required=>'required',  :placeholder => 'Message', :style=> 'height:10em;width:100% !important;margin-left: 0 !important') %>
+          </div><br><br>
+          <div class="col-md-12 col-sm-12 contact_left_grid">
+          <%= submit_tag("Send Message", :class => 'elegant-button', :style=>'width:100% !important;margin-left:0 !important') %><br>
+          </div>
+
+      <% end %>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<!-- //contact-form -->

@@ -1,0 +1,39 @@
+<div class="w3_agile_header">
+      <div class="w3_agileits_logo">
+          <h1><a href="<%= root_path %>">
+          <% if @store.logo_status %>
+  						<%= image_tag(@store.logo_url.to_s,class:"our_logo",style:'margin-top:-1.2em') %>
+  				<% else %>
+  						<%= @store.name %>
+  				<% end %>
+          </a></h1>
+        </div>
+        <div class="w3_menu">
+        <div class="agileits_zerone_banner_info">
+
+        </div>
+          <div class="top-nav">
+          <nav class="navbar navbar-default">
+            <div class="container">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-example-navbar-collapse-1">Menu
+              </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse bs-example-navbar-collapse-1" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="home-icon"><a href="<%= root_path %>" style="color: #fff !important"><span class="fa fa-home" aria-hidden="true"></span> Home</a></li>
+                <li><a href="<%= about_path %>">About Us</a></li>
+                <li><a href="<%= all_path %>">Shop Now</a></li>
+                <li><a href="<%= contact_path %>">Contact Us</a></li>
+                <li class="nav-cart-w3ls">
+                    <a href="<%= cart_path %>"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span class="cart-text"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a>
+                </li>
+              </ul>
+              <div class="clearfix"> </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+    <div class="clearfix"></div>
+    </div>

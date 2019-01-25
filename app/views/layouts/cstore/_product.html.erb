@@ -1,7 +1,7 @@
-<title><%= @store.name %></title>
+<title><%= @store.name %> | <%= @title %></title>
 <!--=======BANNER=======-->
 <section id="banner_parallax" data-parallax="scroll" data-image-src="<%= @store.banner_url.to_s %>">
-    <h2>PRODUCTS</h2>
+    <h2><%= @title %></h2>
 </section>
 <!-- /#banner_parallax -->
 <div style="width:100%">
