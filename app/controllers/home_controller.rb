@@ -33,4 +33,8 @@ class HomeController < ApplicationController
   def aup
 
   end
+
+  def explore
+
+  end
 end
