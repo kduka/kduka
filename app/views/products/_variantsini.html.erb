@@ -6,7 +6,7 @@
   <tbody>
   <% Variant.where(product_id: @product.id).each do |d| %>
     <tr>
-      <td><%= "Variant : #{d.name.humanize}" %></td>
+      <td style='color:black;font-weight:bold'><%= "#{d.name.humanize}" %></td>
 
       <%
         require 'json'
@@ -14,14 +14,14 @@
       %>
       <td>Values:
         <% vals.each do |k, v| %>
-          <%= v.humanize %>
-          <span data="<%= d.name %>" data-attr="<%= k %>" class="delete_var" style="color: red;cursor: pointer"><i class="fa fa-times-rectangle"></i> </span>
+          <span style='background-color: lightgreen;padding: 8px;border-radius: 12px;color: black;margin:2px'><%= v.humanize %>
+            <span data="<%= d.name %>" data-attr="<%= k %>" class="delete_var" style="color: red;cursor: pointer"><i class="fa fa-times-rectangle"></i> </span></span>
         <% end %>
         <div id='new_var_<%= d.name %>' style="display: none">
           <input type='text' id='new_text_<%= d.name %>' style="font-size: 75%"/>
-            <span onclick="add_var_val('<%= d.name %>','<%= d.product_id %>')" class='label' style='cursor: pointer;color: green'> Add Value </span>
+            <span onclick="add_var_val('<%= d.name %>','<%= d.product_id %>')" style='cursor: pointer;color: green'> Add Value </span>
         </div>
-        <span class="add_btn" data-name="<%= d.name %>" class='label' style='cursor: pointer;color: green'> Add Value </span>
+        <span class="add_btn" data-name="<%= d.name %>"  style='cursor: pointer;color: green'> Add Value </span>
       </td>
     </tr>
   <% end %>
@@ -34,6 +34,7 @@ $(function () {
       $("#new_var_"+ e).attr('style','display:inline');
       $(this).attr('style','cursor: pointer;color: red')
         $(this).html('Cancel');
+
     })
 
     /*function ini_var(e) {

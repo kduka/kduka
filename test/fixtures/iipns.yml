@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  txncd: MyString
+  qwh: MyString
+  afd: MyString
+  poi: MyString
+  uyt: MyString
+  ifd: MyString
+  agt: MyString
+  id: MyString
+  status: MyString
+  ivm: MyString
+  mc: MyString
+  p1: MyString
+  p2: MyString
+  p3: MyString
+  p4: MyString
+  msisdn_id: MyString
+  msisdn_idnum: MyString
+  msisdn_custnum: MyString
+  channel: MyString
+  tokenid: MyString
+  tokenemail: MyString
+  card_mask: MyString
+
+two:
+  txncd: MyString
+  qwh: MyString
+  afd: MyString
+  poi: MyString
+  uyt: MyString
+  ifd: MyString
+  agt: MyString
+  id: MyString
+  status: MyString
+  ivm: MyString
+  mc: MyString
+  p1: MyString
+  p2: MyString
+  p3: MyString
+  p4: MyString
+  msisdn_id: MyString
+  msisdn_idnum: MyString
+  msisdn_custnum: MyString
+  channel: MyString
+  tokenid: MyString
+  tokenemail: MyString
+  card_mask: MyString

@@ -10,10 +10,11 @@
   <thead>
   <tr>
     <th>Store Name</th>
+    <th>Transaction Status</th>
     <% columns.each do |c| %>
       <th><%= c %></th>
     <% end %>
-    <th>Transaction Status</th>
+
   </tr>
   </thead>
 
@@ -21,10 +22,11 @@
   <% @transactions.each do |ipn| %>
     <tr>
       <td><%= Store.find(ipn.store_id).name.humanize %></td>
+      <td><%= OrderStatus.find(ipn.order_status_id).name.humanize %></td>
       <% columns.each do |c| %>
-        <td><%=  ipn[c] %></td>
+        <td><%=  ipn[c] rescue nil %></td>
       <% end %>
-      <th><%= TransactionStatus.find(ipn.transaction_status_id).status.humanize %></th>
+
     </tr>
   <% end %>
   </tbody>

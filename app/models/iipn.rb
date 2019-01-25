@@ -1,0 +1,2 @@
+class Iipn < ApplicationRecord
+end

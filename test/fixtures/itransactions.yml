@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  text: MyString
+  reference: MyString
+  timestamp: MyString
+
+two:
+  status: MyString
+  text: MyString
+  reference: MyString
+  timestamp: MyString

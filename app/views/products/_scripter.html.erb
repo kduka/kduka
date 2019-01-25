@@ -3,30 +3,47 @@
         $(".add_btn_temp").click(function () {
             e = $(this).attr('data-name');
             $("#new_var_" + e).attr('style', 'display:inline');
-            $(this).attr('style', 'cursor: pointer;color: red');
-            $(this).html('Cancel');
+            $("#new_text_" + e).focus();
+            $(this).attr('style', 'cursor: pointer;display:none');
+            //$(this).html('Cancel');
+            //$(this).attr('class','cancel_btn_temp');
+        });
+
+        $(".cancel_var_val_temp").click(function () {
+            e = $(this).attr('data-name');
+            $("#new_var_" + e).attr('style','display:none');
+            $("#add_btn_"+e).attr('style', 'cursor: pointer;display:inline;color:green;');
+            //$(this).html('Add Value');
+            //$(this).attr('class','add_btn_temp');
         });
 
 
         $(".add_var_val_temp").click(function () {
             namey = $(this).attr('data-name');
             val = $("#new_text_" + namey).val();
-            existing_vals = $(".var_"+namey).attr('data');
+
+            if (val != ""){
+
+            existing_vals = $(".var_" + namey).attr('data');
+            cookie_id = $("#cookie_id").attr('data');
             $.ajax({
                 url: '/products/append_variant_temp',
                 method: 'post',
                 data: {
                     variant_name: namey,
                     variant_value: val,
-                    existing_vals: existing_vals
+                    existing_vals: existing_vals,
+                    cookie_id: cookie_id
                 },
                 success: function (e) {
                     $("#new_text_" + namey).val("");
-                    $("#new_var_" + namey).attr("style","display:none");
-                    $("#add_btn_"+namey).attr('style', 'cursor: pointer;color: green');
-                    $("#add_btn_"+namey).html('Add Value');
+                    $("#new_var_" + namey).attr("style", "display:none");
+                    $("#add_btn_" + namey).attr('style', 'cursor: pointer;color: green');
+                    $("#add_btn_" + namey).html('Add Value');
                 }
             })
+
+        }
         });
 
         $(".delete_var_temp").click(function (e) {
@@ -34,6 +51,7 @@
             the_var = $(this).attr('data');
             the_name = $(this).attr('data-var');
             the_string = $('.var_'+the_name).attr('data');
+            cookie_id = $("#cookie_id").attr('data');
 
             $.ajax({
                 url: '/products/delete_variant_temp',
@@ -41,7 +59,24 @@
                 data: {
                     name: the_name,
                     index: $(this).attr('data-attr'),
-                    vars: the_string
+                    vars: the_string,
+                    cookie_id:cookie_id
+                },
+                success: function () {
+
+                }
+
+            })
+        });
+
+        $(".del_var").click(function (e){
+           val = $(this).attr('data-name')
+
+            $.ajax({
+                url: '/products/del_var',
+                method: 'post',
+                data: {
+                    name: val
                 },
                 success: function () {
 

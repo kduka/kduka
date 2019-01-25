@@ -172,12 +172,118 @@ class IpnController < ApplicationController
   end
 
   def ipay
-    data = request.body.read
+    puts request.body.read
+    response = JSON.parse(request.body.read)
+    @params = Hash.[]
+    response.each do |(k, a)|
+      if k == "id"
+        @params["trans_#{k}"] = a
+      else
+        @params["#{k}"] = a
+      end
+    end
+    @ipn = Iipn.create(@params)
 
-    puts data
-
-    no_layout
+    if @ipn
+      render :json => {'status': 'ok'}
+      check_order(@params['trans_id'], @params['mc'], @params['txncd'])
+    end
   end
+
+  def process_ipn
+    require 'json'
+    #puts response.read_body
+    pars = request.GET
+    #pars2 = JSON.parse(pars)
+    Iipn.create(pars.merge(id:nil))
+
+    val = "#{ENV['ipay_vid']}";
+
+    val1 = pars["id"];
+    val2 = pars["ivm"];
+    val3 = pars["qwh"];
+    val4 = pars["afd"];
+    val5 = pars["poi"];
+    val6 = pars["uyt"];
+    val7 = pars["ifd"];
+
+    ipnurl = "https://www.ipayafrica.com/ipn/?vendor=#{val}&id=#{val1}&ivm=#{val2}&qwh=#{val3}&afd=#{val4}&poi=#{val5}&uyt=#{val6}&ifd=#{val7}"
+
+    require 'net/http'
+
+    uri = URI.parse(ipnurl)
+
+    # Shortcut
+    #response = Net::HTTP.post_form(uri, {"user[name]" => "testusername", "user[email]" => "testemail@yahoo.com"})
+
+    # Full control
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(uri.request_uri)
+
+    response = http.request(request)
+    valcode = response.body
+
+    if valcode = 'aei7p7yrx4ae34'
+      #render :json => {'status': 'ok'}
+      check_order(pars['id'], pars['mc'], pars['txncd'])
+    end
+
+    if Rails.env.development?
+      redirect_to("http://#{pars['p1']}:3000/carts/success")
+    else
+      redirect_to("http://#{pars['p1']}/carts/success")
+    end
+
+end
+
+def process_ipn_sub
+  require 'json'
+  #puts response.read_body
+  pars = request.GET
+  #pars2 = JSON.parse(pars)
+  Iipn.create(pars.merge(id:nil))
+
+  val = "#{ENV['ipay_vid']}";
+
+  val1 = pars["id"];
+  val2 = pars["ivm"];
+  val3 = pars["qwh"];
+  val4 = pars["afd"];
+  val5 = pars["poi"];
+  val6 = pars["uyt"];
+  val7 = pars["ifd"];
+
+  ipnurl = "https://www.ipayafrica.com/ipn/?vendor=#{val}&id=#{val1}&ivm=#{val2}&qwh=#{val3}&afd=#{val4}&poi=#{val5}&uyt=#{val6}&ifd=#{val7}"
+
+  require 'net/http'
+
+  uri = URI.parse(ipnurl)
+
+  # Shortcut
+  #response = Net::HTTP.post_form(uri, {"user[name]" => "testusername", "user[email]" => "testemail@yahoo.com"})
+
+  # Full control
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  request = Net::HTTP::Get.new(uri.request_uri)
+
+  response = http.request(request)
+  valcode = response.body
+
+  if valcode = 'aei7p7yrx4ae34'
+    #render :json => {'status': 'ok'}
+    check_order(pars['id'], pars['mc'], pars['txncd'])
+  end
+
+  if Rails.env.development?
+    redirect_to("http://#{pars['p1']}:3000/stores/premium")
+  else
+    redirect_to("http://#{pars['p1']}/stores/premium")
+  end
+end
 
 end
 
@@ -318,6 +424,32 @@ end
  	</KYCInfoList>
  </InstantPaymentNotification>
 
+=end
+
+=begin
+{
+"txncd":"664093384",
+"qwh":1501534703,
+"afd":216710862,
+"poi":383319515,
+"uyt":319951150,
+"ifd":1183332828,
+"agt":"",
+"id":"CX7BD2SN",
+"status":"aei7p7yrx4ae34",
+"ivm":"CX7BD2SN",
+"mc":5454,
+"p1":"",
+"p2":"",
+"p3":"",
+"p4":"",
+"msisdn_id":"m n",
+"msisdn_idnum":"0724040839",
+"msisdn_custnum":"0724040839",
+"channel":"Credit_Card",
+"tokenid":"demo",
+"tokenemail":"martindeto@gmail.com",
+"card_mask":"444444xxxxxx4444"}
 =end
 
 

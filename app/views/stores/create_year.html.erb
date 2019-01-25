@@ -1,24 +1,38 @@
 
 <div class="col-md-6 col-md-offset-3 col-xs-12" style="margin-bottom:3em;margin-top:4em;padding: 2em;background-color: #fff">
-  <h1 style="text-align:center;font-size:35px;font-weight:700">Pay for Order</h1><br><br>
-  <h3>1. Go to your MPESA MENU</h3><br>
-  <h3>2. Select Lipa na M-PESA</h3><br>
-  <h3>3. Select Pay Bill</h3><br>
-  <h3>4. Enter Business Number: 766645</h3><br>
-  <h3>5. Enter Account No: <%= @order.ref %></h3><br>
-  <h3>6. Enter Amount : <%= @order.amount %></h3><br>
-  <h3>7. Enter your PIN</h3><br>
-  <h3>8. After you get your confirmation message click the button below</h3><br><br>
-  <input type="hidden" value="<%= @order.ref %>" id="ref_year"/>
+  <h1 style="text-align:center;font-size:35px;font-weight:700">Upgrade to yearly plan?</h1><br><br>
+  <br>
 
-  <div class="col-md-12 col-xs-12"><p style="text-align:center"><span class="conf_message"></span></p></div><br><br>
-  <button class='btn btn-success btn-lg col-sm-12 col-md-6 col-md-offset-3 ' id="pay_year" style="display:block;margin-top: 1em" ><span class="conf_text">Confirm</span></button>
+  <form method="post" action="https://payments.ipayafrica.com/v3/ke">
+    <input type="hidden" name="live" value="<%= ENV['ipay_live'] %>">
+    <% # TODO  Check autopay %>
+    <input type="hidden" name="oid" value="<%= @order.ref %>">
+    <input type="hidden" name="inv" value="<%= @order.ref %>">
+    <input type="hidden" name="ttl" value="<%= @order.amount %>">
+    <input type="hidden" name="tel" value="<%= current_store.phone %>">
+    <input type="hidden" name="eml" value="<%= current_store.email %>">
+    <input type="hidden" name="vid" value="<%= ENV['ipay_vid'] %>">
+    <input type="hidden" name="curr" value="KES">
+    <input type="hidden" name="p1" value="<%= "#{request.subdomain}.#{request.domain}" %>">
+    <input type="hidden" name="p2" value="">
+    <input type="hidden" name="p3" value="">
+    <input type="hidden" name="p4" value="">
+    <input type="hidden" name="cbk" value="<%= "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub" %>">
+    <input type="hidden" name="cst" value="<%= ENV['ipay_cst_flag'] %>">
+    <input type="hidden" name="crl" value="<%= ENV['ipay_crl_flag'] %>">
+    <input type="hidden" name="hsh" value="<%= @hash %>">
+    <!--    <input type="submit" value="Pay and Complete">-->
+
+
+    <button type="submit" class='btn btn-success btn-lg col-sm-12 col-md-6 ' id="pay_month"   style="display:block;margin-top: 1em" ><span class="conf_text">Upgrade</span></button>
+    <button type="button" class='btn btn-alert btn-lg col-sm-12 col-md-6  close' style="display:block;margin-top: 1em"data-dismiss="modal">Cancel</button>
+  </form>
   <br><br>
 
 </div>
 
 <script>
-    $(function () {
+    /*$(function () {
         $("#pay_year").click(function (e) {
             $(".conf_text").html("Confirming Order ...");
             ref = $("#ref_year").val();
@@ -48,5 +62,5 @@
             });
         });
 
-    });
+    });*/
 </script>

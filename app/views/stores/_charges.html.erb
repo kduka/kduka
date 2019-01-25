@@ -4,11 +4,11 @@
 
   @charges
   if @storeamount.amount > 500
-    @temp = @storeamount.amount.to_i - 58
+    @temp = @storeamount.amount.to_i - 45
     @max = @temp - (@temp.to_d*0.01).to_i
     #@charges = 45 + (@storeamount.amount.to_d * 0.01)
   else
-    @temp = @storeamount.amount.to_i - 58
+    @temp = @storeamount.amount.to_i - 45
     @max = @temp - (@temp.to_d*0.01).to_i
 
     if @max <= 0
