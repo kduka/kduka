@@ -9,7 +9,7 @@
       <table id="transactionsTable" class="table">
         <thead>
         <tr>
-
+          <th>Store Name</th>
           <% columns.each do |c| %>
             <th><%= c %></th>
           <% end %>
@@ -20,6 +20,7 @@
         <tbody>
         <% @transfers.each do |ipn| %>
           <tr>
+            <td><%= Store.find(ipn.store_id).name.humanize rescue nil %></td>
             <% columns.each do |c| %>
               <td><%=  ipn[c] rescue nil %></td>
             <% end %>
