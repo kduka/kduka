@@ -2,6 +2,7 @@
 <h3 style="color:#7aae42;">Transaction History</h3><br>
 <div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
   <% columns = @transactions.column_names %>
+  <% columns.delete('balance_as_of_now') %>
   <table id="myHistoryTable" class="table">
     <thead>
     <tr>
