@@ -33,6 +33,15 @@ button#trigger-overlay {
     font-size: 1.65em;
     padding: 0 8px;
 }
+.my_toggle_button{
+	outline: none;
+	border: none;
+	background: none;
+	text-align: center;
+	color: #fbfdfb;
+	font-size: 1.65em;
+	padding: 0 8px;
+}
 
 
 /* Menu style */
