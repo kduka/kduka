@@ -146,8 +146,10 @@ class ProductsController < ApplicationController
     @product.save!
     if @product
       cookie = params[:cookie_id]
+      if !session[cookie].nil?
       session[cookie].each do |k,v|
         Variant.create(product_id:@product.id,name:k,value:v.to_json)
+      end
       end
       session.delete(cookie)
       flash[:notice] = "New Product Created!"
