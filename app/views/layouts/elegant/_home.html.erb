@@ -55,7 +55,7 @@ $(document).ready(function(){
               <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
           <% end %>
       <% end%>
-			<div class="col-md-12 text-center" style="padding-top:3em;padding-bottom:3em">
+			<div class="col-md-12 text-center" style="padding-top:6.5em;padding-bottom:2em">
 				<a href="<%= all_path %>"><button class="elegant-button">View More Products</button></a>
 			</div>
 
@@ -66,7 +66,7 @@ $(document).ready(function(){
 <% if !@featured.nil? %>
     <% @featured.each do |category| %>
         <!--we-offer -->
-        <div class="features"  style="padding-top:3em;padding-bottom:3em">
+        <div class="features"  style="padding-top:6.5em;padding-bottom:2em">
         	<div class="container">
         		<div class="heading-setion-w3ls">
         			<h2 class="title-zerone" style="text-align:center !important"><span style="color:<%= @store.store_color %>"><%= category.name %></span><i class="fa fa-bell" aria-hidden="true"></i><i class="fa fa-bell-o" aria-hidden="true"></i></h2>

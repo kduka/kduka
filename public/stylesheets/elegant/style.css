@@ -1500,16 +1500,16 @@ ul.about-agile li i {
 }
 .ih-item.circle .img {
   position: relative;
-  width: 275px;
-  height: 275px;
+  max-width: 100%;
+  max-height: 300px;
 }
 .ih-item.circle .img:before {
     position: absolute;
     display: block;
     content: '';
     width: 100%;
-    height: 100%;
-    box-shadow: inset 0 0 0 25px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.3);
+    min-height: 20em;
+    box-shadow: 0px 0px 15px 0px #D6D6D6 !important;
     -webkit-transition: all 0.35s ease-in-out;
     -moz-transition: all 0.35s ease-in-out;
     transition: all 0.35s ease-in-out;
@@ -1613,7 +1613,9 @@ ul.about-agile li i {
   transform: translateY(-50%);
 }
 .img{
-	position:relative;
+	position:relative !important;
+	margin-left: auto;
+	margin-right: auto;
 }
 .img p {
     position: absolute;
