@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="KDuka - Online Shopping made easy">
     <meta name="author" content="KDuka">
-
+    <% if @store.logo_status %>
     <!--Favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="<%= @store.logo_url.to_s %>">
     <link rel="apple-touch-icon" sizes="60x60" href="<%= @store.logo_url.to_s %>">
@@ -26,6 +26,8 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="<%= @store.logo_url.to_s %>">
     <meta name="theme-color" content="#ffffff">
+    <% else %>
+    <% end %>
     <!-- Site Title-->
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
