@@ -195,7 +195,7 @@ class IpnController < ApplicationController
     #puts response.read_body
     pars = request.GET
     #pars2 = JSON.parse(pars)
-    Iipn.create(pars.merge(id:nil))
+    Iipn.create(pars.merge(id: nil))
 
     val = "#{ENV['ipay_vid']}";
 
@@ -236,54 +236,66 @@ class IpnController < ApplicationController
       redirect_to("http://#{pars['p1']}/carts/success")
     end
 
-end
+  end
 
-def process_ipn_sub
-  require 'json'
-  #puts response.read_body
-  pars = request.GET
-  #pars2 = JSON.parse(pars)
-  Iipn.create(pars.merge(id:nil))
+  def manual_ipn
 
-  val = "#{ENV['ipay_vid']}";
+    require 'json'
+    par = request.body.read
 
-  val1 = pars["id"];
-  val2 = pars["ivm"];
-  val3 = pars["qwh"];
-  val4 = pars["afd"];
-  val5 = pars["poi"];
-  val6 = pars["uyt"];
-  val7 = pars["ifd"];
+    pars = JSON.parse(par)
 
-  ipnurl = "https://www.ipayafrica.com/ipn/?vendor=#{val}&id=#{val1}&ivm=#{val2}&qwh=#{val3}&afd=#{val4}&poi=#{val5}&uyt=#{val6}&ifd=#{val7}"
-
-  require 'net/http'
-
-  uri = URI.parse(ipnurl)
-
-  # Shortcut
-  #response = Net::HTTP.post_form(uri, {"user[name]" => "testusername", "user[email]" => "testemail@yahoo.com"})
-
-  # Full control
-  http = Net::HTTP.new(uri.host, uri.port)
-  http.use_ssl = true
-  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-  request = Net::HTTP::Get.new(uri.request_uri)
-
-  response = http.request(request)
-  valcode = response.body
-
-  if valcode = 'aei7p7yrx4ae34'
-    #render :json => {'status': 'ok'}
     check_order(pars['id'], pars['mc'], pars['txncd'])
+
+    render :json => {'status': 'ok'}
   end
 
-  if Rails.env.development?
-    redirect_to("http://#{pars['p1']}:3000/stores/premium")
-  else
-    redirect_to("http://#{pars['p1']}/stores/premium")
+  def process_ipn_sub
+    require 'json'
+    #puts response.read_body
+    pars = request.GET
+    #pars2 = JSON.parse(pars)
+    Iipn.create(pars.merge(id: nil))
+
+    val = "#{ENV['ipay_vid']}";
+
+    val1 = pars["id"];
+    val2 = pars["ivm"];
+    val3 = pars["qwh"];
+    val4 = pars["afd"];
+    val5 = pars["poi"];
+    val6 = pars["uyt"];
+    val7 = pars["ifd"];
+
+    ipnurl = "https://www.ipayafrica.com/ipn/?vendor=#{val}&id=#{val1}&ivm=#{val2}&qwh=#{val3}&afd=#{val4}&poi=#{val5}&uyt=#{val6}&ifd=#{val7}"
+
+    require 'net/http'
+
+    uri = URI.parse(ipnurl)
+
+    # Shortcut
+    #response = Net::HTTP.post_form(uri, {"user[name]" => "testusername", "user[email]" => "testemail@yahoo.com"})
+
+    # Full control
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(uri.request_uri)
+
+    response = http.request(request)
+    valcode = response.body
+
+    if valcode = 'aei7p7yrx4ae34'
+      #render :json => {'status': 'ok'}
+      check_order(pars['id'], pars['mc'], pars['txncd'])
+    end
+
+    if Rails.env.development?
+      redirect_to("http://#{pars['p1']}:3000/stores/premium")
+    else
+      redirect_to("http://#{pars['p1']}/stores/premium")
+    end
   end
-end
 
 end
 

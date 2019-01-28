@@ -129,6 +129,7 @@ Rails.application.routes.draw do
   get 'ipn/process_ipn_sub' => 'ipn#process_ipn_sub'
   post 'products/del_var' => 'products#del_var'
   get  '/explore' => 'home#explore'
+  post 'ipns/manual_ipn' => 'ipn#manual_ipn'
 
 
 
