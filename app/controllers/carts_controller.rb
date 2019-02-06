@@ -188,7 +188,7 @@ class CartsController < ApplicationController
         end
       end
     else
-      put "NO COUPON FOUND"
+      puts "NO COUPON FOUND"
       current_order.update(coupon:"No Coupon",discount:0)
     end
     end
