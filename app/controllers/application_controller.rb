@@ -110,7 +110,7 @@ protect_from_forgery with: :exception
   end
 
 
-    def user_login
+  def user_login
         render :layout => 'login/user_login'
     end
 

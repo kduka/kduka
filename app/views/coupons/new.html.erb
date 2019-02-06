@@ -21,6 +21,7 @@ $(document).ready(function(){
           <label for="code" class="col-sm-2 control-label">Code</label>
           <div class="col-sm-8">
             <%= f.text_field :code, class:'form-control1',required:'required',id:'code',placeholder:'Code' %>
+            <input type="hidden" name="type" value="percent">
           </div>
           <div class="col-sm-2">
             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the coupon code you give to your clients">Help?</span></a>
@@ -82,6 +83,7 @@ $(document).ready(function(){
           <label for="code_2" class="col-sm-2 control-label">Code</label>
           <div class="col-sm-8">
             <%= f.text_field :code, class:'form-control1',required:'required',id:'code_2',placeholder:'Code' %>
+            <input type="hidden" name="type" value="fixed">
           </div>
           <div class="col-sm-2">
             <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This is the coupon code you give to your clients">Help?</span></a>

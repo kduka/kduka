@@ -172,16 +172,23 @@ class CartsController < ApplicationController
     if !coupon.nil?
     @coupon = Coupon.where(code:coupon).first
     if !@coupon.nil?
+      puts "\n\n\n COUPON FOUND .... \n\n\n"
       if @coupon.number_of_use > 0
+        puts "\n\n\n COUPON IS STILL VALID... \n\n\n"
         if @coupon.coupon_type == 'percent'
+          puts "\n\n\n COUPON IS PERCENTAGE.... \n\n\n"
           discount = (@coupon.percentage.to_d/100) * current_order.total
+          puts "\n\n\n DISCOUNT IS #{discount}.... \n\n\n"
           current_order.update(discount:discount,coupon:coupon)
         elsif @coupon.coupon_type == 'fixed'
+          puts "\n\n\n COUPON IS FIXED.... \n\n\n"
           discount = @coupon.amount
+          puts "\n\n\n DISCOUNT IS #{discount}.... \n\n\n"
           current_order.update(discount:discount,coupon:coupon)
         end
       end
     else
+      put "NO COUPON FOUND"
       current_order.update(coupon:"No Coupon",discount:0)
     end
     end
