@@ -1,294 +1,492 @@
-<style>
-  html {
-    margin:0;
-    background: #333;
-    font-family: helvetica;
-    max-width:1920px;
-  }
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>KDuka | Kenya's Ecommerce Website Builder | Create an Online Store </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Kenya Ecommerce Website Builder, Create an Online Store, KDuka, Sell online kenya, Sell online Nairobi, create website, create ecommerce website" />
+<meta name="description" content="KDuka is the best ecommerce platform that has everything you need to sell online and get straight to growing your business.">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1433118541111141",
+          enable_page_level_ads: true
+      });
+  </script>
 
-  body {
-    margin: 0;
-  }
+  <%= favicon_link_tag 'favicon/apple-icon-57x57.png' %>
+  <%= favicon_link_tag 'favicon/apple-icon-60x60.png' %>
+  <%= favicon_link_tag 'favicon/apple-icon-72x72.png' %>
+  <%= favicon_link_tag 'favicon/apple-icon-76x76.png' %>
+  <%= favicon_link_tag 'favicon/apple-icon-114x114.png' %>
+  <%= favicon_link_tag 'favicon/apple-icon-120x120.png' %>
+  <%= favicon_link_tag 'favicon/apple-icon-144x144.png' %>
+  <%= favicon_link_tag 'favicon/apple-icon-152x152.png' %>
+  <%= favicon_link_tag 'favicon/apple-icon-180x180.png' %>
+  <%= favicon_link_tag 'favicon/android-icon-192x192.png' %>
+  <%= favicon_link_tag 'favicon/favicon-32x32.png' %>
+  <%= favicon_link_tag 'favicon/favicon-96x96.png' %>
+  <%= favicon_link_tag 'favicon/favicon-16x16.png' %>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
 
-  #exampleText1 {
-    display: hidden;
-  }
+<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var slideImages = [ {src: '../jRCarousel/images/01.jpg'},
+	              		{src: '../jRCarousel/images/02.jpg'},
+	              		{src: '../jRCarousel/images/03.jpg'},
+	              		{src: '../jRCarousel/images/04.jpg'},
+	              		{src: '../jRCarousel/images/05.jpg'} ]
+	//var jR3DCarousel;
 
-  .container {
+	jR3DCarousel = $('.jR3DCarouselGallery').jR3DCarousel({
+		width: 600, 		/* largest allowed width */
+		height: 350, 		/* largest allowed height */
+		slides: slideImages /* array of images source */
+	});
 
-    width: 1005px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 30px;
-  }
+	var carouselCustomeTemplateProps =  {
+	 		  width: 600, 				/* largest allowed width */
+			  height: 350, 				/* largest allowed height */
+			  slideLayout : 'fill',     /* "contain" (fit according to aspect ratio), "fill" (stretches object to fill) and "cover" (overflows box but maintains ratio) */
+			  animation: 'slide3D', 	/* slide | scroll | fade | zoomInSlide | zoomInScroll */
+			  animationCurve: 'ease',
+			  animationDuration: 1900,
+			  animationInterval: 2000,
+			  slideClass: 'jR3DCarouselCustomSlide',
+			  autoplay: false,
+			  controls: true,			/* control buttons */
+			  navigation: ''			/* circles | squares | '' */,
+			  perspective: 2200,
+			  rotationDirection: 'rtl',
+			  onSlideShow: slideShownCallback
 
-  h1 {
-    margin: 0;
-    color:#bbb;
-    font-size:1.85em;
-  }
+		}
+	function slideShownCallback($slide){
+		console.log("Slide shown: ", $slide.find('img').attr('src'))
+	}
 
-  .examples {
-    text-align: center;
-    margin-left:15px;
-  }
+	jR3DCarouselCustomeTemplate = $('.jR3DCarouselGalleryCustomeTemplate').jR3DCarousel(carouselCustomeTemplateProps);
 
-  .image:hover {
-    -webkit-transform: scale(1.35);
-    transform: scale(1.35);
-    opacity: .9;
-  }
-
-  .image {
-    -webkit-transition: all 0.7s ease;
-    transition: all 0.7s ease;
-    padding: 15px;
-    margin:auto;
-
-  }
-
-  /*#example1:hover {
-     opacity: .1;
-  }*/
-
-  span.text-content {
-
-    color: white;
-    cursor: pointer;
-    display: table;
-    height: 150px;
-    left: 15px;
-    position: absolute;
-    top: 15px;
-    width: 280px;
-    opacity: 0;
-    -webkit-transition: opacity 500ms;
-    -moz-transition: opacity 500ms;
-    -o-transition: opacity 500ms;
-    transition: opacity 500ms;
-  }
-
-  span.text-content span {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  ul.img-list {
-    list-style-type: none;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-  }
-
-  ul.img-list li {
-    display: inline-block;
-    height: 150px;
-    margin: 0 1em 1em 0;
-    position: relative;
-    width: 280px;
-  }
-
-  ul.img-list li:hover span.text-content {
-    opacity: 1;
-    -webkit-transition: all 0.7s ease;
-    transition: all 0.7s ease;
-  }
-  a:link {
-    text-decoration: none;
-  }
-
-  .banner{
-    text-align:center;
-    font-weight:800;
-    padding-bottom:80px;
-  }
-  .sectionTitle{
-    padding-left:40px;
-    border-bottom:2px solid rgba(0, 0, 0, 0.2);
-    margin-bottom:20px;
-  }
-  li.image{
-    margin:auto;
-  }
-
-  .sidenav {
-    display: none;
-    height: 400px;
-    width: 100%;
-
-    z-index: 6;
-    top: 306px;
-    position:relative;
-    color:#eee;
-    left:0;
-    position:absolute;
-    background: #555;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    overflow-x: hidden;
-    padding-top: 60px;
-  }
-
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #bbb;
-    display: block;
-    transition: 0.3s
-  }
-
-  .sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-  }
-
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0px;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
-  header{
-
-    width:100%;
-    padding-left:25%;
-    background:#222;
-    color:red;
-    height:40px;
-    padding-top:10px;
-    font-weight: 700;
-    font-size:1.5em;
-  }
-  p{
-    margin:0;
-  }
-  #row2{
-    position:relative;
-  }
-</style>
-<script>
-    function openNav() {
-        document.getElementById("mySidenav").style.display = "block";
-        document.getElementById("box1").style.top = "400px";
-        document.getElementById("box1").style.border = "1px solid #fff";
-        document.getElementById("box1").style.transform = "scale(1)";
-        document.getElementById("row").style.height = "800px";
-
-        // document.getElementById("box1").style.display = "block";
-
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenav").style.display = "none";
-        document.getElementById("box1").style.transform = "scale(1)";
-        document.getElementById("box1").style.transition = "all 0.7s ease";
-        document.getElementById("box1").style.border = "none";
-    }
+  })
 </script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
-<header>
-  <p>NETFLIX</p>
-</header>
-<div class="container">
+  <% if Rails.env.production?  %>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+          s1.async=true;
+          s1.src='https://embed.tawk.to/59fc3b9abb0c3f433d4c6d5e/default';
+          s1.charset='UTF-8';
+          s1.setAttribute('crossorigin','*');
+          s0.parentNode.insertBefore(s1,s0);
+      })();
+  </script>
 
-  <section id="row1">
-    <h1 class="sectionTitle">Continue Watching for Username</h1>
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">Movie 1</a>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109847469-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    </div>
+      gtag('config', 'UA-109847469-1');
+  </script>
+  <!--End of Tawk.to Script-->
+      <% end %>
+<%= stylesheet_link_tag 'application', '//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i', media: 'all', 'data-turbolinks-track' => true %>
+<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> -->
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<% Dir.foreach("public/stylesheets/website") do |item|
+next if item == '.' or item == '..' %>
+<%= stylesheet_link_tag    "website/#{item}" %>
+<% end %>
+<% Dir.foreach("public/javascripts/website") do |item|
+next if item == '.' or item == '..' %>
+<%= javascript_include_tag    "website/#{item}" %>
+<% end %>
+<% if Date.current.strftime("%B") == "December" %>
+<script src="/javascripts/snow/snowstorm.js"></script>
+<%end%>
+<!-- web fonts -->
+<style>
+body{
+  font-family:'Open Sans', sans-serif !important;
+  padding-right: 0px !important;
+}
+.my_new_button{
+  display: block;
+  background:#7AAE42;
+  margin-left:auto;
+  margin-right:auto;
+  padding: .2em .3em;
+  border: 2px solid #7AAE42;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+.my_new_button:hover,.my_new_button:focus{
+  background:#fff;
+  color:#7AAE42 !important;
+  text-decoration: none;
+}
+.my_new_button:active{
+  background:#fff;
+  color:#7AAE42 !important;
+}
+.kd_roll_img{
+  transition: all 0.5s !important;
+  border: 2px solid #7aae42;
+}
+.kd_roll_img:hover{
+  transition: all 0.5s !important;
+  transform: scale(1.1);
+  z-index: 99999;
+}
 
-    <div class="examples">
-      <ul class="img-list">
-        <li class="image">
-          <a href="#">
-            <img id="box1" src="http://placehold.it/280x150" width="280" height="150" />
-            <span class="text-content"><span>Title Here...<br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br><i class="fa fa-chevron-down" onclick="openNav()" aria-hidden="true"></i></span></span>
-          </a>
-        </li>
+.film_roll_wrapper{
+  padding: 0;
+  padding-top: 5em;
+}
+.film_roll_shuttle {
+	min-height: 40em;
+  padding-top: 8em;
+}
+.film_roll_prev, .film_roll_next {
+	position: absolute;
+	top: 55% !important;
+	left: 15px;
+	width: 40px;
+	height: 40px;
+	margin: -20px 0 0 0;
+	padding: 0;
+	font-size: 60px;
+	font-weight: 100;
+	line-height: 30px;
+	color: white;
+	text-align: center;
+	background: #7aae42 !important;
+	border: 3px solid white;
+	border-radius: 23px;
+	opacity: 0.5;
+  z-index: 999999;
+  outline: 0 !important;
+}
+.kd_transform{
+  transition: all 0.5s;
+}
+.kd_transform:hover{
+  transition: all 0.5s;
+  transform: scale(1.3);
+}
+</style>
+</head>
+<body>
+<!--Signup Modal-->
+  <div id="signup_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
 
-
-        <li class="image">
-          <a href="#">
-            <img src="http://placehold.it/280x150" width="280" height="150" />
-            <span class="text-content"><span>Title Here...<br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br><i class="fa fa-chevron-down" aria-hidden="true"></i></span></span>
-          </a>
-        </li>
-
-        <li class="image">
-          <a href="#">
-            <img src="http://placehold.it/280x150" width="280" height="150" />
-            <span class="text-content"><span>Title Here...<br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br><i class="fa fa-chevron-down" aria-hidden="true"></i></span></span>
-          </a>
-        </li>
-
-      </ul>
-
-    </div>
-
-  </section>
-
-  <section id="row2">
-    <h1 class="sectionTitle">TV Shows</h1>
-    <div class="examples">
-      <ul class="img-list">
-        <li class="image">
-          <a href="#">
-            <img src="http://placehold.it/280x150" width="280" height="150" />
-            <span class="text-content"><span>Title Here...<br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br><i class="fa fa-chevron-down" aria-hidden="true"></i></span></span>
-          </a>
-        </li>
-
-        <li class="image">
-          <a href="#">
-            <img src="http://placehold.it/280x150" width="280" height="150" />
-            <span class="text-content"><span>Title Here...<br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br><i class="fa fa-chevron-down" aria-hidden="true"></i></span></span>
-          </a>
-        </li>
-
-        <li class="image">
-          <a href="#">
-            <img src="http://placehold.it/280x150" width="280" height="150" />
-            <span class="text-content"><span>Title Here...<br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br><i class="fa fa-chevron-down" aria-hidden="true"></i></span></span>
-          </a>
-        </li>
-
-      </ul>
-    </div>
-  </section>
-  <h1 class="sectionTitle">Row 3</h1>
-  <div class="examples">
-    <ul class="img-list">
-      <li class="image">
-        <a href="#">
-          <img src="http://placehold.it/280x150" width="280" height="150" />
-          <span class="text-content"><i class="fa fa-chevron-up" aria-hidden="true"></i><br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br>Title Here...</span></span>
-        </a>
-      </li>
-
-      <li class="image">
-        <a href="#">
-          <img src="http://placehold.it/280x150" width="280" height="150" />
-          <span class="text-content"><i class="fa fa-chevron-up" aria-hidden="true"></i><br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br>Title Here...</span></span>
-        </a>
-      </li>
-
-      <li class="image">
-        <a href="#">
-          <img src="http://placehold.it/280x150" width="280" height="150" />
-          <span class="text-content"><i class="fa fa-chevron-up" aria-hidden="true"></i><br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br>Title Here...</span></span>
-        </a>
-      </li>
-
-    </ul>
   </div>
-</div>
+  <!--//Signup Modal-->
+
+	<!-- banner -->
+	<div class="banner" id="home">
+    <div class="header-left" style="margin-left:1em">
+      <style>
+        .my_overlay{
+          background:#fff;
+          opacity:0.2;
+        }
+      </style>
+      <h1>
+        <a style="color:#000 !important" href="<%= root_path %>">
+          <%if Time.now.strftime("%m/%d")=='12/25' %>
+            <%= image_tag("website/logo-christmas.png",style:"width:150px;height:auto;") %>
+          <%else%>
+          <%= image_tag("website/logo.png",style:"width:150px;height:auto;") %>
+          <% end %>
+        </a>
+      </h1>
+    </div>
+
+		<div class="container">
+			<div class="w3layouts-header">
+				<div class="top-nav">
+					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2" style="z-index:9999999">
+						<h3 class="text-center"><i class="fa fa-close" id="showRightPush2"></i> </h3>
+						<ul>
+							<li><a href="#home" class="scroll"><i class="fa fa-home"></i> Home</a></li>
+							<li><a href="#introduction" class="scroll"><i class="fa fa-desktop"></i> Gallery</a></li>
+							<li><a href="#contact" class="scroll"><i class="fa fa-envelope"></i> Contact</a></li>
+              <li><a target="_blank" href="https://medium.com/kduka"><i class="fa fa-commenting"></i> Blog</a></li>
+              <li><a href="#" data-toggle="modal" class="signup" data-target="#signup_modal"><i class="fa fa-edit"></i> Sign Up</a></li>
+              <li><a href="<%= new_store_session_path %>"><i class="fa fa-sign-in"></i> Login</a></li>
+              <li><a target="_blank" href="http://www.kduka.co.ke/help"><i class="fa fa-question-circle"></i> Help</a></li>
+              <li><a href="<%= root_path %>"><i class="fa fa-globe"></i> Website</a></li>
+						</ul>
+					</nav>
+					<div class="main buttonset">
+					<!-- Class "cbp-spmenu-open" gets applied to menu and "cbp-spmenu-push-toleft" or "cbp-spmenu-push-toright" to the body -->
+            <i class="fa fa-reorder fa-4x menu-button1" id="showRightPush" style="color: #7AAE42;"></i>
+					<!-- <span class="menu"></span> -->
+					</div>
+					<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+					<script src="js/classie.js"></script>
+					<script>
+					var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
+					showRightPush = document.getElementById( 'showRightPush' ),
+					body = document.body;
+
+					showRightPush.onclick = function() {
+						classie.toggle( this, 'active' );
+						classie.toggle( body, 'cbp-spmenu-push-toleft' );
+						classie.toggle( menuRight, 'cbp-spmenu-open' );
+						disableOther( 'showRightPush' );
+					};
+
+          showRightPush2.onclick = function() {
+              classie.toggle( this, 'active' );
+              classie.toggle( body, 'cbp-spmenu-push-toleft' );
+              classie.toggle( menuRight, 'cbp-spmenu-open' );
+              disableOther( 'showRightPush' );
+          };
+
+					function disableOther( button ) {
+						if( button !== 'showRightPush' ) {
+							classie.toggle( showRightPush, 'disabled' );
+						}
+					}
+				 </script>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="banner-w3lsinfo" >
+				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2.5em;font-weight: 200 !important;text-transform:capitalize;color: #fff;">Have a look at Our Website <span style="color: #7AAE42">Gallery</span></h2>
+				<p style="font-size:1.2em;font-weight: 200;color: #fff;text-transform:capitalize">Scroll Down to See some of the websites created by our users</p>
+
+        <br><br>
+        <div class="col-md-4 col-md-offset-4 col-xs-12 text-center" style="margin-bottom:2em">
+          <h2><a href="#introduction" class="scroll" style="color:#7aae42;text-decoration:none;outline:0 !important"><i class="fa fa-arrow-down fa-2x kd_transform"></i></a></h2>
+        </div>
+			</div>
+		</div>
+	</div>
+	<!-- //banner -->
+	<!-- introduction -->
+	<div class="introduction" id="introduction" style="padding-top:0">
+		<div class="container">
+      <section id="row1" style="padding-top:5em;">
+        <h1 class="sectionTitle">Electronics <span style="color:#7aae42">Websites</span></h1>
+        <div id="electronics">
+      	  <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/kduka.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+      	  <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/lord-erroll.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/jacaranda.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/keen.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/designlife.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/liz.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/wib.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/utm.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/timotheist.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+      	</div>
+
+      </section>
+      <section id="row1" style="padding-top:5em;">
+        <h1 class="sectionTitle">Cosmetics  <span style="color:#7aae42">Websites</span></h1>
+        <div id="cosmetics">
+      	  <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/kduka.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+      	  <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/lord-erroll.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/jacaranda.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/keen.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/designlife.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/liz.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/wib.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/utm.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/timotheist.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+      	</div>
+
+      </section>
+      <section id="row1" style="padding-top:5em;">
+        <h1 class="sectionTitle">Home Appliances  <span style="color:#7aae42">Websites</span></h1>
+        <div id="appliances">
+      	  <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/kduka.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+      	  <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/lord-erroll.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/jacaranda.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/keen.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/designlife.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/liz.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/wib.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/utm.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+          <div>
+      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/timotheist.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
+      	  </div>
+      	</div>
+
+      </section>
+      <style>
+      .film_roll_pager {
+        display:none;
+        }
+      </style>
+		</div>
+	</div>
+	<!-- //introduction -->
+
+	<!-- contact -->
+	<div class="contact" id="contact">
+		<div class="container">
+			<h1 style="font-weight: 500;margin-bottom:2em;color:#fff">Get in Touch With Us</h1>
+			<div class="con">
+				<a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr">Click Here !</a>
+			</div>
+			<div class="modal fade bs-example-modal-md light-box" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-md">
+					<div class="modal-content light-box-info">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+						<div class="pop">
+							<h3>Contact Us</h3>
+							<div class="contact-grids">
+								<div class="inp agileits-inp">
+									<h4 style="color:#7AAE42">Contact Form</h4>
+                  <div id="success"></div>
+									<form action="#" method="post">
+										<input id="name" type="text" name="Name" placeholder="Your Name" required="">
+										<input id="email" type="email" name="Email" placeholder="Email" required="">
+										<input id="subject" type="text" name="Subject" placeholder="Subject" required="">
+										<textarea id="message" name="Message" placeholder="Message" required=""></textarea>
+										<input style="width:100% !important;" id="sendmail" type="submit" value="SEND">
+									</form>
+								</div>
+								<h5 style="color:#7AAE42">Contact Details</h5>>
+								<div class="contact-grid">
+									<h4>PHONE NUMBERS</h4>
+									<p class="agile-qwe">+254-773-054785<br>
+										+254-765-608060<br>
+									</p>
+								</div>
+								<div class="contact-grid">
+									<h4>EMAIL</h4>
+									<p class="agile-qwe"><a href="mailto:info@kduka.co.ke">info@kduka.co.ke</a></p>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //contact -->
+	<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="footer-left agileits">
+				<p>Copyright © <%= Time.current.year %> KDuka. All rights reserved | A product of <a href="http://www.zerone.co.ke/" target="_blank"> Zerone I.T. Solutions.</a></p>
+			</div>
+			<div class="footer-right">
+				<div class="social-icon agileits">
+          <a href="https://www.facebook.com/kdukaofficial/" target="_blank" class="social-button facebook"><i class="fa fa-facebook"></i></a>
+					<a href="https://twitter.com/kdukaofficial" target="_blank" class="social-button twitter"><i class="fa fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/company/kdukaofficial/" target="_blank" class="social-button linkedin"><i class="fa fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/kdukaofficial/" target="_blank" class="social-button instagram"><i class="fa fa-instagram"></i></a>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!-- //footer -->
+	<!-- start-smooth-scrolling -->
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+    $(function() {
+      fr = new FilmRoll({
+        container: '#electronics'
+
+      });
+    });
+    $(function() {
+      fr = new FilmRoll({
+        container: '#cosmetics'
+
+      });
+    });
+    $(function() {
+      fr = new FilmRoll({
+        container: '#appliances'
+
+      });
+    });
+    </script>
+</body>
+</html>
+<!--//End-->

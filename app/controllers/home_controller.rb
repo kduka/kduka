@@ -35,6 +35,6 @@ class HomeController < ApplicationController
   end
 
   def explore
-
+    no_layout
   end
 end
