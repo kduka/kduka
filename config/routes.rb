@@ -154,6 +154,7 @@ Rails.application.routes.draw do
   resources :layouts
   resources :home
   resources :store_deliveries
+  resources :cats
 
   root to: "home#index"
   get '*path' => redirect('/home/error')
