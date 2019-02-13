@@ -85,6 +85,7 @@ class AdminsController < ApplicationController
 
   def store_delete
     @store = Store.find(params[:id])
+
     if @store.destroy
       flash[:notice] = "Store Destroyed"
       redirect_to(request.referer)
