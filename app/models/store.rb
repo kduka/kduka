@@ -8,6 +8,7 @@ class Store < ApplicationRecord
   has_many :coupon, :dependent => :destroy
   has_many :order, :dependent => :destroy
   has_many :store_delivery, :dependent => :destroy
+  has_many :ahoy_events, :class_name => 'Ahoy::Event', :dependent => :destroy
   has_one :store_amount, :dependent => :destroy
 
   mount_uploader :banner, BannerUploader
