@@ -85,7 +85,7 @@ class AdminsController < ApplicationController
 
   def store_delete
     @store = Store.find(params[:id])
-    event = Ahoy::Event.where(params[:id])
+    event = Ahoy::Event.where(store_id:params[:id])
 
     if !event.nil?
       event.each do |e|
@@ -93,7 +93,7 @@ class AdminsController < ApplicationController
       end
     end
 
-    eve = Ahoy::Visit.where(params[:id])
+    eve = Ahoy::Visit.where(store_id:params[:id])
 
     if !eve.nil?
       eve.each do |e|
