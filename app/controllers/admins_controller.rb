@@ -85,6 +85,22 @@ class AdminsController < ApplicationController
 
   def store_delete
     @store = Store.find(params[:id])
+    event = Ahoy::Event.where(params[:id])
+
+    if !event.nil?
+      event.each do |e|
+        e.destroy
+      end
+    end
+
+    eve = Ahoy::Visit.where(params[:id])
+
+    if !eve.nil?
+      eve.each do |e|
+        e.destroy
+      end
+    end
+
     if @store.destroy
       flash[:notice] = "Store Destroyed"
       redirect_to(request.referer)
