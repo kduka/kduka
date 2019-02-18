@@ -145,7 +145,7 @@ p {margin: 0;}
 html, body{
   	font-family: 'Roboto', sans-serif;
     font-size: 100%;
-  	background:#fff !important;
+  	background:#000 !important;
   	overflow-x: hidden;
 }
 body a{
