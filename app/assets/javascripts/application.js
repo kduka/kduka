@@ -1627,12 +1627,14 @@ function showTab(n) {
         document.getElementById("prevBtn").style.display = "inline";
     }
     if (n == (x.length - 1)) {
+
         document.getElementById("nxtBtn").innerHTML = "Submit";
+
         $("#nxtBtn").attr('id', 'submitter');
         $("#submitter").attr('disabled', 'true');
         $("#submitter").attr('type', 'submit');
         $("#submitter").attr("style", "background-color:grey;color:#000;border-color: grey;");
-        $("#submitter").removeAttr("onclick");
+        $("#submitter").attr("onclick","gtag_report_conversion()");
         store_reg2();
     } else {
 
