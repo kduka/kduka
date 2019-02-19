@@ -83,6 +83,7 @@ class AdminsController < ApplicationController
     end
   end
 
+
   def store_delete
     @store = Store.find(params[:id])
     event = Ahoy::Event.where(store_id:params[:id])
