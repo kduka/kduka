@@ -355,8 +355,12 @@ button.w3view-cart {
 				<div class="col-md-4 sign-gd">
 					<h4>Quick <span>Links</span> </h4>
 					<ul>
-						<li><a class="myclass" href="<%= root_path %>">Home</a></li>
-						<li><a class="myclass" href="<%= about_path %>">About Us</a></li>
+					<% if @store.homepage_status == true %>
+					<li><a class="myclass" href="<%= root_path %>">Home</a></li>
+					<% end %>
+					<% if @store.aboutpage_status == true %>
+					<li><a class="myclass" href="<%= about_path %>">About Us</a></li>
+					<% end %> 
 						<li><a class="myclass" href="<%= contact_path %>">Contact Us</a></li>
 						<li><a class="myclass" href="<%= all_path %>">Products</a></li>
 					</ul>

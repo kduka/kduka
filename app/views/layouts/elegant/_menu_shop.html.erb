@@ -21,8 +21,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse bs-example-navbar-collapse-1" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
+                <% if @store.homepage_status == true %>
                 <li class="home-icon"><a href="<%= root_path %>" style="color: #fff !important"><span class="fa fa-home" aria-hidden="true"></span> Home</a></li>
+                <% end %>
+                <% if @store.aboutpage_status == true %>
                 <li><a href="<%= about_path %>">About Us</a></li>
+                <% end %>
                 <li><a href="<%= all_path %>">Shop Now</a></li>
                 <li><a href="<%= contact_path %>">Contact Us</a></li>
                 <li class="nav-cart-w3ls">

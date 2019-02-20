@@ -313,8 +313,12 @@
       <div class="col-md-4 w3_footer_grid">
         <h3 style="color:#fff">Quick Links</h3>
         <ul class="info">
+          <% if @store.homepage_status == true %>
           <li class="mylink"><a class="mylink myclass" href="<%= root_path %>">Home</a></li>
+          <% end %>
+          <% if @store.aboutpage_status == true %>
           <li class="mylink"><a class="mylink myclass" href="<%= about_path %>">About Us</a></li>
+          <% end %>    
           <li class="mylink"><a class="mylink myclass" href="<%= contact_path %>">Contact Us</a></li>
           <li class="mylink"><a class="mylink myclass" href="<%= all_path %>">Products</a></li>
         </ul>

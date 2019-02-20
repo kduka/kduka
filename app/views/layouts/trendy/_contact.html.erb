@@ -1,0 +1,77 @@
+<title><%= @store.name %> | <%= @title %></title>
+<div class="contact">
+  <div class="container">
+
+    <div class="col-md-12 contact-grids">
+      <% if !@store.business_location.blank?%>
+      <div class="col-md-4 contact-grid animated wow fadeInLeft" data-wow-delay=".5s">
+        <div class="contact-grid1">
+          <div class="contact-grid2 col-md-4" style="background:<%= @store.store_color %> !important">
+            <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+          </div>
+          <div class="contact-grid3 col-md-8">
+            <h4>Location</h4>
+            <p><%= @store.business_location %></p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if !@store.phone.blank?%>
+      <div class="col-md-4 contact-grid animated wow fadeInUp" data-wow-delay=".5s">
+        <div class="contact-grid1">
+          <div class="contact-grid2 contact-grid4 col-md-4" style="background:<%= @store.store_color %> !important">
+            <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>
+          </div>
+          <div class="contact-grid3 col-md-8">
+            <h4>Call Us</h4>
+            <p><%= @store.phone %></p>
+          </div>
+        </div>
+      </div>
+
+      <% end %>
+        <% if !@store.display_email.blank?%>
+        <div class="col-md-4 contact-grid animated wow fadeInRight" data-wow-delay=".5s">
+          <div class="contact-grid1">
+            <div class="contact-grid2 contact-grid5 col-md-4" style="background:<%= @store.store_color %> !important">
+              <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+            </div>
+            <div class="contact-grid3 col-md-8">
+              <h4>Email</h4>
+              <p><a href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></p>
+            </div>
+          </div>
+        </div>
+
+        <% end %>
+
+    </div>
+    <div class="col-md-8 col-md-offset-2 contact-grids1 animated wow fadeInRight" data-wow-delay=".5s">
+      <h1 class="text-center">Leave Us A Message</h1><br>
+      <%= form_tag('/stores/contact') do %>
+          <div class="contact-form2">
+            <h4>Name</h4>
+
+              <%= text_field_tag(:first_name, nil,:required=>'required', :class => '') %>
+
+          </div>
+
+          <div class="contact-form2">
+            <h4>Email</h4>
+
+              <%= text_field_tag(:email, nil,:required=>'required', :class => '') %>
+
+          </div>
+
+
+      <div class="contact-me ">
+        <h4>Message</h4>
+
+          <%= text_area_tag(:message, nil,:required=>'required', :class => '', :style=> 'height:10em') %>
+          </div>
+          <%= submit_tag("Send Message", :class => 'trendy-button', :style=>'width:100% !important') %><br>
+      <% end %>
+
+    </div>
+  </div>
+</div>
