@@ -16,6 +16,7 @@ class AdminsController < ApplicationController
   def ndeto
 
   end
+
   def categories
     @store= Store.all
     @category= ShopCategory.all
@@ -23,8 +24,12 @@ class AdminsController < ApplicationController
   end
 
   def update_category
-    @store= Store.find(params[:id])
-    # @up= @store.update(shop_category_id:, explore)
+    @store = Store.find(params[:store][:id])
+    if @store.update(cat_params)
+      @update = true
+    else
+      @update = false
+    end
   end
 
   def init
@@ -195,6 +200,10 @@ class AdminsController < ApplicationController
 
   def store_params
     params.require(:store).permit(:own_domain,:domain, :c_subdomain)
+  end
+
+  def cat_params
+    params.require(:store).permit(:explore, :shop_category_id)
   end
 
 end

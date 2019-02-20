@@ -1,28 +1,25 @@
 <div>
-  <h1> Add Categories</h1>
-</div>
-
-<div>
   <h1> Shop Categories</h1>
-  <table id="categories" class="table">
+  <table id="myTable" class="table">
     <thead>
     <tr>
       <th> Shop Name </th>
       <th> Category </th>
       <th> Explore </th>
+      <th colspan="1"></th>
     </tr>
     </thead>
     <tbody>
     <% @store.each do |s| %>
     <tr>
-      <%= form_tag('/admins/update_category') do %>
+      <%= form_for s, url:{controller: 'admins', action: 'update_category'}, method:'post', remote:true do |f| %>
         <td><%= s.email %></td>
-        <td><%= select_tag(:shop_category_id, options_from_collection_for_select(ShopCategory.all, 'id','shop_category',s.shop_category_id)) %></td>
-        <td><%= check_box_tag('explore', 1 ,s.explore) %></td>
-        <td><%= submit_tag('Save')%></td>
+        <td><%= f.select :shop_category_id, options_from_collection_for_select(ShopCategory.all, 'id','shop_category',s.shop_category_id) %></td>
+        <td><%= f.check_box :explore %></td>
+        <%= f.hidden_field :id %>
+        <td><%= f.submit 'Save'%></td>
       <% end %>
     <% end %>
-    <td><%=   %></td>
     </tbody>
 
   </table>
