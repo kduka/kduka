@@ -114,6 +114,7 @@ Rails.application.routes.draw do
   put 'stores/send_feed' => 'stores#send_feed'
   get 'admins/feedback' => 'admins#feedback'
   get 'admins/ipns' => 'admins#ipns'
+
   get 'admins/transactions' => 'admins#transactions'
   get 'admins/transfers' => 'admins#transfers'
   get 'admins/subscriptions' => 'admins#subscriptions'
@@ -130,6 +131,7 @@ Rails.application.routes.draw do
   post 'products/del_var' => 'products#del_var'
   get  '/explore' => 'home#explore'
   post 'ipns/manual_ipn' => 'ipn#manual_ipn'
+  get 'admins/categories' => 'admins#categories'
 
 
 

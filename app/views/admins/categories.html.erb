@@ -1,0 +1,29 @@
+<div>
+  <h1> Add Categories</h1>
+</div>
+
+<div>
+  <h1> Shop Categories</h1>
+  <table id="categories" class="table">
+    <thead>
+    <tr>
+      <th> Shop Name </th>
+      <th> Category </th>
+      <th> Explore </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @store.each do |s| %>
+    <tr>
+      <%= form_tag('/admins/update_category') do %>
+        <td><%= s.email %></td>
+        <td><%= select_tag(:shop_category_id, options_from_collection_for_select(ShopCategory.all, 'id','shop_category',s.shop_category_id)) %></td>
+        <td><%= check_box_tag('explore', 1 ,s.explore) %></td>
+        <td><%= submit_tag('Save')%></td>
+      <% end %>
+    <% end %>
+    <td><%=   %></td>
+    </tbody>
+
+  </table>
+</div>

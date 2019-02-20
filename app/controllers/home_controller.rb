@@ -35,6 +35,7 @@ class HomeController < ApplicationController
   end
 
   def explore
+    #retrieve all stores with explore enabled
     no_layout
   end
 end

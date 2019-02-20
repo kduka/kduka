@@ -4,6 +4,7 @@ class AdminsController < ApplicationController
   def index
     @stores = Store.all.order("created_at desc")
     @users = User.all.order("created_at desc")
+    # @explore = Store.find
     super_admin
   end
 
@@ -14,6 +15,16 @@ class AdminsController < ApplicationController
 
   def ndeto
 
+  end
+  def categories
+    @store= Store.all
+    @category= ShopCategory.all
+    super_admin
+  end
+
+  def update_category
+    @store= Store.find(params[:id])
+    # @up= @store.update(shop_category_id:, explore)
   end
 
   def init
