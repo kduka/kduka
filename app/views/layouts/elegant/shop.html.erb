@@ -300,12 +300,16 @@ p{
 						<div class="agile_footer_grid">
 						<h5>Quick Links</h5>
 							<ul class="agileits_zerone_footer_grid_list">
+								<% if @store.homepage_status == true %>
 								<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 									<a href="<%= root_path %>">Home </a>
 								</li>
+			          <% end %>
+			          <% if @store.aboutpage_status == true %>
 								<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 									<a href="<%= about_path %>">About Us</a>
 								</li>
+			          <% end %> 				
 								<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 									<a href="<%= all_path %>">Shop Now</a>
 								</li>

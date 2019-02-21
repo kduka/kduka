@@ -46,8 +46,7 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	text-align: center;
-	/*background-color: #153038 !important;*/
-	background-image: url('../images/website/banner3.jpg') !important;
+	background-image: url('/images/website/banner3.jpg') !important;
 	background-size: cover !important;
 	webkit-background-size: cover !important;
 	-moz-background-size: cover !important;
@@ -57,7 +56,7 @@ body {
 }
 
 #main {
-	background: url('../images/website/banner3.jpg') no-repeat center center fixed !important;
+	background: url('/images/website/banner3.jpg') no-repeat center center fixed !important;
   -webkit-background-size: cover !important;
   -moz-background-size: cover !important;
   -o-background-size: cover !important;

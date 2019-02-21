@@ -145,7 +145,7 @@ p {margin: 0;}
 html, body{
   	font-family: 'Roboto', sans-serif;
     font-size: 100%;
-  	background:#000 !important;
+  	background:#000;
   	overflow-x: hidden;
 }
 body a{
@@ -2186,7 +2186,7 @@ h2.form-heading {
   display: inline-block;
   width: 100%;
 }
-body#login{
+body #login{
   background: url(../images/bg.jpg)no-repeat;
   background-size:cover;
   -webkit-background-size:cover;

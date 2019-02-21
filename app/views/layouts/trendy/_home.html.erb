@@ -1,0 +1,127 @@
+<title><%= @store.name %> | <%= @title %></title>
+<style>
+.my_hidden{
+  display: none !important;
+}
+</style>
+<!-- banner -->
+	<div class="banner" style="background-image:url('<%= @store.banner_url.to_s %>');background-size:cover !important">
+
+
+	<div class="banner-right">
+					<ul id="flexiselDemo2">
+            <% @products.each do |product| %>
+                <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item2", product: product, order_item: @order_item %>
+            <% end %>
+					</ul>
+					<script type="text/javascript">
+		$(window).load(function() {
+			$("#flexiselDemo2").flexisel({
+				visibleItems: 1,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 5000,
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+		    	responsiveBreakpoints: {
+		    		portrait: {
+		    			changePoint:480,
+		    			visibleItems: 1
+		    		},
+		    		landscape: {
+		    			changePoint:640,
+		    			visibleItems: 1
+		    		},
+		    		tablet: {
+		    			changePoint:768,
+		    			visibleItems: 1
+		    		}
+		    	}
+		    });
+
+		});
+	</script>
+
+					</div>
+
+
+				</div>
+
+	</div>
+<!-- //banner -->
+<!--content-->
+		<div class="content">
+		<div class="content-head">
+
+
+						<!---->
+						 <!-- requried-jsfiles-for owl -->
+							<link href="css/owl.carousel.css" rel="stylesheet">
+							    <script src="js/owl.carousel.js"></script>
+							        <script>
+									    $(document).ready(function() {
+									      $("#owl-demo").owlCarousel({
+									        items : 2,
+									        lazyLoad : false,
+									        autoPlay : true,
+									        navigation : true,
+									        navigationText :  true,
+									        pagination : false,
+									      });
+									    });
+									  </script>
+							 <!-- //requried-jsfiles-for owl -->
+
+					   </div>
+					   <div class="clearfix"></div>
+			</div>
+
+
+      <!-- /new_arrivals -->
+        <div class="container" style="margin-top:5em">
+            <h1 class="text-center">Latest <span style="color:<%= @store.store_color%> !important">Products</span></h1><br><br>
+          <div class="col-md-12">
+              <div class="resp-tabs-container">
+              <!--/tab_one-->
+                <div class="tab1">
+                  <% if @products.nil? %>
+                      <p class="text-center">This store does not have any active Products</p>
+                  <% else %>
+                      <% @products.each do |product| %>
+                          <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+                      <% end %>
+                  <% end%>
+
+                  <div class="clearfix"></div>
+                </div><br><br><br>
+                <div class="row text-center">
+                <a href="<%= all_path %>" class="trendy-button">View More Products</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      <!-- //new_arrivals -->
+      <% if !@featured.nil? %>
+          <% @featured.each do |category| %>
+                <div class="container" style="margin-top:5em">
+                    <h1 class="text-center"><%= category.name %></h1><br><br>
+                  <div class="col-md-12">
+                      <div class="resp-tabs-container">
+                      <!--/tab_one-->
+                        <div class="tab1">
+                          <% @cat_products = Product.where(active:true,category_id:category.id).limit(3).order('id desc') %>
+                          <% if !@cat_products.nil? %>
+                              <% @cat_products.each do |product| %>
+                                  <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+                              <% end %>
+                          <% end %>
+                          <div class="clearfix"></div>
+                        </div><br><br><br>
+                        <div class="row text-center">
+                        <a href="<%= product_category_path(category.id) %>" class="trendy-button">View More Products</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          <% end %>
+          <% end %>
