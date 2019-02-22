@@ -16,7 +16,6 @@
 In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
 <script>
     function gtag_report_conversion(url) {
-        alert('test1');
         var callback = function () {
             if (typeof(url) != 'undefined') {
                 window.location = url;
@@ -26,7 +25,6 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             'send_to': 'AW-766105735/nxlCCPHFipUBEIexp-0C',
             'event_callback': callback
         });
-        alert('test2');
         return false;
     }
 </script>
