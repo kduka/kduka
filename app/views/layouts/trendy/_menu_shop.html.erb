@@ -42,7 +42,7 @@
 						</button>
 						 <div class="navbar-brand logo-nav-left ">
 							<h1 class="animated wow pulse" data-wow-delay=".5s">
-								<a href="<%= root_path %>">
+								<a href="<%= root_path %>" style="color: <%= @store.store_color %> !important">
 									<% if @store.logo_status %>
 											<%= image_tag(@store.logo_url.to_s,class:"our_logo",style:"margin-top:-1.3em") %>
 									<% else %>
