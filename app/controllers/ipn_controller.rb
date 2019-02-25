@@ -99,8 +99,7 @@ class IpnController < ApplicationController
       r = SubscriptionRecord.create(store_id: @order.store_id, start: now, expire: expire, subscription_id: @order.id, description: description)
       @store.update(premium: true, premiumexpiry: expire)
       PaymentsMailer.full_subscription_payment_recieved(@order, r).deliver
-      #@TODO Email complete Subscription and take records of payment and expiry date
-      # @TODO
+
 =begin
       PaymentsMailer.full_payment_recieved(@order).deliver
       PaymentsMailer.merchant_payment_recieved(@order).deliver

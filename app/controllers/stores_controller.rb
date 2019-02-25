@@ -671,7 +671,7 @@ end
   end
 
   def create_year
-    exist = Subscription.where(order_status_id: 5, description: 'year', amount: 4500).first
+    exist = Subscription.where(order_status_id: 5, description: 'year', amount: 4500, store_id:current_store.id).first
     if exist.nil?
       @order = Subscription.create(amount: 4500, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'year', order_status_id: 5, store_id: current_store.id)
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
@@ -696,7 +696,7 @@ end
   end
 
   def create_bi
-    exist = Subscription.where(order_status_id: 5, description: 'bi', amount: 2395).first
+    exist = Subscription.where(order_status_id: 5, description: 'bi', amount: 2395, store_id:current_store.id).first
 
     if exist.nil?
       @order = Subscription.create(amount: 2395, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'bi', order_status_id: 5, store_id: current_store.id)
@@ -723,7 +723,7 @@ end
   end
 
   def create_month
-    exist = Subscription.where(order_status_id: 5, description: 'month', amount: 420).first
+    exist = Subscription.where(order_status_id: 5, description: 'month', amount: 420, store_id:current_store.id).first
 
     if exist.nil?
       @order = Subscription.create(amount: 420, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'month', order_status_id: 5, store_id: current_store.id)
