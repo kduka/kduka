@@ -4,7 +4,7 @@
 #
 # To use the locales, use `I18n.t`:
 #
-#     I18n.t 'hello'
+#    I18n.t 'errors'
 #
 # In views, this is aliased to just `t`:
 #
@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    messages:
+      carrierwave_processing_error: "Cannot resize image."
+      carrierwave_integrity_error: "Not an image."
+      carrierwave_download_error: "Couldn't download image."
+      extension_whitelist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
+      extension_blacklist_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"

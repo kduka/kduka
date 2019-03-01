@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190219190307) do
+ActiveRecord::Schema.define(version: 20190228113442) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -193,25 +193,6 @@ ActiveRecord::Schema.define(version: 20190219190307) do
     t.index ["store_id"], name: "index_feedbacks_on_store_id", using: :btree
   end
 
-  create_table "fin_ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "mobileNumber"
-    t.string   "customer_reference"
-    t.string   "date"
-    t.string   "transaction_reference"
-    t.string   "paymentMode"
-    t.string   "amount"
-    t.string   "till"
-    t.string   "billNumber"
-    t.string   "servedBy"
-    t.string   "additionalInfo"
-    t.string   "bank_reference"
-    t.string   "transactionType"
-    t.string   "account"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
   create_table "fonts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -372,6 +353,10 @@ ActiveRecord::Schema.define(version: 20190219190307) do
     t.string   "shop_category"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "explore_image"
+    t.string   "string"
+    t.index ["shop_category"], name: "index_shop_categories_on_shop_category", unique: true, using: :btree
+    t.index ["shop_category"], name: "shop_category", unique: true, using: :btree
   end
 
   create_table "store_amounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

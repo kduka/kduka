@@ -1,37 +1,67 @@
-<div class="content_bottom" style="margin-top:2em">
+<div class="content_bottom" style="margin-top:2em" xmlns="http://www.w3.org/1999/html">
 <p id="notice"><%= notice %></p>
 
 <h3 style="color:#7aae42"><i class="fa fa-plus"></i> Subscriptions</h3>
 <div class="col_2">
 <div style="overflow-x:scroll">
-<% columns = @subscriptions.column_names %>
-<table id="subscriptionsTable" class="table">
+<% @stores = Store.all%>
+<table id="myTable" class="table">
   <thead>
   <tr>
     <th>Store Name</th>
-    <th>Next Subscription</th>
-    <% columns.each do |c| %>
-      <th><%= c %></th>
-    <% end %>
-
+    <th>Status</th>
+    <th>Order Type</th>
+    <th>Recent Reference</th>
+    <th>Expiry</th>
+    <th>Days Left</th>
   </tr>
   </thead>
 
   <tbody>
-  <% @subscriptions.each do |ipn| %>
+  <% @stores.each do |s| %>
     <tr>
-      <td><%= Store.find(ipn.store_id).name.humanize %></td>
-      <td><%= Store.find(ipn.store_id).premiumexpiry %></td>
-      <% columns.each do |c| %>
-        <td><%= ipn[c] %></td>
-      <% end %>
-
+      <td><%= s.name.humanize %></td>
+      <td><%= s.active? ? 'Active':'Inactive' %></td>
+      <td><%= Subscription.where(store_id:s.id , order_status_id:6).order(created_at: :desc).description rescue 'No Record' %></td>
+      <td><%= Subscription.where(store_id:s.id).first.ref rescue "No Record" %></td>
+      <td><%= s.premiumexpiry%></td>
+      <td><%= (s.premiumexpiry - Date.today).to_i rescue "N/A"%></td>
     </tr>
   <% end %>
   </tbody>
 </table>
 </div>
 </div>
-</div>
+  <h3 style="color:#7aae42"><i class="fa fa-briefcase"></i> Orders</h3>
+  <div class="col2">
+  <div style="overflow-x: scroll">
+    <table id="myTable" class="table">
+      <thead>
+      <tr>
+        <th>Reference</th>
+        <th>Shop</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Date Created</th>
+        <th>Expiry</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @subscriptions.each do |o| %>
+      <tr>
+        <td><%= o.ref%></td>
+        <td><%=Store.where(id: o.store_id).first.name %></td>
+        <td><%=o.description%></td>
+        <td><%=OrderStatus.where(id:o.order_status_id).first.name %></td>
+        <td><%=o.created_at %></td>
+        <td><%=Store.where(id:o.store_id).first.premiumexpiry rescue 'No Records' %></td>
+      </tr>
+        <%end %>
+      </tbody>
 
+    </table>
+  </div>
+  </div>
+</div>
 <br>
+

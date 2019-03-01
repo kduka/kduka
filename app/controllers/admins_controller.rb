@@ -17,21 +17,6 @@ class AdminsController < ApplicationController
 
   end
 
-  def categories
-    @store= Store.all
-    @category= ShopCategory.all
-    super_admin
-  end
-
-  def update_category
-    @store = Store.find(params[:store][:id])
-    if @store.update(cat_params)
-      @update = true
-    else
-      @update = false
-    end
-  end
-
   def init
     @store = Store.all
     @store.each do |store|
@@ -187,13 +172,35 @@ class AdminsController < ApplicationController
   end
 
   def subscriptions
-    @subscriptions = Subscription.where(:order_status_id => 6)
+    @subscriptions = Subscription.all
     super_admin
   end
 
   def earnings
     @earnings = Earning.all
     super_admin
+  end
+  def categories
+    @store= Store.all
+    @shopcategory = ShopCategory.new
+    super_admin
+  end
+  def update_category
+    @store = Store.find(params[:store][:id])
+    if @store.update(cat_params)
+      @update = true
+    else
+      @update = false
+    end
+  end
+
+  def add_category
+    @up= ShopCategory.new(new_cat_params)
+     if @up.save
+       @update = true
+     else
+       @update= false
+    end
   end
 
   private
@@ -203,7 +210,10 @@ class AdminsController < ApplicationController
   end
 
   def cat_params
-    params.require(:store).permit(:explore, :shop_category_id)
+    params.require(:store).permit(:explore, :shop_category_id, :explore_image)
+  end
+  def new_cat_params
+    params.require(:shopcategory).permit(:shop_category)
   end
 
 end
