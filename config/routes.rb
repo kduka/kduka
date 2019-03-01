@@ -133,6 +133,7 @@ Rails.application.routes.draw do
   post 'ipns/manual_ipn' => 'ipn#manual_ipn'
   get 'admins/categories' => 'admins#categories'
   post 'admins/update_category' => 'admins#update_category'
+  post 'admins/categories' => 'admins#add_category'
 
 
 
