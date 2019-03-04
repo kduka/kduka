@@ -298,7 +298,8 @@ body{
           <%@explore.each do |w| %>
             <%if w.shop_category_id === e.id %>
           <div>
-            <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/kduka.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br>
+<!--            <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/kduka.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em">-->
+              <%= image_tag(w.explore_image.to_s, class:'kd_roll_img', style: 'width:300px;height:auto;margin-left:1em;margin-right:1em' ) %><br><br>
               <h5 class="text-center" style="color: #7aae42"><%=w.name %></h5></a>
           </div>
             <%end %>
