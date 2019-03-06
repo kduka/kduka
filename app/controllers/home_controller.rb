@@ -36,9 +36,8 @@ class HomeController < ApplicationController
 
   def explore
     #retrieve all stores with explore enabled
-    @category= ShopCategory.all
+    @category= ShopCategory.where(id: Store.pluck(:shop_category_id))
     @explore= Store.where(explore: 1)
-    # @category = ShopCategory.find(params[:id])
     no_layout
   end
 

@@ -23,7 +23,7 @@
     <tbody>
     <% @store.each do |s| %>
     <tr>
-      <%= form_for s, url:{controller: 'admins', action: 'update_category'}, method:'post', remote:true do |f| %>
+      <%= form_for s, url:{controller: 'admins', action: 'update_category'},html:{multipart:true}, method:'post' do |f| %>
         <td><%= s.email %></td>
         <td><%= f.select :shop_category_id, options_from_collection_for_select(ShopCategory.all, 'id','shop_category',s.shop_category_id) %></td>
         <td><%= f.check_box :explore %></td>

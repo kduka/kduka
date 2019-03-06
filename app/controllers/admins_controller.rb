@@ -188,9 +188,11 @@ class AdminsController < ApplicationController
   def update_category
     @store = Store.find(params[:store][:id])
     if @store.update(cat_params)
-      @update = true
+      flash[:alert] = "Saved successfully"
+      redirect_to(request.referer)
     else
-      @update = false
+      flash[:alert] = "Failed. Try Again"
+      redirect_to(request.referer)
     end
   end
 

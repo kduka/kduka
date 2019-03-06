@@ -13,4 +13,5 @@ class Store < ApplicationRecord
 
   mount_uploader :banner, BannerUploader
   mount_uploader :logo, LogoUploader
+  mount_uploader :explore_image, ExploreUploader
 end
