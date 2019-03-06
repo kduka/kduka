@@ -130,6 +130,7 @@ Rails.application.routes.draw do
   post 'products/del_var' => 'products#del_var'
   get  '/explore' => 'home#explore'
   post 'ipns/manual_ipn' => 'ipn#manual_ipn'
+  get 'admins/alldetails' => 'admins#alldetails'
 
 
 

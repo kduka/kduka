@@ -166,6 +166,14 @@ class AdminsController < ApplicationController
     end
   end
 
+  def alldetails
+    @stores = Store.all
+    respond_to do |f|
+      f.csv {send_data @products.to_csv}
+      f.xls
+    end
+  end
+
   def feedback
     @feed = Feedback.all
     super_admin

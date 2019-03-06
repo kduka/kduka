@@ -5,6 +5,9 @@
   <div class="col-md-12 span_3">
     <%= link_to  admins_allemails_path(format: "xls"), style:'text-decoration:none' do %>
       <button class="kd_buttons"><i class="fa fa-download"></i> Download Emails</button>
+    <%end%>
+    <%= link_to  admins_alldetails_path(format: "xls"), style:'text-decoration:none' do %>
+      <button class="kd_buttons"><i class="fa fa-download"></i> Download Details</button>
     <%end%><br>
     <div class="col_2">
       <% if !@stores.blank? %>

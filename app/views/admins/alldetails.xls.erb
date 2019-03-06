@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">Store Name</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Subdomain</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Domain</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Email</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Phone</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Active</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Categories</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Products</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Premium</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Premium Expiry</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Visitors</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Last Login</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Actual Amount</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Available Amount</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Lifetime Earning</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Created On</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Confirmed On</Data>
+        </Cell>
+
+      </Row>
+      <% @stores.each do |s| %>
+        <Row>
+          <Cell>
+            <Data ss:Type="String">
+              <% if s.username.nil? %><%= s.name %>
+              <% else %><%= s.username %>
+              <% end %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.subdomain %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= "#{s.c_subdomain}.#{s.domain}" %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.email %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.phone %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.active %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= Category.where(store_id: s.id).count rescue 0 %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= Product.where(store_id: s.id).count rescue 0 %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.premium %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.premiumexpiry %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= Ahoy::Visit.where(store_id: s.id).count %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.last_sign_in_at %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= StoreAmount.where(:store_id => s.id).first.actual rescue nil %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= StoreAmount.where(:store_id => s.id).first.amount rescue nil %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= StoreAmount.where(:store_id => s.id).first.lifetime_earnings rescue nil %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.created_at %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.confirmed_at %></Data>
+          </Cell>
+
+        </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
