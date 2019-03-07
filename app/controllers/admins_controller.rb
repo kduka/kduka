@@ -212,7 +212,7 @@ class AdminsController < ApplicationController
   end
 
   def cat_params
-    params.require(:store).permit(:explore, :shop_category_id, :explore_image)
+    params.require(:store).permit(:explore, :shop_category_id, :explore_image,:image_cache)
   end
   def new_cat_params
     params.require(:shopcategory).permit(:shop_category)
