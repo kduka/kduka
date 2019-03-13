@@ -45,7 +45,7 @@ input[type="submit"],.panel-body ul li a,.checkout-right-basket a,.additional_in
     display: block;
     font-size: .3em;
     text-transform: capitalize;
-    letter-spacing: 7px;
+    letter-spacing: 1px;
     padding-left: 4px;
     text-align: center;
     margin-top: 0.5em;
