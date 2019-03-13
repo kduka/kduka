@@ -218,11 +218,6 @@ ul.multi-column-dropdown h6 {
     overflow: hidden;
     background-color: #e5e5e5;
 }
-.multi-column-dropdown li a:hover {
-    text-decoration: none;
-    color: #816263;
-    background-color: #fff!important;
-}
 .dropdown-menu.columns-2 {
     min-width: 400px;
     padding: 15px 20px;

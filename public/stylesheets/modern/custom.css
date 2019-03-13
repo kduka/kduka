@@ -227,7 +227,8 @@ ul.nav.navbar-nav.top-nav-info {
     text-align: center;
 }
 ul.dropdown-menu.multi-column {
-    width: 100%;
+    width: 350px;
+		left:38%;
     padding: 2em;
 }
 .navbar-nav > li {

@@ -367,8 +367,8 @@ i.fa.fa-shopping-bag.top_logo_agile_bag {
     padding: 0px 0;
 }
 .dropdown-menu.columns-3 {
-    min-width: auto;
-    padding: 30px 30px;
+    min-width: 350px;
+    padding: 15px 15px;
 }
 .multi-gd-img img{
 	width:100%;

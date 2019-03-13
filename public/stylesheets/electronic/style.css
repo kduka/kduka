@@ -410,9 +410,9 @@ ul.multi-column-dropdown h6 {
     text-align: center;
 }
 .dropdown-menu.columns-3 {
-    min-width:900px;
+    min-width: 350px;
     padding: 30px 30px;
-	left: -265%;
+    left: -70%;
 }
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: none;

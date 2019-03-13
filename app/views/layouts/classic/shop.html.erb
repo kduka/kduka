@@ -58,6 +58,11 @@ next if item == '.' or item == '..' %>
 </script>
 
 <style>
+.multi-column-dropdown li a:hover {
+    text-decoration: none;
+    color: <%= @store.store_color%> !important;
+    background-color: #fff!important;
+}
 .my_shadow{
 	width:100%;
 	height:38em!important;
