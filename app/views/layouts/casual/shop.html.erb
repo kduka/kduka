@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="keywords" content=""/>
+<meta name="description" content="<%= @store.name %> | <%= @store.slogan %>">
+<meta name="author" content="<%= @store.name %>">
+<!--/tags -->
+<% if @store.logo_status %>
+<!--Favicon-->
+<link rel="apple-touch-icon" sizes="57x57" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="60x60" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="72x72" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="76x76" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="114x114" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="120x120" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="144x144" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="152x152" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="180x180" href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="192x192"  href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="32x32" href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="96x96" href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="16x16" href="<%= @store.logo_url.to_s %>">
+<link rel="manifest" href="images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="<%= @store.logo_url.to_s %>">
+<meta name="theme-color" content="#ffffff">
+<% else %>
+<% end %>
+
+<% if Date.current.strftime("%B") == "December" %>
+<!-- <script src="/javascripts/snow/snowstorm.js"></script> -->
+<%end%>
+
+<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<% Dir.foreach("public/stylesheets/#{Layout.find(@store.layout_id).name}") do |item|
+next if item == '.' or item == '..' %>
+<%= stylesheet_link_tag    "#{Layout.find(@store.layout_id).name}/#{item}" %>
+<% end %>
+<% Dir.foreach("public/javascripts/#{Layout.find(@store.layout_id).name}") do |item|
+next if item == '.' or item == '..' %>
+<%= javascript_include_tag    "#{Layout.find(@store.layout_id).name}/#{item}" %>
+<% end %>
+
+<script type="application/x-javascript">
+	addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+	}, false);
+
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+	    rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<script>$(document).ready(function(c) {
+		$('.alert-close').on('click', function(c){
+			$('.message').fadeOut('slow', function(c){
+		  		$('.message').remove();
+			});
+		});
+	});
+	</script>
+	<script>$(document).ready(function(c) {
+		$('.alert-close1').on('click', function(c){
+			$('.message1').fadeOut('slow', function(c){
+		  		$('.message1').remove();
+			});
+		});
+	});
+	</script>
+	<script>$(document).ready(function(c) {
+		$('.alert-close2').on('click', function(c){
+			$('.message2').fadeOut('slow', function(c){
+		  		$('.message2').remove();
+			});
+		});
+	});
+	</script>
+<style>
+.wmuSliderPagination{
+	display: none !important;
+}
+.menu_box_list li a:hover{
+	color:<%= @store.store_color%> !important;
+	text-decoration:none;
+}
+a.active-icon.c1:hover {
+	text-decoration:none;
+	color:#000 !important;
+}
+.view-first .mask {
+  background-color:<%= @store.store_color%> !important;
+}
+.breadcrumbs a{
+	color: #000 !important;
+	text-decoration: none !important;
+}
+.our_logo{
+  max-width: 150px !important;
+  max-height: 100px !important;
+}
+@media (max-width:480px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+@media (max-width:720px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+@media (max-width:1080px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+ul.breadcrumbs li.women {
+    background: <%= @store.store_color%> !important;
+}
+.casual-button {
+	outline: none;
+	padding: 15px 20px;
+	font-size: 14px;
+	color: #fff;
+	background: #000000;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+.casual-button:hover {
+	outline: none;
+	font-size: 14px;
+	color: #fff;
+	background: <%= @store.store_color %> !important;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+.var_dis{
+	border:1px <%= @store.store_color %>;
+	border-style: dashed !important;
+	border-color: <%= @store.store_color %> !important;
+	padding:5px 10px;
+	transition: all 0.5s;
+	margin-bottom: .5em !important;
+}
+<% if !@store.store_font.nil? %>
+body{
+	font-family: <%= @store.store_font %> !important;
+}
+h1{
+	font-family: <%= @store.store_font %> !important;
+}
+h2{
+	font-family: <%= @store.store_font %> !important;
+}
+h3{
+	font-family: <%= @store.store_font %> !important;
+}
+h4{
+	font-family: <%= @store.store_font %> !important;
+}
+h5{
+	font-family: <%= @store.store_font %> !important;
+}
+h6{
+	font-family: <%= @store.store_font %> !important;
+}
+p{
+	font-family: <%= @store.store_font %> !important;
+}
+a{
+	font-family: <%= @store.store_font %> !important;
+}
+<% end %>
+</style>
+<% if @store.premium %>
+	<!--Google Tag -->
+	<%= @store.gtag.html_safe rescue nil %>
+	<!--End Google Tag-->
+<% end %>
+</head>
+
+<body>
+<div class="sales" style="background-attachment:fixed !important; background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url('<%= @store.banner_url.to_s %>');max-height:600px;overflow:hidden !important">
+    <div class="container">
+			<%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop2" %>
+	  </div>
+
+</div>
+
+	<%= yield%>
+
+
+
+	<!-- footer -->
+	<div class="footer" style="margin-top:4em">
+		<div class="container">
+			<h1 style="color: #fff" class="text-center"><%= @store.name %></h1>
+			<p><a href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a></p>
+			<div class="copy">
+				<p>Copyright © <%= Time.current.year %> <%= @store.name %>. All rights reserved | Powered by
+					<a target="_blank" class="" href="http://www.kduka.co.ke/">KDuka</a></p>
+			</div>
+			<ul class="social">
+				<% if !@store.facebook.blank? %>
+			  <li><a target="_blank" href="<%= @store.facebook %>"> <i class="fa fa-facebook fa-2x"> </i> </a></li>
+				<%end%>
+				<% if !@store.twitter.blank? %>
+			  <li><a target="_blank" href="<%= @store.twitter %>"> <i class="fa fa-twitter fa-2x"> </i> </a></li>
+				<%end%>
+				<% if !@store.instagram.blank? %>
+			  <li><a target="_blank" href="<%= @store.instagram %>"> <i class="fa fa-instagram fa-2x"> </i> </a></li>
+				<%end%>
+				<% if !@store.linkedin.blank? %>
+			  <li><a target="_blank" href="<%= @store.linkedin %>"> <i class="fa fa-linkedin fa-2x"> </i> </a></li>
+				<%end%>
+				<% if !@store.youtube.blank? %>
+			  <li><a target="_blank" href="<%= @store.youtube %>"> <i class="fa fa-youtube fa-2x"> </i> </a></li>
+				<%end%>
+				<% if !@store.pinterest.blank? %>
+			  <li><a target="_blank" href="<%= @store.pinterest %>"> <i class="fa fa-pinterest fa-2x"> </i> </a></li>
+				<%end%>
+				<% if !@store.vimeo.blank? %>
+			  <li><a target="_blank" href="<%= @store.vimeo %>"> <i class="fa fa-vimeo fa-2x"> </i> </a></li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+				var menu1_ul = $('.menu1> li > ul'),
+							 menu1_a  = $('.menu1 > li > a');
+				menu1_ul.hide();
+				menu1_a.click(function(e) {
+						e.preventDefault();
+						if(!$(this).hasClass('active')) {
+								menu1_a.removeClass('active');
+								menu1_ul.filter(':visible').slideUp('normal');
+								$(this).addClass('active').next().stop(true,true).slideDown('normal');
+						} else {
+								$(this).removeClass('active');
+								$(this).next().stop(true,true).slideUp('normal');
+						}
+				});
+
+		});
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	  $(window).load(function() {
+	    $('.flexslider').flexslider();
+	  });
+	</script>
+	</body>
+	</html>

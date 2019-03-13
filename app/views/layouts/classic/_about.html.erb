@@ -1,0 +1,30 @@
+<title><%= @store.name %> | <%= @title %></title>
+<style>
+.my_space{
+  display: none !important;
+}
+</style>
+<div class="about_top">
+  <div class="container">
+		   <div class="dreamcrub">
+			   	 <ul class="breadcrumbs">
+                    <li class="home">
+                       <a href="<%= root_path %>" title="Go to Home Page">Home</a>&nbsp;
+                       <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                        About Us
+                    </li>
+               </ul>
+                <ul class="previous">
+                </ul>
+                <div class="clearfix"></div>
+		   </div>
+
+		 <div class="grid_2">
+       <h1 style="text-align:center">A few words about Us</h1><br>
+       <p style="text-align:justify !important"><%= @store.aboutpage_text.html_safe rescue nil %></p>
+		 </div>
+	 <div class="clearfix"> </div>
+</div>
+</div>

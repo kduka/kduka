@@ -1,0 +1,65 @@
+<div class="header_top">
+  <div class="logo" style="margin-top:-2em">
+  <a href="<%= root_path %>">
+    <h1>
+    <% if @store.logo_status %>
+        <%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
+    <% else %>
+        <span><%= @store.name %></span>
+    <% end %>
+    </h1>
+  </a>
+</div>
+<div class="header-bottom-right">
+     <ul class="icon1 sub-icon1 profile_img">
+       <li><a class="active-icon c1" href="<%= cart_path %>">My Cart </a><div class="rate cart-text" style="background:#000 !important"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></div>
+       </li>
+      </ul>
+          <div class="clearfix"></div>
+      </div>
+<div class="menu">
+  <a href="#" class="right_bt" id="activator1"><img src="/images/website/menu.png" alt=""/></a>
+    <div class="box" id="box1">
+       <div class="box_content_center">
+         <div class="menu_box_list">
+           <ul>
+             <% if @store.homepage_status == true %>
+             <li><a href="<%= root_path %>"><i class="fa fa-home"></i> Home</a></li>
+             <%end%>
+             <% if @store.aboutpage_status == true %>
+             <li><a href="<%= about_path %>">About</a></li>
+             <%end%>
+             <li><a href="<%= all_path %>">Shop</a></li>
+             <li><a href="<%= contact_path %>">Contact</a></li>
+           </ul>
+        </div>
+        <a class="boxclose" id="boxclose1" style="color:#fff"><i class="fa fa-times"></i></a>
+        </div>
+      </div>
+                   <script type="text/javascript">
+            var $ = jQuery.noConflict();
+              $(function() {
+                $('#activator1').click(function(){
+                    $('#box1').animate({'left':'0px'},500);
+                });
+                $('#boxclose1').click(function(){
+                    $('#box1').animate({'left':'-2300px'},500);
+                });
+              });
+              $(document).ready(function(){
+
+              //Hide (Collapse) the toggle containers on load
+              $(".toggle_container").hide();
+
+              //Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+              $(".trigger").click(function(){
+                $(this).toggleClass("active").next().slideToggle("slow");
+                return false; //Prevent the browser jump to the link anchor
+              });
+
+              });
+            </script>
+           </div>
+           <div class="clearfix"></div>
+      </div>
+</div>

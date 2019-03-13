@@ -1,0 +1,75 @@
+<title><%= @store.name %> | <%= @title %></title>
+<!-- banner -->
+<!--Start-->
+<style>
+.sales{
+  display: none !important;
+}
+</style>
+<div class="index-banner" style="background-attachment:fixed !important; background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url('<%= @store.banner_url.to_s %>');max-height:600px;overflow:hidden !important">
+    <div class="container">
+	  <%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop" %>
+	    <div class="wmuSlider example1">
+			    <article style="position: absolute; width: 100%; opacity: 1;">
+				   	<div class="banner-wrap">
+						<h1><%= @store.name %></h1>
+					</div>
+				 </article>
+		  </div>
+					<script>
+       				     $('.example1').wmuSlider();
+   					</script>
+</div>
+<div class="content_top" style="margin-top:3em">
+  <h1 class="text-center" style="color:<%= @store.store_color %>">Latest Products</h1>
+	<div class="container" style="margin-top:-5em">
+
+		<div class="content_right">
+
+		   <div class="content_right-box">
+         <% if @products.nil? %>
+             <p class="text-center">This store does not have any active Products</p>
+         <% else %>
+             <% @products.each do |product| %>
+                 <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+             <% end %>
+         <% end%>
+         <div class="clearfix"></div>
+         </div><br><br><br>
+         <div class="row text-center">
+         <a href="<%= all_path %>" class="casual-button">View More Products</a>
+         </div>
+
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <% if !@featured.nil? %>
+     <% @featured.each do |category| %>
+ <div class="content_top" style="margin-top:3em">
+   <h1 class="text-center" style="color:<%= @store.store_color %>"><%= category.name %></h1>
+ 	<div class="container" style="margin-top:-5em">
+
+ 		<div class="content_right">
+
+ 		   <div class="content_right-box">
+         <% @cat_products = Product.where(active:true,category_id:category.id).limit(3).order('id desc') %>
+         <% if !@cat_products.nil? %>
+             <% @cat_products.each do |product| %>
+                 <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+             <% end %>
+         <% end %>
+         <div class="clearfix"></div>
+       </div><br><br><br>
+       <div class="row text-center">
+       <a href="<%= product_category_path(category.id) %>" class="casual-button">View More Products</a>
+       </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <%end%>
+  <%end%>
+<!--End-->

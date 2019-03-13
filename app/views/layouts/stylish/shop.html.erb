@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="keywords" content=""/>
-<meta name="description" content="KDuka - Online Shopping made easy">
-<meta name="author" content="KDuka">
+<meta name="description" content="<%= @store.name %> | <%= @store.slogan %>">
+<meta name="author" content="<%= @store.name %>">
 <!--/tags -->
 <% if @store.logo_status %>
 <!--Favicon-->
@@ -56,6 +56,28 @@ next if item == '.' or item == '..' %>
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 
 <style>
+.our_logo{
+  max-width: 150px !important;
+  max-height: 100px !important;
+}
+@media (max-width:480px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+@media (max-width:720px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+@media (max-width:1080px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
 .shoe-cart {
     font-size: 1em;
     color: #fff;

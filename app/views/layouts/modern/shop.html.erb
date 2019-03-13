@@ -4,8 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="keywords" content="" />
-  <meta name="description" content="KDuka - Online Shopping made easy">
-  <meta name="author" content="KDuka">
+  <meta name="description" content="<%= @store.name %> | <%= @store.slogan %>">
+  <meta name="author" content="<%= @store.name %>">
   <% if @store.logo_status %>
   <!--Favicon-->
   <link rel="apple-touch-icon" sizes="57x57" href="<%= @store.logo_url.to_s %>">
@@ -185,6 +185,7 @@ a{
           background-color: <%= @store.store_color %> !important;
       }
     }
+    <% end %>
 </style>
 <style>
 .our_logo{
@@ -209,7 +210,6 @@ a{
     max-height: 100px !important;
   }
 }
-<% end %>
 .var_dis{
 border-style: dashed;
 border-width: 1px;
@@ -373,7 +373,7 @@ border-width: 1px;
   					<% end %>
   					<% if @store.aboutpage_status == true %>
   					<li><a href="<%= about_path %>">About Us</a></li>
-  					<% end %> 					
+  					<% end %>
 						<li><a href="<%= contact_path %>">Contact Us</a></li>
             <li><a href="<%= all_path %>">Products</a></li>
 					</ul>

@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="KDuka - Online Shopping made easy">
-    <meta name="author" content="KDuka">
+    <meta name="description" content="<%= @store.name %> | <%= @store.slogan %>">
+    <meta name="author" content="<%= @store.name %>">
     <% if @store.logo_status %>
     <!--Favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="<%= @store.logo_url.to_s %>">

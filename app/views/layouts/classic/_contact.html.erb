@@ -1,0 +1,71 @@
+<title><%= @store.name %> | <%= @title %></title>
+<style>
+.my_space{
+  display: none !important;
+}
+</style>
+<div class="contact">
+	<div class="container">
+	<div class="dreamcrub">
+			   	 <ul class="breadcrumbs">
+                    <li class="home">
+                       <a href="index.php" title="Go to Home Page">Home</a>&nbsp;
+                       <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                       Contact
+                    </li>
+                </ul>
+                <ul class="previous">
+                </ul>
+                <div class="clearfix"></div>
+			   </div>
+		<div class="contact-info">
+			<h2>CONTACT DETAILS</h2>
+			<div class="container"><br><br>
+				<div class="col-md-12 contact-left-wthree">
+				<div class="col-md-4" style="margin-bottom:1.5em">
+			  <h5 style="text-align:center"><strong><i style="color:<%= @store.store_color %>" class="fa fa-envelope fa-5x"></i></strong><br><br><%= @store.display_email %></h5>
+				</div>
+				<div class="col-md-4" style="margin-bottom:1.5em">
+			  <h5 style="text-align:center"><strong><i style="color:<%= @store.store_color %>" class="fa fa-phone fa-5x"></i></strong><br><br><%= @store.phone %></h5>
+			  </div>
+			  <div class="col-md-4" style="margin-bottom:1.5em">
+			    <h5 style="text-align:center"><strong><i style="color:<%= @store.store_color %>" class="fa fa-map-marker fa-5x"></i></strong><br><br><%= @store.business_location %></h5>
+			  </div>
+
+			</div>
+			<div class="col-md-12" style="height:1em"></div>
+			</div>
+		</div>
+
+		<div class="contact-form col-md-8 col-md-offset-2">
+			<div class="contact-info">
+				<h3>CONTACT FORM</h3>
+			</div>
+			<%= form_tag('/stores/contact') do %>
+				<div class="text">
+					<div class="text-fild">
+						<span>Name:</span>
+						<%= text_field_tag(:first_name, nil,:required=>'required', :placeholder => 'Name',:class=>'my_input') %><br><br>
+					</div>
+				</div>
+				<div class="text">
+					<div class="text-fild">
+						<span>Email:</span>
+						<%= text_field_tag(:email, nil,:required=>'required', :placeholder => 'Email',:class=>'my_input') %><br>
+					</div>
+				</div>
+				<div class="text">
+					<div class="text-fild">
+						<span><br>Message:</span>
+						<%= text_area_tag(:message, nil,:required=>'required',  :placeholder => 'Message', :style=> 'height:10em;width:100% !important;margin-left: 0 !important;padding:1em') %>
+					</div>
+				</div>
+					<div class=""><br>
+					<span class="col-md-6"><%= submit_tag("Send Message", :class => 'classic-button', :style=>'width:100% !important;margin-left:0 !important') %></span><span class="col-md-6"><input type="reset" value="Clear Form" class="classic-button"></span><br>
+					</div>
+					<%end%>
+		</div>
+	</div>
+</div>

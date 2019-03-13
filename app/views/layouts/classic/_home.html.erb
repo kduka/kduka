@@ -1,0 +1,133 @@
+<title><%= @store.name %> | <%= @title %></title>
+<style>
+.my_space{
+  display: none !important;
+}
+</style>
+<!-- banner -->
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url('<%= @store.banner_url.to_s %>');max-height:600px;overflow:hidden !important">
+  <div class="container">
+<div class="banner-bottom">
+<div class="banner-bottom-left">
+  <h2 style="color:#fff">B<br>U<br>Y</h2>
+</div>
+<div class="banner-bottom-right">
+  <div  class="callbacks_container">
+        <ul class="rslides" id="slider4">
+        <li>
+              <div class="banner-info">
+                <h3 style="color:#fff"><%= @store.name %></h3>
+                <p style="color:#fff"><%= @store.slogan %></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!--banner-->
+     <script>
+        // You can also use "$(window).load(function() {"
+        $(function () {
+          // Slideshow 4
+          $("#slider4").responsiveSlides({
+            auto: true,
+            pager:true,
+            nav:false,
+            speed: 500,
+            namespace: "callbacks",
+            before: function () {
+              $('.events').append("<li>before event fired.</li>");
+            },
+            after: function () {
+              $('.events').append("<li>after event fired.</li>");
+            }
+          });
+
+        });
+      </script>
+</div>
+<div class="clearfix"> </div>
+</div>
+<div class="shop">
+  <a href="<%= all_path %>">SHOP NOW</a>
+</div>
+</div>
+  </div>
+  <!-- content-section-starts-here -->
+  <div class="container">
+    <div class="main-content">
+      <div class="online-strip">
+        <div class="col-md-6 follow-us">
+          <h3>follow us :
+            <% if !@store.facebook.blank? %>
+      		    <a href="<%= @store.facebook %>" target="_blank"><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;
+      			<% end %>
+      			<% if !@store.twitter.blank? %>
+      		    <a href="<%= @store.twitter %>" target="_blank"><i class="fa fa-twitter"></i></a>&nbsp;&nbsp;
+      			<% end %>
+      			<% if !@store.instagram.blank? %>
+      		    <a href="<%= @store.instagram %>" target="_blank"><i class="fa fa-instagram"></i></a>&nbsp;&nbsp;
+      			<% end %>
+      			<% if !@store.linkedin.blank? %>
+      		    <a href="<%= @store.linkedin %>" target="_blank"><i class="fa fa-linkedin"></i></a>&nbsp;&nbsp;
+      			<% end %>
+      			<% if !@store.youtube.blank? %>
+      		    <a href="<%= @store.youtube %>" target="_blank"><i class="fa fa-youtube"></i></a>&nbsp;&nbsp;
+      			<% end %>
+      			<% if !@store.pinterest.blank? %>
+      		    <a href="<%= @store.pinterest %>" target="_blank"><i class="fa fa-pinterest"></i></a>&nbsp;&nbsp;
+      			<% end %>
+      			<% if !@store.vimeo.blank? %>
+      		    <a href="<%= @store.vimeo %>" target="_blank"><i class="fa fa-vimeo"></i></a>&nbsp;&nbsp;
+      			<% end %>
+          </h3>
+        </div>
+        <div class="col-md-6 online-order">
+          <p>Call Us</p>
+          <h3><i class="fa fa-phone"></i> <%= @store.phone %></h3>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+
+      <div class="products-grid">
+      <header>
+        <h3 class="head text-center" style="color:<%= @store.store_color %> !important">Latest Products</h3>
+      </header>
+      <% if @products.nil? %>
+          <p class="text-center">This store does not have any active Products</p>
+      <% else %>
+          <% @products.each do |product| %>
+              <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+          <% end %>
+      <% end%>
+      <div class="clearfix"></div>
+      <br><br><br>
+      <div class="col-md-4 col-md-offset-4 text-center">
+      <a href="<%= all_path %>" class="classic-button">View More Products</a>
+      </div>
+
+        <div class="clearfix"></div>
+      </div>
+
+      <% if !@featured.nil? %>
+          <% @featured.each do |category| %>
+          <div class="products-grid">
+          <header>
+            <h3 class="head text-center" style="color:<%= @store.store_color %> !important"><%= category.name %></h3>
+          </header>
+          <% @cat_products = Product.where(active:true,category_id:category.id).limit(3).order('id desc') %>
+          <% if !@cat_products.nil? %>
+              <% @cat_products.each do |product| %>
+                  <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+              <% end %>
+          <% end %>
+          <div class="clearfix"></div>
+          <br><br><br>
+          <div class="col-md-4 col-md-offset-4 text-center">
+          <a href="<%= product_category_path(category.id) %>" class="classic-button">View More Products</a>
+          </div>
+            <div class="clearfix"></div>
+          </div>
+          <% end%>
+      <% end%>
+    </div>
+  </div>

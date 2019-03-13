@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="keywords" content=""/>
+<meta name="description" content="<%= @store.name %> | <%= @store.slogan %>">
+<meta name="author" content="<%= @store.name %>">
+<!--/tags -->
+<% if @store.logo_status %>
+<!--Favicon-->
+<link rel="apple-touch-icon" sizes="57x57" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="60x60" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="72x72" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="76x76" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="114x114" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="120x120" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="144x144" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="152x152" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="180x180" href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="192x192"  href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="32x32" href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="96x96" href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="16x16" href="<%= @store.logo_url.to_s %>">
+<link rel="manifest" href="images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="<%= @store.logo_url.to_s %>">
+<meta name="theme-color" content="#ffffff">
+<% else %>
+<% end %>
+
+<% if Date.current.strftime("%B") == "December" %>
+<!-- <script src="/javascripts/snow/snowstorm.js"></script> -->
+<%end%>
+
+<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<% Dir.foreach("public/stylesheets/#{Layout.find(@store.layout_id).name}") do |item|
+next if item == '.' or item == '..' %>
+<%= stylesheet_link_tag    "#{Layout.find(@store.layout_id).name}/#{item}" %>
+<% end %>
+<% Dir.foreach("public/javascripts/#{Layout.find(@store.layout_id).name}") do |item|
+next if item == '.' or item == '..' %>
+<%= javascript_include_tag    "#{Layout.find(@store.layout_id).name}/#{item}" %>
+<% end %>
+
+<script type="application/x-javascript">
+	addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+	}, false);
+
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+
+<style>
+.my_shadow{
+	width:100%;
+	height:38em!important;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	box-shadow:  0px 0px 15px 0px #D6D6D6;
+}
+.product{
+	min-height: 38em !important;
+}
+.mask a:hover {
+	border: 1px solid <%= @store.store_color%> !important;
+    text-decoration: none;
+    background: <%= @store.store_color%> !important;
+    color: #fff !important;
+}
+.mask a {
+	border: 1px solid #000;
+	width: 100% !important;
+    background: #fff;
+    color: #000 !important;
+		width: 100% !important;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: transparent;
+    border: 1px solid <%= @store.store_color%> !important;
+    color: <%= @store.store_color%> !important;
+}
+.copyright p a {
+    color: #fff;
+}
+.copyright p a:hover {
+    color: <%= @store.store_color%> !important;
+}
+.header-top-strip {
+    background-color: <%= @store.store_color%> !important;
+}
+.footer_social:hover {
+    color: <%= @store.store_color%> !important;
+}
+.follow-us i{
+	color:<%= @store.store_color%> !important;
+}
+.shop a:hover {
+	color:#fff;
+	background-color:<%= @store.store_color%> !important;
+	border:1px solid <%= @store.store_color%> !important;
+}
+.our_logo{
+  max-width: 150px !important;
+  max-height: 100px !important;
+	margin-bottom: .5em;
+	margin-top:-0.5em
+}
+@media (max-width:480px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+@media (max-width:720px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+@media (max-width:1080px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+ul.breadcrumbs li.women {
+    background: <%= @store.store_color%> !important;
+}
+.classic-button2 {
+	outline: none;
+	padding: 10px 10px;
+	font-size: 13px;
+	color: #fff !important;
+	background: #000000;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+.classic-button2:hover {
+	outline: none;
+	color: #fff;
+	background: <%= @store.store_color %> !important;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+.classic-button {
+	outline: none;
+	padding: 15px 20px;
+	font-size: 14px;
+	color: #fff !important;
+	background: #000000;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+.classic-button:hover {
+	outline: none;
+	font-size: 14px;
+	color: #fff;
+	background: <%= @store.store_color %> !important;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+.var_dis{
+	border:1px <%= @store.store_color %>;
+	border-style: dashed !important;
+	border-color: <%= @store.store_color %> !important;
+	padding:5px 10px;
+	transition: all 0.5s;
+	margin-bottom: .5em !important;
+}
+<% if !@store.store_font.nil? %>
+body{
+	font-family: <%= @store.store_font %> !important;
+}
+h1{
+	font-family: <%= @store.store_font %> !important;
+}
+h2{
+	font-family: <%= @store.store_font %> !important;
+}
+h3{
+	font-family: <%= @store.store_font %> !important;
+}
+h4{
+	font-family: <%= @store.store_font %> !important;
+}
+h5{
+	font-family: <%= @store.store_font %> !important;
+}
+h6{
+	font-family: <%= @store.store_font %> !important;
+}
+p{
+	font-family: <%= @store.store_font %> !important;
+}
+a{
+	font-family: <%= @store.store_font %> !important;
+}
+<% end %>
+</style>
+<% if @store.premium %>
+	<!--Google Tag -->
+	<%= @store.gtag.html_safe rescue nil %>
+	<!--End Google Tag-->
+<% end %>
+</head>
+
+<body>
+<%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop" %>
+
+	<%= yield%>
+
+	<div class="footer" style="margin-top:5em">
+	<div class="container">
+	 <div class="footer_top">
+	  <div class="span_of_4">
+	    <div class="col-md-12 text-center">
+	      <h1 style="color: #fff"><%= @store.name %></h1>
+
+
+	    </div>
+	    <div class="clearfix"></div>
+	    </div>
+	  </div>
+	  <div class="cards text-center">
+			<% if !@store.facebook.blank? %>
+		    <a href="<%= @store.facebook %>" target="_blank"><i class="footer_social fa fa-facebook fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+			<% end %>
+			<% if !@store.twitter.blank? %>
+		    <a href="<%= @store.twitter %>" target="_blank"><i class="footer_social fa fa-twitter fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+			<% end %>
+			<% if !@store.instagram.blank? %>
+		    <a href="<%= @store.instagram %>" target="_blank"><i class="footer_social fa fa-instagram fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+			<% end %>
+			<% if !@store.linkedin.blank? %>
+		    <a href="<%= @store.linkedin %>" target="_blank"><i class="footer_social fa fa-linkedin fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+			<% end %>
+			<% if !@store.youtube.blank? %>
+		    <a href="<%= @store.youtube %>" target="_blank"><i class="footer_social fa fa-youtube fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+			<% end %>
+			<% if !@store.pinterest.blank? %>
+		    <a href="<%= @store.pinterest %>" target="_blank"><i class="footer_social fa fa-pinterest fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+			<% end %>
+			<% if !@store.vimeo.blank? %>
+		    <a href="<%= @store.vimeo %>" target="_blank"><i class="footer_social fa fa-vimeo fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+			<% end %>
+	  </div>
+	  <div class="copyright text-center">
+	    <p>Copyright © <%= Time.current.year %> <%= @store.name %>. All rights reserved | Powered by
+				<a target="_blank" class="" href="http://www.kduka.co.ke/">KDuka</a></p>
+	  </div>
+	</div>
+	</div>
+	<script>
+		// Can also be used with $(document).ready()
+		$(window).load(function() {
+			$('.flexslider').flexslider({
+			animation: "slide",
+			controlNav: "thumbnails"
+			});
+		});
+	</script>
+	</body>
+	</html>

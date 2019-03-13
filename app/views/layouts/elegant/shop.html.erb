@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="keywords" content=""/>
-<meta name="description" content="KDuka - Online Shopping made easy">
-<meta name="author" content="KDuka">
+<meta name="description" content="<%= @store.name %> | <%= @store.slogan %>">
+<meta name="author" content="<%= @store.name %>">
 <!--/tags -->
 <% if @store.logo_status %>
 <!--Favicon-->
@@ -309,7 +309,7 @@ p{
 								<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 									<a href="<%= about_path %>">About Us</a>
 								</li>
-			          <% end %> 				
+			          <% end %>
 								<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 									<a href="<%= all_path %>">Shop Now</a>
 								</li>
