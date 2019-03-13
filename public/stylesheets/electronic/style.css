@@ -1349,6 +1349,7 @@ ul.wmuSliderPagination {
 .agileits_social_button ul li a{
 	background: #414141;
     display: block;
+    color:#fff !important;
     width: 50px;
     height: 50px;
 	-webkit-transition:.5s all;
