@@ -650,9 +650,11 @@ li.w3pages .dropdown-menu > li > a:hover{
     color: #3c43a4;
 }
 .agile_ecommerce_tab_left {
-    padding-left: 0;
-	text-align: center;
-  height: 37em;
+    padding-left: .5em;
+    padding-right: .5em;
+    text-align: center;
+    height: 40em;
+    padding-top: 2em;
 }
 .agile_ecommerce_tabs {
     padding: 2em 0 0;
