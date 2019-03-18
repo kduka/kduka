@@ -40,7 +40,7 @@
               <tr>
                 <td><%= link_to p.name, admin_view_path(p.subdomain) %></td>
                 <td><%= link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke", :target => '_blank' %></td>
-                <td><%= "#{p.c_subdomain}.#{p.domain}" %></td>
+                <td><a target="_blank" href="http://<%= "#{p.c_subdomain}.#{p.domain}" %>"><%= "#{p.c_subdomain}.#{p.domain}" %></a></td>
                 <td><%= StoreAmount.where(:store_id => p.id).first.actual rescue nil%></td>
                 <td><%= StoreAmount.where(:store_id => p.id).first.amount rescue nil%></td>
                 <td><%= StoreAmount.where(:store_id => p.id).first.lifetime_earnings rescue nil%></td>
