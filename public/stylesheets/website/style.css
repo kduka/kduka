@@ -1139,12 +1139,12 @@ button.close {
     color: #F26798;
 }
 
-.social-button.skype:before {
-    background-color: #00AFF0;
+.social-button.youtube:before {
+    background-color: #ff0000;
 }
 
-.social-button.skype .fa {
-    color: #00AFF0;
+.social-button.youtube .fa {
+    color: #ff0000;
 }
 
 .social-button:focus:before, .social-button:hover:before {
