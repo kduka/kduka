@@ -1,0 +1,32 @@
+<h1>Import products From Excel</h1>
+
+<p>
+Note: Only import spreadsheets that were previously downloaded from this
+  application.
+</p>
+
+<%=
+  link_to 'Download as Excel', 'products/import' :controller => :products, :action => :import, (format: :xlsx)
+%>
+
+<h3>Requirements</h3>
+<ul>
+  <li>For new products DO NOT supply an ID. If an ID is supplied, an existing product with the ID will be updated!</li>
+  <li></li>
+</ul>
+
+<h5>Select File</h5>
+<%= form_for @products_import do |f| %>
+  <% if @products_import.errors.any? %>
+    <%= pluralize(@products_import.errors.count, "error") %> prevented us from
+    importing your spreadsheet. Please update your spreadsheet and try agin.
+    <ul>
+      <% @products_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.file_field :file %>
+  <%= f.submit "Import File" %>
+<% end %>
