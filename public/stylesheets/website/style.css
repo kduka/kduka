@@ -1136,7 +1136,7 @@ button.close {
 }
 
 .social-button.dribbble .fa {
-    color: #ff0000;
+    color: #F26798;
 }
 
 .social-button.youtube:before {
@@ -1144,7 +1144,7 @@ button.close {
 }
 
 .social-button.youtube .fa {
-    color: #00AFF0;
+    color: #ff0000;
 }
 
 .social-button:focus:before, .social-button:hover:before {
