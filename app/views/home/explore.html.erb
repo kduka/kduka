@@ -283,110 +283,29 @@ body{
 	<!-- introduction -->
 	<div class="introduction" id="introduction" style="padding-top:0">
 		<div class="container">
+      <% @category.each do |e| %>
+        <script>
+            $(function() {
+                fr = new FilmRoll({
+                    container: '#<%=e.shop_category %>'
+                });
+            });
+        </script>
       <section id="row1" style="padding-top:5em;">
-        <h1 class="sectionTitle">Electronics <span style="color:#7aae42">Websites</span></h1>
-        <div id="electronics">
-      	  <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/kduka.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-      	  <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/lord-erroll.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
+        <h1 class="sectionTitle"><%=e.shop_category%> <span style="color:#7aae42">Websites</span></h1>
+        <div id="<%=e.shop_category %>">
+          <%@explore.each do |w| %>
+            <%if w.shop_category_id === e.id %>
           <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/jacaranda.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/keen.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/designlife.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/liz.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/wib.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/utm.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/timotheist.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
+<!--            <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/kduka.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em">-->
+            <a href="#"> <%= image_tag(w.explore_image.to_s, class:'kd_roll_img', style: 'width:300px;height:auto ;margin-left:1em;margin-right:1em' ) %><br><br>
+              <h5 class="text-center" style="color: #7aae42"><%=w.name %></h5></a>
+          </div>
+            <%end %>
+          <% end %>
       	</div>
-
       </section>
-      <section id="row1" style="padding-top:5em;">
-        <h1 class="sectionTitle">Cosmetics  <span style="color:#7aae42">Websites</span></h1>
-        <div id="cosmetics">
-      	  <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/kduka.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-      	  <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/lord-erroll.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/jacaranda.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/keen.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/designlife.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/liz.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/wib.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/utm.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/timotheist.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-      	</div>
-
-      </section>
-      <section id="row1" style="padding-top:5em;">
-        <h1 class="sectionTitle">Home Appliances  <span style="color:#7aae42">Websites</span></h1>
-        <div id="appliances">
-      	  <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/kduka.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-      	  <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/lord-erroll.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/jacaranda.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/keen.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/designlife.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/liz.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/wib.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/utm.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-          <div>
-      	    <a href="#"><img class="kd_roll_img" src="https://www.zerone.co.ke/images/projects/timotheist.png" style="width:300px;height:auto;margin-left:1em;margin-right:1em"><br><br><h5 class="text-center" style="color: #7aae42">Website Name</h5> </a>
-      	  </div>
-      	</div>
-
-      </section>
-      <style>
-      .film_roll_pager {
-        display:none;
-        }
-      </style>
+      <%end %>
 		</div>
 	</div>
 	<!-- //introduction -->

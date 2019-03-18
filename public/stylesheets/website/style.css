@@ -8,6 +8,9 @@ body {
     max-width: 100% !important;
     overflow-x: hidden !important;
 }
+.film_roll_pager{
+    display: none !important;
+}
 
 body a {
     -webkit-transition: 0.5s all;
@@ -973,7 +976,7 @@ button.close {
     width: 100%;
     border-radius: 5px;
     margin-top: 1em;
-    margin-bottom: :1em;
+    margin-bottom: 1em;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -o-border-radius: 5px;

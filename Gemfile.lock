@@ -94,6 +94,9 @@ GEM
     ffi (1.9.18-x86-mingw32)
     figaro (1.1.1)
       thor (~> 0.14)
+    file_validators (2.3.0)
+      activemodel (>= 3.2)
+      mime-types (>= 1.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.41.0)
@@ -443,6 +446,7 @@ DEPENDENCIES
   devise
   execjs
   figaro
+  file_validators
   fog
   froala-editor-sdk
   jbuilder (~> 2.0)

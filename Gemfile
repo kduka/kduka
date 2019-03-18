@@ -24,6 +24,7 @@ gem 'wysiwyg-rails', '~> 2.6.0'
 gem 'froala-editor-sdk'
 gem 'ahoy_matey'
 gem 'rename'
+gem 'file_validators'
 
 ruby "2.4.0"
 gem 'sqlite3', group: :development

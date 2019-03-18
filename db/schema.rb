@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190125180239) do
+ActiveRecord::Schema.define(version: 20190302084240) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -151,6 +151,14 @@ ActiveRecord::Schema.define(version: 20190125180239) do
     t.index ["store_id"], name: "index_categories_on_store_id", using: :btree
   end
 
+  create_table "cats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "coupons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "store_id"
     t.string   "code"
@@ -183,6 +191,25 @@ ActiveRecord::Schema.define(version: 20190125180239) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["store_id"], name: "index_feedbacks_on_store_id", using: :btree
+  end
+
+  create_table "fin_ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "mobileNumber"
+    t.string   "customer_reference"
+    t.string   "date"
+    t.string   "transaction_reference"
+    t.string   "paymentMode"
+    t.string   "amount"
+    t.string   "till"
+    t.string   "billNumber"
+    t.string   "servedBy"
+    t.string   "additionalInfo"
+    t.string   "bank_reference"
+    t.string   "transactionType"
+    t.string   "account"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "fonts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -341,6 +368,14 @@ ActiveRecord::Schema.define(version: 20190125180239) do
     t.index ["store_id"], name: "index_products_on_store_id", using: :btree
   end
 
+  create_table "shop_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "shop_category"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "explore_image"
+    t.index ["shop_category"], name: "index_shop_categories_on_shop_category", unique: true, using: :btree
+  end
+
   create_table "store_amounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "store_id"
     t.integer  "amount",            default: 0
@@ -406,11 +441,11 @@ ActiveRecord::Schema.define(version: 20190125180239) do
     t.text     "manual_delivery_instructions", limit: 65535
     t.boolean  "collection_point_status"
     t.string   "auto_delivery_location"
+    t.string   "lat"
+    t.string   "lng"
     t.boolean  "init"
     t.boolean  "important"
     t.string   "store_font"
-    t.string   "lat"
-    t.string   "lng"
     t.string   "domain"
     t.boolean  "own_domain",                                 default: false
     t.string   "c_subdomain"
@@ -420,10 +455,16 @@ ActiveRecord::Schema.define(version: 20190125180239) do
     t.text     "gtag",                         limit: 65535
     t.boolean  "premium"
     t.date     "premiumexpiry"
+    t.integer  "cat_id"
+    t.integer  "shop_category_id"
+    t.boolean  "explore"
+    t.string   "explore_image"
+    t.index ["cat_id"], name: "index_stores_on_cat_id", using: :btree
     t.index ["confirmation_token"], name: "index_stores_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
     t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true, using: :btree
+    t.index ["shop_category_id"], name: "index_stores_on_shop_category_id", using: :btree
     t.index ["subdomain"], name: "index_stores_on_subdomain", unique: true, using: :btree
     t.index ["user_id"], name: "index_stores_on_user_id", using: :btree
   end
@@ -545,7 +586,9 @@ ActiveRecord::Schema.define(version: 20190125180239) do
   add_foreign_key "products", "stores"
   add_foreign_key "store_amounts", "stores"
   add_foreign_key "store_deliveries", "stores"
+  add_foreign_key "stores", "cats"
   add_foreign_key "stores", "layouts"
+  add_foreign_key "stores", "shop_categories"
   add_foreign_key "sub_categories", "categories"
   add_foreign_key "subscription_records", "stores"
   add_foreign_key "subscription_records", "subscriptions"

@@ -10,7 +10,9 @@ class Store < ApplicationRecord
   has_many :store_delivery, :dependent => :destroy
   has_many :ahoy_events, :class_name => 'Ahoy::Event', :dependent => :destroy
   has_one :store_amount, :dependent => :destroy
+  has_many :ahoy_events, :class_name => 'Ahoy::Event', :dependent => :destroy
 
   mount_uploader :banner, BannerUploader
   mount_uploader :logo, LogoUploader
+  mount_uploader :explore_image, ExploreUploader
 end

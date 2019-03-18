@@ -131,6 +131,9 @@ Rails.application.routes.draw do
   get  '/explore' => 'home#explore'
   post 'ipns/manual_ipn' => 'ipn#manual_ipn'
   get 'admins/alldetails' => 'admins#alldetails'
+  get 'admins/categories' => 'admins#categories'
+  post 'admins/update_category' => 'admins#update_category'
+  post 'admins/categories' => 'admins#add_category'
 
 
 
@@ -155,6 +158,7 @@ Rails.application.routes.draw do
   resources :layouts
   resources :home
   resources :store_deliveries
+  resources :cats
 
   root to: "home#index"
   get '*path' => redirect('/home/error')

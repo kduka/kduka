@@ -4,6 +4,7 @@ class AdminsController < ApplicationController
   def index
     @stores = Store.all.order("created_at desc")
     @users = User.all.order("created_at desc")
+    # @explore = Store.find
     super_admin
   end
 
@@ -195,7 +196,7 @@ class AdminsController < ApplicationController
   end
 
   def subscriptions
-    @subscriptions = Subscription.where(:order_status_id => 6)
+    @subscriptions = Subscription.all
     super_admin
   end
 
@@ -203,11 +204,42 @@ class AdminsController < ApplicationController
     @earnings = Earning.all
     super_admin
   end
+  def categories
+    @store= Store.all
+    @shopcategory = ShopCategory.new
+    super_admin
+  end
+  def update_category
+    @store = Store.find(params[:store][:id])
+    if @store.update(cat_params)
+      flash[:alert] = "Saved successfully"
+      redirect_to(request.referer)
+    else
+      flash[:alert] = "Failed. Try Again"
+      redirect_to(request.referer)
+    end
+  end
+
+  def add_category
+    @up= ShopCategory.new(new_cat_params)
+     if @up.save
+       @update = true
+     else
+       @update= false
+    end
+  end
 
   private
 
   def store_params
     params.require(:store).permit(:own_domain,:domain, :c_subdomain)
+  end
+
+  def cat_params
+    params.require(:store).permit(:explore, :shop_category_id, :explore_image,:image_cache)
+  end
+  def new_cat_params
+    params.require(:shopcategory).permit(:shop_category)
   end
 
 end

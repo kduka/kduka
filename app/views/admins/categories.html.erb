@@ -1,0 +1,39 @@
+<div>
+  <h2>New Category</h2>
+  <%=form_for :shopcategory , url:{controller: 'admins', action: 'add_category'}, method: 'post',remote:true do |i| %>
+  <%=i.label('New Category') %>
+  <%=i.text_field :shop_category%>
+  <%=i.submit 'Add'%>
+  <% end %>
+</div>
+<br>
+<br>
+<div>
+  <h2> Shop Categories</h2>
+  <table id="myTable" class="table">
+    <thead>
+    <tr>
+      <th> Shop Name </th>
+      <th> Category </th>
+      <th> Explore </th>
+      <th> Explore Image</th>
+      <th> Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @store.each do |s| %>
+    <tr>
+      <%= form_for s, url:{controller: 'admins', action: 'update_category'},html:{multipart:true}, method:'post' do |f| %>
+        <td><%= s.email %></td>
+        <td><%= f.select :shop_category_id, options_from_collection_for_select(ShopCategory.all, 'id','shop_category',s.shop_category_id) %></td>
+        <td><%= f.check_box :explore %></td>
+        <td><%= f.file_field :explore_image %></td>
+        <%= f.hidden_field :image_cache %>
+        <%= f.hidden_field :id %>
+        <td><%= f.submit 'Save'%></td>
+      <% end %>
+    <% end %>
+    </tbody>
+
+  </table>
+</div>
