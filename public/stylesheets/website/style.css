@@ -1136,14 +1136,14 @@ button.close {
 }
 
 .social-button.dribbble .fa {
-    color: #F26798;
+    color: #ff0000;
 }
 
-.social-button.skype:before {
-    background-color: #00AFF0;
+.social-button.youtube:before {
+    background-color: #ff0000;
 }
 
-.social-button.skype .fa {
+.social-button.youtube .fa {
     color: #00AFF0;
 }
 
