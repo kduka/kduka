@@ -15,6 +15,9 @@
 /log/*.log
 /tmp
 /.idea
+/vendor
+/config/secrets.yml
+
 
 
 # Ignore application configuration
