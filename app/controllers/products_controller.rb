@@ -528,6 +528,21 @@ class ProductsController < ApplicationController
 
     end
   end
+  def import
+    @products = Product.select("id","name","price","quantity","category_id","description").where(store_id: current_store.id)
+    @categories = ShopCategory.where(store_id: current_store.id)
+    respond_to do |format|
+      format.xlsx {
+        response.headers[
+        'Content-Disposition'
+    ] = "attachment; filename=batchproducts.xlsx"
+  }
+    end
+  end
+
+  def batch
+
+  end
 
   private
 

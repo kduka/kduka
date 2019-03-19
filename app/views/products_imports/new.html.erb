@@ -1,0 +1,46 @@
+
+<div class="content_bottom" style="margin-top:2em">
+
+<h3 style="color:#7aae42"><i class="fa fa-plus"></i> Import products From Excel</h3>
+<div class="xs"><br><br>
+
+<p>
+<b>Note:</b> Only import spreadsheets that were previously downloaded from this
+  application.
+</p><br>
+<a href="#"><button class="kd_buttons">Download Excel Template</button></a>
+
+<br><br>
+<h3>Requirements</h3>
+<ul>
+  <li>For new products DO NOT supply an ID. If an ID is supplied, an existing product with the ID will be updated!</li>
+</ul>
+
+<%= form_for :products_import do |f| %>
+  <% if @products_import.errors.any? %>
+    <%= pluralize(@products_import.errors.count, "error") %> prevented us from
+    importing your spreadsheet. Please update your spreadsheet and try agin.
+    <ul>
+      <% @products_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="form-group"><br><br>
+    <label for="file_new" class="col-sm-2 control-label">Select File</label>
+    <div class="col-sm-8">
+      <%= f.file_field :file, class:'form-control1', required:'',id:'file_new' %>
+    </div>
+    <div class="col-sm-2">
+      <a class="help-block"><span data-toggle="tooltip" data-placement="bottom" title="This the excel file you will upload">Help?</span></a>
+    </div>
+  </div>
+  <div class="clearfix"> </div>
+  <%= f.submit "Import File", class:"kd_buttons" %>
+<% end %>
+</div>
+
+<div class="clearfix"> </div>
+  </div>
+
+<div class="scripter"></div>
