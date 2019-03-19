@@ -1,7 +1,7 @@
 class ProductsImportsController < ApplicationController
   def new
   @products_import = ProductsImport.new
-end
+  end
 
 def create
   @products_import = ProductsImport.new(params[:products_import])

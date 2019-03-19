@@ -5,9 +5,7 @@ Note: Only import spreadsheets that were previously downloaded from this
   application.
 </p>
 
-<%=
-  link_to 'Download as Excel', 'products/import' :controller => :products, :action => :import, (format: :xlsx)
-%>
+
 
 <h3>Requirements</h3>
 <ul>
@@ -16,7 +14,7 @@ Note: Only import spreadsheets that were previously downloaded from this
 </ul>
 
 <h5>Select File</h5>
-<%= form_for @products_import do |f| %>
+<%= form_for :products_import do |f| %>
   <% if @products_import.errors.any? %>
     <%= pluralize(@products_import.errors.count, "error") %> prevented us from
     importing your spreadsheet. Please update your spreadsheet and try agin.
