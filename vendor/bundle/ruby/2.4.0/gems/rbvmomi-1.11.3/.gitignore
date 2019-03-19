@@ -1,0 +1,13 @@
+*.rbc
+*.swp
+*.swo
+.ruby-version
+.ruby-gemset
+Gemfile.lock
+/.bundle/
+/.yardoc/
+/coverage/
+/doc/
+/pkg/
+/vendor/bundle/
+/vmodl/
