@@ -17,6 +17,7 @@
 /.idea
 /vendor
 /config/secrets.yml
+/config/database.yml
 
 
 
