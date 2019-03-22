@@ -304,7 +304,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.3)
-    mysql2 (0.5.2)
+    mysql2 (0.3.21)
     netrc (0.11.0)
     nio4r (2.3.1)
     nokogiri (1.10.1)
@@ -476,7 +476,7 @@ DEPENDENCIES
   jquery-rails
   json
   mini_magick (~> 4.5.0)
-  mysql2
+  mysql2 (~> 0.3.18)
   nprogress-rails
   pesapal
   pg (= 0.18.1)

@@ -11,7 +11,7 @@ gem 'carrierwave'
 #gem "font-awesome-rails"
 gem 'therubyracer'
 gem 'execjs'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 gem 'nprogress-rails'
 gem 'fog'
 gem 'bootstrap-colorpicker-rails'
@@ -32,6 +32,7 @@ gem 'roo'
 gem 'acts_as_xlsx'
 gem 'json'
 gem 'zip-zip'
+
 
 ruby "2.4.0"
 gem 'sqlite3', group: :development
