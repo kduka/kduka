@@ -1,0 +1,12 @@
+'lib/pesapal/**/*.rb'
+
+--title 'Pesapal Ruby Gem'
+--markup=markdown
+--markup-provider=redcarpet
+--protected
+--no-private
+
+-
+CHANGELOG.md
+LICENSE.md
+README.md

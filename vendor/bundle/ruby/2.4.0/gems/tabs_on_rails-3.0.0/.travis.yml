@@ -1,0 +1,15 @@
+rvm:
+  - 2.2.5
+  - 2.3.1
+  - 2.4.0
+
+gemfile:
+  - gemfiles/4.2.gemfile
+  - gemfiles/5.0.gemfile
+
+before_install:
+  - gem install bundler
+
+env:
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true

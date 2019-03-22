@@ -1,0 +1,12 @@
+# Bundler
+/.bundle/
+/Gemfile.lock
+gemfiles/*.gemfile.lock
+
+# YARD
+/.yardoc
+/_yardoc/
+
+# Artifacts
+/pkg/
+/tmp/

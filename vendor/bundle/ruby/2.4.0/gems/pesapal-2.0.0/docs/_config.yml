@@ -1,0 +1,27 @@
+name: Pesapal Ruby Gem
+highlighter: rouge
+baseurl: /pesapal-gem
+relative_permalinks: false
+
+sass:
+  sass_dir: _sass
+  style: :compressed
+
+exclude: [
+  'Gemfile',
+  'Gemfile.lock',
+  'README.md'
+]
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_id_prefix: ''
+  auto_id_stripping: true
+  auto_ids: true
+  entity_output: as_char
+  footnote_backlink: '&8617;'
+  footnote_nr: 1
+  hard_wrap: false
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  toc_levels: 1..6

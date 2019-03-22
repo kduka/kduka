@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
+
+  <head>
+
+    <!-- +++ META +++ -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- +++ PAGE INFO +++ -->
+    <title>{{ page.title }} • {{ site.name }}</title>
+
+    <!-- +++ FAVICON & ICONS: combined 16, 32 & 48 +++ -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ site.baseurl }}/favicon.ico">
+
+    <!-- +++ STYLESHEETS +++ -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/stylesheets/styles.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/stylesheets/pygment_trac.css">
+
+    <!-- +++ JAVASCRIPTS +++ -->
+    <script type="text/javascript" src="{{ site.baseurl }}/assets/javascripts/scale.fix.js"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pesapal Gem</h1>
+        <a href="https://rubygems.org/gems/pesapal"><img src="https://badge.fury.io/rb/pesapal@2x.png" alt="Gem Version" height="18"></a><br/><br/>
+        <p>Make authenticated Pesapal API calls without the fuss! Easily post an order, query payment status and fetch payment details.</p>
+        <p class="view"><a href="https://github.com/itskingori/pesapal-gem">View the Project on GitHub <small>itskingori/pesapal-gem</small></a></p>
+        <ul>
+          <li><a href="https://github.com/itskingori/pesapal-gem/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/itskingori/pesapal-gem/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/itskingori/pesapal-gem/fork">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        {{ content }}
+      </section>
+      <footer>
+        <p>
+          This project is maintained by <a target="_blank" href="http://kingori.co/">King</a>.<br/>
+          Special thanks to <a target="_blank" href="https://twitter.com/mogetutu">@Mogetutu</a>.
+        </p>
+        <p>
+        <small>Hosted on GitHub Pages</small></p>
+      </footer>
+    </div>
+    {% include google-analytics.html %}
+  </body>
+</html>
