@@ -1,3 +1,24 @@
+.explore_button a {
+    border-color: #7aae42;
+    border-style: solid;
+    padding: 10px 40px !important;
+    font-size: 20px;
+    font-weight: 600;
+    color: #7aae42;
+    border-radius: 0px !important;
+    background: #fff;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    -ms-border-radius: 7px;
+    text-decoration: none;
+}
+
+.explore_button a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #7aae42;
+}
 .pricing_shadow a {
     border-color: #fff;
     border-style: solid;
