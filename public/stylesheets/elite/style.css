@@ -244,10 +244,11 @@ li.share {
     text-align: center;
 }
 .logo_agile span {
-    background: #000;
-    padding: 0 17px;
-    font-weight: bold;
-    color: #fff;
+    padding: 10px 17px;
+    font-weight:500;
+    color: #000;
+    text-decoration: none !important;
+    line-height: 2em;
 }
 .logo_agile h1 a {
     font-weight: 300;

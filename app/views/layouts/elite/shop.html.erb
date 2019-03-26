@@ -208,18 +208,20 @@ button.w3view-cart {
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<!-- header-bot -->
+		<% if @store.logo_status %>
 			<div class="col-md-2 logo_agile">
 				<h1><a href="<%= root_path %>">
-
-				<% if @store.logo_status %>
 						<%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
-				<% else %>
-						<span style="font-size:18px;"><%= @store.name %></span>
-
-				<% end %>
 				</a></h1>
 			</div>
-        <!-- header-bot -->
+			<% else %>
+			<div class="col-md-4 logo_agile">
+				<h1 style="line-height:0.5em !important;padding-top:0.5em"><a href="<%= root_path %>">
+						<span style="font-size:18px;"><%= @store.name %></span>
+				</a></h1>
+			</div>
+		<% end %>
+    <!-- header-bot -->
 		<div class="col-md-6 agileits-social top_content" style="float:right">
 						<ul class="social-nav model-3d-0 footer-social w3_agile_social">
 						                                   <li class="share">Social : </li>
