@@ -8,7 +8,13 @@ class Ahoy::Visit < ApplicationRecord
 
 
   def finalize
+<<<<<<< Updated upstream
     @store = Store.where(c_subdomain:$request.subdomain,domain:$request.domain,own_domain:true).first
+=======
+
+    @store = Store.where(c_subdomain: request.subdomain,domain:request.domain,own_domain:true).first
+>>>>>>> Stashed changes
+
 
     if @store.nil?
       @subdomain = $request.subdomain[/(\w+)/]
