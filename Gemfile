@@ -25,14 +25,12 @@ gem 'froala-editor-sdk'
 gem 'ahoy_matey'
 gem 'rename'
 gem 'file_validators'
-gem 'rubyzip','>=1.2.1'
-gem 'axlsx'
+gem 'rubyzip','~>1.1.7'
+gem 'axlsx','2.1.0.pre'
 gem 'axlsx_rails'
 gem 'roo'
 gem 'acts_as_xlsx'
 gem 'json'
-gem 'zip-zip'
-
 
 ruby "2.4.0"
 gem 'sqlite3', group: :development

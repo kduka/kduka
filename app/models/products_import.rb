@@ -26,8 +26,9 @@ class ProductsImport
     header = spreadsheet.row(6)
     (7..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
+      puts "\n \n \n \n This is the store ID #{$store} \n \n \n \n"
       row[:store_id] = $store
-      product = Product.find_by_id(row["id"]) || Product.new
+      product = Product.where(id:row["id"], store_id: $store).first || Product.new
       product.attributes = row.to_hash
       product
     end

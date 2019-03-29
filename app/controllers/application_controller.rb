@@ -18,7 +18,7 @@ protect_from_forgery with: :exception
     end
   end
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, :store, if: :devise_controller?
 
   def configure_permitted_parameters
     update_attrs = [:password, :password_confirmation, :current_password]
@@ -231,6 +231,11 @@ protect_from_forgery with: :exception
 
   def beforeFilter
     $request = request
+  end
+
+
+  def store
+    $store = current_store.id rescue nil
   end
 
   def update_resource2(resource, params, current)

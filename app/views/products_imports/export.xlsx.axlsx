@@ -1,0 +1,65 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 14)
+  heading = style.add_style(b: true)
+  title_style = style.add_style :sz => 20, :alignment => { :horizontal=> :center }, :border => { :style => :thick, :color => "000000", :edges => [:left, :right, :top, :bottom] }
+
+  wb.add_worksheet(name: "Products") do |sheet|
+    # Add a title row
+    sheet.add_row ["Inventory Items"], style: project_heading
+    # Add the date this was downloaded
+    sheet.add_row ["Downloaded at", Time.now.strftime("%b %-d, %Y  at %I:%M%p")]
+    sheet.add_row ["","Confirm your category id's on the 'Categories' worksheet"]
+    # Add a blank row
+    sheet.add_row []
+    # Create the header row
+    sheet.add_row ["Stock Keeping Unit", "Item Name","Price", "Quantity","Category","Description"], style: heading, :widths =>[:auto]
+    # Create the database reference row
+    sheet.add_row ["sku", "name","price","quantity","category_id","description","active"], :widths =>[:auto]
+    # Create entries for each item
+    @products.each do |item|
+      sheet.add_row [item.sku, item.name, item.price, item.quantity, item.category_id,item.description,false], :widths=>[:auto]
+
+    end
+
+    sheet.merge_cells "sheet.rows[3].cells[(2..4)]"
+  #  sheet.merge_cells "A3:C3"
+
+    sheet.add_data_validation("E7:E2000", {
+    :type => :list,
+    :formula1 => 'Categories!A$2:A$100',
+    :showDropDown => false,
+    :showErrorMessage => true,
+    :errorTitle => '',
+    :error => 'Use the dropdown selector to choose a Category',
+    :errorStyle => :stop,
+    :showInputMessage => true,
+    :promptTitle => 'Category ID',
+    :prompt => 'Kindly confirm your Categories and their IDs'})
+
+    sheet.add_data_validation("G7:G2000", {
+    :type => :list,
+    :formula1 => '"0,1"',
+    :showDropDown => false,
+    :showErrorMessage => true,
+    :errorTitle => '',
+    :error => 'Select to set active/inactive',
+    :errorStyle => :stop,
+    :showInputMessage => true,
+    :promptTitle => 'Active',
+    :prompt => '0 = Inactive, 1 = Active'})
+
+  end
+
+
+  wb.add_worksheet(name: "Categories") do |cats|
+  # Create the header row
+    cats.add_row ["ID","Category"], style: heading
+    @categories.each do |c|
+      cats.add_row [c.id, c.name]
+      end
+      end
+
+
+end

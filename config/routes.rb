@@ -136,6 +136,8 @@ Rails.application.routes.draw do
   post 'admins/categories' => 'admins#add_category'
   get 'products/batch' => 'products_imports#new'
   post 'products/batch' => 'products_imports#create'
+  get 'products_imports/export' => 'products_imports#export'
+  get 'products_imports/new' => 'products_imports#new'
 
 
 
