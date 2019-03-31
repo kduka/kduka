@@ -32,6 +32,8 @@ gem 'roo'
 gem 'acts_as_xlsx'
 gem 'json'
 gem 'zip-zip'
+gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary'
 
 
 ruby "2.4.0"

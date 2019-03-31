@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'invoices/generate'
+
   get 'store_deliveries/create'
   get 'store_deliveries/new'
   get 'ipn/index'
@@ -136,7 +138,8 @@ Rails.application.routes.draw do
   post 'admins/categories' => 'admins#add_category'
   get 'products/batch' => 'products_imports#new'
   post 'products/batch' => 'products_imports#create'
-
+  get 'admins/invoice' => 'admins#invoice'
+  get 'invoices/generate' => 'invoices#generate'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}

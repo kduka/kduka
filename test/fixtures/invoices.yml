@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: 2019-03-30
+  to: 2019-03-30
+  uid: MyString
+  store: one
+  amount: 1
+  issued: 2019-03-30
+  due: 2019-03-30
+  tax: 1
+  subtotal: 1
+  currency: MyString
+  description: MyText
+
+two:
+  from: 2019-03-30
+  to: 2019-03-30
+  uid: MyString
+  store: two
+  amount: 1
+  issued: 2019-03-30
+  due: 2019-03-30
+  tax: 1
+  subtotal: 1
+  currency: MyString
+  description: MyText

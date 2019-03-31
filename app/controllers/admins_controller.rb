@@ -229,6 +229,20 @@ class AdminsController < ApplicationController
     end
   end
 
+  def invoice
+    @store = Store.all.first
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{@store.name}_Invoice",
+               template: "admins/invoice.html.erb",
+               layout: 'pdf.html',
+               save_to_file: Rails.root.join('public', "#{@store.name}_Invoice"),
+               save_only: true
+      end
+    end
+  end
+
   private
 
   def store_params
