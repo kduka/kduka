@@ -98,6 +98,7 @@ class ProductsController < ApplicationController
   def manage
     @categories = Category.where(store_id: current_store.id)
     @store = Store.find(current_store.id)
+    puts " CURRENT STORE ID: #{current_store.id}"
     @product = @store.product.all.order('id desc')
     @setup = setup
     @important = important
