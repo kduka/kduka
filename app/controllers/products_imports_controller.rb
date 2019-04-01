@@ -1,5 +1,6 @@
 class ProductsImportsController < ApplicationController
   def new
+    flash[:notice] = "This feature is currently on beta, please give feedback. Thanks!"
   @products_import = ProductsImport.new
   set_shop_show
   end
