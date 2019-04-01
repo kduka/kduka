@@ -388,9 +388,10 @@ class ProductsController < ApplicationController
 
   def del_var
     @name = params[:name]
-    session[:cookie_id].each do |k,v|
+    cookie_id = params[:cookie_id]
+    session[cookie_id].each do |k,v|
       if k == @name
-        session[:cookie_id].delete(k)
+        session[cookie_id].delete(k)
       end
     end
   end
