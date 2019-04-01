@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_store!, only: [:manage, :new, :create, :show, :edit, :update, :destroy]
+  before_action :authenticate_store!, only: [:manage, :new, :create, :show, :edit, :update, :destroy, :batch]
   before_action :beforeFilter, only: :index
   set_tab :home
 
@@ -543,6 +543,7 @@ class ProductsController < ApplicationController
   def batch
 
   end
+
 
   private
 

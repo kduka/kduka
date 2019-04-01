@@ -304,7 +304,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.3)
-    mysql2 (0.3.21)
+    mysql2 (0.4.10)
     netrc (0.11.0)
     nio4r (2.3.1)
     nokogiri (1.10.2)
@@ -460,6 +460,7 @@ DEPENDENCIES
   axlsx_rails
   bootstrap-colorpicker-rails
   bootstrap-sass
+  bundler (~> 1.3.0)
   carrierwave
   carrierwave-imageoptimizer
   coffee-rails
@@ -474,7 +475,7 @@ DEPENDENCIES
   jquery-rails
   json
   mini_magick (~> 4.5.0)
-  mysql2 (~> 0.3.18)
+  mysql2
   nprogress-rails
   pesapal
   pg (= 0.18.1)
@@ -497,9 +498,3 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   will_paginate
   wysiwyg-rails (~> 2.6.0)
-
-RUBY VERSION
-   ruby 2.4.0p0
-
-BUNDLED WITH
-   1.16.2

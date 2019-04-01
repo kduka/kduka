@@ -233,11 +233,6 @@ protect_from_forgery with: :exception
     $request = request
   end
 
-
-  def store
-    $store = current_store.id rescue nil
-  end
-
   def update_resource2(resource, params, current)
 
     store = Store.find_for_authentication(id: current_store.id)
@@ -278,6 +273,10 @@ protect_from_forgery with: :exception
       end
     end
 
+  end
+
+  def store
+    $store = current_store.id rescue nil
   end
 
   def remove_init
