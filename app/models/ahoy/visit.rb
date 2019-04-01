@@ -4,16 +4,11 @@ class Ahoy::Visit < ApplicationRecord
   has_many :events, class_name: "Ahoy::Event"
   belongs_to :user, optional: true
 
-  before_save :finalize
+#  before_save :finalize
 
 
   def finalize
-<<<<<<< Updated upstream
-    @store = Store.where(c_subdomain:$request.subdomain,domain:$request.domain,own_domain:true).first
-=======
-
-    @store = Store.where(c_subdomain: request.subdomain,domain:request.domain,own_domain:true).first
->>>>>>> Stashed changes
+    @store = Store.where(c_subdomain:$request.subdomain, domain:$request.domain,own_domain:true).first
 
 
     if @store.nil?

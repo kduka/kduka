@@ -10,9 +10,9 @@ def create
     flash[:notice] = "Products imported successfully!"
     redirect_to products_manage_path
   else
-    flash[:alert] = "Products not imported.Kindly confirm the spreadsheet then try again."
+    flash[:alert] = "Products not imported. Kindly confirm the spreadsheet then try again."
 
-    redirect_to products_imports_new_path(@products_import, params:request.query_parameters)
+    redirect_to products_imports_new_path(@products_import)
   end
 
 end

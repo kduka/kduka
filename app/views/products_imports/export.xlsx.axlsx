@@ -16,14 +16,14 @@ wb.styles do |style|
     # Create the header row
     sheet.add_row ["ID", "Item Name","Price", "Quantity","Category","Description"], style: heading, :widths =>[:auto]
     # Create the database reference row
-    sheet.add_row ["id", "name","price","quantity","category_id","description","active"], :widths =>[:auto]
+    sheet.add_row ["id", "name","price","quantity","category_id","description"], :widths =>[:auto]
     # Create entries for each item
     @products.each do |item|
-      sheet.add_row [item.id, item.name, item.price, item.quantity, item.category_id,item.description,false], :widths=>[:auto]
+      sheet.add_row [item.id, item.name, item.price, item.quantity, item.category_id,item.description], :widths=>[:auto]
 
     end
 
-  # sheet.merge_cells "sheet.rows[3].cells[(2..4)]"
+    sheet.merge_cells "sheet.rows[3].cells[(2..4)]"
   #  sheet.merge_cells "A3:C3"
 
     sheet.add_data_validation("E7:E2000", {
@@ -38,18 +38,6 @@ wb.styles do |style|
     :promptTitle => 'Category ID',
     :prompt => 'Kindly confirm your Categories and their IDs'})
 
-    sheet.add_data_validation("G7:G2000", {
-    :type => :list,
-    :formula1 => '"0,1"',
-    :showDropDown => false,
-    :showErrorMessage => true,
-    :errorTitle => '',
-    :error => 'Select to set active/inactive',
-    :errorStyle => :stop,
-    :showInputMessage => true,
-    :promptTitle => 'Active',
-    :prompt => '0 = Inactive, 1 = Active'})
-
   end
 
 
@@ -60,6 +48,5 @@ wb.styles do |style|
       cats.add_row [c.id, c.name]
       end
       end
-
 
 end

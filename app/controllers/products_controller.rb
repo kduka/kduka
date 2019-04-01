@@ -528,10 +528,7 @@ class ProductsController < ApplicationController
 
     end
   end
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 
   private
 
