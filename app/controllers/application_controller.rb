@@ -276,7 +276,7 @@ protect_from_forgery with: :exception
   end
 
   def store
-    $store = current_store.id rescue nil
+    $store = current_store.id
   end
 
   def remove_init
