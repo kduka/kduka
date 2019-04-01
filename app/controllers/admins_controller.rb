@@ -229,6 +229,15 @@ class AdminsController < ApplicationController
     end
   end
 
+  def deleter
+    @prods = Product.where(store_id: nil)
+    @num = @prods.count
+
+    @prods.each do |d|
+      d.destroy
+    end
+  end
+
   private
 
   def store_params

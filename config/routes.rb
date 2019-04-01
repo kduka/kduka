@@ -137,6 +137,7 @@ Rails.application.routes.draw do
   get 'products_imports/export' => 'products_imports#export'
   get 'products_imports/new' => 'products_imports#new'
   post 'products_imports/new' => 'products_imports#create'
+  get 'admins/delete' => 'admins#deleter'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}
