@@ -32,7 +32,7 @@
               <li><%= f.submit "Out of Stock", :class => "form-control item_add", style: 'color:red', disabled: 'disabled' %></li>
             <% else %>
               <% if !exist %>
-                <li> <%= f.submit "Add to Cart", :class => "form-control item_add" %></li>
+                <li> <%= f.submit "Add to Cart", :class => "form-control item_add", :onclick=>"KD_alert()" %></li>
               <% else %>
                 <li><%= f.submit "Added", :class => "form-control item_add", disabled: 'disabled' %></li>
               <% end %>

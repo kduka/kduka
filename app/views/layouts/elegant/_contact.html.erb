@@ -35,7 +35,11 @@
           </div>
           <div class="col-md-12 col-sm-12 contact_left_grid">
             <%= text_area_tag(:message, nil,:required=>'required',  :placeholder => 'Message', :style=> 'height:10em;width:100% !important;margin-left: 0 !important') %>
-          </div><br><br>
+          </div>
+					<div class="col-md-12 col-sm-12 contact_left_grid">
+						<div class="g-recaptcha" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div>
+					</div>
+					<br><br>
           <div class="col-md-12 col-sm-12 contact_left_grid">
           <%= submit_tag("Send Message", :class => 'elegant-button', :style=>'width:100% !important;margin-left:0 !important') %><br>
           </div>

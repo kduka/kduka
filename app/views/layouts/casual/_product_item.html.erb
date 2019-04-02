@@ -36,7 +36,7 @@
                       <h4><%= f.submit "Out of Stock", :class => "form-control item_add", style: 'color:red', disabled: 'disabled' %></h4>
                     <% else %>
                       <% if !exist %>
-                        <h4> <%= f.submit "Add to Cart", :class => "form-control item_add" %></h4>
+                        <h4> <%= f.submit "Add to Cart", :class => "form-control item_add", :onclick=>"KD_alert()" %></h4>
                       <% else %>
                         <h4><%= f.submit "Added", :class => "form-control item_add", disabled: 'disabled' %></h4>
                       <% end %>

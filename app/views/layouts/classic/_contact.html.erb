@@ -62,6 +62,11 @@
 						<%= text_area_tag(:message, nil,:required=>'required',  :placeholder => 'Message', :style=> 'height:10em;width:100% !important;margin-left: 0 !important;padding:1em') %>
 					</div>
 				</div>
+        <div class="text">
+					<div class="text-fild">
+						<div class="g-recaptcha" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div>
+					</div>
+				</div>
 					<div class=""><br>
 					<span class="col-md-6"><%= submit_tag("Send Message", :class => 'classic-button', :style=>'width:100% !important;margin-left:0 !important') %></span><span class="col-md-6"><input type="reset" value="Clear Form" class="classic-button"></span><br>
 					</div>

@@ -67,7 +67,7 @@
             <%= f.submit "Out of Stock", :class => "button", disabled: 'disabled' %>
           <% else %>
             <% if !exist %>
-              <%= f.submit 'Add to Cart', :class => 'button' %>
+              <%= f.submit 'Add to Cart', :class => 'button', :onclick=>"KD_alert()" %>
             <% else %>
 
               <%= f.submit 'Added', disabled: true, :class => 'button' %>

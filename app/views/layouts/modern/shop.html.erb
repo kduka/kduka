@@ -472,6 +472,29 @@ border-width: 1px;
   						</script>
 
   <!-- Flexslider end -->
-
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+      $("form").submit(function(event) {
+         var recaptcha = $("#g-recaptcha-response").val();
+         if (recaptcha === "") {
+            event.preventDefault();
+            alert("Please check the reCAPTCHA");
+         }
+      });
+    </script>
+    <script type="text/javascript">
+    function KD_alert(){
+			swal({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+			  title: "Added to Cart",
+			  text: "",
+			  icon: "success",
+			  button: false,
+				timer: 1500
+			});
+    }
+    </script>
 </body>
 </html>

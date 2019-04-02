@@ -103,7 +103,7 @@
                   <% end %>
               <% else %>
                   <% if !exist %>
-                      <%= f.button type: 'submit', class: 'add-cart add_cart item_add', 'data-id':@product.id do %>
+                      <%= f.button type: 'submit', class: 'add-cart add_cart item_add', onclick:"KD_alert()", 'data-id':@product.id do %>
                           Add to Cart
                       <% end %>
                   <% else %>

@@ -1,18 +1,18 @@
 <div class="header_top">
-  <div class="logo" style="margin-top:-2em">
-  <a href="<%= root_path %>">
+  <div class="logo" style="margin-top:-1em">
+  <a href="<%= root_path %>" style="text-decoration:none !important">
     <h1>
     <% if @store.logo_status %>
         <%= image_tag(@store.logo_url.to_s,class:"our_logo") %>
     <% else %>
-        <span><%= @store.name %></span>
+        <span style="color:#fff !important;"><%= @store.name %></span>
     <% end %>
     </h1>
   </a>
 </div>
 <div class="header-bottom-right">
      <ul class="icon1 sub-icon1 profile_img">
-       <li><a class="active-icon c1" href="<%= cart_path %>">My Cart </a><div class="rate cart-text" style="background:#000 !important"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></div>
+       <li><a class="active-icon c1" href="<%= cart_path %>" style="color:#fff !important">My Cart </a><div class="rate cart-text"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></div>
        </li>
       </ul>
           <div class="clearfix"></div>

@@ -90,7 +90,7 @@
                     <%= f.submit "Out of Stock", :class => "button trendy-button", disabled: 'disabled' %>
                   <% else %>
                     <% if !exist %>
-                      <%= f.submit 'Add to Cart', :class => 'button trendy-button add_cart', 'data-id':@product.id %>
+                      <%= f.submit 'Add to Cart', :class => 'button trendy-button add_cart', :onclick=>"KD_alert()", 'data-id':@product.id %>
                     <% else %>
 
                       <%= f.submit 'Added', disabled: true, :class => 'button trendy-button add_cart', 'data-id':@product.id %>

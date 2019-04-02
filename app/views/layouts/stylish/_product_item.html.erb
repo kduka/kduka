@@ -74,7 +74,7 @@
                 <% end %>
               <% else %>
                 <% if !exist %>
-                  <%= button_tag type: 'submit', class: "shoe-cart pshoe-cart" do %>
+                  <%= button_tag type: 'submit', class: "shoe-cart pshoe-cart", onclick:"KD_alert()" do %>
                       <i class="fa fa-cart-plus"></i>
                   <% end %>
                 <% else %>

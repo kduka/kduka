@@ -124,6 +124,7 @@ body{
   padding-right: 0px !important;
 }
 </style>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 <!--Signup Modal-->
@@ -742,5 +743,14 @@ body{
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/bootstrap.js"></script>
+    <script>
+      $("form").submit(function(event) {
+         var recaptcha = $("#g-recaptcha-response").val();
+         if (recaptcha === "") {
+            event.preventDefault();
+            alert("Please check the recaptcha");
+         }
+      });
+    </script>
 </body>
 </html>
