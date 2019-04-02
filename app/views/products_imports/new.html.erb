@@ -8,17 +8,19 @@
 <b>Note:</b> Only import spreadsheets that were previously downloaded from this
   application.
 </p><br>
-<a href="#"><button class="kd_buttons">Download Excel Template</button></a>
+<%=link_to 'Download Excel Template',products_imports_export_path(format: :xlsx) ,class: 'kd_buttons'%>
 
 <br><br>
-<h3>Requirements</h3>
+<h4>Requirements</h4>
 <ul>
-  <li>For new products DO NOT supply an ID. If an ID is supplied, an existing product with the ID will be updated!</li>
+  <li>For new products DO NOT supply an ID. If an ID is supplied, the existing product with the ID will be updated.</li>
+  <li>The Workbook contains two worksheets. Confirm the category IDs for products on the 'Category' worksheet.</li>
+  <li>DO NOT edit any of the worksheets' header (first 6) rows.</li>
 </ul>
 
 <%= form_for :products_import do |f| %>
   <% if @products_import.errors.any? %>
-    <%= pluralize(@products_import.errors.count, "error") %> prevented us from
+    <%= pluralize(@products_import.errors.count, "error(s)") %> prevented us from
     importing your spreadsheet. Please update your spreadsheet and try agin.
     <ul>
       <% @products_import.errors.full_messages.each do |msg| %>

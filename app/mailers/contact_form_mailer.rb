@@ -14,6 +14,6 @@ class ContactFormMailer < ApplicationMailer
     @email = email
     @name = name
 
-    mail(to: 'info@zerone.co.ke', subject: "From " + name.to_s, from: "Website Form <#{email}>", reply_to:email)
+    mail(to: 'info@kduka.co.ke', subject: "From " + name.to_s, from: "Website Form <#{email}>", reply_to:email)
   end
 end

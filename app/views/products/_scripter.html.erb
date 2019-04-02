@@ -49,8 +49,11 @@
         $(".delete_var_temp").click(function (e) {
 
             the_var = $(this).attr('data');
+            console.log("1: "+the_var);
             the_name = $(this).attr('data-var');
+            console.log("2: "+the_name);
             the_string = $('.var_'+the_name).attr('data');
+            console.log("3: "+the_string);
             cookie_id = $("#cookie_id").attr('data');
 
             $.ajax({
@@ -70,13 +73,15 @@
         });
 
         $(".del_var").click(function (e){
-           val = $(this).attr('data-name')
+           val = $(this).attr('data-name');
+            cookie_id = $("#cookie_id").attr('data');
 
             $.ajax({
                 url: '/products/del_var',
                 method: 'post',
                 data: {
-                    name: val
+                    name: val,
+                    cookie_id:cookie_id
                 },
                 success: function () {
 

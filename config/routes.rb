@@ -134,9 +134,10 @@ Rails.application.routes.draw do
   get 'admins/categories' => 'admins#categories'
   post 'admins/update_category' => 'admins#update_category'
   post 'admins/categories' => 'admins#add_category'
-  get 'products/batch' => 'products_imports#new'
-  post 'products/batch' => 'products_imports#create'
-
+  get 'products_imports/export' => 'products_imports#export'
+  get 'products_imports/new' => 'products_imports#new'
+  post 'products_imports/new' => 'products_imports#create'
+  get 'admins/delete' => 'admins#deleter'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}

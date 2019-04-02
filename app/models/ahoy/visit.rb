@@ -8,7 +8,8 @@ class Ahoy::Visit < ApplicationRecord
 
 
   def finalize
-    @store = Store.where(c_subdomain:$request.subdomain,domain:$request.domain,own_domain:true).first
+    @store = Store.where(c_subdomain:$request.subdomain, domain:$request.domain,own_domain:true).first
+
 
     if @store.nil?
       @subdomain = $request.subdomain[/(\w+)/]

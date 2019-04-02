@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_store!, only: [:manage, :new, :create, :show, :edit, :update, :destroy]
+  before_action :authenticate_store!, only: [:manage, :new, :create, :show, :edit, :update, :destroy, :batch]
   before_action :beforeFilter, only: :index
   set_tab :home
 
@@ -98,6 +98,7 @@ class ProductsController < ApplicationController
   def manage
     @categories = Category.where(store_id: current_store.id)
     @store = Store.find(current_store.id)
+    puts " CURRENT STORE ID: #{current_store.id}"
     @product = @store.product.all.order('id desc')
     @setup = setup
     @important = important
@@ -388,9 +389,10 @@ class ProductsController < ApplicationController
 
   def del_var
     @name = params[:name]
-    session[:cookie_id].each do |k,v|
+    cookie_id = params[:cookie_id]
+    session[cookie_id].each do |k,v|
       if k == @name
-        session[:cookie_id].delete(k)
+        session[cookie_id].delete(k)
       end
     end
   end
@@ -543,6 +545,7 @@ class ProductsController < ApplicationController
   def batch
 
   end
+
 
   private
 
