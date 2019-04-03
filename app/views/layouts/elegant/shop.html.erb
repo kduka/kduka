@@ -405,12 +405,10 @@ p{
 	            alert("Please check the reCAPTCHA");
 	         }
 	      });
-				/* $('.g-recaptcha').click(function(){
-					$('.kd-recaptcha').removeAttr("disabled");
-				}); */
-				function recaptcha_callback() {
-			 		$('.kd-recaptcha').removeAttr("disabled");
-			  };
+				$('.kd-recaptcha').hover(
+	       function(){ $(this).removeAttr("disabled") },
+				 function(){ $(this).removeAttr("data-disable-with") }
+				 );
 	    </script>
 			<script type="text/javascript">
 	    function KD_alert(){
