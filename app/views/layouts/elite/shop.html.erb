@@ -480,7 +480,16 @@ button.w3view-cart {
 			 var recaptcha = $("#g-recaptcha-response").val();
 			 if (recaptcha === "") {
 					event.preventDefault();
-					alert("Please check the reCAPTCHA");
+					swal({
+						toast: true,
+						position: 'top-end',
+						showConfirmButton: false,
+						title: "Please check the reCAPTCHA",
+						text: "",
+						icon: "warning",
+						button: false,
+						timer: 1500
+					});
 			 }
 		});
 		$('.kd-recaptcha').hover(
