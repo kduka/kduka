@@ -53,10 +53,10 @@
           <%= text_area_tag(:message, nil,:required=>'required', :class => 'form-control', :style=> 'height:10em') %>
         </div>
         <div class="form-group">
-          <div class="g-recaptcha" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div>
+          <div class="g-recaptcha" callback="recaptcha_callback" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div>
         </div>
         <br><br>
-        <%= submit_tag("Send Message", :class => 'elite-button', :style=>'width:100% !important') %><br>
+        <%= submit_tag("Send Message", :class => 'elite-button kd-recaptcha', :style=>'width:100% !important') %><br>
 
     <% end %>
   </div>

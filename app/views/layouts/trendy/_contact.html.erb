@@ -88,9 +88,9 @@
           <%= text_area_tag(:message, nil,:required=>'required', :class => '', :style=> 'height:10em') %>
           </div>
           <div class="contact-form2">
-            <div class="g-recaptcha" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div>
+            <div class="g-recaptcha" callback="recaptcha_callback" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div>
           </div>
-          <%= submit_tag("Send Message", :class => 'trendy-button', :style=>'width:100% !important') %><br>
+          <%= submit_tag("Send Message", :class => 'trendy-button kd-recaptcha', :style=>'width:100% !important') %><br>
       <% end %>
 
     </div>

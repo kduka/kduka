@@ -88,10 +88,10 @@
                   <%= text_area_tag(:message, nil,:required=>'required', :class => 'form-control', :style=> 'height:10em') %>
                 </div>
                 <div class="col-xs-12 form-group">
-        						<div class="g-recaptcha" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div>
+        						<div class="g-recaptcha" callback="recaptcha_callback" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div>
         				</div>
                 <div class="text-center form-group">
-                    <%= submit_tag("Send Message", :class => 'btn btn-default buttons my_buttons') %>
+                    <%= submit_tag("Send Message", :class => 'btn btn-default buttons my_buttons kd-recaptcha') %>
                 </div>
               <% end %>
             </div>

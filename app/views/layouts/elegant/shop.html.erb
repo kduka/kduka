@@ -403,10 +403,14 @@ p{
 	         if (recaptcha === "") {
 	            event.preventDefault();
 	            alert("Please check the reCAPTCHA");
-	         }else{
-						 $(this).unbind('submit').submit()
-					 }
+	         }
 	      });
+				/* $('.g-recaptcha').click(function(){
+					$('.kd-recaptcha').removeAttr("disabled");
+				}); */
+				function recaptcha_callback() {
+			 		$('.kd-recaptcha').removeAttr("disabled");
+			  };
 	    </script>
 			<script type="text/javascript">
 	    function KD_alert(){

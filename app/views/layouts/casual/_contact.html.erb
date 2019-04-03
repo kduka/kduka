@@ -56,11 +56,11 @@
             </div>
 						<div class="text">
 							<div class="text-fild">
-								<div class="g-recaptcha" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div><br>
+								<div class="g-recaptcha" callback="recaptcha_callback" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div><br>
 							</div>
 						</div>
               <div class=""><br><br>
-              <%= submit_tag("Send Message", :class => 'casual-button', :style=>'width:100% !important;margin-left:0 !important') %>&nbsp;<input type="reset" value="Clear Form" class="casual-button"><br>
+              <%= submit_tag("Send Message", :class => 'casual-button kd-recaptcha', :style=>'width:100% !important;margin-left:0 !important') %>&nbsp;<input type="reset" value="Clear Form" class="casual-button"><br>
               </div>
 							<% end %>
             </div>
