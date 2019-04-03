@@ -2,6 +2,24 @@
 <div class="contact">
   <div class="container">
 
+    <div style="margin-bottom: 1em;margin-top: 1em;width:100%">
+        <div class="col-md-12">
+          <% if !notice.nil? %>
+          <div class=" text-center alert alert-success" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><%= notice %></strong>
+          </div>
+          <% end %>
+          <% if !alert.nil? %>
+          <div class=" text-center alert alert-info" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><%= alert %></strong>
+          </div>
+          <% end %>
+
+        </div>
+    </div>
+
     <div class="col-md-12 contact-grids">
       <% if !@store.business_location.blank?%>
       <div class="col-md-4 contact-grid animated wow fadeInLeft" data-wow-delay=".5s">

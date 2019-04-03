@@ -2,6 +2,23 @@
 <!--contact-->
 <div class="contact-top-agileinfo">
 	<div class="container">
+		<div style="margin-bottom: 1em;margin-top: 1em;width:100%">
+	      <div class="col-md-12">
+	        <% if !notice.nil? %>
+	        <div class=" text-center alert alert-success" role="alert">
+	          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	          <strong><%= notice %></strong>
+	        </div>
+	        <% end %>
+	        <% if !alert.nil? %>
+	        <div class=" text-center alert alert-info" role="alert">
+	          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	          <strong><%= alert %></strong>
+	        </div>
+	        <% end %>
+
+	      </div>
+	  </div>
 		<h3 class="title-zerone contact-head">Get in Touch with Us <i class="fa fa-bell" aria-hidden="true"></i><i class="fa fa-bell-o" aria-hidden="true"></i></h3>
 	<div class="col-md-12 contact-left-wthree">
 	<div class="col-md-4" style="margin-bottom:1.5em">

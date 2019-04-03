@@ -25,6 +25,23 @@
 <section class="contact_sec_1 text-center">
     <div class="container">
         <div class="col-sm-12">
+          <div style="margin-bottom: 1em;margin-top: 1em;width:100%">
+              <div class="col-md-12">
+                <% if !notice.nil? %>
+                <div class=" text-center alert alert-success" role="alert">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong><%= notice %></strong>
+                </div>
+                <% end %>
+                <% if !alert.nil? %>
+                <div class=" text-center alert alert-info" role="alert">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong><%= alert %></strong>
+                </div>
+                <% end %>
+
+              </div>
+          </div>
             <h2>Get in Touch</h2>
             <h5>Find our contact details below.</h5>
         </div>

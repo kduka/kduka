@@ -428,6 +428,8 @@
        if (recaptcha === "") {
           event.preventDefault();
           alert("Please check the reCAPTCHA");
+       }else{
+         $(this).unbind('submit').submit()
        }
     });
   </script>
