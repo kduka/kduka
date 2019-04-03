@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190330122859) do
+ActiveRecord::Schema.define(version: 20190402155023) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -493,6 +493,9 @@ ActiveRecord::Schema.define(version: 20190330122859) do
     t.integer  "shop_category_id"
     t.boolean  "explore"
     t.string   "explore_image"
+    t.boolean  "trial"
+    t.date     "trial_start"
+    t.date     "trial_end"
     t.index ["cat_id"], name: "index_stores_on_cat_id", using: :btree
     t.index ["confirmation_token"], name: "index_stores_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree

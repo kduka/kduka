@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
       redirect_to(home_404_path) and return
     elsif @store.active == !true
       flash[:alert] = "Store is not active, please contact owner"
-      redirect_to("http://www.kduka.co.ke/") and return
+      redirect_to("https://www.kduka.co.ke/") and return
     else
       if @store.homepage_status == true
         @products = Product.where(store_id: @store.id, active: true)

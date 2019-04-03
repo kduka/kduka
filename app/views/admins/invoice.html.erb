@@ -23,11 +23,11 @@
     {font-family:"Book Antiqua";
       panose-1:2 4 6 2 5 3 5 3 3 4;}
     @font-face
-    {font-family:Cambria;
-      panose-1:2 4 5 3 5 4 6 3 2 4;}
-    @font-face
     {font-family:Tahoma;
       panose-1:2 11 6 4 3 5 4 4 2 4;}
+    @font-face
+    {font-family:Cambria;
+      panose-1:2 4 5 3 5 4 6 3 2 4;}
     @font-face
     {font-family:"\@MS Mincho";
       panose-1:2 2 6 9 4 2 5 8 3 4;}
@@ -44,12 +44,11 @@
       page-break-after:avoid;
       font-size:32.0pt;
       font-family:"Book Antiqua",serif;
-      color:#7AAE16;
+      color:#7AAE42;
       text-transform:uppercase;
       font-weight:normal;}
     h2
-    {mso-style-link:"Heading 2 Char";
-      margin-top:12.0pt;
+    {margin-top:12.0pt;
       margin-right:0in;
       margin-bottom:3.0pt;
       margin-left:0in;
@@ -58,8 +57,7 @@
       font-family:"Book Antiqua",serif;
       font-style:italic;}
     h3
-    {mso-style-link:"Heading 3 Char";
-      margin-top:12.0pt;
+    {margin-top:12.0pt;
       margin-right:0in;
       margin-bottom:3.0pt;
       margin-left:0in;
@@ -118,41 +116,6 @@
       margin-bottom:.0001pt;
       font-size:7.0pt;
       font-family:"Verdana",sans-serif;}
-    span.Heading1Char
-    {mso-style-name:"Heading 1 Char";
-      mso-style-link:"Heading 1";
-      font-family:"Book Antiqua",serif;
-      color:#7AAE16;
-      text-transform:uppercase;}
-    span.Heading2Char
-    {mso-style-name:"Heading 2 Char";
-      mso-style-link:"Heading 2";
-      font-family:"Book Antiqua",serif;
-      color:#4B7B8A;}
-    span.Heading3Char
-    {mso-style-name:"Heading 3 Char";
-      mso-style-link:"Heading 3";
-      font-family:"Book Antiqua",serif;
-      color:#32515C;}
-    p.msonormal0, li.msonormal0, div.msonormal0
-    {mso-style-name:msonormal;
-      margin-right:0in;
-      margin-left:0in;
-      font-size:12.0pt;
-      font-family:"Times New Roman",serif;}
-    span.HeaderChar
-    {mso-style-name:"Header Char";
-      mso-style-link:Header;
-      font-family:"Verdana",sans-serif;}
-    span.FooterChar
-    {mso-style-name:"Footer Char";
-      mso-style-link:Footer;
-      font-family:"Verdana",sans-serif;}
-    span.BalloonTextChar
-    {mso-style-name:"Balloon Text Char";
-      mso-style-link:"Balloon Text";
-      font-family:"Tahoma",sans-serif;
-      color:black;}
     p.Amount, li.Amount, div.Amount
     {mso-style-name:Amount;
       margin:0in;
@@ -179,6 +142,13 @@
       letter-spacing:2.0pt;
       font-weight:bold;
       font-style:italic;}
+    p.leftalignedtext, li.leftalignedtext, div.leftalignedtext
+    {mso-style-name:"left aligned text";
+      margin:0in;
+      margin-bottom:.0001pt;
+      line-height:12.0pt;
+      font-size:7.0pt;
+      font-family:"Verdana",sans-serif;}
     p.lowertext, li.lowertext, div.lowertext
     {mso-style-name:"lower text";
       margin-top:24.0pt;
@@ -189,6 +159,13 @@
       text-align:right;
       font-size:7.0pt;
       font-family:"Verdana",sans-serif;}
+    span.thankyouChar
+    {mso-style-name:"thank you Char";
+      mso-style-link:"thank you";
+      font-family:"Verdana",sans-serif;
+      color:#7AAE42;
+      font-weight:bold;
+      font-style:italic;}
     p.slogan, li.slogan, div.slogan
     {mso-style-name:slogan;
       margin:0in;
@@ -206,13 +183,6 @@
       font-size:8.0pt;
       font-family:"Verdana",sans-serif;
       color:#BFBFBF;}
-    span.thankyouChar
-    {mso-style-name:"thank you Char";
-      mso-style-link:"thank you";
-      font-family:"Verdana",sans-serif;
-      color:#6CC6D7;
-      font-weight:bold;
-      font-style:italic;}
     p.thankyou, li.thankyou, div.thankyou
     {mso-style-name:"thank you";
       mso-style-link:"thank you Char";
@@ -224,7 +194,7 @@
       text-align:right;
       font-size:10.0pt;
       font-family:"Verdana",sans-serif;
-      color:#6CC6D7;
+      color:#7AAE42;
       font-weight:bold;
       font-style:italic;}
     p.labels, li.labels, div.labels
@@ -245,12 +215,24 @@
       line-height:12.0pt;
       font-size:7.0pt;
       font-family:"Verdana",sans-serif;}
-    p.leftalignedtext, li.leftalignedtext, div.leftalignedtext
-    {mso-style-name:"left aligned text";
-      margin:0in;
-      margin-bottom:.0001pt;
-      line-height:12.0pt;
-      font-size:7.0pt;
+    span.BalloonTextChar
+    {mso-style-name:"Balloon Text Char";
+      mso-style-link:"Balloon Text";
+      font-family:"Tahoma",sans-serif;
+      color:black;}
+    span.Heading1Char
+    {mso-style-name:"Heading 1 Char";
+      mso-style-link:"Heading 1";
+      font-family:"Book Antiqua",serif;
+      color:#7AAE42;
+      text-transform:uppercase;}
+    span.HeaderChar
+    {mso-style-name:"Header Char";
+      mso-style-link:Header;
+      font-family:"Verdana",sans-serif;}
+    span.FooterChar
+    {mso-style-name:"Footer Char";
+      mso-style-link:Footer;
       font-family:"Verdana",sans-serif;}
     .MsoChpDefault
     {font-size:10.0pt;}
@@ -279,24 +261,25 @@
     <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=624
            style='width:468.25pt;border-collapse:collapse'>
       <tr style='height:63.0pt'>
-        <td width=354 colspan=4 valign=bottom style='width:265.5pt;padding:0in 5.75pt 0in 5.75pt;
+        <td width=336 colspan=3 valign=bottom style='width:3.5in;padding:0in 5.75pt 0in 5.75pt;
             height:63.0pt'>
           <h1><span style='position:relative;z-index:-1895824384'><span
-            style='position:absolute;left:-32px;top:0px;width:675px;height:867px'><img
-            width=675 height=867 src="KDukaInvoice_files/image001.gif"></span></span>INVOICE</h1>
+            style='position:absolute;left:-32px;top:-25px;width:675px;height:867px'><img
+            width=675 height=867 src="KDuka%20Invoice_files/image001.gif"></span></span>INVOICE</h1>
         </td>
-        <td width=270 colspan=3 style='width:202.75pt;background:white;padding:0in 5.75pt 0in 5.75pt;
+        <td width=288 colspan=2 style='width:216.25pt;padding:0in 5.75pt 0in 5.75pt;
             height:63.0pt'>
           <p class=DateandNumber><span style='font-size:9.0pt;line-height:110%;
-              font-family:"Cambria",serif'>Date: <%= Time.now.strftime("%Y-%m-%d") %></span></p>
+              font-family:"Cambria",serif'>Date: 3/29/2019</span></p>
           <p class=DateandNumber><span style='font-size:9.0pt;line-height:110%;
-              font-family:"Cambria",serif'>Invoice Number: </span></p>
+              font-family:"Cambria",serif'>Invoice Number ZO/0329/019</span></p>
         </td>
       </tr>
       <tr style='height:1.25in'>
         <td width=294 colspan=2 valign=top style='width:220.5pt;background:white;
             padding:0in 5.75pt 0in 5.75pt;height:1.25in'>
-          <p class=leftalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>KDuka</span></p>
+          <p class=leftalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>KDUKA
+  AFRICA</span></p>
           <p class=leftalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
           <p class=leftalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>P.O
   BOX 18197-00100</span></p>
@@ -313,206 +296,226 @@
           <p class=headingright><b><span style='font-size:11.0pt;font-family:"Cambria",serif;
               color:windowtext'>To</span></b></p>
         </td>
-        <td width=264 colspan=3 valign=top style='width:198.15pt;background:white;
+        <td width=288 colspan=2 valign=top style='width:3.0in;background:white;
             padding:0in 5.75pt 0in 5.75pt;height:1.25in'>
-          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'><%= @store.name %></span></p>
+          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>CLIENT</span></p>
           <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
-          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'><%= @store.phone %></span></p>
+          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>PHONE
+  NUMBER</span></p>
+          <p class=rightalignedtext align=left style='text-align:left'><span
+            style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>Kenya</span></p>
           <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
           <p class=rightalignedtext align=left style='text-align:left'><span
             style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
           <p class=rightalignedtext><span style='font-size:11.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
-        <td style='border:none;padding:0in 0in 0in 0in' width=24><p class='MsoNormal'>&nbsp;</td>
       </tr>
       <tr style='height:.2in'>
-        <td width=624 colspan=7 style='width:468.25pt;border:none;border-bottom:solid windowtext 1.0pt;
+        <td width=624 colspan=5 style='width:468.25pt;border:none;border-bottom:solid windowtext 1.0pt;
             padding:0in 5.75pt 0in 5.75pt;height:.2in'>
           <p class=MsoNormal>&nbsp;</p>
         </td>
       </tr>
       <tr style='height:.2in'>
-        <td width=624 colspan=7 style='width:468.25pt;border:none;border-bottom:solid #BFBFBF 1.0pt;
+        <td width=624 colspan=5 style='width:468.25pt;border:none;border-bottom:solid #BFBFBF 1.0pt;
             padding:0in 5.75pt 0in 5.75pt;height:.2in'>
           <p class=MsoNormal>&nbsp;</p>
         </td>
       </tr>
       <tr style='height:22.8pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
             solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
-            background:#7AAE16;padding:1.45pt 5.75pt 1.45pt 5.75pt;height:22.8pt'>
+            background:#7AAE42;padding:1.45pt 5.75pt 1.45pt 5.75pt;height:22.8pt'>
           <p class=columnheadings><span style='font-size:10.0pt;font-family:"Cambria",serif;
               color:white;font-style:normal'>Description</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
-            background:#7AAE16;padding:1.45pt 5.75pt 1.45pt 5.75pt;height:22.8pt'>
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+            background:#7AAE42;padding:1.45pt 5.75pt 1.45pt 5.75pt;height:22.8pt'>
           <p class=columnheadings><span style='font-size:10.0pt;font-family:"Cambria",serif;
               color:white;font-style:normal'>Total (KES)</span></p>
         </td>
       </tr>
       <tr style='height:15.75pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
             solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in 5.75pt 0in 5.75pt;height:15.75pt'>
-          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>ITEM
-  BILLABLE</span></p>
+          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>Item
+  Billed</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in .15in 0in 5.75pt;height:15.75pt'>
-          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>COST</span></p>
+          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>Price</span></p>
         </td>
       </tr>
       <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
-            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
-            background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'></td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
-            background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'></td>
-      </tr>
-      <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
-            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
-            background:white;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'></td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
-            background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'></td>
-      </tr>
-      <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
-            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
-            background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'></td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
-            background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'></td>
-      </tr>
-      <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
-            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
-            background:white;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'></td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
-            background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'></td>
-      </tr>
-      <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
             solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
             background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
-          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+          <p class=MsoListParagraph><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
             background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'>
           <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
       </tr>
       <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
             solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
-          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+          <p class=MsoListParagraph><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'>
           <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
       </tr>
       <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
             solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
             background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
-          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+          <p class=MsoListParagraph><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
             background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'>
           <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
       </tr>
       <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
             solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
-          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+          <p class=MsoListParagraph><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'>
           <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
       </tr>
       <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
             solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
             background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
           <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
             background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'>
           <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
       </tr>
       <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
-            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
-            background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
-          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
-        </td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
-            background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'>
-          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
-        </td>
-      </tr>
-      <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border-top:none;border-left:
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
             solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
           <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'>
           <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
       </tr>
       <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border:solid #BFBFBF 1.0pt;
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
+            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
+            background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
+          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+            background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'>
+          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+      </tr>
+      <tr style='height:15.3pt'>
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
+            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
+            background:white;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
+          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+            background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'>
+          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+      </tr>
+      <tr style='height:15.3pt'>
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
+            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
+            background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
+          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+            background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'>
+          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+      </tr>
+      <tr style='height:15.3pt'>
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
+            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
+            background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
+          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+            background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'>
+          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+      </tr>
+      <tr style='height:15.3pt'>
+        <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
+            solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
+            background:white;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
+          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+        <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
+            background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'>
+          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+        </td>
+      </tr>
+      <tr style='height:15.3pt'>
+        <td width=504 colspan=4 style='width:378.15pt;border:solid #BFBFBF 1.0pt;
             border-top:none;background:#F2F2F2;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
           <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border-top:none;border-left:none;
+        <td width=120 style='width:90.1pt;border-top:none;border-left:none;
             border-bottom:solid #BFBFBF 1.0pt;border-right:solid #BFBFBF 1.0pt;
             background:#F2F2F2;padding:0in .15in 0in 5.75pt;height:15.3pt'>
           <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
         </td>
       </tr>
       <tr style='height:15.3pt'>
-        <td width=504 colspan=5 style='width:378.15pt;border:none;border-right:solid #BFBFBF 1.0pt;
+        <td width=504 colspan=4 style='width:378.15pt;border:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in 5.75pt 0in 5.75pt;height:15.3pt'>
           <p class=labels><span style='font-size:10.0pt;font-family:"Cambria",serif;
               font-style:normal'>Total Due</span></p>
         </td>
-        <td width=120 colspan=2 style='width:90.1pt;border-top:none;border-left:none;
+        <td width=120 style='width:90.1pt;border-top:none;border-left:none;
             border-bottom:solid #BFBFBF 1.0pt;border-right:solid #BFBFBF 1.0pt;
-            background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'></td>
+            background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'>
+          <p class=Amount><b><span style='font-size:10.0pt;font-family:"Cambria",serif'>Total</span></b></p>
+        </td>
       </tr>
       <tr style='height:40.0pt'>
         <td width=108 style='width:80.65pt;background:white;padding:0in 5.75pt 0in 5.75pt;
             height:40.0pt'>
           <p class=MsoNormal>&nbsp;</p>
         </td>
-        <td width=246 colspan=3 valign=bottom style='width:184.85pt;background:white;
-            padding:0in 5.75pt 0in 5.75pt;height:40.0pt'></td>
-        <td width=270 colspan=3 style='width:202.75pt;padding:0in 5.75pt 0in 5.75pt;
+        <td width=228 colspan=2 valign=bottom style='width:171.35pt;background:white;
+            padding:0in 5.75pt 0in 5.75pt;height:40.0pt'>
+          <p class=slogan>&nbsp;</p>
+        </td>
+        <td width=288 colspan=2 style='width:216.25pt;padding:0in 5.75pt 0in 5.75pt;
             height:40.0pt'>
-          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'>PAYMENT
-  DETAILS :</span></p>
+          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'>Payment
+  Details:</span></p>
           <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
-          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'> </span></p>
-          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'> </span></p>
-          <p class=thankyou><span style='color:#7AAE16'>Thank you for choosing KDuka</span>!</p>
+          <p class=lowertext>&nbsp;</p>
+          <p class=thankyou>Thank you for your business!</p>
         </td>
       </tr>
       <tr height=0>
-        <td width=1613 style='border:none'></td>
-        <td width=2797 style='border:none'></td>
-        <td width=630 style='border:none'></td>
-        <td width=270 style='border:none'></td>
-        <td width=2253 style='border:none'></td>
-        <td width=1440 style='border:none'></td>
-        <td width=362 style='border:none'></td>
+        <td width=119 style='border:none'></td>
+        <td width=206 style='border:none'></td>
+        <td width=46 style='border:none'></td>
+        <td width=186 style='border:none'></td>
+        <td width=133 style='border:none'></td>
       </tr>
     </table>
 

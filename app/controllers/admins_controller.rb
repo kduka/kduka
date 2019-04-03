@@ -14,7 +14,7 @@ class AdminsController < ApplicationController
   end
 
   def ndeto
-
+    User.all.update_all confirmed_at: DateTime.now
   end
 
   def init

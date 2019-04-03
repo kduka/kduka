@@ -26,9 +26,13 @@ class StoreRegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    require 'active_support'
+
+    trial_start = Date.now
+    trial_end = trial_start + 1.month
     # @user = User.find(current_user.id)
     # @store = @user.store.create(store_params.merge(subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#fc711b', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
-    @store = Store.create(store_params.merge(display_email: params[:store][:email], subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#7aae42', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
+    @store = Store.create(store_params.merge(display_email: params[:store][:email], subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#7aae42', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false, trial:true, trial_start:trial_start,trial_end:trial_end))
 
     if @store.save
       flash[:notice] = "Your Store has been created! Please check your email for the activation message"

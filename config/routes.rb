@@ -73,7 +73,7 @@ Rails.application.routes.draw do
   post  '/products/search' => 'products#search'
   get  '/home/404' => 'home#not_found'
   get  '/home/error' => 'home#error'
-  get '/help' => redirect('http://kduka.co.ke/help')
+  get '/help' => redirect('https://kduka.co.ke/help')
   get '/order/(:ref)' => 'stores#order', as: 'store_order'
   post '/stores/sendy' => 'stores#sendy'
   post '/stores/save_sendy' => 'stores#save_sendy'
