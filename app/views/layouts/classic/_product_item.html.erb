@@ -16,23 +16,23 @@
       <%= image_tag(product.image_url(:thumb).to_s, class: '', style: 'max-width:100%;max-height:100%;') %>
     </div>
   </a>
-  <div class="mask" style="margin-top:-2em;">
+  <div class="mask col-md-8 col-md-offset-2" style="margin-top:-2em;left: 0 !important;right: 0 !important;">
     <a href="<%= product_view_path(product.sku) %>">Quick View</a>
-    <div style="width:100%"><br><br>
-      <% if @store.own_domain %>
-        <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href='<%= "#{@store.c_subdomain}.#{@store.domain}" %>/products/view/<%= product.sku %>' data-layout="button" data-size="large" data-mobile-iframe="true">
-          <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= "#{@store.c_subdomain}.#{@store.domain}" %>%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a>
-        </div>
-      <% else %>
-        <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true">
-          <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a>
-        </div>
-      <% end %>
-      <div style="margin-top:3px" class="col-md-6 col-xs-12">
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a>
+  </div>
+  <div class="col-md-8 col-md-offset-2"><br><br>
+    <% if @store.own_domain %>
+      <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href='<%= "#{@store.c_subdomain}.#{@store.domain}" %>/products/view/<%= product.sku %>' data-layout="button" data-size="large" data-mobile-iframe="true">
+        <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= "#{@store.c_subdomain}.#{@store.domain}" %>%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a>
       </div>
-      <div id="fb-<%= product.sku %>"></div>
+    <% else %>
+      <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true">
+        <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a>
+      </div>
+    <% end %>
+    <div style="margin-top:3px" class="col-md-6 col-xs-12">
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a>
     </div>
+    <div id="fb-<%= product.sku %>"></div>
   </div>
   <div style="height:5em;width:100%;margin-top:5em">
     <h3 class="text-center"><a style="color:<%= @store.store_color %> !important" class="product_name" href="<%= product_view_path(product.sku) %>"><%= product.name %></a></h3>
