@@ -162,7 +162,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.where(id:params[:id],store_id:current_store.id).first
     set_shop_show
   end
 
