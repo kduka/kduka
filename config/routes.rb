@@ -140,6 +140,7 @@ Rails.application.routes.draw do
   post 'products/batch' => 'products_imports#create'
   get 'admins/invoice' => 'admins#invoice'
   get 'invoices/generate' => 'invoices#generate'
+  get 'invoices/check_trials' => 'invoices#check_trials'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}

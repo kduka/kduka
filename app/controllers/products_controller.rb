@@ -6,12 +6,15 @@ class ProductsController < ApplicationController
   def index
 
     get_store
+
     if @store.nil?
       puts 'Store is not found'
       redirect_to(home_404_path) and return
-    elsif @store.active == false
+    elsif !@store.active
       puts 'Store is not active'
       redirect_to(home_404_path) and return
+    elsif !@store.premium
+      redirect_to("https://#{@store.subdomain}.kduka.co.ke") and return
     else
       if @store.homepage_status == true
         redirect_to(home_path) and return

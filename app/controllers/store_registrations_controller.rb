@@ -28,7 +28,7 @@ class StoreRegistrationsController < Devise::RegistrationsController
   def create
     require 'active_support'
 
-    trial_start = Date.now
+    trial_start = Time.now
     trial_end = trial_start + 1.month
     # @user = User.find(current_user.id)
     # @store = @user.store.create(store_params.merge(subdomain: santize(params[:store][:subdomain]), layout_id: 1, store_color: '#fc711b', homepage_status: true, aboutpage_status: true, manual_delivery_status: false, auto_delivery_status: false, collection_point_status: false, init: false, important: false, active: false))
