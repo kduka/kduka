@@ -196,7 +196,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id],store_id:current_store.id)
+    @product = Product.where(id:params[:id],store_id:current_store.id).first
     if !@product
       redirect_to(products_manage_path) and return
     end
