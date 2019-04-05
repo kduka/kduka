@@ -138,7 +138,7 @@ Rails.application.routes.draw do
   post 'admins/categories' => 'admins#add_category'
   get 'products/batch' => 'products_imports#new'
   post 'products/batch' => 'products_imports#create'
-  get 'admins/invoice' => 'admins#invoice'
+  get 'invoices/invoice/:id' => 'invoices#invoice'
   get 'invoices/generate' => 'invoices#generate'
   get 'invoices/check_trials' => 'invoices#check_trials'
 

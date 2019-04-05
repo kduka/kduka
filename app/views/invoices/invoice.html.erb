@@ -270,7 +270,7 @@
         <td width=288 colspan=2 style='width:216.25pt;padding:0in 5.75pt 0in 5.75pt;
             height:63.0pt'>
           <p class=DateandNumber><span style='font-size:9.0pt;line-height:110%;
-              font-family:"Cambria",serif'>Date: 3/29/2019</span></p>
+              font-family:"Cambria",serif'>Date: <%= Time.now.strftime("%Y-%m-%d") %></span></p>
           <p class=DateandNumber><span style='font-size:9.0pt;line-height:110%;
               font-family:"Cambria",serif'>Invoice Number ZO/0329/019</span></p>
         </td>
@@ -298,7 +298,7 @@
         </td>
         <td width=288 colspan=2 valign=top style='width:3.0in;background:white;
             padding:0in 5.75pt 0in 5.75pt;height:1.25in'>
-          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>CLIENT</span></p>
+          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'><%= @store.name %></span></p>
           <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
           <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>PHONE
   NUMBER</span></p>

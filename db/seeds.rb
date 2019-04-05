@@ -89,7 +89,13 @@ OrderStatus.create!([
 Admin.create!([
                   {:email => 'martindeto@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig'}
               ])
-=end
+
 Admin.create!([
                   {:email => 'fanuel@kduka.co.ke', :password => 'Fanuel@Kduka', :password_confirmation => 'Fanuel@Kduka'}
               ])
+=end
+
+Plan.create!([
+                              {:name => 'basic',:amount => '200'},
+                              {:name => 'premium',:amount => '420'},
+                          ])
