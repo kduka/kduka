@@ -162,12 +162,18 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.where(id:params[:id],store_id:current_store.id).first
+    if !@product
+      redirect_to(products_manage_path) and return
+    end
     set_shop_show
   end
 
   def edit
-    @product = Product.find(params[:id])
+    @product = Product.where(id:params[:id],store_id:current_store.id).first
+    if !@product
+      redirect_to(products_manage_path) and return
+    end
     @store = Store.find(current_store.id)
     init_froala
     set_shop_show
@@ -190,7 +196,10 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = Product.where(id:params[:id],store_id:current_store.id).first
+    if !@product
+      redirect_to(products_manage_path) and return
+    end
     @update = @product.update(product_params)
     if @update
       flash[:notice] = "Product Successfully updated!"
