@@ -90,6 +90,48 @@ Admin.create!([
                   {:email => 'martindeto@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig'}
               ])
 =end
-Admin.create!([
-                  {:email => 'fanuel@kduka.co.ke', :password => 'Fanuel@Kduka', :password_confirmation => 'Fanuel@Kduka'}
-              ])
+# Admin.create!([
+#                   {:email => 'fanuel@kduka.co.ke', :password => 'Fanuel@Kduka', :password_confirmation => 'Fanuel@Kduka'}
+#               ])
+Font.create!([
+                 {:name => 'Abril Fatface'},
+                 {:name => 'Amatic SC'},
+                 {:name => 'Anton'},
+                 {:name => 'Comfortaa'},
+                 {:name => 'Concert One'},
+                 {:name => 'Cormorant Garamond'},
+                 {:name => 'Courgette'},
+                 {:name => 'Crimson Text'},
+                 {:name => 'Dancing Script'},
+                 {:name => 'Dokdo'},
+                 {:name => 'Fascinate Inline'},
+                 {:name => 'Fjalla One'},
+                 {:name => 'Gloria Hallelujah'},
+                 {:name => 'Great Vibes'},
+                 {:name => 'Inconsolata'},
+                 {:name => 'Indie Flower'},
+                 {:name => 'Josefin Sans'},
+                 {:name => 'Lobster'},
+                 {:name => 'Merienda'},
+                 {:name => 'Merriweather'},
+                 {:name => 'Mrs Sheppards'},
+                 {:name => 'Mukta'},
+                 {:name => 'Nanum Gothic'},
+                 {:name => 'Noto Serif'},
+                 {:name => 'Open Sans Condensed:300'},
+                 {:name => 'Orbitron'},
+                 {:name => 'PT Sans Narrow'},
+                 {:name => 'Pacifico'},
+                 {:name => 'Play'},
+                 {:name => 'Playfair Display'},
+                 {:name => 'Rajdhani'},
+                 {:name => 'Righteous'},
+                 {:name => 'Roboto Slab'},
+                 {:name => 'Satisfy'},
+                 {:name => 'Shadows Into Light'},
+                 {:name => 'Source Serif Pro'},
+                 {:name => 'Sree Krushnadevaraya'},
+                 {:name => 'Titillium Web'},
+                 {:name => 'Yanone Kaffeesatz'},
+                 {:name => 'ZCOOL XiaoWei'},
+             ])
