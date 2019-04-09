@@ -58,6 +58,11 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (9.5.0)
       execjs
+    aws-sdk (1.67.0)
+      aws-sdk-v1 (= 1.67.0)
+    aws-sdk-v1 (1.67.0)
+      json (~> 1.4)
+      nokogiri (~> 1)
     axlsx (2.1.0.pre)
       htmlentities (~> 4.3.1)
       nokogiri (>= 1.4.1)
@@ -80,6 +85,7 @@ GEM
     carrierwave-imageoptimizer (1.4.0)
       carrierwave (>= 0.8, < 2.0)
       image_optimizer (~> 1.6)
+    chronic (0.10.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -443,12 +449,19 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    whenever (0.10.0)
+      chronic (>= 0.6.3)
+    wicked_pdf (1.2.1)
+      activesupport
     will_paginate (3.1.7)
+    wkhtmltopdf-binary (0.12.4)
     wysiwyg-rails (2.6.6)
       font-awesome-sass (~> 4.4, >= 4.4.0)
       railties (>= 3.2, < 6.0)
     xml-simple (1.1.5)
     xmlrpc (0.3.0)
+    zip-zip (0.3)
+      rubyzip (>= 1.0.0)
 
 PLATFORMS
   ruby
@@ -456,6 +469,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_xlsx
   ahoy_matey
+  aws-sdk (~> 1)
   axlsx (= 2.1.0.pre)
   axlsx_rails
   bootstrap-colorpicker-rails
@@ -495,8 +509,12 @@ DEPENDENCIES
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)
+  whenever
+  wicked_pdf (~> 1.1)
   will_paginate
+  wkhtmltopdf-binary
   wysiwyg-rails (~> 2.6.0)
+  zip-zip
 
 RUBY VERSION
    ruby 2.4.0p0

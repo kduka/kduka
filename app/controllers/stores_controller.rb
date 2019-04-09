@@ -225,17 +225,22 @@ end
 
   def activate
     @store = Store.find(current_store.id)
+    if @store.activatable
     if @store.important == true
       if @store.update(active: true)
-        flash[:notice] = "The store has been Activated"
+        flash[:notice] = "Your store has been activated"
         redirect_to(request.referer)
       else
-        flash[:alert] = "Something went wrong. Please Try again"
+        flash[:alert] = "Something went wrong. Please Try again."
         redirect_to(request.referer)
       end
     elsif @store.important == false
       redirect_to(stores_active_path)
     end
+    else
+      flash[:alert] = "You do not have any active subscription. <a href='stores/premium'> Click here to subscribe to a plan </a>"
+      redirect_to(request.referer)
+      end
   end
 
   def deactivate

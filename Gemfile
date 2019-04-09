@@ -31,8 +31,11 @@ gem 'axlsx_rails'
 gem 'roo'
 gem 'acts_as_xlsx'
 gem 'json'
-
-#gem 'bundler', '~>1.3.0'
+gem 'zip-zip'
+gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary'
+gem 'aws-sdk', '~> 1'
+gem 'whenever', require: false
 
 
 ruby "2.4.0"

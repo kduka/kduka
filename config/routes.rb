@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'invoices/generate'
+
   get 'store_deliveries/create'
   get 'store_deliveries/new'
   get 'ipn/index'
@@ -71,7 +73,7 @@ Rails.application.routes.draw do
   post  '/products/search' => 'products#search'
   get  '/home/404' => 'home#not_found'
   get  '/home/error' => 'home#error'
-  get '/help' => redirect('http://kduka.co.ke/help')
+  get '/help' => redirect('https://kduka.co.ke/help')
   get '/order/(:ref)' => 'stores#order', as: 'store_order'
   post '/stores/sendy' => 'stores#sendy'
   post '/stores/save_sendy' => 'stores#save_sendy'
@@ -138,6 +140,9 @@ Rails.application.routes.draw do
   get 'products_imports/new' => 'products_imports#new'
   post 'products_imports/new' => 'products_imports#create'
   get 'admins/delete' => 'admins#deleter'
+  get 'invoices/invoice/:id' => 'invoices#invoice'
+  get 'invoices/generate' => 'invoices#generate'
+  get 'invoices/check_trials' => 'invoices#check_trials'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}

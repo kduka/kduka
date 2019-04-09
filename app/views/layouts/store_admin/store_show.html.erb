@@ -243,12 +243,12 @@ $(document).ready( function () {
           <div class="col-md-12 span_3">
             <% if !notice.nil? %>
             <div class="alert alert-success" role="alert">
-              <strong><%= notice %></strong>
+              <strong><%= notice.html_safe %></strong>
             </div>
             <% end %>
             <% if !alert.nil? %>
             <div class="alert alert-info" role="alert">
-              <strong><%= alert %></strong>
+              <strong><%= alert.html_safe %></strong>
             </div>
             <% end %>
           </div>

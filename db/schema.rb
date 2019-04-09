@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190302084240) do
+ActiveRecord::Schema.define(version: 20190409044025) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -193,6 +193,25 @@ ActiveRecord::Schema.define(version: 20190302084240) do
     t.index ["store_id"], name: "index_feedbacks_on_store_id", using: :btree
   end
 
+  create_table "fin_ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "mobileNumber"
+    t.string   "customer_reference"
+    t.string   "date"
+    t.string   "transaction_reference"
+    t.string   "paymentMode"
+    t.string   "amount"
+    t.string   "till"
+    t.string   "billNumber"
+    t.string   "servedBy"
+    t.string   "additionalInfo"
+    t.string   "bank_reference"
+    t.string   "transactionType"
+    t.string   "account"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "fonts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -225,6 +244,34 @@ ActiveRecord::Schema.define(version: 20190302084240) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "hsh"
+  end
+
+  create_table "invoices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date     "from"
+    t.date     "to"
+    t.string   "uid"
+    t.integer  "store_id"
+    t.integer  "amount"
+    t.date     "issued"
+    t.date     "due"
+    t.integer  "tax"
+    t.integer  "subtotal"
+    t.string   "currency"
+    t.text     "description",     limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "subscription_id"
+    t.integer  "order_status_id"
+    t.string   "i_id"
+    t.string   "invoice"
+    t.boolean  "deliveries"
+    t.boolean  "firt_del"
+    t.boolean  "second_del"
+    t.string   "url"
+    t.string   "name"
+    t.index ["order_status_id"], name: "index_invoices_on_order_status_id", using: :btree
+    t.index ["store_id"], name: "index_invoices_on_store_id", using: :btree
+    t.index ["subscription_id"], name: "index_invoices_on_subscription_id", using: :btree
   end
 
   create_table "ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -263,6 +310,19 @@ ActiveRecord::Schema.define(version: 20190302084240) do
     t.string   "d_name"
     t.string   "preview"
     t.boolean  "premium",     default: false
+  end
+
+  create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "image"
+    t.string   "title"
+    t.integer  "duration"
+    t.integer  "cost"
+    t.string   "category"
+    t.string   "language"
+    t.string   "level"
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -319,6 +379,13 @@ ActiveRecord::Schema.define(version: 20190302084240) do
     t.index ["store_id"], name: "index_orders_on_store_id", using: :btree
   end
 
+  create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.decimal  "price",                          precision: 12, scale: 3
@@ -353,6 +420,7 @@ ActiveRecord::Schema.define(version: 20190302084240) do
     t.string   "shop_category"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "explore_image"
     t.index ["shop_category"], name: "index_shop_categories_on_shop_category", unique: true, using: :btree
   end
 
@@ -421,11 +489,11 @@ ActiveRecord::Schema.define(version: 20190302084240) do
     t.text     "manual_delivery_instructions", limit: 65535
     t.boolean  "collection_point_status"
     t.string   "auto_delivery_location"
+    t.string   "lat"
+    t.string   "lng"
     t.boolean  "init"
     t.boolean  "important"
     t.string   "store_font"
-    t.string   "lat"
-    t.string   "lng"
     t.string   "domain"
     t.boolean  "own_domain",                                 default: false
     t.string   "c_subdomain"
@@ -439,6 +507,12 @@ ActiveRecord::Schema.define(version: 20190302084240) do
     t.integer  "shop_category_id"
     t.boolean  "explore"
     t.string   "explore_image"
+    t.boolean  "trial"
+    t.date     "trial_start"
+    t.date     "trial_end"
+    t.integer  "p_layout_id"
+    t.boolean  "p_active"
+    t.boolean  "activatable"
     t.index ["cat_id"], name: "index_stores_on_cat_id", using: :btree
     t.index ["confirmation_token"], name: "index_stores_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
@@ -560,6 +634,9 @@ ActiveRecord::Schema.define(version: 20190302084240) do
   add_foreign_key "earnings", "stores"
   add_foreign_key "earnings", "transaction_statuses"
   add_foreign_key "feedbacks", "stores"
+  add_foreign_key "invoices", "order_statuses"
+  add_foreign_key "invoices", "stores"
+  add_foreign_key "invoices", "subscriptions"
   add_foreign_key "itransactions", "stores"
   add_foreign_key "orders", "stores"
   add_foreign_key "products", "categories"

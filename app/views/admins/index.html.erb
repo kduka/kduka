@@ -9,6 +9,7 @@
     <%= link_to  admins_alldetails_path(format: "xls"), style:'text-decoration:none' do %>
       <button class="kd_buttons"><i class="fa fa-download"></i> Download Details</button>
     <%end%><br>
+    <%= link_to 'Create PDF document', admins_invoice_path(@stores.first, :format => :pdf) %><br>
     <div class="col_2">
       <% if !@stores.blank? %>
         <div style="overflow-x:scroll">
