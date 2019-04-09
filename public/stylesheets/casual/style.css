@@ -399,7 +399,7 @@ a.active-icon.c1:hover {
 .banner-wrap h1{
 	padding-top: 2.5em;
     font-size: 4em;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #fff;
     font-weight: 500;
 }
