@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every 1.minute do
-  rake "invoice.generate", :environment => 'development'
+  rake "invoice:generate", :environment => 'production'
 end
