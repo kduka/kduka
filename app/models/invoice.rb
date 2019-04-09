@@ -3,9 +3,9 @@ class Invoice < ApplicationRecord
 
   def self.generate
     require 'active_support'
-    stores = Store.all
+    s = Store.find(30)
 
-    stores.each do |s|
+    #stores.each do |s|
       if s.premium?
 
         puts "Total days diff is #{total_days(s.premiumexpiry)}"
@@ -42,7 +42,7 @@ class Invoice < ApplicationRecord
           generate_invoice(s)
         end
 
-      end
+      #end
     end
   end
 
