@@ -93,6 +93,7 @@ Admin.create!([
 # Admin.create!([
 #                   {:email => 'fanuel@kduka.co.ke', :password => 'Fanuel@Kduka', :password_confirmation => 'Fanuel@Kduka'}
 #               ])
+=begin
 Font.create!([
                  {:name => 'Abril Fatface'},
                  {:name => 'Amatic SC'},
@@ -135,11 +136,8 @@ Font.create!([
                  {:name => 'Yanone Kaffeesatz'},
                  {:name => 'ZCOOL XiaoWei'},
              ])
-
-Admin.create!([
-                  {:email => 'fanuel@kduka.co.ke', :password => 'Fanuel@Kduka', :password_confirmation => 'Fanuel@Kduka'}
-              ])
 =end
+
 
 Plan.create!([
                               {:name => 'basic',:amount => '200'},
