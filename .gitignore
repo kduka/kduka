@@ -18,7 +18,7 @@
 /vendor
 /config/secrets.yml
 /config/database.yml
-
+/public/invoices
 
 
 # Ignore application configuration
