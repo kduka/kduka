@@ -34,6 +34,8 @@ gem 'json'
 gem 'zip-zip'
 gem 'wicked_pdf', '~> 1.1'
 gem 'wkhtmltopdf-binary'
+gem 'aws-sdk', '~> 1'
+gem 'whenever', require: false
 
 
 ruby "2.4.0"

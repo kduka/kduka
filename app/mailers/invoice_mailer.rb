@@ -1,28 +1,52 @@
 class InvoiceMailer < ApplicationMailer
 
-  def disconnect(s)
-    @store=s
-    attachments["#{s.name}_Invoice"] = File.read('path')
-
-    mail(to: s.email,subject: "Invoice for #{s.name} has been suspended due to pending invoice.")
-  end
-
-  def send_first_invoice(s,iid)
+  def disconnect(s,inv)
     require 'fileutils'
 
     @store=s
 
-    pdf = File.read("public/invoices/#{@store.id}/#{iid}_#{Time.now.strftime('%Y%m%d')}.pdf")
 
-    attachments["#{iid}_#{Time.now.strftime('%Y%m%d')}.pdf"] = pdf
+    if Rails.env.development?
+      pdf = File.read("public/invoices/#{@store.id}/#{inv.uid}_#{s.name}.pdf")
+    else
+      pdf = open("#{inv.url}").read
+    end
+
+    attachments["#{inv.uid}_#{s.name}.pdf"] = pdf
+
+    mail(to: s.email,subject: "Your store #{s.name} has been suspended due to pending invoice.")
+  end
+
+  def send_first_invoice(s,inv)
+    require 'fileutils'
+    require 'open-uri'
+
+    @store=s
+
+    if Rails.env.development?
+      pdf = File.read("public/invoices/#{@store.id}/#{inv.uid}_#{s.name}.pdf")
+    else
+      pdf = open("#{inv.url}").read
+    end
+
+    attachments["#{inv.uid}_#{s.name}.pdf"] = pdf
 
     mail(to: s.email,subject: "Invoice for #{s.name}")
   end
 
 
-  def send_reminder(s)
+  def send_reminder(s,inv)
+
     @store=s
-    attachments["#{s.name}_Invoice"] = attachments["#{s.name}_Invoice"] = File.read('path')
-    mail(to: s.email,subject: "#{s.name} is about to be suspended.")
+
+    if Rails.env.development?
+      pdf = File.read("public/invoices/#{@store.id}/#{inv.uid}_#{s.name}.pdf")
+    else
+      pdf = open("#{inv.url}").read
+    end
+
+    attachments["#{inv.uid}_#{s.name}.pdf"] = pdf
+
+    mail(to: s.email,subject: "Your store #{s.name} is about to be suspended")
   end
 end

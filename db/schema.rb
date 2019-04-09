@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190405083913) do
+ActiveRecord::Schema.define(version: 20190409044025) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -264,6 +264,11 @@ ActiveRecord::Schema.define(version: 20190405083913) do
     t.integer  "order_status_id"
     t.string   "i_id"
     t.string   "invoice"
+    t.boolean  "deliveries"
+    t.boolean  "firt_del"
+    t.boolean  "second_del"
+    t.string   "url"
+    t.string   "name"
     t.index ["order_status_id"], name: "index_invoices_on_order_status_id", using: :btree
     t.index ["store_id"], name: "index_invoices_on_store_id", using: :btree
     t.index ["subscription_id"], name: "index_invoices_on_subscription_id", using: :btree
