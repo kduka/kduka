@@ -1,12 +1,12 @@
 class InvoicesController < ApplicationController
-  def create
+  def generate
     require 'active_support'
-    ss = Store.find(1)
+    stores = Store.all
 
     stores.each do |s|
       if s.premium?
 
-        puts "Total days diff is #{total_days(s.premiumexpiry)}"
+        puts "Total days diff since premium is #{total_days(s.premiumexpiry)}"
 
         if total_days(s.premiumexpiry) < 0
           disconnect(s)
@@ -22,7 +22,7 @@ class InvoicesController < ApplicationController
       elsif s.trial
 
         puts "\n \n Trial Store \n \n "
-          puts "Total days diff is #{total_days(s.trial_end)}"
+          puts "Total days diff for trial is #{total_days(s.trial_end)}"
 
 
           if total_days(s.trial_end) <= 7
