@@ -17,7 +17,7 @@ class Invoice < ApplicationRecord
         elsif total_days(s.premiumexpiry) <= 7
           generate_invoice(s)
         else
-          puts "\n \n KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
+          puts "\n \n 1. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
           generate_invoice(s)
         end
 
@@ -44,7 +44,7 @@ class Invoice < ApplicationRecord
           puts "\n \n GENERATING INVOICE FOR #{s.name} \n \n "
           generate_invoice(s)
         else
-          puts "\n \n KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
+          puts "\n \n 2. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
           generate_invoice(s)
         end
 
