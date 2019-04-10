@@ -140,6 +140,7 @@ Rails.application.routes.draw do
   get 'products_imports/new' => 'products_imports#new'
   post 'products_imports/new' => 'products_imports#create'
   get 'admins/delete' => 'admins#deleter'
+  get 'admins/invoice' => 'admins#invoice'
   get 'invoices/invoice/:id' => 'invoices#invoice'
   get 'invoices/generate' => 'invoices#generate'
   get 'invoices/check_trials' => 'invoices#check_trials'
