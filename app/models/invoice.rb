@@ -3,11 +3,10 @@ class Invoice < ApplicationRecord
 
   def self.generate
     require 'active_support'
-    s = Store.find(1)
+    stores = Store.all
 
-    #stores.each do |s|
-    #
-    #
+    stores.each do |s|
+
     puts "store activatable is #{s.activatable}"
     if !s.activatable
 
@@ -65,7 +64,7 @@ class Invoice < ApplicationRecord
         generate_invoice(s)
       end
 
-      #end
+      end
     end
   end
 
