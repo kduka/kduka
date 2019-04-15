@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, at: '11:00 am' do
+every 1.day, at: '11:30 am' do
   rake "invoice:generate", :environment => 'production'
 end
