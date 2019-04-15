@@ -8,7 +8,8 @@ class Invoice < ApplicationRecord
     stores.each do |s|
 
     puts "store activatable is #{s.activatable}"
-    if !s.activatable
+
+    if s.activatable == false
 
       puts'skipping deactivated store'
 
