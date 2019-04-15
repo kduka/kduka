@@ -86,30 +86,56 @@ class IpnController < ApplicationController
 
       now = Time.now
 
-      if @order.description == 'year'
-        expire = now + 1.year
-        description = '1 year renewal'
-      elsif @order.description == 'bi'
-        expire = now + 6.month
-        description = '6 month renewal'
-      elsif @order.description == 'month'
-        description = '1 month renewal'
+      puts "ORDER DESC IS #{@order.description}"
+
+      if @store.premiumexpiry.nil?
+        puts "expiry is nil, adding one month to now"
+
         expire = now + 1.month
+
+        if @order.description == 'basic'
+          description = 'the basic plan'
+          plan_id = 1
+        elsif @order.description == 'premium'
+          description = 'the premium plan'
+          plan_id = 2
+        end
+
+      else
+        puts "expiry not yet reached, adding one month to #{@store.premiumexpiry}"
+
+        puts "total days is #{total_days(@store.premiumexpiry)} , expiry is #{@store.premiumexpiry} and new should be #{@store.premiumexpiry + 1.month}"
+
+        if total_days(@store.premiumexpiry) > 0
+
+          expire = @store.premiumexpiry + 1.month
+          @store.update(premiumexpiry:expire)
+        end
+
       end
+
       r = SubscriptionRecord.create(store_id: @order.store_id, start: now, expire: expire, subscription_id: @order.id, description: description)
-      @store.update(premium: true, premiumexpiry: expire)
+
+      if plan_id == 1
+        puts "Plan id is #{plan_id} proceeding"
+        reconnect(Store.find(@order.store_id), plan_id, expire)
+      elsif plan_id == 2
+        puts "Plan id is #{plan_id} proceeding"
+        reconnect_premium(Store.find(@order.store_id), plan_id, expire)
+      else
+        puts "Plan id is missing proceeding"
+      end
+      inv = Invoice.where(uid: ref.ref).first
+
+      inv.update(order_status_id: 6)
+
       PaymentsMailer.full_subscription_payment_recieved(@order, r).deliver
 
-=begin
-      PaymentsMailer.full_payment_recieved(@order).deliver
-      PaymentsMailer.merchant_payment_recieved(@order).deliver
-=end
+
     else
       @order.update(order_status_id: 5)
-=begin
       PaymentsMailer.partial_payment_recieved(@order).deliver
       PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
-=end
     end
   end
 
@@ -224,7 +250,7 @@ class IpnController < ApplicationController
     response = http.request(request)
     valcode = response.body
 
-    if valcode = 'aei7p7yrx4ae34'
+    if valcode == 'aei7p7yrx4ae34'
       #render :json => {'status': 'ok'}
       check_order(pars['id'], pars['mc'], pars['txncd'])
     end
@@ -294,6 +320,21 @@ class IpnController < ApplicationController
     else
       redirect_to("http://#{pars['p1']}/stores/premium")
     end
+  end
+
+  def reconnect_premium(s, pid, expire)
+    s.update(premium: true, active: s.p_active, layout_id: s.p_layout_id, activatable: true, plan_id: pid, premiumexpiry: expire, trial: false)
+  end
+
+  def reconnect(s, pid, expire)
+    s.update(premium: false, active: s.p_active, plan_id: pid, activatable: true, premiumexpiry: expire, trial: false)
+  end
+
+  def total_days(expiry)
+    if expiry.nil?
+      expiry = DateTime.now
+    end
+    difference_in_days = (expiry - Date.today).to_i
   end
 
 end

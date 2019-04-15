@@ -857,33 +857,33 @@ $(function () {
 
     $("#up1").click(function () {
         $.ajax({
-            url: '/stores/create_year',
+            url: '/stores/create_basic',
             method: 'post',
             data: {
-                type: 'year'
+                type: 'basic'
             },
             success: function (e) {
-                $("#yearly_modal").html("");
-                $("#yearly_modal").html(e);
+                $("#basic").html("");
+                $("#basic").html(e);
             }
         })
     });
 
     $("#up2").click(function () {
         $.ajax({
-            url: '/stores/create_bi',
+            url: '/stores/create_premium',
             method: 'post',
             data: {
-                type: 'bi'
+                type: 'premium'
             },
             success: function (e) {
-                $("#bi_modal").html("");
-                $("#bi_modal").html(e);
+                $("#premium").html("");
+                $("#premium").html(e);
             }
         })
     });
 
-    $("#up3").click(function () {
+   /* $("#up3").click(function () {
         $.ajax({
             url: '/stores/create_month',
             method: 'post',
@@ -895,7 +895,7 @@ $(function () {
                 $("#monthly_modal").html(e);
             }
         })
-    });
+    });*/
 
     $("#pay_confirm").click(function (e) {
         $(".conf_text").html("Confirming Order ...");

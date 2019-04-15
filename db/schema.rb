@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190409044025) do
+ActiveRecord::Schema.define(version: 20190617044247) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -513,10 +513,13 @@ ActiveRecord::Schema.define(version: 20190409044025) do
     t.integer  "p_layout_id"
     t.boolean  "p_active"
     t.boolean  "activatable"
+    t.integer  "plan_id"
+    t.boolean  "p_explore"
     t.index ["cat_id"], name: "index_stores_on_cat_id", using: :btree
     t.index ["confirmation_token"], name: "index_stores_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_stores_on_email", unique: true, using: :btree
     t.index ["layout_id"], name: "index_stores_on_layout_id", using: :btree
+    t.index ["plan_id"], name: "index_stores_on_plan_id", using: :btree
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true, using: :btree
     t.index ["shop_category_id"], name: "index_stores_on_shop_category_id", using: :btree
     t.index ["subdomain"], name: "index_stores_on_subdomain", unique: true, using: :btree
@@ -645,6 +648,7 @@ ActiveRecord::Schema.define(version: 20190409044025) do
   add_foreign_key "store_deliveries", "stores"
   add_foreign_key "stores", "cats"
   add_foreign_key "stores", "layouts"
+  add_foreign_key "stores", "plans"
   add_foreign_key "stores", "shop_categories"
   add_foreign_key "sub_categories", "categories"
   add_foreign_key "subscription_records", "stores"

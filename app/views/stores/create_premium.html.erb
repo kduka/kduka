@@ -1,0 +1,66 @@
+
+<div class="col-md-6 col-md-offset-3 col-xs-12" style="margin-bottom:3em;margin-top:4em;padding: 2em;background-color: #fff">
+  <h1 style="text-align:center;font-size:35px;font-weight:700">Upgrade to premium plan?</h1><br><br>
+  <br>
+
+  <form method="post" action="https://payments.ipayafrica.com/v3/ke">
+    <input type="hidden" name="live" value="<%= ENV['ipay_live'] %>">
+    <% # TODO  Check autopay %>
+    <input type="hidden" name="oid" value="<%= @order.ref %>">
+    <input type="hidden" name="inv" value="<%= @order.ref %>">
+    <input type="hidden" name="ttl" value="<%= @order.amount %>">
+    <input type="hidden" name="tel" value="<%= current_store.phone %>">
+    <input type="hidden" name="eml" value="<%= current_store.email %>">
+    <input type="hidden" name="vid" value="<%= ENV['ipay_vid'] %>">
+    <input type="hidden" name="curr" value="KES">
+    <input type="hidden" name="p1" value="<%= "#{request.subdomain}.#{request.domain}" %>">
+    <input type="hidden" name="p2" value="">
+    <input type="hidden" name="p3" value="">
+    <input type="hidden" name="p4" value="">
+    <input type="hidden" name="cbk" value="<%= "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub" %>">
+    <input type="hidden" name="cst" value="<%= ENV['ipay_cst_flag'] %>">
+    <input type="hidden" name="crl" value="<%= ENV['ipay_crl_flag'] %>">
+    <input type="hidden" name="hsh" value="<%= @hash %>">
+    <!--    <input type="submit" value="Pay and Complete">-->
+    <div class="text-center">
+      <button type="submit" class='kd_buttons' id="pay_month"><span class="conf_text">Upgrade</span></button>
+      <button type="button" class='kd_reset' data-dismiss="modal">Cancel</button>
+    </div>
+  </form>
+  <br><br>
+
+</div>
+
+<script>
+    /*$(function () {
+        $("#pay_month").click(function (e) {
+            $(".conf_text").html("Confirming Order ...");
+            ref = $("#month_ref").val();
+            $.ajax({
+                url: '/stores/confirm_sub',
+                method: 'post',
+                data: {
+                    ref: ref
+                },
+                success: function (e) {
+                    if (e == "complete") {
+                        $(".conf_text").html("Success!");
+                        $(".conf_message").html("<span style='color: green'>Payment Complete.Your order has been placed. Check the provided email for further details! </span>");
+                        window.location = "/stores/premium"
+                    } else if (e == 'none') {
+                        $(".conf_text").html("Confirm");
+                        $(".conf_message").html("<span style='color: red'>Payment not complete. Try again after a few seconds</span>");
+                    } else if (e == 'shipped') {
+                        $(".conf_text").html("Confirm");
+                        $(".conf_message").html("<span style='color: #06b216'>Order Complete and Shipped</span>");
+                        window.location = "/stores/premium"
+                    } else {
+                        $(".conf_text").html("Confirm");
+                        $(".conf_message").html("<span style='color: red'>" + e + "</span>");
+                    }
+                }
+            });
+        });
+
+    });*/
+</script>

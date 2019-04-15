@@ -226,21 +226,21 @@ end
   def activate
     @store = Store.find(current_store.id)
     if @store.activatable
-    if @store.important == true
-      if @store.update(active: true)
-        flash[:notice] = "Your store has been activated"
-        redirect_to(request.referer)
-      else
-        flash[:alert] = "Something went wrong. Please Try again."
-        redirect_to(request.referer)
+      if @store.important == true
+        if @store.update(active: true)
+          flash[:notice] = "Your store has been activated"
+          redirect_to(request.referer)
+        else
+          flash[:alert] = "Something went wrong. Please Try again."
+          redirect_to(request.referer)
+        end
+      elsif @store.important == false
+        redirect_to(stores_active_path)
       end
-    elsif @store.important == false
-      redirect_to(stores_active_path)
-    end
     else
-      flash[:alert] = "You do not have any active subscription. <a href='stores/premium'> Click here to subscribe to a plan </a>"
+      flash[:alert] = "You do not have any active subscription. <a href='/stores/premium'> Click here to subscribe to a plan </a>"
       redirect_to(request.referer)
-      end
+    end
   end
 
   def deactivate
@@ -673,13 +673,20 @@ end
   end
 
   def premium
+    @invoices = Invoice.where(store_id: current_store.id, order_status_id: 6).order(' created_at DESC')
+    @latest = Invoice.where(store_id: current_store.id, order_status_id: 5).last
     set_shop_show
   end
 
-  def create_year
-    exist = Subscription.where(order_status_id: 5, description: 'year', amount: 4500, store_id:current_store.id).first
+  def create_basic
+    puts 'check existing'
+    exist = Subscription.where(order_status_id: 5, description: 'basic', amount: 200, store_id: current_store.id).last
+
     if exist.nil?
-      @order = Subscription.create(amount: 4500, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'year', order_status_id: 5, store_id: current_store.id)
+      puts 'existing not found'
+      generate_invoice(current_store, 'basic')
+      @order = @sub
+
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
       p1 = "#{request.subdomain}.#{request.domain}"
@@ -688,6 +695,7 @@ end
 
       @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
     else
+      puts "Existing invoice has ref #{exist.ref}"
       @order = exist
 
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
@@ -701,11 +709,14 @@ end
     no_layout
   end
 
-  def create_bi
-    exist = Subscription.where(order_status_id: 5, description: 'bi', amount: 2395, store_id:current_store.id).first
+  def create_premium
+    puts 'checking existing'
+    exist = Subscription.where(order_status_id: 5, description: 'premium', amount: 420, store_id: current_store.id).first
 
     if exist.nil?
-      @order = Subscription.create(amount: 2395, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'bi', order_status_id: 5, store_id: current_store.id)
+      puts 'existing not found'
+      generate_invoice(current_store, 'premium')
+      @order = @sub
 
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
@@ -715,6 +726,7 @@ end
 
       @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
     else
+      puts "Existing invoice has ref #{exist.ref}"
       @order = exist
 
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
@@ -729,10 +741,12 @@ end
   end
 
   def create_month
-    exist = Subscription.where(order_status_id: 5, description: 'month', amount: 420, store_id:current_store.id).first
+    exist = Subscription.where(order_status_id: 5, description: 'month', amount: 420, store_id: current_store.id).first
 
     if exist.nil?
-      @order = Subscription.create(amount: 420, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'month', order_status_id: 5, store_id: current_store.id)
+
+      generate_invoice(current_store, 'premium')
+      #@order = Subscription.create(amount: 420, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'month', order_status_id: 5, store_id: current_store.id)
 
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
@@ -742,6 +756,7 @@ end
 
       @hash = OpenSSL::HMAC.hexdigest(digest, key, data)
     else
+      puts "Existing invoice has ref #{exist.ref}"
       @order = exist
 
 
@@ -784,7 +799,6 @@ end
     flash[:notice] = "Feedback sent!"
     redirect_to(stores_path)
   end
-
 
   #iPay B2C Process
 
@@ -1519,6 +1533,175 @@ end
 
     end
   end
+
+  def generate_invoice(store, plan)
+
+    invoice = Invoice.where(store_id: store.id, description: plan, order_status_id: 5).last
+
+    if invoice.nil?
+
+      puts "\n \n Not Nil invoice \n \n "
+
+      pl = Plan.where(name: plan).first
+
+      amount = pl.amount
+      desc = pl.name
+
+
+      uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
+
+      tempinv = Invoice.where(store_id: store.id, order_status_id: 5).last rescue nil
+
+      if tempinv
+
+        if Rails.env.development?
+          File.delete( Rails.root.join("public/invoices/#{store.id}/", "#{uid}_#{store.name}.pdf")) if File.exist?( Rails.root.join("public/invoices/#{store.id}/", "#{uid}_#{store.name}.pdf"))
+        else
+          delete_s3(tempinv,store)
+        end
+
+      tempinv.delete
+      end
+
+      tempsub = Subscription.where(order_status_id: 5, store_id: current_store.id).last
+
+      if tempsub
+        tempsub.delete
+      end
+
+      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 5, description: plan.to_s)
+
+      if store.premiumexpiry.nil?
+        puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
+        from = Time.now - 1.month
+        to = Time.now
+      else
+        puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
+        from = store.premiumexpiry - 1.month
+        to = store.premiumexpiry
+      end
+
+      if sub
+        new_inv = Invoice.create(from: from, to: to,
+                                 uid: uid, store_id: store.id, amount: amount, issued: Time.now, due: Time.now + 7.days,
+                                 tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, order_status_id: 5, invoice: "#{uid}_#{store.name}", description:plan)
+
+        if new_inv
+
+
+          FileUtils.mkdir_p "public/invoices/#{store.id}/"
+
+
+          @store = store
+          @invoice = new_inv
+          @sub = sub
+
+          pdf = WickedPdf.new.pdf_from_string(ApplicationController.new.render_to_string(
+              :template => "invoices/invoice.html",
+              :layout => 'pdf.html',
+              :locals => {:@store => @store, :@invoice => @invoice, :@sub => @sub}
+          )
+          )
+
+          if Rails.env.development?
+            save_path = Rails.root.join("public/invoices/#{store.id}/", "#{uid}_#{store.name}.pdf")
+            File.open(save_path, 'wb') do |file|
+              file << pdf
+            end
+          else
+            save_path = Rails.root.join("public/invoices/#{store.id}/", "#{uid}_#{store.name}.pdf")
+            File.open(save_path, 'wb') do |file|
+              file << pdf
+            end
+            if upload(new_inv, store)
+              File.delete(save_path) if File.exist?(save_path)
+            end
+
+          end
+        end
+      end
+
+    else
+      @sub = Subscription.where(ref: invoice.uid).first
+      return true
+    end
+  end
+
+  def reverse_total_days(issue_day)
+    difference_in_days = (Date.today - issue_day).to_i
+  end
+
+  def upload(invoice, s)
+
+    puts "Starting Upload"
+    # Make an object in your bucket for your upload
+    obj = S3_BUCKET.objects["invoices/#{s.id}/#{invoice.uid}_#{s.name}.pdf"]
+
+    # Upload the file
+    obj.write(
+        file: "public/invoices/#{s.id}/#{invoice.uid}_#{s.name}.pdf",
+        acl: :public_read
+    )
+
+    # Create an object for the upload
+    @upload = invoice.update(
+        url: obj.public_url,
+        name: obj.key
+    )
+
+    # Save the upload
+    if @upload
+      true
+    else
+      false
+    end
+  end
+
+  def delete_s3(invoice,s)
+    obj = S3_BUCKET.objects["invoices/#{s.id}/#{invoice.uid}_#{s.name}.pdf"]
+
+    # Upload the file
+    obj.delete
+  end
+
+
+  def read_s3(invoice,s)
+
+    FileUtils.mkdir_p "public/invoices/#{s.id}/"
+
+    File.open("#{Rails.root}/public/invoices/#{s.id}/#{invoice.invoice}.pdf", 'wb') do |file|
+      S3_BUCKET.objects["invoices/#{s.id}/#{invoice.invoice}.pdf"].read do |chunk|
+        file.write(chunk)
+      end
+    end
+  end
+
+  def download
+    invoice = params[:id]
+    file = Invoice.where(uid: invoice, store_id: current_store.id).first
+
+    if file.nil?
+      flash[:alert] = "Invalid invoice"
+      redirect_to(request.referer) and return
+    else
+      if Rails.env.development?
+        send_file(
+            "#{Rails.root}/public/invoices/#{current_store.id}/#{file.invoice}.pdf",
+            filename: "#{file.invoice}.pdf",
+            type: "application/pdf"
+        )
+      else
+        read_s3(file,current_store)
+        send_file(
+            "#{Rails.root}/public/invoices/#{current_store.id}/#{file.invoice}.pdf",
+            filename: "#{file.invoice}.pdf",
+            type: "application/pdf"
+        )
+      end
+    end
+  end
+
+
 
 
   private

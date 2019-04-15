@@ -1,9 +1,9 @@
 class InvoicesController < ApplicationController
   def generate
     require 'active_support'
-    stores = Store.all
+    s = Store.find(2)
 
-    stores.each do |s|
+    #stores.each do |s|
       if s.premium?
 
         puts "Total days diff since premium is #{total_days(s.premiumexpiry)}"
@@ -46,7 +46,7 @@ class InvoicesController < ApplicationController
           generate_invoice(s)
         end
 
-      end
+      #end
     end
   end
 
@@ -72,13 +72,15 @@ class InvoicesController < ApplicationController
 
       if store.premium.blank? || store.premium
         amount = Plan.where(name: 'premium').first.amount
+        desc = 'premium'
       else
         amount = Plan.where(name: 'basic').amount
+        desc = 'basic'
       end
 
       uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
 
-      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 2, description: 'month')
+      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 2, description: desc)
 
       if store.premiumexpiry.nil?
         puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
@@ -102,6 +104,8 @@ class InvoicesController < ApplicationController
           end
 
           @store = store
+          @invoice = new_inv
+          @sub = sub
 
           pdf = WickedPdf.new.pdf_from_string(
               render_to_string("invoices/invoice.html", layout: 'pdf.html'),
@@ -151,7 +155,7 @@ class InvoicesController < ApplicationController
 
   def disconnect(store)
 
-    disconnect = store.update(premium: false, p_active: store.active, active: false, p_layout_id: store.layout_id, layout_id: 1, activatable: false)
+    disconnect = store.update(premium: false, p_active: store.active, active: false, p_layout_id: store.layout_id, layout_id: 1, activatable: false, plan_id:nil, trial:nil)
 
     if disconnect
       invoice = Invoice.where(store_id: store.id).last
@@ -160,13 +164,15 @@ class InvoicesController < ApplicationController
 
         if store.premium.blank? || store.premium
           amount = Plan.where(name: 'premium').first.amount
+          desc = 'premium'
         else
           amount = Plan.where(name: 'basic').amount
+          desc = 'basic'
         end
 
         uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
 
-        sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 2, description: 'month')
+        sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 2, description: desc)
 
         if sub
           new_inv = Invoice.create(from: Time.now - 1.month, to: Time.now,
@@ -180,6 +186,8 @@ class InvoicesController < ApplicationController
             end
 
             @store = store
+            @invoice = new_inv
+            @sub = sub
 
             pdf = WickedPdf.new.pdf_from_string(
                 render_to_string("invoices/invoice.html", layout: 'pdf.html'),
@@ -218,6 +226,9 @@ class InvoicesController < ApplicationController
   end
 
   def invoice
+    @store = Store.find(1)
+    @sub = Subscription.where(store_id: 1).first
+    @invoice = Invoice.where(store_id: 1).first
     respond_to do |format|
       format.html
       format.pdf do

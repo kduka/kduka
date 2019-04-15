@@ -4,6 +4,7 @@ class InvoiceMailer < ApplicationMailer
     require 'fileutils'
 
     @store=s
+    @invoice = inv
 
 
     if Rails.env.development?
@@ -23,6 +24,7 @@ class InvoiceMailer < ApplicationMailer
     require 'open-uri'
 
     @store=s
+    @invoice = inv
 
     if Rails.env.development?
       pdf = File.read("public/invoices/#{@store.id}/#{inv.uid}_#{s.name}.pdf")
@@ -39,6 +41,7 @@ class InvoiceMailer < ApplicationMailer
   def send_reminder(s,inv)
 
     @store=s
+    @invoice = inv
 
     if Rails.env.development?
       pdf = File.read("public/invoices/#{@store.id}/#{inv.uid}_#{s.name}.pdf")

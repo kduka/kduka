@@ -245,7 +245,7 @@
                                       <tr>
                                         <td align="center">
                                           <br>
-                                          <h1 style="color:#7aae42;font-size:30px;font-weight:700;">Your website <%= @store.name %> has been suspended. </h1>
+                                          <h1 style="color:#7aae42;font-size:30px;font-weight:700;">Urgent! Please make a payment for <%= @store.name %>. </h1>
                                         </td>
                                       </tr>
                                       <tr>
@@ -285,7 +285,7 @@
                 <table class="one-column" border="0" cellpadding="40" cellspacing="0" width="100%" style="border-spacing:0;" bgcolor="#FFFFFF">
                   <tr>
                     <td align="center">
-                      <p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;">Your account has been suspended due to non-payment. Find the invoice attached. If this is a mistake, please contact us with the methods given below</p>
+                      <p style="color:#5b5f65;font-size:18px;text-align:center;font-family:Verdana, Geneva, sans-serif;">Your invoice for the period <%= "#{@invoice.from} - #{@invoice.to}" %> has not been paid for. Please login to your store to make a payment before <%= @invoice.due %>. Your store will be suspended on the due date.</p>
                       <!-- START BUTTON -->
                       <center>
                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -300,13 +300,13 @@
                                 <tbody>
                                 <tr>
                                   <td align="center">
-                                    <!--                                    <table border="0" cellpadding="0" cellspacing="0" style="margin:0 auto;">
-                                                                          <tr>
-                                                                            <td width="250" height="60" align="center" bgcolor="#7aae42" style="border-radius:7px;">
-                                                                              <a href="http://www.kduka.co.ke/stores" style="border-radius:5px;display:block;text-decoration:none;border:0;text-align:center;font-weight:bold;font-size:18px;font-family:Arial, sans-serif;color:#ffffff;background:#7aae42;" class="button_link">Manage Store</a>
-                                                                            </td>
-                                                                          </tr>
-                                                                        </table>-->
+                                    <table border="0" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+                                      <tr>
+                                        <td width="250" height="60" align="center" bgcolor="#7aae42" style="border-radius:7px;">
+                                          <a href="http://www.kduka.co.ke/stores/premium" style="border-radius:5px;display:block;text-decoration:none;border:0;text-align:center;font-weight:bold;font-size:18px;font-family:Arial, sans-serif;color:#ffffff;background:#7aae42;" class="button_link">Make Payment</a>
+                                        </td>
+                                      </tr>
+                                    </table>
                                   </td>
                                 </tr>
                                 </tbody>

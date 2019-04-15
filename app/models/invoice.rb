@@ -3,50 +3,67 @@ class Invoice < ApplicationRecord
 
   def self.generate
     require 'active_support'
-    s = Store.find(30)
+    s = Store.find(1)
 
     #stores.each do |s|
-      if s.premium?
+    #
+    #
+    puts "store activatable is #{s.activatable}"
+    if !s.activatable
 
-        puts "Total days diff is #{total_days(s.premiumexpiry)}"
+      puts'skipping deactivated store'
 
-        if total_days(s.premiumexpiry) < 0
-          disconnect(s)
-        elsif total_days(s.premiumexpiry) == 1
-          send_final_invoice(s)
-        elsif total_days(s.premiumexpiry) <= 7
-          generate_invoice(s)
-        else
-          puts "\n \n 1. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
-          generate_invoice(s)
-        end
+    elsif s.plan_id == 2
 
-      elsif s.trial
+      puts "Total days diff is #{total_days(s.premiumexpiry)}"
 
-        puts "\n \n Trial Store \n \n "
-        puts "Total days diff is #{total_days(s.trial_end)}"
-
-
-        if total_days(s.trial_end) <= 7
-          generate_invoice(s)
-        end
-
+      if total_days(s.premiumexpiry) < 0
+        disconnect(s)
+      elsif total_days(s.premiumexpiry) == 1
+        send_final_invoice(s)
+      elsif total_days(s.premiumexpiry) <= 7
+        generate_invoice(s)
       else
-        puts "\n \n This is not premium \n \n "
+        puts "\n \n 1. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
+        generate_invoice(s)
+      end
 
-        if total_days(s.premiumexpiry) < 0
-          puts "\n \n DISCONNECTING #{s.name} \n \n "
-          disconnect(s)
-        elsif total_days(s.premiumexpiry) == 1
-          puts "\n \n SENDING INVOICE FOR #{s.name} \n \n "
-          send_final_invoice(s)
-        elsif total_days(s.premiumexpiry) <= 7
-          puts "\n \n GENERATING INVOICE FOR #{s.name} \n \n "
-          generate_invoice(s)
-        else
-          puts "\n \n 2. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
-          generate_invoice(s)
-        end
+    elsif s.trial
+
+      puts "\n \n Trial Store \n \n "
+      puts "Total days diff is #{total_days(s.trial_end)}"
+
+      if total_days(s.trial_end) < 0
+        puts "disconnecting trial store"
+        disconnect(s)
+      elsif total_days(s.trial_end) == 1
+        puts "sending final invoice trial store"
+        send_final_invoice(s)
+      elsif total_days(s.trial_end) <= 7
+        puts "generating invoice for trial store"
+        generate_invoice(s)
+      else
+        puts "\n \n 1. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
+        generate_invoice(s)
+      end
+
+
+    else
+      puts "\n \n This is not premium \n \n "
+
+      if total_days(s.premiumexpiry) < 0
+        puts "\n \n DISCONNECTING #{s.name} \n \n "
+        disconnect(s)
+      elsif total_days(s.premiumexpiry) == 1
+        puts "\n \n SENDING INVOICE FOR #{s.name} \n \n "
+        send_final_invoice(s)
+      elsif total_days(s.premiumexpiry) <= 7
+        puts "\n \n GENERATING INVOICE FOR #{s.name} \n \n "
+        generate_invoice(s)
+      else
+        puts "\n \n 2. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
+        generate_invoice(s)
+      end
 
       #end
     end
@@ -68,24 +85,30 @@ class Invoice < ApplicationRecord
 
     invoice = Invoice.where(store_id: store.id).last
 
+    puts "Is invoice nil? #{invoice.nil?}, reverse total days is #{reverse_total_days(invoice.issued) rescue nil}"
+
     if invoice.nil? || reverse_total_days(invoice.issued) > 20
 
       puts "\n \n Not Nil invoice \n \n "
 
       if store.premium.blank? || store.premium
         amount = Plan.where(name: 'premium').first.amount
+        desc = 'premium'
       else
         amount = Plan.where(name: 'basic').amount
+        desc = 'basic'
       end
 
       uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
 
-      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 2, description: 'month')
+
+      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 5, description: desc)
 
       if store.premiumexpiry.nil?
         puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
         from = Time.now - 1.month
         to = Time.now
+
       else
         puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
         from = store.premiumexpiry - 1.month
@@ -99,9 +122,11 @@ class Invoice < ApplicationRecord
 
         if new_inv
 
-          if Rails.env.development?
-            FileUtils.mkdir_p "public/invoices/#{store.id}/"
-          end
+          #puts " \n \n invoice id is #{new_inv.id} and issued is #{new_inv.issued} and invoice id is #{new_inv.uid}"
+
+
+          FileUtils.mkdir_p "public/invoices/#{store.id}/"
+
 
           @store = store
 
@@ -109,9 +134,9 @@ class Invoice < ApplicationRecord
               ApplicationController.new.render_to_string(
                   :template => "invoices/invoice.html",
                   :layout => 'pdf.html',
-                  :locals => { :@store => @store }
+                  :locals => {:@store => @store,:@invoice => new_inv}
               )
-              )
+          )
 
           if Rails.env.development?
             save_path = Rails.root.join("public/invoices/#{store.id}/", "#{uid}_#{store.name}.pdf")
@@ -127,6 +152,8 @@ class Invoice < ApplicationRecord
               File.delete(save_path) if File.exist?(save_path)
             end
           end
+
+
 
           InvoiceMailer::send_first_invoice(store, new_inv).deliver
         end
@@ -157,22 +184,26 @@ class Invoice < ApplicationRecord
 
   def self.disconnect(store)
 
-    disconnect = store.update(premium: false, p_active: store.active, active: false, p_layout_id: store.layout_id, layout_id: 1, activatable: false)
+    disconnect = store.update(premium: false, p_active: store.active, active: false, p_layout_id: store.layout_id, layout_id: 1, activatable: false, plan_id:nil, trial:false,p_explore:store.explore,explore:false)
 
     if disconnect
+      puts "\n \n disconnect successfull"
       invoice = Invoice.where(store_id: store.id).last
 
       if invoice.nil?
+        puts " \n \n existing invoice not found"
 
-        if store.premium.blank? || store.premium
+        if store.plan_id.nil? || store.premium
           amount = Plan.where(name: 'premium').first.amount
+          desc = 'premium'
         else
           amount = Plan.where(name: 'basic').amount
+          desc = 'basic'
         end
 
         uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
 
-        sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 2, description: 'month')
+        sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 5, description: desc)
 
         if sub
           new_inv = Invoice.create(from: Time.now - 1.month, to: Time.now,
@@ -181,9 +212,9 @@ class Invoice < ApplicationRecord
 
           if new_inv
 
-            if Rails.env.development?
-              FileUtils.mkdir_p "public/invoices/#{store.id}/"
-            end
+
+            FileUtils.mkdir_p "public/invoices/#{store.id}/"
+
 
             @store = store
 
@@ -191,9 +222,9 @@ class Invoice < ApplicationRecord
                 ApplicationController.new.render_to_string(
                     :template => "invoices/invoice.html",
                     :layout => 'pdf.html',
-                    :locals => { :@store => @store}
+                    :locals => {:@store => @store,:@invoice => new_inv}
                 )
-                )
+            )
 
             if Rails.env.development?
               save_path = Rails.root.join("public/invoices/#{store.id}/", "#{uid}_#{store.name}.pdf")
@@ -210,6 +241,7 @@ class Invoice < ApplicationRecord
         end
 
       else
+        puts " \n \n existing invoice found"
         done = invoice.deliveries
         if !done
           InvoiceMailer::disconnect(store, invoice).deliver
@@ -220,11 +252,11 @@ class Invoice < ApplicationRecord
   end
 
   def self.reconnect_premium(s)
-    s.update(premium: true, active: s.p_active, layout_id: s.p_layout_id, activatable: true)
+    s.update(premium: true, active: s.p_active, layout_id: s.p_layout_id, activatable: true, explore:s.p_explore)
   end
 
   def self.reconnect(s)
-    s.update(premium: false, active: s.p_active)
+    s.update(premium: false, active: s.p_active,activatable: true, explore:s.p_explore)
   end
 
   def self.invoice
@@ -239,6 +271,8 @@ class Invoice < ApplicationRecord
   end
 
   def self.upload(invoice, s)
+
+    puts "Starting Upload"
     # Make an object in your bucket for your upload
     obj = S3_BUCKET.objects["invoices/#{s.id}/#{invoice.uid}_#{s.name}.pdf"]
 

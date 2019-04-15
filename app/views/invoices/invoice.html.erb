@@ -260,22 +260,27 @@
 
     <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=624
            style='width:468.25pt;border-collapse:collapse'>
-      <tr style='height:63.0pt'>
+
+      <tr style='height:63.0pt; margin-top: 1em;margin-bottom: 1em;'>
+      <tr>
+
+      </tr>
         <td width=336 colspan=3 valign=bottom style='width:3.5in;padding:0in 5.75pt 0in 5.75pt;
             height:63.0pt'>
           <h1><span style='position:relative;z-index:-1895824384'><span
-            style='position:absolute;left:-32px;top:-25px;width:675px;height:867px'><img
-            width=675 height=867 src="KDuka%20Invoice_files/image001.gif"></span></span>INVOICE</h1>
+            style='position:absolute;left:-32px;top:-25px;width:675px;height:867px'><img width=675 height=890 src="" style="border-style: solid"/></span></span>INVOICE</h1>
         </td>
+
         <td width=288 colspan=2 style='width:216.25pt;padding:0in 5.75pt 0in 5.75pt;
-            height:63.0pt'>
-          <p class=DateandNumber><span style='font-size:9.0pt;line-height:110%;
-              font-family:"Cambria",serif'>Date: <%= Time.now.strftime("%Y-%m-%d") %></span></p>
-          <p class=DateandNumber><span style='font-size:9.0pt;line-height:110%;
-              font-family:"Cambria",serif'>Invoice Number ZO/0329/019</span></p>
+            height:63.0pt'><br>
+          <p class=DateandNumber><span style='font-size:9.0pt;line-height:110%;color:#7AAE42;
+              font-family:"Cambria",serif'>Date: <%= @invoice.issued rescue Time.now.strftime("%Y-%m-%d") %></span></p>
+          <p class=DateandNumber><span style='font-size:9.0pt;line-height:110%;color:#7AAE42;
+              font-family:"Cambria",serif'></span></p>
         </td>
       </tr>
-      <tr style='height:1.25in'>
+      <tr style="height: 2em;"></tr>
+      <tr style='height:1.25in;margin-top: 2em !important;'>
         <td width=294 colspan=2 valign=top style='width:220.5pt;background:white;
             padding:0in 5.75pt 0in 5.75pt;height:1.25in'>
           <p class=leftalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>KDUKA
@@ -298,17 +303,14 @@
         </td>
         <td width=288 colspan=2 valign=top style='width:3.0in;background:white;
             padding:0in 5.75pt 0in 5.75pt;height:1.25in'>
-          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'><%= @store.name %></span></p>
+          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>Store Name: <%= @store.name %></span></p>
           <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
-          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>PHONE
-  NUMBER</span></p>
-          <p class=rightalignedtext align=left style='text-align:left'><span
-            style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>Phone Number: +254<%= @store.phone %></span> </p>
+          <p class=rightalignedtext align=left style='text-align:left'><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
           <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>Kenya</span></p>
-          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
-          <p class=rightalignedtext align=left style='text-align:left'><span
-            style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
-          <p class=rightalignedtext><span style='font-size:11.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+          <p class=rightalignedtext align=left style='text-align:left'><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
+
+          <p class=rightalignedtext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;Invoice Number: <%= @invoice.uid %></span></p>
         </td>
       </tr>
       <tr style='height:.2in'>
@@ -340,12 +342,11 @@
         <td width=504 colspan=4 style='width:378.15pt;border-top:none;border-left:
             solid #BFBFBF 1.0pt;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in 5.75pt 0in 5.75pt;height:15.75pt'>
-          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'>Item
-  Billed</span></p>
+          <p class=MsoNormal><span style='font-size:9.0pt;font-family:"Cambria",serif'><%= "#{@store.name.humanize} charges for the period : #{@invoice.from} - #{@invoice.to}" %></span></p>
         </td>
         <td width=120 style='width:90.1pt;border:none;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in .15in 0in 5.75pt;height:15.75pt'>
-          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'>Price</span></p>
+          <p class=Amount><span style='font-size:9.0pt;font-family:"Cambria",serif'><%= @invoice.amount %></span></p>
         </td>
       </tr>
       <tr style='height:15.3pt'>
@@ -489,7 +490,7 @@
         <td width=120 style='width:90.1pt;border-top:none;border-left:none;
             border-bottom:solid #BFBFBF 1.0pt;border-right:solid #BFBFBF 1.0pt;
             background:white;padding:0in .15in 0in 5.75pt;height:15.3pt'>
-          <p class=Amount><b><span style='font-size:10.0pt;font-family:"Cambria",serif'>Total</span></b></p>
+          <p class=Amount><b><span style='font-size:10.0pt;font-family:"Cambria",serif'><%= @invoice.amount %></span></b></p>
         </td>
       </tr>
       <tr style='height:40.0pt'>
@@ -503,10 +504,12 @@
         </td>
         <td width=288 colspan=2 style='width:216.25pt;padding:0in 5.75pt 0in 5.75pt;
             height:40.0pt'>
-          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'>Payment
-  Details:</span></p>
-          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>
-          <p class=lowertext>&nbsp;</p>
+<!--          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'>Payment
+  Details:</span></p>-->
+          <p class=lowertext><span style='font-size:10.0pt;color:#7AAE42;font-weight:bold;font-family:"Cambria",serif'>&nbsp <%= image_tag('https://www.kduka.co.ke/images/website/logo.png',style: 'width:200px;height:auto') %></span></p>
+<!--          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;Paybill Number: 766645</span></p>
+          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;Account Number: <%#= @sub.ref %></span></p>
+          <p class=lowertext><span style='font-size:10.0pt;font-family:"Cambria",serif'>&nbsp;</span></p>-->
           <p class=thankyou>Thank you for your business!</p>
         </td>
       </tr>

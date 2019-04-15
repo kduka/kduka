@@ -11,72 +11,206 @@
     text-transform: capitalize;
     text-align: center;
   }
+
   .pricing_shadow {
     box-shadow: 0px 0px 15px 0px #D6D6D6;
     min-height: 12em;
-    background: rgba(204,204,204,0.7);
+    background: rgba(204, 204, 204, 0.7);
     margin-bottom: 2em;
     transition: all 0.5s;
     text-align: center;
     font-weight: bold;
   }
+
   .pricing_shadow:hover {
     transform: scale(1.05);
     transition: all 0.5s;
   }
 </style>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 <div class="content_bottom" style="margin-top:2em">
 
-<h3 style="color:#7aae42"><i class="fa fa-money"></i> Upgrade</h3>
- <div class="col-md-12 span_3">
-   <br><br>
-  <% if @store.premium %>
-    <h3 style="color:#7aae42"></i>You are currently on our premium plan until <%= @store.premiumexpiry %></h3>
+  <h3 style="color:#7aae42"><i class="fa fa-money"></i> Upgrade</h3>
+  <div class="col-md-12 span_3">
+    <br><br>
+    <% if !@store.plan_id.nil? %>
 
-    <div class="clearfix"> </div>
-  <% else %>
+      <% plan = Plan.find(current_store.plan_id).name.humanize %>
+      <h3 style="color:#7aae42"></i>You are current plan: <%= plan %>  until <%= @store.premiumexpiry rescue nil %></h3>
 
-    <h3 style="color:#7aae42"></i> You are currently on the free plan.</h3>
       <p></p><br><br>
-    <div class="our_pricing" id="pricing">
-        <div class="col-md-4">
-          <div class="pricing_shadow">
-            <h4>Yearly</h4>
-            <h3>KSH 4500</h3>
-            <h3>Save 10%</h3>
-            <br>
-            <button id="up1" data-toggle="modal" data-target="#yearly_modal" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button></h3>
+      <% if @store.plan_id == 1 %>
+        <div class="our_pricing" id="pricing">
+          <div disabled="" class="col-md-6 col-md-offset-3">
+            <div class="pricing_shadow">
+              <h4>Premium</h4>
+              <h3>KSH 420</h3>
+              <!--            <h3>Save 5%</h3>-->
+              <br>
+              <button id="up2" data-toggle="modal" data-target="#premium" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button>
+              </h3>
+            </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="pricing_shadow">
-            <h4>6 Months</h4>
-            <h3>KSH 2395</h3>
-            <h3>Save 5%</h3>
-            <br>
-            <button id="up2" data-toggle="modal" data-target="#bi_modal" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button></h3>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="pricing_shadow">
-            <h4>Monthly</h4>
-            <h3>KSH 420</h3>
-            <h3>Monthly Payment</h3>
-            <br>
-            <button id="up3" data-toggle="modal" data-target="#monthly_modal" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button></h3>
-          </div>
-        </div>
-    </div>
+      <% end %>
 
-  <% end %>
-</div>
+      <!--        <div class="col-md-4">
+                <div class="pricing_shadow">
+                  <h4>Monthly</h4>
+                  <h3>KSH 420</h3>
+                  <h3>Monthly Payment</h3>
+                  <br>
+                  <button id="up3" data-toggle="modal" data-target="#monthly_modal" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button></h3>
+                </div>
+              </div>-->
+      </div>
+
+      <div class="clearfix"></div>
+    <% else %>
+
+      <% if @store.trial %>
+        <h3 style="color:#7aae42"></i> You are currently on trial until <%= @store.trial_end %>.</h3>
+      <% else %>
+        <h3 style="color:#7aae42"></i> You are currently not on any plan.</h3>
+      <% end %>
+      <p></p><br><br>
+      <div class="our_pricing" id="pricing">
+        <div class="col-md-6">
+          <div class="pricing_shadow">
+            <h4>Basic</h4>
+            <h3>KSH 200</h3>
+            <!--            <h3>Save 10%</h3>-->
+            <br>
+            <button id="up1" data-toggle="modal" data-target="#basic" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button>
+            </h3>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="pricing_shadow">
+            <h4>Premium</h4>
+            <h3>KSH 420</h3>
+            <!--            <h3>Save 5%</h3>-->
+            <br>
+            <button id="up2" data-toggle="modal" data-target="#premium" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button>
+            </h3>
+          </div>
+        </div>
+        <!--        <div class="col-md-4">
+                  <div class="pricing_shadow">
+                    <h4>Monthly</h4>
+                    <h3>KSH 420</h3>
+                    <h3>Monthly Payment</h3>
+                    <br>
+                    <button id="up3" data-toggle="modal" data-target="#monthly_modal" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button></h3>
+                  </div>
+                </div>-->
+      </div>
+
+    <% end %>
+  </div>
 </div>
 <div class="clearfix"></div>
-<div id="yearly_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true"></div>
-<div id="bi_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true"></div>
-<div id="monthly_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="basic" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="premium" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<!--<div id="monthly_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true"></div>-->
+<div class="content_bottom" style="margin-top:2em">
+  <h3 style="color:#7aae42">Invoices</h3>
+  <div class="col-md-12 span_3">
+    <div class="bs-example1" data-example-id="contextual-table" style="overflow-x:scroll">
+      <table id="myProductTable" class="table">
+        <thead>
+        <tr>
+          <th>Invoice</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Amount</th>
+          <th>Issued</th>
+          <th>Due</th>
+          <th>Status</th>
+          <th>Download</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if !@latest.nil? %>
+          <tr>
+            <td><%= @latest.uid %></td>
+            <td><%= @latest.from %></td>
+            <td><%= @latest.to %></td>
+            <td><%= @latest.amount %></td>
+            <td><%= @latest.issued %></td>
+            <td><%= @latest.due %></td>
+            <td><%= OrderStatus.find(@latest.order_status_id).name.humanize %></td>
+            <td>
+              <%= link_to stores_download_path(@latest.uid), style: "color: green;" do %>
+                <i class="fa fa-download"></i> Download
+              <% end %>
+            </td>
+            <%
+              cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
+              key = ENV['ipay_hash_key']
+              p1 = "#{request.subdomain}.#{request.domain}"
+              data = ENV['ipay_live'] + @latest.uid + @latest.uid + @latest.amount.to_s + current_store.phone + current_store.email + ENV['ipay_vid'] + "KES" + p1 + cbk + ENV['ipay_cst_flag'] + ENV['ipay_crl_flag']
+              digest = OpenSSL::Digest.new('sha1')
+
+              hash = OpenSSL::HMAC.hexdigest(digest, key, data)
+
+              if @latest.order_status_id == 5 %>
+              <td>
+                <form method="post" action="https://payments.ipayafrica.com/v3/ke">
+                  <input type="hidden" name="live" value="<%= ENV['ipay_live'] %>">
+                  <% # TODO  Check autopay %>
+                  <input type="hidden" name="oid" value="<%= @latest.uid %>">
+                  <input type="hidden" name="inv" value="<%= @latest.uid %>">
+                  <input type="hidden" name="ttl" value="<%= @latest.amount %>">
+                  <input type="hidden" name="tel" value="<%= current_store.phone %>">
+                  <input type="hidden" name="eml" value="<%= current_store.email %>">
+                  <input type="hidden" name="vid" value="<%= ENV['ipay_vid'] %>">
+                  <input type="hidden" name="curr" value="KES">
+                  <input type="hidden" name="p1" value="<%= "#{request.subdomain}.#{request.domain}" %>">
+                  <input type="hidden" name="p2" value="">
+                  <input type="hidden" name="p3" value="">
+                  <input type="hidden" name="p4" value="">
+                  <input type="hidden" name="cbk" value="<%= "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub" %>">
+                  <input type="hidden" name="cst" value="<%= ENV['ipay_cst_flag'] %>">
+                  <input type="hidden" name="crl" value="<%= ENV['ipay_crl_flag'] %>">
+                  <input type="hidden" name="hsh" value="<%= hash %>">
+                  <!--    <input type="submit" value="Pay and Complete">-->
+                  <input type="submit" style="border-style: none;background-color:transparent;color: green" value="Pay"/>
+                </form>
+
+              </td>
+            <% elsif @latest.order_status_id == 6 %>
+              <td style="color: blue">Paid</td>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tr>
+        <% @invoices.each do |i| %>
+          <tr>
+            <td><%= i.uid %></td>
+            <td><%= i.from %></td>
+            <td><%= i.to %></td>
+            <td><%= i.amount %></td>
+            <td><%= i.issued %></td>
+            <td><%= i.due %></td>
+            <td><%= OrderStatus.find(i.order_status_id).name.humanize %></td>
+            <td>
+              <%= link_to stores_download_path(i.uid), style: "color: green;" do %>
+                <i class="fa fa-download"></i> Download
+              <% end %>
+            </td>
+            <td style="color: blue">Paid</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>

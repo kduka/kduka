@@ -106,9 +106,9 @@ Rails.application.routes.draw do
   get 'admins/downgrade/:id' => 'admins#downgrade', as: 'admins_downgrade'
   put 'admins/own_domain/:id' => 'admins#own_domain', as: 'admins_own_domain'
   get 'stores/premium' => 'stores#premium', as: 'stores_premium'
-  post 'stores/create_year' => 'stores#create_year'
-  post 'stores/create_bi' => 'stores#create_bi'
-  post 'stores/create_month' => 'stores#create_month'
+  post 'stores/create_basic' => 'stores#create_basic'
+  post 'stores/create_premium' => 'stores#create_premium'
+  #post 'stores/create_month' => 'stores#create_month'
   post 'stores/confirm_sub' => 'stores#confirm_sub'
   get 'admins/allemails' => 'admins#allemails'
   get 'products/duplicate/(:id)' => 'products#duplicate', as: 'products_duplicate'
@@ -144,6 +144,7 @@ Rails.application.routes.draw do
   get 'invoices/invoice/:id' => 'invoices#invoice'
   get 'invoices/generate' => 'invoices#generate'
   get 'invoices/check_trials' => 'invoices#check_trials'
+  get 'stores/download/:id' => 'stores#download', as: 'stores_download'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}
