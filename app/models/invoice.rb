@@ -232,7 +232,13 @@ class Invoice < ApplicationRecord
                 file << pdf
               end
             else
-              upload(new_inv, store)
+              save_path = Rails.root.join("public/invoices/#{store.id}/", "#{uid}_#{store.name}.pdf")
+              File.open(save_path, 'wb') do |file|
+                file << pdf
+              end
+              if upload(new_inv, store)
+                File.delete(save_path) if File.exist?(save_path)
+              end
             end
 
             InvoiceMailer::disconnect(store, new_inv).deliver
