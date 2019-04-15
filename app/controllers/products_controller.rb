@@ -13,8 +13,6 @@ class ProductsController < ApplicationController
     elsif !@store.active
       puts 'Store is not active'
       redirect_to(home_404_path) and return
-    elsif !@store.premium
-      redirect_to("https://#{@store.subdomain}.kduka.co.ke") and return
     else
       if @store.homepage_status == true
         redirect_to(home_path) and return
