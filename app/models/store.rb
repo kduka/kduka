@@ -12,6 +12,7 @@ class Store < ApplicationRecord
   has_one :store_amount, :dependent => :destroy
   has_many :ahoy_events, :class_name => 'Ahoy::Event', :dependent => :destroy
   has_many :subscription, :dependent => :destroy
+  has_many :invoice, :dependent => :destroy
 
   mount_uploader :banner, BannerUploader
   mount_uploader :logo, LogoUploader
