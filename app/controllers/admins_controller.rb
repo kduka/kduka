@@ -84,7 +84,6 @@ class AdminsController < ApplicationController
     end
   end
 
-
   def store_delete
     @store = Store.find(params[:id])
     event = Ahoy::Event.where(store_id:params[:id])
@@ -204,11 +203,13 @@ class AdminsController < ApplicationController
     @earnings = Earning.all
     super_admin
   end
+
   def categories
     @store= Store.all
     @shopcategory = ShopCategory.new
     super_admin
   end
+
   def update_category
     @store = Store.find(params[:store][:id])
     if @store.update(cat_params)
@@ -247,6 +248,7 @@ class AdminsController < ApplicationController
   def cat_params
     params.require(:store).permit(:explore, :shop_category_id, :explore_image,:image_cache)
   end
+
   def new_cat_params
     params.require(:shopcategory).permit(:shop_category)
   end

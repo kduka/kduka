@@ -58,6 +58,21 @@
         <Cell>
           <Data ss:Type="String">Confirmed On</Data>
         </Cell>
+        <Cell>
+          <Data ss:Type="String">Trials</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Trial Start</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Trial End</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Activatable</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Plan ID</Data>
+        </Cell>
 
       </Row>
       <% @stores.each do |s| %>
@@ -116,7 +131,21 @@
           <Cell>
             <Data ss:Type="String"><%= s.confirmed_at %></Data>
           </Cell>
-
+          <Cell>
+            <Data ss:Type="String"><%= s.trial %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.trial_start %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.trial_end %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.active %></Data>
+          </Cell>
+          <Cell>
+            <Data ss:Type="String"><%= s.plan_id %></Data>
+          </Cell>
         </Row>
       <% end %>
     </Table>
