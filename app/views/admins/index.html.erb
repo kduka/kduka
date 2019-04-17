@@ -18,6 +18,8 @@
               <th>Name</th>
               <th>subdomain</th>
               <th>Custom Domain</th>
+              <th>Plan</th>
+              <th>Trial</th>
               <th>Actual Amount</th>
               <th>Available Amount</th>
               <th>Life Earnings</th>
@@ -31,8 +33,11 @@
               <th>Categories</th>
               <th>Products</th>
               <th>Updated at</th>
+              <th>Trial Start</th>
+              <th>Trial End</th>
               <th>Actions</th>
               <th>Premium Status</th>
+
             </tr>
             </thead>
             <tbody>
@@ -41,6 +46,8 @@
                 <td><%= link_to p.name, admin_view_path(p.subdomain) %></td>
                 <td><%= link_to "#{p.subdomain}.kduka.co.ke", "http://#{p.subdomain}.kduka.co.ke", :target => '_blank' %></td>
                 <td><a target="_blank" href="http://<%= "#{p.c_subdomain}.#{p.domain}" %>"><%= "#{p.c_subdomain}.#{p.domain}" %></a></td>
+                <td><%= Plan.find(p.plan_id).name.humanize rescue nil%></td>
+                <td><%= p.trial %></td>
                 <td><%= StoreAmount.where(:store_id => p.id).first.actual rescue nil%></td>
                 <td><%= StoreAmount.where(:store_id => p.id).first.amount rescue nil%></td>
                 <td><%= StoreAmount.where(:store_id => p.id).first.lifetime_earnings rescue nil%></td>
@@ -54,6 +61,8 @@
                 <td><%= Category.where(store_id: p.id).count rescue 0 %></td>
                 <td><%= Product.where(store_id: p.id).count rescue 0 %></td>
                 <td><%= p.updated_at %></td>
+                <td><%= p.trial_start %></td>
+                <td><%= p.trial_end %></td>
                 <td><%= link_to 'Delete', store_delete_path(p.id), data: {:confirm => 'Are you sure?'}, method: 'delete' %></td>
                 <% if p.premium %>
                   <td><%= link_to 'Downgrade', admins_downgrade_path(p.id), data: {:confirm => "Are you sure you want to downgrade #{p.name}?"}, method: 'get', style: 'color:orange !important;' %></td>
