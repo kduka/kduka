@@ -36,7 +36,11 @@ protect_from_forgery with: :exception
   end
 
   def current_order
+    #check session variable for browser
+    # If not nil, use it to find the order that the browser had
+
     if !session[:order_id].nil?
+
       @find_order = Order.find(session[:order_id]) rescue nil
       if !@find_order
         session[:order_id] = nil
