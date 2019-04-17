@@ -17,7 +17,8 @@
 .explore_button a:hover {
     text-decoration: none;
     color: #fff;
-    background: #7aae42;
+    background: #f3bd50;
+    border-color: #f3bd50;
 }
 .pricing_shadow a {
     border-color: #fff;
@@ -923,7 +924,7 @@ h3.agileits-title {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #7AAE42;
+    background: #f3bd50;
     -webkit-transform: scaleY(0);
     transform: scaleY(0);
     -webkit-transform-origin: 50% 0;

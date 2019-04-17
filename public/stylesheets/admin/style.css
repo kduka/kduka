@@ -14,7 +14,7 @@
 }
 a.btn1.active{
   color: #fff !important;
-  background: #7aae42 !important;
+  background: #f3bd50 !important;
 }
 li a ul li .active{
   color: #fff !important;
@@ -382,7 +382,7 @@ i.nav_icon {
 }
 .sidebar ul li a:hover{
   color: #fff;
-  background: #7aae42 !important;
+  background: #f3bd50 !important;
 }
 .form-control {
   background: none !important;
