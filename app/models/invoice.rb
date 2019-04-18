@@ -43,8 +43,8 @@ class Invoice < ApplicationRecord
         puts "generating invoice for trial store"
         generate_invoice(s)
       else
-        puts "\n \n 1. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
-        generate_invoice(s)
+        puts "\n \n PLenty of time for your trial #{s.name} \n \n "
+        #generate_invoice(s)
       end
 
 
