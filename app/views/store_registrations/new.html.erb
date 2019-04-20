@@ -66,7 +66,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
       <%= f.text_field :name, autofocus: true, id: 'store_name', placeholder: 'Your Stores Name', onchange: 'store_reg()', oninput: "this.className = ''" %>
       <div class="text-center store_name_prev"></div>
       <!--    <input style="width: 75%;border-radius: 0px !important;border-right-style: none;" required id="url_modalsign" type="text" placeholder="Your Store Url" oninput="this.className = ''"><label style="border-left-style: none !important;padding: 13px 10px;border: 1px solid #dadada;background: none;font-size: 13px;color: #222222;width: 25%;margin-top: 1em;margin-bottom:1em;-moz-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;text-align: center;color: #7aae42;text-align: left;">.kduka.co.ke</label>-->
-      <%= f.text_field :subdomain, autofocus: true, placeholder: 'What name do you want for your website (See preview below)', onchange: 'store_reg()', oninput: "this.className = ''", id: 'url' %>
+      <%= f.text_field :subdomain, autofocus: true, placeholder: 'What subdomain name do you want for your website (See preview below)', onchange: 'store_reg()', oninput: "this.className = ''", id: 'url' %>
 
       <p class="text-center" style="font-size:10px;color: green;font-weight:bold" id="url_prev">http://example.kduka.co.ke</p>
 
