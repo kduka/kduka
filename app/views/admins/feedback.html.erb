@@ -12,6 +12,7 @@
           <table id="myTable" class="table">
             <thead>
             <tr>
+              <th>Date</th>
               <th>Store</th>
               <th>Email</th>
               <th>Feedback</th>
@@ -20,6 +21,7 @@
             <tbody>
             <% @feed.each do |f| %>
               <tr>
+                <td><%= f.created_at %></td>
                 <td><%= Store.find(f.store_id).name rescue 0 %></td>
                 <td><%= Store.find(f.store_id).email rescue 0 %></td>
                 <td><%= f.feedback %></td>
