@@ -9,9 +9,13 @@
   <thead>
   <tr>
     <th>Store Name</th>
+    <th>Contact</th>
+    <th>Plan</th>
     <th>Status</th>
+    <th>Last Login</th>
     <th>Order Type</th>
-    <th>Recent Reference</th>
+    <th>Recent Ref.</th>
+    <th>Products</th>
     <th>Expiry</th>
     <th>Days Left</th>
   </tr>
@@ -21,18 +25,23 @@
   <% @stores.each do |s| %>
     <tr>
       <td><%= s.name.humanize %></td>
+      <td><%= s.phone%></td>
+      <td><%= s.trial? ? "Trial" : Plan.find(p.plan_id).name.humanize rescue 'None'%></td>
       <td><%= s.active? ? 'Active':'Inactive' %></td>
+      <td><%= s.last_sign_in_at %></td>
       <td><%= Subscription.where(store_id:s.id , order_status_id:6).order(created_at: :desc).description rescue 'No Record' %></td>
       <td><%= Subscription.where(store_id:s.id).first.ref rescue "No Record" %></td>
-      <td><%= s.premiumexpiry%></td>
-      <td><%= (s.premiumexpiry - Date.today).to_i rescue "N/A"%></td>
+      <td><%= Product.where(store_id: s.id).count rescue 0 %></td>
+      <td><%= s.trial? ? "#{s.trial_end}" : "#{s.premiumexpiry}" %></td>
+      <td><%= s.trial? ?  "#{(s.trial_end - Date.today).to_i}"  : "#{(s.premiumexpiry - Date.today).to_i rescue 'N/A'}"%></td>
     </tr>
   <% end %>
   </tbody>
 </table>
 </div>
 </div>
-  <h3 style="color:#7aae42"><i class="fa fa-briefcase"></i> Orders</h3>
+
+  <h3 style="color:#7aae42"><i class="fa fa-briefcase"></i>Subscription Detail</h3>
   <div class="col2">
   <div style="overflow-x: scroll">
     <table id="myTable" class="table">
@@ -41,9 +50,10 @@
         <th>Reference</th>
         <th>Shop</th>
         <th>Type</th>
+        <th>Amount Paid</th>
+        <th>Balance</th>
         <th>Status</th>
         <th>Date Created</th>
-        <th>Expiry</th>
       </tr>
       </thead>
       <tbody>
@@ -52,9 +62,10 @@
         <td><%= o.ref%></td>
         <td><%=Store.where(id: o.store_id).first.name %></td>
         <td><%=o.description%></td>
+        <td><%=o.received%></td>
+        <td><%=(o.amount - o.received).to_i%></td>
         <td><%=OrderStatus.where(id:o.order_status_id).first.name %></td>
         <td><%=o.created_at %></td>
-        <td><%=Store.where(id:o.store_id).first.premiumexpiry rescue 'No Records' %></td>
       </tr>
         <%end %>
       </tbody>
@@ -64,4 +75,3 @@
   </div>
 </div>
 <br>
-
