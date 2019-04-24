@@ -175,6 +175,10 @@ $(function () {
         "order": [[2, "desc"]]
     });
 
+    $('#myTable2').DataTable({
+        "order": [[2, "desc"]]
+    });
+
     $('#ipnTable').DataTable({
         "order": [[10, "desc"]]
     });

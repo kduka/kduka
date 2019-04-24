@@ -5,7 +5,7 @@
 <div class="col_2">
 <div style="overflow-x:scroll">
 <% @stores = Store.all%>
-<table id="myTable" class="table">
+<table id="myTable2" class="table">
   <thead>
   <tr>
     <th>Store Name</th>
@@ -64,7 +64,7 @@
         <td><%=o.description%></td>
         <td><%=o.received%></td>
         <td><%=(o.amount - o.received).to_i%></td>
-        <td><%=OrderStatus.where(id:o.order_status_id).first.name %></td>
+        <td><%=OrderStatus.where(id:o.order_status_id).last.name %></td>
         <td><%=o.created_at %></td>
       </tr>
         <%end %>
