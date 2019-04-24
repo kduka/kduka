@@ -30,7 +30,7 @@
       <td><%= s.active? ? 'Active':'Inactive' %></td>
       <td><%= s.last_sign_in_at %></td>
       <td><%= Subscription.where(store_id:s.id , order_status_id:6).order(created_at: :desc).description rescue 'No Record' %></td>
-      <td><%= Subscription.where(store_id:s.id).first.ref rescue "No Record" %></td>
+      <td><%= Subscription.where(store_id:s.id).last.ref rescue "No Record" %></td>
       <td><%= Product.where(store_id: s.id).count rescue 0 %></td>
       <td><%= s.trial? ? "#{s.trial_end}" : "#{s.premiumexpiry}" %></td>
       <td><%= s.trial? ?  "#{(s.trial_end - Date.today).to_i}"  : "#{(s.premiumexpiry - Date.today).to_i rescue 'N/A'}"%></td>
