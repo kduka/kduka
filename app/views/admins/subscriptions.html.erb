@@ -26,7 +26,7 @@
     <tr>
       <td><%= s.name.humanize %></td>
       <td><%= s.phone%></td>
-      <td><%= s.trial? ? "Trial" : Plan.find(p.plan_id).name.humanize rescue 'None'%></td>
+      <td><%= s.trial? ? "Trial" : Plan.find(s.plan_id).name.humanize rescue 'None'%></td>
       <td><%= s.active? ? 'Active':'Inactive' %></td>
       <td><%= s.last_sign_in_at %></td>
       <td><%= Subscription.where(store_id:s.id , order_status_id:6).order(created_at: :desc).description rescue 'No Record' %></td>
