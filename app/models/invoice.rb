@@ -21,7 +21,7 @@ class Invoice < ApplicationRecord
         disconnect(s)
       elsif total_days(s.premiumexpiry) == 1
         send_final_invoice(s)
-      elsif total_days(s.premiumexpiry) <= 7
+      elsif total_days(s.premiumexpiry) == 7
         generate_invoice(s)
       else
         puts "\n \n 1. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
@@ -57,7 +57,7 @@ class Invoice < ApplicationRecord
       elsif total_days(s.premiumexpiry) == 1
         puts "\n \n SENDING INVOICE FOR #{s.name} \n \n "
         send_final_invoice(s)
-      elsif total_days(s.premiumexpiry) <= 7
+      elsif total_days(s.premiumexpiry) == 7
         puts "\n \n GENERATING INVOICE FOR #{s.name} \n \n "
         generate_invoice(s)
       else
