@@ -323,11 +323,11 @@ class IpnController < ApplicationController
   end
 
   def reconnect_premium(s, pid, expire)
-    s.update(premium: true, active: active, layout_id: s.p_layout_id, activatable: true, plan_id: pid, premiumexpiry: expire, trial: false)
+    s.update(premium: true, active: true, layout_id: s.p_layout_id, activatable: true, plan_id: pid, premiumexpiry: expire, trial: false)
   end
 
   def reconnect(s, pid, expire)
-    s.update(premium: false, active: active, plan_id: pid, activatable: true, premiumexpiry: expire, trial: false)
+    s.update(premium: false, active: true, plan_id: pid, activatable: true, premiumexpiry: expire, trial: false)
   end
 
   def total_days(expiry)
