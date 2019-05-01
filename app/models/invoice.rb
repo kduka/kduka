@@ -17,7 +17,7 @@ class Invoice < ApplicationRecord
 
         puts "Total days diff is #{total_days(s.premiumexpiry)}"
 
-        if total_days(s.premiumexpiry) < 0
+        if total_days(s.premiumexpiry) <= 0
           disconnect(s)
         elsif total_days(s.premiumexpiry) == 1
           send_final_invoice(s)
@@ -33,7 +33,7 @@ class Invoice < ApplicationRecord
         puts "\n \n Trial Store \n \n "
         puts "Total days diff is #{total_days(s.trial_end)}"
 
-        if total_days(s.trial_end) < 0
+        if total_days(s.trial_end) <= 0
           puts "disconnecting trial store"
           disconnect(s)
         elsif total_days(s.trial_end) == 1
