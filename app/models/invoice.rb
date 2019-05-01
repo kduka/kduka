@@ -7,63 +7,61 @@ class Invoice < ApplicationRecord
 
     stores.each do |s|
 
-    puts "store activatable is #{s.activatable}"
+      puts "store activatable is #{s.activatable}"
 
-    if s.activatable == false
+      if s.activatable == false
 
-      puts'skipping deactivated store'
+        puts 'skipping deactivated store'
 
-    elsif s.plan_id == 2
+      elsif s.plan_id == 2
 
-      puts "Total days diff is #{total_days(s.premiumexpiry)}"
+        puts "Total days diff is #{total_days(s.premiumexpiry)}"
 
-      if total_days(s.premiumexpiry) < 0
-        disconnect(s)
-      elsif total_days(s.premiumexpiry) == 1
-        send_final_invoice(s)
-      elsif total_days(s.premiumexpiry) == 7
-        generate_invoice(s)
+        if total_days(s.premiumexpiry) < 0
+          disconnect(s)
+        elsif total_days(s.premiumexpiry) == 1
+          send_final_invoice(s)
+        elsif total_days(s.premiumexpiry) == 7
+          generate_invoice(s)
+        else
+          puts "\n \n 1. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
+          generate_invoice(s)
+        end
+
+      elsif s.trial
+
+        puts "\n \n Trial Store \n \n "
+        puts "Total days diff is #{total_days(s.trial_end)}"
+
+        if total_days(s.trial_end) < 0
+          puts "disconnecting trial store"
+          disconnect(s)
+        elsif total_days(s.trial_end) == 1
+          puts "sending final invoice trial store"
+          send_final_invoice(s)
+        elsif total_days(s.trial_end) <= 7
+          puts "generating invoice for trial store"
+          generate_invoice(s)
+        else
+          puts "\n \n The store  #{s.name} Plenty of time for your trial \n \n "
+          #generate_invoice(s)
+        end
       else
-        puts "\n \n 1. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
-        generate_invoice(s)
-      end
+        puts "\n \n This is not premium \n \n "
 
-    elsif s.trial
-
-      puts "\n \n Trial Store \n \n "
-      puts "Total days diff is #{total_days(s.trial_end)}"
-
-      if total_days(s.trial_end) < 0
-        puts "disconnecting trial store"
-        disconnect(s)
-      elsif total_days(s.trial_end) == 1
-        puts "sending final invoice trial store"
-        send_final_invoice(s)
-      elsif total_days(s.trial_end) <= 7
-        puts "generating invoice for trial store"
-        generate_invoice(s)
-      else
-        puts "\n \n PLenty of time for your trial #{s.name} \n \n "
-        #generate_invoice(s)
-      end
-
-
-    else
-      puts "\n \n This is not premium \n \n "
-
-      if total_days(s.premiumexpiry) < 0
-        puts "\n \n DISCONNECTING #{s.name} \n \n "
-        disconnect(s)
-      elsif total_days(s.premiumexpiry) == 1
-        puts "\n \n SENDING INVOICE FOR #{s.name} \n \n "
-        send_final_invoice(s)
-      elsif total_days(s.premiumexpiry) == 7
-        puts "\n \n GENERATING INVOICE FOR #{s.name} \n \n "
-        generate_invoice(s)
-      else
-        puts "\n \n 2. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
-        generate_invoice(s)
-      end
+        if total_days(s.premiumexpiry) < 0
+          puts "\n \n DISCONNECTING #{s.name} \n \n "
+          disconnect(s)
+        elsif total_days(s.premiumexpiry) == 1
+          puts "\n \n SENDING INVOICE FOR #{s.name} \n \n "
+          send_final_invoice(s)
+        elsif total_days(s.premiumexpiry) == 7
+          puts "\n \n GENERATING INVOICE FOR #{s.name} \n \n "
+          generate_invoice(s)
+        else
+          puts "\n \n The #{s.name} meets no criteria above. Which means the days to premium expiry are #{total_days(s.premiumexpiry)}\n \n "
+          #generate_invoice(s)
+        end
 
       end
     end
@@ -72,7 +70,7 @@ class Invoice < ApplicationRecord
 
   def self.total_days(expiry)
     if expiry.nil?
-      expiry = DateTime.now
+      expiry = DateTime.today
     end
     difference_in_days = (expiry - Date.today).to_i
   end
@@ -134,7 +132,7 @@ class Invoice < ApplicationRecord
               ApplicationController.new.render_to_string(
                   :template => "invoices/invoice.html",
                   :layout => 'pdf.html',
-                  :locals => {:@store => @store,:@invoice => new_inv}
+                  :locals => {:@store => @store, :@invoice => new_inv}
               )
           )
 
@@ -152,7 +150,6 @@ class Invoice < ApplicationRecord
               File.delete(save_path) if File.exist?(save_path)
             end
           end
-
 
 
           InvoiceMailer::send_first_invoice(store, new_inv).deliver
@@ -184,7 +181,7 @@ class Invoice < ApplicationRecord
 
   def self.disconnect(store)
 
-    disconnect = store.update(premium: false, p_active: store.active, active: false, p_layout_id: store.layout_id, layout_id: 1, activatable: false, plan_id:nil, trial:false,p_explore:store.explore,explore:false)
+    disconnect = store.update(premium: false, p_active: store.active, active: false, p_layout_id: store.layout_id, layout_id: 1, activatable: false, plan_id: nil, trial: false, p_explore: store.explore, explore: false)
 
     if disconnect
       puts "\n \n disconnect successfull"
@@ -222,7 +219,7 @@ class Invoice < ApplicationRecord
                 ApplicationController.new.render_to_string(
                     :template => "invoices/invoice.html",
                     :layout => 'pdf.html',
-                    :locals => {:@store => @store,:@invoice => new_inv}
+                    :locals => {:@store => @store, :@invoice => new_inv}
                 )
             )
 
@@ -258,11 +255,11 @@ class Invoice < ApplicationRecord
   end
 
   def self.reconnect_premium(s)
-    s.update(premium: true, active: s.p_active, layout_id: s.p_layout_id, activatable: true, explore:s.p_explore)
+    s.update(premium: true, active: s.p_active, layout_id: s.p_layout_id, activatable: true, explore: s.p_explore)
   end
 
   def self.reconnect(s)
-    s.update(premium: false, active: s.p_active,activatable: true, explore:s.p_explore)
+    s.update(premium: false, active: s.p_active, activatable: true, explore: s.p_explore)
   end
 
   def self.invoice
