@@ -43,7 +43,7 @@ class Invoice < ApplicationRecord
           puts "generating invoice for trial store"
           generate_invoice(s)
         else
-          puts "\n \n The store  #{s.name} Plenty of time for your trial \n \n "
+          puts "\n \n The store #{s.name} Plenty of time for your trial \n \n "
           #generate_invoice(s)
         end
       else
@@ -150,8 +150,8 @@ class Invoice < ApplicationRecord
             end
           end
 
-
           InvoiceMailer::send_first_invoice(store, new_inv).deliver
+          SmsController::week_notice(new_inv,store.phone)
         end
       end
 
@@ -166,6 +166,7 @@ class Invoice < ApplicationRecord
 
       if diff > 8
         InvoiceMailer::send_first_invoice(store, invoice).deliver
+        SmsController::week_notice(new_inv,store.phone)
       end
     end
   end
@@ -175,6 +176,7 @@ class Invoice < ApplicationRecord
     invoice = Invoice.where(store_id: store.id).last
 
     InvoiceMailer::send_reminder(store, invoice).deliver
+    SmsController::final_sms(new_inv,store.phone)
 
   end
 
@@ -248,6 +250,7 @@ class Invoice < ApplicationRecord
         done = invoice.deliveries
         if !done
           InvoiceMailer::disconnect(store, invoice).deliver
+          SmsController::suspend(new_inv,store.phone)
           invoice.update(deliveries: true)
         end
       end

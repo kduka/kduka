@@ -134,6 +134,7 @@ class IpnController < ApplicationController
       inv.update(order_status_id: 6)
 
       PaymentsMailer.full_subscription_payment_recieved(@order, r).deliver
+      sms_confirm_sub_path(@order)
 
 
     else

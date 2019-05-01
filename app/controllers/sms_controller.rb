@@ -20,7 +20,7 @@ class SmsController < ApplicationController
       if state = 0
       message = "Your payment of Ksh:#{@order.amount_received} to #{@store.name} has been received for the order #{@order.ref}. Please pay Ksh: #{@order.total - @order.amount_received} to complete your order."
       else
-      message = "Your payment of Ksh:#{@order.amount_received} to #{@store.name} has been received for the order  #{@order.ref}."
+      message = "Your payment of Ksh:#{@order.amount_received} to #{@store.name} has been received for the order #{@order.ref}."
       end
       send_sms(to,message)
     end
@@ -36,21 +36,16 @@ class SmsController < ApplicationController
       send_sms(to,message)
     end
 
-    def week_notice(to)
-       # stores = Store.all
-      # stores.each do |note|
-      #   diff = note.premiumexpiry - now
-      #   if diff = 7
-        message = "Your invoice for the period #{'2019-03-17 - 2019-04-17'} is ready. Please login to your store to make a payment before #{'2019-04-18'}."
+    def week_notice(inv,to)
+
+        message = "Your invoice for the period #{inv.from} - #{inv.to} is ready. Please login to your store to make a payment before #{inv.due}."
         send_sms(to,message)
-      #  end
-      # end
+
     end
 
-    def final_sms(to)
-        # stores = Store.where(id: current_store)
+    def final_sms(inv,to)
 
-        message = "Your invoice for the period #{'2019-03-17 - 2019-04-17'} has not been paid for. Kindly login to your store to make a payment before #{'2019-04-18'} to avoid account suspension."
+        message = "Your invoice for the period #{inv.from} - #{inv.to} has not been paid for. Kindly login to your store to make a payment before #{inv.due} to avoid account suspension."
         send_sms(to,message)
 
     end
@@ -62,6 +57,12 @@ class SmsController < ApplicationController
 
     end
 
+    def confirm_sub(o)
+      to = o.phone
+      message = "Your payment of #{o.received} has been received for #{o.description} subscription. Your store has been restored."
+      send_sms(to,message)
+    end
+
     def send_sms(to,message)
       require 'AfricasTalking'
 
@@ -69,8 +70,8 @@ class SmsController < ApplicationController
 
       options = {
           "to" => to,
-          "message" => message
-           # "from" => 'KDuka'
+          "message" => message,
+          "from" => 'KDuka'
           }
         begin
           # Thats it, hit send and we'll take care of the rest.
@@ -93,35 +94,15 @@ class SmsController < ApplicationController
         # make_post_req(options)
     end
 
-    # def make_post_req(options)
-    #
-    # require 'uri'
-    # require 'net/http'
-    #
-    # url = URI("https://api.africastalking.com/version1/messaging")
-    #
-    # http = Net::HTTP.new(url.host, url.port)
-    # request = Net::HTTP::Post.new(url)
-    # request["username"] = 'kduka'
-    # request["apiKey"] = 'c44856da2978476f3745584c9a070df8501c9d66cf44a993d07ef35c68fb3329'
-    # request["Content-Type"] = 'application/json'
-    # request["Accept"] = 'application/json'
-    # request["cache-control"] = 'no-cache'
-    # request.body = {username: 'kduka' to: options[to], message: options[message]}.to_json
-    # response = http.request(request)
-    # callback()
-    # end
-
-    #
      def callback
 
     response = request.body.read
     delivery = JSON.parse(response)
 
     if delivery[status] == "Rejected"
-      SmsLog.info "Message #{delivery[id]}to #{delivery[phone]} failed. Reason being #{delivery[failureReason]}"
+      SmsLog.info "Message #{delivery[id]} delivery to #{delivery[phone]} failed. Reason being #{delivery[failureReason]}"
     elsif delivery[status] == "Failed"
-      SmsLog.info "Message #{delivery[id]}to #{delivery[phone]} failed. Reason being #{delivery[failureReason]}"
+      SmsLog.info "Message #{delivery[id]} delivery to #{delivery[phone]} failed. Reason being #{delivery[failureReason]}"
     end
   end
 
