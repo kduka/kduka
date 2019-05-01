@@ -139,8 +139,8 @@ class IpnController < ApplicationController
 
     else
       @order.update(order_status_id: 5)
-      PaymentsMailer.partial_payment_recieved(@order).deliver
-      PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
+
+      SmsController::partial_sub(@order)
 
     end
   end

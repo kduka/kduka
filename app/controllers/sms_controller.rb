@@ -57,9 +57,15 @@ class SmsController < ApplicationController
 
     end
 
+    def partial_sub(o)
+      to = o.phone
+      message = "Your partial payment of Ksh: #{o.received} has been received. Your outstanding balance is Ksh #{o.amount - o.received}."
+      send_sms(to,message)
+    end
+
     def confirm_sub(o)
       to = o.phone
-      message = "Your payment of #{o.received} has been received for #{o.description} subscription. Your store has been restored."
+      message = "Your payment of Ksh: #{o.received} has been received for #{o.description} subscription. Your store has been restored."
       send_sms(to,message)
     end
 
