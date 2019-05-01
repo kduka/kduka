@@ -238,6 +238,7 @@ class Invoice < ApplicationRecord
             end
 
             InvoiceMailer::disconnect(store, new_inv).deliver
+            SmsController::suspend(new_inv,store.phone)
             new_inv.update(deliveries: true)
           end
         end

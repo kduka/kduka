@@ -14,27 +14,6 @@ class SmsController < ApplicationController
 
         AT = AfricasTalking::Initialize.new username, apikey
 
-    def trial
-
-      # order = Order.where(store_id: 1)
-      # # merchant = Store.where(id: 1).phone
-      now = Date.today
-      stores = Store.all
-      stores.each do |note|
-       diff = (note.premiumexpiry - now).to_i
-       merchant = note.phone
-       if diff = 7
-          week_notice(merchant)
-        elsif diff = 1
-          final_sms(merchant)
-        elsif diff < 0
-          suspended(merchant)
-        end
-       end
-       no_layout
-
-    end
-
     def client_sms(o,state)
       o=@order
       to = o.phone
@@ -76,9 +55,9 @@ class SmsController < ApplicationController
 
     end
 
-    def suspensed(to)
+    def suspend(inv,to)
 
-      message = "Your store has been suspended because you have an unpaid invoce for the period #{'2019-03-17 - 2019-04-17'}. Kindly login in to your store and make a payment to continue enjoying our services"
+      message = "Your store has been suspended because you have an unpaid invoice for the period #{inv.from} - #{inv.to}. Kindly login in to your store and make a payment to continue enjoying our services"
       send_sms(to,message)
 
     end
