@@ -35,6 +35,7 @@
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v5.0.2, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="acts_as_xlsx (v1.0.6, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.6.0, rbenv: 2.4.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="africastalking-ruby (v2.1.1, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ahoy_matey (v2.2.0, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v7.1.4, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="autoprefixer-rails (v9.5.0, rbenv: 2.4.0) [gem]" level="application" />
@@ -107,6 +108,7 @@
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.2, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="htmlentities (v4.3.4, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="http-cookie (v1.0.3, rbenv: 2.4.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="httparty (v0.16.1, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.9.5, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="image_optimizer (v1.8.0, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ipaddress (v0.8.3, rbenv: 2.4.0) [gem]" level="application" />
@@ -119,14 +121,15 @@
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.7.1, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="method_source (v0.9.2, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v3.2.2, rbenv: 2.4.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="mime-types-data (v3.2018.0812, rbenv: 2.4.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types-data (v3.2019.0331, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_magick (v4.5.1, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.0.1, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.4.0, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.11.3, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.13.1, rbenv: 2.4.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_xml (v0.6.0, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mustermann (v1.0.3, rbenv: 2.4.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.4.10, rbenv: 2.4.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.3.21, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="netrc (v0.11.0, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.3.1, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.10.2, rbenv: 2.4.0) [gem]" level="application" />
@@ -136,7 +139,7 @@
     <orderEntry type="library" scope="PROVIDED" name="pesapal (v2.0.0, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v0.18.1, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v3.0.3, rbenv: 2.4.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rack (v2.0.6, rbenv: 2.4.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack (v2.0.7, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-cors (v1.0.3, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-protection (v2.0.5, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v0.6.3, rbenv: 2.4.0) [gem]" level="application" />
@@ -163,7 +166,7 @@
     <orderEntry type="library" scope="PROVIDED" name="ruby_http_client (v3.3.0, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v1.1.7, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="safely_block (v0.2.1, rbenv: 2.4.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sass (v3.7.3, rbenv: 2.4.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sass (v3.7.4, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-listen (v4.0.0, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v5.0.7, rbenv: 2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sassc (v2.0.1, rbenv: 2.4.0) [gem]" level="application" />

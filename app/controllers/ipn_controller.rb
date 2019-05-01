@@ -69,14 +69,14 @@ class IpnController < ApplicationController
       update_inventory(@order)
       PaymentsMailer.full_payment_recieved(@order).deliver
       PaymentsMailer.merchant_payment_recieved(@order).deliver
-      sms_client_sms_path(@order,1)
-      sms_merchant_sms_path(@order,1)
+      SmsController::client_sms(@order,1)
+      SmsController::merchant_sms(@order,1)
     else
       @order.update(order_status_id: 5)
       PaymentsMailer.partial_payment_recieved(@order).deliver
       PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
-      sms_client_sms_path(@order,0)
-      sms_merchant_sms_path(@order,0)
+      SmsController::client_sms(@order,0)
+      SmsController::merchant_sms(@order,0)
     end
   end
 
@@ -134,13 +134,14 @@ class IpnController < ApplicationController
       inv.update(order_status_id: 6)
 
       PaymentsMailer.full_subscription_payment_recieved(@order, r).deliver
-      sms_confirm_sub_path(@order)
+      SmsController::confirm_sub(@order)
 
 
     else
       @order.update(order_status_id: 5)
       PaymentsMailer.partial_payment_recieved(@order).deliver
       PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
+
     end
   end
 
