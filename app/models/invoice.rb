@@ -62,7 +62,6 @@ class Invoice < ApplicationRecord
           puts "\n \n The #{s.name} meets no criteria above. Which means the days to premium expiry are #{total_days(s.premiumexpiry)}\n \n "
           #generate_invoice(s)
         end
-
       end
     end
   end
@@ -70,7 +69,7 @@ class Invoice < ApplicationRecord
 
   def self.total_days(expiry)
     if expiry.nil?
-      expiry = DateTime.today
+      expiry = DateTime.now
     end
     difference_in_days = (expiry - Date.today).to_i
   end
