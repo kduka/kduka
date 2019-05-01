@@ -31,7 +31,6 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-
 <script src="https://use.fontawesome.com/0c894d70a3.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
 <script type="text/javascript">
@@ -205,7 +204,7 @@ body{
       </h1>
     </div>
 
-		<div class="container">
+		<div class="row">
 			<div class="w3layouts-header">
 				<div class="top-nav">
 					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
@@ -231,7 +230,6 @@ body{
 					<!-- <span class="menu"></span> -->
 					</div>
 					<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-					<script src="js/classie.js"></script>
 					<script>
 					var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
 					showRightPush = document.getElementById( 'showRightPush' ),
@@ -260,9 +258,104 @@ body{
 				</div>
 				<div class="clearfix"> </div>
 			</div>
-			<div class="banner-w3lsinfo" >
-				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2.5em;font-weight: 200 !important;text-transform:capitalize;color: #fff;">Create a stunning Website and Sell Online with <span style="color: #7AAE42">KDuka!</span></h2>
-				<p style="font-size:1.2em;font-weight: 200;color: #fff;">Let's create your Website in Minutes!</p>
+			<div class="banner-w3lsinfo" id="container">
+
+          <div id="inner" data-aos="fade-up">
+    				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2.5em;font-weight: 200 !important;text-transform:capitalize;color: #fff;">Create a stunning Website and Sell Online with <span style="color: #7AAE42">KDuka!</span></h2>
+    				<p style="font-size:1.2em;font-weight: 200;color: #fff;">Let's create your Website in Minutes!</p>
+          </div>
+        <style>
+        #container {
+          perspective: 10px;
+        }
+        #inner {
+          width: 100%;
+          height: auto;
+          transition: transform 0.5s;
+          -webkit-transition: transform 0.5s;
+          -moz-transition: transform 0.5s;
+          -o-transition: transform 0.5s;
+        }
+        </style>
+        <script>
+        (function() {
+          // Init
+          var container = document.getElementById("container"),
+            inner = document.getElementById("inner");
+
+          // Mouse
+          var mouse = {
+            _x: 0,
+            _y: 0,
+            x: 0,
+            y: 0,
+            updatePosition: function(event) {
+              var e = event || window.event;
+              this.x = e.clientX - this._x;
+              this.y = (e.clientY - this._y) * -1;
+            },
+            setOrigin: function(e) {
+              this._x = e.offsetLeft + Math.floor(e.offsetWidth / 2);
+              this._y = e.offsetTop + Math.floor(e.offsetHeight / 2);
+            },
+            show: function() {
+              return "(" + this.x + ", " + this.y + ")";
+            }
+          };
+
+          // Track the mouse position relative to the center of the container.
+          mouse.setOrigin(container);
+
+          //-----------------------------------------
+
+          var counter = 0;
+          var updateRate = 10;
+          var isTimeToUpdate = function() {
+            return counter++ % updateRate === 0;
+          };
+
+          //-----------------------------------------
+
+          var onMouseEnterHandler = function(event) {
+            update(event);
+          };
+
+          var onMouseLeaveHandler = function() {
+            inner.style = "";
+          };
+
+          var onMouseMoveHandler = function(event) {
+            if (isTimeToUpdate()) {
+              update(event);
+            }
+          };
+
+          //-----------------------------------------
+
+          var update = function(event) {
+            mouse.updatePosition(event);
+            updateTransformStyle(
+              (mouse.y / inner.offsetHeight / 2).toFixed(2),
+              (mouse.x / inner.offsetWidth / 2).toFixed(2)
+            );
+          };
+
+          var updateTransformStyle = function(x, y) {
+            var style = "rotateX(" + x + "deg) rotateY(" + y + "deg)";
+            inner.style.transform = style;
+            inner.style.webkitTransform = style;
+            inner.style.mozTransform = style;
+            inner.style.msTransform = style;
+            inner.style.oTransform = style;
+          };
+
+          //-----------------------------------------
+
+          container.onmouseenter = onMouseEnterHandler;
+          container.onmouseleave = onMouseLeaveHandler;
+          container.onmousemove = onMouseMoveHandler;
+        })();
+        </script>
         <br><br>
         <div class="col-md-4 col-md-offset-4 col-xs-12" style="margin-bottom:2em">
           <style>
@@ -308,9 +401,9 @@ body{
 	<!-- introduction -->
 	<div class="introduction" id="introduction">
 		<div class="container">
-			<h3 class="agileits-title" style="text-align:center">Featured <span style="color:#7AAE42">Websites</span></h3>
+			<h3 class="agileits-title" style="text-align:center" data-aos="fade-down">Featured <span style="color:#7AAE42">Websites</span></h3>
       <br><br>
-      <div class="our_scale" style="max-width:100% !important;overflow:hidden !important;" >
+      <div class="our_scale" style="max-width:100% !important;overflow:hidden !important;" data-aos="flip-up">
       <div class="jR3DCarouselGalleryCustomeTemplate">
         <div class="jR3DCarouselCustomSlide">
           <a href="http://nyarnam.kduka.co.ke" target="_blank">
@@ -353,19 +446,19 @@ body{
 		</div>
     <div class="explore_button">
     <br><br><br>
-      <a href="<%= explore_path %>">Explore More Websites</a>
+      <a href="<%= explore_path %>" data-aos="fade-up">Explore More Websites</a>
     </div>
 	</div>
 	<!-- //introduction -->
   <div class="learn" id="learn">
     <div class="container">
       <div class="col-md-12 col-xs-12">
-        <h3 class="agileits-title" style="text-align:center;color: #fff !important;">Learn how to <span style="color:#f3bd50">sell online!</span></h3>
+        <h3 class="agileits-title" style="text-align:center;color: #7aae42 !important;" data-aos="fade-down">Learn how to <span style="color:#f3bd50">sell online!</span></h3>
         <br><br>
         <div class="row" style="padding-top:1em;padding-bottom:1em">
           <div class="col-md-4 learnbox">
             <a target="_blank" href="https://www.standardmedia.co.ke/business/article/2001321358/want-an-online-shop-we-ll-build-you-one-in-minutes">
-              <div class="box_shadow our_padding">
+              <div class="box_shadow our_padding" data-aos="fade-right">
                 <%= image_tag("website/standard.png",style:"width:auto;max-height:150px;max-width:100%") %>
                 <br/><br/>
                 <p style="font-size:18px;">The Standard: Want an online shop? We'll build you one in minutes</p>
@@ -374,7 +467,7 @@ body{
           </div>
           <div class="col-md-4 learnbox">
             <a target="_blank" href="https://www.nation.co.ke/lifestyle/mynetwork/Create-your-own-e-commerce-website/3141096-4811874-ksn788/index.html">
-              <div class="box_shadow our_padding">
+              <div class="box_shadow our_padding" data-aos="fade-down">
                 <%= image_tag("website/dailynation.jpg",style:"width:auto;max-height:150px;max-width:100%") %>
                 <br/><br/>
                 <p style="font-size:18px;">Daily Nation: Create your own e-commerce website with KDuka</p>
@@ -383,7 +476,7 @@ body{
           </div>
           <div class="col-md-4 learnbox">
             <a target="_blank" href="https://www.youtube.com/embed/5h80SLKjPXc?rel=0">
-              <div class="box_shadow our_padding">
+              <div class="box_shadow our_padding" data-aos="fade-left">
                 <iframe width="100%"  src="https://www.youtube.com/embed/5h80SLKjPXc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <br/><br/>
                 <p style="font-size:18px;">Interview: Catch Martin Ndeto as he talks about KDuka and eCommerce in Kenya</p>
@@ -392,7 +485,7 @@ body{
           </div>
           <div class="col-md-4 learnbox">
             <a target="_blank" href="https://learndigital.withgoogle.com/digitalskills">
-              <div class="box_shadow our_padding">
+              <div class="box_shadow our_padding" data-aos="fade-right">
                 <%= image_tag("website/Google-Digital-Skills-for-Africa.png",style:"width:auto;max-height:150px;max-width:100%") %>
                 <br/><br/>
                 <p style="font-size:18px;">An intensive certification course by Google that will help you get all the important Digital Skills you need to make your business successful</p>
@@ -401,7 +494,7 @@ body{
           </div>
           <div class="col-md-4  learnbox">
             <a target="_blank" href="http://www.kduka.co.ke/help">
-              <div class="box_shadow our_padding">
+              <div class="box_shadow our_padding" data-aos="fade-up">
                 <%= image_tag("website/logo.png",style:"width:auto;max-height:150px;max-width:100%") %>
                 <br/><br/>
                 <p style="font-size:18px;">A Userguide to help you in setting up your KDuka store</p>
@@ -410,7 +503,7 @@ body{
           </div>
           <div class="col-md-4 learnbox">
             <a target="_blank" href="https://youtu.be/lyPkoA9as9c">
-              <div class="box_shadow our_padding">
+              <div class="box_shadow our_padding" data-aos="fade-left">
                 <iframe width="100%"  src="https://www.youtube.com/embed/lyPkoA9as9c?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <br/><br/>
                 <p style="font-size:18px;">KDuka - Simplifying E-commerce</p>
@@ -462,12 +555,12 @@ body{
 				}
 			</style>
 			<p>You can log in to your store(website). If you don't have a store(website) you can create one below. If you need help please <a style="padding: 0em 0em !important;border: 0px;color:#7AAE42;font-size: 20px !important;text-decoration:underline" target="_blank" href="http://www.kduka.co.ke/help">click here</a></p>
-      <div class="col-md-6" style="margin-bottom:2em">
+      <div class="col-md-6" style="margin-bottom:2em" data-aos="fade-right">
         <!-- <p>Sign Up!</p> -->
         <!-- <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_registration_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a> -->
         <a style="width:95%;margin-left:auto;margin-right:auto" href="#" data-toggle="modal" data-target="#signup_modal" class="wthree-hvr signup"><span style="color:#fff" class="link_color"><i class="fa fa-edit"></i> Create Store !</span></a>
       </div>
-      <div class="col-md-6" style="margin-bottom:2em">
+      <div class="col-md-6" style="margin-bottom:2em" data-aos="fade-left">
         <!-- <p>Login</p> -->
 			     <a style="width:95%;margin-left:auto;margin-right:auto" href="<%= new_store_session_path %>" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a>
            <!-- <a style="width:95%;margin-left:auto;margin-right:auto" href="#" data-toggle="modal" data-target="#login_modal" class="wthree-hvr"><span style="color:#fff" class="link_color"><i class="fa fa-sign-in"></i> Store Login</span></a> -->
@@ -484,10 +577,10 @@ body{
 			<!-- <h3 class="agileits-title" style="color:#000;font-size:1.4em">Manage and Grow Your Business Online</h3><br> -->
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-weight: 700;font-size:28px;text-align:left;color:#7AAE42">Fully customizable website, online store and domain</p>
+					<p style="font-weight: 700;font-size:28px;text-align:left;color:#7AAE42" data-aos="fade-down">Fully customizable website, online store and domain</p>
 				</div>
 				<div class="clearfix"> </div>
-					 <ul style="list-style:url(/images/website/check.png);font-size:18px;padding-left:2em">
+					 <ul style="list-style:url(/images/website/check.png);font-size:18px;padding-left:2em" data-aos="fade-up-right">
 					 	<li>Free KDuka Account.</li><br>
 						 <li>Beautiful storefront and powerful management tools.</li><br>
 						 <li>Online payment solutions.</li><br>
@@ -495,7 +588,9 @@ body{
 					 </ul>
 			</div>
 			<div class="col-md-6 col-xs-12">
-				<%= image_tag("website/responsive.png", :style=>"width:100%;", :class=>"our_scale") %>
+        <div data-aos="fade-left">
+  				<%= image_tag("website/responsive.png", :style=>"width:100%;", :class=>"our_scale") %>
+        </div>
 			</div>
 		</div>
 	</div>
@@ -506,10 +601,10 @@ body{
 			</div>
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-weight: 700;font-size:28px;text-align:left;color:#f3bd50">Get Started !</p>
+					<p style="font-weight: 700;font-size:28px;text-align:left;color:#f3bd50" data-aos="fade-left">Get Started !</p>
 				</div>
 				<div class="clearfix"> </div>
-					<ol style="font-size:18px;color:#fff">
+					<ol style="font-size:18px;color:#fff" data-aos="fade-up-left">
 	 					<li>Sign up for a free KDuka account.</li><br>
 	 					<li>Fill a simple form to get your Website created.</li><br>
             <li>Customize, add images, text & more.</li><br>
@@ -523,10 +618,10 @@ body{
 		<div class="container">
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
-					<p style="font-weight: 700;font-size:28px;text-align:left;color:#7AAE42">Easy, Powerful, Informative</p>
+					<p style="font-weight: 700;font-size:28px;text-align:left;color:#7AAE42" data-aos="fade-down">Easy, Powerful, Informative</p>
 				</div>
 				<div class="clearfix"> </div>
-				<ul style="list-style:url(/images/website/check.png);font-size:18px;padding-left:2em">
+				<ul style="list-style:url(/images/website/check.png);font-size:18px;padding-left:2em" data-aos="fade-up-right">
 					<li>Easily manage your orders and inventory at anytime.</li><br>
 					<li>Get Paid Easily.
 </li><br>
@@ -542,7 +637,9 @@ body{
 				</ul>
 			</div>
 			<div class="col-md-6 col-xs-12">
-				<%= image_tag("website/analytics.png", :style=>"width:100%;", :class=>"our_scale") %>
+        <div data-aos="fade-left">
+  				<%= image_tag("website/analytics.png", :style=>"width:100%;", :class=>"our_scale") %>
+        </div>
 			</div>
 		</div>
 	</div>
@@ -553,21 +650,21 @@ body{
     <h3><span style="color:#fff">Our</span> Pricing</h3>
     <div class="container">
       <div class="col-md-4">
-        <div class="pricing_shadow">
+        <div class="pricing_shadow" data-aos="flip-right">
           <h4>Free Plan</h4><br><br>
           <h2 class="text-center" style="color:#fff">One Month Free Trial</h2><br><br><br>
           <a data-toggle="modal" data-target="#free_modal" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr"><i class="fa fa-eye"></i> View Details</a>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="pricing_shadow">
+        <div class="pricing_shadow" data-aos="flip-up">
           <h4>Basic Plan</h4><br><br>
           <h2 class="text-center" style="color:#fff">Kes.200 Per Month</h2><br><br><br>
           <a data-toggle="modal" data-target="#basic_modal" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr"><i class="fa fa-eye"></i> View Details</a>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="pricing_shadow">
+        <div class="pricing_shadow" data-aos="flip-left">
           <h4>Premium Plan</h4><br><br>
           <h2 class="text-center" style="color:#fff">Kes.420 Per Month</h2><br><br><br>
           <a data-toggle="modal" data-target="#premium_modal" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr"><i class="fa fa-eye"></i> View Details</a>
@@ -654,8 +751,8 @@ body{
 	<!-- contact -->
 	<div class="contact" id="contact">
 		<div class="container">
-			<h1 style="font-weight: 500;margin-bottom:2em;color:#fff">Get in Touch With Us</h1>
-			<div class="con">
+			<h1 style="font-weight: 500;margin-bottom:2em;color:#fff" data-aos="flip-down">Get in Touch With Us</h1>
+			<div class="con" data-aos="fade-up">
 				<a data-toggle="modal" data-target="#bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr">Click Here !</a>
 			</div>
 
@@ -716,8 +813,6 @@ body{
 	</div>
 	<!-- //footer -->
 	<!-- start-smooth-scrolling -->
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 		jQuery(document).ready(function($) {
 			$(".scroll").click(function(event){
@@ -747,7 +842,6 @@ body{
 	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.js"></script>
     <script>
       $("form").submit(function(event) {
          var recaptcha = $("#g-recaptcha-response").val();
@@ -756,6 +850,11 @@ body{
             alert("Please check the recaptcha");
          }
       });
+    </script>
+    <script>
+    AOS.init({
+      duration: 1200,
+    });
     </script>
 </body>
 </html>
