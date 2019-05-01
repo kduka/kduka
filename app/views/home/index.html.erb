@@ -118,10 +118,15 @@ next if item == '.' or item == '..' %>
 <%end%>
 <!-- web fonts -->
 <style>
+html{
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
 body{
   font-family:'Open Sans', sans-serif !important;
   padding-right: 0px !important;
   overflow-x: hidden !important;
+  max-width: 100% !important;
 }
 </style>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -404,7 +409,7 @@ body{
 		<div class="container">
 			<h3 class="agileits-title" style="text-align:center" data-aos="fade-down">Featured <span style="color:#7AAE42">Websites</span></h3>
       <br><br>
-      <div class="our_scale" style="max-width:100% !important;overflow:hidden !important;" data-aos="flip-up">
+      <div class="our_scale" style="max-width:100% !important;overflow:hidden !important;" data-aos="fade-up">
       <div class="jR3DCarouselGalleryCustomeTemplate">
         <div class="jR3DCarouselCustomSlide">
           <a href="http://nyarnam.kduka.co.ke" target="_blank">
@@ -598,7 +603,9 @@ body{
 	<div class="work">
 		<div class="container">
 			<div class="col-md-6 col-xs-12">
-				<%= image_tag("website/interfaces.png", :style=>"width:100%;", :class=>"our_scale") %>
+        <div data-aos="fade-right">
+  				<%= image_tag("website/interfaces.png", :style=>"width:100%;", :class=>"our_scale") %>
+        </div>
 			</div>
 			<div class="col-md-6 col-xs-12">
 				<div class="single-text w3-agile" style="margin-bottom:3em">
