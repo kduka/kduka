@@ -145,6 +145,9 @@ Rails.application.routes.draw do
   get 'invoices/generate' => 'invoices#generate'
   get 'invoices/check_trials' => 'invoices#check_trials'
   get 'stores/download/:id' => 'stores#download', as: 'stores_download'
+  get 'sms/trial' => 'sms#trial'
+  get 'sms/merchant_sms' => 'sms#merchant_sms'
+  post 'sms/callback' => 'sms#callback'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}

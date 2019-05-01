@@ -69,10 +69,14 @@ class IpnController < ApplicationController
       update_inventory(@order)
       PaymentsMailer.full_payment_recieved(@order).deliver
       PaymentsMailer.merchant_payment_recieved(@order).deliver
+      sms_client_sms_path(@order,1)
+      sms_merchant_sms_path(@order,1)
     else
       @order.update(order_status_id: 5)
       PaymentsMailer.partial_payment_recieved(@order).deliver
       PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
+      sms_client_sms_path(@order,0)
+      sms_merchant_sms_path(@order,0)
     end
   end
 
@@ -315,6 +319,7 @@ class IpnController < ApplicationController
       check_order(pars['id'], pars['mc'], pars['txncd'])
     end
 
+
     if Rails.env.development?
       redirect_to("http://#{pars['p1']}:3000/stores/premium")
     else
@@ -503,5 +508,3 @@ end
 "tokenemail":"martindeto@gmail.com",
 "card_mask":"444444xxxxxx4444"}
 =end
-
-
