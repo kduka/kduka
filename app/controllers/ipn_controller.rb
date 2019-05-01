@@ -310,7 +310,7 @@ class IpnController < ApplicationController
     response = http.request(request)
     valcode = response.body
 
-    if valcode = 'aei7p7yrx4ae34'
+    if valcode == 'aei7p7yrx4ae34'
       #render :json => {'status': 'ok'}
       check_order(pars['id'], pars['mc'], pars['txncd'])
     end
