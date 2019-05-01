@@ -49,7 +49,7 @@ class Invoice < ApplicationRecord
       else
         puts "\n \n This is not premium \n \n "
 
-        if total_days(s.premiumexpiry) < 0
+        if total_days(s.premiumexpiry) <= 0
           puts "\n \n DISCONNECTING #{s.name} \n \n "
           disconnect(s)
         elsif total_days(s.premiumexpiry) == 1
