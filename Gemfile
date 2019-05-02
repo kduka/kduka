@@ -11,7 +11,7 @@ gem 'carrierwave'
 #gem "font-awesome-rails"
 gem 'therubyracer'
 gem 'execjs'
-gem 'mysql2'
+gem 'mysql2', '~>0.3.18'
 gem 'nprogress-rails'
 gem 'fog'
 gem 'bootstrap-colorpicker-rails'
@@ -31,6 +31,9 @@ gem 'axlsx_rails'
 gem 'roo'
 gem 'acts_as_xlsx'
 gem 'json'
+gem "africastalking-ruby"
+
+#gem 'bundler', '~>1.3.0'
 gem 'zip-zip'
 gem 'wicked_pdf', '~> 1.1'
 gem 'wkhtmltopdf-binary'

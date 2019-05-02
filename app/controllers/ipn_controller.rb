@@ -69,10 +69,14 @@ class IpnController < ApplicationController
       update_inventory(@order)
       PaymentsMailer.full_payment_recieved(@order).deliver
       PaymentsMailer.merchant_payment_recieved(@order).deliver
+      SmsController::client_sms(@order,1)
+      SmsController::merchant_sms(@order,1)
     else
       @order.update(order_status_id: 5)
       PaymentsMailer.partial_payment_recieved(@order).deliver
       PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
+      SmsController::client_sms(@order,0)
+      SmsController::merchant_sms(@order,0)
     end
   end
 
@@ -130,12 +134,14 @@ class IpnController < ApplicationController
       inv.update(order_status_id: 6)
 
       PaymentsMailer.full_subscription_payment_recieved(@order, r).deliver
+      SmsController::confirm_sub(@order)
 
 
     else
       @order.update(order_status_id: 5)
-      PaymentsMailer.partial_payment_recieved(@order).deliver
-      PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
+
+      SmsController::partial_sub(@order)
+
     end
   end
 
@@ -314,6 +320,7 @@ class IpnController < ApplicationController
       #render :json => {'status': 'ok'}
       check_order(pars['id'], pars['mc'], pars['txncd'])
     end
+
 
     if Rails.env.development?
       redirect_to("http://#{pars['p1']}:3000/stores/premium")
@@ -503,5 +510,3 @@ end
 "tokenemail":"martindeto@gmail.com",
 "card_mask":"444444xxxxxx4444"}
 =end
-
-

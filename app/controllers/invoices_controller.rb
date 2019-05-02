@@ -125,7 +125,6 @@ class InvoicesController < ApplicationController
               File.delete(save_path) if File.exist?(save_path)
             end
           end
-
           InvoiceMailer::send_first_invoice(store, new_inv).deliver
         end
       end
@@ -218,11 +217,11 @@ class InvoicesController < ApplicationController
   end
 
   def reconnect_premium(s)
-    s.update(premium: true, active: s.p_active, layout_id: s.p_layout_id, activatable: true)
+    s.update(premium: true, active: true, layout_id: s.p_layout_id, activatable: true)
   end
 
   def reconnect(s)
-    s.update(premium: false, active: s.p_active)
+    s.update(premium: false, active: true)
   end
 
   def invoice

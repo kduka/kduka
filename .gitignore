@@ -24,3 +24,8 @@
 # Ignore application configuration
 /config/application.yml
 
+# Ahoy modules
+
+/app/models/ahoy/event.rb
+/app/models/ahoy/visit.rb
+

@@ -7,47 +7,50 @@ class Invoice < ApplicationRecord
 
     stores.each do |s|
 
-      puts "store activatable is #{s.activatable}"
+      puts "Store name: #{s.name.upcase}"
 
       if s.activatable == false
 
-        puts 'skipping deactivated store'
+        puts "skipping deactivated store #{s.name}"
 
       elsif s.plan_id == 2
 
-        puts "Total days diff is #{total_days(s.premiumexpiry)}"
+        puts "\n Store is premium. \n Total days diff is #{total_days(s.premiumexpiry)}"
 
         if total_days(s.premiumexpiry) <= 0
+          puts "\n disconnecting .. \n"
           disconnect(s)
         elsif total_days(s.premiumexpiry) == 1
+          puts "\n Sending final invoice .. \n"
           send_final_invoice(s)
         elsif total_days(s.premiumexpiry) == 7
+          puts "\n generating invoice \n"
           generate_invoice(s)
         else
-          puts "\n \n 1. KIRIMINO KABISA, GENERATE INVOICE #{s.name} \n \n "
+          puts "\n \n Days to premium expiry are more than 7, no criteria matched \n \n "
           generate_invoice(s)
         end
 
       elsif s.trial
 
-        puts "\n \n Trial Store \n \n "
-        puts "Total days diff is #{total_days(s.trial_end)}"
+        puts "\n Trial Store \n"
+        puts "Total days to end of trial are #{total_days(s.trial_end)}"
 
         if total_days(s.trial_end) <= 0
-          puts "disconnecting trial store"
+          puts " \n disconnecting trial store"
           disconnect(s)
         elsif total_days(s.trial_end) == 1
-          puts "sending final invoice trial store"
+          puts "\n sending final invoice trial store"
           send_final_invoice(s)
         elsif total_days(s.trial_end) <= 7
-          puts "generating invoice for trial store"
+          puts "\n generating invoice for trial store"
           generate_invoice(s)
         else
-          puts "\n \n The store  #{s.name} Plenty of time for your trial \n \n "
+          puts "\n \n The store #{s.name} has #{total_days(s.trial_end)} left for trial \n \n "
           #generate_invoice(s)
         end
       else
-        puts "\n \n This is not premium \n \n "
+        puts "\n \n This is not a premium store \n \n "
 
         if total_days(s.premiumexpiry) <= 0
           puts "\n \n DISCONNECTING #{s.name} \n \n "
@@ -66,7 +69,6 @@ class Invoice < ApplicationRecord
     end
   end
 
-
   def self.total_days(expiry)
     if expiry.nil?
       expiry = DateTime.now
@@ -82,11 +84,11 @@ class Invoice < ApplicationRecord
 
     invoice = Invoice.where(store_id: store.id).last
 
-    puts "Is invoice nil? #{invoice.nil?}, reverse total days is #{reverse_total_days(invoice.issued) rescue nil}"
+    puts "Is invoice nil? #{invoice.nil?}, days since last issued invoice are #{reverse_total_days(invoice.issued) rescue nil}"
 
     if invoice.nil? || reverse_total_days(invoice.issued) > 20
 
-      puts "\n \n Not Nil invoice \n \n "
+      puts "\n \n Invoice is not found \n \n "
 
       if store.premium.blank? || store.premium
         amount = Plan.where(name: 'premium').first.amount
@@ -105,7 +107,6 @@ class Invoice < ApplicationRecord
         puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
         from = Time.now - 1.month
         to = Time.now
-
       else
         puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
         from = store.premiumexpiry - 1.month
@@ -147,34 +148,41 @@ class Invoice < ApplicationRecord
             end
             if upload(new_inv, store)
               File.delete(save_path) if File.exist?(save_path)
+              puts 'invoice uploaded'
             end
           end
 
-
           InvoiceMailer::send_first_invoice(store, new_inv).deliver
+          SmsController::week_notice(new_inv,store.phone)
         end
       end
 
     else
-      puts "\n \n Nil Invoice \n \n "
+      puts "\n \n Invoice found\n \n "
       diff = DateTime.now - invoice.issued
 
       puts DateTime.now
       puts invoice.issued
 
-      puts "The Total days diff is #{diff}"
+      puts "Days since invoice was issued #{diff}"
 
       if diff > 8
         InvoiceMailer::send_first_invoice(store, invoice).deliver
+        SmsController::week_notice(new_inv,store.phone)
       end
     end
   end
 
   def self.send_final_invoice(store)
 
+    puts ' \n sending final invoice'
+
     invoice = Invoice.where(store_id: store.id).last
 
     InvoiceMailer::send_reminder(store, invoice).deliver
+    SmsController::final_sms(invoice,store.phone)
+
+    puts ' \n sent!'
 
   end
 
@@ -187,7 +195,7 @@ class Invoice < ApplicationRecord
       invoice = Invoice.where(store_id: store.id).last
 
       if invoice.nil?
-        puts " \n \n existing invoice not found"
+        puts " \n \n existing invoice not found, generating a new one."
 
         if store.plan_id.nil? || store.premium
           amount = Plan.where(name: 'premium').first.amount
@@ -238,15 +246,18 @@ class Invoice < ApplicationRecord
             end
 
             InvoiceMailer::disconnect(store, new_inv).deliver
+            SmsController::suspend(new_inv,store.phone)
             new_inv.update(deliveries: true)
           end
         end
 
       else
-        puts " \n \n existing invoice found"
+        puts " \n \n existing invoice was found, sending invoice ...."
         done = invoice.deliveries
         if !done
+          puts "Deliveries not done, sending final invoice"
           InvoiceMailer::disconnect(store, invoice).deliver
+          SmsController::suspend(invoice,store.phone)
           invoice.update(deliveries: true)
         end
       end
@@ -297,4 +308,5 @@ class Invoice < ApplicationRecord
       false
     end
   end
+
 end
