@@ -276,9 +276,103 @@ body{
 				</div>
 				<div class="clearfix"> </div>
 			</div>
-			<div class="banner-w3lsinfo" >
-				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2.5em;font-weight: 200 !important;text-transform:capitalize;color: #fff;">Have a look at Our Website <span style="color: #7AAE42">Gallery</span></h2>
-				<p style="font-size:1.2em;font-weight: 200;color: #fff;text-transform:capitalize">Scroll Down to See some of the websites created by our users</p>
+			<div class="banner-w3lsinfo" id="container">
+        <div id="inner" data-aos="fade-up">
+  				<h2 style="margin-top:-1.2em;letter-spacing:3px;font-size:2.5em;font-weight: 200 !important;text-transform:capitalize;color: #fff;">Have a look at Our Website <span style="color: #7AAE42">Gallery</span></h2>
+  				<p style="font-size:1.2em;font-weight: 200;color: #fff;text-transform:capitalize">Scroll Down to See some of the websites created by our users</p>
+        </div>
+        <style>
+        #container {
+          perspective: 10px;
+        }
+        #inner {
+          width: auto;
+          height: auto;
+          transition: transform 0.5s;
+          -webkit-transition: transform 0.5s;
+          -moz-transition: transform 0.5s;
+          -o-transition: transform 0.5s;
+        }
+        </style>
+        <script>
+        (function() {
+          // Init
+          var container = document.getElementById("container"),
+            inner = document.getElementById("inner");
+
+          // Mouse
+          var mouse = {
+            _x: 0,
+            _y: 0,
+            x: 0,
+            y: 0,
+            updatePosition: function(event) {
+              var e = event || window.event;
+              this.x = e.clientX - this._x;
+              this.y = (e.clientY - this._y) * -1;
+            },
+            setOrigin: function(e) {
+              this._x = e.offsetLeft + Math.floor(e.offsetWidth / 2);
+              this._y = e.offsetTop + Math.floor(e.offsetHeight / 2);
+            },
+            show: function() {
+              return "(" + this.x + ", " + this.y + ")";
+            }
+          };
+
+          // Track the mouse position relative to the center of the container.
+          mouse.setOrigin(container);
+
+          //-----------------------------------------
+
+          var counter = 0;
+          var updateRate = 10;
+          var isTimeToUpdate = function() {
+            return counter++ % updateRate === 0;
+          };
+
+          //-----------------------------------------
+
+          var onMouseEnterHandler = function(event) {
+            update(event);
+          };
+
+          var onMouseLeaveHandler = function() {
+            inner.style = "";
+          };
+
+          var onMouseMoveHandler = function(event) {
+            if (isTimeToUpdate()) {
+              update(event);
+            }
+          };
+
+          //-----------------------------------------
+
+          var update = function(event) {
+            mouse.updatePosition(event);
+            updateTransformStyle(
+              (mouse.y / inner.offsetHeight / 2).toFixed(2),
+              (mouse.x / inner.offsetWidth / 2).toFixed(2)
+            );
+          };
+
+          var updateTransformStyle = function(x, y) {
+            var style = "rotateX(" + x + "deg) rotateY(" + y + "deg)";
+            inner.style.transform = style;
+            inner.style.webkitTransform = style;
+            inner.style.mozTransform = style;
+            inner.style.msTransform = style;
+            inner.style.oTransform = style;
+          };
+
+          //-----------------------------------------
+
+          container.onmouseenter = onMouseEnterHandler;
+          container.onmouseleave = onMouseLeaveHandler;
+          container.onmousemove = onMouseMoveHandler;
+        })();
+        </script>
         <br><br>
         <div class="col-md-4 col-md-offset-4 col-xs-12 text-center" style="margin-bottom:2em">
           <h2><a href="#introduction" class="scroll" style="color:#7aae42;text-decoration:none;outline:0 !important"><i class="fa fa-arrow-down fa-2x kd_transform"></i></a></h2>
@@ -301,7 +395,7 @@ body{
             });
         </script>
       <section id="row1" style="padding-top:5em;">
-        <h1 class="sectionTitle" data-aos="fade-up"><%=e.shop_category%> <span style="color:#7aae42">Websites</span></h1>
+        <h1 class="sectionTitle" data-aos="zoom-in"><%=e.shop_category%> <span style="color:#7aae42">Websites</span></h1>
         <div id="<%=e.shop_category %>" data-aos="fade-down">
           <%@explore.each do |w| %>
             <%if w.shop_category_id === e.id %>
@@ -322,7 +416,7 @@ body{
 	<!-- contact -->
 	<div class="contact" id="contact">
 		<div class="container">
-      <h1 style="font-weight: 500;margin-bottom:2em;color:#fff" data-aos="flip-down">Get in Touch With Us</h1>
+      <h1 style="font-weight: 500;margin-bottom:2em;color:#fff" data-aos="zoom-in">Get in Touch With Us</h1>
 			<div class="con" data-aos="fade-up">
 				<a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr">Click Here !</a>
 			</div>

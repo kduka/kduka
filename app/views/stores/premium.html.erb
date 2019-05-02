@@ -32,6 +32,54 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+<!--Basic Modal Start-->
+<div class="modal fade bs-example-modal-md light-box" id="basic_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content light-box-info">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+      <div class="pop">
+        <h3>Basic Plan Details</h3>
+        <div class="contact-grids">
+          <ul style="list-style:url(/images/website/check.png);font-size:17px;padding-left:3.5em;padding-right: 1.5em;text-align:left;margin-bottom:4em">
+            <li>Free KDuka Subdomain (e.g mystore.kduka.co.ke)</li><br>
+            <li>Unlimited Product Categories</li><br>
+            <li>Limited Products (150)</li><br>
+            <li>Limited Storage Space</li><br>
+            <li>1% commission charged on each sale made</li><br>
+          </ul>
+
+          <div class="clearfix"> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Basic Modal End-->
+<!--Premium Modal Start-->
+<div class="modal fade bs-example-modal-md light-box" id="premium_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content light-box-info">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+      <div class="pop">
+        <h3>Premium Plan Details</h3>
+        <div class="contact-grids">
+          <ul style="list-style:url(/images/website/check.png);font-size:17px;padding-left:3.5em;padding-right: 1.5em;text-align:left">
+            <li>Free KDuka Website</li><br>
+            <li>Custom Domain Use (e.g www.mystore.com). You will Need to buy the domain first.</li><br>
+            <li>Unlimited Product Categories</li><br>
+            <li>Unlimited Products</li><br>
+            <li>Unlimited Storage Space</li><br>
+            <li>SEO (Search Engine Optimization)</li><br>
+            <li>Enable Google Analytics</li><br>
+            <li>1% commission charged on each sale made</li><br>
+          </ul>
+          <div class="clearfix"> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Premium Modal End-->
 <div class="content_bottom" style="margin-top:2em">
 
   <h3 style="color:#7aae42"><i class="fa fa-money"></i> Upgrade</h3>
@@ -40,7 +88,7 @@
     <% if !@store.plan_id.nil? %>
 
       <% plan = Plan.find(current_store.plan_id).name.humanize %>
-      <h3 style="color:#7aae42"></i>You are current plan: <%= plan %>  until <%= @store.premiumexpiry rescue nil %></h3>
+      <h3 style="color:#7aae42"></i>Your current plan: <%= plan %>  until <%= @store.premiumexpiry rescue nil %></h3>
 
       <p></p><br><br>
       <% if @store.plan_id == 1 %>
@@ -49,6 +97,7 @@
             <div class="pricing_shadow">
               <h4>Premium</h4>
               <h3>KSH 420</h3>
+              <a href="#" data-toggle="modal" data-target="#premium_modal" style="text-decoration:none !important"><button class="kd_buttons">View Details</button></a>
               <!--            <h3>Save 5%</h3>-->
               <br>
               <button id="up2" data-toggle="modal" data-target="#premium" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button>
@@ -82,6 +131,7 @@
           <div class="pricing_shadow">
             <h4>Basic</h4>
             <h3>KSH 200</h3>
+            <a href="#" data-toggle="modal" data-target="#basic_modal" style="text-decoration:none !important"><button class="kd_buttons">View Details</button></a>
             <!--            <h3>Save 10%</h3>-->
             <br>
             <button id="up1" data-toggle="modal" data-target="#basic" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button>
@@ -92,6 +142,7 @@
           <div class="pricing_shadow">
             <h4>Premium</h4>
             <h3>KSH 420</h3>
+            <a href="#" data-toggle="modal" data-target="#premium_modal" style="text-decoration:none !important"><button class="kd_buttons">View Details</button></a>
             <!--            <h3>Save 5%</h3>-->
             <br>
             <button id="up2" data-toggle="modal" data-target="#premium" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button>
