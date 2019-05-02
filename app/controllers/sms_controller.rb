@@ -14,62 +14,64 @@ class SmsController < ApplicationController
 
         AT = AfricasTalking::Initialize.new username, apikey
 
-    def client_sms(o,state)
-      o=@order
+    def self.client_sms(o,state)
+      @order = o
+      @store = Store.find(o.store_id)
       to = o.phone
-      if state = 0
+      if state == 0
       message = "Your payment of Ksh:#{@order.amount_received} to #{@store.name} has been received for the order #{@order.ref}. Please pay Ksh: #{@order.total - @order.amount_received} to complete your order."
       else
-      message = "Your payment of Ksh:#{@order.amount_received} to #{@store.name} has been received for the order #{@order.ref}."
+      message = "Your payment of Ksh:#{@order.amount_received} to #{@store.name} has been received for the order #{@order.ref}. Your secret delivery code is #{@order.delivery_code}"
       end
       send_sms(to,message)
     end
 
-    def merchant_sms(o,state)
+    def self.merchant_sms(o,state)
       owner = o.store_id
-      to = Store.where(store_id: owner).phone
-      if state = 0
-        message = "A partial payment of Ksh: #{@order.amount_received} has been received for the order #{@order.ref}. A balance of Ksh: #{@order.total - @order.amount_received} is remaining"
+      to = Store.find(owner).phone
+      if state == 0
+        message = "A partial payment of Ksh: #{@order.amount_received} has been received for the order #{@order.ref}. A balance of Ksh: #{@order.total - @order.amount_received} is remaining."
       else
         message = "A payment of Ksh: #{@order.amount_received} has been received for the order #{@order.ref}"
       end
       send_sms(to,message)
     end
 
-    def week_notice(inv,to)
+    def self.week_notice(inv,to)
 
-        message = "Your invoice for the period #{inv.from} - #{inv.to} is ready. Please login to your store to make a payment before #{inv.due}."
+        message = "Your invoice##{inv.uid}, for the period #{inv.from} - #{inv.to} is ready. Please login to your store to make a payment before #{inv.due}."
         send_sms(to,message)
 
     end
 
-    def final_sms(inv,to)
+    def self.final_sms(inv,to)
 
-        message = "Your invoice for the period #{inv.from} - #{inv.to} has not been paid for. Kindly login to your store to make a payment before #{inv.due} to avoid account suspension."
+        message = "Your invoice ##{inv.uid}, for the period #{inv.from} - #{inv.to} has not been paid. Kindly make a payment before #{inv.due} to avoid account suspension."
         send_sms(to,message)
 
     end
 
-    def suspend(inv,to)
+    def self.suspend(inv,to)
 
-      message = "Your store has been suspended because you have an unpaid invoice for the period #{inv.from} - #{inv.to}. Kindly login in to your store and make a payment to continue enjoying our services"
+      message = "Your store has been suspended because you have an unpaid invoice ##{inv.uid}. Kindly login and make a payment to continue enjoying our services"
       send_sms(to,message)
 
     end
 
-    def partial_sub(o)
+    def self.partial_sub(o)
       to = o.phone
       message = "Your partial payment of Ksh: #{o.received} has been received. Your outstanding balance is Ksh #{o.amount - o.received}."
       send_sms(to,message)
     end
 
-    def confirm_sub(o)
-      to = o.phone
-      message = "Your payment of Ksh: #{o.received} has been received for #{o.description} subscription. Your store has been restored."
+    def self.confirm_sub(o)
+      s = Store.find(o.store_id)
+      to = s.phone
+      message = "Your payment of Ksh: #{o.received} has been received for #{o.description} subscription. Your store has been restored. Subscription is valid until #{s.premiumexpiry}"
       send_sms(to,message)
     end
 
-    def send_sms(to,message)
+    def self.send_sms(to,message)
       require 'AfricasTalking'
 
       sms = AT.sms
