@@ -119,9 +119,15 @@ next if item == '.' or item == '..' %>
 <%end%>
 <!-- web fonts -->
 <style>
+html{
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
 body{
   font-family:'Open Sans', sans-serif !important;
   padding-right: 0px !important;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
 }
 .my_new_button{
   display: block;
@@ -241,7 +247,7 @@ body{
 					<!-- <span class="menu"></span> -->
 					</div>
 					<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-					<script src="js/classie.js"></script>
+
 					<script>
 					var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
 					showRightPush = document.getElementById( 'showRightPush' ),
@@ -295,8 +301,8 @@ body{
             });
         </script>
       <section id="row1" style="padding-top:5em;">
-        <h1 class="sectionTitle"><%=e.shop_category%> <span style="color:#7aae42">Websites</span></h1>
-        <div id="<%=e.shop_category %>">
+        <h1 class="sectionTitle" data-aos="fade-up"><%=e.shop_category%> <span style="color:#7aae42">Websites</span></h1>
+        <div id="<%=e.shop_category %>" data-aos="fade-down">
           <%@explore.each do |w| %>
             <%if w.shop_category_id === e.id %>
           <div>
@@ -316,8 +322,8 @@ body{
 	<!-- contact -->
 	<div class="contact" id="contact">
 		<div class="container">
-			<h1 style="font-weight: 500;margin-bottom:2em;color:#fff">Get in Touch With Us</h1>
-			<div class="con">
+      <h1 style="font-weight: 500;margin-bottom:2em;color:#fff" data-aos="flip-down">Get in Touch With Us</h1>
+			<div class="con" data-aos="fade-up">
 				<a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr">Click Here !</a>
 			</div>
 			<div class="modal fade bs-example-modal-md light-box" tabindex="-1" role="dialog" aria-hidden="true" style="z-index:9999999">
@@ -377,8 +383,7 @@ body{
 	</div>
 	<!-- //footer -->
 	<!-- start-smooth-scrolling -->
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
+
 <script type="text/javascript">
 		jQuery(document).ready(function($) {
 			$(".scroll").click(function(event){
@@ -387,25 +392,10 @@ body{
 			});
 		});
 	</script>
-    <script src="js/bootstrap.js"></script>
+
     <script>
-    $(function() {
-      fr = new FilmRoll({
-        container: '#electronics'
-
-      });
-    });
-    $(function() {
-      fr = new FilmRoll({
-        container: '#cosmetics'
-
-      });
-    });
-    $(function() {
-      fr = new FilmRoll({
-        container: '#appliances'
-
-      });
+    AOS.init({
+      duration: 1200,
     });
     </script>
 </body>

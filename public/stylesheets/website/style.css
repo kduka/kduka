@@ -12,6 +12,7 @@
     -o-border-radius: 7px;
     -ms-border-radius: 7px;
     text-decoration: none;
+    transition: all 0.5s !important;
 }
 
 .explore_button a:hover {
@@ -355,7 +356,7 @@ nav#cbp-spmenu-s2 h3 {
 .learn {
     padding: 6em 0;
     text-align: center;
-    background: #7b7b7b;
+    background: #fff;
 }
 
 .learnbox {
