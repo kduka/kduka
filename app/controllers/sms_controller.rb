@@ -59,7 +59,8 @@ class SmsController < ApplicationController
     end
 
     def self.partial_sub(o)
-      to = o.phone
+      s = Store.find(o.store_id)
+      to = s.phone
       message = "Your partial payment of Ksh: #{o.received} has been received. Your outstanding balance is Ksh #{o.amount - o.received}."
       send_sms(to,message)
     end
