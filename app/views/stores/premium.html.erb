@@ -40,7 +40,7 @@
     <% if !@store.plan_id.nil? %>
 
       <% plan = Plan.find(current_store.plan_id).name.humanize %>
-      <h3 style="color:#7aae42"></i>You are current plan: <%= plan %>  until <%= @store.premiumexpiry rescue nil %></h3>
+      <h3 style="color:#7aae42"></i>Your current plan: <%= plan %>  until <%= @store.premiumexpiry rescue nil %></h3>
 
       <p></p><br><br>
       <% if @store.plan_id == 1 %>
