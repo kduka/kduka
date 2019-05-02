@@ -5,7 +5,7 @@ class Ahoy::Event < ApplicationRecord
 
   belongs_to :visit
   belongs_to :store, optional: true
-  #before_save :finalize
+  before_save :finalize
 
 
   def finalize
