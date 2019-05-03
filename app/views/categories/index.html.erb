@@ -30,11 +30,11 @@
             <td>
               <% if category.featured == true %>
                 <%= link_to category_unfeature_path(category),style:'color:orange' do %>
-                <i class="fa fa-close"></i> Remove From Featured
+                <i class="fa fa-close"></i> Remove From Home Page
                 <%end%>
               <% else %>
                 <%= link_to category_feature_path(category),style:'color:#06B216' do %>
-                <i class="fa fa-check"></i> Make Featured
+                <i class="fa fa-check"></i> Show in Home Page
                 <%end%>
               <% end %>
             </td>
