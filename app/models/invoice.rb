@@ -166,7 +166,7 @@ class Invoice < ApplicationRecord
 
       puts "Days since invoice was issued #{diff}"
 
-      if diff > 8
+      if diff > 20
         InvoiceMailer::send_first_invoice(store, invoice).deliver
         SmsController::week_notice(new_inv,store.phone)
       end
