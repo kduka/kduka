@@ -168,7 +168,7 @@ class Invoice < ApplicationRecord
 
       if diff > 20
         InvoiceMailer::send_first_invoice(store, invoice).deliver
-        SmsController::week_notice(new_inv,store.phone)
+        SmsController::week_notice(invoice,store.phone)
       end
     end
   end
