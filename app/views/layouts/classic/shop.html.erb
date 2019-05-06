@@ -61,6 +61,9 @@ next if item == '.' or item == '..' %>
 </script>
 
 <style>
+.active{
+	color:<%= @store.store_color%> !important;
+}
 .multi-column-dropdown li a:hover {
     text-decoration: none;
     color: <%= @store.store_color%> !important;

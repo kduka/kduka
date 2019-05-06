@@ -2,14 +2,14 @@
   <nav>
     <ul>
       <% if @store.homepage_status == true %>
-      <li><a href="<%= root_path %>">Home</a></li>
+      <li><a class="our_home" href="<%= root_path %>">Home</a></li>
       <% end %>
       <% if @store.aboutpage_status == true %>
-      <li><a href="<%= about_path %>">About Us</a></li>
+      <li><a class="about_us" href="<%= about_path %>">About Us</a></li>
       <% end %>
-      <li><a href="<%= all_path %>">Shop</a></li>
-      <li><a href="<%= cart_path %>"><i class="fa fa-shopping-cart"></i> Cart <span  class="cart-text"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a></li>
-      <li><a href="<%= contact_path %>">Contact</a></li>
+      <li><a class="shopping" href="<%= all_path %>">Shop</a></li>
+      <li><a class="our_cart" href="<%= cart_path %>"><i class="fa fa-shopping-cart"></i> Cart <span  class="cart-text"><%= render "layouts/#{Layout.find(@store.layout_id).name}/cart_text" %></span></a></li>
+      <li><a class="contact_us" href="<%= contact_path %>">Contact</a></li>
     </ul>
   </nav>
 </div>

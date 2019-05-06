@@ -1,3 +1,8 @@
+<script>
+$(document).ready(function(){
+    $('.shop').addClass('active');
+});
+</script>
 <title><%= @store.name %> | <%= @title %></title>
 <!--=======BANNER=======-->
 <section id="banner_parallax" data-parallax="scroll" data-image-src="<%= @store.banner_url.to_s %>">

@@ -13,13 +13,13 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav top-nav-info">
           <% if @store.homepage_status == true %>
-              <li><a href="<%= root_path %>" class="active"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="<%= root_path %>" class="home"><i class="fa fa-home"></i> Home</a></li>
           <% end %>
           <% if @store.aboutpage_status == true %>
-              <li><a href="<%= about_path %>" class="">About</a></li>
+              <li><a href="<%= about_path %>" class="about">About</a></li>
           <% end %>
           <li class="dropdown my-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Shop</span><b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle shop" data-toggle="dropdown"><span>Shop</span><b class="caret"></b></a>
             <ul class="dropdown-menu multi-column multi-column1">
               <div class="row">
                 <div class="col-sm-12 menu-grids menulist1">
@@ -38,7 +38,7 @@
               </div>
             </ul>
           </li>
-          <li><a href="<%= contact_path %>" class="">Contact Us</a></li>
+          <li><a href="<%= contact_path %>" class="contact">Contact Us</a></li>
 <!--          <li><a href="#" data-toggle="modal" data-target="#mysearch"><i class="fa fa-search"></i></a></li>-->
           <!-- Modal -->
           <div id="mysearch" class="modal fade" role="dialog">
