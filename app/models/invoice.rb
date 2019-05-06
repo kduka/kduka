@@ -28,7 +28,7 @@ class Invoice < ApplicationRecord
           generate_invoice(s)
         else
           puts "\n \n Days to premium expiry are more than 7, no criteria matched \n \n "
-          generate_invoice(s)
+          #generate_invoice(s)
         end
 
       elsif s.trial
