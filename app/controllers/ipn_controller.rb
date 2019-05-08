@@ -330,7 +330,7 @@ class IpnController < ApplicationController
   end
 
   def reconnect_premium(s, pid, expire)
-    s.update(premium: true, active: true, layout_id: s.p_layout_id, activatable: true, plan_id: pid, premiumexpiry: expire, trial: false)
+    s.update(premium: true, active: true, activatable: true, plan_id: pid, premiumexpiry: expire, trial: false)
   end
 
   def reconnect(s, pid, expire)
