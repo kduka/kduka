@@ -51,6 +51,9 @@
     #ft_products .hover_quick_view {
       /*margin-left: 60px; */
     }
+    .active{
+    	color:<%= @store.store_color%> !important;
+    }
     <% if !@store.store_font.nil? %>
     body{
       font-family: <%= @store.store_font %> !important;

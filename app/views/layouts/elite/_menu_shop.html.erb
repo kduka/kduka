@@ -17,12 +17,12 @@
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav menu__list">
 					<% if @store.homepage_status == true %>
-					<li class="active menu__item menu__item--current"><a class="menu__link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a></li>
+					<li class="home menu__item"><a class="menu__link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a></li>
 					<% end %>
 					<% if @store.aboutpage_status == true %>
-					<li class=" menu__item"><a class="menu__link" href="<%= about_path %>">About</a></li>
+					<li class="about menu__item"><a class="menu__link" href="<%= about_path %>">About</a></li>
 					<% end %>
-					<li class="dropdown menu__item">
+					<li class="shop dropdown menu__item">
 						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="caret"></span></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="agile_inner_drop_nav_info">
@@ -41,7 +41,7 @@
 								</div>
 							</ul>
 					</li>
-					<li class=" menu__item"><a class="menu__link" href="<%= contact_path %>">Contact</a></li>
+					<li class="contact menu__item"><a class="menu__link" href="<%= contact_path %>">Contact</a></li>
 <!--					<li class=" menu__item"><a class="menu__link" href="#" data-toggle="modal" data-target="#mysearch"><i class="fa fa-search"></i></a></li>-->
 					<!-- Modal -->
 					<div id="mysearch" class="modal fade" role="dialog">

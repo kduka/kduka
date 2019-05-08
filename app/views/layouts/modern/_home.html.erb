@@ -1,3 +1,8 @@
+<script>
+$(document).ready(function(){
+    $('.home').addClass('active');
+});
+</script>
 <title><%= @store.name %> | <%= @title %></title>
 <div class="banner"style="max-width:100% !important">
   <img src="<%= @store.banner_url.to_s %>" style="width:100%;max-width:100% !important;margin-bottom:2em">

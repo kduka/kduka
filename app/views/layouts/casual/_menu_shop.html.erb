@@ -22,15 +22,15 @@
     <div class="box" id="box">
        <div class="box_content_center">
          <div class="menu_box_list">
-           <ul>
+           <ul class="navigation">
              <% if @store.homepage_status == true %>
-             <li><a href="<%= root_path %>"><i class="fa fa-home"></i> Home</a></li>
+             <li><a class="home" href="<%= root_path %>"><i class="fa fa-home"></i> Home</a></li>
              <%end%>
              <% if @store.aboutpage_status == true %>
-             <li><a href="<%= about_path %>">About</a></li>
+             <li><a class="about" href="<%= about_path %>">About</a></li>
              <%end%>
-             <li><a href="<%= all_path %>">Shop</a></li>
-             <li><a href="<%= contact_path %>">Contact</a></li>
+             <li><a  class="shop" href="<%= all_path %>">Shop</a></li>
+             <li><a class="contact" href="<%= contact_path %>">Contact</a></li>
            </ul>
         </div>
         <a class="boxclose" id="boxclose" style="color:#fff"><i class="fa fa-times"></i></a>

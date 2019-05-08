@@ -14,14 +14,14 @@
       <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
         <ul class="nav navbar-nav">
           <% if @store.homepage_status == true %>
-          <li><a href="<%= root_path %>" class="act myclass"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="<%= root_path %>" class="home myclass"><i class="fa fa-home"></i> Home</a></li>
           <% end %>
           <% if @store.aboutpage_status == true %>
-          <li><a href="<%= about_path %>" class="myclass">About Us</a></li>
+          <li><a href="<%= about_path %>" class="about myclass">About Us</a></li>
           <% end %>
           <!-- Mega Menu -->
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle myclass" data-toggle="dropdown">Shop <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle myclass shop" data-toggle="dropdown">Shop <b class="caret"></b></a>
             <ul class="dropdown-menu multi-column columns-3">
               <div class="row">
                 <div class="col-sm-12">
@@ -39,7 +39,7 @@
               </div>
             </ul>
           </li>
-          <li><a href="<%= contact_path %>" class="myclass">Contact Us</a></li>
+          <li><a href="<%= contact_path %>" class="myclass contact">Contact Us</a></li>
 <!--          <li><a href="#" class="myclass" data-toggle="modal" data-target="#mysearch"><i class="fa fa-search"></i></a></li>-->
 
         </ul>

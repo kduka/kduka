@@ -1,3 +1,8 @@
+<script>
+$(document).ready(function(){
+    $('.about').addClass('active');
+});
+</script>
 <title><%= @store.name %> | <%= @title %></title>
 <section id="banner_parallax" data-parallax="scroll" data-image-src="<%= @store.banner_url.to_s %>">
     <h2><%= @title %></h2>
