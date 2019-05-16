@@ -188,7 +188,7 @@ class Invoice < ApplicationRecord
 
   def self.disconnect(store)
 
-    disconnect = store.update(premium: false, p_active: store.active, active: false, p_layout_id: store.layout_id, layout_id: 1, activatable: false, plan_id: nil, trial: false, p_explore: store.explore, explore: false)
+    disconnect = store.update(premium: false, active: false, activatable: false, plan_id: nil, trial: false, p_explore: store.explore, explore: false)
 
     if disconnect
       puts "\n \n disconnect successfull"
