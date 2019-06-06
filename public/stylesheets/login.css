@@ -31,6 +31,9 @@
 
 
 /*-- Index-Page-Styling --*/
+.aitsloginwthree h1{
+	margin-bottom: 2em;
+}
 .h1, .h2, .h3, h1, h2, h3 {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
