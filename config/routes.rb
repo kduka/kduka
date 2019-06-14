@@ -148,6 +148,7 @@ Rails.application.routes.draw do
   get 'sms/trial' => 'sms#trial'
   get 'sms/merchant_sms' => 'sms#merchant_sms'
   post 'sms/callback' => 'sms#callback'
+  get 'nums' => 'numtowords#nums'
 
 
   devise_for :stores, :controllers => {registrations: 'store_registrations', sessions: 'store_sessions',passwords:'store_passwords'},path: 'stores', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup'}
