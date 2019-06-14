@@ -28,11 +28,11 @@
         <ul class="tick w3layouts agileinfo">
           <li>
             <%= f.check_box :remember_me %>
-            <label for="brand1"><span></span>Remember me</label>
+            <label for="brand1" style="color:#fff">Forgot your password?</label>
           </li>
           <li>
              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-                <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+                <%= link_to "Click Here", new_password_path(resource_name) %>
                 <br />
             <% end -%>
           </li>
@@ -47,5 +47,8 @@
 
 </div>
 <div class="col-md-12" style="margin-top:3em;margin-bottom:0em;">
-  <p style="font-weight: 900;text-align:center;color: #000 !important;text-shadow: 5px 5px 5px 5px #fff;"><span style="background: rgba(255,255,255,0.0);padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %> KDuka. All rights reserved | Developed by <a style="font-weight: 900;color:#7AAE42;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span><p>
+  <p style="font-weight: 900;text-align:center;color: #fff !important;">
+    <span style="padding-left:3px;padding-right:3px;border-radius:4px">Copyright &copy; <%= Time.current.year %>
+      KDuka. All rights reserved | A Product of <a style="font-weight: 900;color:#7AAE42;text-decoration: underline;text-shadow: 5px 5px 5px 5px #fff !important;" href="http://www.zerone.co.ke">Zerone I.T. Solutions</a></span>
+  <p>
 </div>
