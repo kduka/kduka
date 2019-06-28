@@ -93,7 +93,18 @@
       <p></p><br><br>
       <% if @store.plan_id == 1 %>
         <div class="our_pricing" id="pricing">
-          <div disabled="" class="col-md-6 col-md-offset-3">
+          <div class="col-md-6">
+            <div class="pricing_shadow">
+              <h4>Basic</h4>
+              <h3>KSH 200</h3>
+              <a href="#" data-toggle="modal" data-target="#basic_modal" style="text-decoration:none !important"><button class="kd_buttons">View Details</button></a>
+              <!--            <h3>Save 10%</h3>-->
+              <br>
+              <button id="up1" data-toggle="modal" data-target="#basic" type="submit" class="kd_buttons" style="background-color: #7aae42 !important;color: #fff !important;">Upgrade</button>
+              </h3>
+            </div>
+          </div>
+          <div disabled="" class="col-md-6">
             <div class="pricing_shadow">
               <h4>Premium</h4>
               <h3>KSH 420</h3>
