@@ -1,11 +1,26 @@
+# PostgreSQL. Versions 8.2 and up are supported.
 # MySQL. Versions 5.0 and up are supported.
 #
+# Install the pg driver:
+#   gem install pg
+# On Mac OS X with macports:
+#   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
+# On Windows:
+#   gem install pg
+#       Choose the win32 build.
+#       Install PostgreSQL and put its /bin directory on your path.
 # Install the MySQL driver
 #   gem install mysql2
 #
+# Configure Using Gemfile
+# gem 'pg'
 # Ensure the MySQL gem is defined in your Gemfile
 #   gem 'mysql2'
 #
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: sample_postgres_development
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
 #
@@ -13,11 +28,26 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
+  username: sample_postgres
+  password:
+
+  # Connect on a TCP socket. Omitted by default since the client uses a
+  # domain socket that doesn't need configuration. Windows does not have
+  # domain sockets, so uncomment these lines.
+  #host: localhost
+  #port: 5432
   username: root
   password: spiderpig
-  #socket: /var/run/mysqld/mysqld.sock
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
+  # Schema search path. The server defaults to $user,public
+  #schema_search_path: myapp,sharedapp,public
+
+  # Minimum log levels, in increasing order:
+  #   debug5, debug4, debug3, debug2, debug1,
+  #   log, notice, warning, error, fatal, and panic
+  # The server defaults to notice.
+  #min_messages: warning
 development:
   <<: *default
   database: duka_development
@@ -26,6 +56,12 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
+  adapter: postgresql
+  encoding: unicode
+  database: sample_postgres_test
+  pool: 5
+  username: sample_postgres
+  password:
   <<: *default
   database: duka_test
 
@@ -51,4 +87,12 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: db/production.sqlite3
+  encoding: unicode
+  database: duka
+  pool: 5
+  username: kduka
+  password: ##kduka.production##
+
+
+ # database: db/production.sqlite3
+
