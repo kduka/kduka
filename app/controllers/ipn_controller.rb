@@ -96,13 +96,13 @@ class IpnController < ApplicationController
         puts "expiry is nil, adding one month to now"
 
         expire = now + 1.month
-
+        @plan_id = ""
         if @order.description == 'basic'
           description = 'the basic plan'
-          plan_id = 1
+          @plan_id = 1
         elsif @order.description == 'premium'
           description = 'the premium plan'
-          plan_id = 2
+          @plan_id = 2
         end
 
       else
@@ -120,12 +120,12 @@ class IpnController < ApplicationController
 
       r = SubscriptionRecord.create(store_id: @order.store_id, start: now, expire: expire, subscription_id: @order.id, description: description)
 
-      if plan_id == 1
-        puts "Plan id is #{plan_id} proceeding"
-        reconnect(Store.find(@order.store_id), plan_id, expire)
-      elsif plan_id == 2
-        puts "Plan id is #{plan_id} proceeding"
-        reconnect_premium(Store.find(@order.store_id), plan_id, expire)
+      if @plan_id == 1
+        puts "Plan id is #{@plan_id} proceeding"
+        reconnect(Store.find(@order.store_id), @plan_id, expire)
+      elsif @plan_id == 2
+        puts "Plan id is #{@plan_id} proceeding"
+        reconnect_premium(Store.find(@order.store_id), @plan_id, expire)
       else
         puts "Plan id is missing proceeding"
       end
@@ -216,7 +216,7 @@ class IpnController < ApplicationController
     @ipn = Iipn.create(@params)
 
     if @ipn
-      render :json => {'status': 'ok'}
+      render :json => {'status':'ok'}
       check_order(@params['trans_id'], @params['mc'], @params['txncd'])
     end
   end

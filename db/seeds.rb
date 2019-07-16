@@ -1,4 +1,3 @@
-=begin
 Order.create!([
 
               ])
@@ -87,11 +86,6 @@ OrderStatus.create!([
 
 
 
-
-# Admin.create!([
-#                   {:email => 'fanuel@kduka.co.ke', :password => 'Fanuel@Kduka', :password_confirmation => 'Fanuel@Kduka'}
-#               ])
-
 Font.create!([
                  {:name => 'Abril Fatface'},
                  {:name => 'Amatic SC'},
@@ -134,16 +128,8 @@ Font.create!([
                  {:name => 'Yanone Kaffeesatz'},
                  {:name => 'ZCOOL XiaoWei'},
              ])
-=end
-
-=begin
 
 Plan.create!([
                               {:name => 'basic',:amount => '200'},
                               {:name => 'premium',:amount => '420'},
                           ])
-=end
-
-Admin.create!([
-                  {:email => 'mercy@kduka.africa', :password => 'Mercy@Kduka', :password_confirmation => 'Mercy@Kduka'}
-              ])
