@@ -1,8 +1,0 @@
-/.bundle/
-/.yardoc/
-/coverage/
-/docs/_site/
-Gemfile.lock
-*.gem
-.ruby-version
-!docs/.ruby-version
