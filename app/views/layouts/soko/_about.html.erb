@@ -1,0 +1,42 @@
+<script>
+$(document).ready(function(){
+    $('.about').addClass('active');
+});
+</script>
+<title><%= @store.name %> | <%= @title %></title>
+
+<div class="page-head_agile_info_w3l" style="background-image:url('<%= @store.banner_url.to_s %>') !important;background-size:cover">
+
+</div>
+<!-- //banner-2 -->
+<!-- page -->
+<div class="services-breadcrumb">
+  <div class="agile_inner_breadcrumb">
+    <div class="container">
+      <ul class="w3_short">
+        <li>
+          <a href="<%= root_path %>">Home</a>
+          <i>|</i>
+        </li>
+        <li>About Us</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- //page -->
+
+<!-- about -->
+<div class="welcome py-sm-5 py-4">
+  <div class="container py-xl-4 py-lg-2">
+    <!-- tittle heading -->
+    <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+      <span>A</span> <span>F</span>ew <span>W</span>ords <span>A</span>bout
+      <span>U</span>s</h3>
+    <!-- //tittle heading -->
+    <div class="row">
+      <div class="col-lg-12 welcome-left">
+        <p style="text-align:justify !important"><%= @store.aboutpage_text.html_safe rescue nil %></p>
+      </div>
+    </div>
+  </div>
+</div>

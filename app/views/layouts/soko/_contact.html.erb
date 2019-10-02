@@ -1,0 +1,119 @@
+<script>
+$(document).ready(function(){
+    $('.contact').addClass('active');
+});
+</script>
+<title><%= @store.name %> | <%= @title %></title>
+<!-- banner-2 -->
+<div class="page-head_agile_info_w3l" style="background-image:url('<%= @store.banner_url.to_s %>') !important;background-size:cover">
+
+</div>
+<!-- //banner-2 -->
+<!-- page -->
+<div class="services-breadcrumb">
+  <div class="agile_inner_breadcrumb">
+    <div class="container">
+      <ul class="w3_short">
+        <li>
+          <a href="<%= root_path %>">Home</a>
+          <i>|</i>
+        </li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- //page -->
+
+<!-- contact -->
+<div class="contact py-sm-5 py-4">
+  <div class="container py-xl-4 py-lg-2">
+    <!-- tittle heading -->
+    <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+      <span>C</span>ontact
+      <span>U</span>s
+    </h3>
+    <!-- //tittle heading -->
+    <div class="row contact-grids agile-1 mb-5">
+      <div style="margin-bottom: 1em;margin-top: 1em;width:100%">
+          <div class="col-md-12">
+            <% if !notice.nil? %>
+            <div class=" text-center alert alert-success" role="alert">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong><%= notice %></strong>
+            </div>
+            <% end %>
+            <% if !alert.nil? %>
+            <div class=" text-center alert alert-info" role="alert">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong><%= alert %></strong>
+            </div>
+            <% end %>
+
+          </div>
+      </div>
+      <div class="col-sm-4 contact-grid agileinfo-6 mt-sm-0 mt-2">
+        <div class="contact-grid1 text-center">
+          <div class="con-ic">
+            <i class="fa fa-map-marker rounded-circle"></i>
+          </div>
+          <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Location</h4>
+          <p><%= @store.business_location %>
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4 contact-grid agileinfo-6 my-sm-0 my-4">
+        <div class="contact-grid1 text-center">
+          <div class="con-ic">
+            <i class="fa fa-phone rounded-circle"></i>
+          </div>
+          <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Call Us</h4>
+          <p><%= @store.phone %>
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4 contact-grid agileinfo-6">
+        <div class="contact-grid1 text-center">
+          <div class="con-ic">
+            <i class="fa fa-envelope rounded-circle"></i>
+          </div>
+          <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Email</h4>
+          <p>
+            <a href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a>
+
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- form -->
+
+    <%= form_tag('/stores/contact') do %>
+      <div class="contact-grids1 w3agile-6">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 contact-form1 form-group">
+            <label class="col-form-label">Name</label>
+            <%= text_field_tag(:first_name, nil,:required=>'required', :placeholder => 'Name', :class=>'form-control') %><br><br>
+          </div>
+          <div class="col-md-6 col-sm-6 contact-form1 form-group">
+            <label class="col-form-label">E-mail</label>
+            <%= text_field_tag(:email, nil,:required=>'required', :placeholder => 'Email', :class=>'form-control') %><br>
+          </div>
+        </div>
+        <div class="contact-me animated wow slideInUp form-group">
+          <label class="col-form-label">Message</label>
+          <%= text_area_tag(:message, nil,:required=>'required',  :placeholder => 'Message', :style=> 'height:10em;width:100% !important;margin-left: 0 !important;padding:1em', :class=>'form-control') %>
+        </div>
+        <div class="contact-me animated wow slideInUp form-group">
+          <div class="text-fild">
+            <div class="g-recaptcha" callback="recaptcha_callback" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div><br>
+          </div>
+        </div>
+        <div class="contact-form">
+          <%= submit_tag("Send Message", :class => 'soko-button kd-recaptcha', :style=>'width:100% !important;margin-left:0 !important') %><br>
+        </div>
+      </div>
+    <% end %>
+    <!-- //form -->
+  </div>
+</div>
+<!-- //contact -->

@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="keywords" content=""/>
+<meta name="description" content="<%= @store.name %> | <%= @store.slogan %>">
+<meta name="author" content="<%= @store.name %>">
+<!--/tags -->
+<% if @store.logo_status %>
+<!--Favicon-->
+<link rel="apple-touch-icon" sizes="57x57" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="60x60" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="72x72" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="76x76" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="114x114" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="120x120" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="144x144" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="152x152" href="<%= @store.logo_url.to_s %>">
+<link rel="apple-touch-icon" sizes="180x180" href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="192x192"  href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="32x32" href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="96x96" href="<%= @store.logo_url.to_s %>">
+<link rel="icon" type="image/png" sizes="16x16" href="<%= @store.logo_url.to_s %>">
+<link rel="manifest" href="images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="<%= @store.logo_url.to_s %>">
+<meta name="theme-color" content="#ffffff">
+<% else %>
+<% end %>
+
+<% if Date.current.strftime("%B") == "December" %>
+<!-- <script src="/javascripts/snow/snowstorm.js"></script> -->
+<%end%>
+
+<script src="https://use.fontawesome.com/0c894d70a3.js"></script>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<% Dir.foreach("public/stylesheets/#{Layout.find(@store.layout_id).name}") do |item|
+next if item == '.' or item == '..' %>
+<%= stylesheet_link_tag    "#{Layout.find(@store.layout_id).name}/#{item}" %>
+<% end %>
+<% Dir.foreach("public/javascripts/#{Layout.find(@store.layout_id).name}") do |item|
+next if item == '.' or item == '..' %>
+<%= javascript_include_tag    "#{Layout.find(@store.layout_id).name}/#{item}" %>
+<% end %>
+
+<script type="application/x-javascript">
+	addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+	}, false);
+
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+<!--Google Fonts Start-->
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Amatic+SC|Anton|Comfortaa|Concert+One|Cormorant+Garamond|Courgette|Crimson+Text|Dancing+Script|Dokdo|Fascinate+Inline|Fjalla+One|Gloria+Hallelujah|Great+Vibes|Inconsolata|Indie+Flower|Josefin+Sans|Lobster|Merienda|Merriweather|Mrs+Sheppards|Mukta|Nanum+Gothic|Noto+Serif|Open+Sans+Condensed:300|Orbitron|PT+Sans+Narrow|Pacifico|Play|Playfair+Display|Rajdhani|Righteous|Roboto+Slab|Satisfy|Shadows+Into+Light|Source+Serif+Pro|Sree+Krushnadevaraya|Titillium+Web|Yanone+Kaffeesatz|ZCOOL+XiaoWei" rel="stylesheet">
+
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+	    rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<!--Google Fonts End-->
+
+<style>
+.navbar-light .navbar-nav .show>.nav-link, .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+    color: <%= @store.store_color%> !important;
+}
+.active{
+	color:<%= @store.store_color%> !important;
+}
+
+.our_logo{
+  max-width: 150px !important;
+  max-height: 100px !important;
+}
+@media (max-width:480px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+@media (max-width:720px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+@media (max-width:1080px) {
+  .our_logo{
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+}
+
+.soko-button {
+	outline: none;
+	padding: 15px 20px;
+	font-size: 14px;
+	color: #fff;
+	background: #000000;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+.soko-button:hover {
+	outline: none;
+	font-size: 14px;
+	color: #fff;
+	background: <%= @store.store_color %> !important;
+	width: 100%;
+	border: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+	font-weight: 700;
+}
+.var_dis{
+	border:1px <%= @store.store_color %>;
+	border-style: dashed !important;
+	border-color: <%= @store.store_color %> !important;
+	padding:5px 10px;
+	transition: all 0.5s;
+	margin-bottom: .5em !important;
+}
+
+.footer-grids ul li a:hover {
+    color: <%= @store.store_color %> !important;
+}
+h3.tittle-w3l span {
+    color: <%= @store.store_color %> !important;
+}
+ul.w3_short li a {
+    color: <%= @store.store_color %> !important;
+}
+.con-ic i {
+    color: <%= @store.store_color %> !important;
+}
+.contact-grid1 h4 {
+    color: <%= @store.store_color %> !important;
+}
+.carousel-caption h2 span, .carousel-caption h3 span {
+    color: <%= @store.store_color %> !important;
+}
+.my_class i{
+	color: <%= @store.store_color %> !important;
+ }
+.button2 {
+    display: inline-block;
+    background: #fff;
+    border-radius: 4px;
+    color: #000;
+    letter-spacing: 2px;
+    padding: 11px 27px;
+}
+.button2:hover {
+    display: inline-block;
+    background: <%= @store.store_color %> !important;
+    border-radius: 4px;
+    color: #fff;
+    letter-spacing: 2px;
+    padding: 11px 27px;
+}
+.snipcart-details input.button {
+    font-size: 13px;
+    color: #fff;
+    background: <%= @store.store_color %>;
+}
+.social .kd {
+    background: <%= @store.store_color %> !important;
+}
+.copy-right {
+    background: <%= @store.store_color %> !important;
+}
+.main-top-w3l {
+    background: <%= @store.store_color %> !important;
+}
+
+<% if !@store.store_font.nil? %>
+body{
+	font-family: <%= @store.store_font %> !important;
+}
+h1{
+	font-family: <%= @store.store_font %> !important;
+}
+h2{
+	font-family: <%= @store.store_font %> !important;
+}
+h3{
+	font-family: <%= @store.store_font %> !important;
+}
+h4{
+	font-family: <%= @store.store_font %> !important;
+}
+h5{
+	font-family: <%= @store.store_font %> !important;
+}
+h6{
+	font-family: <%= @store.store_font %> !important;
+}
+p{
+	font-family: <%= @store.store_font %> !important;
+}
+a{
+	font-family: <%= @store.store_font %> !important;
+}
+<% end %>
+</style>
+<% if @store.premium %>
+	<!--Google Tag -->
+	<%= @store.gtag.html_safe rescue nil %>
+	<!--End Google Tag-->
+<% end %>
+
+</head>
+
+<body>
+
+<%= render "layouts/#{Layout.find(@store.layout_id).name}/menu_shop" %>
+
+	<%= yield%>
+
+	<!-- footer -->
+	<footer>
+	  <!-- footer third section -->
+	  <div class="w3l-middlefooter-sec">
+	    <div class="container py-md-5 py-sm-4 py-3">
+	      <div class="row footer-info w3-agileits-info">
+	        <!-- quick links -->
+	        <div class="col-md-4 col-sm-12 footer-grids mt-sm-0 mt-4">
+	          <h3 class="text-white font-weight-bold mb-3">Quick Links</h3>
+	          <ul>
+	            <li class="mb-3">
+	              <a href="<%= root_path %>">Home</a>
+	            </li>
+	            <li class="mb-3">
+	              <a href="<%= about_path %>">About Us</a>
+	            </li>
+	            <li class="mb-3">
+	              <a href="<%= all_path %>">Shop</a>
+	            </li>
+	            <li class="mb-3">
+	              <a href="<%= contact_path %>">Contact Us</a>
+	            </li>
+	          </ul>
+	        </div>
+	        <div class="col-md-5 col-sm-12 footer-grids w3l-agileits mt-md-0 mt-4">
+	          <!-- newsletter -->
+	          <h3 class="text-white font-weight-bold mb-3">Follow Us on</h3>
+	          <!-- social icons -->
+	          <div class="footer-grids  w3l-socialmk mt-3">
+
+	            <div class="social">
+	              <ul>
+									<% if !@store.facebook.blank? %>
+	                <li>
+	                  <a target="_blank" class="icon kd" href="<%= @store.facebook %>">
+	                    <i class="fa fa-facebook"></i>
+	                  </a>
+	                </li>
+									<% end %>
+									<% if !@store.twitter.blank? %>
+	                <li>
+	                  <a target="_blank" class="icon kd" href="<%= @store.twitter %>">
+	                    <i class="fa fa-twitter"></i>
+	                  </a>
+	                </li>
+									<% end %>
+									<% if !@store.instagram.blank? %>
+	                <li>
+	                  <a target="_blank" class="icon kd" href="<%= @store.instagram %>">
+	                    <i class="fa fa-instagram"></i>
+	                  </a>
+	                </li>
+									<% end %>
+									<% if !@store.linkedin.blank? %>
+	                <li>
+	                  <a target="_blank" class="icon kd" href="<%= @store.linkedin %>">
+	                    <i class="fa fa-linkedin"></i>
+	                  </a>
+	                </li>
+									<% end %>
+									<% if !@store.youtube.blank? %>
+	                <li>
+	                  <a target="_blank" class="icon kd" href="<%= @store.youtube %>">
+	                    <i class="fa fa-youtube"></i>
+	                  </a>
+	                </li>
+									<% end %>
+									<% if !@store.pinterest.blank? %>
+	                <li>
+	                  <a target="_blank" class="icon kd" href="<%= @store.pinterest %>">
+	                    <i class="fa fa-pinterest"></i>
+	                  </a>
+	                </li>
+									<% end %>
+									<% if !@store.vimeo.blank? %>
+	                <li>
+	                  <a target="_blank" class="icon kd" href="<%= @store.vimeo %>">
+	                    <i class="fa fa-vimeo"></i>
+	                  </a>
+	                </li>
+									<% end %>
+
+	              </ul>
+	            </div>
+	          </div>
+	          <!-- //social icons -->
+	        </div>
+	        <div class="col-md-3 col-sm-12 footer-grids mt-md-0 mt-4">
+	          <h3 class="text-white font-weight-bold mb-3">Get in Touch</h3>
+	          <ul>
+	            <li class="mb-3 my_class">
+	              <i class="fa fa-map-marker"></i> <%= @store.business_location %></li>
+	            <li class="mb-3 my_class">
+	              <i class="fa fa-phone"></i> <%= @store.phone %> </li>
+
+	            <li class="mb-3 my_class">
+	              <i class="fa fa-envelope"></i>
+	              <a href="mailto:<%= @store.display_email %>"><%= @store.display_email %></a>
+	            </li>
+	          </ul>
+	        </div>
+
+	      </div>
+	      <!-- //quick links -->
+	    </div>
+	  </div>
+	  <!-- //footer third section -->
+
+	</footer>
+	<!-- //footer -->
+	<!-- copyright -->
+	<div class="copy-right py-3">
+	  <div class="container">
+	    <p class="text-center text-white">© 2019 <%= @store.name %>. All rights reserved | Powered by
+	      <a href="https://www.kduka.co.ke"> KDuka</a>
+	    </p>
+	  </div>
+	</div>
+	<!-- //copyright -->
+
+	<!-- js-files -->
+
+	<!-- nav smooth scroll -->
+	<script>
+	  $(document).ready(function () {
+	    $(".dropdown").hover(
+	      function () {
+	        $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+	        $(this).toggleClass('open');
+	      },
+	      function () {
+	        $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+	        $(this).toggleClass('open');
+	      }
+	    );
+	  });
+	</script>
+	<!-- //nav smooth scroll -->
+
+	<!-- popup modal (for location)-->
+	<script>
+	  $(document).ready(function () {
+	    $('.popup-with-zoom-anim').magnificPopup({
+	      type: 'inline',
+	      fixedContentPos: false,
+	      fixedBgPos: true,
+	      overflowY: 'auto',
+	      closeBtnInside: true,
+	      preloader: false,
+	      midClick: true,
+	      removalDelay: 300,
+	      mainClass: 'my-mfp-zoom-in'
+	    });
+
+	  });
+	</script>
+	<!-- //popup modal (for location)-->
+
+
+
+
+	<script>
+	  // Can also be used with $(document).ready()
+	  $(window).load(function () {
+	    $('.flexslider').flexslider({
+	      animation: "slide",
+	      controlNav: "thumbnails"
+	    });
+	  });
+	</script>
+	<!-- //FlexSlider-->
+
+	<script>
+	  jQuery(document).ready(function ($) {
+	    $(".scroll").click(function (event) {
+	      event.preventDefault();
+
+	      $('html,body').animate({
+	        scrollTop: $(this.hash).offset().top
+	      }, 1000);
+	    });
+	  });
+	</script>
+	<!-- //end-smooth-scrolling -->
+
+	<!-- smooth-scrolling-of-move-up -->
+	<script>
+	  $(document).ready(function () {
+	    /*
+	    var defaults = {
+	      containerID: 'toTop', // fading element id
+	      containerHoverID: 'toTopHover', // fading element hover id
+	      scrollSpeed: 1200,
+	      easingType: 'linear'
+	    };
+	    */
+	    $().UItoTop({
+	      easingType: 'easeOutQuart'
+	    });
+
+	  });
+	</script>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<script>
+			$("form").submit(function(event) {
+				 var recaptcha = $("#g-recaptcha-response").val();
+				 if (recaptcha === "") {
+						event.preventDefault();
+						swal({
+							toast: true,
+							position: 'top-end',
+							showConfirmButton: false,
+							title: "Please check the reCAPTCHA",
+							text: "",
+							icon: "warning",
+							button: false,
+							timer: 1500
+						});
+				 }
+			});
+			$('.kd-recaptcha').hover(
+			 function(){ $(this).removeAttr("disabled") },
+			 function(){ $(this).removeAttr("data-disable-with") }
+			 );
+		</script>
+		<script type="text/javascript">
+		function KD_alert(){
+			swal({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				title: "Added to Cart",
+				text: "",
+				icon: "success",
+				button: false,
+				timer: 1500
+			});
+		}
+		</script>
+
+	<!-- //js-files -->
+	</body>
+
+	</html>

@@ -1,0 +1,124 @@
+<title><%= @product.name %></title>
+
+<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a373c73c95b880011a3b2ba&product=inline-share-buttons"></script>
+<div class="about_top">
+  <div class="container">
+
+		<div class="col-md-12">
+		   <div class="dreamcrub">
+			   	 <ul class="breadcrumbs">
+                    <li class="home">
+                       <a href="<%= root_path %>" title="Go to Home Page">Home</a>&nbsp;
+                       <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                        View Product
+                    </li>
+               </ul>
+                <ul class="previous">
+                </ul>
+                <div class="clearfix"></div>
+		   </div>
+
+		 <div class="grid_2">
+       <div class="col-md-4 single-right-left ">
+         <div class="grid images_3_of_2">
+           <div class="flexslider">
+
+             <ul class="slides">
+               <% if !@product.image.blank? %>
+                 <li data-thumb="<%= @product.image_url(:thumb).to_s %>">
+                   <div class="thumb-image"> <%= image_tag(@product.image_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                 </li>
+               <% end %>
+               <% if !@product.img1.blank? %>
+                 <li data-thumb="<%= @product.img1_url(:thumb).to_s %>">
+                   <div class="thumb-image"> <%= image_tag(@product.img1_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                 </li>
+               <% end %>
+               <% if !@product.img2.blank? %>
+                 <li data-thumb="<%= @product.img2_url(:thumb).to_s %>">
+                   <div class="thumb-image"> <%= image_tag(@product.img2_url.to_s, 'data-imagezoom': "true", class: "img-responsive", alt: "") %> </div>
+                 </li>
+               <% end %>
+             </ul>
+             <div class="clearfix"></div>
+           </div>
+         </div>
+       </div>
+       <div class="col-md-8 single-right-left simpleCart_shelfItem">
+         <h2 style="color:<%= @store.store_color%> !important"><%= @product.name %></h2>
+         <h4><span class="item_price"><%= number_to_currency(@product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
+           <% if @product.discount_status %>
+           <del><%= number_to_currency(@product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></del>
+           <% end %>
+         </h4>
+
+         <div class="description">
+           <h5><%= @product.description.html_safe rescue nil %></h5>
+         </div>
+
+
+         <div class="occasion-cart">
+           <%= form_for :order_item, :url => {controller: 'order_items', action: 'create'}, remote: true do |f| %>
+             <div class="">
+               <p style="padding-bottom:1em">
+                 <span class="col-md-2 col-xs-5" style="padding:0;color:#000 !important;font-weight:bold !important">Quantity :</span><span class="col-md-10 col-xs-7" style="text-align:left;padding:0"><%= f.number_field :quantity, value: 1, class: "form-control item_quantity", min: 1, max: @product.quantity, style:'width:30%' %></span>
+               </p>
+
+               <br>
+               <br>
+               <% Variant.where(product_id: @product.id).each do |d| %>
+                 <b><%= "#{d.name.humanize} :" %></b>
+
+                 <%
+                   require 'json'
+                   vals = JSON.parse(d.value)
+
+                   vals.each do |k, v| %>
+
+                   <span class="var_dis var_sel var_<%= d.name %>" data-sel='false' data-var="<%= d.name %>" data-value="<%= v %>" data-name="var_<%= d.name %>"> <%= v.humanize %></span>
+
+                 <% end %>
+                 <br>
+                 <br>
+               <% end %>
+             </div>
+             <div>
+               <%= f.hidden_field :product_id, value: @product.id %>
+
+               <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                 <% exist = false %>
+                 <% current_order.order_items.each do |oi| %>
+                   <% if oi.product_id == @product.id %>
+                     <% exist = true %>
+                   <% end %>
+                 <% end %>
+                 <div class="col-md-4" style="padding-left:0 !important">
+                   <% if @product.quantity < 1 %>
+                     <%= f.submit "Out of Stock", :class => "button casual-button add", disabled: 'disabled' %>
+                   <% else %>
+                     <% if !exist %>
+                       <%= f.submit 'Add to Cart', :class => 'button casual-button add add_cart', :onclick=>"KD_alert()", 'data-id':@product.id %>
+                     <% else %>
+
+                       <%= f.submit 'Added', disabled: true, :class => 'button casual-button add', 'data-id':@product.id %>
+                     <% end %>
+                   <% end %>
+                 </div>
+                 <div class="clearfix"></div>
+               </div>
+             </div>
+           <% end %><br>
+           <div class="sharethis-inline-share-buttons"></div>
+           <div id="fb-<%= @product.sku %>"></div>
+
+         </div>
+
+       </div>
+       <div class="clearfix"> </div>
+		 </div>
+	  </div>
+	 <div class="clearfix"> </div>
+</div>
+</div>

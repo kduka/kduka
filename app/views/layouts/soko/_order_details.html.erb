@@ -1,0 +1,37 @@
+<p><label>Full Name: </label> <span style="float:right"><%= current_order.name %></span></p><br>
+<p><label>Email: </label> <span style="float:right"><%= current_order.email %></span></p><br>
+<p><label>Phone: </label> <span style="float:right"><%= current_order.phone %></span></p><br>
+<p><label>Address: </label> <span style="float:right"><%= current_order.address %></span></p><br>
+<p><label>Location: </label> <span style="float:right"><%= current_order.del_location %></span></p><br>
+<p><label>Sub-Total: </label> <span style="float:right"><%= current_order.subtotal %></span></p><br>
+<p><label>Shipping: </label> <span style="float:right"><%= current_order.shipping %></span></p><br>
+<p><label>Tax: </label> <span style="float:right"><%= current_order.tax %></span></p><br>
+<p><label>Coupon: </label> <span style="float:right"><%= current_order.coupon %></span></p><br>
+<p><label>Discount: </label> <span style="float:right"><%= current_order.discount %></span></p><br>
+<p><label>Total: </label> <span style="float:right"><%= current_order.total %></span></p><br>
+<p><label>Instructions: </label> <span style="float:right"><%= current_order.order_instructions %></span></p><br>
+
+
+<form method="post" action="https://payments.ipayafrica.com/v3/ke">
+  <input type="hidden" name="live" value="<%= ENV['ipay_live'] %>">
+  <% # TODO  Check autopay %>
+  <input type="hidden" name="oid" value="<%= current_order.ref %>">
+  <input type="hidden" name="inv" value="<%= current_order.ref %>">
+  <input type="hidden" name="ttl" value="<%= current_order.total %>">
+  <input type="hidden" name="tel" value="<%= current_order.phone %>">
+  <input type="hidden" name="eml" value="<%= current_order.email %>">
+  <input type="hidden" name="vid" value="<%= ENV['ipay_vid'] %>">
+  <input type="hidden" name="curr" value="KES">
+  <input type="hidden" name="p1" value="<%= "#{request.subdomain}.#{request.domain}" %>">
+  <input type="hidden" name="p2" value="">
+  <input type="hidden" name="p3" value="">
+  <input type="hidden" name="p4" value="">
+  <input type="hidden" name="cbk" value="<%= "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn" %>">
+  <input type="hidden" name="cst" value="<%= ENV['ipay_cst_flag'] %>">
+  <input type="hidden" name="crl" value="<%= ENV['ipay_crl_flag'] %>">
+  <input type="hidden" name="hsh" value="<%= @hash %>">
+  <!--  <input type="submit" value="Pay and Complete">-->
+
+  <button id="complete" disabled class='btn btn-success col-sm-12 col-md-6 col-md-offset-3' type="submit"  style="display:block;margin-top:1em">Pay and Complete</button>
+
+</form>
