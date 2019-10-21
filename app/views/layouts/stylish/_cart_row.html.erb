@@ -3,7 +3,7 @@
   <div class="row cart_item">
     <%= form_for order_item, remote: true do |f| %>
       <div class="col-sm-2" style="text-align:center !important">
-          <p><%= image_tag(product.image_url(:thumb).to_s, class:'', style:'max-height:6em;max-width:100%')  %></p>
+          <%= image_tag(product.image_url(:thumb).to_s, class:'', style:'max-height:6em;max-width:100%')  %>
       </div>
       <div class="col-sm-2 row" style="text-align:center">
           <h3 style="color:<%= @store.store_color %> !important;font-size:14px;padding-top:1em"><%= product.name %></h3>

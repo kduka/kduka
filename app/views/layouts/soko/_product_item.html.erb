@@ -9,65 +9,66 @@
 </script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<div class="col-md-4" style="margin-bottom:3em">
-  <div class="grid1">
-      <h5><a href="<%= product_view_path(product.sku) %>" style="color:<%= @store.store_color%> !important"><%= product.name %></a></h5>
+<div class="col-md-4 product-men mt-5" style="margin-bottom:4em">
+  <div class="men-pro-item simpleCart_shelfItem box_shadow">
+    <div class="men-thumb-item text-center">
+      <div style="height:15em;text-align:center !important">
+      <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center img-responsive', style: 'max-width:100%;max-height:100%;margin-left:auto;margin-right:auto') %>
+      </div>
+      <div class="men-cart-pro">
+        <div class="inner-men-cart-pro">
+          <a href="<%= product_view_path(product.sku) %>" class="link-product-add-cart">Quick View</a>
+        </div>
+      </div>
+    </div>
+    <div class="item-info-product text-center border-top mt-4">
+      <h4 class="pt-1" style="height:3em">
+        <a style="color:<%= @store.store_color %>" href="<%= product_view_path(product.sku) %>"><%= product.name %></a>
+      </h4>
+      <div class="info-product-price my-2">
+        <span class="item_price"><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span>
+        <del style="color:#d60404;"><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></del>
+      </div>
+      <div class="text-center">
+        <% if @store.own_domain %>
+          <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href='<%= "#{@store.c_subdomain}.#{@store.domain}" %>/products/view/<%= product.sku %>' data-layout="button" data-size="large" data-mobile-iframe="true">
+            <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= "#{@store.c_subdomain}.#{@store.domain}" %>%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a>
+          </div>
+        <% else %>
+          <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true">
+            <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a>
+          </div>
+        <% end %>
+        <div style="margin-top:3px" class="col-md-6 col-xs-12">
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a>
+        </div>
+        <div id="fb-<%= product.sku %>"></div><br/><br/><br/>
+      </div>
+      <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 
-      <div class="view view-first">
-        <div style="width:100%;height:15em">
-               <%= image_tag(product.image_url(:thumb).to_s, class: 'text-center img-responsive', style: 'max-width:100%;max-height:100%;') %>
-             </div>
-           <div class="mask">
-              <h3><a href="<%= product_view_path(product.sku) %>" style="color:#fff;text-decoration:none">Quick Look</a></h3>
-                  <p style="color: #fff !important">-----Or----</p>
+        <%= form_for order_item, remote: true do |f| %>
+        <%= f.hidden_field :quantity, value: 1, class: "item_quantity", min: 1 %>
+          <%= f.hidden_field :product_id, value: product.id %>
 
-                  <%= form_for order_item, remote: true do |f| %>
-                  <%= f.hidden_field :quantity, value: 1, class: "item_quantity", min: 1 %>
-                    <%= f.hidden_field :product_id, value: product.id %>
+          <% exist = false %>
+          <% current_order.order_items.each do |oi| %>
+            <% if oi.product_id == product.id %>
+              <% exist = true %>
+            <% end %>
+          <% end %>
 
-                    <% exist = false %>
-                    <% current_order.order_items.each do |oi| %>
-                      <% if oi.product_id == product.id %>
-                        <% exist = true %>
-                      <% end %>
-                    <% end %>
+          <% if product.quantity < 1 %>
+            <%= f.submit "Out of Stock", :class => "button btn item_add", style: 'color:#fff', disabled: 'disabled' %>
+          <% else %>
+            <% if !exist %>
+              <%= f.submit "Add to Cart", :class => "button btn item_add", :onclick=>"KD_alert()" %>
+            <% else %>
+              <%= f.submit "Added", :class => "button btn item_add", disabled: 'disabled' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
-                    <% if product.quantity < 1 %>
-                      <h4><%= f.submit "Out of Stock", :class => "form-control item_add", style: 'color:red', disabled: 'disabled' %></h4>
-                    <% else %>
-                      <% if !exist %>
-                        <h4> <%= f.submit "Add to Cart", :class => "form-control item_add", :onclick=>"KD_alert()" %></h4>
-                      <% else %>
-                        <h4><%= f.submit "Added", :class => "form-control item_add", disabled: 'disabled' %></h4>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </div>
-             </div>
-             <div style="width:100%;height:4em">
-             <% if product.discount_status %>
-               <h6><br><br>
-                 <span class="money" style="color:red"><s><%= number_to_currency(product.discount_price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></s></span>
-               </h6>
-             <% else %>
-               <h6>
-                 <br>
-               </h6>
-             <% end %>
-           </div>
-            <h6> <span class="money "><%= number_to_currency(product.price, :unit => "Ksh ", :separator => ".", :delimiter => ",") %></span></h6>
-         <% if @store.own_domain %>
-           <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href='<%= "#{@store.c_subdomain}.#{@store.domain}" %>/products/view/<%= product.sku %>' data-layout="button" data-size="large" data-mobile-iframe="true">
-             <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= "#{@store.c_subdomain}.#{@store.domain}" %>%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a>
-           </div>
-         <% else %>
-           <div style="margin-top:3px" class="fb-share-button col-md-6 col-xs-12" data-href="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-layout="button" data-size="large" data-mobile-iframe="true">
-             <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F<%= @store.subdomain %>.kduka.co.ke%2Fproducts%2Fview%2F<%= product.sku %>%2F&amp;src=sdkpreparse">Share</a>
-           </div>
-         <% end %>
-         <div style="margin-top:3px" class="col-md-6 col-xs-12">
-           <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://<%= @store.subdomain %>.kduka.co.ke/products/view/<%= product.sku %>" data-show-count="false">Tweet</a>
-         </div>
-         <div id="fb-<%= product.sku %>"></div>
   </div>
 </div>

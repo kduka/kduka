@@ -71,10 +71,21 @@ next if item == '.' or item == '..' %>
 .active{
 	color:<%= @store.store_color%> !important;
 }
+.navbar-light .navbar-nav .show>.nav-link,
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: <%= @store.store_color%> !important;
+}
+.link-product-add-cart:hover {
+    background: <%= @store.store_color%> !important;
+    color: #fff;
+		opacity: 1;
 
+}
 .our_logo{
   max-width: 150px !important;
-  max-height: 100px !important;
+  max-height: 58px !important;
 }
 @media (max-width:480px) {
   .our_logo{
@@ -166,6 +177,9 @@ ul.w3_short li a {
     color: #000;
     letter-spacing: 2px;
     padding: 11px 27px;
+}
+button.w3view-cart {
+	background:<%= @store.store_color %> !important;
 }
 .button2:hover {
     display: inline-block;
@@ -397,7 +411,8 @@ a{
 
 	<script>
 	  // Can also be used with $(document).ready()
-	  $(window).load(function () {
+	  // $(window).load(function () {
+		$(document).ready(function () {
 	    $('.flexslider').flexslider({
 	      animation: "slide",
 	      controlNav: "thumbnails"
@@ -454,10 +469,10 @@ a{
 						});
 				 }
 			});
-			$('.kd-recaptcha').hover(
-			 function(){ $(this).removeAttr("disabled") },
-			 function(){ $(this).removeAttr("data-disable-with") }
-			 );
+			$('.kd-recaptcha').hover(function(){
+				 $(this).removeAttr("disabled");
+				 $(this).removeAttr("data-disable-with");
+			 });
 		</script>
 		<script type="text/javascript">
 		function KD_alert(){
@@ -472,6 +487,8 @@ a{
 				timer: 1500
 			});
 		}
+		$("p").css("text-align","justify");
+		$(".navbar-toggler").css("text-align","center !important"); 
 		</script>
 
 	<!-- //js-files -->

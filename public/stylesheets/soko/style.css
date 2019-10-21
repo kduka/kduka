@@ -1,11 +1,18 @@
+.navbar-toggler{
+  float:left !important;
+}
 html,
 body {
     margin: 0;
     font-size: 100%;
     background: #fff;
     font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden !important;
 }
-
+.box_shadow{
+  box-shadow: 0px 0px 17px 0px #ccc;
+  padding:1em;
+}
 body a {
     text-decoration: none;
     transition: 0.5s all;
@@ -230,7 +237,8 @@ input[type="submit"] {
 }
 
 .logo_agile {
-    padding: 26px 0 21px;
+    /* padding: 26px 0 21px; */
+        padding: 6px 0 9px;
 }
 
 /*-- //logo --*/
@@ -239,12 +247,18 @@ input[type="submit"] {
 
 button.w3view-cart {
     font-size: 20px;
-    color: #fff;
+    color: #fff !important;
     width: 100px;
     height: 44px;
     background: #000;
     border: 1px solid rgba(27, 25, 25, 0.27);
+    margin-top: -.6em;
+    margin-bottom: .6em;
 }
+/* button.w3view-cart {
+    background: #7aae42 !important;
+
+} */
 
 /*-- //header cart button --*/
 
@@ -644,7 +658,7 @@ h3.tittle-w3l span {
 }
 
 .link-product-add-cart {
-    background: hsla(205, 92%, 41%, 0.72);
+    background: #000;
     color: #fff;
     display: inline-block;
     height: 37px;
@@ -652,6 +666,7 @@ h3.tittle-w3l span {
     letter-spacing: 1px;
     line-height: 34px;
     border-radius: 4px;
+    transition: all 0.5s !important;
 }
 
 .inner-men-cart-pro>ul>li {
@@ -691,7 +706,7 @@ h3.tittle-w3l span {
 
 .inner-men-cart-pro .link-product-add-cart {
     width: 51%;
-    top: 0;
+    top: 46% !important;
     left: 24%;
     margin: 0 auto;
     position: absolute;
@@ -956,7 +971,7 @@ h3.heading-tittle {
 
 span.item_price {
     font-size: 18px;
-    color: #d60404;
+    color: #000;
 }
 
 .info-product-price del {
