@@ -31,7 +31,7 @@ $(document).ready(function(){
 <div class="ads-grid py-sm-5 py-4">
   <div class="container py-xl-4 py-lg-2">
     <!-- tittle heading -->
-    <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+    <h3 class="tittle-w3l text-center  mb-sm-4 mb-3">
       Latest
       <span>Products</span></h3>
     <!-- //tittle heading -->
@@ -40,7 +40,7 @@ $(document).ready(function(){
       <div class="agileinfo-ads-display col-lg-12">
         <div class="wrapper">
           <!-- first section -->
-          <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+          <div class="product-sec1 px-sm-4 px-3">
             <div class="row">
               <% if @products.nil? %>
                   <p class="text-center">This store does not have any active Products</p>
@@ -50,13 +50,50 @@ $(document).ready(function(){
                   <% end %>
               <% end %>
             </div>
+            <div class="col-md-4 col-md-offset-4"><a href="<%= all_path %>"><button class="soko-button"> View More </button></a></div>
           </div>
           <!-- //first section -->
         </div>
       </div>
       <!-- //product left -->
-
     </div>
   </div>
 </div>
 <!-- //top products -->
+
+
+<% if !@featured.nil? %>
+<% @featured.each do |category| %>
+<!-- top Products -->
+<div class="ads-grid py-sm-5 py-4">
+  <div class="container py-xl-4 py-lg-2">
+    <!-- tittle heading -->
+    <h3 class="tittle-w3l text-center  mb-sm-4 mb-3">
+      <span><%= category.name %></span></h3>
+    <!-- //tittle heading -->
+    <div class="row">
+      <!-- product left -->
+      <div class="agileinfo-ads-display col-lg-12">
+        <div class="wrapper">
+          <!-- first section -->
+          <div class="product-sec1 px-sm-4 px-3">
+            <div class="row">
+              <% @cat_products = Product.where(active:true,category_id:category.id).limit(3).order('id desc') %>
+              <% if !@cat_products.nil? %>
+                  <% @cat_products.each do |product| %>
+                      <%= render "layouts/#{Layout.find(@store.layout_id).name}/product_item", product: product, order_item: @order_item %>
+                  <% end %>
+              <% end %>
+            </div>
+            <div class="col-md-4 col-md-offset-4"><a href="<%= product_category_path(category.id) %>"><button class="soko-button"> View More </button></a></div>
+          </div>
+          <!-- //first section -->
+        </div>
+      </div>
+      <!-- //product left -->
+    </div>
+  </div>
+</div>
+<!-- //top products -->
+<% end %>
+<% end %>
