@@ -28,6 +28,7 @@ a {
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
+    text-decoration: none !important;
 }
 
 a:hover {
