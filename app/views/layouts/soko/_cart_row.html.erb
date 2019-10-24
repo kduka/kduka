@@ -21,7 +21,7 @@
       </div>
       <div class="col-sm-1">
         <%= form_for order_item, remote: true do |f| %>
-              <%= f.number_field :quantity, value: order_item.quantity.to_i, min: 1, max: product.quantity, style:'width:auto !important;margin-bottom:3px' %>
+              <%= f.number_field :quantity, value: order_item.quantity.to_i, min: 1, max: product.quantity, style:'width:55px !important;margin-bottom:3px' %>
               <%= f.hidden_field :product_id, value: product.id %>
               <%= f.submit "Update",class:'btn btn-default', style: "font-size:14px !important;text-align:center !important;padding: 0px 3px !important;height:30px !important;width:auto" %>
         <% end %>
