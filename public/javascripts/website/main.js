@@ -4,8 +4,28 @@
 
 
 
-$(function () {
+    $(function () {
 
+      function validate_contact_inputs(thename,email,subject,message) {
+
+      if(thename.length<1){
+        return false;
+      }
+      if(subject.length<1){
+        return false;
+      }
+      if(message.length<1){
+        return false;
+      }
+
+      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if(re.test(email)){
+        return re.test(email);
+      }else{
+        return false;
+      }
+
+    }
 
     $('#nxtBtn').prop('disabled', true);
 
@@ -21,7 +41,22 @@ $(function () {
         subject = $("#subject").val();
         message = $("#message").val();
 
-        $.ajax({
+        if(validate_contact_inputs(thename,email,subject,message) ){
+          var recaptcha = $("#g-recaptcha-response").val();
+          if (recaptcha === "") {
+            swal({
+              toast: true,
+              position: 'top-end',
+              button: false,
+              title: "Please Check the reCaptcha",
+              text: "",
+              icon: "warning",
+              button: false,
+              timer: 2000
+            });
+            $('#loader').fadeOut('slow');
+          }else{
+            $.ajax({
             url: '/home/web_mail',
             method: 'post',
             data: {
@@ -67,6 +102,20 @@ $(function () {
                 }
             }
         });
+          }
+        }else{
+          swal({
+            toast: true,
+            position: 'top-end',
+            button: false,
+            title: "Please Fill All Fields Correctly",
+            text: "",
+            icon: "warning",
+            button: false,
+            timer: 2000
+          });
+          $('#loader').fadeOut('slow');
+        }
     });
 
 });

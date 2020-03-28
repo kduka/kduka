@@ -788,13 +788,14 @@ body{
 								<div class="inp agileits-inp">
 									<h4 style="color:#7AAE42">Contact Form</h4>
                   <div id="success"></div>
-									<form action="#" method="post">
-										<input id="name" type="text" name="Name" placeholder="Your Name" required="">
-										<input id="email" type="email" name="Email" placeholder="Email" required="">
-										<input id="subject" type="text" name="Subject" placeholder="Subject" required="">
-										<textarea id="message" name="Message" placeholder="Message" required=""></textarea>
+									<!-- <form> -->
+										<input id="name" type="text" name="Name" placeholder="Your Name*">
+										<input id="email" type="email" name="Email" placeholder="Email*">
+										<input id="subject" type="text" name="Subject" placeholder="Subject*">
+										<textarea id="message" name="Message" placeholder="Message*"></textarea>
+                    <div class="g-recaptcha" callback="recaptcha_callback" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div><br/>
 										<input style="width:100% !important;" id="sendmail" type="submit" value="SEND">
-									</form>
+									<!-- </form> -->
 								</div>
 								<h5 style="color:#7AAE42">Contact Details</h5>
 								<div class="contact-grid">
@@ -864,15 +865,6 @@ body{
 	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script>
-      $("form").submit(function(event) {
-         var recaptcha = $("#g-recaptcha-response").val();
-         if (recaptcha === "") {
-            event.preventDefault();
-            alert("Please check the recaptcha");
-         }
-      });
-    </script>
     <script>
     AOS.init({
       duration: 1200,
