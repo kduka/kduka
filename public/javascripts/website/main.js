@@ -11,6 +11,7 @@ $(function () {
 
 
     $("#sendmail").click(function (e) {
+      $('#loader').fadeIn('slow');
 
 
         e.preventDefault();
@@ -32,19 +33,40 @@ $(function () {
             success: function (e) {
 
                 if (e == 'true') {
-                    $("#success").html("<p style='color: green;font-size: 17px;'>Email Sent! We'll get back to you shortly!</p>");
+                    swal({
+                      toast: true,
+                      position: 'top-end',
+                      button: false,
+                      title: "Message Sent Successfully",
+                      text: "",
+                      icon: "success",
+                      button: false,
+                      timer: 1500
+                    });
+                    // $("#success").html("<p style='color: green;font-size: 17px;'>Email Sent! We'll get back to you shortly!</p>");
                     $("#name").val('');
                     $("#email").val('');
                     $("#subject").val('');
                     $("#message").val('');
                     $("#sendmail").removeAttr("disabled");
+                    $('#loader').fadeOut('slow');
                 } else {
-                    $("#success").html("<p style='color: red;font-size: 17px;'>Something went wrong! please try calling us</p>");
+                    swal({
+                      toast: true,
+                      position: 'top-end',
+                      button: false,
+                      title: "Something went wrong! please try again",
+                      text: "",
+                      icon: "error",
+                      button: false,
+                      timer: 1500
+                    });
+                    // $("#success").html("<p style='color: red;font-size: 17px;'>Something went wrong! please try calling us</p>");
                     $("#sendmail").removeAttr("disabled");
+                    $('#loader').fadeOut('slow');
                 }
             }
         });
     });
 
 });
-
