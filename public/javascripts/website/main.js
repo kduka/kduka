@@ -41,7 +41,7 @@ $(function () {
                       text: "",
                       icon: "success",
                       button: false,
-                      timer: 1500
+                      timer: 2000
                     });
                     // $("#success").html("<p style='color: green;font-size: 17px;'>Email Sent! We'll get back to you shortly!</p>");
                     $("#name").val('');
@@ -59,7 +59,7 @@ $(function () {
                       text: "",
                       icon: "error",
                       button: false,
-                      timer: 1500
+                      timer: 2000
                     });
                     // $("#success").html("<p style='color: red;font-size: 17px;'>Something went wrong! please try calling us</p>");
                     $("#sendmail").removeAttr("disabled");
