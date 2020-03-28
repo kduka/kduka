@@ -52,7 +52,7 @@
               text: "",
               icon: "warning",
               button: false,
-              timer: 2000
+              timer: 555555000
             });
             $('#loader').fadeOut('slow');
           }else{

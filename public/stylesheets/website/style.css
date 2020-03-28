@@ -1,9 +1,16 @@
+.swal-overlay--show-modal .swal-modal {
+	z-index: 999999 !important;
+}
+.swal-overlay--show-modal{
+  z-index: 999999 !important;
+}
 /*Loader Start*/
 /* Absolute Center Spinner */
+
 #loader {
   display:none;
   position: fixed;
-  z-index: 9999;
+  z-index: 99999;
   height: 2em;
   width: 2em;
   overflow: show;

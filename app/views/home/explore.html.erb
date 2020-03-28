@@ -197,8 +197,10 @@ body{
   color: #f3bd50;
 }
 </style>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
+  <div id="loader"></div>
 <!--Signup Modal-->
   <div id="signup_modal" style="max-width:100% !important" class="modal fade light-box" tabindex="-1" role="dialog" aria-hidden="true">
 
@@ -420,7 +422,7 @@ body{
 			<div class="con" data-aos="fade-up">
 				<a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox wthree-hvr">Click Here !</a>
 			</div>
-			<div class="modal fade bs-example-modal-md light-box" tabindex="-1" role="dialog" aria-hidden="true" style="z-index:9999999">
+			<div class="modal fade bs-example-modal-md light-box" tabindex="-1" role="dialog" aria-hidden="true" style="z-index:9999">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content light-box-info">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
@@ -430,11 +432,12 @@ body{
 								<div class="inp agileits-inp">
 									<h4 style="color:#7AAE42">Contact Form</h4>
                   <div id="success"></div>
-									<form action="#" method="post">
-										<input id="name" type="text" name="Name" placeholder="Your Name" required="">
-										<input id="email" type="email" name="Email" placeholder="Email" required="">
-										<input id="subject" type="text" name="Subject" placeholder="Subject" required="">
-										<textarea id="message" name="Message" placeholder="Message" required=""></textarea>
+                  <form>
+										<input id="name" type="text" name="Name" placeholder="Your Name*">
+										<input id="email" type="email" name="Email" placeholder="Email*">
+										<input id="subject" type="text" name="Subject" placeholder="Subject*">
+										<textarea id="message" name="Message" placeholder="Message*"></textarea>
+                    <div class="g-recaptcha" callback="recaptcha_callback" data-sitekey="6Le5jJsUAAAAAJt9OQmpIF8sXFzDquRWYR00i_c6"></div><br/>
 										<input style="width:100% !important;" id="sendmail" type="submit" value="SEND">
 									</form>
 								</div>
