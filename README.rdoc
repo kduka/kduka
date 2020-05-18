@@ -1,3 +1,7 @@
 == KdukaApp
 
-See http://richonrails.com/articles/building-a-shopping-cart-in-ruby-on-rails for details
+### Rules
+
+
+If you have to make any changes. Please Create a new branch, upload and create a Pull request.
+Thanks!
