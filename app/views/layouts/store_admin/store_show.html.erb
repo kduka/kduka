@@ -113,15 +113,15 @@ $(document).ready( function () {
             <ul class="nav navbar-nav navbar-right">
 
 			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><span style="color:#fff"><%= @store.name %> </span> <%= image_tag("admin/1.png") %></a>
+	        		<a href="#" class="dropdown-toggle avatar" id="store_profile" data-toggle="dropdown"><span style="color:#fff"><%= @store.name %> </span> <%= image_tag("admin/1.png") %></a>
 	        		<ul class="dropdown-menu">
     						<li class="dropdown-menu-header text-center">
     							<strong>Account</strong>
     						</li>
-    						<li class="m_2"><a href="<%= edit_store_path(@store) %>"><i class="fa fa-cogs"></i> Settings</a></li>
+    						<li class="m_2" id="settings"><a href="<%= edit_store_path(@store) %>"><i class="fa fa-cogs"></i> Settings</a></li>
 
     						<li class="divider"></li>
-    						<li class="m_2">
+    						<li class="m_2" id="logout">
                   <%= link_to destroy_store_session_path , method:'delete' do %>
                     <i class="fa fa-sign-out"></i> Logout
                   <% end %>
@@ -134,29 +134,29 @@ $(document).ready( function () {
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="btn1">
-                            <a class="btn1" href="<%= stores_path %>"><i class="fa fa-home fa-fw nav_icon"></i>Overview</a>
+                            <a class="btn1" id="overview" href="<%= stores_path %>"><i class="fa fa-home fa-fw nav_icon"></i>Overview</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-list nav_icon"></i>Categories<span class="fa arrow"></span></a>
+                            <a href="#" id="store_categories"><i class="fa fa-list nav_icon"></i>Categories<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="btn1" href="<%= categories_path %>"><i class="fa fa-eye"></i> View Categories</a>
+                                    <a class="btn1" id="view_categories" href="<%= categories_path %>"><i class="fa fa-eye"></i> View Categories</a>
                                 </li>
                                 <li>
-                                    <a class="btn1" href="<%= new_category_path %>"><i class="fa fa-plus"></i> Add Category</a>
+                                    <a class="btn1" id="add_categories" href="<%= new_category_path %>"><i class="fa fa-plus"></i> Add Category</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-gift nav_icon"></i>Products<span class="fa arrow"></span></a>
+                            <a href="#" id="store_products"><i class="fa fa-gift nav_icon"></i>Products<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="btn1" href="<%= products_manage_path %>"><i class="fa fa-eye"></i> View Products</a>
+                                    <a class="btn1" id="view_products" href="<%= products_manage_path %>"><i class="fa fa-eye"></i> View Products</a>
                                 </li>
                               <% if !Category.where(store_id: current_store.id).blank? %>
                               <li>
-                                <a class="btn1" href="<%= new_store_product_path(@store) %>"><i class="fa fa-plus"></i> Add Product</a>
+                                <a class="btn1" id="add_products" href="<%= new_store_product_path(@store) %>"><i class="fa fa-plus"></i> Add Product</a>
                               </li>
                               <li>
                                 <a class="btn1" href="<%=products_imports_new_path %>"><i class="fa fa-plus"></i> Batch Upload <span class="badge" style="background-color:#fff;color: black ">Beta</span></a>
@@ -169,64 +169,64 @@ $(document).ready( function () {
                           <%
                           @o = Order.where(store_id:current_store.id,read:false,order_status_id: [5, 2]).count
                           %>
-                            <a class="btn1" href="<%= store_orders_path %>"><i class="fa fa-shopping-cart fa-fw nav_icon"></i>Orders <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %></a>
+                            <a class="btn1" id="store_orders" href="<%= store_orders_path %>"><i class="fa fa-shopping-cart fa-fw nav_icon"></i>Orders <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %></a>
                         </li>
                         <li>
-                            <a class="btn1" href="<%= stores_theme_path %>"><i class="fa fa-desktop fa-fw nav_icon"></i>Themes</a>
+                            <a class="btn1" id="store_themes" href="<%= stores_theme_path %>"><i class="fa fa-desktop fa-fw nav_icon"></i>Themes</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-cogs nav_icon"></i>Store Settings<span class="fa arrow"></span></a>
+                            <a href="#" id="store_settings"><i class="fa fa-cogs nav_icon"></i>Store Settings<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="btn1" href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> Pages</a>
+                                    <a class="btn1" id="store_pages" href="<%= stores_pages_path %>"><i class="fa fa-file-text"></i> Pages</a>
                                 </li>
                                 <li>
-                                    <a class="btn1" href="<%= edit_store_path(@store) %>"><i class="fa fa-edit"></i> Edit Store Settings</a>
+                                    <a class="btn1" id="edit_store_settings" href="<%= edit_store_path(@store) %>"><i class="fa fa-edit"></i> Edit Store Settings</a>
                                 </li>
                                 <li>
-                                    <a class="btn1" href="<%= stores_social_path %>"><i class="fa fa-users"></i> Social Media Settings</a>
+                                    <a class="btn1" id="social_media_settings" href="<%= stores_social_path %>"><i class="fa fa-users"></i> Social Media Settings</a>
                                 </li>
                                 <li>
-                                    <a class="btn1" href="<%= stores_deliver_path %>"><i class="fa fa-truck"></i> Delivery Settings</a>
+                                    <a class="btn1" id="delivery_settings" href="<%= stores_deliver_path %>"><i class="fa fa-truck"></i> Delivery Settings</a>
                                 </li>
                               <li>
-                                <a class="btn1" href="<%= stores_analytics_path %>"><i class="fa fa-bar-chart-o"></i> Google Analytics</a>
+                                <a class="btn1" id="google_analytics" href="<%= stores_analytics_path %>"><i class="fa fa-bar-chart-o"></i> Google Analytics</a>
                               </li>
                                 <li>
-                                    <a class="btn1" href="<%= stores_active_path %>"><i class="fa fa-check"></i> Activation Settings</a>
+                                    <a class="btn1" id="activation_settings" href="<%= stores_active_path %>"><i class="fa fa-check"></i> Activation Settings</a>
                                 </li>
                                 <li>
-                                    <a class="btn1" href="<%= edit_store_registration_path %>"><i class="fa fa-lock"></i> Password Settings</a>
+                                    <a class="btn1" id="password_settings" href="<%= edit_store_registration_path %>"><i class="fa fa-lock"></i> Password Settings</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-ticket nav_icon"></i>Coupons<span class="fa arrow"></span></a>
+                            <a href="#" id="store_coupons"><i class="fa fa-ticket nav_icon"></i>Coupons<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="btn1" href="<%= coupons_path %>"><i class="fa fa-search"></i> Manage Coupons</a>
+                                    <a class="btn1" id="manage_coupons" href="<%= coupons_path %>"><i class="fa fa-search"></i> Manage Coupons</a>
                                 </li>
                                 <li>
-                                    <a class="btn1" href="<%= new_coupon_path %>"><i class="fa fa-plus"></i> Create Coupon</a>
+                                    <a class="btn1" id="create_coupon" href="<%= new_coupon_path %>"><i class="fa fa-plus"></i> Create Coupon</a>
                                 </li>
                                 <li>
-                                    <a class="btn1" href="<%= coupons_generate_path %>"><i class="fa fa-plus"></i> Generate Multiple Coupons</a>
+                                    <a class="btn1" id="generate_multiple_coupons" href="<%= coupons_generate_path %>"><i class="fa fa-plus"></i> Generate Multiple Coupons</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a class="btn1" href="<%= stores_funds_path %>"><i class="fa fa-money fa-fw nav_icon"></i> Funds</a>
+                            <a class="btn1" id="store_funds" href="<%= stores_funds_path %>"><i class="fa fa-money fa-fw nav_icon"></i> Funds</a>
                         </li>
                       <li>
-                        <a class="btn1" href="<%= stores_premium_path %>"><i class="fa fa-credit-card fa-fw nav_icon"></i> Upgrade</a>
+                        <a class="btn1" id="store_upgrade" href="<%= stores_premium_path %>"><i class="fa fa-credit-card fa-fw nav_icon"></i> Upgrade</a>
                       </li>
                       <li>
-                        <a class="btn1" href="<%= stores_feedback_path %>"><i class="fa fa-comments fa-fw nav_icon"></i> Feedback</a>
+                        <a class="btn1" id="store_feedback" href="<%= stores_feedback_path %>"><i class="fa fa-comments fa-fw nav_icon"></i> Feedback</a>
                       </li>
                         <li>
-                            <a href="<%= root_path %>"><i class="fa fa-globe fa-fw nav_icon"></i>Back to Website</a>
+                            <a href="<%= root_path %>" id="back_to_website"><i class="fa fa-globe fa-fw nav_icon"></i>Back to Website</a>
                         </li>
                         <li>
                           <%= link_to destroy_store_session_path , method:'delete' do %>
