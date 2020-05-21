@@ -140,10 +140,10 @@ $(document).ready( function () {
                             <a href="#" id="store_categories"><i class="fa fa-list nav_icon"></i>Categories<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="btn1" id="view_categories" href="<%= categories_path %>"><i class="fa fa-eye"></i> View Categories</a>
+                                    <a class="btn1" href="<%= categories_path %>" id="view_categories"><i class="fa fa-eye"></i> View Categories</a>
                                 </li>
                                 <li>
-                                    <a class="btn1" id="add_categories" href="<%= new_category_path %>"><i class="fa fa-plus"></i> Add Category</a>
+                                    <a class="btn1" href="<%= new_category_path %>" id="add_categories"><i class="fa fa-plus"></i> Add Category</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -152,11 +152,11 @@ $(document).ready( function () {
                             <a href="#" id="store_products"><i class="fa fa-gift nav_icon"></i>Products<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="btn1" id="view_products" href="<%= products_manage_path %>"><i class="fa fa-eye"></i> View Products</a>
+                                    <a class="btn1" href="<%= products_manage_path %>" id="view_products"><i class="fa fa-eye"></i> View Products</a>
                                 </li>
                               <% if !Category.where(store_id: current_store.id).blank? %>
                               <li>
-                                <a class="btn1" id="add_products" href="<%= new_store_product_path(@store) %>"><i class="fa fa-plus"></i> Add Product</a>
+                                <a class="btn1" href="<%= new_store_product_path(@store) %>" id="add_products"><i class="fa fa-plus"></i> Add Product</a>
                               </li>
                               <li>
                                 <a class="btn1" href="<%=products_imports_new_path %>"><i class="fa fa-plus"></i> Batch Upload <span class="badge" style="background-color:#fff;color: black ">Beta</span></a>
@@ -169,7 +169,7 @@ $(document).ready( function () {
                           <%
                           @o = Order.where(store_id:current_store.id,read:false,order_status_id: [5, 2]).count
                           %>
-                            <a class="btn1" id="store_orders" href="<%= store_orders_path %>"><i class="fa fa-shopping-cart fa-fw nav_icon"></i>Orders <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %></a>
+                            <a class="btn1" href="<%= store_orders_path %>" id="store_orders"><i class="fa fa-shopping-cart fa-fw nav_icon"></i>Orders <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %></a>
                         </li>
                         <li>
                             <a class="btn1" id="store_themes" href="<%= stores_theme_path %>"><i class="fa fa-desktop fa-fw nav_icon"></i>Themes</a>
