@@ -109,8 +109,8 @@ $(document).ready(function(){
        <%= form_for :store, :url => {controller: 'stores', action: 'update_delivery'}, method: 'put' do |f| %>
        <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#tab_1" style="color:#7aae42">Collection Point</a></li>
-          <li><a data-toggle="tab" href="#tab_2" style="color:#7aae42">Manual Delivery</a></li>
-          <li><a data-toggle="tab" href="#tab_3" style="color:#7aae42">Automated Home Delivery</a></li>
+          <li><a data-toggle="tab" href="#tab_2" style="color:#7aae42" id="manual_delivery">Manual Delivery</a></li>
+          <li><a data-toggle="tab" href="#tab_3" style="color:#7aae42" id="automated_delivery">Automated Home Delivery</a></li>
         </ul>
         <div class="tab-content">
           <div id="tab_1" class="tab-pane fade in active">
@@ -160,7 +160,7 @@ $(document).ready(function(){
              </div>
              <div class="col-md-12" style="height:1em"></div>
              <div class="form-group">
-               <label for="manualswitch" class="col-sm-2 control-label" id="manual_delivery">Manual Delivery</label>
+               <label for="manualswitch" class="col-sm-2 control-label">Manual Delivery</label>
                <div class="col-sm-8">
                  <div class="checkbox-inline"><%= f.check_box :manual_delivery_status, id: 'manualswitch' %> <label for="manualswitch"><b>Check this to Enable Manual Delivery</b></label></div>
                </div>
