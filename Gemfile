@@ -7,11 +7,11 @@ gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'seed_dump'
 gem 'tabs_on_rails'
 gem 'mini_magick', '~> 4.5.0'
-gem 'carrierwave'
+gem 'carrierwave', '~> 2.2.2'
 #gem "font-awesome-rails"
 gem 'therubyracer'
 gem 'execjs'
-gem 'mysql2', '~>0.3.18'
+gem 'mysql2', '~>0.5.3'
 gem 'nprogress-rails'
 gem 'fog'
 gem 'bootstrap-colorpicker-rails'
@@ -46,7 +46,7 @@ gem 'whenever', require: false
 
 ruby "2.4.0"
 gem 'sqlite3', group: :development
-gem 'pg', '0.18.1', group: :production
+gem 'pg', '~> 0.18', group: :production
 gem 'rails_12factor', group: :production
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.2'

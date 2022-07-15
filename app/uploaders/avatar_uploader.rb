@@ -7,7 +7,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production?
-  storage :fog
+    storage :fog
   else
     storage :file
   end
@@ -41,7 +41,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-   def extension_whitelist
+   def extension_allowlist
      %w(jpg jpeg gif png)
    end
 

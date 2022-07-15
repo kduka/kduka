@@ -6,9 +6,7 @@ Rails.application.routes.draw do
   get 'ipn/index'
 
 
-  #match '/', to: 'products#index', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
   match '/', to: 'home#index', constraints: { domain: 'co.ke', subdomain:'www.kduka' }, via: [:get, :post, :put, :patch, :delete]
-  #match '/', to: 'products#full_site', constraints: { domain: 'm-jiadvertize.com', subdomain:'www' }, via: [:get, :post, :put, :patch, :delete]
   match '/', to: 'products#index', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
 
 

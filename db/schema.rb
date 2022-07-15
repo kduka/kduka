@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20190617044247) do
 
-  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "ahoy_events", force: :cascade do |t|
     t.integer  "visit_id"
     t.integer  "user_id"
     t.string   "name"
@@ -46,15 +49,15 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id", using: :btree
   end
 
-  create_table "ahoy_visits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "ahoy_visits", force: :cascade do |t|
     t.string   "visit_token"
     t.string   "visitor_token"
     t.integer  "user_id"
     t.string   "ip"
-    t.text     "user_agent",       limit: 65535
-    t.text     "referrer",         limit: 65535
+    t.text     "user_agent"
+    t.text     "referrer"
     t.string   "referring_domain"
-    t.text     "landing_page",     limit: 65535
+    t.text     "landing_page"
     t.string   "browser"
     t.string   "os"
     t.string   "device_type"
@@ -73,7 +76,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true, using: :btree
   end
 
-  create_table "business_to_consumers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "business_to_consumers", force: :cascade do |t|
     t.string   "Trans_Id"
     t.string   "Type"
     t.string   "CompanyId"
@@ -140,7 +143,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.string   "TransactionReceipt"
   end
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "active"
     t.integer  "store_id"
@@ -151,7 +154,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["store_id"], name: "index_categories_on_store_id", using: :btree
   end
 
-  create_table "cats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "cats", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.boolean  "active"
@@ -159,7 +162,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "coupons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "coupons", force: :cascade do |t|
     t.integer  "store_id"
     t.string   "code"
     t.integer  "number_of_use"
@@ -173,7 +176,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["store_id"], name: "index_coupons_on_store_id", using: :btree
   end
 
-  create_table "earnings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "earnings", force: :cascade do |t|
     t.string   "trans_id"
     t.integer  "store_id"
     t.integer  "amount"
@@ -185,21 +188,21 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["transaction_status_id"], name: "index_earnings_on_transaction_status_id", using: :btree
   end
 
-  create_table "feedbacks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "feedbacks", force: :cascade do |t|
     t.integer  "store_id"
-    t.text     "feedback",   limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "feedback"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_feedbacks_on_store_id", using: :btree
   end
 
-  create_table "fonts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "fonts", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "iipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "iipns", force: :cascade do |t|
     t.string   "txncd"
     t.string   "qwh"
     t.string   "afd"
@@ -227,7 +230,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.string   "hsh"
   end
 
-  create_table "invoices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "invoices", force: :cascade do |t|
     t.date     "from"
     t.date     "to"
     t.string   "uid"
@@ -238,9 +241,9 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.integer  "tax"
     t.integer  "subtotal"
     t.string   "currency"
-    t.text     "description",     limit: 65535
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.text     "description"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "subscription_id"
     t.integer  "order_status_id"
     t.string   "i_id"
@@ -255,7 +258,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["subscription_id"], name: "index_invoices_on_subscription_id", using: :btree
   end
 
-  create_table "ipns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "ipns", force: :cascade do |t|
     t.string   "MSISDN"
     t.string   "BusinessShortCode"
     t.string   "InvoiceNumber"
@@ -270,7 +273,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.string   "bill_ref_no"
   end
 
-  create_table "itransactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "itransactions", force: :cascade do |t|
     t.string   "status"
     t.string   "text"
     t.string   "reference"
@@ -283,7 +286,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["store_id"], name: "index_itransactions_on_store_id", using: :btree
   end
 
-  create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "layouts", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",                  null: false
@@ -293,36 +296,36 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.boolean  "premium",     default: false
   end
 
-  create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "order_items", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "order_id"
-    t.decimal  "unit_price",                precision: 12, scale: 3
+    t.decimal  "unit_price",  precision: 12, scale: 3
     t.integer  "quantity"
-    t.decimal  "total_price",               precision: 12, scale: 3
+    t.decimal  "total_price", precision: 12, scale: 3
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "variants",    limit: 65535
+    t.text     "variants"
     t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
     t.index ["product_id"], name: "index_order_items_on_product_id", using: :btree
   end
 
-  create_table "order_statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "order_statuses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.decimal  "subtotal",                             precision: 12, scale: 3
-    t.decimal  "tax",                                  precision: 12, scale: 3
-    t.decimal  "shipping",                             precision: 12, scale: 3
-    t.decimal  "total",                                precision: 12, scale: 3
+  create_table "orders", force: :cascade do |t|
+    t.decimal  "subtotal",               precision: 12, scale: 3
+    t.decimal  "tax",                    precision: 12, scale: 3
+    t.decimal  "shipping",               precision: 12, scale: 3
+    t.decimal  "total",                  precision: 12, scale: 3
     t.integer  "order_status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ref"
     t.integer  "store_id"
-    t.text     "order_instructions",     limit: 65535
+    t.text     "order_instructions"
     t.integer  "amount_received"
     t.string   "email"
     t.string   "phone"
@@ -334,10 +337,10 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.string   "del_lat"
     t.string   "del_long"
     t.string   "coupon"
-    t.boolean  "coupon_status",                                                 default: false
+    t.boolean  "coupon_status",                                   default: false
     t.string   "address"
-    t.integer  "discount",                                                      default: 0
-    t.boolean  "read",                                                          default: false
+    t.integer  "discount",                                        default: 0
+    t.boolean  "read",                                            default: false
     t.datetime "date_placed"
     t.string   "delivery_code"
     t.datetime "ship_date"
@@ -347,16 +350,16 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["store_id"], name: "index_orders_on_store_id", using: :btree
   end
 
-  create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "plans", force: :cascade do |t|
     t.string   "name"
     t.integer  "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "price",                          precision: 12, scale: 3
+    t.decimal  "price",            precision: 12, scale: 3
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -365,7 +368,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.string   "image"
     t.integer  "quantity"
     t.string   "sku"
-    t.text     "description",      limit: 65535
+    t.text     "description"
     t.string   "additional_info"
     t.string   "img1"
     t.integer  "width"
@@ -378,20 +381,20 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.string   "img3"
     t.string   "img4"
     t.integer  "discount_price"
-    t.boolean  "discount_status",                                         default: false
-    t.text     "long_description", limit: 65535
+    t.boolean  "discount_status",                           default: false
+    t.text     "long_description"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["store_id"], name: "index_products_on_store_id", using: :btree
   end
 
-  create_table "shop_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shop_categories", force: :cascade do |t|
     t.string   "shop_category"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["shop_category"], name: "index_shop_categories_on_shop_category", unique: true, using: :btree
   end
 
-  create_table "store_amounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "store_amounts", force: :cascade do |t|
     t.integer  "store_id"
     t.integer  "amount",            default: 0
     t.datetime "created_at",                    null: false
@@ -401,7 +404,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["store_id"], name: "index_store_amounts_on_store_id", using: :btree
   end
 
-  create_table "store_deliveries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "store_deliveries", force: :cascade do |t|
     t.integer  "store_id"
     t.string   "delivery_areas"
     t.integer  "price"
@@ -410,13 +413,13 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["store_id"], name: "index_store_deliveries_on_store_id", using: :btree
   end
 
-  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                                      default: "",    null: false
-    t.string   "encrypted_password",                         default: "",    null: false
+  create_table "stores", force: :cascade do |t|
+    t.string   "email",                        default: "",    null: false
+    t.string   "encrypted_password",           default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                              default: 0,     null: false
+    t.integer  "sign_in_count",                default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -425,8 +428,8 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.boolean  "active"
     t.string   "username"
     t.string   "name"
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "subdomain"
     t.string   "phone"
     t.string   "display_email"
@@ -445,15 +448,15 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.string   "sendy_key"
     t.boolean  "homepage_status"
     t.boolean  "aboutpage_status"
-    t.text     "aboutpage_text",               limit: 65535
+    t.text     "aboutpage_text"
     t.boolean  "contactpage_status"
     t.string   "banner"
     t.string   "logo"
-    t.text     "business_location",            limit: 65535
+    t.text     "business_location"
     t.boolean  "logo_status"
     t.string   "store_color"
     t.boolean  "manual_delivery_status"
-    t.text     "manual_delivery_instructions", limit: 65535
+    t.text     "manual_delivery_instructions"
     t.boolean  "collection_point_status"
     t.string   "auto_delivery_location"
     t.string   "lat"
@@ -462,12 +465,12 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.boolean  "important"
     t.string   "store_font"
     t.string   "domain"
-    t.boolean  "own_domain",                                 default: false
+    t.boolean  "own_domain",                   default: false
     t.string   "c_subdomain"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.text     "gtag",                         limit: 65535
+    t.text     "gtag"
     t.boolean  "premium"
     t.date     "premiumexpiry"
     t.integer  "cat_id"
@@ -493,7 +496,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["user_id"], name: "index_stores_on_user_id", using: :btree
   end
 
-  create_table "sub_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "sub_categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "active"
     t.integer  "category_id"
@@ -503,7 +506,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
   end
 
-  create_table "subscription_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "subscription_records", force: :cascade do |t|
     t.integer  "store_id"
     t.date     "start"
     t.date     "expire"
@@ -515,7 +518,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["subscription_id"], name: "index_subscription_records_on_subscription_id", using: :btree
   end
 
-  create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "subscriptions", force: :cascade do |t|
     t.integer  "store_id"
     t.integer  "amount"
     t.string   "ref"
@@ -529,13 +532,13 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["store_id"], name: "index_subscriptions_on_store_id", using: :btree
   end
 
-  create_table "transaction_statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "transaction_statuses", force: :cascade do |t|
     t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "transactions", force: :cascade do |t|
     t.integer  "amount"
     t.integer  "store_id"
     t.integer  "balance"
@@ -552,13 +555,13 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["transaction_status_id"], name: "index_transactions_on_transaction_status_id", using: :btree
   end
 
-  create_table "unresolveds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "unresolveds", force: :cascade do |t|
     t.string   "transid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -587,12 +590,12 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "variants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "variants", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "name"
-    t.text     "value",      limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "ref"
     t.index ["product_id"], name: "index_variants_on_product_id", using: :btree
   end
