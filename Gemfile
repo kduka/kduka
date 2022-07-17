@@ -9,7 +9,7 @@ gem 'tabs_on_rails'
 gem 'mini_magick', '~> 4.5.0'
 gem 'carrierwave', '~> 2.2.2'
 #gem "font-awesome-rails"
-gem 'therubyracer'
+# gem 'therubyracer'
 gem 'execjs'
 gem 'mysql2', '~>0.5.3'
 gem 'nprogress-rails'
@@ -44,7 +44,7 @@ gem 'aws-sdk', '~> 1'
 gem 'whenever', require: false
 
 
-ruby "2.4.0"
+ruby "2.4.10"
 gem 'sqlite3', group: :development
 gem 'pg', '~> 0.18', group: :production
 gem 'rails_12factor', group: :production

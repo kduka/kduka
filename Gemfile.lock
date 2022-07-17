@@ -325,7 +325,6 @@ GEM
     json (1.8.6)
     launchy (2.4.3)
       addressable (~> 2.3)
-    libv8 (3.16.14.19)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -412,7 +411,6 @@ GEM
       nokogiri (~> 1.5)
       optimist (~> 3.0)
     rdoc (4.3.0)
-    ref (2.0.0)
     referer-parser (0.3.0)
     rename (1.0.6)
       activesupport
@@ -484,9 +482,6 @@ GEM
     sqlite3 (1.4.0)
     ssrf_filter (1.0.7)
     tabs_on_rails (3.0.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
@@ -578,7 +573,6 @@ DEPENDENCIES
   sendgrid-ruby
   sqlite3
   tabs_on_rails
-  therubyracer
   travis
   turbolinks
   tzinfo-data
@@ -591,7 +585,7 @@ DEPENDENCIES
   zip-zip
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.4.10p364
 
 BUNDLED WITH
    1.17.3
