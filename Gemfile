@@ -44,7 +44,7 @@ gem 'aws-sdk', '~> 1'
 gem 'whenever', require: false
 
 
-ruby "2.4.10"
+ruby "2.5.9"
 gem 'sqlite3', group: :development
 gem 'pg', '~> 0.18', group: :production
 gem 'rails_12factor', group: :production
