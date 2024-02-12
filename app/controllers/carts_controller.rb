@@ -38,17 +38,17 @@ class CartsController < ApplicationController
     if Rails.env.production?
       pesapal.config = {
           callback_url: request.subdomain+"."+request.domain+"/carts/complete",
-          consumer_key: "631N8K73Vk8giRs+7L4LFLcJlfsI7FC0",
+          consumer_key: "631N8K73Vk8giRs",
           #consumer_key: Rails.application.secrets.pesapal_consumer_key,
-          consumer_secret: "qh2kfvUbcjgVNyTKCDizSK15D0M="
+          consumer_secret: "="
           #consumer_secret: Rails.application.secrets.pesapal_consumer_secret
       }
     else
       pesapal.config = {
           callback_url: request.subdomain+"."+request.domain+":3000/carts/complete",
-          consumer_key: "631N8K73Vk8giRs+7L4LFLcJlfsI7FC0",
+          consumer_key: "+7L4LFLcJlfsI7FC0",
           #consumer_key: Rails.application.secrets.pesapal_consumer_key,
-          consumer_secret: "qh2kfvUbcjgVNyTKCDizSK15D0M="
+          consumer_secret: "="
           #consumer_secret: Rails.application.secrets.pesapal_consumer_secret
       }
     end
