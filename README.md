@@ -1,6 +1,6 @@
 KDuka
 
-In the year 2017, with my partner @jtowett89, we started building KDuka, an eCommerce website generator that could get you an online shop within 5 minutes
+In the year 2017, with my partner [@jtowett89](https://github.com/jtowett89), we started building KDuka, an eCommerce website generator that could get you an online shop within 5 minutes
 
 With more premium features like custom domain names and special themes, you could customize pretty much every template to your liking + fully functional eCommerce features with dashboard and analytics.
 
