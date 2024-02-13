@@ -12,8 +12,8 @@ I just want it to be out there, whether judged or appreciated. This was KDuka, t
 
 
 - [KDuka in Use](https://www.youtube.com/watch?v=qbWKvLW2OG4)
-- [Create your own e-commerce website with KDuka](https://nation.africa/kenya/life-and-style/mynetwork/create-your-own-e-commerce-website-with-kduka-99470)
-- [Want an online shop? We'll build you one in minutes](https://www.standardmedia.co.ke/article/2001321358/want-an-online-shop-well-build-you-one-in-minutes)
+- Daily Nation- [Create your own e-commerce website with KDuka](https://nation.africa/kenya/life-and-style/mynetwork/create-your-own-e-commerce-website-with-kduka-99470)
+- The Standard Newspaper - [Want an online shop? We'll build you one in minutes](https://www.standardmedia.co.ke/article/2001321358/want-an-online-shop-well-build-you-one-in-minutes)
 - [First Release Demo](https://www.youtube.com/watch?v=OUp7k_rp6t0)
 
 PS:
