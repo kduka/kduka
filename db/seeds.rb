@@ -22,24 +22,24 @@ Store.create!([
                   {:email => 'test@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig', user_id: 1, active: true, username: "mndeto", name: "Test Store", subdomain: "test", phone: "+254725458978", display_email: "test@gmail.com", facebook: "fb.me", instagram: "insta.gram", linkedin: "", twitter: "", pinterest: "", vimeo: "", youtube: "", slogan: "We Deliver!", auto_delivery_location: "Eastleigh, Nairobi, Kenya", lat: "-1.2731795", lng: "36.8600088"}
               ])
 Category.create!([
-                     {name: "Fruits", active: true, store_id: 1, description: nil},
-                     {name: "Vegetables", active: true, store_id: 1, description: "Greens"},
-                     {name: "Greens", active: true, store_id: 1, description: "Greens"},
+                     {name: "Fruits", active: true, store_id:Store.first.id, description: nil},
+                     {name: "Vegetables", active: true, store_id:Store.first.id, description: "Greens"},
+                     {name: "Greens", active: true, store_id:Store.first.id, description: "Greens"},
 
                  ])
 
 
 SubCategory.create!([
-                        {name: "Subcategory", active: false, category_id: 1, description: "Sub"}
+                        {name: "Subcategory", active: false, category_id: Category.first.id, description: "Sub"}
                     ])
 
 Product.create!([
-                    {name: "Orange", price: "3.9", active: true, store_id: 1, category_id: 1, image: "orange-02.jpg", quantity: 20, sku: "AUETIHRK", description: nil, additional_info: nil, img1: "motd.jpg"},
-                    {name: "Cabbage", price: "0.8", active: true, store_id: 1, category_id: 1, image: "cabbage.jpg", quantity: 50, sku: "LYCEHSZJ", description: nil, additional_info: nil, img1: nil},
-                    {name: "Banana", price: "0.5", active: true, store_id: 1, category_id: 1, image: "bananasf.jpg", quantity: 100, sku: "CLNSYWPO", description: nil, additional_info: nil, img1: nil},
-                    {name: "Apple", price: "0.2", active: true, store_id: 1, category_id: 1, image: "bananasf.jpg", quantity: 23, sku: "JNPXOUHB", description: nil, additional_info: nil, img1: nil},
-                    {name: "New", price: "78.0", active: true, store_id: 1, category_id: 1, image: "orange-02.jpg", quantity: 78, sku: "H6FP9TO0", description: nil, additional_info: nil, img1: nil},
-                    {name: "Orangey", price: "32.0", active: true, store_id: 1, category_id: 1, image: "orange-02.jpg", quantity: 45, sku: "62MZYS7E", description: nil, additional_info: nil, img1: "bananasf.jpg"},
+                    {name: "Orange", price: "3.9", active: true, store_id:Store.first.id, category_id: Category.first.id, image: "orange-02.jpg", quantity: 20, sku: "AUETIHRK", description: nil, additional_info: nil, img1: "motd.jpg"},
+                    {name: "Cabbage", price: "0.8", active: true, store_id:Store.first.id, category_id: Category.first.id, image: "cabbage.jpg", quantity: 50, sku: "LYCEHSZJ", description: nil, additional_info: nil, img1: nil},
+                    {name: "Banana", price: "0.5", active: true, store_id:Store.first.id, category_id: Category.first.id, image: "bananasf.jpg", quantity: 100, sku: "CLNSYWPO", description: nil, additional_info: nil, img1: nil},
+                    {name: "Apple", price: "0.2", active: true, store_id:Store.first.id, category_id: Category.first.id, image: "bananasf.jpg", quantity: 23, sku: "JNPXOUHB", description: nil, additional_info: nil, img1: nil},
+                    {name: "New", price: "78.0", active: true, store_id:Store.first.id, category_id: Category.first.id, image: "orange-02.jpg", quantity: 78, sku: "H6FP9TO0", description: nil, additional_info: nil, img1: nil},
+                    {name: "Orangey", price: "32.0", active: true, store_id:Store.first.id, category_id: Category.first.id, image: "orange-02.jpg", quantity: 45, sku: "62MZYS7E", description: nil, additional_info: nil, img1: "bananasf.jpg"},
                 ])
 
 
@@ -73,11 +73,11 @@ Font.create!([
                  {:name => 'Garamond'},
              ])
 
-             TransactionStatus.create!([
-                 {:status => 'Pending'},
-                 {:status => 'Success'},
-                 {:status => 'Failed'}
-                                       ])
+TransactionStatus.create!([
+    {:status => 'Pending'},
+    {:status => 'Success'},
+    {:status => 'Failed'}
+                        ])
 
 
 OrderStatus.create!([

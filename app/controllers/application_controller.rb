@@ -87,15 +87,22 @@ protect_from_forgery with: :exception
   end
 
   def set_shop
-    @store = Store.where(c_subdomain:request.subdomain,domain:request.domain,own_domain:true).first
+    subdomain = request.subdomain
+    domain = request.domain
+
+    puts "Subdomain is #{request.subdomain}"
+    puts "Domain is #{request.domain}"
+
+    @store = Store.find_by(c_subdomain:subdomain,domain:domain,own_domain:true)
 
       if @store.nil?
         @subdomain = request.subdomain[/(\w+)/]
-        @store = Store.where(subdomain: @subdomain).first
+        @store = Store.find_by(subdomain: @subdomain)
       end
     if @store.nil?
       redirect_to("http://www.kduka.co.ke/") and return
     end
+
     render :layout => "#{Layout.find(@store.layout_id).name}/shop"
 
   end
@@ -121,7 +128,7 @@ protect_from_forgery with: :exception
   def get_store
     puts "Subdomain is #{request.subdomain}"
     puts "Domain is #{request.domain}"
-    @store = Store.where(c_subdomain:request.subdomain,domain:request.domain).first
+    @store = Store.find_by(c_subdomain:request.subdomain,domain:request.domain)
 
     if @store.nil?
       @subdomain = request.subdomain[/(\w+)/]

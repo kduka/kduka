@@ -2,10 +2,9 @@ class Ahoy::Store < Ahoy::DatabaseStore
 end
 
 # set to true for JavaScript tracking
-Ahoy.api = true
+Ahoy.api = false
 
-# better user agent parsing
-Ahoy.user_agent_parser = :device_detector
-
-# better bot detection
-Ahoy.bot_detection_version = 2
+# set to true for geocoding
+# we recommend configuring local geocoding first
+# see https://github.com/ankane/ahoy#geocoding
+Ahoy.geocode = false
