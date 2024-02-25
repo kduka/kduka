@@ -32,10 +32,21 @@ module Kduka
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
+
     config.to_prepare do
       Devise::ConfirmationsController.layout "login/user_login"
       StorePasswordsController.layout "login/store_login"
       UserPasswordsController.layout "login/user_login"
     end
+
+    config.action_mailer.smtp_settings = {
+        :user_name => ENV['SENDGRID_USERNAME'],
+        :password => ENV['SENDGRID_PASSWORD'],
+        :domain => 'kduka.co.ke',
+        :address => 'smtp.sendgrid.net',
+        :port => 587,
+        :authentication => :plain,
+        :enable_starttls_auto => true
+    }
   end
 end
