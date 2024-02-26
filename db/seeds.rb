@@ -24,7 +24,7 @@ User.create!(
 puts "Creating Stores"
 Store.create!(
     [
-        {:email => 'test@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig', user_id: 1, active: true, username: "mndeto", name: "Test Store", subdomain: "test", phone: "+254725458978", display_email: "test@gmail.com", facebook: "fb.me", instagram: "insta.gram", linkedin: "", twitter: "", pinterest: "", vimeo: "", youtube: "", slogan: "We Deliver!", auto_delivery_location: "Eastleigh, Nairobi, Kenya", lat: "-1.2731795", lng: "36.8600088", c_subdomain: 'www', domain: 'test.localhost'}
+        {:email => 'test@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig', user_id: 1, active: true, username: "mndeto", name: "Test Store", subdomain: "test", phone: "+254725458978", display_email: "test@gmail.com", facebook: "fb.me", instagram: "insta.gram", linkedin: "", twitter: "", pinterest: "", vimeo: "", youtube: "", slogan: "We Deliver!", auto_delivery_location: "Eastleigh, Nairobi, Kenya", lat: "-1.2731795", lng: "36.8600088", c_subdomain: 'www', domain: 'test.localhost', own_domain: true, active: true }
     ]
 )
 

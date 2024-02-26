@@ -137,7 +137,7 @@ class ProductsController < ApplicationController
   def new
     @store = Store.find(current_store.id)
     @product = @store.product.new
-    init_froala
+    # init_froala
     set_shop_show
   end
 
@@ -177,7 +177,7 @@ class ProductsController < ApplicationController
       redirect_to(products_manage_path) and return
     end
     @store = Store.find(current_store.id)
-    init_froala
+    # init_froala
     set_shop_show
   end
 
