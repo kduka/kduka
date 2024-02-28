@@ -113,6 +113,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     dry-inflector (0.2.1)
     errbase (0.2.2)
     erubis (2.7.0)
@@ -589,6 +593,7 @@ DEPENDENCIES
   carrierwave-imageoptimizer
   coffee-rails
   devise
+  dotenv-rails
   execjs
   figaro
   file_validators

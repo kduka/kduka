@@ -45,7 +45,7 @@ protect_from_forgery with: :exception
       if !@find_order
         session[:order_id] = nil
         current_order
-      elsif @find_order.order_status_id != 1
+      elsif @find_order.status != 'in_progress'
         session[:order_id] = nil
         current_order
       else

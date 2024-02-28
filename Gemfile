@@ -59,4 +59,5 @@ end
 group :development, :test do
   gem 'annotate'
   gem 'byebug'
+  gem 'dotenv-rails'
 end
