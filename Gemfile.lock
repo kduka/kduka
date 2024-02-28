@@ -55,6 +55,9 @@ GEM
     aliyun-sdk (0.8.0)
       nokogiri (~> 1.6)
       rest-client (~> 2.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     arel (7.1.4)
     ast (2.4.2)
     autoprefixer-rails (10.4.16.0)
@@ -575,6 +578,7 @@ DEPENDENCIES
   acts_as_xlsx
   africastalking-ruby
   ahoy_matey
+  annotate
   aws-sdk (~> 1)
   axlsx (= 2.1.0.pre)
   axlsx_rails
