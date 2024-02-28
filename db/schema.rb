@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190617044247) do
+ActiveRecord::Schema.define(version: 20240228085416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -320,7 +320,6 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.decimal  "tax",                    precision: 12, scale: 3
     t.decimal  "shipping",               precision: 12, scale: 3
     t.decimal  "total",                  precision: 12, scale: 3
-    t.integer  "order_status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ref"
@@ -346,7 +345,7 @@ ActiveRecord::Schema.define(version: 20190617044247) do
     t.datetime "ship_date"
     t.datetime "complete_date"
     t.date     "date_placed2"
-    t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
+    t.integer  "status",                                          default: 0
     t.index ["store_id"], name: "index_orders_on_store_id", using: :btree
   end
 
