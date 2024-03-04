@@ -2,6 +2,7 @@ Order.create!([])
 OrderItem.create!([])
 
 puts "Creating Order Statuses"
+
 OrderStatus.create!(
     [
         {name: "In Progress"},
@@ -14,21 +15,24 @@ OrderStatus.create!(
 )
 
 puts "Creating Users"
+
 User.create!(
     [
 
-        {:name => 'John Doe', :email => 'test@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig', username: nil}
+        {:name => 'John Doe', :email => 'johndoe@kduka.shop', :password => 'john@doe', :password_confirmation => 'john@doe', username: nil}
     ]
 )
 
 puts "Creating Stores"
+
 Store.create!(
     [
-        {:email => 'test@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig', user_id: 1, active: true, username: "mndeto", name: "Test Store", subdomain: "test", phone: "+254725458978", display_email: "test@gmail.com", facebook: "fb.me", instagram: "insta.gram", linkedin: "", twitter: "", pinterest: "", vimeo: "", youtube: "", slogan: "We Deliver!", auto_delivery_location: "Eastleigh, Nairobi, Kenya", lat: "-1.2731795", lng: "36.8600088", c_subdomain: 'www', domain: 'test.localhost', own_domain: true, active: true }
+        {:email => 'anndoe@kduka.shop', :password => 'ann@doe', :password_confirmation => 'ann@doe', user_id: 1, active: true, username: "anndoe", name: "Test Store", subdomain: "test", phone: "+254725458978", display_email: "testa@kduka.shop", facebook: "fb.me", instagram: "insta.gram", linkedin: "", twitter: "", pinterest: "", vimeo: "", youtube: "", slogan: "We Deliver!", auto_delivery_location: "Eastleigh, Nairobi, Kenya", lat: "-1.2731795", lng: "36.8600088", c_subdomain: 'www', domain: 'test.localhost', own_domain: true, active: true }
     ]
 )
 
 puts "Creating Categories"
+
 Category.create!(
     [
         {name: "Fruits", active: true, store_id: Store.first.id, description: nil},
@@ -39,6 +43,7 @@ Category.create!(
 )
 
 puts "Creating Subcategories"
+
 SubCategory.create!(
     [
         {name: "Subcategory", active: false, category_id: Category.first.id, description: "Sub"}
@@ -46,6 +51,7 @@ SubCategory.create!(
 )
 
 puts "Creating Products"
+
 Product.create!(
     [
         {name: "Orange", price: "3.9", active: true, store_id: Store.first.id, category_id: Category.first.id, image: "orange-02.jpg", quantity: 20, sku: "AUETIHRK", description: nil, additional_info: nil, img1: "motd.jpg"},
@@ -58,6 +64,7 @@ Product.create!(
 )
 
 puts "Creating Product Variants"
+
 Layout.create!(
     [
         {name: "modern", description: "Modern Theme", d_name: "Modern"},
@@ -68,26 +75,29 @@ Layout.create!(
 )
 
 puts "Updating Store Layout"
+
 Store.find(1).update({layout_id: Layout.first.id})
 
 puts "Creating Admins"
+
 Admin.create!(
     [
-        {:email => 'martindeto@gmail.com', :password => 'spiderpig', :password_confirmation => 'spiderpig'},
-        {:email => 'jtowett89@gmail.com', :password => 'jupiter89', :password_confirmation => 'jupiter89'}
+        {:email => 'superadmin@kduka.shop', :password => 'kduka_admin', :password_confirmation => 'kduka_admin'},
     ]
 )
 
 puts "Creating Transaction Statuses"
+
 TransactionStatus.create!(
     [
-    {:status => 'Pending'},
-    {:status => 'Success'},
-    {:status => 'Failed'}
+      {:status => 'Pending'},
+      {:status => 'Success'},
+      {:status => 'Failed'}
     ]
 )
 
 puts "Creating Fonts"
+
 Font.create!(
     [
         {:name => 'Abril Fatface'},
@@ -144,6 +154,7 @@ Font.create!(
 )
 
 puts "Creating Plans"
+
 Plan.create!(
     [
         {:name => 'basic',:amount => '200'},
