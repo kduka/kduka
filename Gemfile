@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'mini_magick', '~> 4.5.0'
 gem 'nprogress-rails'
+gem 'postmark-rails'
 gem 'pesapal'
 gem 'pg', '~> 0.18'
 gem 'rack-cors'
@@ -56,5 +57,7 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'annotate'
   gem 'byebug'
+  gem 'dotenv-rails'
 end

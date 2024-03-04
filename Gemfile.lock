@@ -55,6 +55,9 @@ GEM
     aliyun-sdk (0.8.0)
       nokogiri (~> 1.6)
       rest-client (~> 2.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     arel (7.1.4)
     ast (2.4.2)
     autoprefixer-rails (10.4.16.0)
@@ -110,6 +113,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     dry-inflector (0.2.1)
     errbase (0.2.2)
     erubis (2.7.0)
@@ -392,6 +399,11 @@ GEM
     pesapal (2.0.0)
       htmlentities
     pg (0.21.0)
+    postmark (1.25.0)
+      json
+    postmark-rails (0.22.1)
+      actionmailer (>= 3.0.0)
+      postmark (>= 1.21.3, < 2.0)
     public_suffix (5.0.4)
     pusher-client (0.6.2)
       json
@@ -570,6 +582,7 @@ DEPENDENCIES
   acts_as_xlsx
   africastalking-ruby
   ahoy_matey
+  annotate
   aws-sdk (~> 1)
   axlsx (= 2.1.0.pre)
   axlsx_rails
@@ -580,6 +593,7 @@ DEPENDENCIES
   carrierwave-imageoptimizer
   coffee-rails
   devise
+  dotenv-rails
   execjs
   figaro
   file_validators
@@ -593,6 +607,7 @@ DEPENDENCIES
   nprogress-rails
   pesapal
   pg (~> 0.18)
+  postmark-rails
   rack-cors
   rails (= 5.0.2)
   rails_12factor

@@ -39,14 +39,10 @@ module Kduka
       UserPasswordsController.layout "login/user_login"
     end
 
-    config.action_mailer.smtp_settings = {
-        :user_name => ENV['SENDGRID_USERNAME'],
-        :password => ENV['SENDGRID_PASSWORD'],
-        :domain => 'kduka.co.ke',
-        :address => 'smtp.sendgrid.net',
-        :port => 587,
-        :authentication => :plain,
-        :enable_starttls_auto => true
-    }
+    api_key = Rails.env.production? ? ENV.fetch('POSTMARK_PROD_API_KEY') : ENV.fetch('POSTMARK_DEV_API_KEY')
+
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { api_token: api_key }
+
   end
 end

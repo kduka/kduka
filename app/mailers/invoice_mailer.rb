@@ -15,7 +15,7 @@ class InvoiceMailer < ApplicationMailer
 
     attachments["#{inv.uid}_#{s.name}.pdf"] = pdf
 
-    mail(to: s.email, from: "#{s.name} <no-reply@kduka.co.ke>", subject: "Your store #{s.name} has been suspended due to pending invoice.")
+    mail(to: s.email, from: "#{s.name} <no-reply@kduka.shop>", subject: "Your store #{s.name} has been suspended due to pending invoice.")
 
   end
 
@@ -34,7 +34,7 @@ class InvoiceMailer < ApplicationMailer
 
     attachments["#{inv.uid}_#{s.name}.pdf"] = pdf
 
-    mail(to: s.email, from: "#{s.name} <no-reply@kduka.co.ke>", subject: "Invoice for #{s.name}")
+    mail(to: s.email, from: "#{s.name} <no-reply@kduka.shop>", subject: "Invoice for #{s.name}")
   end
 
 
@@ -51,6 +51,6 @@ class InvoiceMailer < ApplicationMailer
 
     attachments["#{inv.uid}_#{s.name}.pdf"] = pdf
 
-    mail(to: s.email, from: "#{s.name} <no-reply@kduka.co.ke>", subject: "Your store #{s.name} is about to be suspended")
+    mail(to: s.email, from: "#{s.name} <no-reply@kduka.shop>", subject: "Your store #{s.name} is about to be suspended")
   end
 end

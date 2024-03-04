@@ -91,7 +91,7 @@ end
   end
 
   def orders
-    @order = Order.where(store_id: current_store.id, order_status_id: [5, 2, 3, 6])
+    @order = Order.where(store_id: current_store.id, status:['placed', 'shipped', 'cancelled', 'pending', 'completed'])
     @setup = setup
     @important = important
     set_shop_show

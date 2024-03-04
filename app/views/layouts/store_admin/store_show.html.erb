@@ -167,7 +167,7 @@ $(document).ready( function () {
                         </li>
                         <li>
                           <%
-                          @o = Order.where(store_id:current_store.id,read:false,order_status_id: [5, 2]).count
+                          @o = Order.where(store_id:current_store.id,read:false, status: ['pending', 'placed']).count
                           %>
                             <a class="btn1" href="<%= store_orders_path %>" id="store_orders"><i class="fa fa-shopping-cart fa-fw nav_icon"></i>Orders <% if @o > 0 %> <span class="badge" style="background-color:#fff;color: black "><%= @o %></span> <% end %></a>
                         </li>
