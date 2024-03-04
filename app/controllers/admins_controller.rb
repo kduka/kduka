@@ -59,20 +59,7 @@ class AdminsController < ApplicationController
   end
 
   def store_not_active
-=begin
-    users = User.where(store_not_active: nil)
-    if !users.nil?
-      users.each do |u|
-        store = Store.where(user_id: u.id, active: false).first
-        if !store.nil?
-          PromoteMailer.store_not_active(u).deliver
-          u.update(store_not_active:Time.now)
-          puts u.name
-        end
-      end
-    end
-    redirect_to(admins_path)
-=end
+
     order = Order.all
     order.each do |o|
       if o.date_placed.nil?

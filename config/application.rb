@@ -32,10 +32,17 @@ module Kduka
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
+
     config.to_prepare do
       Devise::ConfirmationsController.layout "login/user_login"
       StorePasswordsController.layout "login/store_login"
       UserPasswordsController.layout "login/user_login"
     end
+
+    api_key = Rails.env.production? ? ENV.fetch('POSTMARK_PROD_API_KEY') : ENV.fetch('POSTMARK_DEV_API_KEY')
+
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { api_token: api_key }
+
   end
 end

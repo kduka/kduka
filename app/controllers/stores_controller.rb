@@ -91,7 +91,7 @@ end
   end
 
   def orders
-    @order = Order.where(store_id: current_store.id, order_status_id: [5, 2, 3, 6])
+    @order = Order.where(store_id: current_store.id, status:['placed', 'shipped', 'cancelled', 'pending', 'completed'])
     @setup = setup
     @important = important
     set_shop_show
@@ -712,12 +712,10 @@ end
   def create_premium
     puts 'checking existing'
     exist = Subscription.where(order_status_id: 5, description: 'premium', amount: 420, store_id: current_store.id).first
-
     if exist.nil?
       puts 'existing not found'
       generate_invoice(current_store, 'premium')
       @order = @sub
-
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
       p1 = "#{request.subdomain}.#{request.domain}"
