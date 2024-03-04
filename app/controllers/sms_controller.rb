@@ -109,9 +109,9 @@ class SmsController < ApplicationController
     delivery = JSON.parse(response)
 
     if delivery[status] == "Rejected"
-      SmsLog.info "Message #{delivery[id]} delivery to #{delivery[phone]} failed. Reason being #{delivery[failureReason]}"
+      Sms.info "Message #{delivery[id]} delivery to #{delivery[phone]} failed. Reason being #{delivery[failureReason]}"
     elsif delivery[status] == "Failed"
-      SmsLog.info "Message #{delivery[id]} delivery to #{delivery[phone]} failed. Reason being #{delivery[failureReason]}"
+      Sms.info "Message #{delivery[id]} delivery to #{delivery[phone]} failed. Reason being #{delivery[failureReason]}"
     end
   end
 

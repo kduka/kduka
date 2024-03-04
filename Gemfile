@@ -5,6 +5,7 @@ ruby File.read(".ruby-version").strip
 gem 'acts_as_xlsx'
 gem 'africastalking-ruby'
 gem 'ahoy_matey'
+gem 'awesome_rails_console', '~> 0.4.5'
 gem 'aws-sdk', '~> 1'
 gem 'axlsx','2.1.0.pre'
 gem 'axlsx_rails'
