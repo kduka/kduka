@@ -22,3 +22,19 @@ PS:
 3. Feel free to use this code however you want :)
 4. Zero test coverage. Welcome to bootstrapping for a start up with 2 coders
 
+
+**Official Stuff:**
+
+- This is outlining the general steps needed to get this repo back and running. More deatils coming up soon
+
+1. Install Ruby with CHRUBY
+2. gem install bundler
+3. bundle install
+4. Setup .env file
+5. rails db:create -> database.yml
+6. Set up local STMP keys for dev
+7. rails db:seed
+8. secrets.yml generation
+9. Ahoy init
+10. Run
+

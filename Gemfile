@@ -36,6 +36,7 @@ gem 'rails_12factor'
 gem 'rest-client'
 gem 'rename'
 gem 'roo'
+gem 'rspec-rails', '~> 4.1', '>= 4.1.2'
 gem 'rubocop'
 gem 'rubocop-performance'
 gem 'rubyzip','~>1.1.7'
@@ -61,4 +62,5 @@ group :development, :test do
   gem 'annotate'
   gem 'byebug'
   gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 4.1', '>= 4.1.2'
 end
