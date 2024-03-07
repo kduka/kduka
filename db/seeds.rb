@@ -3,14 +3,20 @@ OrderItem.create!([])
 
 puts "Creating Order Statuses"
 
+# Improvement Ideas
+# Fix Seed file to always delete all records before creating new ones?
+# Script to do full reset?
+
+OrderStatus.delete_all
+
 OrderStatus.create!(
     [
-        {name: "In Progress"},
-        {name: "Placed"},
-        {name: "Shipped"},
-        {name: "Cancelled"},
-        {name: "Pending"},
-        {name: "Complete"}
+        {name: "In Progress", status: :in_progress},
+        {name: "Placed", status: :placed},
+        {name: "Shipped", status: :shipped},
+        {name: "Cancelled", status: :cancelled},
+        {name: "Pending", status: :pending},
+        {name: "Complete", status: :completed}
     ]
 )
 

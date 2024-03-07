@@ -172,7 +172,7 @@ class AdminsController < ApplicationController
   end
 
   def transactions
-    @transactions = Order.where(:order_status_id => [2,6])
+    @transactions = Order.where(:status => [:shipped, :in_progress])
     super_admin
   end
 
