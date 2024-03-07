@@ -33,7 +33,7 @@ class IpnController < ApplicationController
     @order = Order.where(ref: ref).first
 
     if @order.nil?
-      @order = Subscription.where(ref: ref, order_status_id: 5).first
+      @order = Subscription.where(ref: ref, status: :pending).first
       if @order.nil?
         Unresolved.create(transid: transid)
       else
@@ -42,17 +42,17 @@ class IpnController < ApplicationController
         @order.update(number_of_transactions: transactions, received: newamount)
         complete_sub(@order, amount)
       end
-    elsif @order.order_status_id == 5
+    elsif @order.status == 'pending'
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
       @order.update(number_of_transactions: transactions, amount_received: newamount)
       complete(@order, amount)
-    elsif @order.order_status_id == 2
+    elsif @order.status == 'placed'
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
       @order.update(number_of_transactions: transactions, amount_received: newamount)
       complete(@order, amount)
-    elsif @order.order_status_id == 1
+    elsif @order.status == 'in_progress'
       newamount = @order.amount_received.to_i + amount.to_i
       transactions = @order.number_of_transactions + 1
       @order.update(number_of_transactions: transactions, amount_received: newamount, date_placed: Time.now, date_placed2: Time.now.strftime("%Y-%m-%-d"))
@@ -65,14 +65,14 @@ class IpnController < ApplicationController
     @order = ref
     store_amount(ref, amount)
     if @order.total.to_i <= @order.amount_received.to_i
-      @order.update(order_status_id: 2)
+      @order.update(status: :placed)
       update_inventory(@order)
       PaymentsMailer.full_payment_recieved(@order).deliver
       PaymentsMailer.merchant_payment_recieved(@order).deliver
       SmsController::client_sms(@order,1)
       SmsController::merchant_sms(@order,1)
     else
-      @order.update(order_status_id: 5)
+      @order.update(status: :pending)
       PaymentsMailer.partial_payment_recieved(@order).deliver
       PaymentsMailer.partial_merchant_payment_recieved(@order).deliver
       SmsController::client_sms(@order,0)
@@ -85,7 +85,7 @@ class IpnController < ApplicationController
     @order = ref
     if amount.to_i >= @order.amount.to_i
 
-      @order.update(order_status_id: 6)
+      @order.update(status:  :completed)
       @store = Store.find(ref.store_id)
 
       now = Time.now
@@ -131,14 +131,14 @@ class IpnController < ApplicationController
       end
       inv = Invoice.where(uid: ref.ref).first
 
-      inv.update(order_status_id: 6)
+      inv.update(status:  :completed)
 
       PaymentsMailer.full_subscription_payment_recieved(@order, r).deliver
       SmsController::confirm_sub(@order)
 
 
     else
-      @order.update(order_status_id: 5)
+      @order.update(status: :pending)
 
       SmsController::partial_sub(@order)
 

@@ -205,7 +205,7 @@
             <td><%= @latest.amount %></td>
             <td><%= @latest.issued %></td>
             <td><%= @latest.due %></td>
-            <td><%= OrderStatus.find(@latest.order_status_id).name.humanize %></td>
+            <td><%= @latest.status.humanize %></td>
             <td>
               <%= link_to stores_download_path(@latest.uid), style: "color: green;" do %>
                 <i class="fa fa-download"></i> Download
@@ -220,7 +220,7 @@
 
               hash = OpenSSL::HMAC.hexdigest(digest, key, data)
 
-              if @latest.order_status_id == 5 %>
+              if @latest.status == 'pending' %>
               <td>
                 <form method="post" action="https://payments.ipayafrica.com/v3/ke">
                   <input type="hidden" name="live" value="<%= ENV['ipay_live'] %>">
@@ -245,7 +245,7 @@
                 </form>
 
               </td>
-            <% elsif @latest.order_status_id == 6 %>
+            <% elsif @latest.status == 'completed' %>
               <td style="color: blue">Paid</td>
             <% end %>
             </td>
@@ -260,7 +260,7 @@
             <td><%= i.amount %></td>
             <td><%= i.issued %></td>
             <td><%= i.due %></td>
-            <td><%= OrderStatus.find(i.order_status_id).name.humanize %></td>
+            <td><%= i.status.humanize %></td>
             <td>
               <%= link_to stores_download_path(i.uid), style: "color: green;" do %>
                 <i class="fa fa-download"></i> Download

@@ -14,6 +14,7 @@
 #  issued          :date
 #  name            :string
 #  second_del      :boolean
+#  status          :integer          default(0)
 #  subtotal        :integer
 #  tax             :integer
 #  to              :date
@@ -22,25 +23,29 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  i_id            :string
-#  order_status_id :integer
 #  store_id        :integer
 #  subscription_id :integer
 #
 # Indexes
 #
-#  index_invoices_on_order_status_id  (order_status_id)
 #  index_invoices_on_store_id         (store_id)
 #  index_invoices_on_subscription_id  (subscription_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (order_status_id => order_statuses.id)
 #  fk_rails_...  (store_id => stores.id)
 #  fk_rails_...  (subscription_id => subscriptions.id)
 #
 class Invoice < ApplicationRecord
-  belongs_to :store
+  # --- concerns ---
+  include OrderStatusable
 
+  # --- associations ---
+  belongs_to :store
+  belongs_to :subscription
+
+
+  # --- class methods ---
   def self.generate
     require 'active_support'
     stores = Store.all
@@ -141,7 +146,7 @@ class Invoice < ApplicationRecord
       uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
 
 
-      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 5, description: desc)
+      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, status: :pending, description: desc)
 
       if store.premiumexpiry.nil?
         puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
@@ -156,7 +161,7 @@ class Invoice < ApplicationRecord
       if sub
         new_inv = Invoice.create(from: from, to: to,
                                  uid: uid, store_id: store.id, amount: amount, issued: Time.now, due: Time.now + 7.days,
-                                 tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, order_status_id: 5, invoice: "#{uid}_#{store.name}")
+                                 tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, status: :pending, invoice: "#{uid}_#{store.name}")
 
         if new_inv
 
@@ -247,12 +252,12 @@ class Invoice < ApplicationRecord
 
         uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
 
-        sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 5, description: desc)
+        sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, status: :pending, description: desc)
 
         if sub
           new_inv = Invoice.create(from: Time.now - 1.month, to: Time.now,
                                    uid: uid, store_id: store.id, amount: amount, issued: Time.now, due: Time.now + 7.days,
-                                   tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, order_status_id: 5, invoice: "invoice_#{uid}_#{store.name}")
+                                   tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, status: :pending, invoice: "invoice_#{uid}_#{store.name}")
 
           if new_inv
 

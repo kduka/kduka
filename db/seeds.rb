@@ -3,17 +3,6 @@ OrderItem.create!([])
 
 puts "Creating Order Statuses"
 
-OrderStatus.create!(
-    [
-        {name: "In Progress"},
-        {name: "Placed"},
-        {name: "Shipped"},
-        {name: "Cancelled"},
-        {name: "Pending"},
-        {name: "Complete"}
-    ]
-)
-
 puts "Creating Users"
 
 User.create!(
@@ -88,13 +77,6 @@ Admin.create!(
 
 puts "Creating Transaction Statuses"
 
-TransactionStatus.create!(
-    [
-      {:status => 'Pending'},
-      {:status => 'Success'},
-      {:status => 'Failed'}
-    ]
-)
 
 puts "Creating Fonts"
 

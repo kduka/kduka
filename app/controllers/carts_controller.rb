@@ -17,7 +17,7 @@ class CartsController < ApplicationController
 
   def complete
     @order = Order.where(ref: params[:pesapal_merchant_reference]).first
-    @order.update(order_status_id: 2)
+    @order.update(status: :placed)
     session[:ref] = nil
     session[:order_id] = nil
     redirect_to(cart_success_path)
@@ -185,9 +185,9 @@ class CartsController < ApplicationController
     elsif @order.status == 'pending'
       bal = @order.total - @order.amount_received
       @status = "Incomplete Payment. Please send Ksh #{bal} to complete the Order"
-    elsif @order.order_status_id == 'shipped'
+    elsif @order.status == 'shipped'
       @status = "shipped"
-    elsif @order.order_status_id == 'in_progress'
+    elsif @order.status == 'in_progress'
       @status = "none"
     end
     no_layout
