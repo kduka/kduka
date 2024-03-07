@@ -11,12 +11,12 @@ OrderStatus.delete_all
 
 OrderStatus.create!(
     [
-        {name: "In Progress", status: :in_progress},
-        {name: "Placed", status: :placed},
-        {name: "Shipped", status: :shipped},
-        {name: "Cancelled", status: :cancelled},
-        {name: "Pending", status: :pending},
-        {name: "Complete", status: :completed}
+        {name: "In Progress"},
+        {name: "Placed"},
+        {name: "Shipped"},
+        {name: "Cancelled"},
+        {name: "Pending"},
+        {name: "Complete"}
     ]
 )
 

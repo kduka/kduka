@@ -4,7 +4,6 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
-#  status     :integer          default("in_progress")
 #  created_at :datetime
 #  updated_at :datetime
 #

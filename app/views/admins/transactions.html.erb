@@ -21,8 +21,8 @@
   <tbody>
   <% @transactions.each do |ipn| %>
     <tr>
-      <td><%= ipn.store_id.nil? ? "N/A" : Store.find(ipn.store_id).name.humanize %></td>
-      <td><%= OrderStatus.find_by_status(:in_progress).name.humanize %></td>
+      <td><%= Store.find(ipn.store_id).name.humanize %></td>
+      <td><%= OrderStatus.find(ipn.order_status_id).name.humanize %></td>
       <% columns.each do |c| %>
         <td><%=  ipn[c] rescue nil %></td>
       <% end %>
