@@ -35,7 +35,7 @@ class OrderItemsController < ApplicationController
 
   def clear
     @order = current_order
-    if current_order.order_status_id == 1
+    if current_order.status == 'in_progress'
     @order.destroy
     end
     session[:order_id] = nil?

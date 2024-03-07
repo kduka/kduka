@@ -22,7 +22,7 @@
   <% @transactions.each do |ipn| %>
     <tr>
       <td><%= Store.find(ipn.store_id).name.humanize %></td>
-      <td><%= OrderStatus.find(ipn.order_status_id).name.humanize %></td>
+      <td><%= ipn.status.humanize %></td>
       <% columns.each do |c| %>
         <td><%=  ipn[c] rescue nil %></td>
       <% end %>

@@ -562,11 +562,11 @@ end
     ref = params[:ref]
     @order = Order.where(ref: ref).first
 
-    if @order.order_status_id == 6
+    if @order.status == 'completed'
       @status = "done"
     else
       if @order.delivery_code == code
-        @order.update(order_status_id: 6, complete_date: Time.now)
+        @order.update(status: 'completed', complete_date: Time.now)
         @store_amount = StoreAmount.where(store_id: current_store.id).first
         nu = @store_amount.amount.to_i + @order.amount_received.to_i
         @store_amount.update(amount: nu)
@@ -583,7 +583,7 @@ end
 
     @order = Order.where(ref: ref).first
 
-    @status = @order.update(order_status_id: status, ship_date: Time.now)
+    @status = @order.update(status: status, ship_date: Time.now)
 
   end
 
@@ -593,7 +593,7 @@ end
 
     @order = Order.where(delivery_order: ref).first
 
-    @status = @order.update(order_status_id: status, ship_date: Time.now)
+    @status = @order.update(status: status, ship_date: Time.now)
 
   end
 
@@ -602,7 +602,7 @@ end
   end
 
   def myorders
-    @orders = Order.where(store_id: current_store.id, order_status_id: [2, 3, 5, 6])
+    @orders = Order.where(store_id: current_store.id, status: ['placed', 'shipped', 'pending', 'completed'])
     respond_to do |f|
       f.xls
     end
@@ -673,14 +673,14 @@ end
   end
 
   def premium
-    @invoices = Invoice.where(store_id: current_store.id, order_status_id: 6).order(' created_at DESC')
-    @latest = Invoice.where(store_id: current_store.id, order_status_id: 5).last
+    @invoices = Invoice.where(store_id: current_store.id, status: 'completed').order(' created_at DESC')
+    @latest = Invoice.where(store_id: current_store.id, status: 'pending').last
     set_shop_show
   end
 
   def create_basic
     puts 'check existing'
-    exist = Subscription.where(order_status_id: 5, description: 'basic', amount: 200, store_id: current_store.id).last
+    exist = Subscription.where(status: 'pending', description: 'basic', amount: 200, store_id: current_store.id).last
 
     if exist.nil?
       puts 'existing not found'
@@ -711,7 +711,7 @@ end
 
   def create_premium
     puts 'checking existing'
-    exist = Subscription.where(order_status_id: 5, description: 'premium', amount: 420, store_id: current_store.id).first
+    exist = Subscription.where(status: 'pending', description: 'premium', amount: 420, store_id: current_store.id).first
     if exist.nil?
       puts 'existing not found'
       generate_invoice(current_store, 'premium')
@@ -739,12 +739,11 @@ end
   end
 
   def create_month
-    exist = Subscription.where(order_status_id: 5, description: 'month', amount: 420, store_id: current_store.id).first
+    exist = Subscription.where(status: 'pending', description: 'month', amount: 420, store_id: current_store.id).first
 
     if exist.nil?
 
       generate_invoice(current_store, 'premium')
-      #@order = Subscription.create(amount: 420, ref: [*'A'..'Z', *"0".."9"].sample(8).join, description: 'month', order_status_id: 5, store_id: current_store.id)
 
       cbk = "http://#{request.subdomain}.#{request.domain}/ipn/process_ipn_sub"
       key = ENV['ipay_hash_key']
@@ -772,14 +771,13 @@ end
   def confirm_sub
     ref = params[:ref]
     @order = Subscription.where(ref: ref).first
-    if @order.order_status_id == 6
+    if @order.status == 'completed'
       @status = "complete"
-    elsif @order.order_status_id == 5
-      #bal = @order.amount - @order.amount_received
+    elsif @order.status == 'pending'
       @status = "Incomplete Payment. Please Contact us"
-    elsif @order.order_status_id == 3
+    elsif @order.status == 'shipped'
       @status = "shipped"
-    elsif @order.order_status_id == 1
+    elsif @order.status == 'in_progress'
       @status = "none"
     end
     no_layout
@@ -1534,7 +1532,7 @@ end
 
   def generate_invoice(store, plan)
 
-    invoice = Invoice.where(store_id: store.id, description: plan, order_status_id: 5).last
+    invoice = Invoice.where(store_id: store.id, description: plan, status: 'pending').last
 
     if invoice.nil?
 
@@ -1548,7 +1546,7 @@ end
 
       uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
 
-      tempinv = Invoice.where(store_id: store.id, order_status_id: 5).last rescue nil
+      tempinv = Invoice.where(store_id: store.id, status: 'pending').last rescue nil
 
       if tempinv
 
@@ -1561,13 +1559,13 @@ end
       tempinv.delete
       end
 
-      tempsub = Subscription.where(order_status_id: 5, store_id: current_store.id).last
+      tempsub = Subscription.where(status: 'pending', store_id: current_store.id).last
 
       if tempsub
         tempsub.delete
       end
 
-      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, order_status_id: 5, description: plan.to_s)
+      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, status: 'pending', description: plan.to_s)
 
       if store.premiumexpiry.nil?
         puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
@@ -1582,7 +1580,7 @@ end
       if sub
         new_inv = Invoice.create(from: from, to: to,
                                  uid: uid, store_id: store.id, amount: amount, issued: Time.now, due: Time.now + 7.days,
-                                 tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, order_status_id: 5, invoice: "#{uid}_#{store.name}", description:plan)
+                                 tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, status: 'pending', invoice: "#{uid}_#{store.name}", description:plan)
 
         if new_inv
 

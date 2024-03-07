@@ -29,7 +29,7 @@
       <td><%= s.trial? ? "Trial" : Plan.find(s.plan_id).name.humanize rescue 'None'%></td>
       <td><%= s.active? ? 'Active':'Inactive' %></td>
       <td><%= s.last_sign_in_at %></td>
-      <td><%= Subscription.where(store_id:s.id , order_status_id:6).order(created_at: :desc).description rescue 'No Record' %></td>
+      <td><%= Subscription.where(store_id:s.id , status:'completed').order(created_at: :desc).description rescue 'No Record' %></td>
       <td><%= Subscription.where(store_id:s.id).last.ref rescue "No Record" %></td>
       <td><%= Product.where(store_id: s.id).count rescue 0 %></td>
       <td><%= s.trial? ? "#{s.trial_end}" : "#{s.premiumexpiry}" %></td>
@@ -57,15 +57,15 @@
       </tr>
       </thead>
       <tbody>
-      <% @subscriptions.each do |o| %>
+      <% @subscriptions.each do |subscription| %>
       <tr>
-        <td><%= o.ref%></td>
-        <td><%=Store.where(id: o.store_id).first.name %></td>
-        <td><%=o.description%></td>
-        <td><%=o.received%></td>
-        <td><%=(o.amount - o.received).to_i%></td>
-        <td><%=OrderStatus.where(id:o.order_status_id).last.name %></td>
-        <td><%=o.created_at %></td>
+        <td><%= subscription.ref%></td>
+        <td><%=Store.where(id: subscription.store_id).first.name %></td>
+        <td><%=subscription.description%></td>
+        <td><%=subscription.received%></td>
+        <td><%=(subscription.amount - subscription.received).to_i%></td>
+        <td><%= subscription.status.humanize %></td>
+        <td><%=subscription.created_at %></td>
       </tr>
         <%end %>
       </tbody>
