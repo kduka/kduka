@@ -324,7 +324,7 @@ end
     response = http.request(request)
     if response.kind_of? Net::HTTPSuccess
       puts "HTTP WORKED = #{response.read_body}"
-      Transaction.create(account: account, name: name, trans_type: 'M-PESA', store_id: current_store.id, ref: ref, amount: amount, foreign_ref: response.read_body, transaction_status_id: 1)
+      Transaction.create(account: account, name: name, trans_type: 'M-PESA', store_id: current_store.id, ref: ref, amount: amount, foreign_ref: response.read_body, status: 'pending')
 
 
       @storeamount = StoreAmount.where(store_id: current_store.id).first
@@ -339,7 +339,7 @@ end
       nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
 
       @storeamount.update(amount: nu, actual: nua)
-      Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
+      Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, status: 'pending');
       @status = true
     else
       @status = false
@@ -413,7 +413,7 @@ end
 
       puts type.to_s + " " + @type_n
       puts "HTTP WORKED = #{response.read_body}"
-      Transaction.create(account: account, name: name, trans_type: @type_n, store_id: current_store.id, ref: ref, amount: amount, foreign_ref: response.read_body, transaction_status_id: 1)
+      Transaction.create(account: account, name: name, trans_type: @type_n, store_id: current_store.id, ref: ref, amount: amount, foreign_ref: response.read_body, status: 'pending')
 
       @storeamount = StoreAmount.where(store_id: current_store.id).first
 
@@ -427,7 +427,7 @@ end
       nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
 
       @storeamount.update(amount: nu, actual: nua)
-      Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
+      Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, status: 'pending');
       @status = true
     else
       @status = false
@@ -493,7 +493,7 @@ end
     response = http.request(request)
     if response.kind_of? Net::HTTPSuccess
       puts "HTTP WORKED = #{response.read_body}"
-      Transaction.create(account: account, name: name, trans_type: "EFT", store_id: current_store.id, ref: ref, amount: amount, foreign_ref: response.read_body, bankcode: bankcode, transaction_status_id: 1)
+      Transaction.create(account: account, name: name, trans_type: "EFT", store_id: current_store.id, ref: ref, amount: amount, foreign_ref: response.read_body, bankcode: bankcode, status: 'pending')
 
       @storeamount = StoreAmount.where(store_id: current_store.id).first
 
@@ -507,7 +507,7 @@ end
       nua = @storeamount.actual.to_i - (amount.to_i + @trans_charges.to_i)
 
       @storeamount.update(amount: nu, actual: nua)
-      Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, transaction_status_id: 1);
+      Earning.create(trans_id: response.read_body, store_id: current_store.id, amount: (@storeamount.amount.to_d * 0.01).to_i, ref: ref, status: 'pending');
       @status = true
     else
       @status = false
@@ -883,7 +883,7 @@ end
             puts "Store Amount couldn't be updated to #{nu}"
           end
 
-          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, status: 'pending')
             puts "Earning from transaction #{res['reference']} updated to #{((amount.to_d * 0.01).to_i).ceil}"
           end
           @status = true
@@ -958,7 +958,7 @@ end
               puts "Store Amount couldn't be updated to #{nu}"
             end
 
-            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, transaction_status_id: 1)
+            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, status: 'pending')
               puts "\n\n Amount is #{((amount.to_d * 0.01).to_i)}"
               puts "\n \n Amount to ceil is #{((amount.to_d * 0.01).to_i).ceil}"
               puts "\n\n Earning from transaction #{res2['reference']} updated to #{(amount.to_d * 0.01).ceil}"
@@ -1061,7 +1061,7 @@ end
             puts "Store Amount couldn't be updated to #{nu}"
           end
 
-          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, status: 'pending')
             puts "Earning from transaction #{res['reference']} updated to #{((amount.to_d * 0.01).to_i).ceil}"
           end
           @status = true
@@ -1136,7 +1136,7 @@ end
               puts "Store Amount couldn't be updated to #{nu}"
             end
 
-            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, transaction_status_id: 1)
+            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, status: 'pending')
               puts "\n\n Amount is #{((amount.to_d * 0.01).to_i)}"
               puts "\n \n Amount to ceil is #{((amount.to_d * 0.01).to_i).ceil}"
               puts "\n\n Earning from transaction #{res2['reference']} updated to #{(amount.to_d * 0.01).ceil}"
@@ -1247,7 +1247,7 @@ end
             puts "Store Amount couldn't be updated to #{nu}"
           end
 
-          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, status: 'pending')
             puts "Earning from transaction #{res['reference']} updated to #{((amount.to_d * 0.01).to_i).ceil}"
           end
           @status = true
@@ -1322,7 +1322,7 @@ end
               puts "Store Amount couldn't be updated to #{nu}"
             end
 
-            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, transaction_status_id: 1)
+            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, status: 'pending')
               puts "\n\n Amount is #{((amount.to_d * 0.01).to_i)}"
               puts "\n \n Amount to ceil is #{((amount.to_d * 0.01).to_i).ceil}"
               puts "\n\n Earning from transaction #{res2['reference']} updated to #{(amount.to_d * 0.01).ceil}"
@@ -1436,7 +1436,7 @@ end
             puts "Store Amount couldn't be updated to #{nu}"
           end
 
-          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, transaction_status_id: 1)
+          if Earning.create(trans_id: res['reference'], store_id: current_store.id, amount: ((amount.to_d * 0.01).to_i).ceil, ref: ref, status: 'pending')
             puts "Earning from transaction #{res['reference']} updated to #{((amount.to_d * 0.01).to_i).ceil}"
           end
           @status = true
@@ -1511,7 +1511,7 @@ end
               puts "Store Amount couldn't be updated to #{nu}"
             end
 
-            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, transaction_status_id: 1)
+            if Earning.create(trans_id: res2['ipay_reference'], store_id: current_store.id, amount: (amount.to_d * 0.01).ceil, ref: ref, status: 'pending')
               puts "\n\n Amount is #{((amount.to_d * 0.01).to_i)}"
               puts "\n \n Amount to ceil is #{((amount.to_d * 0.01).to_i).ceil}"
               puts "\n\n Earning from transaction #{res2['reference']} updated to #{(amount.to_d * 0.01).ceil}"

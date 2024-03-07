@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20240228085416) do
+ActiveRecord::Schema.define(version: 20240307082058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,11 +181,10 @@ ActiveRecord::Schema.define(version: 20240228085416) do
     t.integer  "store_id"
     t.integer  "amount"
     t.string   "ref"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.integer  "transaction_status_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "status",     default: 0
     t.index ["store_id"], name: "index_earnings_on_store_id", using: :btree
-    t.index ["transaction_status_id"], name: "index_earnings_on_transaction_status_id", using: :btree
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -313,6 +312,7 @@ ActiveRecord::Schema.define(version: 20240228085416) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",     default: 0
   end
 
   create_table "orders", force: :cascade do |t|
@@ -531,12 +531,6 @@ ActiveRecord::Schema.define(version: 20240228085416) do
     t.index ["store_id"], name: "index_subscriptions_on_store_id", using: :btree
   end
 
-  create_table "transaction_statuses", force: :cascade do |t|
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "transactions", force: :cascade do |t|
     t.integer  "amount"
     t.integer  "store_id"
@@ -546,12 +540,11 @@ ActiveRecord::Schema.define(version: 20240228085416) do
     t.string   "ref"
     t.string   "account"
     t.string   "bankcode"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "foreign_ref"
-    t.integer  "transaction_status_id"
+    t.integer  "status",      default: 0
     t.index ["store_id"], name: "index_transactions_on_store_id", using: :btree
-    t.index ["transaction_status_id"], name: "index_transactions_on_transaction_status_id", using: :btree
   end
 
   create_table "unresolveds", force: :cascade do |t|
@@ -604,7 +597,6 @@ ActiveRecord::Schema.define(version: 20240228085416) do
   add_foreign_key "categories", "stores"
   add_foreign_key "coupons", "stores"
   add_foreign_key "earnings", "stores"
-  add_foreign_key "earnings", "transaction_statuses"
   add_foreign_key "feedbacks", "stores"
   add_foreign_key "invoices", "order_statuses"
   add_foreign_key "invoices", "stores"
@@ -625,6 +617,5 @@ ActiveRecord::Schema.define(version: 20240228085416) do
   add_foreign_key "subscriptions", "order_statuses"
   add_foreign_key "subscriptions", "stores"
   add_foreign_key "transactions", "stores"
-  add_foreign_key "transactions", "transaction_statuses"
   add_foreign_key "variants", "products"
 end
