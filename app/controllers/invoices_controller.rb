@@ -80,7 +80,7 @@ class InvoicesController < ApplicationController
 
       uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
 
-      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, status: 'placed', description: desc)
+      sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, status: :placed, description: desc)
 
       if store.premiumexpiry.nil?
         puts "\n \n \n STORE PREMIUM IS #{store.premium} and expiry is #{store.premiumexpiry} \n \n \n"
@@ -95,7 +95,7 @@ class InvoicesController < ApplicationController
       if sub
         new_inv = Invoice.create(from: from, to: to,
                                  uid: uid, store_id: store.id, amount: amount, issued: Time.now, due: Time.now + 7.days,
-                                 tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, status: 'pending', invoice: "#{uid}_#{store.name}")
+                                 tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, status: :pending, invoice: "#{uid}_#{store.name}")
 
         if new_inv
 
@@ -171,12 +171,12 @@ class InvoicesController < ApplicationController
 
         uid = "INV#{[*'A'..'Z', *"0".."9"].sample(8).join}"
 
-        sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, status: 'placed', description: desc)
+        sub = Subscription.create(store_id: store.id, amount: amount, ref: uid, status: :placed, description: desc)
 
         if sub
           new_inv = Invoice.create(from: Time.now - 1.month, to: Time.now,
                                    uid: uid, store_id: store.id, amount: amount, issued: Time.now, due: Time.now + 7.days,
-                                   tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, status: 'pending', invoice: "invoice_#{uid}_#{store.name}")
+                                   tax: (ENV['tax'].to_i * amount), subtotal: (amount - (ENV['tax'].to_i * amount)), currency: 'KSH', subscription_id: sub.id, status: :pending, invoice: "invoice_#{uid}_#{store.name}")
 
           if new_inv
 

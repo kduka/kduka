@@ -17,7 +17,7 @@ class CartsController < ApplicationController
 
   def complete
     @order = Order.where(ref: params[:pesapal_merchant_reference]).first
-    @order.update(status: 'placed')
+    @order.update(status: :placed)
     session[:ref] = nil
     session[:order_id] = nil
     redirect_to(cart_success_path)
