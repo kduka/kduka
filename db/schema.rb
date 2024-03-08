@@ -241,10 +241,9 @@ ActiveRecord::Schema.define(version: 20240307082058) do
     t.integer  "subtotal"
     t.string   "currency"
     t.text     "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "subscription_id"
-    t.integer  "order_status_id"
     t.string   "i_id"
     t.string   "invoice"
     t.boolean  "deliveries"
@@ -252,7 +251,7 @@ ActiveRecord::Schema.define(version: 20240307082058) do
     t.boolean  "second_del"
     t.string   "url"
     t.string   "name"
-    t.index ["order_status_id"], name: "index_invoices_on_order_status_id", using: :btree
+    t.integer  "status",          default: 0
     t.index ["store_id"], name: "index_invoices_on_store_id", using: :btree
     t.index ["subscription_id"], name: "index_invoices_on_subscription_id", using: :btree
   end
@@ -314,7 +313,7 @@ ActiveRecord::Schema.define(version: 20240307082058) do
     t.datetime "updated_at"
     t.integer  "status",     default: 0
   end
-
+  
   create_table "orders", force: :cascade do |t|
     t.decimal  "subtotal",               precision: 12, scale: 3
     t.decimal  "tax",                    precision: 12, scale: 3
@@ -521,13 +520,12 @@ ActiveRecord::Schema.define(version: 20240307082058) do
     t.integer  "store_id"
     t.integer  "amount"
     t.string   "ref"
-    t.integer  "order_status_id"
     t.string   "description"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "received",               default: 0
     t.integer  "number_of_transactions", default: 0
-    t.index ["order_status_id"], name: "index_subscriptions_on_order_status_id", using: :btree
+    t.integer  "status",                 default: 0
     t.index ["store_id"], name: "index_subscriptions_on_store_id", using: :btree
   end
 
@@ -598,7 +596,6 @@ ActiveRecord::Schema.define(version: 20240307082058) do
   add_foreign_key "coupons", "stores"
   add_foreign_key "earnings", "stores"
   add_foreign_key "feedbacks", "stores"
-  add_foreign_key "invoices", "order_statuses"
   add_foreign_key "invoices", "stores"
   add_foreign_key "invoices", "subscriptions"
   add_foreign_key "itransactions", "stores"
@@ -614,7 +611,6 @@ ActiveRecord::Schema.define(version: 20240307082058) do
   add_foreign_key "sub_categories", "categories"
   add_foreign_key "subscription_records", "stores"
   add_foreign_key "subscription_records", "subscriptions"
-  add_foreign_key "subscriptions", "order_statuses"
   add_foreign_key "subscriptions", "stores"
   add_foreign_key "transactions", "stores"
   add_foreign_key "variants", "products"

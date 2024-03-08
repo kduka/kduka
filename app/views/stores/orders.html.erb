@@ -64,16 +64,16 @@
 
                      if p.status == 'placed' %>
                         <tr style="color: orange;font-weight: bold">
-                    <% elsif p.order_status_id == 5 %>
+                    <% elsif p.status == 'pending' %>
                         <tr style="color: red;font-weight: bold">
-                    <% elsif p.order_status_id == 3 %>
+                    <% elsif p.status == 'shipped' %>
                         <tr style="color: darkblue;font-weight: bold">
-                    <% elsif p.order_status_id == 6 %>
+                    <% elsif p.status == 'placed' %>
                         <tr style="color: #7AAE42;font-weight: bold">
                     <% end %>
                     <td><%= link_to p.ref, store_order_path(p.ref) %></td>
                     <td><%= p.date_placed.strftime("%Y-%m-%d %H:%M") rescue nil %></td>
-                    <td><%= OrderStatus.find(p.order_status_id).name rescue nil %></td>
+                    <td><%= p.status.humanize rescue nil %></td>
                     <td><%= p.subtotal %></td>
                     <td><%= p.tax %></td>
                     <td><%= p.shipping %></td>
