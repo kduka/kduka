@@ -180,7 +180,7 @@ class IpnController < ApplicationController
     end
     BusinessToConsumer.create(@params)
     @transaction = Transaction.where(ref: @ref)
-    @transaction.update(status: 'success')
+    @transaction.update(status: :success)
     render :json => @params
 
   end
