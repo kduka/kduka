@@ -20,5 +20,10 @@
 #  fk_rails_...  (store_id => stores.id)
 #
 class Earning < ApplicationRecord
+
+  # ---concerns---
+  include TransactionStatusable
+
+  # ---associations---
   belongs_to :store
 end

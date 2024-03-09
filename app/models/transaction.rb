@@ -10,7 +10,7 @@
 #  foreign_ref :string
 #  name        :string
 #  ref         :string
-#  status      :integer          default(0)
+#  status      :integer          default("pending")
 #  trans_type  :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -25,5 +25,9 @@
 #  fk_rails_...  (store_id => stores.id)
 #
 class Transaction < ApplicationRecord
+  # ---concerns---
+  include TransactionStatusable
+
+  # --- associations---
   belongs_to :store
 end
